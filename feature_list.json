@@ -1,0 +1,44 @@
+{
+  "features": [
+    {
+      "id": "feat-001",
+      "name": "Static app foundation",
+      "description": "Vite React TypeScript app with Leaflet map, mobile-first layout, and local static deployment structure.",
+      "dependencies": [],
+      "status": "done",
+      "evidence": "Verified with npm test, npm run build, and node tools/smoke-test.mjs on 2026-06-11."
+    },
+    {
+      "id": "feat-002",
+      "name": "CSV conversion and local data",
+      "description": "Decode Big5/CP950 CSV, drop invalid rows, ignore Unnamed: 5, preserve warning note, and output public/data/bins.json.",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "npm run convert:bins generated 1197 usable records in public/data/bins.json."
+    },
+    {
+      "id": "feat-003",
+      "name": "Bilingual public map experience",
+      "description": "Traditional Chinese default UI with English toggle, search, district filter, nearby geolocation list, Google Maps links, and public-use warning.",
+      "dependencies": ["feat-002"],
+      "status": "done",
+      "evidence": "Browser smoke test confirmed Chinese title, English toggle, 1197 records, search/filter narrowing, markers, and no page errors."
+    },
+    {
+      "id": "feat-004",
+      "name": "PWA-ready shell",
+      "description": "Manifest, icon placeholder, service worker caching app shell and local JSON data, and README usage notes.",
+      "dependencies": ["feat-003"],
+      "status": "done",
+      "evidence": "public/manifest.webmanifest, public/service-worker.js, public/icons/icon.svg, and README.md added; production build passes."
+    },
+    {
+      "id": "feat-005",
+      "name": "Agent harness",
+      "description": "Minimal harness files for agent startup, scope control, verification, progress tracking, and session handoff.",
+      "dependencies": ["feat-004"],
+      "status": "done",
+      "evidence": "Harness validator scored 100/100; ./init.sh passed npm test, npm run build, and browser smoke test on 2026-06-11."
+    }
+  ]
+}
