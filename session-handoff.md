@@ -29,7 +29,7 @@
 | Unit tests | `npm test` | Passed | 5 utility tests passed before harness edits. |
 | Production build | `npm run build` | Passed | Vite production build completed before harness edits. |
 | Browser smoke | legacy smoke check | Passed | Confirmed 1197 records, language toggle, search/filter, markers, and no page errors before harness edits. Superseded by `npm run test:e2e`. |
-| Harness validation | `node /Users/Leo/.agents/skills/harness-creator/scripts/validate-harness.mjs --target /Users/Leo/Documents/taipei-bin-map` | Passed | 100/100. |
+| Harness validation | `node ~/.agents/skills/harness-creator/scripts/validate-harness.mjs --target ~/Documents/taipei-bin-map` | Passed | 100/100. |
 | Full baseline | `./init.sh` | Passed | Required unsandboxed run for Vite bind; tests, build, and smoke test passed. |
 | Visual check | legacy visual check | Passed | Captured mobile and desktop screenshots; no page errors. Superseded by Playwright e2e and Lighthouse checks. |
 | Lighthouse | `npx lighthouse@12.8.2 http://127.0.0.1:4173/ ...` | Passed | Final scores: 91/100/96/100. |

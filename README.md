@@ -29,12 +29,6 @@ The source CSV is Big5/CP950 encoded. The converter decodes it, drops empty or i
 npm run convert:bins
 ```
 
-Default input:
-
-```text
-/Users/Leo/Downloads/●行人專用清潔箱總表.csv
-```
-
 Default outputs:
 
 ```text
@@ -117,12 +111,6 @@ npm install
 
 ```bash
 npm run convert:bins
-```
-
-預設輸入：
-
-```text
-/Users/Leo/Downloads/●行人專用清潔箱總表.csv
 ```
 
 預設輸出：

@@ -84,7 +84,7 @@
 - [x] App tests before harness edits: `npm test` passed 5 tests.
 - [x] App build before harness edits: `npm run build` passed.
 - [x] App smoke test before harness edits: legacy browser smoke check confirmed 1197 records and no page errors.
-- [x] Harness validation: `node /Users/Leo/.agents/skills/harness-creator/scripts/validate-harness.mjs --target /Users/Leo/Documents/taipei-bin-map` scored 100/100.
+- [x] Harness validation: `node ~/.agents/skills/harness-creator/scripts/validate-harness.mjs --target ~/Documents/taipei-bin-map` scored 100/100.
 - [x] Full `./init.sh`: passed `npm test`, `npm run build`, and browser smoke test on 2026-06-11.
 - [x] Designer visual check: legacy visual check captured mobile and desktop screenshots with no browser errors.
 - [x] Post-polish full baseline: `./init.sh` passed `npm test`, `npm run build`, and browser smoke test on 2026-06-11.

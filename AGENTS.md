@@ -14,7 +14,7 @@ Lightweight harness for coding agents working on the Taipei pedestrian garbage b
 
 Before editing:
 
-1. Confirm `pwd` is `/Users/Leo/Documents/taipei-bin-map`.
+1. Confirm `pwd` is `~/Documents/taipei-bin-map`.
 2. Read this file, `README.md`, `feature_list.json`, and `progress.md`.
 3. Run `npm install` if `node_modules/` is missing.
 4. Run `./init.sh` to establish the current baseline.
