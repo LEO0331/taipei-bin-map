@@ -3,7 +3,7 @@
 ## Current Objective
 
 - Goal: Add a minimal coding-agent harness to the Taipei bin map project.
-- Current status: Harness files created, customized, validated, baseline verified, designer polish, Lighthouse optimization, e2e coverage, code review fixes, and AI slop cleanup completed.
+- Current status: Harness files created, customized, validated, baseline verified, designer polish, Lighthouse optimization, e2e coverage, code review fixes, AI slop cleanup, and publish-readiness docs/assets completed.
 - Branch / commit: Current working tree has uncommitted initial app and harness files.
 
 ## Completed This Session
@@ -20,6 +20,7 @@
 - [x] Re-ran full `./init.sh` baseline after e2e changes.
 - [x] Fixed code-review findings around service-worker update freshness, nearby lookup readiness, and stale harness code.
 - [x] Removed redundant one-off browser utility scripts and dead marker CSS.
+- [x] Added PNG PWA icons, generated data metadata, bilingual README/docs, and Vercel deployment docs.
 
 ## Verification Evidence
 
@@ -36,6 +37,7 @@
 | Final baseline | `./init.sh` | Passed | Unit tests, build, and e2e passed. |
 | Code-review fix baseline | `./init.sh` | Passed | Unit tests, build, and e2e passed after review fixes. |
 | AI slop cleanup baseline | `./init.sh` | Passed | Unit tests, build, and e2e passed after cleanup. |
+| Publish readiness baseline | `./init.sh` | Passed | Unit tests, build, and e2e passed after docs/assets/metadata changes. |
 
 ## Files Changed
 

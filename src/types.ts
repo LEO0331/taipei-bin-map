@@ -12,3 +12,10 @@ export type Bin = {
 export type BinWithDistance = Bin & {
   distanceMeters?: number;
 };
+
+export type BinDataMetadata = {
+  generatedAt: string;
+  sourceFile: string;
+  recordCount: number;
+  encoding: 'Big5/CP950';
+};

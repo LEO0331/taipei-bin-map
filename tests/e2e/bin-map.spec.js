@@ -6,6 +6,7 @@ test.describe('Taipei bin map public flows', () => {
 
     await expect(page.getByRole('heading', { name: '台北市行人專用清潔箱地圖' })).toBeVisible();
     await expect(page.getByText('1197 筆資料')).toBeVisible();
+    await expect(page.getByText('資料更新:')).toBeVisible();
     await expect(page.getByLabel('使用提醒').getByText('嚴禁投入家用垃圾')).toBeVisible();
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.locator('.bin-list li')).toHaveCount(80);

@@ -79,6 +79,14 @@
       "dependencies": ["feat-009"],
       "status": "done",
       "evidence": "Deleted redundant smoke/visual utility scripts, removed dead marker CSS, and cleaned stale harness references. ./init.sh passed after cleanup."
+    },
+    {
+      "id": "feat-011",
+      "name": "Publish readiness assets and docs",
+      "description": "Add production PWA icons, data metadata/last-updated note, Vercel deployment documentation, and bilingual system-design/tradeoff docs.",
+      "dependencies": ["feat-010"],
+      "status": "done",
+      "evidence": "Added PNG PWA icons, generated metadata, footer last-updated note, bilingual README/docs, and Vercel deployment docs. ./init.sh and harness validation passed."
     }
   ]
 }

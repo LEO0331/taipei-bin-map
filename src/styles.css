@@ -541,6 +541,8 @@ a:focus-visible {
 }
 
 footer {
+  display: grid;
+  gap: 0.35rem;
   padding: 1rem;
   border-top: 1px solid var(--line);
   color: var(--muted);

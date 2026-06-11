@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-11 10:30 Asia/Taipei  
+**Last Updated:** 2026-06-11 10:44 Asia/Taipei  
 **Active Feature:** none
 
 ## Status
@@ -72,6 +72,12 @@
 - `src/styles.css` - Removed dead marker span CSS after the map marker implementation changed.
 - `tools/smoke-test.mjs` - Deleted redundant smoke utility superseded by e2e tests.
 - `tools/visual-check.mjs` - Deleted redundant visual utility superseded by e2e and Lighthouse checks.
+- `public/icons/icon-192.png` - Added production PWA icon.
+- `public/icons/icon-512.png` - Added production PWA icon.
+- `public/data/bins.metadata.json` - Added generated dataset metadata.
+- `scripts/convertBins.ts` - Writes metadata with source filename, record count, timestamp, and encoding.
+- `README.md` - Added bilingual publish/deploy instructions.
+- `docs/` - Added bilingual deployment, system design, and tradeoff docs.
 
 ## Evidence of Completion
 
@@ -88,6 +94,8 @@
 - [x] Code review fix baseline: `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-11.
 - [x] AI slop cleanup baseline: `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-11.
 - [x] Static/security scan: `npm audit --audit-level=moderate` reports only the known Vite/esbuild dev-server advisory with a breaking Vite 8 fix path.
+- [x] Publish readiness baseline: `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-11.
+- [x] Publish readiness harness validation: 100/100.
 
 ## Notes for Next Session
 

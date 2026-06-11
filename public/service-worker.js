@@ -3,7 +3,10 @@ const APP_SHELL = [
   '/index.html',
   '/manifest.webmanifest',
   '/icons/icon.svg',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
   '/data/bins.json',
+  '/data/bins.metadata.json',
 ];
 
 self.addEventListener('install', (event) => {

@@ -5,7 +5,7 @@ import { NearbyButton } from './components/NearbyButton';
 import { SearchFilters } from './components/SearchFilters';
 import { WarningNotice } from './components/WarningNotice';
 import { translations } from './i18n';
-import type { Bin, BinWithDistance, Language } from './types';
+import type { Bin, BinDataMetadata, BinWithDistance, Language } from './types';
 import { calculateDistanceMeters, filterBins } from './utils/binUtils';
 
 const DISTRICT_ORDER = [
@@ -40,6 +40,7 @@ const getInitialLanguage = (): Language => {
 
 function App() {
   const [bins, setBins] = useState<Bin[]>([]);
+  const [metadata, setMetadata] = useState<BinDataMetadata | null>(null);
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
   const [searchTerm, setSearchTerm] = useState('');
   const [district, setDistrict] = useState('');
@@ -88,6 +89,32 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    let isMounted = true;
+
+    fetch('/data/bins.metadata.json')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        return response.json() as Promise<BinDataMetadata>;
+      })
+      .then((data) => {
+        if (isMounted) {
+          setMetadata(data);
+        }
+      })
+      .catch(() => {
+        if (isMounted) {
+          setMetadata(null);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const districts = useMemo(() => {
     const dataDistricts = new Set(bins.map((bin) => bin.district).filter(Boolean));
     return DISTRICT_ORDER.filter((item) => dataDistricts.has(item));
@@ -102,6 +129,17 @@ function App() {
   );
   const isListLimited = !nearbyBins && displayedBins.length > listBins.length;
   const listHeading = nearbyBins ? t.nearestBins : t.matchingBins;
+  const formattedGeneratedAt = useMemo(() => {
+    if (!metadata?.generatedAt) {
+      return '';
+    }
+
+    return new Intl.DateTimeFormat(language === 'zh' ? 'zh-TW' : 'en-US', {
+      dateStyle: 'medium',
+      timeStyle: 'short',
+      timeZone: 'Asia/Taipei',
+    }).format(new Date(metadata.generatedAt));
+  }, [language, metadata?.generatedAt]);
 
   const handleLanguageChange = (nextLanguage: Language) => {
     setLanguage(nextLanguage);
@@ -190,7 +228,7 @@ function App() {
             </div>
             <div>
               <span>{t.sourceStatus}</span>
-              <strong>JSON</strong>
+              <strong>{metadata ? metadata.recordCount.toLocaleString() : 'JSON'}</strong>
             </div>
           </div>
           <SearchFilters
@@ -231,7 +269,15 @@ function App() {
         )}
       </main>
 
-      <footer>{t.footer}</footer>
+      <footer>
+        <span>{t.footer}</span>
+        {metadata && formattedGeneratedAt && (
+          <span>
+            {t.dataUpdated}: {formattedGeneratedAt} ({metadata.recordCount.toLocaleString()}{' '}
+            {t.generatedRecords})
+          </span>
+        )}
+      </footer>
     </div>
   );
 }

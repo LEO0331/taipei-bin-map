@@ -1,8 +1,8 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { basename, dirname, resolve } from 'node:path';
 import iconv from 'iconv-lite';
 import Papa from 'papaparse';
-import type { Bin } from '../src/types';
+import type { Bin, BinDataMetadata } from '../src/types';
 
 type CsvRow = {
   行政區?: string;
@@ -18,6 +18,7 @@ const DEFAULT_OUTPUT = 'public/data/bins.json';
 
 const inputPath = resolve(process.argv[2] ?? DEFAULT_INPUT);
 const outputPath = resolve(process.argv[3] ?? DEFAULT_OUTPUT);
+const metadataPath = outputPath.replace(/\.json$/i, '.metadata.json');
 
 const raw = readFileSync(inputPath);
 const csvText = iconv.decode(raw, 'cp950');
@@ -63,4 +64,14 @@ const bins = parsed.data.reduce<Bin[]>((records, row, index) => {
 mkdirSync(dirname(outputPath), { recursive: true });
 writeFileSync(outputPath, `${JSON.stringify(bins, null, 2)}\n`);
 
+const metadata: BinDataMetadata = {
+  generatedAt: new Date().toISOString(),
+  sourceFile: basename(inputPath),
+  recordCount: bins.length,
+  encoding: 'Big5/CP950',
+};
+
+writeFileSync(metadataPath, `${JSON.stringify(metadata, null, 2)}\n`);
+
 console.log(`Converted ${bins.length} usable bin records to ${outputPath}`);
+console.log(`Wrote metadata to ${metadataPath}`);
