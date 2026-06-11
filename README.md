@@ -56,6 +56,12 @@ Open the URL printed by Vite. The app loads data locally and does not require a 
 npm test
 ```
 
+Run browser end-to-end tests:
+
+```bash
+npm run test:e2e
+```
+
 ## Production Build
 
 ```bash

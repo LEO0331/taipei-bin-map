@@ -46,10 +46,10 @@ Individual checks:
 ```bash
 npm test
 npm run build
-node tools/smoke-test.mjs
+npm run test:e2e
 ```
 
-`tools/smoke-test.mjs` expects a local app at `http://127.0.0.1:5173/`. `./init.sh` starts and stops that server automatically.
+`npm run test:e2e` starts its own Vite server through Playwright.
 
 ## Definition of Done
 
@@ -58,6 +58,7 @@ A feature is done only when all are true:
 - Target behavior is implemented and scoped to the active feature.
 - `npm test` passes.
 - `npm run build` passes.
+- `npm run test:e2e` passes for relevant user flows.
 - Browser smoke verification passes or a clear reason is recorded.
 - Data conversion is rerun if conversion or source data changed.
 - Evidence is recorded in `progress.md` or `feature_list.json`.

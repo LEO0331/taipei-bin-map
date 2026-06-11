@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import L from 'leaflet';
-import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
+import { CircleMarker, MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import type { Translation } from '../i18n';
 import type { BinWithDistance } from '../types';
 
@@ -49,17 +49,6 @@ function MapController({
 }
 
 export function BinMap({ bins, userLocation, t }: BinMapProps) {
-  const binIcon = useMemo(
-    () =>
-      L.divIcon({
-        className: 'bin-marker',
-        html: '<span></span>',
-        iconSize: [18, 18],
-        iconAnchor: [9, 9],
-      }),
-    [],
-  );
-
   const userIcon = useMemo(
     () =>
       L.divIcon({
@@ -73,7 +62,7 @@ export function BinMap({ bins, userLocation, t }: BinMapProps) {
 
   return (
     <section className="map-panel" aria-label={t.appTitle}>
-      <MapContainer center={taipeiCenter} zoom={13} scrollWheelZoom className="leaflet-map">
+      <MapContainer center={taipeiCenter} zoom={13} scrollWheelZoom preferCanvas className="leaflet-map">
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -85,7 +74,19 @@ export function BinMap({ bins, userLocation, t }: BinMapProps) {
           </Marker>
         )}
         {bins.map((bin) => (
-          <Marker key={bin.id} position={[bin.latitude, bin.longitude]} icon={binIcon}>
+          <CircleMarker
+            key={bin.id}
+            center={[bin.latitude, bin.longitude]}
+            className="bin-marker"
+            radius={5}
+            pathOptions={{
+              color: '#ffffff',
+              fillColor: '#08756d',
+              fillOpacity: 0.92,
+              opacity: 1,
+              weight: 2,
+            }}
+          >
             <Popup>
               <div className="map-popup">
                 <strong>{bin.district}</strong>
@@ -100,7 +101,7 @@ export function BinMap({ bins, userLocation, t }: BinMapProps) {
                 </a>
               </div>
             </Popup>
-          </Marker>
+          </CircleMarker>
         ))}
       </MapContainer>
     </section>

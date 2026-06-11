@@ -6,7 +6,7 @@
       "description": "Vite React TypeScript app with Leaflet map, mobile-first layout, and local static deployment structure.",
       "dependencies": [],
       "status": "done",
-      "evidence": "Verified with npm test, npm run build, and node tools/smoke-test.mjs on 2026-06-11."
+      "evidence": "Verified with npm test, npm run build, and browser smoke coverage on 2026-06-11; current browser baseline is npm run test:e2e."
     },
     {
       "id": "feat-002",
@@ -39,6 +39,46 @@
       "dependencies": ["feat-004"],
       "status": "done",
       "evidence": "Harness validator scored 100/100; ./init.sh passed npm test, npm run build, and browser smoke test on 2026-06-11."
+    },
+    {
+      "id": "feat-006",
+      "name": "Designer polish pass",
+      "description": "Elevate the public map UI with a cohesive civic field-guide visual direction while preserving the existing static app behavior.",
+      "dependencies": ["feat-005"],
+      "status": "done",
+      "evidence": "Implemented civic field-guide UI polish; ./init.sh passed npm test, npm run build, and browser smoke test on 2026-06-11. Visual check captured mobile and desktop screenshots with no browser errors."
+    },
+    {
+      "id": "feat-007",
+      "name": "Lighthouse optimization pass",
+      "description": "Improve Lighthouse performance, accessibility, best-practices, and SEO with targeted static-app fixes.",
+      "dependencies": ["feat-006"],
+      "status": "done",
+      "evidence": "Lighthouse improved from 50/93/96/92 to 91/100/96/100. Main bundle split from ~94.6 kB gzip to ~49.8 kB gzip plus lazy map chunk; robots.txt, metadata, and Vercel headers added."
+    },
+    {
+      "id": "feat-008",
+      "name": "End-to-end test coverage",
+      "description": "Add Playwright Test coverage for core public user flows: initial load, language persistence, search/filter, and geolocation nearby results.",
+      "dependencies": ["feat-007"],
+      "status": "done",
+      "evidence": "./init.sh passed npm test, npm run build, and npm run test:e2e. Playwright e2e covered 10 desktop/mobile tests for load, language persistence, search/filter, geolocation success, and geolocation denial."
+    },
+    {
+      "id": "feat-009",
+      "name": "Code review fixes",
+      "description": "Review current app, PWA, and test harness changes for correctness, maintainability, and deployment risks; fix confirmed findings.",
+      "dependencies": ["feat-008"],
+      "status": "done",
+      "evidence": "Fixed service-worker stale app-shell caching, removed language-change data refetch, removed dead init.sh cleanup code, and disabled nearby lookup until bins load. ./init.sh passed after fixes."
+    },
+    {
+      "id": "feat-010",
+      "name": "AI slop cleanup",
+      "description": "Remove redundant generated utilities, dead CSS, and stale harness references while preserving app behavior.",
+      "dependencies": ["feat-009"],
+      "status": "done",
+      "evidence": "Deleted redundant smoke/visual utility scripts, removed dead marker CSS, and cleaned stale harness references. ./init.sh passed after cleanup."
     }
   ]
 }

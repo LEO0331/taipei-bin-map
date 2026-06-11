@@ -7,8 +7,11 @@ type WarningNoticeProps = {
 export function WarningNotice({ t }: WarningNoticeProps) {
   return (
     <section className="warning-notice" aria-label={t.warningLabel}>
-      <strong>{t.pedestrianOnly}</strong>
-      <span>{t.warning}</span>
+      <div aria-hidden="true">!</div>
+      <p>
+        <strong>{t.pedestrianOnly}</strong>
+        <span>{t.warning}</span>
+      </p>
     </section>
   );
 }

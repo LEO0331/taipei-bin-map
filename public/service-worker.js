@@ -1,6 +1,5 @@
-const CACHE_NAME = 'taipei-bin-map-v1';
+const CACHE_NAME = 'taipei-bin-map-v2';
 const APP_SHELL = [
-  '/',
   '/index.html',
   '/manifest.webmanifest',
   '/icons/icon.svg',
@@ -26,19 +25,58 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) {
-        return cached;
-      }
+  const url = new URL(event.request.url);
 
-      return fetch(event.request).then((response) => {
-        if (response.ok && event.request.url.startsWith(self.location.origin)) {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-        }
-        return response;
-      });
-    }),
-  );
+  if (event.request.mode === 'navigate') {
+    event.respondWith(networkFirst(event.request, '/index.html'));
+    return;
+  }
+
+  if (url.origin !== self.location.origin || url.pathname === '/service-worker.js') {
+    return;
+  }
+
+  if (
+    url.pathname.startsWith('/assets/') ||
+    url.pathname.startsWith('/data/') ||
+    url.pathname.startsWith('/icons/') ||
+    url.pathname === '/manifest.webmanifest'
+  ) {
+    event.respondWith(cacheFirst(event.request));
+    return;
+  }
+
+  event.respondWith(networkFirst(event.request));
 });
+
+async function networkFirst(request, fallbackKey) {
+  const cache = await caches.open(CACHE_NAME);
+
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      await cache.put(request, response.clone());
+    }
+    return response;
+  } catch {
+    return (
+      (await caches.match(request)) ||
+      (fallbackKey ? await caches.match(fallbackKey) : undefined) ||
+      new Response('Offline', { status: 503, statusText: 'Offline' })
+    );
+  }
+}
+
+async function cacheFirst(request) {
+  const cached = await caches.match(request);
+  if (cached) {
+    return cached;
+  }
+
+  const response = await fetch(request);
+  if (response.ok) {
+    const cache = await caches.open(CACHE_NAME);
+    await cache.put(request, response.clone());
+  }
+  return response;
+}

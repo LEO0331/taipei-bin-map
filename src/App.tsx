@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { BinList } from './components/BinList';
-import { BinMap } from './components/BinMap';
 import { LanguageToggle } from './components/LanguageToggle';
 import { NearbyButton } from './components/NearbyButton';
 import { SearchFilters } from './components/SearchFilters';
@@ -24,10 +23,15 @@ const DISTRICT_ORDER = [
   '文山區',
 ];
 
+const INITIAL_LIST_LIMIT = 80;
+const BinMap = lazy(() => import('./components/BinMap').then((module) => ({ default: module.BinMap })));
+
 type UserLocation = {
   latitude: number;
   longitude: number;
 };
+
+type ErrorKey = 'load' | 'location' | '';
 
 const getInitialLanguage = (): Language => {
   const stored = window.localStorage.getItem('language');
@@ -43,7 +47,7 @@ function App() {
   const [nearbyBins, setNearbyBins] = useState<BinWithDistance[] | null>(null);
   const [isLoadingBins, setIsLoadingBins] = useState(true);
   const [isLocating, setIsLocating] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState<ErrorKey>('');
 
   const t = translations[language];
 
@@ -70,7 +74,7 @@ function App() {
       })
       .catch(() => {
         if (isMounted) {
-          setError(t.loadError);
+          setError('load');
         }
       })
       .finally(() => {
@@ -82,7 +86,7 @@ function App() {
     return () => {
       isMounted = false;
     };
-  }, [t.loadError]);
+  }, []);
 
   const districts = useMemo(() => {
     const dataDistricts = new Set(bins.map((bin) => bin.district).filter(Boolean));
@@ -92,6 +96,11 @@ function App() {
   const filteredBins = useMemo(() => filterBins(bins, searchTerm, district), [bins, district, searchTerm]);
 
   const displayedBins = nearbyBins ?? filteredBins;
+  const listBins = useMemo(
+    () => (nearbyBins ? displayedBins : displayedBins.slice(0, INITIAL_LIST_LIMIT)),
+    [displayedBins, nearbyBins],
+  );
+  const isListLimited = !nearbyBins && displayedBins.length > listBins.length;
   const listHeading = nearbyBins ? t.nearestBins : t.matchingBins;
 
   const handleLanguageChange = (nextLanguage: Language) => {
@@ -110,8 +119,12 @@ function App() {
   };
 
   const handleNearbyClick = () => {
+    if (bins.length === 0) {
+      return;
+    }
+
     if (!navigator.geolocation) {
-      setError(t.locationError);
+      setError('location');
       return;
     }
 
@@ -143,7 +156,7 @@ function App() {
         setIsLocating(false);
       },
       () => {
-        setError(t.locationError);
+        setError('location');
         setIsLocating(false);
       },
       {
@@ -166,6 +179,20 @@ function App() {
 
       <main>
         <section className="controls-panel" aria-label={t.searchPlaceholder}>
+          <div className="metrics-strip" aria-label={t.sourceStatus}>
+            <div>
+              <span>{t.totalBins}</span>
+              <strong>{bins.length.toLocaleString()}</strong>
+            </div>
+            <div>
+              <span>{t.visibleBins}</span>
+              <strong>{displayedBins.length.toLocaleString()}</strong>
+            </div>
+            <div>
+              <span>{t.sourceStatus}</span>
+              <strong>JSON</strong>
+            </div>
+          </div>
           <SearchFilters
             district={district}
             districts={districts}
@@ -174,18 +201,32 @@ function App() {
             onDistrictChange={handleDistrictChange}
             onSearchChange={handleSearchChange}
           />
-          <NearbyButton isLoading={isLocating} t={t} onClick={handleNearbyClick} />
+          <NearbyButton
+            disabled={isLoadingBins || bins.length === 0}
+            isLoading={isLocating}
+            t={t}
+            onClick={handleNearbyClick}
+          />
         </section>
 
         <WarningNotice t={t} />
 
-        {error && <p className="status-message error">{error}</p>}
+        {error && <p className="status-message error">{error === 'load' ? t.loadError : t.locationError}</p>}
         {isLoadingBins ? (
           <p className="status-message">{t.loading}</p>
         ) : (
           <div className="workspace">
-            <BinMap bins={displayedBins} t={t} userLocation={userLocation} />
-            <BinList bins={displayedBins} heading={listHeading} language={language} t={t} />
+            <Suspense fallback={<section className="map-panel map-loading">{t.mapLoading}</section>}>
+              <BinMap bins={displayedBins} t={t} userLocation={userLocation} />
+            </Suspense>
+            <BinList
+              bins={listBins}
+              heading={listHeading}
+              isLimited={isListLimited}
+              language={language}
+              t={t}
+              totalCount={displayedBins.length}
+            />
           </div>
         )}
       </main>
