@@ -112,6 +112,31 @@ describe('filterFacilities', () => {
 
     expect(result).toHaveLength(0);
   });
+
+  it('limits all-facility results to public toilets when toilet-specific filters are active', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '',
+      district: '',
+      facilityTypes: [],
+      toiletCategory: '交通',
+    });
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('public_toilet_0001');
+  });
+
+  it('ignores stale toilet filters when public toilets are not selected', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '',
+      district: '',
+      facilityTypes: ['dog_waste_bag_box'],
+      toiletCategory: '交通',
+      requiresParentChildToilet: true,
+    });
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('dog_waste_bag_box_0001');
+  });
 });
 
 describe('getFacilityTypeLabel', () => {

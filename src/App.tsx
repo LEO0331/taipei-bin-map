@@ -198,6 +198,11 @@ function App() {
 
   const handleTypeChange = (value: FacilityType[]) => {
     setSelectedTypes(value);
+    if (!value.includes('public_toilet')) {
+      setToiletCategory('');
+      setRequiresAccessibleToilet(false);
+      setRequiresParentChildToilet(false);
+    }
     setNearbyFacilities(null);
   };
 

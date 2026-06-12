@@ -17,16 +17,18 @@
 - [x] Added emoji markers and marker-cap behavior for large unfiltered result sets.
 - [x] Updated README and bilingual docs for the public amenities product.
 - [x] Updated e2e tests for all three facility types and public toilet flows.
+- [x] Fixed review finding: active toilet-specific filters now narrow mixed/all selections to public toilets and are ignored for non-toilet-only selections.
+- [x] Cleanup pass removed unused singular translation keys and tightened filter predicate naming.
 
 ## Verification Evidence
 
 | Check | Command | Result | Notes |
 |---|---|---|---|
 | Data conversion | `npm run convert:bins` | Passed | Generated 3,256 facilities: 1,197 bins, 510 dog boxes, 1,549 public toilets. |
-| Unit tests | `npm test` | Passed | 10 facility utility tests passed. |
+| Unit tests | `npm test` | Passed | 12 facility utility tests passed. |
 | Production build | `npm run build` | Passed | Vite production build completed. |
 | E2E | `npm run test:e2e` | Passed | 16 desktop/mobile Playwright tests passed. |
-| Full baseline | `./init.sh` | Passed | Ran `npm test`, `npm run build`, and 16 desktop/mobile Playwright tests. |
+| Full baseline | `./init.sh` | Passed | Ran `npm test`, `npm run build`, and 16 desktop/mobile Playwright tests after the cleanup pass. |
 
 ## Decisions Made
 

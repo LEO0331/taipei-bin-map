@@ -59,10 +59,14 @@ export function filterFacilities(
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
   const selectedTypes = new Set(facilityTypes);
+  const includesPublicToilets = selectedTypes.size === 0 || selectedTypes.has('public_toilet');
+  const hasToiletFilters = Boolean(toiletCategory) || requiresAccessibleToilet || requiresParentChildToilet;
+  const toiletFiltersOnly = includesPublicToilets && hasToiletFilters;
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
     const matchesType = selectedTypes.size === 0 || selectedTypes.has(facility.type);
+    const matchesToiletFilterScope = !toiletFiltersOnly || facility.type === 'public_toilet';
     const matchesToiletCategory =
       facility.type !== 'public_toilet' || !toiletCategory || facility.category === toiletCategory;
     const matchesAccessibleToilet =
@@ -89,6 +93,7 @@ export function filterFacilities(
     return (
       matchesDistrict &&
       matchesType &&
+      matchesToiletFilterScope &&
       matchesToiletCategory &&
       matchesAccessibleToilet &&
       matchesParentChildToilet &&
