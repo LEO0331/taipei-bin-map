@@ -4,7 +4,7 @@
 
 Decision: keep all facility data as static JSON under `public/data/`.
 
-Why: both datasets are public, small, and read-only for this product. Static hosting reduces operational cost, avoids API keys, and makes Vercel/GitHub Pages deployment straightforward.
+Why: the datasets are public, small enough for client-side filtering, and read-only for this product. Static hosting reduces operational cost, avoids API keys, and makes Vercel/GitHub Pages deployment straightforward.
 
 Rejected: a backend API or CMS. It would add hosting, authentication, and maintenance burden without solving a current user problem.
 
@@ -12,9 +12,9 @@ Rejected: a backend API or CMS. It would add hosting, authentication, and mainte
 
 Decision: refactor from a bin-only model to `Facility` with explicit `type`.
 
-Why: pedestrian garbage bins and dog-waste bag boxes have different meanings and source columns. A typed model keeps labels, warnings, filters, and popups accurate without duplicating the whole app.
+Why: pedestrian garbage bins, dog-waste bag boxes, and public toilets have different meanings and source columns. A typed model keeps labels, warnings, filters, and popups accurate without duplicating the whole app.
 
-Rejected: forcing dog-waste bag boxes into the old bin model. That would risk describing them as trash bins, which is incorrect.
+Rejected: forcing every amenity into the old bin model. That would risk describing dog-waste bag boxes or public toilets as trash bins, which is incorrect.
 
 ## Keep Coordinate Outliers
 
@@ -40,19 +40,19 @@ Why: the user location never needs to leave the device, and the dataset is small
 
 Rejected: server-side nearest-facility lookup. It would add privacy and infrastructure concerns for no current benefit.
 
-## Canvas Markers Instead Of Clustering
+## Marker Cap Instead Of Clustering
 
-Decision: keep Leaflet `CircleMarker` rendering with `preferCanvas` and distinct colors/legend.
+Decision: use emoji `divIcon` markers, but suppress facility markers when the active result set is above the marker cap.
 
-Why: about 1,700 points is still manageable, and canvas markers avoid adding a clustering dependency.
+Why: the combined dataset is 3,256 records, which is too cluttered for unclustered mobile markers. A marker cap avoids adding a clustering dependency while still letting search, filters, and nearby lookup reveal precise markers.
 
-Tradeoff: dense areas can still visually overlap. If the dataset grows or field testing shows map clutter, marker clustering is the next upgrade.
+Tradeoff: users do not see all markers by default. If the product needs low-zoom all-marker browsing, marker clustering is the next upgrade.
 
 ## Limited Default List Rendering
 
 Decision: render the first 80 list items by default and show a notice encouraging search/filter.
 
-Why: rendering all 1,707 rows is not useful for scanning. Users looking for a specific facility are better served by search, district filters, facility type filters, or nearby lookup.
+Why: rendering all 3,256 rows is not useful for scanning. Users looking for a specific facility are better served by search, district filters, facility type filters, toilet filters, or nearby lookup.
 
 Tradeoff: users do not see every row in the list at once, but the map still shows all matching facilities and the count remains visible.
 

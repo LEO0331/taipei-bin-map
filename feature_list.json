@@ -95,6 +95,14 @@
       "dependencies": ["feat-011"],
       "status": "done",
       "evidence": "npm run convert:bins generated 1707 combined facilities, including 510 dog-waste bag boxes and coordinate outlier reporting. ./init.sh passed npm test, npm run build, and 12 Playwright e2e tests on 2026-06-12."
+    },
+    {
+      "id": "feat-013",
+      "name": "Public amenities toilet expansion",
+      "description": "Reposition the product as a public amenities map by adding Taipei public toilet data, toilet-specific filters/details, PWA metadata updates, and marker rendering safeguards.",
+      "dependencies": ["feat-012"],
+      "status": "done",
+      "evidence": "npm run convert:bins generated 3256 combined facilities, including 1549 public toilets. ./init.sh passed npm test, npm run build, and 16 desktop/mobile Playwright e2e tests on 2026-06-12."
     }
   ]
 }

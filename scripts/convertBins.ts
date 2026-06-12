@@ -23,27 +23,49 @@ type DogWasteCsvRow = {
   備註?: string;
 };
 
+type PublicToiletCsvRow = {
+  行政區?: string;
+  公廁類別?: string;
+  公廁名稱?: string;
+  公廁地址?: string;
+  經度?: string;
+  緯度?: string;
+  管理單位?: string;
+  座數?: string;
+  特優級?: string;
+  優等級?: string;
+  普通級?: string;
+  改善級?: string;
+  無障礙廁座數?: string;
+  親子廁座數?: string;
+};
+
 type SourceConfig<Row> = {
   inputPath: string;
   parseRow: (row: Row, recordIndex: number) => Facility;
   requiredFields: Array<keyof Row>;
   longitudeField: keyof Row;
   latitudeField: keyof Row;
+  encoding: 'cp950' | 'utf8';
 };
 
 type ConvertOptions = {
   pedestrianCsv: string;
   dogWasteCsv: string;
+  publicToiletCsv: string;
   outputDir: string;
   pedestrianFallbackJson: string;
   dogWasteFallbackJson: string;
+  publicToiletFallbackJson: string;
 };
 
 const DATA_DIR = resolve('public/data');
 const DEFAULT_PEDESTRIAN_CSV = '/Users/Leo/Downloads/●行人專用清潔箱總表.csv';
 const DEFAULT_DOG_WASTE_CSV = '/Users/Leo/Downloads/狗便袋箱位置總表 .csv';
+const DEFAULT_PUBLIC_TOILET_CSV = '/Users/Leo/Downloads/臺北市公廁點位資訊.csv';
 const DEFAULT_PEDESTRIAN_FALLBACK_JSON = resolve('public/data/bins.json');
 const DEFAULT_DOG_WASTE_FALLBACK_JSON = resolve('public/data/dog-waste-bag-boxes.json');
+const DEFAULT_PUBLIC_TOILET_FALLBACK_JSON = resolve('public/data/public-toilets.json');
 
 function readCliOptions(): ConvertOptions {
   const args = process.argv.slice(2);
@@ -59,6 +81,11 @@ function readCliOptions(): ConvertOptions {
         DEFAULT_PEDESTRIAN_CSV,
     ),
     dogWasteCsv: resolve(optionValue('--dog-waste-csv') ?? process.env.DOG_WASTE_BAG_BOXES_CSV ?? DEFAULT_DOG_WASTE_CSV),
+    publicToiletCsv: resolve(
+      optionValue('--public-toilet-csv') ??
+        process.env.PUBLIC_TOILETS_CSV ??
+        DEFAULT_PUBLIC_TOILET_CSV,
+    ),
     outputDir: resolve(optionValue('--out-dir') ?? process.env.FACILITY_DATA_OUTPUT_DIR ?? DATA_DIR),
     pedestrianFallbackJson: resolve(
       optionValue('--pedestrian-fallback-json') ??
@@ -70,6 +97,11 @@ function readCliOptions(): ConvertOptions {
         process.env.DOG_WASTE_BAG_BOXES_FALLBACK_JSON ??
         DEFAULT_DOG_WASTE_FALLBACK_JSON,
     ),
+    publicToiletFallbackJson: resolve(
+      optionValue('--public-toilet-fallback-json') ??
+        process.env.PUBLIC_TOILETS_FALLBACK_JSON ??
+        DEFAULT_PUBLIC_TOILET_FALLBACK_JSON,
+    ),
   };
 }
 
@@ -77,16 +109,21 @@ const options = readCliOptions();
 const FACILITIES_OUTPUT = resolve(options.outputDir, 'facilities.json');
 const PEDESTRIAN_OUTPUT = resolve(options.outputDir, 'pedestrian-bins.json');
 const DOG_WASTE_OUTPUT = resolve(options.outputDir, 'dog-waste-bag-boxes.json');
+const PUBLIC_TOILET_OUTPUT = resolve(options.outputDir, 'public-toilets.json');
 const REPORT_OUTPUT = resolve(options.outputDir, 'conversion-report.json');
 
 const clean = (value: unknown) => String(value ?? '').trim();
 const numberFrom = (value: unknown) => Number.parseFloat(clean(value));
+const integerFrom = (value: unknown) => {
+  const parsed = Number.parseInt(clean(value), 10);
+  return Number.isFinite(parsed) ? parsed : 0;
+};
 const hasAnyValue = (row: Record<string, unknown>) => Object.values(row).some((value) => clean(value) !== '');
 const countOutliers = (facilities: Facility[]) => facilities.filter((facility) => facility.isCoordinateOutlier).length;
 
-function readCp950Csv<Row>(inputPath: string): Row[] {
+function readCsv<Row>(inputPath: string, encoding: 'cp950' | 'utf8'): Row[] {
   const raw = readFileSync(inputPath);
-  const csvText = iconv.decode(raw, 'cp950');
+  const csvText = encoding === 'cp950' ? iconv.decode(raw, 'cp950') : raw.toString('utf8');
   const parsed = Papa.parse<Row>(csvText, {
     header: true,
     skipEmptyLines: true,
@@ -115,7 +152,7 @@ function markCoordinateOutlier(facility: Facility): Facility {
 function convertSource<Row extends Record<string, unknown>>(
   config: SourceConfig<Row>,
 ): { facilities: Facility[]; report: ConversionSourceReport } {
-  const rows = readCp950Csv<Row>(config.inputPath);
+  const rows = readCsv<Row>(config.inputPath, config.encoding);
   const missingRequiredFields: ConversionSourceReport['missingRequiredFields'] = [];
   const invalidCoordinateRows: ConversionSourceReport['invalidCoordinateRows'] = [];
   let droppedRows = 0;
@@ -202,6 +239,29 @@ function parseDogWasteRow(row: DogWasteCsvRow, index: number): Facility {
   };
 }
 
+function parsePublicToiletRow(row: PublicToiletCsvRow, index: number): Facility {
+  return {
+    id: `public_toilet-${String(index).padStart(4, '0')}`,
+    type: 'public_toilet',
+    district: clean(row.行政區),
+    address: clean(row.公廁地址),
+    longitude: numberFrom(row.經度),
+    latitude: numberFrom(row.緯度),
+    note: '實際開放情況請以現場為準',
+    source: '臺北市公廁點位資訊',
+    name: clean(row.公廁名稱),
+    category: clean(row.公廁類別),
+    manager: clean(row.管理單位),
+    totalSeats: integerFrom(row.座數),
+    excellentGradeCount: integerFrom(row.特優級),
+    superiorGradeCount: integerFrom(row.優等級),
+    ordinaryGradeCount: integerFrom(row.普通級),
+    improvementGradeCount: integerFrom(row.改善級),
+    accessibleToiletSeats: integerFrom(row.無障礙廁座數),
+    parentChildToiletSeats: integerFrom(row.親子廁座數),
+  };
+}
+
 function fallbackReport(sourcePath: string, facilities: Facility[]): ConversionSourceReport {
   return {
     sourceFilename: `${basename(sourcePath)} (fallback; source CSV not found)`,
@@ -222,6 +282,7 @@ function loadPedestrianFacilities(): { facilities: Facility[]; report: Conversio
       requiredFields: ['行政區', '地址', '經度', '緯度'],
       longitudeField: '經度',
       latitudeField: '緯度',
+      encoding: 'cp950',
     });
   }
 
@@ -255,6 +316,7 @@ function loadDogWasteFacilities(): { facilities: Facility[]; report: ConversionS
       requiredFields: ['行政區', '路名', '位置', '經度', '緯度'],
       longitudeField: '經度',
       latitudeField: '緯度',
+      encoding: 'cp950',
     });
   }
 
@@ -267,6 +329,27 @@ function loadDogWasteFacilities(): { facilities: Facility[]; report: ConversionS
   };
 }
 
+function loadPublicToiletFacilities(): { facilities: Facility[]; report: ConversionSourceReport } {
+  if (existsSync(options.publicToiletCsv)) {
+    return convertSource<PublicToiletCsvRow>({
+      inputPath: options.publicToiletCsv,
+      parseRow: parsePublicToiletRow,
+      requiredFields: ['行政區', '公廁類別', '公廁名稱', '公廁地址', '經度', '緯度'],
+      longitudeField: '經度',
+      latitudeField: '緯度',
+      encoding: 'utf8',
+    });
+  }
+
+  const fallback = JSON.parse(readFileSync(options.publicToiletFallbackJson, 'utf8')) as Facility[];
+  const facilities = fallback.map(markCoordinateOutlier);
+
+  return {
+    facilities,
+    report: fallbackReport(options.publicToiletFallbackJson, facilities),
+  };
+}
+
 function writeJson(path: string, data: unknown) {
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, `${JSON.stringify(data, null, 2)}\n`);
@@ -274,21 +357,24 @@ function writeJson(path: string, data: unknown) {
 
 const pedestrian = loadPedestrianFacilities();
 const dogWaste = loadDogWasteFacilities();
+const publicToilets = loadPublicToiletFacilities();
 
-const facilities = [...pedestrian.facilities, ...dogWaste.facilities];
+const facilities = [...pedestrian.facilities, ...dogWaste.facilities, ...publicToilets.facilities];
 const report: ConversionReport = {
   generatedAt: new Date().toISOString(),
   totalValidRows: facilities.length,
-  sources: [pedestrian.report, dogWaste.report],
+  sources: [pedestrian.report, dogWaste.report, publicToilets.report],
 };
 
 mkdirSync(options.outputDir, { recursive: true });
 writeJson(PEDESTRIAN_OUTPUT, pedestrian.facilities);
 writeJson(DOG_WASTE_OUTPUT, dogWaste.facilities);
+writeJson(PUBLIC_TOILET_OUTPUT, publicToilets.facilities);
 writeJson(FACILITIES_OUTPUT, facilities);
 writeJson(REPORT_OUTPUT, report);
 
 console.log(`Wrote ${facilities.length} total facility records to ${FACILITIES_OUTPUT}`);
 console.log(`Wrote ${pedestrian.facilities.length} pedestrian bin records to ${PEDESTRIAN_OUTPUT}`);
 console.log(`Wrote ${dogWaste.facilities.length} dog-waste bag box records to ${DOG_WASTE_OUTPUT}`);
+console.log(`Wrote ${publicToilets.facilities.length} public toilet records to ${PUBLIC_TOILET_OUTPUT}`);
 console.log(`Wrote conversion report to ${REPORT_OUTPUT}`);

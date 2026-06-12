@@ -1,16 +1,15 @@
 import type { Translation } from '../i18n';
 import type { FacilityType } from '../types';
-import type { FacilityTypeSelection } from './FacilityTypeFilter';
 
 type WarningNoticeProps = {
-  selectedType: FacilityTypeSelection;
+  selectedTypes: FacilityType[];
   t: Translation;
 };
 
-const noticeTypes: FacilityType[] = ['pedestrian_bin', 'dog_waste_bag_box'];
+const noticeTypes: FacilityType[] = ['pedestrian_bin', 'dog_waste_bag_box', 'public_toilet'];
 
-export function WarningNotice({ selectedType, t }: WarningNoticeProps) {
-  const activeTypes = selectedType === 'all' ? noticeTypes : [selectedType];
+export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
+  const activeTypes = noticeTypes.filter((type) => selectedTypes.includes(type));
   const noticeByType = {
     pedestrian_bin: {
       label: t.pedestrianBins,
@@ -19,6 +18,10 @@ export function WarningNotice({ selectedType, t }: WarningNoticeProps) {
     dog_waste_bag_box: {
       label: t.dogWasteBagBoxes,
       notice: t.dogWasteBagBoxNotice,
+    },
+    public_toilet: {
+      label: t.publicToilets,
+      notice: t.publicToiletNotice,
     },
   } satisfies Record<FacilityType, { label: string; notice: string }>;
 

@@ -1,8 +1,9 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { FacilityList } from './components/FacilityList';
-import { FacilityTypeFilter, type FacilityTypeSelection } from './components/FacilityTypeFilter';
+import { FacilityTypeFilter, FACILITY_TYPE_OPTIONS } from './components/FacilityTypeFilter';
 import { LanguageToggle } from './components/LanguageToggle';
 import { NearbyButton } from './components/NearbyButton';
+import { PublicToiletFilters } from './components/PublicToiletFilters';
 import { SearchFilters } from './components/SearchFilters';
 import { WarningNotice } from './components/WarningNotice';
 import { translations } from './i18n';
@@ -25,6 +26,7 @@ const DISTRICT_ORDER = [
 ];
 
 const INITIAL_LIST_LIMIT = 80;
+const MAP_MARKER_LIMIT = 900;
 const FacilityMap = lazy(() =>
   import('./components/FacilityMap').then((module) => ({ default: module.FacilityMap })),
 );
@@ -41,16 +43,16 @@ const getInitialLanguage = (): Language => {
   return stored === 'en' ? 'en' : 'zh';
 };
 
-const selectedFacilityTypes = (selectedType: FacilityTypeSelection): FacilityType[] =>
-  selectedType === 'all' ? ['pedestrian_bin', 'dog_waste_bag_box'] : [selectedType];
-
 function App() {
   const [facilities, setFacilities] = useState<Facility[]>([]);
   const [report, setReport] = useState<ConversionReport | null>(null);
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
   const [searchTerm, setSearchTerm] = useState('');
   const [district, setDistrict] = useState('');
-  const [selectedType, setSelectedType] = useState<FacilityTypeSelection>('all');
+  const [selectedTypes, setSelectedTypes] = useState<FacilityType[]>(FACILITY_TYPE_OPTIONS);
+  const [toiletCategory, setToiletCategory] = useState('');
+  const [requiresAccessibleToilet, setRequiresAccessibleToilet] = useState(false);
+  const [requiresParentChildToilet, setRequiresParentChildToilet] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -58,7 +60,7 @@ function App() {
   const [error, setError] = useState<ErrorKey>('');
 
   const t = translations[language];
-  const activeFacilityTypes = useMemo(() => selectedFacilityTypes(selectedType), [selectedType]);
+  const includesPublicToilets = selectedTypes.includes('public_toilet');
 
   useEffect(() => {
     document.documentElement.lang = language === 'zh' ? 'zh-Hant' : 'en';
@@ -128,17 +130,39 @@ function App() {
     return DISTRICT_ORDER.filter((item) => dataDistricts.has(item));
   }, [facilities]);
 
+  const toiletCategories = useMemo(() => {
+    const categories = new Set(
+      facilities
+        .filter((facility) => facility.type === 'public_toilet' && facility.category)
+        .map((facility) => facility.category as string),
+    );
+    return [...categories].sort((first, second) => first.localeCompare(second, 'zh-Hant'));
+  }, [facilities]);
+
   const filteredFacilities = useMemo(
     () =>
       filterFacilities(facilities, {
         searchTerm,
         district,
-        facilityTypes: activeFacilityTypes,
+        facilityTypes: selectedTypes,
+        toiletCategory,
+        requiresAccessibleToilet,
+        requiresParentChildToilet,
       }),
-    [activeFacilityTypes, district, facilities, searchTerm],
+    [
+      district,
+      facilities,
+      requiresAccessibleToilet,
+      requiresParentChildToilet,
+      searchTerm,
+      selectedTypes,
+      toiletCategory,
+    ],
   );
 
   const displayedFacilities = nearbyFacilities ?? filteredFacilities;
+  const markerLimitExceeded = !nearbyFacilities && displayedFacilities.length > MAP_MARKER_LIMIT;
+  const mapFacilities = markerLimitExceeded ? [] : displayedFacilities;
   const listFacilities = useMemo(
     () => (nearbyFacilities ? displayedFacilities : displayedFacilities.slice(0, INITIAL_LIST_LIMIT)),
     [displayedFacilities, nearbyFacilities],
@@ -172,8 +196,23 @@ function App() {
     setNearbyFacilities(null);
   };
 
-  const handleTypeChange = (value: FacilityTypeSelection) => {
-    setSelectedType(value);
+  const handleTypeChange = (value: FacilityType[]) => {
+    setSelectedTypes(value);
+    setNearbyFacilities(null);
+  };
+
+  const handleToiletCategoryChange = (value: string) => {
+    setToiletCategory(value);
+    setNearbyFacilities(null);
+  };
+
+  const handleAccessibleToiletChange = (value: boolean) => {
+    setRequiresAccessibleToilet(value);
+    setNearbyFacilities(null);
+  };
+
+  const handleParentChildToiletChange = (value: boolean) => {
+    setRequiresParentChildToilet(value);
     setNearbyFacilities(null);
   };
 
@@ -260,7 +299,20 @@ function App() {
             onDistrictChange={handleDistrictChange}
             onSearchChange={handleSearchChange}
           />
-          <FacilityTypeFilter selectedType={selectedType} t={t} onChange={handleTypeChange} />
+          <FacilityTypeFilter selectedTypes={selectedTypes} t={t} onChange={handleTypeChange} />
+          {includesPublicToilets && (
+            <PublicToiletFilters
+              categories={toiletCategories}
+              language={language}
+              selectedCategory={toiletCategory}
+              requiresAccessibleToilet={requiresAccessibleToilet}
+              requiresParentChildToilet={requiresParentChildToilet}
+              t={t}
+              onCategoryChange={handleToiletCategoryChange}
+              onAccessibleChange={handleAccessibleToiletChange}
+              onParentChildChange={handleParentChildToiletChange}
+            />
+          )}
           <NearbyButton
             disabled={isLoadingFacilities || filteredFacilities.length === 0}
             isLoading={isLocating}
@@ -269,7 +321,7 @@ function App() {
           />
         </section>
 
-        <WarningNotice selectedType={selectedType} t={t} />
+        <WarningNotice selectedTypes={selectedTypes} t={t} />
 
         {error && <p className="status-message error">{error === 'load' ? t.loadError : t.unableToGetLocation}</p>}
         {isLoadingFacilities ? (
@@ -278,8 +330,9 @@ function App() {
           <div className="workspace">
             <Suspense fallback={<section className="map-panel map-loading">{t.mapLoading}</section>}>
               <FacilityMap
-                facilities={displayedFacilities}
+                facilities={mapFacilities}
                 language={language}
+                markerLimitExceeded={markerLimitExceeded}
                 t={t}
                 userLocation={userLocation}
               />

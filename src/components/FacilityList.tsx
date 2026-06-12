@@ -1,6 +1,11 @@
 import type { Translation } from '../i18n';
 import type { FacilityWithDistance, Language } from '../types';
-import { formatDistance, getFacilityGoogleMapsUrl, getFacilityTypeLabel } from '../utils/facilityUtils';
+import {
+  formatDistance,
+  getFacilityGoogleMapsUrl,
+  getFacilityTypeLabel,
+  getToiletCategoryLabel,
+} from '../utils/facilityUtils';
 
 type FacilityListProps = {
   facilities: FacilityWithDistance[];
@@ -18,6 +23,8 @@ const getFacilityPlace = (facility: FacilityWithDistance) => {
 
   return facility.address;
 };
+
+const hasPositiveNumber = (value: number | undefined) => typeof value === 'number' && value > 0;
 
 export function FacilityList({
   facilities,
@@ -53,8 +60,25 @@ export function FacilityList({
               </div>
               <p>
                 <b>{getFacilityTypeLabel(facility.type, language)}</b>
+                {facility.name && <span>{facility.name}</span>}
                 <span>{getFacilityPlace(facility)}</span>
               </p>
+              {facility.type === 'public_toilet' && (
+                <small>
+                  {[
+                    facility.category ? getToiletCategoryLabel(facility.category, language) : '',
+                    hasPositiveNumber(facility.totalSeats) ? `${t.totalSeats}: ${facility.totalSeats}` : '',
+                    hasPositiveNumber(facility.accessibleToiletSeats)
+                      ? `${t.accessibleToiletSeats}: ${facility.accessibleToiletSeats}`
+                      : '',
+                    hasPositiveNumber(facility.parentChildToiletSeats)
+                      ? `${t.parentChildToiletSeats}: ${facility.parentChildToiletSeats}`
+                      : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' · ')}
+                </small>
+              )}
               <small>{facility.note}</small>
               {facility.isCoordinateOutlier && <small className="outlier-warning">{t.coordinateOutlierWarning}</small>}
               <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">

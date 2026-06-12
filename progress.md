@@ -2,90 +2,73 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-12 11:20 Asia/Taipei  
-**Active Feature:** none
+**Last Updated:** 2026-06-12 11:38 Asia/Taipei  
+**Active Feature:** None
 
 ## Status
 
 ### What's Done
 
-- [x] Refactored the data model from bin-only records to typed `Facility` records.
-- [x] Added dog-waste bag box conversion from Big5/CP950 CSV.
-- [x] Generated combined and per-type static JSON files under `public/data/`.
-- [x] Added `conversion-report.json` with dropped row, missing field, and coordinate outlier counts.
-- [x] Updated the UI product name to `台北市街頭清潔便利地圖` / `Taipei Street Cleanliness Map`.
-- [x] Added facility type filtering, type-specific warning notices, map legend, type-aware popups, and type-aware result cards.
-- [x] Updated PWA metadata and service worker cache entries for the new facility JSON files.
-- [x] Updated README and bilingual design/deployment/tradeoff docs.
-- [x] Updated unit and Playwright e2e tests for the two-dataset product direction.
-- [x] Completed code-review fix pass for converter restartability and report diagnostics.
-- [x] Completed AI slop cleanup pass for converter duplication/dead branches.
+- [x] Added `public_toilet` to the shared `FacilityType` and toilet-specific optional fields to `Facility`.
+- [x] Extended the converter for UTF-8-SIG `臺北市公廁點位資訊.csv` with trimmed headers.
+- [x] Generated `public/data/public-toilets.json` and combined all three datasets into `public/data/facilities.json`.
+- [x] Repositioned the product as `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
+- [x] Added public toilet category, accessible-toilet, and parent-child-toilet filters.
+- [x] Updated search to cover toilet name, category, manager, address, district, road, location, and note.
+- [x] Updated result cards, popups, warning notices, map legend, PWA metadata, and service worker cache.
+- [x] Added emoji markers and a marker cap to avoid rendering thousands of unclustered markers on mobile.
+- [x] Updated README, system design, deployment, and tradeoff docs.
+- [x] Updated Playwright e2e coverage for three datasets and public toilet flows.
 
 ### What's In Progress
 
-- [ ] No active work.
+- [x] No active feature work remains for feat-013.
 
 ### What's Next
 
-1. Pick the next feature or publish task.
-2. Add it to `feature_list.json` before editing.
-3. Run `./init.sh` before and after substantive changes.
+1. Review and commit the public amenities expansion.
+2. Change the GitHub repository description in GitHub settings if desired.
 
 ## Blockers / Risks
 
-- [ ] The original pedestrian-bin source CSV is not currently present at `/Users/Leo/Downloads/●行人專用清潔箱總表.csv`; the converter falls back to existing cleaned `public/data/bins.json` and records that fallback in `conversion-report.json`.
-- [ ] The dog-waste bag box source CSV is not currently present at `/Users/Leo/Downloads/狗便袋箱位置總表 .csv`; the converter falls back to existing cleaned `public/data/dog-waste-bag-boxes.json` and records that fallback in `conversion-report.json`.
-- [ ] `npm audit --audit-level=moderate` previously reported a Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
-- [ ] Browser verification requires Chromium; sandboxed environments may need approval or equivalent browser permissions.
+- [ ] The pedestrian-bin CSV is absent at `/Users/Leo/Downloads/●行人專用清潔箱總表.csv`; converter fallback uses `public/data/bins.json`.
+- [ ] The dog-waste bag box CSV is absent at `/Users/Leo/Downloads/狗便袋箱位置總表 .csv`; converter fallback uses `public/data/dog-waste-bag-boxes.json`.
+- [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
 
-- **Use a generic `Facility` model**: Keeps pedestrian bins and dog-waste bag boxes distinct without duplicating the whole UI.
-- **Keep suspicious coordinates**: Out-of-bounds records are marked with `isCoordinateOutlier: true` and reported, not silently discarded.
-- **Keep canvas markers**: About 1,700 points remain practical with Leaflet canvas markers; clustering can be added later if real usage shows visual crowding.
-- **Preserve static deployment**: No backend, accounts, admin page, database, or paid map API were added.
-- **Make conversion restartable**: If source CSVs are absent, checked-in cleaned JSON acts as fallback input and the report records that source.
-- **Keep cleanup narrow**: Cleanup removed converter duplication and dead paths only; no UI behavior changes were included.
+- **Use one `Facility` model**: Keeps garbage bins, dog-waste bag boxes, and public toilets distinct without duplicating the UI.
+- **No clustering dependency yet**: Large unfiltered result sets suppress map markers and ask users to narrow results; this satisfies mobile clutter constraints without adding a new package.
+- **Keep source values in data**: Public toilet categories remain Chinese in JSON; UI translates labels where useful.
+- **Keep the app static**: No backend, accounts, admin page, database, or paid map API.
 
 ## Files Modified This Session
 
-- `scripts/convertBins.ts` - Converts both datasets and writes combined/per-type JSON plus conversion report.
-- `public/data/facilities.json` - Combined facility dataset.
-- `public/data/pedestrian-bins.json` - Pedestrian garbage bin dataset.
-- `public/data/dog-waste-bag-boxes.json` - Dog-waste bag box dataset.
-- `public/data/conversion-report.json` - Data conversion report and warnings.
-- `src/types.ts` - Generic facility types and conversion report types.
-- `src/utils/facilityUtils.ts` - Distance, formatting, filtering, labels, map URL, and coordinate bounds.
-- `src/utils/facilityUtils.test.ts` - Unit coverage for facility utilities.
-- `src/App.tsx` - Facility data loading, filters, nearby logic, and footer metadata.
-- `src/i18n.ts` - Updated bilingual product and facility labels.
-- `src/components/` - Facility map/list/popup/filter/legend/warning components.
-- `src/styles.css` - Facility filter, legend, list, warning, and responsive layout styles.
-- `public/manifest.webmanifest` - Updated PWA app name and description.
-- `public/service-worker.js` - Updated cache name and local data assets.
-- `index.html` - Updated title and metadata.
-- `tests/e2e/bin-map.spec.js` - Updated public user-flow coverage.
-- `README.md` - Updated bilingual project docs.
-- `docs/` - Updated bilingual system design, tradeoffs, and deployment docs.
-- `package.json` - Added `convert:facilities` alias.
-- `feature_list.json` - Added feat-012 tracking.
-- `progress.md` - Current session status.
-- Code-review fix pass touched `scripts/convertBins.ts`, `src/types.ts`, `tests/e2e/bin-map.spec.js`, `README.md`, `docs/system-design.*.md`, and regenerated `public/data/conversion-report.json`.
-- AI slop cleanup simplified `scripts/convertBins.ts` by deleting redundant coordinate-null branches and centralizing fallback report creation.
+- `scripts/convertBins.ts` - Added UTF-8-SIG public toilet conversion and output.
+- `src/types.ts` - Added public toilet facility type and fields.
+- `src/utils/facilityUtils.ts` - Added toilet search/filter/category label behavior.
+- `src/utils/facilityUtils.test.ts` - Added public toilet filter tests.
+- `src/App.tsx` - Added multi-type selection, toilet filters, and marker cap.
+- `src/components/` - Added/updated facility type, public toilet filter, list, popup, map, legend, and warning components.
+- `src/i18n.ts` - Updated product naming and toilet labels/notices.
+- `src/styles.css` - Added toilet filter, emoji marker, and marker cap styles.
+- `public/data/public-toilets.json` - Generated public toilet dataset.
+- `public/data/facilities.json` - Regenerated combined dataset.
+- `public/data/conversion-report.json` - Regenerated conversion report.
+- `public/manifest.webmanifest`, `public/service-worker.js`, `index.html` - Updated PWA/app metadata.
+- `tests/e2e/bin-map.spec.js` - Added three-dataset and public toilet e2e coverage.
+- `README.md`, `docs/` - Updated product and architecture docs.
+- `feature_list.json`, `progress.md`, `session-handoff.md` - Updated harness state.
 
 ## Evidence of Completion
 
-- [x] `npm run convert:bins` generated 1,707 total facilities: 1,197 pedestrian bins and 510 dog-waste bag boxes.
-- [x] `conversion-report.json` records one dog-waste coordinate outlier and preserves it with `isCoordinateOutlier: true`; it now also includes `invalidCoordinateRows`.
-- [x] Code-review fix verification: `npm run convert:bins`, `npm test`, `npm run build`, and `npm run test:e2e` passed on 2026-06-12.
-- [x] Post-review full baseline: `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-12.
-- [x] Cleanup targeted checks: `npm run convert:bins`, `npm test`, and `npm run build` passed on 2026-06-12.
-- [x] Post-cleanup full baseline: `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-12.
-- [x] `npm test` passed 8 facility utility tests.
+- [x] `npm run convert:bins` generated 3,256 total facilities: 1,197 pedestrian bins, 510 dog-waste bag boxes, and 1,549 public toilets.
+- [x] `conversion-report.json` records public toilet source rows, valid rows, and no public toilet coordinate errors.
+- [x] `npm test` passed 10 utility tests.
 - [x] `npm run build` passed.
-- [x] `npm run test:e2e` passed 12 desktop/mobile Playwright tests.
-- [x] `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-12.
+- [x] `npm run test:e2e` passed 16 desktop/mobile Playwright tests.
+- [x] `./init.sh` passed `npm test`, `npm run build`, and 16 desktop/mobile Playwright tests.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The street-cleanliness facility expansion is verified and marked done.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The public amenities expansion is implemented and verified.

@@ -8,32 +8,34 @@ const totalFacilityCount = facilities.length.toLocaleString('en-US');
 const dogWasteBagBoxCount = facilities
   .filter((facility) => facility.type === 'dog_waste_bag_box')
   .length.toLocaleString('en-US');
+const publicToiletCount = facilities
+  .filter((facility) => facility.type === 'public_toilet')
+  .length.toString();
 
-test.describe('Taipei street cleanliness map public flows', () => {
-  test('loads both local datasets and renders the public map experience', async ({ page }) => {
+test.describe('Taipei public amenities map public flows', () => {
+  test('loads all three local datasets and avoids default marker clutter', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page.getByRole('heading', { name: '台北市街頭清潔便利地圖' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
     await expect(page.locator('.metrics-strip strong').first()).toHaveText(totalFacilityCount);
     await expect(page.getByText('資料更新:')).toBeVisible();
-    await expect(page.getByLabel('使用提醒').getByText('嚴禁投入家用垃圾')).toBeVisible();
-    await expect(page.getByLabel('使用提醒').getByText('隨手清狗便')).toBeVisible();
-    await expect(page.getByLabel('地圖圖例')).toContainText('狗便袋箱');
+    await expect(page.getByLabel('使用提醒')).toContainText('公廁實際開放情況');
+    await expect(page.getByLabel('地圖圖例')).toContainText('公廁');
     await expect(page.locator('.leaflet-map')).toBeVisible();
+    await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-list li')).toHaveCount(80);
-    await expect(page.getByText('列表先顯示前 80 筆')).toBeVisible();
   });
 
   test('persists the English language selection across reloads', async ({ page }) => {
     await page.goto('/');
 
     await page.getByRole('button', { name: 'English' }).click();
-    await expect(page.getByRole('heading', { name: 'Taipei Street Cleanliness Map' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Taipei Public Amenities Map' })).toBeVisible();
 
     await page.reload();
-    await expect(page.getByRole('heading', { name: 'Taipei Street Cleanliness Map' })).toBeVisible();
-    await expect(page.getByPlaceholder('Search address, road, or place')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Dog Waste Bag Boxes' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Taipei Public Amenities Map' })).toBeVisible();
+    await expect(page.getByPlaceholder('Search address, road, place, or facility name')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Public Toilets' })).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {
@@ -48,11 +50,36 @@ test.describe('Taipei street cleanliness map public flows', () => {
     await expect(page.getByLabel('使用提醒')).not.toContainText('家用垃圾');
   });
 
-  test('searches across road and location fields and shows coordinate warnings', async ({ page }) => {
+  test('filters public toilets by category and accessibility fields', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '公廁' }).click();
+    await expect(page.getByText(`${publicToiletCount} 筆資料`)).toBeVisible();
+    await page.getByLabel('公廁類別').selectOption('交通');
+    await page.getByLabel('有親子廁所').check();
+
+    await expect(page.locator('.facility-list li').first()).toContainText('公廁');
+    await expect(page.locator('.facility-list li').first()).toContainText('交通');
+    await expect(page.locator('.facility-list li').first()).toContainText('親子廁座數');
+  });
+
+  test('searches public toilet name, manager, and address fields', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '公廁' }).click();
+    await page.getByPlaceholder('搜尋地址、路名、地點或設施名稱').fill('捷運劍潭站');
+    await page.getByLabel('行政區').selectOption('士林區');
+
+    await expect(page.locator('.facility-list li').first()).toContainText('捷運劍潭站');
+    await expect(page.locator('.facility-list li').first()).toContainText('公廁');
+    await expect(page.locator('.facility-list li').first()).not.toContainText('狗便袋箱');
+  });
+
+  test('searches dog road/location fields and shows coordinate warnings', async ({ page }) => {
     await page.goto('/');
 
     await page.getByRole('button', { name: '狗便袋箱' }).click();
-    await page.getByPlaceholder('搜尋地址、路名或地點').fill('4段32號對面捷運線形公園');
+    await page.getByPlaceholder('搜尋地址、路名、地點或設施名稱').fill('4段32號對面捷運線形公園');
     await page.getByLabel('行政區').selectOption('北投區');
 
     await expect(page.locator('.facility-list li')).toHaveCount(1);
@@ -62,15 +89,15 @@ test.describe('Taipei street cleanliness map public flows', () => {
 
   test('shows nearest selected facility type after granted geolocation', async ({ page, context }) => {
     await context.grantPermissions(['geolocation']);
-    await context.setGeolocation({ latitude: 25.03848, longitude: 121.5172 });
+    await context.setGeolocation({ latitude: 25.0849, longitude: 121.5251 });
     await page.goto('/');
 
-    await page.getByRole('button', { name: '狗便袋箱' }).click();
+    await page.getByRole('button', { name: '公廁' }).click();
     await page.getByRole('button', { name: '顯示附近設施' }).click();
 
     await expect(page.getByRole('heading', { name: '最近的設施' })).toBeVisible();
     await expect(page.locator('.facility-list li')).toHaveCount(10);
-    await expect(page.locator('.facility-list li').first()).toContainText('狗便袋箱');
+    await expect(page.locator('.facility-list li').first()).toContainText('公廁');
     await expect(page.locator('.distance').first()).toContainText(/公尺|公里/);
   });
 

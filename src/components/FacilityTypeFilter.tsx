@@ -1,34 +1,55 @@
 import type { Translation } from '../i18n';
 import type { FacilityType } from '../types';
 
-export type FacilityTypeSelection = 'all' | FacilityType;
-
 type FacilityTypeFilterProps = {
-  selectedType: FacilityTypeSelection;
+  selectedTypes: FacilityType[];
   t: Translation;
-  onChange: (type: FacilityTypeSelection) => void;
+  onChange: (types: FacilityType[]) => void;
 };
 
-const OPTIONS: FacilityTypeSelection[] = ['all', 'pedestrian_bin', 'dog_waste_bag_box'];
+export const FACILITY_TYPE_OPTIONS: FacilityType[] = ['pedestrian_bin', 'dog_waste_bag_box', 'public_toilet'];
 
-export function FacilityTypeFilter({ selectedType, t, onChange }: FacilityTypeFilterProps) {
+export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeFilterProps) {
   const labelByType = {
-    all: t.all,
     pedestrian_bin: t.pedestrianBins,
     dog_waste_bag_box: t.dogWasteBagBoxes,
-  } satisfies Record<FacilityTypeSelection, string>;
+    public_toilet: t.publicToilets,
+  } satisfies Record<FacilityType, string>;
+
+  const allSelected = selectedTypes.length === FACILITY_TYPE_OPTIONS.length;
+
+  const toggleType = (type: FacilityType) => {
+    if (allSelected) {
+      onChange([type]);
+      return;
+    }
+
+    const nextTypes = selectedTypes.includes(type)
+      ? selectedTypes.filter((item) => item !== type)
+      : [...selectedTypes, type];
+
+    onChange(nextTypes.length > 0 ? nextTypes : FACILITY_TYPE_OPTIONS);
+  };
 
   return (
     <fieldset className="facility-type-filter">
       <legend>{t.facilityType}</legend>
       <div role="group" aria-label={t.facilityType}>
-        {OPTIONS.map((type) => (
+        <button
+          type="button"
+          className={allSelected ? 'active' : ''}
+          aria-pressed={allSelected}
+          onClick={() => onChange(FACILITY_TYPE_OPTIONS)}
+        >
+          {t.all}
+        </button>
+        {FACILITY_TYPE_OPTIONS.map((type) => (
           <button
             key={type}
             type="button"
-            className={selectedType === type ? 'active' : ''}
-            aria-pressed={selectedType === type}
-            onClick={() => onChange(type)}
+            className={selectedTypes.includes(type) ? 'active' : ''}
+            aria-pressed={selectedTypes.includes(type)}
+            onClick={() => toggleType(type)}
           >
             {labelByType[type]}
           </button>

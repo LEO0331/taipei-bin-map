@@ -1,7 +1,7 @@
 {
-  "name": "台北市街頭清潔便利地圖",
-  "short_name": "台北清潔地圖",
-  "description": "Taipei Street Cleanliness Map for pedestrian garbage bins and dog-waste bag boxes.",
+  "name": "台北市公共便利設施地圖",
+  "short_name": "台北便利地圖",
+  "description": "Taipei Public Amenities Map for public toilets, pedestrian garbage bins, and dog-waste bag boxes.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f5f2ec",

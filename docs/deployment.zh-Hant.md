@@ -26,7 +26,7 @@ npm run convert:facilities
 ./init.sh
 ```
 
-此 app 不需要 API key，也沒有後端。它會以靜態資源方式載入 `public/data/facilities.json`、各設施類型 JSON 與 `public/data/conversion-report.json`。
+此 app 不需要 API key，也沒有後端。它會以靜態資源方式載入 `public/data/facilities.json`、`public/data/pedestrian-bins.json`、`public/data/dog-waste-bag-boxes.json`、`public/data/public-toilets.json` 與 `public/data/conversion-report.json`。
 
 ## Production URL Metadata
 

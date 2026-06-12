@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-12T03:19:17.207Z",
-  "totalValidRows": 1707,
+  "generatedAt": "2026-06-12T03:24:46.628Z",
+  "totalValidRows": 3256,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -17,6 +17,15 @@
       "validRows": 510,
       "droppedRows": 0,
       "coordinateOutlierRows": 1,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": []
+    },
+    {
+      "sourceFilename": "臺北市公廁點位資訊.csv",
+      "totalRows": 1549,
+      "validRows": 1549,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
       "invalidCoordinateRows": [],
       "missingRequiredFields": []
     }

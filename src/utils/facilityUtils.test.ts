@@ -32,6 +32,22 @@ const facilities: Facility[] = [
     note: '隨手清狗便，違者最高罰鍰新臺幣6,000元',
     source: '台北市狗便袋箱位置資料',
   },
+  {
+    id: 'public_toilet_0001',
+    type: 'public_toilet',
+    district: '士林區',
+    address: '臺北市士林區中山北路五段65號',
+    longitude: 121.525078,
+    latitude: 25.084873,
+    note: '實際開放情況請以現場為準',
+    source: '臺北市公廁點位資訊',
+    name: '捷運劍潭站(淡水信義線)',
+    category: '交通',
+    manager: '捷運劍潭站(夜)',
+    totalSeats: 5,
+    accessibleToiletSeats: 0,
+    parentChildToiletSeats: 1,
+  },
 ];
 
 describe('calculateDistanceMeters', () => {
@@ -72,12 +88,37 @@ describe('filterFacilities', () => {
       facilities,
     );
   });
+
+  it('filters public toilets by category and parent-child availability', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '劍潭',
+      district: '士林區',
+      facilityTypes: ['public_toilet'],
+      toiletCategory: '交通',
+      requiresParentChildToilet: true,
+    });
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('public_toilet_0001');
+  });
+
+  it('filters public toilets by accessible availability', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '',
+      district: '',
+      facilityTypes: ['public_toilet'],
+      requiresAccessibleToilet: true,
+    });
+
+    expect(result).toHaveLength(0);
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
   it('returns localized facility type labels', () => {
     expect(getFacilityTypeLabel('pedestrian_bin', 'zh')).toBe('行人專用清潔箱');
     expect(getFacilityTypeLabel('dog_waste_bag_box', 'en')).toBe('Dog Waste Bag Box');
+    expect(getFacilityTypeLabel('public_toilet', 'en')).toBe('Public Toilet');
   });
 });
 

@@ -9,15 +9,19 @@ export function MapLegend({ t }: MapLegendProps) {
     <div className="map-legend" aria-label={t.mapLegend}>
       <strong>{t.mapLegend}</strong>
       <span>
-        <i className="legend-dot pedestrian" aria-hidden="true" />
+        <i aria-hidden="true">🗑️</i>
         {t.pedestrianBins}
       </span>
       <span>
-        <i className="legend-dot dog" aria-hidden="true" />
+        <i aria-hidden="true">🐾</i>
         {t.dogWasteBagBoxes}
       </span>
       <span>
-        <i className="legend-dot user" aria-hidden="true" />
+        <i aria-hidden="true">🚻</i>
+        {t.publicToilets}
+      </span>
+      <span>
+        <i aria-hidden="true">📍</i>
         {t.userLocation}
       </span>
     </div>

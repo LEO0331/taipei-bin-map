@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import L from 'leaflet';
-import { CircleMarker, MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import type { Translation } from '../i18n';
-import type { FacilityWithDistance, Language } from '../types';
+import type { FacilityType, FacilityWithDistance, Language } from '../types';
 import { FacilityPopup } from './FacilityPopup';
 import { MapLegend } from './MapLegend';
 
@@ -14,6 +14,7 @@ type UserLocation = {
 type FacilityMapProps = {
   facilities: FacilityWithDistance[];
   language: Language;
+  markerLimitExceeded: boolean;
   userLocation: UserLocation | null;
   t: Translation;
 };
@@ -48,26 +49,37 @@ function MapController({
   return null;
 }
 
-const markerStyleByType = {
-  pedestrian_bin: {
-    color: '#ffffff',
-    fillColor: '#08756d',
-  },
-  dog_waste_bag_box: {
-    color: '#ffffff',
-    fillColor: '#b85d17',
-  },
-};
+const markerEmojiByType = {
+  pedestrian_bin: '🗑️',
+  dog_waste_bag_box: '🐾',
+  public_toilet: '🚻',
+} satisfies Record<FacilityType, string>;
 
-export function FacilityMap({ facilities, language, userLocation, t }: FacilityMapProps) {
+export function FacilityMap({ facilities, language, markerLimitExceeded, userLocation, t }: FacilityMapProps) {
   const userIcon = useMemo(
     () =>
       L.divIcon({
         className: 'user-marker',
-        html: '<span></span>',
-        iconSize: [22, 22],
-        iconAnchor: [11, 11],
+        html: '<span>📍</span>',
+        iconSize: [30, 30],
+        iconAnchor: [15, 28],
       }),
+    [],
+  );
+
+  const facilityIcons = useMemo(
+    () =>
+      Object.fromEntries(
+        Object.entries(markerEmojiByType).map(([type, emoji]) => [
+          type,
+          L.divIcon({
+            className: `facility-div-marker ${type}`,
+            html: `<span aria-hidden="true">${emoji}</span>`,
+            iconSize: [30, 30],
+            iconAnchor: [15, 28],
+          }),
+        ]),
+      ) as Record<FacilityType, L.DivIcon>,
     [],
   );
 
@@ -85,25 +97,18 @@ export function FacilityMap({ facilities, language, userLocation, t }: FacilityM
           </Marker>
         )}
         {facilities.map((facility) => (
-          <CircleMarker
+          <Marker
             key={facility.id}
-            center={[facility.latitude, facility.longitude]}
-            className={`facility-marker ${facility.type}`}
-            radius={facility.isCoordinateOutlier ? 7 : 5}
-            pathOptions={{
-              ...markerStyleByType[facility.type],
-              dashArray: facility.isCoordinateOutlier ? '3 3' : undefined,
-              fillOpacity: 0.92,
-              opacity: 1,
-              weight: facility.isCoordinateOutlier ? 3 : 2,
-            }}
+            position={[facility.latitude, facility.longitude]}
+            icon={facilityIcons[facility.type]}
           >
             <Popup>
               <FacilityPopup facility={facility} language={language} t={t} />
             </Popup>
-          </CircleMarker>
+          </Marker>
         ))}
       </MapContainer>
+      {markerLimitExceeded && <p className="map-marker-limit">{t.mapMarkerLimitNotice}</p>}
       <MapLegend t={t} />
     </section>
   );

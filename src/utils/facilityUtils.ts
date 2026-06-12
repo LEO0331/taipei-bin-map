@@ -45,10 +45,16 @@ export function filterFacilities(
     searchTerm,
     district,
     facilityTypes,
+    toiletCategory,
+    requiresAccessibleToilet = false,
+    requiresParentChildToilet = false,
   }: {
     searchTerm: string;
     district: string;
     facilityTypes: FacilityType[];
+    toiletCategory?: string;
+    requiresAccessibleToilet?: boolean;
+    requiresParentChildToilet?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -57,6 +63,16 @@ export function filterFacilities(
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
     const matchesType = selectedTypes.size === 0 || selectedTypes.has(facility.type);
+    const matchesToiletCategory =
+      facility.type !== 'public_toilet' || !toiletCategory || facility.category === toiletCategory;
+    const matchesAccessibleToilet =
+      facility.type !== 'public_toilet' ||
+      !requiresAccessibleToilet ||
+      (facility.accessibleToiletSeats ?? 0) > 0;
+    const matchesParentChildToilet =
+      facility.type !== 'public_toilet' ||
+      !requiresParentChildToilet ||
+      (facility.parentChildToiletSeats ?? 0) > 0;
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -65,9 +81,19 @@ export function filterFacilities(
         facility.road,
         facility.location,
         facility.note,
+        facility.name,
+        facility.category,
+        facility.manager,
       ].some((value) => value?.toLocaleLowerCase().includes(normalizedSearch));
 
-    return matchesDistrict && matchesType && matchesSearch;
+    return (
+      matchesDistrict &&
+      matchesType &&
+      matchesToiletCategory &&
+      matchesAccessibleToilet &&
+      matchesParentChildToilet &&
+      matchesSearch
+    );
   });
 }
 
@@ -76,7 +102,34 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '行人專用清潔箱' : 'Pedestrian Garbage Bin';
   }
 
-  return language === 'zh' ? '狗便袋箱' : 'Dog Waste Bag Box';
+  if (type === 'dog_waste_bag_box') {
+    return language === 'zh' ? '狗便袋箱' : 'Dog Waste Bag Box';
+  }
+
+  return language === 'zh' ? '公廁' : 'Public Toilet';
+}
+
+export function getToiletCategoryLabel(category: string, language: Language) {
+  if (language === 'zh') {
+    return category;
+  }
+
+  const labels: Record<string, string> = {
+    交通: 'Transport',
+    公園: 'Park',
+    機關: 'Government / Public Agency',
+    綜合零售賣場: 'Retail',
+    連鎖餐飲店: 'Restaurant',
+    加油站: 'Gas Station',
+    醫院: 'Hospital',
+    市場: 'Market',
+    觀光遊憩: 'Tourism / Recreation',
+    大專院校: 'School / University',
+    宗教: 'Religious Site',
+    文化育樂場所: 'Cultural / Recreational Venue',
+  };
+
+  return labels[category] ?? category;
 }
 
 export function getFacilityGoogleMapsUrl(facility: Facility) {

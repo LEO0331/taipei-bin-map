@@ -26,7 +26,7 @@ npm run convert:facilities
 ./init.sh
 ```
 
-The app has no API keys and no backend. It loads `public/data/facilities.json`, the per-type JSON files, and `public/data/conversion-report.json` as static assets.
+The app has no API keys and no backend. It loads `public/data/facilities.json`, `public/data/pedestrian-bins.json`, `public/data/dog-waste-bag-boxes.json`, `public/data/public-toilets.json`, and `public/data/conversion-report.json` as static assets.
 
 ## Production URL Metadata
 
