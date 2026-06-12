@@ -23,7 +23,7 @@ npm install
 
 ### Convert CSV Data
 
-The source CSV is Big5/CP950 encoded. The converter decodes it, drops empty or invalid-coordinate rows, ignores `Unnamed: 5`, converts coordinates to numbers, and writes normalized records plus metadata.
+The source CSV is Big5/CP950 encoded. The converter decodes it, drops empty or invalid-coordinate rows, ignores `Unnamed: 5`, converts coordinates to numbers, and writes normalized records plus metadata. Source: https://data.taipei/dataset/detail?id=a835f3ba-7f50-4b0d-91a6-9df128632d1c
 
 ```bash
 npm run convert:bins
@@ -107,7 +107,7 @@ npm install
 
 ### 轉換 CSV 資料
 
-來源 CSV 是 Big5/CP950 編碼。轉換腳本會解碼、移除空白列與無效經緯度列、忽略 `Unnamed: 5`、將經緯度轉為數字，並輸出標準化資料與 metadata。
+來源 CSV 是 Big5/CP950 編碼。轉換腳本會解碼、移除空白列與無效經緯度列、忽略 `Unnamed: 5`、將經緯度轉為數字，並輸出標準化資料與 metadata。資料來源：https://data.taipei/dataset/detail?id=a835f3ba-7f50-4b0d-91a6-9df128632d1c
 
 ```bash
 npm run convert:bins
