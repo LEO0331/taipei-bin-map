@@ -25,7 +25,7 @@ flowchart TD
 
 前端使用通用 `Facility` record，`type` 可為 `pedestrian_bin` 或 `dog_waste_bag_box`。狗便袋箱保留 `road` 與 `location`，並產生可顯示的 `address`；行人專用清潔箱則使用原始 `address`。
 
-轉換腳本使用寬鬆的台北市座標 bounding box。超出範圍的座標不會被刪除，而是保留並加上 `isCoordinateOutlier: true`，同時記錄在 `conversion-report.json`。
+轉換腳本使用寬鬆的台北市座標 bounding box。超出範圍的座標不會被刪除，而是保留並加上 `isCoordinateOutlier: true`，同時記錄在 `conversion-report.json`。無效數字座標列會被刪除並記錄在 `invalidCoordinateRows`，避免資料流失無法追蹤。
 
 ## Runtime Flow
 

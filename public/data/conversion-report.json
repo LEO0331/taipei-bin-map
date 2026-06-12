@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-12T02:51:06.047Z",
+  "generatedAt": "2026-06-12T03:19:17.207Z",
   "totalValidRows": 1707,
   "sources": [
     {
@@ -8,14 +8,16 @@
       "validRows": 1197,
       "droppedRows": 0,
       "coordinateOutlierRows": 1,
+      "invalidCoordinateRows": [],
       "missingRequiredFields": []
     },
     {
-      "sourceFilename": "狗便袋箱位置總表 .csv",
+      "sourceFilename": "dog-waste-bag-boxes.json (fallback; source CSV not found)",
       "totalRows": 510,
       "validRows": 510,
       "droppedRows": 0,
       "coordinateOutlierRows": 1,
+      "invalidCoordinateRows": [],
       "missingRequiredFields": []
     }
   ]

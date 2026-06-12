@@ -26,6 +26,11 @@ export type ConversionSourceReport = {
   validRows: number;
   droppedRows: number;
   coordinateOutlierRows: number;
+  invalidCoordinateRows: Array<{
+    rowNumber: number;
+    longitude?: string;
+    latitude?: string;
+  }>;
   missingRequiredFields: Array<{
     rowNumber: number;
     fields: string[];

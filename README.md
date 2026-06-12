@@ -42,6 +42,17 @@ npm run convert:facilities
 
 `npm run convert:bins` is kept as a compatibility alias.
 
+Optional path overrides:
+
+```bash
+npm run convert:facilities -- \
+  --pedestrian-csv /path/to/pedestrian-bins.csv \
+  --dog-waste-csv /path/to/dog-waste-bag-boxes.csv \
+  --out-dir public/data
+```
+
+Equivalent environment variables are `PEDESTRIAN_BINS_CSV`, `DOG_WASTE_BAG_BOXES_CSV`, `FACILITY_DATA_OUTPUT_DIR`, `PEDESTRIAN_BINS_FALLBACK_JSON`, and `DOG_WASTE_BAG_BOXES_FALLBACK_JSON`.
+
 Default outputs:
 
 ```text
@@ -51,7 +62,7 @@ public/data/dog-waste-bag-boxes.json
 public/data/conversion-report.json
 ```
 
-Inspect `public/data/conversion-report.json` after conversion. Coordinate outliers are kept, marked with `isCoordinateOutlier: true`, and surfaced in the UI instead of silently discarded.
+Inspect `public/data/conversion-report.json` after conversion. Coordinate outliers are kept, marked with `isCoordinateOutlier: true`, and surfaced in the UI instead of silently discarded. Rows with invalid numeric coordinates are dropped and listed in `invalidCoordinateRows`.
 
 ### Development
 
@@ -135,6 +146,17 @@ npm run convert:facilities
 
 `npm run convert:bins` 保留為相容 alias。
 
+也可以指定路徑：
+
+```bash
+npm run convert:facilities -- \
+  --pedestrian-csv /path/to/pedestrian-bins.csv \
+  --dog-waste-csv /path/to/dog-waste-bag-boxes.csv \
+  --out-dir public/data
+```
+
+對應的環境變數為 `PEDESTRIAN_BINS_CSV`、`DOG_WASTE_BAG_BOXES_CSV`、`FACILITY_DATA_OUTPUT_DIR`、`PEDESTRIAN_BINS_FALLBACK_JSON` 與 `DOG_WASTE_BAG_BOXES_FALLBACK_JSON`。
+
 預設輸出：
 
 ```text
@@ -144,7 +166,7 @@ public/data/dog-waste-bag-boxes.json
 public/data/conversion-report.json
 ```
 
-轉換後請檢查 `public/data/conversion-report.json`。座標疑似異常列不會被靜默刪除，而是保留並標記 `isCoordinateOutlier: true`，前端也會顯示提醒。
+轉換後請檢查 `public/data/conversion-report.json`。座標疑似異常列不會被靜默刪除，而是保留並標記 `isCoordinateOutlier: true`，前端也會顯示提醒。無效數字座標列會被刪除，並列在 `invalidCoordinateRows`。
 
 ### 開發
 

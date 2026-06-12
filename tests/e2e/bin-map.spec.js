@@ -1,11 +1,20 @@
 import { expect, test } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+
+const facilities = JSON.parse(
+  readFileSync(new URL('../../public/data/facilities.json', import.meta.url), 'utf8'),
+);
+const totalFacilityCount = facilities.length.toLocaleString('en-US');
+const dogWasteBagBoxCount = facilities
+  .filter((facility) => facility.type === 'dog_waste_bag_box')
+  .length.toLocaleString('en-US');
 
 test.describe('Taipei street cleanliness map public flows', () => {
   test('loads both local datasets and renders the public map experience', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市街頭清潔便利地圖' })).toBeVisible();
-    await expect(page.locator('.metrics-strip strong').first()).toHaveText('1,707');
+    await expect(page.locator('.metrics-strip strong').first()).toHaveText(totalFacilityCount);
     await expect(page.getByText('資料更新:')).toBeVisible();
     await expect(page.getByLabel('使用提醒').getByText('嚴禁投入家用垃圾')).toBeVisible();
     await expect(page.getByLabel('使用提醒').getByText('隨手清狗便')).toBeVisible();
@@ -32,7 +41,7 @@ test.describe('Taipei street cleanliness map public flows', () => {
 
     await page.getByRole('button', { name: '狗便袋箱' }).click();
 
-    await expect(page.getByText('510 筆資料')).toBeVisible();
+    await expect(page.getByText(`${dogWasteBagBoxCount} 筆資料`)).toBeVisible();
     await expect(page.locator('.facility-list li').first()).toContainText('狗便袋箱');
     await expect(page.locator('.facility-list li').first()).not.toContainText('Pedestrian Garbage Bin');
     await expect(page.getByLabel('使用提醒')).toContainText('隨手清狗便');

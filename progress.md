@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-12 11:01 Asia/Taipei  
+**Last Updated:** 2026-06-12 11:20 Asia/Taipei  
 **Active Feature:** none
 
 ## Status
@@ -18,6 +18,8 @@
 - [x] Updated PWA metadata and service worker cache entries for the new facility JSON files.
 - [x] Updated README and bilingual design/deployment/tradeoff docs.
 - [x] Updated unit and Playwright e2e tests for the two-dataset product direction.
+- [x] Completed code-review fix pass for converter restartability and report diagnostics.
+- [x] Completed AI slop cleanup pass for converter duplication/dead branches.
 
 ### What's In Progress
 
@@ -32,6 +34,7 @@
 ## Blockers / Risks
 
 - [ ] The original pedestrian-bin source CSV is not currently present at `/Users/Leo/Downloads/●行人專用清潔箱總表.csv`; the converter falls back to existing cleaned `public/data/bins.json` and records that fallback in `conversion-report.json`.
+- [ ] The dog-waste bag box source CSV is not currently present at `/Users/Leo/Downloads/狗便袋箱位置總表 .csv`; the converter falls back to existing cleaned `public/data/dog-waste-bag-boxes.json` and records that fallback in `conversion-report.json`.
 - [ ] `npm audit --audit-level=moderate` previously reported a Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 - [ ] Browser verification requires Chromium; sandboxed environments may need approval or equivalent browser permissions.
 
@@ -41,6 +44,8 @@
 - **Keep suspicious coordinates**: Out-of-bounds records are marked with `isCoordinateOutlier: true` and reported, not silently discarded.
 - **Keep canvas markers**: About 1,700 points remain practical with Leaflet canvas markers; clustering can be added later if real usage shows visual crowding.
 - **Preserve static deployment**: No backend, accounts, admin page, database, or paid map API were added.
+- **Make conversion restartable**: If source CSVs are absent, checked-in cleaned JSON acts as fallback input and the report records that source.
+- **Keep cleanup narrow**: Cleanup removed converter duplication and dead paths only; no UI behavior changes were included.
 
 ## Files Modified This Session
 
@@ -65,11 +70,17 @@
 - `package.json` - Added `convert:facilities` alias.
 - `feature_list.json` - Added feat-012 tracking.
 - `progress.md` - Current session status.
+- Code-review fix pass touched `scripts/convertBins.ts`, `src/types.ts`, `tests/e2e/bin-map.spec.js`, `README.md`, `docs/system-design.*.md`, and regenerated `public/data/conversion-report.json`.
+- AI slop cleanup simplified `scripts/convertBins.ts` by deleting redundant coordinate-null branches and centralizing fallback report creation.
 
 ## Evidence of Completion
 
 - [x] `npm run convert:bins` generated 1,707 total facilities: 1,197 pedestrian bins and 510 dog-waste bag boxes.
-- [x] `conversion-report.json` records one dog-waste coordinate outlier and preserves it with `isCoordinateOutlier: true`.
+- [x] `conversion-report.json` records one dog-waste coordinate outlier and preserves it with `isCoordinateOutlier: true`; it now also includes `invalidCoordinateRows`.
+- [x] Code-review fix verification: `npm run convert:bins`, `npm test`, `npm run build`, and `npm run test:e2e` passed on 2026-06-12.
+- [x] Post-review full baseline: `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-12.
+- [x] Cleanup targeted checks: `npm run convert:bins`, `npm test`, and `npm run build` passed on 2026-06-12.
+- [x] Post-cleanup full baseline: `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-12.
 - [x] `npm test` passed 8 facility utility tests.
 - [x] `npm run build` passed.
 - [x] `npm run test:e2e` passed 12 desktop/mobile Playwright tests.

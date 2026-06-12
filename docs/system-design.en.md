@@ -25,7 +25,7 @@ flowchart TD
 
 The frontend uses a generic `Facility` record with `type: 'pedestrian_bin' | 'dog_waste_bag_box'`. Dog-waste bag boxes keep `road` and `location` fields in addition to a display `address`; pedestrian bins use the original `address`.
 
-The converter applies broad Taipei coordinate bounds. Out-of-bounds coordinates are preserved with `isCoordinateOutlier: true` and are recorded in `conversion-report.json`.
+The converter applies broad Taipei coordinate bounds. Out-of-bounds coordinates are preserved with `isCoordinateOutlier: true` and are recorded in `conversion-report.json`. Non-numeric coordinates are dropped and recorded in `invalidCoordinateRows` so data loss is auditable.
 
 ## Runtime Flow
 
