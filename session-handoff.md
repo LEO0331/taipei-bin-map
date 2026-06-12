@@ -23,6 +23,7 @@
 - [x] Removed the separate `全部` facility-type control while preserving focused and multi-select overlay behavior.
 - [x] Fixed large map result sets so they render a capped marker subset instead of no markers.
 - [x] Updated JSON loading to preload `facilities.json` and use network-first/no-cache data requests with service-worker cached fallback.
+- [x] Added progressive marker rendering so large public-toilet or combined result sets do not block the UI in one large React commit.
 
 ## Verification Evidence
 
@@ -33,7 +34,8 @@
 | Production build | `npm run build` | Passed | Vite production build completed. |
 | E2E | `npm run test:e2e` | Passed | 16 desktop/mobile Playwright tests passed. |
 | Responsive smoke | Playwright screenshot script | Passed | Checked 1440px and 390px widths; `公廁` renders 1,549 map markers and large mixed results render a capped marker set. |
-| Full baseline | `./init.sh` | Passed | Ran `npm test`, `npm run build`, and 16 desktop/mobile Playwright tests after the responsive/cache/map fixes. |
+| Marker timing | Playwright timing script | Passed | On mobile viewport, `公廁` first marker appeared in about 558ms and all 1,549 toilet markers completed in about 633ms. |
+| Full baseline | `./init.sh` | Passed | Ran `npm test`, `npm run build`, and 16 desktop/mobile Playwright tests after progressive marker rendering. |
 
 ## Decisions Made
 

@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-12 12:10 Asia/Taipei  
+**Last Updated:** 2026-06-12 12:23 Asia/Taipei  
 **Active Feature:** None
 
 ## Status
@@ -25,6 +25,7 @@
 - [x] Removed the separate `全部` facility-type button; the three facility buttons now support focused and multi-select overlay behavior.
 - [x] Changed capped map rendering to show a capped marker subset instead of a blank map for large result sets.
 - [x] Switched local JSON data requests to network-first/no-cache with cached fallback and preloaded `facilities.json`.
+- [x] Improved filter responsiveness by progressively rendering Leaflet markers in animation-frame batches.
 
 ### What's In Progress
 
@@ -57,6 +58,7 @@
 - `src/App.tsx` - Added multi-type selection, toilet filters, and marker cap.
 - `src/App.tsx` - Updated JSON fetch freshness and capped marker rendering behavior.
 - `src/components/` - Added/updated facility type, public toilet filter, list, popup, map, legend, and warning components.
+- `src/components/FacilityMap.tsx` - Added progressive marker rendering to avoid blocking the UI when `公廁` or combined filters mount many markers.
 - `src/i18n.ts` - Updated product naming and toilet labels/notices.
 - `src/i18n.ts` - Removed unused singular facility label keys.
 - `src/styles.css` - Added responsive control, toilet filter, emoji marker, and marker cap styles.
@@ -77,7 +79,8 @@
 - [x] `npm run build` passed.
 - [x] `npm run test:e2e` passed 16 desktop/mobile Playwright tests.
 - [x] Browser screenshot check passed at 1440px and 390px widths; default and multi-type maps render capped markers, and `公廁` renders all 1,549 markers.
-- [x] `./init.sh` passed `npm test`, `npm run build`, and 16 desktop/mobile Playwright tests after the responsive/cache/map fixes.
+- [x] Browser timing check: `公廁` first marker appeared in about 558ms and all 1,549 toilet markers completed in about 633ms on local mobile viewport.
+- [x] `./init.sh` passed `npm test`, `npm run build`, and 16 desktop/mobile Playwright tests after the progressive marker rendering fix.
 
 ## Notes for Next Session
 

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import L from 'leaflet';
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import type { Translation } from '../i18n';
@@ -20,6 +20,8 @@ type FacilityMapProps = {
 };
 
 const taipeiCenter: [number, number] = [25.0478, 121.5319];
+const INITIAL_MARKER_BATCH_SIZE = 240;
+const MARKER_BATCH_SIZE = 320;
 
 function MapController({
   userLocation,
@@ -55,7 +57,48 @@ const markerEmojiByType = {
   public_toilet: '🚻',
 } satisfies Record<FacilityType, string>;
 
+function useChunkedFacilities(facilities: FacilityWithDistance[]) {
+  const [renderedFacilities, setRenderedFacilities] = useState(() =>
+    facilities.slice(0, INITIAL_MARKER_BATCH_SIZE),
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    let frame = 0;
+    let nextCount = Math.min(INITIAL_MARKER_BATCH_SIZE, facilities.length);
+
+    setRenderedFacilities(facilities.slice(0, nextCount));
+
+    const renderNextBatch = () => {
+      if (cancelled) {
+        return;
+      }
+
+      nextCount = Math.min(nextCount + MARKER_BATCH_SIZE, facilities.length);
+      setRenderedFacilities(facilities.slice(0, nextCount));
+
+      if (nextCount < facilities.length) {
+        frame = window.requestAnimationFrame(renderNextBatch);
+      }
+    };
+
+    if (nextCount < facilities.length) {
+      frame = window.requestAnimationFrame(renderNextBatch);
+    }
+
+    return () => {
+      cancelled = true;
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+      }
+    };
+  }, [facilities]);
+
+  return renderedFacilities;
+}
+
 export function FacilityMap({ facilities, language, markerLimitExceeded, userLocation, t }: FacilityMapProps) {
+  const renderedFacilities = useChunkedFacilities(facilities);
   const userIcon = useMemo(
     () =>
       L.divIcon({
@@ -96,7 +139,7 @@ export function FacilityMap({ facilities, language, markerLimitExceeded, userLoc
             <Popup>{t.userLocation}</Popup>
           </Marker>
         )}
-        {facilities.map((facility) => (
+        {renderedFacilities.map((facility) => (
           <Marker
             key={facility.id}
             position={[facility.latitude, facility.longitude]}
