@@ -26,7 +26,7 @@ const DISTRICT_ORDER = [
 ];
 
 const INITIAL_LIST_LIMIT = 80;
-const MAP_MARKER_LIMIT = 900;
+const MAP_MARKER_LIMIT = 1800;
 const FacilityMap = lazy(() =>
   import('./components/FacilityMap').then((module) => ({ default: module.FacilityMap })),
 );
@@ -70,7 +70,7 @@ function App() {
   useEffect(() => {
     let isMounted = true;
 
-    fetch('/data/facilities.json')
+    fetch('/data/facilities.json', { cache: 'no-cache' })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
@@ -102,7 +102,7 @@ function App() {
   useEffect(() => {
     let isMounted = true;
 
-    fetch('/data/conversion-report.json')
+    fetch('/data/conversion-report.json', { cache: 'no-cache' })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
@@ -162,7 +162,7 @@ function App() {
 
   const displayedFacilities = nearbyFacilities ?? filteredFacilities;
   const markerLimitExceeded = !nearbyFacilities && displayedFacilities.length > MAP_MARKER_LIMIT;
-  const mapFacilities = markerLimitExceeded ? [] : displayedFacilities;
+  const mapFacilities = markerLimitExceeded ? displayedFacilities.slice(0, MAP_MARKER_LIMIT) : displayedFacilities;
   const listFacilities = useMemo(
     () => (nearbyFacilities ? displayedFacilities : displayedFacilities.slice(0, INITIAL_LIST_LIMIT)),
     [displayedFacilities, nearbyFacilities],

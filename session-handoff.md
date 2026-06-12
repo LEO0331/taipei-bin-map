@@ -19,6 +19,10 @@
 - [x] Updated e2e tests for all three facility types and public toilet flows.
 - [x] Fixed review finding: active toilet-specific filters now narrow mixed/all selections to public toilets and are ignored for non-toilet-only selections.
 - [x] Cleanup pass removed unused singular translation keys and tightened filter predicate naming.
+- [x] Improved responsive control layout and fixed packed district/facility filter presentation.
+- [x] Removed the separate `全部` facility-type control while preserving focused and multi-select overlay behavior.
+- [x] Fixed large map result sets so they render a capped marker subset instead of no markers.
+- [x] Updated JSON loading to preload `facilities.json` and use network-first/no-cache data requests with service-worker cached fallback.
 
 ## Verification Evidence
 
@@ -28,7 +32,8 @@
 | Unit tests | `npm test` | Passed | 12 facility utility tests passed. |
 | Production build | `npm run build` | Passed | Vite production build completed. |
 | E2E | `npm run test:e2e` | Passed | 16 desktop/mobile Playwright tests passed. |
-| Full baseline | `./init.sh` | Passed | Ran `npm test`, `npm run build`, and 16 desktop/mobile Playwright tests after the cleanup pass. |
+| Responsive smoke | Playwright screenshot script | Passed | Checked 1440px and 390px widths; `公廁` renders 1,549 map markers and large mixed results render a capped marker set. |
+| Full baseline | `./init.sh` | Passed | Ran `npm test`, `npm run build`, and 16 desktop/mobile Playwright tests after the responsive/cache/map fixes. |
 
 ## Decisions Made
 

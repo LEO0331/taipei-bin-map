@@ -28,21 +28,13 @@ export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeF
       ? selectedTypes.filter((item) => item !== type)
       : [...selectedTypes, type];
 
-    onChange(nextTypes.length > 0 ? nextTypes : FACILITY_TYPE_OPTIONS);
+    onChange(nextTypes.length > 0 ? nextTypes : selectedTypes);
   };
 
   return (
     <fieldset className="facility-type-filter">
       <legend>{t.facilityType}</legend>
       <div role="group" aria-label={t.facilityType}>
-        <button
-          type="button"
-          className={allSelected ? 'active' : ''}
-          aria-pressed={allSelected}
-          onClick={() => onChange(FACILITY_TYPE_OPTIONS)}
-        >
-          {t.all}
-        </button>
         {FACILITY_TYPE_OPTIONS.map((type) => (
           <button
             key={type}

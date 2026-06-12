@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-12 11:53 Asia/Taipei  
+**Last Updated:** 2026-06-12 12:10 Asia/Taipei  
 **Active Feature:** None
 
 ## Status
@@ -21,6 +21,10 @@
 - [x] Updated Playwright e2e coverage for three datasets and public toilet flows.
 - [x] Fixed review finding: public-toilet category/accessibility filters now narrow to public toilets when active and do not affect non-toilet-only selections.
 - [x] Cleanup pass removed unused singular translation keys and tightened public-toilet filter predicate naming.
+- [x] Improved responsive controls so search, district, facility type, and public-toilet filters no longer pack together.
+- [x] Removed the separate `全部` facility-type button; the three facility buttons now support focused and multi-select overlay behavior.
+- [x] Changed capped map rendering to show a capped marker subset instead of a blank map for large result sets.
+- [x] Switched local JSON data requests to network-first/no-cache with cached fallback and preloaded `facilities.json`.
 
 ### What's In Progress
 
@@ -51,10 +55,12 @@
 - `src/utils/facilityUtils.ts` - Added toilet search/filter/category label behavior.
 - `src/utils/facilityUtils.test.ts` - Added public toilet filter and review-regression tests.
 - `src/App.tsx` - Added multi-type selection, toilet filters, and marker cap.
+- `src/App.tsx` - Updated JSON fetch freshness and capped marker rendering behavior.
 - `src/components/` - Added/updated facility type, public toilet filter, list, popup, map, legend, and warning components.
 - `src/i18n.ts` - Updated product naming and toilet labels/notices.
 - `src/i18n.ts` - Removed unused singular facility label keys.
-- `src/styles.css` - Added toilet filter, emoji marker, and marker cap styles.
+- `src/styles.css` - Added responsive control, toilet filter, emoji marker, and marker cap styles.
+- `public/service-worker.js`, `index.html` - Updated data freshness and preload behavior.
 - `public/data/public-toilets.json` - Generated public toilet dataset.
 - `public/data/facilities.json` - Regenerated combined dataset.
 - `public/data/conversion-report.json` - Regenerated conversion report.
@@ -70,7 +76,8 @@
 - [x] `npm test` passed 12 utility tests.
 - [x] `npm run build` passed.
 - [x] `npm run test:e2e` passed 16 desktop/mobile Playwright tests.
-- [x] `./init.sh` passed `npm test`, `npm run build`, and 16 desktop/mobile Playwright tests after the cleanup pass.
+- [x] Browser screenshot check passed at 1440px and 390px widths; default and multi-type maps render capped markers, and `公廁` renders all 1,549 markers.
+- [x] `./init.sh` passed `npm test`, `npm run build`, and 16 desktop/mobile Playwright tests after the responsive/cache/map fixes.
 
 ## Notes for Next Session
 
