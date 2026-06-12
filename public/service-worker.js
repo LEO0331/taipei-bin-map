@@ -1,12 +1,14 @@
-const CACHE_NAME = 'taipei-bin-map-v2';
+const CACHE_NAME = 'taipei-cleanliness-map-v3';
 const APP_SHELL = [
   '/index.html',
   '/manifest.webmanifest',
   '/icons/icon.svg',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
-  '/data/bins.json',
-  '/data/bins.metadata.json',
+  '/data/facilities.json',
+  '/data/pedestrian-bins.json',
+  '/data/dog-waste-bag-boxes.json',
+  '/data/conversion-report.json',
 ];
 
 self.addEventListener('install', (event) => {

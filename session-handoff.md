@@ -2,82 +2,86 @@
 
 ## Current Objective
 
-- Goal: Add a minimal coding-agent harness to the Taipei bin map project.
-- Current status: Harness files created, customized, validated, baseline verified, designer polish, Lighthouse optimization, e2e coverage, code review fixes, AI slop cleanup, and publish-readiness docs/assets completed.
-- Branch / commit: Current working tree has uncommitted initial app and harness files.
+- Goal: Extend the Taipei pedestrian garbage bin map into `台北市街頭清潔便利地圖` / `Taipei Street Cleanliness Map` with dog-waste bag box data.
+- Current status: Implementation, data conversion, docs, tests, e2e, and full baseline verification are complete.
+- Branch / commit: Working tree has uncommitted app, data, docs, and test changes.
 
 ## Completed This Session
 
-- [x] Created `AGENTS.md`, `feature_list.json`, `progress.md`, `session-handoff.md`, and `init.sh`.
-- [x] Replaced generated placeholders with project-specific startup, scope, verification, and feature-state guidance.
-- [x] Updated harness state to reflect the completed app and current harness feature.
-- [x] Validated harness structure.
-- [x] Ran full `./init.sh` baseline successfully.
-- [x] Completed civic field-guide visual polish pass.
-- [x] Re-ran full `./init.sh` baseline after design changes.
-- [x] Completed Lighthouse optimization pass.
-- [x] Added Playwright e2e tests and wired them into `./init.sh`.
-- [x] Re-ran full `./init.sh` baseline after e2e changes.
-- [x] Fixed code-review findings around service-worker update freshness, nearby lookup readiness, and stale harness code.
-- [x] Removed redundant one-off browser utility scripts and dead marker CSS.
-- [x] Added PNG PWA icons, generated data metadata, bilingual README/docs, and Vercel deployment docs.
+- [x] Refactored the app from `Bin` to typed `Facility` records.
+- [x] Added dog-waste bag box CSV conversion with Big5/CP950 decoding.
+- [x] Generated combined and per-type facility JSON files.
+- [x] Generated `conversion-report.json` with coordinate outlier reporting.
+- [x] Preserved the suspicious dog-waste coordinate as `isCoordinateOutlier: true`.
+- [x] Added facility type filter, type-aware warnings, popups, result cards, and map legend.
+- [x] Updated nearby lookup to respect selected facility types and filters.
+- [x] Updated product naming, i18n labels, PWA metadata, and service worker cache.
+- [x] Updated README and bilingual docs.
+- [x] Updated unit and e2e tests.
 
 ## Verification Evidence
 
 | Check | Command | Result | Notes |
 |---|---|---|---|
-| Unit tests | `npm test` | Passed | 5 utility tests passed before harness edits. |
-| Production build | `npm run build` | Passed | Vite production build completed before harness edits. |
-| Browser smoke | legacy smoke check | Passed | Confirmed 1197 records, language toggle, search/filter, markers, and no page errors before harness edits. Superseded by `npm run test:e2e`. |
-| Harness validation | `node ~/.agents/skills/harness-creator/scripts/validate-harness.mjs --target ~/Documents/taipei-bin-map` | Passed | 100/100. |
-| Full baseline | `./init.sh` | Passed | Required unsandboxed run for Vite bind; tests, build, and smoke test passed. |
-| Visual check | legacy visual check | Passed | Captured mobile and desktop screenshots; no page errors. Superseded by Playwright e2e and Lighthouse checks. |
-| Lighthouse | `npx lighthouse@12.8.2 http://127.0.0.1:4173/ ...` | Passed | Final scores: 91/100/96/100. |
-| E2E | `npm run test:e2e` | Passed | 10 tests across desktop and mobile Chromium. |
-| Final baseline | `./init.sh` | Passed | Unit tests, build, and e2e passed. |
-| Code-review fix baseline | `./init.sh` | Passed | Unit tests, build, and e2e passed after review fixes. |
-| AI slop cleanup baseline | `./init.sh` | Passed | Unit tests, build, and e2e passed after cleanup. |
-| Publish readiness baseline | `./init.sh` | Passed | Unit tests, build, and e2e passed after docs/assets/metadata changes. |
+| Data conversion | `npm run convert:bins` | Passed | Generated 1,707 facilities: 1,197 pedestrian bins and 510 dog-waste bag boxes. |
+| Unit tests | `npm test` | Passed | 8 facility utility tests passed. |
+| Production build | `npm run build` | Passed | Vite production build completed. |
+| E2E | `npm run test:e2e` | Passed | 12 desktop/mobile Playwright tests passed. |
+| Full baseline | `./init.sh` | Passed | `npm test`, `npm run build`, and `npm run test:e2e` passed. |
 
 ## Files Changed
 
-- `AGENTS.md`
+- `scripts/convertBins.ts`
+- `package.json`
+- `public/data/facilities.json`
+- `public/data/pedestrian-bins.json`
+- `public/data/dog-waste-bag-boxes.json`
+- `public/data/conversion-report.json`
+- `public/manifest.webmanifest`
+- `public/service-worker.js`
+- `index.html`
+- `src/App.tsx`
+- `src/types.ts`
+- `src/i18n.ts`
+- `src/utils/facilityUtils.ts`
+- `src/utils/facilityUtils.test.ts`
+- `src/components/FacilityTypeFilter.tsx`
+- `src/components/FacilityList.tsx`
+- `src/components/FacilityMap.tsx`
+- `src/components/FacilityPopup.tsx`
+- `src/components/MapLegend.tsx`
+- `src/components/NearbyButton.tsx`
+- `src/components/WarningNotice.tsx`
+- `src/styles.css`
+- `tests/e2e/bin-map.spec.js`
+- `README.md`
+- `docs/system-design.en.md`
+- `docs/system-design.zh-Hant.md`
+- `docs/tradeoffs.en.md`
+- `docs/tradeoffs.zh-Hant.md`
+- `docs/deployment.en.md`
+- `docs/deployment.zh-Hant.md`
 - `feature_list.json`
 - `progress.md`
 - `session-handoff.md`
-- `init.sh`
-- `src/App.tsx`
-- `src/i18n.ts`
-- `src/components/BinList.tsx`
-- `src/components/WarningNotice.tsx`
-- `src/styles.css`
-- `playwright.config.cjs`
-- `tests/e2e/bin-map.spec.js`
-- `vercel.json`
-- `public/robots.txt`
-- `public/service-worker.js`
-- `src/components/NearbyButton.tsx`
 
 ## Decisions Made
 
-- Keep root instructions concise and procedural.
-- Use `feature_list.json` as the source of truth for active work.
-- Make `./init.sh` run the browser smoke test against a managed local Vite server.
-- Visual direction is civic field-guide: warm paper, ink typography, teal civic accents, tactile command surface.
-- `./init.sh` now uses Playwright e2e as the managed browser baseline.
+- Use one generic `Facility` model instead of two parallel app flows.
+- Keep dog-waste bag boxes distinct from garbage bins in labels, warnings, filters, and result cards.
+- Keep coordinate outliers in the dataset and surface warnings rather than dropping them.
+- Continue using Leaflet canvas markers rather than adding clustering for the current 1,700-point scale.
+- Keep `npm run convert:bins` as a compatibility alias and add `npm run convert:facilities` for clarity.
 
 ## Blockers / Risks
 
-- Remaining npm audit warning is a Vite/esbuild dev-server advisory with a breaking upgrade path.
-- Chromium smoke tests may require unsandboxed browser permissions in some environments.
+- The original pedestrian-bin source CSV is absent at `/Users/Leo/Downloads/●行人專用清潔箱總表.csv`; converter fallback uses existing `public/data/bins.json`.
+- Remaining npm audit warning from previous sessions is the known Vite/esbuild dev-server advisory with a breaking upgrade path.
+- Chromium e2e may require browser permissions in restricted environments.
 
 ## Next Session Startup
 
 1. Read `AGENTS.md`.
-2. Read `feature_list.json` and `progress.md`.
-3. Review this handoff.
-4. Run `./init.sh`.
-
-## Recommended Next Step
-
-- Pick the next product or maintenance feature, add it to `feature_list.json`, then run `./init.sh` before editing.
+2. Read `feature_list.json`, `progress.md`, and this handoff.
+3. Run `./init.sh` to re-establish the baseline before new work.
+4. Add the next feature to `feature_list.json` before editing.

@@ -22,11 +22,11 @@
 
 ```bash
 npm ci
-npm run convert:bins
+npm run convert:facilities
 ./init.sh
 ```
 
-此 app 不需要 API key，也沒有後端。它會以靜態資源方式載入 `public/data/bins.json` 與 `public/data/bins.metadata.json`。
+此 app 不需要 API key，也沒有後端。它會以靜態資源方式載入 `public/data/facilities.json`、各設施類型 JSON 與 `public/data/conversion-report.json`。
 
 ## Production URL Metadata
 
@@ -40,4 +40,4 @@ npm run convert:bins
 
 ## 離線行為
 
-Service worker 會快取 app shell、PWA icons 與本機清潔箱 JSON。OpenStreetMap 圖磚是外部網路資源，離線時可能不完整。
+Service worker 會快取 app shell、PWA icons 與本機設施 JSON。OpenStreetMap 圖磚是外部網路資源，離線時可能不完整。

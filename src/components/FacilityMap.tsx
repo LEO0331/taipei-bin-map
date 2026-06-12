@@ -2,30 +2,30 @@ import { useEffect, useMemo } from 'react';
 import L from 'leaflet';
 import { CircleMarker, MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import type { Translation } from '../i18n';
-import type { BinWithDistance } from '../types';
+import type { FacilityWithDistance, Language } from '../types';
+import { FacilityPopup } from './FacilityPopup';
+import { MapLegend } from './MapLegend';
 
 type UserLocation = {
   latitude: number;
   longitude: number;
 };
 
-type BinMapProps = {
-  bins: BinWithDistance[];
+type FacilityMapProps = {
+  facilities: FacilityWithDistance[];
+  language: Language;
   userLocation: UserLocation | null;
   t: Translation;
 };
 
 const taipeiCenter: [number, number] = [25.0478, 121.5319];
 
-const googleMapsUrl = (latitude: number, longitude: number) =>
-  `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-
 function MapController({
   userLocation,
-  bins,
+  facilities,
 }: {
   userLocation: UserLocation | null;
-  bins: BinWithDistance[];
+  facilities: FacilityWithDistance[];
 }) {
   const map = useMap();
 
@@ -39,16 +39,27 @@ function MapController({
       return;
     }
 
-    if (bins.length > 0 && bins.length < 80) {
-      const bounds = L.latLngBounds(bins.map((bin) => [bin.latitude, bin.longitude]));
+    if (facilities.length > 0 && facilities.length < 80) {
+      const bounds = L.latLngBounds(facilities.map((facility) => [facility.latitude, facility.longitude]));
       map.fitBounds(bounds.pad(0.15), { animate: true, maxZoom: 16 });
     }
-  }, [bins, map, userLocation]);
+  }, [facilities, map, userLocation]);
 
   return null;
 }
 
-export function BinMap({ bins, userLocation, t }: BinMapProps) {
+const markerStyleByType = {
+  pedestrian_bin: {
+    color: '#ffffff',
+    fillColor: '#08756d',
+  },
+  dog_waste_bag_box: {
+    color: '#ffffff',
+    fillColor: '#b85d17',
+  },
+};
+
+export function FacilityMap({ facilities, language, userLocation, t }: FacilityMapProps) {
   const userIcon = useMemo(
     () =>
       L.divIcon({
@@ -67,43 +78,33 @@ export function BinMap({ bins, userLocation, t }: BinMapProps) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <MapController bins={bins} userLocation={userLocation} />
+        <MapController facilities={facilities} userLocation={userLocation} />
         {userLocation && (
           <Marker position={[userLocation.latitude, userLocation.longitude]} icon={userIcon}>
             <Popup>{t.userLocation}</Popup>
           </Marker>
         )}
-        {bins.map((bin) => (
+        {facilities.map((facility) => (
           <CircleMarker
-            key={bin.id}
-            center={[bin.latitude, bin.longitude]}
-            className="bin-marker"
-            radius={5}
+            key={facility.id}
+            center={[facility.latitude, facility.longitude]}
+            className={`facility-marker ${facility.type}`}
+            radius={facility.isCoordinateOutlier ? 7 : 5}
             pathOptions={{
-              color: '#ffffff',
-              fillColor: '#08756d',
+              ...markerStyleByType[facility.type],
+              dashArray: facility.isCoordinateOutlier ? '3 3' : undefined,
               fillOpacity: 0.92,
               opacity: 1,
-              weight: 2,
+              weight: facility.isCoordinateOutlier ? 3 : 2,
             }}
           >
             <Popup>
-              <div className="map-popup">
-                <strong>{bin.district}</strong>
-                <p>
-                  {t.address}: {bin.address}
-                </p>
-                <p>
-                  {t.note}: {bin.note}
-                </p>
-                <a href={googleMapsUrl(bin.latitude, bin.longitude)} target="_blank" rel="noreferrer">
-                  {t.openGoogleMaps}
-                </a>
-              </div>
+              <FacilityPopup facility={facility} language={language} t={t} />
             </Popup>
           </CircleMarker>
         ))}
       </MapContainer>
+      <MapLegend t={t} />
     </section>
   );
 }

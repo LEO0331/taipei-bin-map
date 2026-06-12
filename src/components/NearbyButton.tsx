@@ -11,7 +11,7 @@ export function NearbyButton({ disabled = false, isLoading, t, onClick }: Nearby
   return (
     <button className="nearby-button" type="button" onClick={onClick} disabled={disabled || isLoading}>
       <span aria-hidden="true">◎</span>
-      {isLoading ? t.nearbyLoading : t.nearbyButton}
+      {isLoading ? t.nearbyLoading : t.showNearbyFacilities}
     </button>
   );
 }

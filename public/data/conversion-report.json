@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-06-12T02:51:06.047Z",
+  "totalValidRows": 1707,
+  "sources": [
+    {
+      "sourceFilename": "bins.json (fallback; source CSV not found)",
+      "totalRows": 1197,
+      "validRows": 1197,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 1,
+      "missingRequiredFields": []
+    },
+    {
+      "sourceFilename": "狗便袋箱位置總表 .csv",
+      "totalRows": 510,
+      "validRows": 510,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 1,
+      "missingRequiredFields": []
+    }
+  ]
+}

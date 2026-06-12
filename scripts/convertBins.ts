@@ -1,10 +1,11 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { basename, dirname, resolve } from 'node:path';
 import iconv from 'iconv-lite';
 import Papa from 'papaparse';
-import type { Bin, BinDataMetadata } from '../src/types';
+import type { ConversionReport, ConversionSourceReport, Facility } from '../src/types';
+import { isCoordinateOutlier } from '../src/utils/facilityUtils';
 
-type CsvRow = {
+type PedestrianCsvRow = {
   行政區?: string;
   地址?: string;
   經度?: string;
@@ -13,65 +14,217 @@ type CsvRow = {
   'Unnamed: 5'?: string;
 };
 
-const DEFAULT_INPUT = '/Users/Leo/Downloads/●行人專用清潔箱總表.csv';
-const DEFAULT_OUTPUT = 'public/data/bins.json';
-
-const inputPath = resolve(process.argv[2] ?? DEFAULT_INPUT);
-const outputPath = resolve(process.argv[3] ?? DEFAULT_OUTPUT);
-const metadataPath = outputPath.replace(/\.json$/i, '.metadata.json');
-
-const raw = readFileSync(inputPath);
-const csvText = iconv.decode(raw, 'cp950');
-
-const parsed = Papa.parse<CsvRow>(csvText, {
-  header: true,
-  skipEmptyLines: true,
-  transformHeader: (header) => header.trim(),
-});
-
-if (parsed.errors.length > 0) {
-  const message = parsed.errors.map((error) => `${error.code}: ${error.message}`).join('\n');
-  throw new Error(`Unable to parse CSV:\n${message}`);
-}
-
-const bins = parsed.data.reduce<Bin[]>((records, row, index) => {
-  const district = row.行政區?.trim() ?? '';
-  const address = row.地址?.trim() ?? '';
-  const longitude = Number.parseFloat(row.經度?.trim() ?? '');
-  const latitude = Number.parseFloat(row.緯度?.trim() ?? '');
-  const note = row.備註?.trim() ?? '';
-
-  if (!district && !address && !row.經度 && !row.緯度 && !note) {
-    return records;
-  }
-
-  if (!Number.isFinite(longitude) || !Number.isFinite(latitude)) {
-    return records;
-  }
-
-  records.push({
-    id: `bin-${String(index + 1).padStart(4, '0')}`,
-    district,
-    address,
-    longitude,
-    latitude,
-    note,
-  });
-
-  return records;
-}, []);
-
-mkdirSync(dirname(outputPath), { recursive: true });
-writeFileSync(outputPath, `${JSON.stringify(bins, null, 2)}\n`);
-
-const metadata: BinDataMetadata = {
-  generatedAt: new Date().toISOString(),
-  sourceFile: basename(inputPath),
-  recordCount: bins.length,
-  encoding: 'Big5/CP950',
+type DogWasteCsvRow = {
+  行政區?: string;
+  路名?: string;
+  位置?: string;
+  經度?: string;
+  緯度?: string;
+  備註?: string;
 };
 
-writeFileSync(metadataPath, `${JSON.stringify(metadata, null, 2)}\n`);
+type SourceConfig<Row> = {
+  inputPath: string;
+  parseRow: (row: Row, rowNumber: number) => Facility | null;
+  requiredFields: Array<keyof Row>;
+};
 
-console.log(`Converted ${bins.length} usable bin records to ${outputPath}`);
-console.log(`Wrote metadata to ${metadataPath}`);
+const DATA_DIR = resolve('public/data');
+const PEDESTRIAN_CSV = '/Users/Leo/Downloads/●行人專用清潔箱總表.csv';
+const DOG_WASTE_CSV = '/Users/Leo/Downloads/狗便袋箱位置總表 .csv';
+const PEDESTRIAN_FALLBACK_JSON = resolve('public/data/bins.json');
+
+const FACILITIES_OUTPUT = resolve('public/data/facilities.json');
+const PEDESTRIAN_OUTPUT = resolve('public/data/pedestrian-bins.json');
+const DOG_WASTE_OUTPUT = resolve('public/data/dog-waste-bag-boxes.json');
+const REPORT_OUTPUT = resolve('public/data/conversion-report.json');
+
+const clean = (value: unknown) => String(value ?? '').trim();
+const numberFrom = (value: unknown) => Number.parseFloat(clean(value));
+const hasAnyValue = (row: Record<string, unknown>) => Object.values(row).some((value) => clean(value) !== '');
+
+function readCp950Csv<Row>(inputPath: string): Row[] {
+  const raw = readFileSync(inputPath);
+  const csvText = iconv.decode(raw, 'cp950');
+  const parsed = Papa.parse<Row>(csvText, {
+    header: true,
+    skipEmptyLines: true,
+    transformHeader: (header) => header.trim(),
+  });
+
+  if (parsed.errors.length > 0) {
+    const message = parsed.errors.map((error) => `${error.code}: ${error.message}`).join('\n');
+    throw new Error(`Unable to parse ${inputPath}:\n${message}`);
+  }
+
+  return parsed.data;
+}
+
+function markCoordinateOutlier(facility: Facility): Facility {
+  if (!isCoordinateOutlier(facility.longitude, facility.latitude)) {
+    return facility;
+  }
+
+  return {
+    ...facility,
+    isCoordinateOutlier: true,
+  };
+}
+
+function convertSource<Row extends Record<string, unknown>>(
+  config: SourceConfig<Row>,
+): { facilities: Facility[]; report: ConversionSourceReport } {
+  const rows = readCp950Csv<Row>(config.inputPath);
+  const missingRequiredFields: ConversionSourceReport['missingRequiredFields'] = [];
+  let droppedRows = 0;
+
+  const facilities = rows.reduce<Facility[]>((records, row, index) => {
+    const rowNumber = index + 2;
+
+    if (!hasAnyValue(row)) {
+      droppedRows += 1;
+      return records;
+    }
+
+    const missingFields = config.requiredFields.filter((field) => clean(row[field]) === '').map(String);
+    if (missingFields.length > 0) {
+      missingRequiredFields.push({ rowNumber, fields: missingFields });
+      droppedRows += 1;
+      return records;
+    }
+
+    const facility = config.parseRow(row, index + 1);
+    if (!facility) {
+      droppedRows += 1;
+      return records;
+    }
+
+    records.push(markCoordinateOutlier(facility));
+    return records;
+  }, []);
+
+  return {
+    facilities,
+    report: {
+      sourceFilename: basename(config.inputPath),
+      totalRows: rows.length,
+      validRows: facilities.length,
+      droppedRows,
+      coordinateOutlierRows: facilities.filter((facility) => facility.isCoordinateOutlier).length,
+      missingRequiredFields,
+    },
+  };
+}
+
+function parsePedestrianRow(row: PedestrianCsvRow, index: number): Facility | null {
+  const longitude = numberFrom(row.經度);
+  const latitude = numberFrom(row.緯度);
+
+  if (!Number.isFinite(longitude) || !Number.isFinite(latitude)) {
+    return null;
+  }
+
+  return {
+    id: `pedestrian_bin-${String(index).padStart(4, '0')}`,
+    type: 'pedestrian_bin',
+    district: clean(row.行政區),
+    address: clean(row.地址),
+    longitude,
+    latitude,
+    note: clean(row.備註),
+    source: '台北市行人專用清潔箱資料',
+  };
+}
+
+function parseDogWasteRow(row: DogWasteCsvRow, index: number): Facility | null {
+  const longitude = numberFrom(row.經度);
+  const latitude = numberFrom(row.緯度);
+
+  if (!Number.isFinite(longitude) || !Number.isFinite(latitude)) {
+    return null;
+  }
+
+  const road = clean(row.路名);
+  const location = clean(row.位置);
+
+  return {
+    id: `dog_waste_bag_box-${String(index).padStart(4, '0')}`,
+    type: 'dog_waste_bag_box',
+    district: clean(row.行政區),
+    address: `${road}${location}`,
+    road,
+    location,
+    longitude,
+    latitude,
+    note: clean(row.備註),
+    source: '台北市狗便袋箱位置資料',
+  };
+}
+
+function loadPedestrianFacilities(): { facilities: Facility[]; report: ConversionSourceReport } {
+  if (existsSync(PEDESTRIAN_CSV)) {
+    return convertSource<PedestrianCsvRow>({
+      inputPath: PEDESTRIAN_CSV,
+      parseRow: parsePedestrianRow,
+      requiredFields: ['行政區', '地址', '經度', '緯度'],
+    });
+  }
+
+  const fallback = JSON.parse(readFileSync(PEDESTRIAN_FALLBACK_JSON, 'utf8')) as Array<
+    Omit<Facility, 'type' | 'source'> & Partial<Facility>
+  >;
+  const facilities = fallback.map((record, index) =>
+    markCoordinateOutlier({
+      id: record.id || `pedestrian_bin-${String(index + 1).padStart(4, '0')}`,
+      type: 'pedestrian_bin',
+      district: record.district,
+      address: record.address,
+      longitude: record.longitude,
+      latitude: record.latitude,
+      note: record.note,
+      source: '台北市行人專用清潔箱資料',
+    }),
+  );
+
+  return {
+    facilities,
+    report: {
+      sourceFilename: `${basename(PEDESTRIAN_FALLBACK_JSON)} (fallback; source CSV not found)`,
+      totalRows: fallback.length,
+      validRows: facilities.length,
+      droppedRows: 0,
+      coordinateOutlierRows: facilities.filter((facility) => facility.isCoordinateOutlier).length,
+      missingRequiredFields: [],
+    },
+  };
+}
+
+function writeJson(path: string, data: unknown) {
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, `${JSON.stringify(data, null, 2)}\n`);
+}
+
+const pedestrian = loadPedestrianFacilities();
+const dogWaste = convertSource<DogWasteCsvRow>({
+  inputPath: DOG_WASTE_CSV,
+  parseRow: parseDogWasteRow,
+  requiredFields: ['行政區', '路名', '位置', '經度', '緯度'],
+});
+
+const facilities = [...pedestrian.facilities, ...dogWaste.facilities];
+const report: ConversionReport = {
+  generatedAt: new Date().toISOString(),
+  totalValidRows: facilities.length,
+  sources: [pedestrian.report, dogWaste.report],
+};
+
+mkdirSync(DATA_DIR, { recursive: true });
+writeJson(PEDESTRIAN_OUTPUT, pedestrian.facilities);
+writeJson(DOG_WASTE_OUTPUT, dogWaste.facilities);
+writeJson(FACILITIES_OUTPUT, facilities);
+writeJson(REPORT_OUTPUT, report);
+
+console.log(`Wrote ${facilities.length} total facility records to ${FACILITIES_OUTPUT}`);
+console.log(`Wrote ${pedestrian.facilities.length} pedestrian bin records to ${PEDESTRIAN_OUTPUT}`);
+console.log(`Wrote ${dogWaste.facilities.length} dog-waste bag box records to ${DOG_WASTE_OUTPUT}`);
+console.log(`Wrote conversion report to ${REPORT_OUTPUT}`);

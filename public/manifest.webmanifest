@@ -1,7 +1,7 @@
 {
-  "name": "Taipei Pedestrian Garbage Bin Map",
-  "short_name": "Taipei Bins",
-  "description": "Find pedestrian-use public garbage bins in Taipei.",
+  "name": "台北市街頭清潔便利地圖",
+  "short_name": "台北清潔地圖",
+  "description": "Taipei Street Cleanliness Map for pedestrian garbage bins and dog-waste bag boxes.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f5f2ec",

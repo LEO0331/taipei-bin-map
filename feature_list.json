@@ -87,6 +87,14 @@
       "dependencies": ["feat-010"],
       "status": "done",
       "evidence": "Added PNG PWA icons, generated metadata, footer last-updated note, bilingual README/docs, and Vercel deployment docs. ./init.sh and harness validation passed."
+    },
+    {
+      "id": "feat-012",
+      "name": "Street cleanliness facility expansion",
+      "description": "Extend the map from pedestrian garbage bins to generic public cleanliness facilities by adding Taipei dog-waste bag box data, facility type filters, type-specific warnings, and conversion reports.",
+      "dependencies": ["feat-011"],
+      "status": "done",
+      "evidence": "npm run convert:bins generated 1707 combined facilities, including 510 dog-waste bag boxes and coordinate outlier reporting. ./init.sh passed npm test, npm run build, and 12 Playwright e2e tests on 2026-06-12."
     }
   ]
 }

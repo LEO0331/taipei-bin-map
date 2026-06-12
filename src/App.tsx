@@ -1,12 +1,13 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
-import { BinList } from './components/BinList';
+import { FacilityList } from './components/FacilityList';
+import { FacilityTypeFilter, type FacilityTypeSelection } from './components/FacilityTypeFilter';
 import { LanguageToggle } from './components/LanguageToggle';
 import { NearbyButton } from './components/NearbyButton';
 import { SearchFilters } from './components/SearchFilters';
 import { WarningNotice } from './components/WarningNotice';
 import { translations } from './i18n';
-import type { Bin, BinDataMetadata, BinWithDistance, Language } from './types';
-import { calculateDistanceMeters, filterBins } from './utils/binUtils';
+import type { ConversionReport, Facility, FacilityType, FacilityWithDistance, Language } from './types';
+import { calculateDistanceMeters, filterFacilities } from './utils/facilityUtils';
 
 const DISTRICT_ORDER = [
   '中正區',
@@ -24,7 +25,9 @@ const DISTRICT_ORDER = [
 ];
 
 const INITIAL_LIST_LIMIT = 80;
-const BinMap = lazy(() => import('./components/BinMap').then((module) => ({ default: module.BinMap })));
+const FacilityMap = lazy(() =>
+  import('./components/FacilityMap').then((module) => ({ default: module.FacilityMap })),
+);
 
 type UserLocation = {
   latitude: number;
@@ -38,19 +41,24 @@ const getInitialLanguage = (): Language => {
   return stored === 'en' ? 'en' : 'zh';
 };
 
+const selectedFacilityTypes = (selectedType: FacilityTypeSelection): FacilityType[] =>
+  selectedType === 'all' ? ['pedestrian_bin', 'dog_waste_bag_box'] : [selectedType];
+
 function App() {
-  const [bins, setBins] = useState<Bin[]>([]);
-  const [metadata, setMetadata] = useState<BinDataMetadata | null>(null);
+  const [facilities, setFacilities] = useState<Facility[]>([]);
+  const [report, setReport] = useState<ConversionReport | null>(null);
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
   const [searchTerm, setSearchTerm] = useState('');
   const [district, setDistrict] = useState('');
+  const [selectedType, setSelectedType] = useState<FacilityTypeSelection>('all');
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
-  const [nearbyBins, setNearbyBins] = useState<BinWithDistance[] | null>(null);
-  const [isLoadingBins, setIsLoadingBins] = useState(true);
+  const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
+  const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
   const [isLocating, setIsLocating] = useState(false);
   const [error, setError] = useState<ErrorKey>('');
 
   const t = translations[language];
+  const activeFacilityTypes = useMemo(() => selectedFacilityTypes(selectedType), [selectedType]);
 
   useEffect(() => {
     document.documentElement.lang = language === 'zh' ? 'zh-Hant' : 'en';
@@ -60,16 +68,16 @@ function App() {
   useEffect(() => {
     let isMounted = true;
 
-    fetch('/data/bins.json')
+    fetch('/data/facilities.json')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
         }
-        return response.json() as Promise<Bin[]>;
+        return response.json() as Promise<Facility[]>;
       })
       .then((data) => {
         if (isMounted) {
-          setBins(data);
+          setFacilities(data);
           setError('');
         }
       })
@@ -80,7 +88,7 @@ function App() {
       })
       .finally(() => {
         if (isMounted) {
-          setIsLoadingBins(false);
+          setIsLoadingFacilities(false);
         }
       });
 
@@ -92,21 +100,21 @@ function App() {
   useEffect(() => {
     let isMounted = true;
 
-    fetch('/data/bins.metadata.json')
+    fetch('/data/conversion-report.json')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
         }
-        return response.json() as Promise<BinDataMetadata>;
+        return response.json() as Promise<ConversionReport>;
       })
       .then((data) => {
         if (isMounted) {
-          setMetadata(data);
+          setReport(data);
         }
       })
       .catch(() => {
         if (isMounted) {
-          setMetadata(null);
+          setReport(null);
         }
       });
 
@@ -116,21 +124,29 @@ function App() {
   }, []);
 
   const districts = useMemo(() => {
-    const dataDistricts = new Set(bins.map((bin) => bin.district).filter(Boolean));
+    const dataDistricts = new Set(facilities.map((facility) => facility.district).filter(Boolean));
     return DISTRICT_ORDER.filter((item) => dataDistricts.has(item));
-  }, [bins]);
+  }, [facilities]);
 
-  const filteredBins = useMemo(() => filterBins(bins, searchTerm, district), [bins, district, searchTerm]);
-
-  const displayedBins = nearbyBins ?? filteredBins;
-  const listBins = useMemo(
-    () => (nearbyBins ? displayedBins : displayedBins.slice(0, INITIAL_LIST_LIMIT)),
-    [displayedBins, nearbyBins],
+  const filteredFacilities = useMemo(
+    () =>
+      filterFacilities(facilities, {
+        searchTerm,
+        district,
+        facilityTypes: activeFacilityTypes,
+      }),
+    [activeFacilityTypes, district, facilities, searchTerm],
   );
-  const isListLimited = !nearbyBins && displayedBins.length > listBins.length;
-  const listHeading = nearbyBins ? t.nearestBins : t.matchingBins;
+
+  const displayedFacilities = nearbyFacilities ?? filteredFacilities;
+  const listFacilities = useMemo(
+    () => (nearbyFacilities ? displayedFacilities : displayedFacilities.slice(0, INITIAL_LIST_LIMIT)),
+    [displayedFacilities, nearbyFacilities],
+  );
+  const isListLimited = !nearbyFacilities && displayedFacilities.length > listFacilities.length;
+  const listHeading = nearbyFacilities ? t.nearestFacilities : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
-    if (!metadata?.generatedAt) {
+    if (!report?.generatedAt) {
       return '';
     }
 
@@ -138,8 +154,8 @@ function App() {
       dateStyle: 'medium',
       timeStyle: 'short',
       timeZone: 'Asia/Taipei',
-    }).format(new Date(metadata.generatedAt));
-  }, [language, metadata?.generatedAt]);
+    }).format(new Date(report.generatedAt));
+  }, [language, report?.generatedAt]);
 
   const handleLanguageChange = (nextLanguage: Language) => {
     setLanguage(nextLanguage);
@@ -148,16 +164,21 @@ function App() {
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    setNearbyBins(null);
+    setNearbyFacilities(null);
   };
 
   const handleDistrictChange = (value: string) => {
     setDistrict(value);
-    setNearbyBins(null);
+    setNearbyFacilities(null);
+  };
+
+  const handleTypeChange = (value: FacilityTypeSelection) => {
+    setSelectedType(value);
+    setNearbyFacilities(null);
   };
 
   const handleNearbyClick = () => {
-    if (bins.length === 0) {
+    if (filteredFacilities.length === 0) {
       return;
     }
 
@@ -176,21 +197,21 @@ function App() {
           longitude: position.coords.longitude,
         };
 
-        const nearest = bins
-          .map((bin) => ({
-            ...bin,
+        const nearest = filteredFacilities
+          .map((facility) => ({
+            ...facility,
             distanceMeters: calculateDistanceMeters(
               nextLocation.latitude,
               nextLocation.longitude,
-              bin.latitude,
-              bin.longitude,
+              facility.latitude,
+              facility.longitude,
             ),
           }))
           .sort((first, second) => (first.distanceMeters ?? 0) - (second.distanceMeters ?? 0))
           .slice(0, 10);
 
         setUserLocation(nextLocation);
-        setNearbyBins(nearest);
+        setNearbyFacilities(nearest);
         setIsLocating(false);
       },
       () => {
@@ -219,16 +240,16 @@ function App() {
         <section className="controls-panel" aria-label={t.searchPlaceholder}>
           <div className="metrics-strip" aria-label={t.sourceStatus}>
             <div>
-              <span>{t.totalBins}</span>
-              <strong>{bins.length.toLocaleString()}</strong>
+              <span>{t.totalFacilities}</span>
+              <strong>{facilities.length.toLocaleString()}</strong>
             </div>
             <div>
-              <span>{t.visibleBins}</span>
-              <strong>{displayedBins.length.toLocaleString()}</strong>
+              <span>{t.visibleFacilities}</span>
+              <strong>{displayedFacilities.length.toLocaleString()}</strong>
             </div>
             <div>
               <span>{t.sourceStatus}</span>
-              <strong>{metadata ? metadata.recordCount.toLocaleString() : 'JSON'}</strong>
+              <strong>{report ? report.totalValidRows.toLocaleString() : 'JSON'}</strong>
             </div>
           </div>
           <SearchFilters
@@ -239,31 +260,37 @@ function App() {
             onDistrictChange={handleDistrictChange}
             onSearchChange={handleSearchChange}
           />
+          <FacilityTypeFilter selectedType={selectedType} t={t} onChange={handleTypeChange} />
           <NearbyButton
-            disabled={isLoadingBins || bins.length === 0}
+            disabled={isLoadingFacilities || filteredFacilities.length === 0}
             isLoading={isLocating}
             t={t}
             onClick={handleNearbyClick}
           />
         </section>
 
-        <WarningNotice t={t} />
+        <WarningNotice selectedType={selectedType} t={t} />
 
-        {error && <p className="status-message error">{error === 'load' ? t.loadError : t.locationError}</p>}
-        {isLoadingBins ? (
+        {error && <p className="status-message error">{error === 'load' ? t.loadError : t.unableToGetLocation}</p>}
+        {isLoadingFacilities ? (
           <p className="status-message">{t.loading}</p>
         ) : (
           <div className="workspace">
             <Suspense fallback={<section className="map-panel map-loading">{t.mapLoading}</section>}>
-              <BinMap bins={displayedBins} t={t} userLocation={userLocation} />
+              <FacilityMap
+                facilities={displayedFacilities}
+                language={language}
+                t={t}
+                userLocation={userLocation}
+              />
             </Suspense>
-            <BinList
-              bins={listBins}
+            <FacilityList
+              facilities={listFacilities}
               heading={listHeading}
               isLimited={isListLimited}
               language={language}
               t={t}
-              totalCount={displayedBins.length}
+              totalCount={displayedFacilities.length}
             />
           </div>
         )}
@@ -271,10 +298,9 @@ function App() {
 
       <footer>
         <span>{t.footer}</span>
-        {metadata && formattedGeneratedAt && (
+        {report && formattedGeneratedAt && (
           <span>
-            {t.dataUpdated}: {formattedGeneratedAt} ({metadata.recordCount.toLocaleString()}{' '}
-            {t.generatedRecords})
+            {t.dataUpdated}: {formattedGeneratedAt} ({report.totalValidRows.toLocaleString()} {t.generatedRecords})
           </span>
         )}
       </footer>

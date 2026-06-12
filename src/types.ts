@@ -1,21 +1,39 @@
 export type Language = 'zh' | 'en';
 
-export type Bin = {
+export type FacilityType = 'pedestrian_bin' | 'dog_waste_bag_box';
+
+export type Facility = {
   id: string;
+  type: FacilityType;
   district: string;
   address: string;
+  road?: string;
+  location?: string;
   longitude: number;
   latitude: number;
   note: string;
+  source: string;
+  isCoordinateOutlier?: boolean;
 };
 
-export type BinWithDistance = Bin & {
+export type FacilityWithDistance = Facility & {
   distanceMeters?: number;
 };
 
-export type BinDataMetadata = {
+export type ConversionSourceReport = {
+  sourceFilename: string;
+  totalRows: number;
+  validRows: number;
+  droppedRows: number;
+  coordinateOutlierRows: number;
+  missingRequiredFields: Array<{
+    rowNumber: number;
+    fields: string[];
+  }>;
+};
+
+export type ConversionReport = {
   generatedAt: string;
-  sourceFile: string;
-  recordCount: number;
-  encoding: 'Big5/CP950';
+  totalValidRows: number;
+  sources: ConversionSourceReport[];
 };

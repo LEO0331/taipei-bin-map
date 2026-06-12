@@ -2,30 +2,22 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-11 10:44 Asia/Taipei  
+**Last Updated:** 2026-06-12 11:01 Asia/Taipei  
 **Active Feature:** none
 
 ## Status
 
 ### What's Done
 
-- [x] Built the static Taipei pedestrian garbage bin app.
-- [x] Converted the Big5/CP950 CSV into `public/data/bins.json` with 1197 usable records.
-- [x] Added core tests, browser smoke verification, PWA-ready files, and README.
-- [x] Generated initial harness files with `harness-creator`.
-- [x] Replaced generic harness placeholders with project-specific scope and verification rules.
-- [x] Validated the harness with a 100/100 score.
-- [x] Ran `./init.sh` successfully outside the sandbox.
-- [x] Completed designer polish pass with civic field-guide art direction.
-- [x] Ran visual geometry checks for mobile and desktop.
-- [x] Ran `./init.sh` after the design changes.
-- [x] Completed Lighthouse optimization pass.
-- [x] Added Playwright end-to-end coverage.
-- [x] Updated `./init.sh` to run e2e as part of the baseline.
-- [x] Ran full baseline after e2e changes.
-- [x] Completed code review and fixed confirmed findings.
-- [x] Locked cleanup behavior with `npm test`, `npm run build`, and `npm run test:e2e`.
-- [x] Completed AI slop cleanup and reran full baseline.
+- [x] Refactored the data model from bin-only records to typed `Facility` records.
+- [x] Added dog-waste bag box conversion from Big5/CP950 CSV.
+- [x] Generated combined and per-type static JSON files under `public/data/`.
+- [x] Added `conversion-report.json` with dropped row, missing field, and coordinate outlier counts.
+- [x] Updated the UI product name to `台北市街頭清潔便利地圖` / `Taipei Street Cleanliness Map`.
+- [x] Added facility type filtering, type-specific warning notices, map legend, type-aware popups, and type-aware result cards.
+- [x] Updated PWA metadata and service worker cache entries for the new facility JSON files.
+- [x] Updated README and bilingual design/deployment/tradeoff docs.
+- [x] Updated unit and Playwright e2e tests for the two-dataset product direction.
 
 ### What's In Progress
 
@@ -33,70 +25,56 @@
 
 ### What's Next
 
-1. Add the next feature to `feature_list.json` before editing.
-2. Run `./init.sh` before and after substantive app changes.
+1. Pick the next feature or publish task.
+2. Add it to `feature_list.json` before editing.
+3. Run `./init.sh` before and after substantive changes.
 
 ## Blockers / Risks
 
-- [ ] `npm audit --audit-level=moderate` reports a remaining Vite/esbuild dev-server advisory. npm's suggested fix is a breaking Vite 8 upgrade, so this is documented as a dev-only residual risk.
-- [ ] Browser smoke tests require launching Chromium; sandboxed environments may need escalation or equivalent browser permissions.
+- [ ] The original pedestrian-bin source CSV is not currently present at `/Users/Leo/Downloads/●行人專用清潔箱總表.csv`; the converter falls back to existing cleaned `public/data/bins.json` and records that fallback in `conversion-report.json`.
+- [ ] `npm audit --audit-level=moderate` previously reported a Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
+- [ ] Browser verification requires Chromium; sandboxed environments may need approval or equivalent browser permissions.
 
 ## Decisions Made
 
-- **Keep harness minimal**: Root `AGENTS.md` contains startup, scope, and verification only. Product details remain in `README.md` and app code.
-- **Make `./init.sh` authoritative**: It runs unit tests, production build, and a smoke test against a temporary Vite server.
-- **Track one active feature**: `feature_list.json` uses one active harness feature to prevent parallel scope drift.
+- **Use a generic `Facility` model**: Keeps pedestrian bins and dog-waste bag boxes distinct without duplicating the whole UI.
+- **Keep suspicious coordinates**: Out-of-bounds records are marked with `isCoordinateOutlier: true` and reported, not silently discarded.
+- **Keep canvas markers**: About 1,700 points remain practical with Leaflet canvas markers; clustering can be added later if real usage shows visual crowding.
+- **Preserve static deployment**: No backend, accounts, admin page, database, or paid map API were added.
 
 ## Files Modified This Session
 
-- `AGENTS.md` - Project-specific agent startup and verification rules.
-- `feature_list.json` - Current feature state and evidence.
-- `progress.md` - Session status, risks, and next steps.
-- `session-handoff.md` - Restart instructions for the next agent session.
-- `init.sh` - Baseline verification script.
-- `src/App.tsx` - Added compact status metrics above controls.
-- `src/i18n.ts` - Added localized status labels.
-- `src/components/BinList.tsx` - Added numbered result row affordance.
-- `src/components/WarningNotice.tsx` - Upgraded warning notice structure.
-- `src/styles.css` - Reworked visual system, responsive layout, map/list polish, and reduced-motion support.
-- `playwright.config.cjs` - Playwright Test config with Vite webServer and desktop/mobile projects.
-- `tests/e2e/bin-map.spec.js` - End-to-end coverage for core public flows.
-- `package.json` - Added `test:e2e` script.
-- `vite.config.ts` - Kept Vitest scoped to unit tests so Playwright specs are not collected by Vitest.
-- `.gitignore` - Ignored Playwright report artifacts.
-- `README.md` - Documented the e2e command.
-- `public/service-worker.js` - Changed navigation/app shell to network-first and bumped cache version to avoid stale deployments.
-- `src/components/NearbyButton.tsx` - Added disabled state support.
-- `src/App.tsx` - Avoided language-change data refetch and disabled nearby lookup until bin data is ready.
-- `init.sh` - Removed stale server cleanup after switching baseline to Playwright webServer.
-- `src/styles.css` - Removed dead marker span CSS after the map marker implementation changed.
-- `tools/smoke-test.mjs` - Deleted redundant smoke utility superseded by e2e tests.
-- `tools/visual-check.mjs` - Deleted redundant visual utility superseded by e2e and Lighthouse checks.
-- `public/icons/icon-192.png` - Added production PWA icon.
-- `public/icons/icon-512.png` - Added production PWA icon.
-- `public/data/bins.metadata.json` - Added generated dataset metadata.
-- `scripts/convertBins.ts` - Writes metadata with source filename, record count, timestamp, and encoding.
-- `README.md` - Added bilingual publish/deploy instructions.
-- `docs/` - Added bilingual deployment, system design, and tradeoff docs.
+- `scripts/convertBins.ts` - Converts both datasets and writes combined/per-type JSON plus conversion report.
+- `public/data/facilities.json` - Combined facility dataset.
+- `public/data/pedestrian-bins.json` - Pedestrian garbage bin dataset.
+- `public/data/dog-waste-bag-boxes.json` - Dog-waste bag box dataset.
+- `public/data/conversion-report.json` - Data conversion report and warnings.
+- `src/types.ts` - Generic facility types and conversion report types.
+- `src/utils/facilityUtils.ts` - Distance, formatting, filtering, labels, map URL, and coordinate bounds.
+- `src/utils/facilityUtils.test.ts` - Unit coverage for facility utilities.
+- `src/App.tsx` - Facility data loading, filters, nearby logic, and footer metadata.
+- `src/i18n.ts` - Updated bilingual product and facility labels.
+- `src/components/` - Facility map/list/popup/filter/legend/warning components.
+- `src/styles.css` - Facility filter, legend, list, warning, and responsive layout styles.
+- `public/manifest.webmanifest` - Updated PWA app name and description.
+- `public/service-worker.js` - Updated cache name and local data assets.
+- `index.html` - Updated title and metadata.
+- `tests/e2e/bin-map.spec.js` - Updated public user-flow coverage.
+- `README.md` - Updated bilingual project docs.
+- `docs/` - Updated bilingual system design, tradeoffs, and deployment docs.
+- `package.json` - Added `convert:facilities` alias.
+- `feature_list.json` - Added feat-012 tracking.
+- `progress.md` - Current session status.
 
 ## Evidence of Completion
 
-- [x] App tests before harness edits: `npm test` passed 5 tests.
-- [x] App build before harness edits: `npm run build` passed.
-- [x] App smoke test before harness edits: legacy browser smoke check confirmed 1197 records and no page errors.
-- [x] Harness validation: `node ~/.agents/skills/harness-creator/scripts/validate-harness.mjs --target ~/Documents/taipei-bin-map` scored 100/100.
-- [x] Full `./init.sh`: passed `npm test`, `npm run build`, and browser smoke test on 2026-06-11.
-- [x] Designer visual check: legacy visual check captured mobile and desktop screenshots with no browser errors.
-- [x] Post-polish full baseline: `./init.sh` passed `npm test`, `npm run build`, and browser smoke test on 2026-06-11.
-- [x] Lighthouse final: Performance 91, Accessibility 100, Best Practices 96, SEO 100.
-- [x] E2E: `npm run test:e2e` passed 10 tests across desktop and mobile Chromium.
-- [x] Final baseline: `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-11.
-- [x] Code review fix baseline: `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-11.
-- [x] AI slop cleanup baseline: `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-11.
-- [x] Static/security scan: `npm audit --audit-level=moderate` reports only the known Vite/esbuild dev-server advisory with a breaking Vite 8 fix path.
-- [x] Publish readiness baseline: `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-11.
-- [x] Publish readiness harness validation: 100/100.
+- [x] `npm run convert:bins` generated 1,707 total facilities: 1,197 pedestrian bins and 510 dog-waste bag boxes.
+- [x] `conversion-report.json` records one dog-waste coordinate outlier and preserves it with `isCoordinateOutlier: true`.
+- [x] `npm test` passed 8 facility utility tests.
+- [x] `npm run build` passed.
+- [x] `npm run test:e2e` passed 12 desktop/mobile Playwright tests.
+- [x] `./init.sh` passed `npm test`, `npm run build`, and `npm run test:e2e` on 2026-06-12.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then run `./init.sh`. Keep the app static and local-data based unless the user explicitly changes the product direction.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The street-cleanliness facility expansion is verified and marked done.

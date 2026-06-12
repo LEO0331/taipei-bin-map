@@ -1,47 +1,55 @@
-# 系統設計深度說明
+# 系統設計 Deep Dive
 
 ## 產品目標
 
-台北市行人專用清潔箱地圖是一個公開、手機優先的 Web App，用來查找台北市行人專用公共清潔箱。此專案刻意保持靜態化：沒有後端、沒有帳號、沒有管理介面，也不需要付費地圖 API。
+台北市街頭清潔便利地圖是公開、mobile-first 的靜態 web app，用來查找台北市行人專用清潔箱與狗便袋箱。架構刻意保持單純：沒有後端、帳號、admin 頁、資料庫或付費地圖 API。
 
 ## 架構
 
 ```mermaid
 flowchart TD
-  CSV["Big5/CP950 CSV"] --> Convert["scripts/convertBins.ts"]
-  Convert --> Bins["public/data/bins.json"]
-  Convert --> Meta["public/data/bins.metadata.json"]
-  Bins --> App["React App"]
-  Meta --> App
+  BinCSV["清潔箱 CSV 或 fallback JSON"] --> Convert["scripts/convertBins.ts"]
+  DogCSV["狗便袋箱 CSV"] --> Convert
+  Convert --> Facilities["public/data/facilities.json"]
+  Convert --> Pedestrian["public/data/pedestrian-bins.json"]
+  Convert --> Dog["public/data/dog-waste-bag-boxes.json"]
+  Convert --> Report["public/data/conversion-report.json"]
+  Facilities --> App["React App"]
+  Report --> App
   App --> Leaflet["React Leaflet Map"]
-  Leaflet --> OSM["OpenStreetMap 圖磚"]
+  Leaflet --> OSM["OpenStreetMap Tiles"]
   App --> PWA["Manifest + Service Worker"]
 ```
 
-## 執行流程
+## 資料模型
 
-1. Vite 將 React app 作為靜態資源提供。
-2. `App.tsx` 從 `/data/` 載入本機清潔箱 JSON 與 metadata。
-3. 搜尋與行政區篩選都在瀏覽器記憶體中完成。
-4. 附近清潔箱功能會要求瀏覽器定位權限，在本機用 Haversine 公式計算距離，再顯示最近 10 筆。
-5. 地圖以 lazy-loaded chunk 載入，讓初始 UI 更快顯示。
-6. Service worker 會快取靜態資源與資料，支援重複造訪與網路不穩情境。
+前端使用通用 `Facility` record，`type` 可為 `pedestrian_bin` 或 `dog_waste_bag_box`。狗便袋箱保留 `road` 與 `location`，並產生可顯示的 `address`；行人專用清潔箱則使用原始 `address`。
+
+轉換腳本使用寬鬆的台北市座標 bounding box。超出範圍的座標不會被刪除，而是保留並加上 `isCoordinateOutlier: true`，同時記錄在 `conversion-report.json`。
+
+## Runtime Flow
+
+1. Vite 以靜態資源方式提供 React app。
+2. `App.tsx` 讀取 `/data/facilities.json` 與 `/data/conversion-report.json`。
+3. 搜尋、行政區與設施類型篩選都在瀏覽器記憶體內完成。
+4. 附近設施功能透過瀏覽器 geolocation 取得位置，用 Haversine 公式計算距離，並從目前篩選集合中列出最近 10 筆。
+5. 地圖元件使用 lazy-loaded chunk，讓初始 UI 更快顯示。
+6. Service worker 快取靜態資源與本機 JSON，支援重複造訪。
 
 ## 主要邊界
 
-- `scripts/convertBins.ts`：來源資料清理與 metadata 產生。
-- `src/utils/binUtils.ts`：純函式的篩選、距離與格式化邏輯。
-- `src/App.tsx`：狀態協調與瀏覽器 API 整合。
-- `src/components/`：可重用 UI、地圖與列表元件。
+- `scripts/convertBins.ts`：CP950 CSV 解碼、設施資料標準化、座標異常報告。
+- `src/utils/facilityUtils.ts`：純函式，處理篩選、距離、標籤、Google Maps 連結與座標範圍。
+- `src/App.tsx`：狀態協調、資料載入、geolocation 協調。
+- `src/components/`：控制列、地圖、popup、圖例、提醒與列表 UI。
 - `tests/e2e/`：瀏覽器層級的使用者流程測試。
 
 ## 驗證策略
 
 - Unit tests 覆蓋純工具函式。
-- Playwright e2e tests 覆蓋桌機與手機 Chromium 的公開使用者流程。
-- `./init.sh` 是 agent 與 release check 的基準命令。
-- Lighthouse 用來驗證上線前的 performance、accessibility、best practices 與 SEO 目標。
+- Playwright e2e 覆蓋公開流程、語言保存、設施篩選、搜尋、定位成功與定位失敗。
+- `./init.sh` 是 agent 與 release check 的基準指令。
 
-## 擴充注意事項
+## 擴充備註
 
-目前資料量足以在前端完成篩選與地圖呈現。如果資料量增加一個數量級，下一個可能瓶頸會是 marker rendering 與列表虛擬化。
+目前合併資料約 1,700 筆，因此本機篩選與 Leaflet canvas markers 足夠。若資料量大幅成長，下一個可能升級點是 marker clustering 或列表虛擬化。

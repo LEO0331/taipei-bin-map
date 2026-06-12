@@ -22,11 +22,11 @@ Deploy this project as a Vite static frontend on Vercel.
 
 ```bash
 npm ci
-npm run convert:bins
+npm run convert:facilities
 ./init.sh
 ```
 
-The app has no API keys and no backend. It loads `public/data/bins.json` and `public/data/bins.metadata.json` as static assets.
+The app has no API keys and no backend. It loads `public/data/facilities.json`, the per-type JSON files, and `public/data/conversion-report.json` as static assets.
 
 ## Production URL Metadata
 
@@ -40,4 +40,4 @@ Do not hard-code a guessed Vercel URL before the project has its final domain.
 
 ## Offline Behavior
 
-The service worker caches the app shell, PWA icons, and local bin JSON. OpenStreetMap tiles are external network resources and may be incomplete offline.
+The service worker caches the app shell, PWA icons, and local facility JSON. OpenStreetMap tiles are external network resources and may be incomplete offline.

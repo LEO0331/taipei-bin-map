@@ -2,17 +2,33 @@
 
 ## Static App Instead Of Backend
 
-Decision: keep all bin data as static JSON under `public/data/`.
+Decision: keep all facility data as static JSON under `public/data/`.
 
-Why: the dataset is public, small, and read-only for this product. Static hosting reduces operational cost, avoids API keys, and makes Vercel/GitHub Pages deployment straightforward.
+Why: both datasets are public, small, and read-only for this product. Static hosting reduces operational cost, avoids API keys, and makes Vercel/GitHub Pages deployment straightforward.
 
 Rejected: a backend API or CMS. It would add hosting, authentication, and maintenance burden without solving a current user problem.
+
+## Generic Facility Model
+
+Decision: refactor from a bin-only model to `Facility` with explicit `type`.
+
+Why: pedestrian garbage bins and dog-waste bag boxes have different meanings and source columns. A typed model keeps labels, warnings, filters, and popups accurate without duplicating the whole app.
+
+Rejected: forcing dog-waste bag boxes into the old bin model. That would risk describing them as trash bins, which is incorrect.
+
+## Keep Coordinate Outliers
+
+Decision: preserve broad Taipei coordinate outliers with `isCoordinateOutlier: true` and report them in `conversion-report.json`.
+
+Why: suspicious coordinates may still be useful for manual verification, and silent deletion hides data-quality issues.
+
+Rejected: dropping all out-of-bounds rows. That would make the data cleaner-looking but less auditable.
 
 ## OpenStreetMap + Leaflet Instead Of Google Maps API
 
 Decision: use Leaflet with OpenStreetMap tiles.
 
-Why: no API key is required, the map is good enough for public bin discovery, and it keeps the project deployable by anyone.
+Why: no API key is required, the map is good enough for facility discovery, and it keeps the project deployable by anyone.
 
 Rejected: Google Maps embed/API as the main map. Google Maps links are still provided for navigation, but using Google Maps as the main map would introduce key management and billing concerns.
 
@@ -22,23 +38,23 @@ Decision: calculate Haversine distance in the browser.
 
 Why: the user location never needs to leave the device, and the dataset is small enough for local sorting.
 
-Rejected: server-side nearest-bin lookup. It would add privacy and infrastructure concerns for no current benefit.
+Rejected: server-side nearest-facility lookup. It would add privacy and infrastructure concerns for no current benefit.
 
-## Lazy-Loaded Map Chunk
+## Canvas Markers Instead Of Clustering
 
-Decision: lazy-load the Leaflet map code.
+Decision: keep Leaflet `CircleMarker` rendering with `preferCanvas` and distinct colors/legend.
 
-Why: Lighthouse showed high initial main-thread cost when the full map bundle loaded with the app shell. Splitting the map keeps the title, controls, and warning responsive earlier.
+Why: about 1,700 points is still manageable, and canvas markers avoid adding a clustering dependency.
 
-Tradeoff: the map has a brief loading state. This is acceptable because the search/list shell remains visible and the app stays functional.
+Tradeoff: dense areas can still visually overlap. If the dataset grows or field testing shows map clutter, marker clustering is the next upgrade.
 
 ## Limited Default List Rendering
 
 Decision: render the first 80 list items by default and show a notice encouraging search/filter.
 
-Why: rendering all 1,197 rows was unnecessary for scanning and hurt performance. Users looking for a specific bin are better served by search, district filters, or nearby lookup.
+Why: rendering all 1,707 rows is not useful for scanning. Users looking for a specific facility are better served by search, district filters, facility type filters, or nearby lookup.
 
-Tradeoff: users do not see every row in the list at once, but the map still shows all matching bins and the count remains visible.
+Tradeoff: users do not see every row in the list at once, but the map still shows all matching facilities and the count remains visible.
 
 ## Service Worker Strategy
 
