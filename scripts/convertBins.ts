@@ -4,6 +4,7 @@ import iconv from 'iconv-lite';
 import Papa from 'papaparse';
 import type { ConversionReport, ConversionSourceReport, Facility } from '../src/types';
 import { isCoordinateOutlier } from '../src/utils/facilityUtils';
+import { loadDrinkingFountainFacilities } from './convertDrinkingFountains';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -57,6 +58,8 @@ type ConvertOptions = {
   pedestrianFallbackJson: string;
   dogWasteFallbackJson: string;
   publicToiletFallbackJson: string;
+  drinkingFountainsRawDir: string;
+  drinkingFountainsFallbackJson: string;
 };
 
 const DATA_DIR = resolve('public/data');
@@ -66,6 +69,8 @@ const DEFAULT_PUBLIC_TOILET_CSV = '/Users/Leo/Downloads/臺北市公廁點位資
 const DEFAULT_PEDESTRIAN_FALLBACK_JSON = resolve('public/data/bins.json');
 const DEFAULT_DOG_WASTE_FALLBACK_JSON = resolve('public/data/dog-waste-bag-boxes.json');
 const DEFAULT_PUBLIC_TOILET_FALLBACK_JSON = resolve('public/data/public-toilets.json');
+const DEFAULT_DRINKING_FOUNTAINS_RAW_DIR = resolve('data/raw/drinking-fountains');
+const DEFAULT_DRINKING_FOUNTAINS_FALLBACK_JSON = resolve('public/data/drinking-fountains.json');
 
 function readCliOptions(): ConvertOptions {
   const args = process.argv.slice(2);
@@ -102,6 +107,16 @@ function readCliOptions(): ConvertOptions {
         process.env.PUBLIC_TOILETS_FALLBACK_JSON ??
         DEFAULT_PUBLIC_TOILET_FALLBACK_JSON,
     ),
+    drinkingFountainsRawDir: resolve(
+      optionValue('--drinking-fountains-raw-dir') ??
+        process.env.DRINKING_FOUNTAINS_RAW_DIR ??
+        DEFAULT_DRINKING_FOUNTAINS_RAW_DIR,
+    ),
+    drinkingFountainsFallbackJson: resolve(
+      optionValue('--drinking-fountains-fallback-json') ??
+        process.env.DRINKING_FOUNTAINS_FALLBACK_JSON ??
+        DEFAULT_DRINKING_FOUNTAINS_FALLBACK_JSON,
+    ),
   };
 }
 
@@ -110,6 +125,7 @@ const FACILITIES_OUTPUT = resolve(options.outputDir, 'facilities.json');
 const PEDESTRIAN_OUTPUT = resolve(options.outputDir, 'pedestrian-bins.json');
 const DOG_WASTE_OUTPUT = resolve(options.outputDir, 'dog-waste-bag-boxes.json');
 const PUBLIC_TOILET_OUTPUT = resolve(options.outputDir, 'public-toilets.json');
+const DRINKING_FOUNTAINS_OUTPUT = resolve(options.outputDir, 'drinking-fountains.json');
 const REPORT_OUTPUT = resolve(options.outputDir, 'conversion-report.json');
 
 const clean = (value: unknown) => String(value ?? '').trim();
@@ -358,18 +374,29 @@ function writeJson(path: string, data: unknown) {
 const pedestrian = loadPedestrianFacilities();
 const dogWaste = loadDogWasteFacilities();
 const publicToilets = loadPublicToiletFacilities();
+const drinkingFountains = loadDrinkingFountainFacilities({
+  rawDir: options.drinkingFountainsRawDir,
+  outputDir: options.outputDir,
+  fallbackJson: options.drinkingFountainsFallbackJson,
+});
 
-const facilities = [...pedestrian.facilities, ...dogWaste.facilities, ...publicToilets.facilities];
+const facilities = [
+  ...pedestrian.facilities,
+  ...dogWaste.facilities,
+  ...publicToilets.facilities,
+  ...drinkingFountains.facilities,
+];
 const report: ConversionReport = {
   generatedAt: new Date().toISOString(),
   totalValidRows: facilities.length,
-  sources: [pedestrian.report, dogWaste.report, publicToilets.report],
+  sources: [pedestrian.report, dogWaste.report, publicToilets.report, drinkingFountains.report],
 };
 
 mkdirSync(options.outputDir, { recursive: true });
 writeJson(PEDESTRIAN_OUTPUT, pedestrian.facilities);
 writeJson(DOG_WASTE_OUTPUT, dogWaste.facilities);
 writeJson(PUBLIC_TOILET_OUTPUT, publicToilets.facilities);
+writeJson(DRINKING_FOUNTAINS_OUTPUT, drinkingFountains.facilities);
 writeJson(FACILITIES_OUTPUT, facilities);
 writeJson(REPORT_OUTPUT, report);
 
@@ -377,4 +404,5 @@ console.log(`Wrote ${facilities.length} total facility records to ${FACILITIES_O
 console.log(`Wrote ${pedestrian.facilities.length} pedestrian bin records to ${PEDESTRIAN_OUTPUT}`);
 console.log(`Wrote ${dogWaste.facilities.length} dog-waste bag box records to ${DOG_WASTE_OUTPUT}`);
 console.log(`Wrote ${publicToilets.facilities.length} public toilet records to ${PUBLIC_TOILET_OUTPUT}`);
+console.log(`Wrote ${drinkingFountains.facilities.length} drinking fountain records to ${DRINKING_FOUNTAINS_OUTPUT}`);
 console.log(`Wrote conversion report to ${REPORT_OUTPUT}`);

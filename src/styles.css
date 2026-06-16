@@ -247,7 +247,7 @@ main {
 
 .facility-type-filter div {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.25rem;
   padding: 0.25rem;
   border: 1px solid var(--line-strong);
@@ -514,6 +514,10 @@ a:focus-visible {
   background: var(--green-soft);
 }
 
+.facility-div-marker.drinking_fountain span {
+  background: #d9f0ff;
+}
+
 .map-popup {
   max-width: 15rem;
 }
@@ -753,6 +757,10 @@ footer {
 
   .search-filters {
     grid-template-columns: minmax(16rem, 1fr) minmax(10rem, 13rem);
+  }
+
+  .facility-type-filter div {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .toilet-filters {

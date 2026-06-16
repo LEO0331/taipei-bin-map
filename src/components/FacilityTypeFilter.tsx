@@ -7,13 +7,19 @@ type FacilityTypeFilterProps = {
   onChange: (types: FacilityType[]) => void;
 };
 
-export const FACILITY_TYPE_OPTIONS: FacilityType[] = ['pedestrian_bin', 'dog_waste_bag_box', 'public_toilet'];
+export const FACILITY_TYPE_OPTIONS: FacilityType[] = [
+  'pedestrian_bin',
+  'dog_waste_bag_box',
+  'public_toilet',
+  'drinking_fountain',
+];
 
 export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeFilterProps) {
   const labelByType = {
     pedestrian_bin: t.pedestrianBins,
     dog_waste_bag_box: t.dogWasteBagBoxes,
     public_toilet: t.publicToilets,
+    drinking_fountain: t.drinkingFountains,
   } satisfies Record<FacilityType, string>;
 
   const allSelected = selectedTypes.length === FACILITY_TYPE_OPTIONS.length;

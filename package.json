@@ -9,6 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:e2e": "playwright test --config=playwright.config.cjs",
+    "fetch:drinking-fountains": "tsx scripts/fetchDrinkingFountains.ts",
+    "convert:drinking-fountains": "tsx scripts/convertDrinkingFountains.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

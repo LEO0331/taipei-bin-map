@@ -1,0 +1,14 @@
+{
+  "fetchedAt": "2026-06-16T07:16:47.112Z",
+  "sourceUrl": "https://data.taipei/api/v1/dataset/52538305-ed23-490c-8f67-3efff2d777c3?scope=resourceAquire",
+  "totalCount": 144,
+  "pages": [
+    {
+      "filename": "page-00000.json",
+      "offset": 0,
+      "limit": 1000,
+      "count": 144,
+      "rows": 144
+    }
+  ]
+}

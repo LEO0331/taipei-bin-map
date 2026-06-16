@@ -103,6 +103,14 @@
       "dependencies": ["feat-012"],
       "status": "done",
       "evidence": "npm run convert:bins generated 3256 combined facilities, including 1549 public toilets. ./init.sh passed npm test, npm run build, and 16 desktop/mobile Playwright e2e tests on 2026-06-12."
+    },
+    {
+      "id": "feat-014",
+      "name": "Public-place drinking fountain expansion",
+      "description": "Add Taipei public-place drinking fountain data as a fourth static facility layer with API fetch, raw JSON storage, conversion, filters, search, nearby results, marker legend, warnings, and documentation.",
+      "dependencies": ["feat-013"],
+      "status": "done",
+      "evidence": "npm run fetch:drinking-fountains fetched 144 raw records; npm run convert:facilities generated 3400 combined facilities, including 144 public drinking fountain locations and 1086 drinking fountain units. npm test, npm run build, and npm run test:e2e passed with 20 desktop/mobile Playwright tests on 2026-06-16."
     }
   ]
 }

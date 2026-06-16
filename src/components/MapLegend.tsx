@@ -21,6 +21,10 @@ export function MapLegend({ t }: MapLegendProps) {
         {t.publicToilets}
       </span>
       <span>
+        <i aria-hidden="true">🚰</i>
+        {t.drinkingFountains}
+      </span>
+      <span>
         <i aria-hidden="true">📍</i>
         {t.userLocation}
       </span>

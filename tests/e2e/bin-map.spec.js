@@ -11,16 +11,21 @@ const dogWasteBagBoxCount = facilities
 const publicToiletCount = facilities
   .filter((facility) => facility.type === 'public_toilet')
   .length.toString();
+const drinkingFountainCount = facilities
+  .filter((facility) => facility.type === 'drinking_fountain')
+  .length.toString();
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all three local datasets and avoids default marker clutter', async ({ page }) => {
+  test('loads all four local datasets and avoids default marker clutter', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
     await expect(page.locator('.metrics-strip strong').first()).toHaveText(totalFacilityCount);
     await expect(page.getByText('資料更新:')).toBeVisible();
     await expect(page.getByLabel('使用提醒')).toContainText('公廁實際開放情況');
+    await expect(page.getByLabel('使用提醒')).toContainText('公共場所飲水機實際開放時間');
     await expect(page.getByLabel('地圖圖例')).toContainText('公廁');
+    await expect(page.getByLabel('地圖圖例')).toContainText('公共場所飲水機');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-list li')).toHaveCount(80);
@@ -36,6 +41,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByRole('heading', { name: 'Taipei Public Amenities Map' })).toBeVisible();
     await expect(page.getByPlaceholder('Search address, road, place, or facility name')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Public Toilets' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Public Drinking Fountains' })).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {
@@ -75,6 +81,23 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.facility-list li').first()).not.toContainText('狗便袋箱');
   });
 
+  test('filters and searches drinking fountains by place fields', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '公共場所飲水機' }).click();
+    await expect(page.getByText(`${drinkingFountainCount} 筆資料`)).toBeVisible();
+    await page.getByLabel('場所類型').selectOption('sports_center');
+    await page.getByLabel('有開放時間資料').check();
+    await page.getByPlaceholder('搜尋地址、路名、地點或設施名稱').fill('士林運動中心');
+
+    await expect(page.locator('.facility-list li')).toHaveCount(1);
+    await expect(page.locator('.facility-list li').first()).toContainText('公共場所飲水機');
+    await expect(page.locator('.facility-list li').first()).toContainText('臺北市立士林運動中心');
+    await expect(page.locator('.facility-list li').first()).toContainText('場所開放時間');
+    await expect(page.locator('.facility-list li').first()).toContainText('飲水台數');
+    await expect(page.getByLabel('使用提醒')).toContainText('公共場所飲水機實際開放時間');
+  });
+
   test('searches dog road/location fields and shows coordinate warnings', async ({ page }) => {
     await page.goto('/');
 
@@ -98,6 +121,21 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByRole('heading', { name: '最近的設施' })).toBeVisible();
     await expect(page.locator('.facility-list li')).toHaveCount(10);
     await expect(page.locator('.facility-list li').first()).toContainText('公廁');
+    await expect(page.locator('.distance').first()).toContainText(/公尺|公里/);
+  });
+
+  test('shows nearby drinking fountains after granted geolocation', async ({ page, context }) => {
+    await context.grantPermissions(['geolocation']);
+    await context.setGeolocation({ latitude: 25.0893, longitude: 121.5215 });
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '公共場所飲水機' }).click();
+    await page.getByRole('button', { name: '顯示附近設施' }).click();
+
+    await expect(page.getByRole('heading', { name: '最近的設施' })).toBeVisible();
+    await expect(page.locator('.facility-list li')).toHaveCount(10);
+    await expect(page.locator('.facility-list li').first()).toContainText('公共場所飲水機');
+    await expect(page.locator('.facility-list li').first()).toContainText('臺北市立士林運動中心');
     await expect(page.locator('.distance').first()).toContainText(/公尺|公里/);
   });
 

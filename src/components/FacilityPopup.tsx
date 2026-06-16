@@ -30,6 +30,11 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           )}
         </>
       )}
+      {facility.type === 'drinking_fountain' && facility.name && (
+        <p>
+          {t.placeName}: {facility.name}
+        </p>
+      )}
       <p>
         {t.district}: {facility.district}
       </p>
@@ -67,6 +72,35 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {showPositiveNumber(facility.parentChildToiletSeats) && (
             <p>
               {t.parentChildToiletSeats}: {facility.parentChildToiletSeats}
+            </p>
+          )}
+        </>
+      )}
+      {facility.type === 'drinking_fountain' && (
+        <>
+          {facility.installLocation && (
+            <p>
+              {t.installLocation}: {facility.installLocation}
+            </p>
+          )}
+          {showPositiveNumber(facility.drinkingFountainCount) && (
+            <p>
+              {t.drinkingFountainCount}: {facility.drinkingFountainCount}
+            </p>
+          )}
+          {facility.openingHours && (
+            <p>
+              {t.openingHours}: {facility.openingHours}
+            </p>
+          )}
+          {facility.manager && (
+            <p>
+              {t.managedBy}: {facility.manager}
+            </p>
+          )}
+          {facility.phone && (
+            <p>
+              {t.phone}: {facility.phone}
             </p>
           )}
         </>

@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
+import { DrinkingFountainFilters } from './components/DrinkingFountainFilters';
 import { FacilityList } from './components/FacilityList';
 import { FacilityTypeFilter, FACILITY_TYPE_OPTIONS } from './components/FacilityTypeFilter';
 import { LanguageToggle } from './components/LanguageToggle';
@@ -7,7 +8,14 @@ import { PublicToiletFilters } from './components/PublicToiletFilters';
 import { SearchFilters } from './components/SearchFilters';
 import { WarningNotice } from './components/WarningNotice';
 import { translations } from './i18n';
-import type { ConversionReport, Facility, FacilityType, FacilityWithDistance, Language } from './types';
+import type {
+  ConversionReport,
+  DrinkingFountainPlaceCategory,
+  Facility,
+  FacilityType,
+  FacilityWithDistance,
+  Language,
+} from './types';
 import { calculateDistanceMeters, filterFacilities } from './utils/facilityUtils';
 
 const DISTRICT_ORDER = [
@@ -53,6 +61,9 @@ function App() {
   const [toiletCategory, setToiletCategory] = useState('');
   const [requiresAccessibleToilet, setRequiresAccessibleToilet] = useState(false);
   const [requiresParentChildToilet, setRequiresParentChildToilet] = useState(false);
+  const [drinkingFountainPlaceCategory, setDrinkingFountainPlaceCategory] =
+    useState<DrinkingFountainPlaceCategory | ''>('');
+  const [requiresOpeningHours, setRequiresOpeningHours] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -61,6 +72,7 @@ function App() {
 
   const t = translations[language];
   const includesPublicToilets = selectedTypes.includes('public_toilet');
+  const includesDrinkingFountains = selectedTypes.includes('drinking_fountain');
 
   useEffect(() => {
     document.documentElement.lang = language === 'zh' ? 'zh-Hant' : 'en';
@@ -148,11 +160,15 @@ function App() {
         toiletCategory,
         requiresAccessibleToilet,
         requiresParentChildToilet,
+        drinkingFountainPlaceCategory,
+        requiresOpeningHours,
       }),
     [
       district,
+      drinkingFountainPlaceCategory,
       facilities,
       requiresAccessibleToilet,
+      requiresOpeningHours,
       requiresParentChildToilet,
       searchTerm,
       selectedTypes,
@@ -161,8 +177,16 @@ function App() {
   );
 
   const displayedFacilities = nearbyFacilities ?? filteredFacilities;
-  const markerLimitExceeded = !nearbyFacilities && displayedFacilities.length > MAP_MARKER_LIMIT;
-  const mapFacilities = markerLimitExceeded ? displayedFacilities.slice(0, MAP_MARKER_LIMIT) : displayedFacilities;
+  const renderableFacilities = displayedFacilities.filter(
+    (facility) =>
+      Number.isFinite(facility.latitude) &&
+      Number.isFinite(facility.longitude) &&
+      !facility.isCoordinateOutlier,
+  );
+  const markerLimitExceeded = !nearbyFacilities && renderableFacilities.length > MAP_MARKER_LIMIT;
+  const mapFacilities = markerLimitExceeded
+    ? renderableFacilities.slice(0, MAP_MARKER_LIMIT)
+    : renderableFacilities;
   const listFacilities = useMemo(
     () => (nearbyFacilities ? displayedFacilities : displayedFacilities.slice(0, INITIAL_LIST_LIMIT)),
     [displayedFacilities, nearbyFacilities],
@@ -203,6 +227,10 @@ function App() {
       setRequiresAccessibleToilet(false);
       setRequiresParentChildToilet(false);
     }
+    if (!value.includes('drinking_fountain')) {
+      setDrinkingFountainPlaceCategory('');
+      setRequiresOpeningHours(false);
+    }
     setNearbyFacilities(null);
   };
 
@@ -218,6 +246,16 @@ function App() {
 
   const handleParentChildToiletChange = (value: boolean) => {
     setRequiresParentChildToilet(value);
+    setNearbyFacilities(null);
+  };
+
+  const handleDrinkingFountainCategoryChange = (value: DrinkingFountainPlaceCategory | '') => {
+    setDrinkingFountainPlaceCategory(value);
+    setNearbyFacilities(null);
+  };
+
+  const handleOpeningHoursChange = (value: boolean) => {
+    setRequiresOpeningHours(value);
     setNearbyFacilities(null);
   };
 
@@ -316,6 +354,15 @@ function App() {
               onCategoryChange={handleToiletCategoryChange}
               onAccessibleChange={handleAccessibleToiletChange}
               onParentChildChange={handleParentChildToiletChange}
+            />
+          )}
+          {includesDrinkingFountains && (
+            <DrinkingFountainFilters
+              selectedCategory={drinkingFountainPlaceCategory}
+              requiresOpeningHours={requiresOpeningHours}
+              t={t}
+              onCategoryChange={handleDrinkingFountainCategoryChange}
+              onOpeningHoursChange={handleOpeningHoursChange}
             />
           )}
           <NearbyButton

@@ -2,11 +2,13 @@ import { describe, expect, it } from 'vitest';
 import type { Facility } from '../types';
 import {
   calculateDistanceMeters,
+  classifyDrinkingFountainPlace,
   filterFacilities,
   formatDistance,
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
   isCoordinateOutlier,
+  normalizeTaipeiDistrict,
 } from './facilityUtils';
 
 const facilities: Facility[] = [
@@ -47,6 +49,23 @@ const facilities: Facility[] = [
     totalSeats: 5,
     accessibleToiletSeats: 0,
     parentChildToiletSeats: 1,
+  },
+  {
+    id: 'drinking_fountain_0001',
+    type: 'drinking_fountain',
+    district: '士林區',
+    address: '臺北市士林區基河路130號',
+    longitude: 121.524,
+    latitude: 25.088,
+    note: '公共場所飲水機實際開放時間與可用狀態請以現場為準',
+    source: '臺北市公共場所飲水機資訊',
+    name: '臺北市士林運動中心',
+    manager: '臺北市政府體育局',
+    phone: '02-28806066',
+    openingHours: '06:00-22:00',
+    installLocation: '1樓大廳',
+    drinkingFountainCount: 3,
+    placeCategory: 'sports_center',
   },
 ];
 
@@ -137,6 +156,30 @@ describe('filterFacilities', () => {
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('dog_waste_bag_box_0001');
   });
+
+  it('searches drinking fountain place fields', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '1樓大廳',
+      district: '士林區',
+      facilityTypes: ['drinking_fountain'],
+    });
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('drinking_fountain_0001');
+  });
+
+  it('filters drinking fountains by opening hours and place category', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '',
+      district: '',
+      facilityTypes: [],
+      drinkingFountainPlaceCategory: 'sports_center',
+      requiresOpeningHours: true,
+    });
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('drinking_fountain_0001');
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -144,6 +187,27 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('pedestrian_bin', 'zh')).toBe('行人專用清潔箱');
     expect(getFacilityTypeLabel('dog_waste_bag_box', 'en')).toBe('Dog Waste Bag Box');
     expect(getFacilityTypeLabel('public_toilet', 'en')).toBe('Public Toilet');
+    expect(getFacilityTypeLabel('drinking_fountain', 'en')).toBe('Public Drinking Fountain');
+  });
+});
+
+describe('normalizeTaipeiDistrict', () => {
+  it('normalizes short Taipei district names', () => {
+    expect(normalizeTaipeiDistrict('士林')).toBe('士林區');
+    expect(normalizeTaipeiDistrict('大安區')).toBe('大安區');
+    expect(normalizeTaipeiDistrict('未知')).toBe('未知');
+  });
+});
+
+describe('classifyDrinkingFountainPlace', () => {
+  it('classifies drinking fountain place categories from names and locations', () => {
+    expect(classifyDrinkingFountainPlace({ name: '信義運動中心' })).toBe('sports_center');
+    expect(classifyDrinkingFountainPlace({ installLocation: '市立圖書館入口' })).toBe('library');
+    expect(classifyDrinkingFountainPlace({ address: '大安森林公園' })).toBe('park');
+    expect(classifyDrinkingFountainPlace({ manager: '臺北市政府' })).toBe('government_facility');
+    expect(classifyDrinkingFountainPlace({ name: '仁愛國小' })).toBe('school');
+    expect(classifyDrinkingFountainPlace({ name: '捷運臺北車站' })).toBe('transport');
+    expect(classifyDrinkingFountainPlace({ name: '市民活動中心' })).toBe('other');
   });
 });
 

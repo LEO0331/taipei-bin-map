@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-12T03:24:46.628Z",
-  "totalValidRows": 3256,
+  "generatedAt": "2026-06-16T07:17:22.957Z",
+  "totalValidRows": 3400,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -21,9 +21,18 @@
       "missingRequiredFields": []
     },
     {
-      "sourceFilename": "臺北市公廁點位資訊.csv",
+      "sourceFilename": "public-toilets.json (fallback; source CSV not found)",
       "totalRows": 1549,
       "validRows": 1549,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": []
+    },
+    {
+      "sourceFilename": "臺北市公共場所飲水機資訊",
+      "totalRows": 144,
+      "validRows": 144,
       "droppedRows": 0,
       "coordinateOutlierRows": 0,
       "invalidCoordinateRows": [],

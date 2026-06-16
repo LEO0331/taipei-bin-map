@@ -1,12 +1,27 @@
-import type { Facility, FacilityType, Language } from '../types';
+import type { DrinkingFountainPlaceCategory, Facility, FacilityType, Language } from '../types';
 
 const EARTH_RADIUS_METERS = 6_371_000;
 
 export const TAIPEI_BOUNDS = {
-  minLng: 121.45,
+  minLng: 121.43,
   maxLng: 121.7,
   minLat: 24.9,
   maxLat: 25.25,
+};
+
+const taipeiDistrictByShortName: Record<string, string> = {
+  中正: '中正區',
+  大同: '大同區',
+  中山: '中山區',
+  松山: '松山區',
+  大安: '大安區',
+  萬華: '萬華區',
+  信義: '信義區',
+  士林: '士林區',
+  北投: '北投區',
+  內湖: '內湖區',
+  南港: '南港區',
+  文山: '文山區',
 };
 
 const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
@@ -48,6 +63,8 @@ export function filterFacilities(
     toiletCategory,
     requiresAccessibleToilet = false,
     requiresParentChildToilet = false,
+    drinkingFountainPlaceCategory,
+    requiresOpeningHours = false,
   }: {
     searchTerm: string;
     district: string;
@@ -55,6 +72,8 @@ export function filterFacilities(
     toiletCategory?: string;
     requiresAccessibleToilet?: boolean;
     requiresParentChildToilet?: boolean;
+    drinkingFountainPlaceCategory?: DrinkingFountainPlaceCategory | '';
+    requiresOpeningHours?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -62,6 +81,9 @@ export function filterFacilities(
   const includesPublicToilets = selectedTypes.size === 0 || selectedTypes.has('public_toilet');
   const hasToiletFilters = Boolean(toiletCategory) || requiresAccessibleToilet || requiresParentChildToilet;
   const toiletFiltersOnly = includesPublicToilets && hasToiletFilters;
+  const includesDrinkingFountains = selectedTypes.size === 0 || selectedTypes.has('drinking_fountain');
+  const hasDrinkingFountainFilters = Boolean(drinkingFountainPlaceCategory) || requiresOpeningHours;
+  const drinkingFountainFiltersOnly = includesDrinkingFountains && hasDrinkingFountainFilters;
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -77,6 +99,14 @@ export function filterFacilities(
       facility.type !== 'public_toilet' ||
       !requiresParentChildToilet ||
       (facility.parentChildToiletSeats ?? 0) > 0;
+    const matchesDrinkingFountainFilterScope =
+      !drinkingFountainFiltersOnly || facility.type === 'drinking_fountain';
+    const matchesDrinkingFountainCategory =
+      facility.type !== 'drinking_fountain' ||
+      !drinkingFountainPlaceCategory ||
+      facility.placeCategory === drinkingFountainPlaceCategory;
+    const matchesOpeningHours =
+      facility.type !== 'drinking_fountain' || !requiresOpeningHours || Boolean(facility.openingHours);
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -88,6 +118,8 @@ export function filterFacilities(
         facility.name,
         facility.category,
         facility.manager,
+        facility.installLocation,
+        facility.openingHours,
       ].some((value) => value?.toLocaleLowerCase().includes(normalizedSearch));
 
     return (
@@ -97,6 +129,9 @@ export function filterFacilities(
       matchesToiletCategory &&
       matchesAccessibleToilet &&
       matchesParentChildToilet &&
+      matchesDrinkingFountainFilterScope &&
+      matchesDrinkingFountainCategory &&
+      matchesOpeningHours &&
       matchesSearch
     );
   });
@@ -111,7 +146,36 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '狗便袋箱' : 'Dog Waste Bag Box';
   }
 
-  return language === 'zh' ? '公廁' : 'Public Toilet';
+  if (type === 'public_toilet') {
+    return language === 'zh' ? '公廁' : 'Public Toilet';
+  }
+
+  return language === 'zh' ? '公共場所飲水機' : 'Public Drinking Fountain';
+}
+
+export function normalizeTaipeiDistrict(district: string) {
+  const normalized = district.trim();
+  return taipeiDistrictByShortName[normalized] ?? normalized;
+}
+
+export function classifyDrinkingFountainPlace(input: {
+  name?: string;
+  manager?: string;
+  address?: string;
+  installLocation?: string;
+}): DrinkingFountainPlaceCategory {
+  const text = `${input.name ?? ''} ${input.manager ?? ''} ${input.address ?? ''} ${input.installLocation ?? ''}`;
+
+  if (text.includes('運動中心')) return 'sports_center';
+  if (text.includes('圖書館')) return 'library';
+  if (text.includes('公園')) return 'park';
+  if (text.includes('區公所') || text.includes('市政府') || text.includes('機關')) return 'government_facility';
+  if (text.includes('學校') || text.includes('國小') || text.includes('國中') || text.includes('高中') || text.includes('大學')) {
+    return 'school';
+  }
+  if (text.includes('捷運') || text.includes('車站') || text.includes('轉運站')) return 'transport';
+
+  return 'other';
 }
 
 export function getToiletCategoryLabel(category: string, language: Language) {

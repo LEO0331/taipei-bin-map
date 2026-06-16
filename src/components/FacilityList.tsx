@@ -79,6 +79,19 @@ export function FacilityList({
                     .join(' · ')}
                 </small>
               )}
+              {facility.type === 'drinking_fountain' && (
+                <small>
+                  {[
+                    facility.installLocation ? `${t.installLocation}: ${facility.installLocation}` : '',
+                    facility.openingHours ? `${t.openingHours}: ${facility.openingHours}` : '',
+                    hasPositiveNumber(facility.drinkingFountainCount)
+                      ? `${t.drinkingFountainCount}: ${facility.drinkingFountainCount}`
+                      : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' · ')}
+                </small>
+              )}
               <small>{facility.note}</small>
               {facility.isCoordinateOutlier && <small className="outlier-warning">{t.coordinateOutlierWarning}</small>}
               <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">

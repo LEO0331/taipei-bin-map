@@ -1,6 +1,15 @@
 export type Language = 'zh' | 'en';
 
-export type FacilityType = 'pedestrian_bin' | 'dog_waste_bag_box' | 'public_toilet';
+export type FacilityType = 'pedestrian_bin' | 'dog_waste_bag_box' | 'public_toilet' | 'drinking_fountain';
+
+export type DrinkingFountainPlaceCategory =
+  | 'sports_center'
+  | 'library'
+  | 'park'
+  | 'government_facility'
+  | 'school'
+  | 'transport'
+  | 'other';
 
 export type Facility = {
   id: string;
@@ -15,8 +24,9 @@ export type Facility = {
   source: string;
   isCoordinateOutlier?: boolean;
   name?: string;
-  category?: string;
   manager?: string;
+  phone?: string;
+  category?: string;
   totalSeats?: number;
   excellentGradeCount?: number;
   superiorGradeCount?: number;
@@ -24,6 +34,10 @@ export type Facility = {
   improvementGradeCount?: number;
   accessibleToiletSeats?: number;
   parentChildToiletSeats?: number;
+  openingHours?: string;
+  installLocation?: string;
+  drinkingFountainCount?: number;
+  placeCategory?: DrinkingFountainPlaceCategory;
 };
 
 export type FacilityWithDistance = Facility & {
