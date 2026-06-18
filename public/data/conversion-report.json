@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-16T07:17:22.957Z",
-  "totalValidRows": 3400,
+  "generatedAt": "2026-06-18T05:39:47.116Z",
+  "totalValidRows": 4163,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -33,6 +33,24 @@
       "sourceFilename": "臺北市公共場所飲水機資訊",
       "totalRows": 144,
       "validRows": 144,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": []
+    },
+    {
+      "sourceFilename": "●115年開放時間 (限時收受點csv) 1150223.csv",
+      "totalRows": 30,
+      "validRows": 30,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": []
+    },
+    {
+      "sourceFilename": "11505_直飲臺基本資料.csv",
+      "totalRows": 733,
+      "validRows": 733,
       "droppedRows": 0,
       "coordinateOutlierRows": 0,
       "invalidCoordinateRows": [],

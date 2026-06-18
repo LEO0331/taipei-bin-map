@@ -56,6 +56,8 @@ const markerEmojiByType = {
   dog_waste_bag_box: '🐾',
   public_toilet: '🚻',
   drinking_fountain: '🚰',
+  timed_collection_point: '♻️',
+  direct_drinking_station: '🚰',
 } satisfies Record<FacilityType, string>;
 
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {

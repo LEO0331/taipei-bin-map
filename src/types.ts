@@ -1,6 +1,12 @@
 export type Language = 'zh' | 'en';
 
-export type FacilityType = 'pedestrian_bin' | 'dog_waste_bag_box' | 'public_toilet' | 'drinking_fountain';
+export type FacilityType =
+  | 'pedestrian_bin'
+  | 'dog_waste_bag_box'
+  | 'public_toilet'
+  | 'drinking_fountain'
+  | 'timed_collection_point'
+  | 'direct_drinking_station';
 
 export type DrinkingFountainPlaceCategory =
   | 'sports_center'
@@ -9,6 +15,15 @@ export type DrinkingFountainPlaceCategory =
   | 'government_facility'
   | 'school'
   | 'transport'
+  | 'other';
+
+export type DirectDrinkingPlaceCategory =
+  | 'park_trail'
+  | 'mrt_station'
+  | 'school'
+  | 'government_office'
+  | 'venue'
+  | 'shopping_night_market'
   | 'other';
 
 export type Facility = {
@@ -38,6 +53,23 @@ export type Facility = {
   installLocation?: string;
   drinkingFountainCount?: number;
   placeCategory?: DrinkingFountainPlaceCategory;
+  team?: string;
+  acceptsGarbage?: boolean | 'unknown';
+  acceptsRecycling?: boolean | 'unknown';
+  acceptsFoodWaste?: boolean | 'unknown';
+  serviceTimeText?: string;
+  hasSpecialHours?: boolean;
+  stationId?: string;
+  branch?: string;
+  city?: string;
+  placeType?: string;
+  directDrinkingPlaceCategory?: DirectDrinkingPlaceCategory;
+  directDrinkingStatus?: 'normal' | 'suspended' | 'unknown';
+  latestSamplingDate?: string;
+  coliformCountRaw?: string;
+  maintenanceUrl?: string;
+  photoUrl?: string;
+  isTaipeiCity?: boolean;
 };
 
 export type FacilityWithDistance = Facility & {

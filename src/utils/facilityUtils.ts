@@ -1,4 +1,10 @@
-import type { DrinkingFountainPlaceCategory, Facility, FacilityType, Language } from '../types';
+import type {
+  DirectDrinkingPlaceCategory,
+  DrinkingFountainPlaceCategory,
+  Facility,
+  FacilityType,
+  Language,
+} from '../types';
 
 const EARTH_RADIUS_METERS = 6_371_000;
 
@@ -65,6 +71,16 @@ export function filterFacilities(
     requiresParentChildToilet = false,
     drinkingFountainPlaceCategory,
     requiresOpeningHours = false,
+    acceptsGarbage = false,
+    acceptsRecycling = false,
+    acceptsFoodWaste = false,
+    hasSpecialHours = false,
+    directDrinkingNormalOnly = true,
+    includeSuspended = false,
+    taipeiCityOnly = true,
+    directDrinkingPlaceCategory,
+    requiresMaintenanceUrl = false,
+    requiresPhotoUrl = false,
   }: {
     searchTerm: string;
     district: string;
@@ -74,6 +90,16 @@ export function filterFacilities(
     requiresParentChildToilet?: boolean;
     drinkingFountainPlaceCategory?: DrinkingFountainPlaceCategory | '';
     requiresOpeningHours?: boolean;
+    acceptsGarbage?: boolean;
+    acceptsRecycling?: boolean;
+    acceptsFoodWaste?: boolean;
+    hasSpecialHours?: boolean;
+    directDrinkingNormalOnly?: boolean;
+    includeSuspended?: boolean;
+    taipeiCityOnly?: boolean;
+    directDrinkingPlaceCategory?: DirectDrinkingPlaceCategory | '';
+    requiresMaintenanceUrl?: boolean;
+    requiresPhotoUrl?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -107,6 +133,20 @@ export function filterFacilities(
       facility.placeCategory === drinkingFountainPlaceCategory;
     const matchesOpeningHours =
       facility.type !== 'drinking_fountain' || !requiresOpeningHours || Boolean(facility.openingHours);
+    const matchesTimedCollection =
+      facility.type !== 'timed_collection_point' ||
+      ((!acceptsGarbage || facility.acceptsGarbage === true) &&
+        (!acceptsRecycling || facility.acceptsRecycling === true) &&
+        (!acceptsFoodWaste || facility.acceptsFoodWaste === true) &&
+        (!hasSpecialHours || facility.hasSpecialHours === true));
+    const matchesDirectDrinking =
+      facility.type !== 'direct_drinking_station' ||
+      ((!directDrinkingNormalOnly || facility.directDrinkingStatus === 'normal') &&
+        (includeSuspended || facility.directDrinkingStatus !== 'suspended') &&
+        (!taipeiCityOnly || facility.isTaipeiCity === true) &&
+        (!directDrinkingPlaceCategory || facility.directDrinkingPlaceCategory === directDrinkingPlaceCategory) &&
+        (!requiresMaintenanceUrl || Boolean(facility.maintenanceUrl)) &&
+        (!requiresPhotoUrl || Boolean(facility.photoUrl)));
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -120,6 +160,16 @@ export function filterFacilities(
         facility.manager,
         facility.installLocation,
         facility.openingHours,
+        facility.phone,
+        facility.team,
+        facility.stationId,
+        facility.branch,
+        facility.city,
+        facility.placeType,
+        facility.directDrinkingStatus,
+        facility.acceptsGarbage === true ? '一般垃圾 general garbage' : '',
+        facility.acceptsRecycling === true ? '資源回收 recycling' : '',
+        facility.acceptsFoodWaste === true ? '廚餘 food waste' : '',
       ].some((value) => value?.toLocaleLowerCase().includes(normalizedSearch));
 
     return (
@@ -132,6 +182,8 @@ export function filterFacilities(
       matchesDrinkingFountainFilterScope &&
       matchesDrinkingFountainCategory &&
       matchesOpeningHours &&
+      matchesTimedCollection &&
+      matchesDirectDrinking &&
       matchesSearch
     );
   });
@@ -150,7 +202,53 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '公廁' : 'Public Toilet';
   }
 
-  return language === 'zh' ? '公共場所飲水機' : 'Public Drinking Fountain';
+  if (type === 'drinking_fountain') {
+    return language === 'zh' ? '公共場所飲水機' : 'Public Drinking Fountain';
+  }
+
+  if (type === 'timed_collection_point') {
+    return language === 'zh' ? '限時收受點' : 'Timed Collection Point';
+  }
+
+  return language === 'zh' ? '直飲臺' : 'Direct Drinking Station';
+}
+
+export function getAcceptedItemsLabel(facility: Facility, language: Language) {
+  const labels = [
+    facility.acceptsGarbage === true ? (language === 'zh' ? '一般垃圾' : 'General garbage') : '',
+    facility.acceptsRecycling === true ? (language === 'zh' ? '資源回收' : 'Recycling') : '',
+    facility.acceptsFoodWaste === true ? (language === 'zh' ? '廚餘' : 'Food waste') : '',
+  ].filter(Boolean);
+  return labels.length ? labels.join('、') : language === 'zh' ? '未知，請查看備註' : 'Unknown, please check notes';
+}
+
+export function getDirectDrinkingStatusLabel(status: Facility['directDrinkingStatus'], language: Language) {
+  if (status === 'normal') return language === 'zh' ? '正常' : 'Normal';
+  if (status === 'suspended') return language === 'zh' ? '暫停' : 'Suspended';
+  return language === 'zh' ? '未知' : 'Unknown';
+}
+
+export function getDirectDrinkingPlaceLabel(category: DirectDrinkingPlaceCategory, language: Language) {
+  if (language === 'zh') {
+    return {
+      park_trail: '公園步道',
+      mrt_station: '捷運站',
+      school: '學校',
+      government_office: '機關',
+      venue: '場館',
+      shopping_night_market: '商圈夜市',
+      other: '其他',
+    }[category];
+  }
+  return {
+    park_trail: 'Park / Trail',
+    mrt_station: 'MRT Station',
+    school: 'School',
+    government_office: 'Government Office',
+    venue: 'Venue',
+    shopping_night_market: 'Shopping / Night Market',
+    other: 'Other',
+  }[category];
 }
 
 export function normalizeTaipeiDistrict(district: string) {

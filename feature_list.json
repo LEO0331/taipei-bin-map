@@ -111,6 +111,14 @@
       "dependencies": ["feat-013"],
       "status": "done",
       "evidence": "npm run fetch:drinking-fountains fetched 144 raw records; npm run convert:facilities generated 3400 combined facilities, including 144 public drinking fountain locations and 1086 drinking fountain units. npm test, npm run build, and npm run test:e2e passed with 20 desktop/mobile Playwright tests on 2026-06-16."
+    },
+    {
+      "id": "feat-015",
+      "name": "Timed collection and direct drinking station expansion",
+      "description": "Add Taipei timed waste collection points and direct drinking stations as static facility layers with Big5 conversion, filters, search, map/list/popups, notices, PWA cache, and documentation.",
+      "dependencies": ["feat-014"],
+      "status": "done",
+      "evidence": "npm run convert:bins generated 4163 facilities, including 30 timed collection points and 733 direct drinking stations (695 Taipei, 38 outside Taipei). ./init.sh passed 22 unit/converter tests, production build, and 24 desktop/mobile Playwright tests on 2026-06-18."
     }
   ]
 }

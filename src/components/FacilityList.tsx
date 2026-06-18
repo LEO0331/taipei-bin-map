@@ -2,6 +2,8 @@ import type { Translation } from '../i18n';
 import type { FacilityWithDistance, Language } from '../types';
 import {
   formatDistance,
+  getAcceptedItemsLabel,
+  getDirectDrinkingStatusLabel,
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
   getToiletCategoryLabel,
@@ -92,7 +94,26 @@ export function FacilityList({
                     .join(' · ')}
                 </small>
               )}
-              <small>{facility.note}</small>
+              {facility.type === 'timed_collection_point' && (
+                <small>
+                  {[
+                    facility.team ? `${t.cleaningTeam}: ${facility.team}` : '',
+                    facility.phone ? `${t.phone}: ${facility.phone}` : '',
+                    `${t.acceptedItems}: ${getAcceptedItemsLabel(facility, language)}`,
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
+              {facility.type === 'direct_drinking_station' && (
+                <small>
+                  {[
+                    facility.placeType ? `${t.placeType}: ${facility.placeType}` : '',
+                    facility.city ? `${t.city}: ${facility.city}` : '',
+                    `${t.status}: ${getDirectDrinkingStatusLabel(facility.directDrinkingStatus, language)}`,
+                    facility.openingHours ? `${t.openingHours}: ${facility.openingHours}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
+              {facility.note && <small>{facility.note}</small>}
               {facility.isCoordinateOutlier && <small className="outlier-warning">{t.coordinateOutlierWarning}</small>}
               <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
                 {t.openGoogleMaps}

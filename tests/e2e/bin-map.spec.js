@@ -14,9 +14,20 @@ const publicToiletCount = facilities
 const drinkingFountainCount = facilities
   .filter((facility) => facility.type === 'drinking_fountain')
   .length.toString();
+const timedCollectionCount = facilities
+  .filter((facility) => facility.type === 'timed_collection_point')
+  .length.toString();
+const defaultDirectDrinkingCount = facilities
+  .filter(
+    (facility) =>
+      facility.type === 'direct_drinking_station' &&
+      facility.directDrinkingStatus === 'normal' &&
+      facility.isTaipeiCity,
+  )
+  .length.toString();
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all four local datasets and avoids default marker clutter', async ({ page }) => {
+  test('loads all six local datasets and avoids default marker clutter', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -26,6 +37,8 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('使用提醒')).toContainText('公共場所飲水機實際開放時間');
     await expect(page.getByLabel('地圖圖例')).toContainText('公廁');
     await expect(page.getByLabel('地圖圖例')).toContainText('公共場所飲水機');
+    await expect(page.getByLabel('地圖圖例')).toContainText('限時收受點');
+    await expect(page.getByLabel('地圖圖例')).toContainText('直飲臺');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-list li')).toHaveCount(80);
@@ -42,6 +55,8 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByPlaceholder('Search address, road, place, or facility name')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Public Toilets' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Public Drinking Fountains' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Timed Collection Points' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Direct Drinking Stations' })).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {
@@ -96,6 +111,29 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.facility-list li').first()).toContainText('場所開放時間');
     await expect(page.locator('.facility-list li').first()).toContainText('飲水台數');
     await expect(page.getByLabel('使用提醒')).toContainText('公共場所飲水機實際開放時間');
+  });
+
+  test('shows timed collection points and applies conservative note filters', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '限時收受點' }).click();
+    await expect(page.getByText(`${timedCollectionCount} 筆資料`)).toBeVisible();
+    await expect(page.locator('.facility-list li').first()).toContainText('分隊');
+
+    await page.getByLabel('有特殊時間／備註').check();
+    await expect(page.locator('.facility-list li').first()).toContainText('限時收受點');
+  });
+
+  test('shows Taipei normal direct drinking stations by default and can include suspended records', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '直飲臺' }).click();
+    await expect(page.getByText(`${defaultDirectDrinkingCount} 筆資料`)).toBeVisible();
+    await expect(page.locator('.facility-list li').first()).toContainText('正常');
+
+    await page.getByLabel('包含暫停').check();
+    await page.getByPlaceholder('搜尋地址、路名、地點或設施名稱').fill('剝皮寮');
+    await expect(page.locator('.facility-list li').first()).toContainText('暫停');
   });
 
   test('searches dog road/location fields and shows coordinate warnings', async ({ page }) => {

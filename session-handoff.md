@@ -2,56 +2,39 @@
 
 ## Current Objective
 
-- Goal: Add Taipei public toilets and reposition the app as `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
-- Current status: Implementation, conversion, docs, unit tests, build, e2e, and final `./init.sh` baseline are complete.
+- Goal: Maintain the six-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
+- Current status: feat-015 is implemented and verified.
 - Branch / commit: Working tree has uncommitted app, data, docs, and test changes.
 
-## Completed This Session
+## Completed
 
-- [x] Added `public_toilet` facility type and toilet-specific fields.
-- [x] Added UTF-8-SIG public toilet CSV conversion with trimmed headers.
-- [x] Generated `public/data/public-toilets.json`.
-- [x] Regenerated `public/data/facilities.json` with 3,256 combined records.
-- [x] Added public toilet category, accessible-toilet, and parent-child-toilet filters.
-- [x] Updated search, list cards, popups, map legend, warning notice, PWA metadata, and service worker cache.
-- [x] Added emoji markers and marker-cap behavior for large unfiltered result sets.
-- [x] Updated README and bilingual docs for the public amenities product.
-- [x] Updated e2e tests for all three facility types and public toilet flows.
-- [x] Fixed review finding: active toilet-specific filters now narrow mixed/all selections to public toilets and are ignored for non-toilet-only selections.
-- [x] Cleanup pass removed unused singular translation keys and tightened filter predicate naming.
-- [x] Improved responsive control layout and fixed packed district/facility filter presentation.
-- [x] Removed the separate `全部` facility-type control while preserving focused and multi-select overlay behavior.
-- [x] Fixed large map result sets so they render a capped marker subset instead of no markers.
-- [x] Updated JSON loading to preload `facilities.json` and use network-first/no-cache data requests with service-worker cached fallback.
-- [x] Added progressive marker rendering so large public-toilet or combined result sets do not block the UI in one large React commit.
+- Added `timed_collection_point` and `direct_drinking_station` facility types.
+- Added Big5/CP950 local fetch/copy scripts and converters with raw metadata.
+- Generated 30 timed collection points and 733 direct drinking stations.
+- Preserved 38 outside-Taipei direct station records and marked Taipei membership.
+- Added search, focused filters, nearby support, map markers, legend, lists, popups, notices, service-worker cache, and README documentation.
+- Kept conservative note parsing: unknown accepted items remain `unknown`.
+- Kept the existing static JSON, Vite, React, Leaflet, and PWA architecture.
 
-## Verification Evidence
+## Verification
 
-| Check | Command | Result | Notes |
-|---|---|---|---|
-| Data conversion | `npm run convert:bins` | Passed | Generated 3,256 facilities: 1,197 bins, 510 dog boxes, 1,549 public toilets. |
-| Unit tests | `npm test` | Passed | 12 facility utility tests passed. |
-| Production build | `npm run build` | Passed | Vite production build completed. |
-| E2E | `npm run test:e2e` | Passed | 16 desktop/mobile Playwright tests passed. |
-| Responsive smoke | Playwright screenshot script | Passed | Checked 1440px and 390px widths; `公廁` renders 1,549 map markers and large mixed results render a capped marker set. |
-| Marker timing | Playwright timing script | Passed | On mobile viewport, `公廁` first marker appeared in about 558ms and all 1,549 toilet markers completed in about 633ms. |
-| Full baseline | `./init.sh` | Passed | Ran `npm test`, `npm run build`, and 16 desktop/mobile Playwright tests after progressive marker rendering. |
+| Check | Result |
+|---|---|
+| `npm run convert:bins` | 4,163 total facilities |
+| `npm test` | 22 tests passed |
+| `npm run build` | Passed |
+| `npm run test:e2e` | 24 desktop/mobile tests passed |
+| `./init.sh` | Passed |
+| Responsive smoke | No horizontal overflow at 390px or 1440px |
 
-## Decisions Made
+## Deliberate Omissions
 
-- Keep source category values in Chinese and translate labels only in UI.
-- Use marker-cap behavior instead of adding a clustering dependency.
-- Keep conversion fallback behavior for missing CSVs.
-- Preserve static deployment: no backend, accounts, admin page, database, or paid map API.
+- No dashboard charts: the app has no chart dashboard surface.
+- No extra nearby shortcut buttons: the existing nearby action already respects selected layers.
+- No frontend Taipei Open Data calls: all runtime data remains static local JSON.
 
-## Blockers / Risks
+## Risks
 
-- The pedestrian-bin CSV is absent at `/Users/Leo/Downloads/●行人專用清潔箱總表.csv`; converter fallback uses `public/data/bins.json`.
-- The dog-waste bag box CSV is absent at `/Users/Leo/Downloads/狗便袋箱位置總表 .csv`; converter fallback uses `public/data/dog-waste-bag-boxes.json`.
-- Known Vite/esbuild dev-server audit advisory remains unless taking a breaking Vite upgrade.
-
-## Next Session Startup
-
-1. Read `AGENTS.md`.
-2. Read `feature_list.json`, `progress.md`, and this handoff.
-3. Review the uncommitted public amenities expansion before committing or deploying.
+- Source datasets are snapshots, not real-time availability or water-quality guarantees.
+- Timed collection accepted-item flags are based only on explicit note text.
+- Existing Vite/esbuild moderate development-server advisory remains pending a breaking toolchain upgrade.

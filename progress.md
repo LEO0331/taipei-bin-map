@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-16 15:26 Asia/Taipei  
+**Last Updated:** 2026-06-18 13:48 Asia/Taipei  
 **Active Feature:** None
 
 ## Status
@@ -16,21 +16,26 @@
 - [x] Added public drinking fountain filters for place category and opening-hour information.
 - [x] Updated search, list cards, nearby results, popups, warning notices, map legend, footer, service worker cache, metadata, and README for the drinking fountain layer.
 - [x] Updated Playwright e2e coverage for four datasets and drinking fountain filter/nearby flows.
+- [x] Added 30 timed collection points with conservative accepted-item parsing and special-hours filtering.
+- [x] Added 733 direct drinking stations with status, Taipei-only, place-type, maintenance, and photo filters.
+- [x] Added local Big5/CP950 fetch/copy scripts, raw source metadata, individual JSON outputs, combined conversion, map/list/popups, notices, cache entries, README, and tests.
 
 ### What's In Progress
 
-- [x] No active feature work remains for feat-014.
+- [x] No active feature work remains for feat-015.
 
 ### What's Next
 
-1. Review and commit the public drinking fountain expansion.
-2. Rerun `npm run fetch:drinking-fountains` before publishing if a fresher API snapshot is needed.
+1. Review and commit the six-layer public amenities expansion.
+2. Refresh source CSVs before publishing when newer snapshots are available.
 
 ## Blockers / Risks
 
 - [ ] The pedestrian-bin CSV is absent at `/Users/Leo/Downloads/●行人專用清潔箱總表.csv`; converter fallback uses `public/data/bins.json`.
 - [ ] The dog-waste bag box CSV is absent at `/Users/Leo/Downloads/狗便袋箱位置總表 .csv`; converter fallback uses `public/data/dog-waste-bag-boxes.json`.
 - [ ] Public drinking fountain data is a fetched API snapshot, not live runtime data.
+- [ ] Timed collection capabilities are conservatively inferred from notes; unknown values are intentionally not treated as false.
+- [ ] Direct drinking station status and sampling dates are listed-data snapshots, not real-time guarantees.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -39,6 +44,7 @@
 - **Keep API access out of the frontend**: The app loads static JSON only; Taipei Open Data access is handled by `scripts/fetchDrinkingFountains.ts`.
 - **Keep drinking fountains scoped to public-place equipment**: Labels avoid implying complete coverage of every outdoor direct-drinking station in Taipei.
 - **Do not add dashboard charts**: The app has no existing dashboard surface.
+- **Skip optional nearby shortcut buttons**: The existing nearby button already respects selected facility layers.
 
 ## Files Modified This Session
 
@@ -72,7 +78,13 @@
 - [x] `npm test` passed 16 utility tests.
 - [x] `npm run build` passed.
 - [x] `npm run test:e2e` passed 20 desktop/mobile Playwright tests.
+- [x] `npm run convert:bins` generated 4,163 facilities: 30 timed collection points and 733 direct drinking stations in addition to the existing four layers.
+- [x] Direct drinking conversion preserved 695 Taipei and 38 outside-Taipei records.
+- [x] `npm test` passed 22 utility/converter tests.
+- [x] `npm run build` passed.
+- [x] `npm run test:e2e` and `./init.sh` passed 24 desktop/mobile Playwright tests.
+- [x] Responsive smoke at 390px and 1440px found no horizontal overflow with six facility buttons.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The public-place drinking fountain expansion is implemented and verified.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The six-layer public amenities expansion is implemented and verified.

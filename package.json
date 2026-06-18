@@ -11,6 +11,10 @@
     "test:e2e": "playwright test --config=playwright.config.cjs",
     "fetch:drinking-fountains": "tsx scripts/fetchDrinkingFountains.ts",
     "convert:drinking-fountains": "tsx scripts/convertDrinkingFountains.ts",
+    "data:fetch:timed-collection": "tsx scripts/fetchTimedCollectionPoints.ts",
+    "data:convert:timed-collection": "tsx scripts/convertTimedCollectionPoints.ts",
+    "data:fetch:direct-drinking": "tsx scripts/fetchDirectDrinkingStations.ts",
+    "data:convert:direct-drinking": "tsx scripts/convertDirectDrinkingStations.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

@@ -4,7 +4,9 @@ import iconv from 'iconv-lite';
 import Papa from 'papaparse';
 import type { ConversionReport, ConversionSourceReport, Facility } from '../src/types';
 import { isCoordinateOutlier } from '../src/utils/facilityUtils';
+import { loadDirectDrinkingStations } from './convertDirectDrinkingStations';
 import { loadDrinkingFountainFacilities } from './convertDrinkingFountains';
+import { loadTimedCollectionPoints } from './convertTimedCollectionPoints';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -126,6 +128,8 @@ const PEDESTRIAN_OUTPUT = resolve(options.outputDir, 'pedestrian-bins.json');
 const DOG_WASTE_OUTPUT = resolve(options.outputDir, 'dog-waste-bag-boxes.json');
 const PUBLIC_TOILET_OUTPUT = resolve(options.outputDir, 'public-toilets.json');
 const DRINKING_FOUNTAINS_OUTPUT = resolve(options.outputDir, 'drinking-fountains.json');
+const TIMED_COLLECTION_OUTPUT = resolve(options.outputDir, 'timed-collection-points.json');
+const DIRECT_DRINKING_OUTPUT = resolve(options.outputDir, 'direct-drinking-stations.json');
 const REPORT_OUTPUT = resolve(options.outputDir, 'conversion-report.json');
 
 const clean = (value: unknown) => String(value ?? '').trim();
@@ -379,17 +383,28 @@ const drinkingFountains = loadDrinkingFountainFacilities({
   outputDir: options.outputDir,
   fallbackJson: options.drinkingFountainsFallbackJson,
 });
+const timedCollectionPoints = loadTimedCollectionPoints();
+const directDrinkingStations = loadDirectDrinkingStations();
 
 const facilities = [
   ...pedestrian.facilities,
   ...dogWaste.facilities,
   ...publicToilets.facilities,
   ...drinkingFountains.facilities,
+  ...timedCollectionPoints.facilities,
+  ...directDrinkingStations.facilities,
 ];
 const report: ConversionReport = {
   generatedAt: new Date().toISOString(),
   totalValidRows: facilities.length,
-  sources: [pedestrian.report, dogWaste.report, publicToilets.report, drinkingFountains.report],
+  sources: [
+    pedestrian.report,
+    dogWaste.report,
+    publicToilets.report,
+    drinkingFountains.report,
+    timedCollectionPoints.report,
+    directDrinkingStations.report,
+  ],
 };
 
 mkdirSync(options.outputDir, { recursive: true });
@@ -397,6 +412,8 @@ writeJson(PEDESTRIAN_OUTPUT, pedestrian.facilities);
 writeJson(DOG_WASTE_OUTPUT, dogWaste.facilities);
 writeJson(PUBLIC_TOILET_OUTPUT, publicToilets.facilities);
 writeJson(DRINKING_FOUNTAINS_OUTPUT, drinkingFountains.facilities);
+writeJson(TIMED_COLLECTION_OUTPUT, timedCollectionPoints.facilities);
+writeJson(DIRECT_DRINKING_OUTPUT, directDrinkingStations.facilities);
 writeJson(FACILITIES_OUTPUT, facilities);
 writeJson(REPORT_OUTPUT, report);
 
@@ -405,4 +422,6 @@ console.log(`Wrote ${pedestrian.facilities.length} pedestrian bin records to ${P
 console.log(`Wrote ${dogWaste.facilities.length} dog-waste bag box records to ${DOG_WASTE_OUTPUT}`);
 console.log(`Wrote ${publicToilets.facilities.length} public toilet records to ${PUBLIC_TOILET_OUTPUT}`);
 console.log(`Wrote ${drinkingFountains.facilities.length} drinking fountain records to ${DRINKING_FOUNTAINS_OUTPUT}`);
+console.log(`Wrote ${timedCollectionPoints.facilities.length} timed collection point records to ${TIMED_COLLECTION_OUTPUT}`);
+console.log(`Wrote ${directDrinkingStations.facilities.length} direct drinking station records to ${DIRECT_DRINKING_OUTPUT}`);
 console.log(`Wrote conversion report to ${REPORT_OUTPUT}`);

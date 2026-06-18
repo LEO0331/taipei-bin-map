@@ -25,6 +25,14 @@ export function MapLegend({ t }: MapLegendProps) {
         {t.drinkingFountains}
       </span>
       <span>
+        <i aria-hidden="true">♻️</i>
+        {t.timedCollectionPoints}
+      </span>
+      <span>
+        <i aria-hidden="true">🚰</i>
+        {t.directDrinkingStations}
+      </span>
+      <span>
         <i aria-hidden="true">📍</i>
         {t.userLocation}
       </span>

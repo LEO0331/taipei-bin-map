@@ -1,6 +1,6 @@
 # Taipei Public Amenities Map / 台北市公共便利設施地圖
 
-Mobile-first bilingual map for finding public toilets, pedestrian garbage bins, dog-waste bag boxes, and public-place drinking fountains in Taipei.
+Mobile-first bilingual map for finding public toilets, pedestrian garbage bins, dog-waste bag boxes, drinking facilities, and timed collection points in Taipei.
 
 The app is static, bilingual, PWA-ready, and requires no backend, login, admin page, database, Google Maps API key, or paid map service.
 
@@ -11,9 +11,10 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Traditional Chinese UI by default, with English toggle persisted in `localStorage`.
 - Leaflet + OpenStreetMap map, no Google Maps API key required.
 - Local static amenity data loaded from `public/data/facilities.json`.
-- Facility type filter for all amenities, pedestrian garbage bins, dog-waste bag boxes, public toilets, and public-place drinking fountains.
+- Facility type filter for pedestrian garbage bins, dog-waste bag boxes, public toilets, public-place drinking fountains, timed collection points, and direct drinking stations.
 - Public toilet category, accessible-toilet, and parent-child-toilet filters.
 - Public drinking fountain place-category and opening-hour filters.
+- Timed collection accepted-item/special-note filters and direct drinking station status, city, place-type, maintenance, and photo filters.
 - Search across district, address, road, location, note, toilet name, toilet category, manager, public drinking fountain place name, install location, and opening hours.
 - Taipei district filter and nearest-facility lookup using browser geolocation.
 - Emoji map markers and legend for each facility type.
@@ -40,6 +41,17 @@ The public-place drinking fountain layer is fetched from Taipei Open Data and st
 - Dataset: `臺北市公共場所飲水機資訊`
 - API: `https://data.taipei/api/v1/dataset/52538305-ed23-490c-8f67-3efff2d777c3?scope=resourceAquire`
 - Raw JSON: `data/raw/drinking-fountains/`
+
+Two Big5/CP950 CSV layers use local raw-data copies:
+
+- `●115年開放時間 (限時收受點csv) 1150223.csv` → `data/raw/timed-collection-points/`
+- `11505_直飲臺基本資料.csv` → `data/raw/direct-drinking-stations/`
+
+```bash
+npm run data:fetch:timed-collection
+npm run data:fetch:direct-drinking
+npm run convert:facilities
+```
 
 Fetch the raw API JSON, then regenerate the static public data:
 
@@ -76,6 +88,8 @@ public/data/pedestrian-bins.json
 public/data/dog-waste-bag-boxes.json
 public/data/public-toilets.json
 public/data/drinking-fountains.json
+public/data/timed-collection-points.json
+public/data/direct-drinking-stations.json
 public/data/conversion-report.json
 ```
 
@@ -124,7 +138,7 @@ More detail: [docs/deployment.en.md](docs/deployment.en.md)
 
 ### Data Notice
 
-Pedestrian garbage bins, dog-waste bag boxes, public toilets, and public-place drinking fountains are different facility types. Dog-waste bag boxes are not trash bins. The drinking fountain dataset covers public-place drinking water equipment, not every outdoor direct-drinking station in Taipei. Public toilet opening status, drinking fountain opening hours, entrances, and equipment condition should be verified on site.
+Pedestrian garbage bins, dog-waste bag boxes, public toilets, public-place drinking fountains, timed collection points, and direct drinking stations are different facility types. Accepted-item flags are conservatively inferred from notes; unknown does not mean unavailable. Listed station status, opening hours, accepted items, availability, and water-quality information must be verified with on-site and official notices.
 
 ## 中文
 
@@ -133,9 +147,10 @@ Pedestrian garbage bins, dog-waste bag boxes, public toilets, and public-place d
 - 預設使用繁體中文介面，並提供 English 切換；語言選擇會存在 `localStorage`。
 - 使用 Leaflet + OpenStreetMap，不需要 Google Maps API key。
 - 從 `public/data/facilities.json` 載入本機靜態便利設施資料。
-- 支援全部設施、行人專用清潔箱、狗便袋箱、公廁與公共場所飲水機的設施類型篩選。
+- 支援行人專用清潔箱、狗便袋箱、公廁、公共場所飲水機、限時收受點與直飲臺的設施類型篩選。
 - 支援公廁類別、無障礙廁所、親子廁所篩選。
 - 支援公共場所飲水機場所類型與開放時間資料篩選。
+- 支援限時收受點收受項目／特殊備註，以及直飲臺狀態、縣市、場所類型、維護資訊與照片篩選。
 - 搜尋涵蓋行政區、地址、路名、位置、備註、公廁名稱、公廁類別、管理單位、飲水機場所名稱、設置地點與開放時間。
 - 支援台北市行政區篩選與瀏覽器定位找附近設施。
 - 不同設施類型使用 emoji 地圖標記與圖例。
@@ -162,6 +177,17 @@ npm install
 - 資料集：`臺北市公共場所飲水機資訊`
 - API：`https://data.taipei/api/v1/dataset/52538305-ed23-490c-8f67-3efff2d777c3?scope=resourceAquire`
 - 原始 JSON：`data/raw/drinking-fountains/`
+
+另外兩個 Big5/CP950 CSV 圖層會先複製到本機 raw data：
+
+- `●115年開放時間 (限時收受點csv) 1150223.csv` → `data/raw/timed-collection-points/`
+- `11505_直飲臺基本資料.csv` → `data/raw/direct-drinking-stations/`
+
+```bash
+npm run data:fetch:timed-collection
+npm run data:fetch:direct-drinking
+npm run convert:facilities
+```
 
 先擷取 API，再重新產生靜態資料：
 
@@ -198,6 +224,8 @@ public/data/pedestrian-bins.json
 public/data/dog-waste-bag-boxes.json
 public/data/public-toilets.json
 public/data/drinking-fountains.json
+public/data/timed-collection-points.json
+public/data/direct-drinking-stations.json
 public/data/conversion-report.json
 ```
 
@@ -246,4 +274,4 @@ npm run preview
 
 ### 資料提醒
 
-行人專用清潔箱、狗便袋箱、公廁與公共場所飲水機是不同設施。狗便袋箱不是垃圾桶。公共場所飲水機資料不代表涵蓋台北市所有戶外直飲台。公廁實際開放情況、飲水機開放時間、入口位置與設備狀態請以現場為準。
+行人專用清潔箱、狗便袋箱、公廁、公共場所飲水機、限時收受點與直飲臺是不同設施。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、可用狀態與水質維護資訊請以現場及主管機關公告為準。

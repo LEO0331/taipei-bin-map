@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { DrinkingFountainFilters } from './components/DrinkingFountainFilters';
+import { DirectDrinkingFilters, TimedCollectionFilters } from './components/AdditionalFacilityFilters';
 import { FacilityList } from './components/FacilityList';
 import { FacilityTypeFilter, FACILITY_TYPE_OPTIONS } from './components/FacilityTypeFilter';
 import { LanguageToggle } from './components/LanguageToggle';
@@ -10,6 +11,7 @@ import { WarningNotice } from './components/WarningNotice';
 import { translations } from './i18n';
 import type {
   ConversionReport,
+  DirectDrinkingPlaceCategory,
   DrinkingFountainPlaceCategory,
   Facility,
   FacilityType,
@@ -64,6 +66,17 @@ function App() {
   const [drinkingFountainPlaceCategory, setDrinkingFountainPlaceCategory] =
     useState<DrinkingFountainPlaceCategory | ''>('');
   const [requiresOpeningHours, setRequiresOpeningHours] = useState(false);
+  const [acceptsGarbage, setAcceptsGarbage] = useState(false);
+  const [acceptsRecycling, setAcceptsRecycling] = useState(false);
+  const [acceptsFoodWaste, setAcceptsFoodWaste] = useState(false);
+  const [hasSpecialHours, setHasSpecialHours] = useState(false);
+  const [directDrinkingNormalOnly, setDirectDrinkingNormalOnly] = useState(true);
+  const [includeSuspended, setIncludeSuspended] = useState(false);
+  const [taipeiCityOnly, setTaipeiCityOnly] = useState(true);
+  const [directDrinkingPlaceCategory, setDirectDrinkingPlaceCategory] =
+    useState<DirectDrinkingPlaceCategory | ''>('');
+  const [requiresMaintenanceUrl, setRequiresMaintenanceUrl] = useState(false);
+  const [requiresPhotoUrl, setRequiresPhotoUrl] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -73,6 +86,9 @@ function App() {
   const t = translations[language];
   const includesPublicToilets = selectedTypes.includes('public_toilet');
   const includesDrinkingFountains = selectedTypes.includes('drinking_fountain');
+  const includesTimedCollectionPoints = selectedTypes.includes('timed_collection_point');
+  const includesDirectDrinkingStations = selectedTypes.includes('direct_drinking_station');
+  const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
     document.documentElement.lang = language === 'zh' ? 'zh-Hant' : 'en';
@@ -162,16 +178,36 @@ function App() {
         requiresParentChildToilet,
         drinkingFountainPlaceCategory,
         requiresOpeningHours,
+        acceptsGarbage,
+        acceptsRecycling,
+        acceptsFoodWaste,
+        hasSpecialHours,
+        directDrinkingNormalOnly,
+        includeSuspended,
+        taipeiCityOnly,
+        directDrinkingPlaceCategory,
+        requiresMaintenanceUrl,
+        requiresPhotoUrl,
       }),
     [
       district,
+      directDrinkingNormalOnly,
+      directDrinkingPlaceCategory,
       drinkingFountainPlaceCategory,
+      acceptsFoodWaste,
+      acceptsGarbage,
+      acceptsRecycling,
       facilities,
+      hasSpecialHours,
+      includeSuspended,
       requiresAccessibleToilet,
+      requiresMaintenanceUrl,
       requiresOpeningHours,
       requiresParentChildToilet,
+      requiresPhotoUrl,
       searchTerm,
       selectedTypes,
+      taipeiCityOnly,
       toiletCategory,
     ],
   );
@@ -231,6 +267,20 @@ function App() {
       setDrinkingFountainPlaceCategory('');
       setRequiresOpeningHours(false);
     }
+    if (!value.includes('timed_collection_point')) {
+      setAcceptsGarbage(false);
+      setAcceptsRecycling(false);
+      setAcceptsFoodWaste(false);
+      setHasSpecialHours(false);
+    }
+    if (!value.includes('direct_drinking_station')) {
+      setDirectDrinkingNormalOnly(true);
+      setIncludeSuspended(false);
+      setTaipeiCityOnly(true);
+      setDirectDrinkingPlaceCategory('');
+      setRequiresMaintenanceUrl(false);
+      setRequiresPhotoUrl(false);
+    }
     setNearbyFacilities(null);
   };
 
@@ -256,6 +306,35 @@ function App() {
 
   const handleOpeningHoursChange = (value: boolean) => {
     setRequiresOpeningHours(value);
+    setNearbyFacilities(null);
+  };
+
+  const handleTimedCollectionFilterChange = (
+    name: 'garbage' | 'recycling' | 'foodWaste' | 'specialHours',
+    value: boolean,
+  ) => {
+    if (name === 'garbage') setAcceptsGarbage(value);
+    if (name === 'recycling') setAcceptsRecycling(value);
+    if (name === 'foodWaste') setAcceptsFoodWaste(value);
+    if (name === 'specialHours') setHasSpecialHours(value);
+    setNearbyFacilities(null);
+  };
+
+  const handleDirectDrinkingBooleanChange = (
+    name: 'normalOnly' | 'includeSuspended' | 'taipeiCityOnly' | 'maintenance' | 'photo',
+    value: boolean,
+  ) => {
+    if (name === 'normalOnly') {
+      setDirectDrinkingNormalOnly(value);
+      if (value) setIncludeSuspended(false);
+    }
+    if (name === 'includeSuspended') {
+      setIncludeSuspended(value);
+      if (value) setDirectDrinkingNormalOnly(false);
+    }
+    if (name === 'taipeiCityOnly') setTaipeiCityOnly(value);
+    if (name === 'maintenance') setRequiresMaintenanceUrl(value);
+    if (name === 'photo') setRequiresPhotoUrl(value);
     setNearbyFacilities(null);
   };
 
@@ -343,7 +422,7 @@ function App() {
             onSearchChange={handleSearchChange}
           />
           <FacilityTypeFilter selectedTypes={selectedTypes} t={t} onChange={handleTypeChange} />
-          {includesPublicToilets && (
+          {hasFocusedTypes && includesPublicToilets && (
             <PublicToiletFilters
               categories={toiletCategories}
               language={language}
@@ -356,13 +435,40 @@ function App() {
               onParentChildChange={handleParentChildToiletChange}
             />
           )}
-          {includesDrinkingFountains && (
+          {hasFocusedTypes && includesDrinkingFountains && (
             <DrinkingFountainFilters
               selectedCategory={drinkingFountainPlaceCategory}
               requiresOpeningHours={requiresOpeningHours}
               t={t}
               onCategoryChange={handleDrinkingFountainCategoryChange}
               onOpeningHoursChange={handleOpeningHoursChange}
+            />
+          )}
+          {hasFocusedTypes && includesTimedCollectionPoints && (
+            <TimedCollectionFilters
+              acceptsGarbage={acceptsGarbage}
+              acceptsRecycling={acceptsRecycling}
+              acceptsFoodWaste={acceptsFoodWaste}
+              hasSpecialHours={hasSpecialHours}
+              t={t}
+              onChange={handleTimedCollectionFilterChange}
+            />
+          )}
+          {hasFocusedTypes && includesDirectDrinkingStations && (
+            <DirectDrinkingFilters
+              normalOnly={directDrinkingNormalOnly}
+              includeSuspended={includeSuspended}
+              taipeiCityOnly={taipeiCityOnly}
+              placeCategory={directDrinkingPlaceCategory}
+              hasMaintenanceInfo={requiresMaintenanceUrl}
+              hasPhoto={requiresPhotoUrl}
+              language={language}
+              t={t}
+              onBooleanChange={handleDirectDrinkingBooleanChange}
+              onPlaceCategoryChange={(value) => {
+                setDirectDrinkingPlaceCategory(value);
+                setNearbyFacilities(null);
+              }}
             />
           )}
           <NearbyButton

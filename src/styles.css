@@ -518,6 +518,14 @@ a:focus-visible {
   background: #d9f0ff;
 }
 
+.facility-div-marker.timed_collection_point span {
+  background: #e2f3d8;
+}
+
+.facility-div-marker.direct_drinking_station span {
+  background: #cdeeff;
+}
+
 .map-popup {
   max-width: 15rem;
 }

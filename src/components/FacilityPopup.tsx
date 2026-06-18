@@ -1,6 +1,12 @@
 import type { Translation } from '../i18n';
 import type { FacilityWithDistance, Language } from '../types';
-import { getFacilityGoogleMapsUrl, getFacilityTypeLabel, getToiletCategoryLabel } from '../utils/facilityUtils';
+import {
+  getAcceptedItemsLabel,
+  getDirectDrinkingStatusLabel,
+  getFacilityGoogleMapsUrl,
+  getFacilityTypeLabel,
+  getToiletCategoryLabel,
+} from '../utils/facilityUtils';
 
 type FacilityPopupProps = {
   facility: FacilityWithDistance;
@@ -34,6 +40,9 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
         <p>
           {t.placeName}: {facility.name}
         </p>
+      )}
+      {facility.type === 'direct_drinking_station' && facility.name && (
+        <p>{t.placeName}: {facility.name}</p>
       )}
       <p>
         {t.district}: {facility.district}
@@ -105,9 +114,29 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           )}
         </>
       )}
-      <p>
-        {t.notice}: {facility.note}
-      </p>
+      {facility.type === 'timed_collection_point' && (
+        <>
+          {facility.team && <p>{t.cleaningTeam}: {facility.team}</p>}
+          {facility.phone && <p>{t.phone}: {facility.phone}</p>}
+          <p>{t.acceptedItems}: {getAcceptedItemsLabel(facility, language)}</p>
+          {facility.serviceTimeText && <p>{t.serviceHoursNotes}: {facility.serviceTimeText}</p>}
+        </>
+      )}
+      {facility.type === 'direct_drinking_station' && (
+        <>
+          {facility.placeType && <p>{t.placeType}: {facility.placeType}</p>}
+          {facility.city && <p>{t.city}: {facility.city}</p>}
+          {facility.openingHours && <p>{t.openingHours}: {facility.openingHours}</p>}
+          {facility.installLocation && <p>{t.installLocation}: {facility.installLocation}</p>}
+          <p>{t.status}: {getDirectDrinkingStatusLabel(facility.directDrinkingStatus, language)}</p>
+          {facility.latestSamplingDate && <p>{t.latestSamplingDate}: {facility.latestSamplingDate}</p>}
+          {facility.maintenanceUrl && <p><a href={facility.maintenanceUrl} target="_blank" rel="noreferrer">{t.waterQualityMaintenanceInfo}</a></p>}
+          {facility.photoUrl && <p><a href={facility.photoUrl} target="_blank" rel="noreferrer">{t.photo}</a></p>}
+        </>
+      )}
+      {facility.note && <p>{t.notice}: {facility.note}</p>}
+      {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
+      {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

@@ -6,7 +6,14 @@ type WarningNoticeProps = {
   t: Translation;
 };
 
-const noticeTypes: FacilityType[] = ['pedestrian_bin', 'dog_waste_bag_box', 'public_toilet', 'drinking_fountain'];
+const noticeTypes: FacilityType[] = [
+  'pedestrian_bin',
+  'dog_waste_bag_box',
+  'public_toilet',
+  'drinking_fountain',
+  'timed_collection_point',
+  'direct_drinking_station',
+];
 
 export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
   const activeTypes = noticeTypes.filter((type) => selectedTypes.includes(type));
@@ -26,6 +33,14 @@ export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
     drinking_fountain: {
       label: t.drinkingFountains,
       notice: t.drinkingFountainNotice,
+    },
+    timed_collection_point: {
+      label: t.timedCollectionPoints,
+      notice: t.timedCollectionNotice,
+    },
+    direct_drinking_station: {
+      label: t.directDrinkingStations,
+      notice: t.directDrinkingNotice,
     },
   } satisfies Record<FacilityType, { label: string; notice: string }>;
 

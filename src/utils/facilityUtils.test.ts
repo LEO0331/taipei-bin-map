@@ -67,6 +67,38 @@ const facilities: Facility[] = [
     drinkingFountainCount: 3,
     placeCategory: 'sports_center',
   },
+  {
+    id: 'timed_collection_point_0001',
+    type: 'timed_collection_point',
+    district: '士林區',
+    address: '臺北市士林區文昌路211之3號',
+    longitude: 121.52006,
+    latitude: 25.09997,
+    note: '不含廚餘，開放時間06：00~22：00',
+    source: '臺北市垃圾資源回收、廚餘回收限時收受點',
+    team: '蘭雅',
+    acceptsGarbage: 'unknown',
+    acceptsRecycling: 'unknown',
+    acceptsFoodWaste: false,
+    hasSpecialHours: true,
+  },
+  {
+    id: 'direct_drinking_station_0001',
+    type: 'direct_drinking_station',
+    district: '大安區',
+    address: '臺北市大安區長興街131號',
+    longitude: 121.548456,
+    latitude: 25.014828,
+    note: '',
+    source: '臺北市所屬直飲臺',
+    name: '北水處長興淨水場',
+    city: '臺北市',
+    placeType: '機關',
+    directDrinkingPlaceCategory: 'government_office',
+    directDrinkingStatus: 'normal',
+    maintenanceUrl: 'https://example.test/water',
+    isTaipeiCity: true,
+  },
 ];
 
 describe('calculateDistanceMeters', () => {
@@ -180,6 +212,37 @@ describe('filterFacilities', () => {
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('drinking_fountain_0001');
   });
+
+  it('filters timed collection points by special notes and excludes unknown capabilities', () => {
+    expect(filterFacilities(facilities, {
+      searchTerm: '',
+      district: '',
+      facilityTypes: ['timed_collection_point'],
+      hasSpecialHours: true,
+    })).toHaveLength(1);
+
+    expect(filterFacilities(facilities, {
+      searchTerm: '',
+      district: '',
+      facilityTypes: ['timed_collection_point'],
+      acceptsFoodWaste: true,
+    })).toHaveLength(0);
+  });
+
+  it('filters direct drinking stations by status, Taipei City, place type, and maintenance URL', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '長興',
+      district: '',
+      facilityTypes: ['direct_drinking_station'],
+      directDrinkingNormalOnly: true,
+      taipeiCityOnly: true,
+      directDrinkingPlaceCategory: 'government_office',
+      requiresMaintenanceUrl: true,
+    });
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('direct_drinking_station_0001');
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -188,6 +251,8 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('dog_waste_bag_box', 'en')).toBe('Dog Waste Bag Box');
     expect(getFacilityTypeLabel('public_toilet', 'en')).toBe('Public Toilet');
     expect(getFacilityTypeLabel('drinking_fountain', 'en')).toBe('Public Drinking Fountain');
+    expect(getFacilityTypeLabel('timed_collection_point', 'en')).toBe('Timed Collection Point');
+    expect(getFacilityTypeLabel('direct_drinking_station', 'zh')).toBe('直飲臺');
   });
 });
 
