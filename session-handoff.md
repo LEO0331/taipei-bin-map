@@ -17,6 +17,8 @@
 - Kept the existing static JSON, Vite, React, Leaflet, and PWA architecture.
 - Added 1,184 approved used-clothing recycling boxes from 48 organizations and 367 villages.
 - Added village, organization, and phone filters plus search, nearby, marker, legend, list, popup, notice, cache, README, and local CSV scripts.
+- Combined-layer map updates are deferred and capped at 700 markers; all-layer previews use 500 markers. Single-layer limits remain unchanged.
+- Static data is cache-first through the versioned service worker for faster repeat visits.
 
 ## Verification
 

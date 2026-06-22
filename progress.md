@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-22 09:00 Asia/Taipei  
+**Last Updated:** 2026-06-22 13:50 Asia/Taipei  
 **Active Feature:** None
 
 ## Status
@@ -20,6 +20,7 @@
 - [x] Added 733 direct drinking stations with status, Taipei-only, place-type, maintenance, and photo filters.
 - [x] Added local Big5/CP950 fetch/copy scripts, raw source metadata, individual JSON outputs, combined conversion, map/list/popups, notices, cache entries, README, and tests.
 - [x] Added 1,184 approved used-clothing recycling boxes with village, organization, phone, search, nearby, map/list/popup, notice, cache, and local CSV workflow support.
+- [x] Improved combined-layer responsiveness with deferred map updates, 700-marker combined previews, 500-marker all-layer previews, and cache-first static data.
 
 ### What's In Progress
 
@@ -91,6 +92,7 @@
 - [x] `npm test` passed 24 utility/converter tests.
 - [x] `npm run build` passed.
 - [x] `npm run test:e2e` and `./init.sh` passed 26 desktop/mobile Playwright tests.
+- [x] Repeat visits now read static facility JSON from the service-worker cache while deployments refresh it through the versioned cache.
 
 ## Notes for Next Session
 

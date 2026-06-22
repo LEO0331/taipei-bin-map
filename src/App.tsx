@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useDeferredValue, useEffect, useMemo, useState } from 'react';
 import { DrinkingFountainFilters } from './components/DrinkingFountainFilters';
 import {
   DirectDrinkingFilters,
@@ -41,6 +41,7 @@ const DISTRICT_ORDER = [
 
 const INITIAL_LIST_LIMIT = 80;
 const MAP_MARKER_LIMIT = 1800;
+const COMBINED_LAYERS_MARKER_LIMIT = 700;
 const ALL_LAYERS_MARKER_LIMIT = 500;
 const FacilityMap = lazy(() =>
   import('./components/FacilityMap').then((module) => ({ default: module.FacilityMap })),
@@ -107,7 +108,7 @@ function App() {
   useEffect(() => {
     let isMounted = true;
 
-    fetch('/data/facilities.json', { cache: 'no-cache' })
+    fetch('/data/facilities.json')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
@@ -139,7 +140,7 @@ function App() {
   useEffect(() => {
     let isMounted = true;
 
-    fetch('/data/conversion-report.json', { cache: 'no-cache' })
+    fetch('/data/conversion-report.json')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
@@ -242,13 +243,18 @@ function App() {
       Number.isFinite(facility.longitude) &&
       !facility.isCoordinateOutlier,
   );
-  const markerLimit = selectedTypes.length === FACILITY_TYPE_OPTIONS.length
-    ? ALL_LAYERS_MARKER_LIMIT
-    : MAP_MARKER_LIMIT;
+  // ponytail: cap combined previews; add clustering only if users need every marker at once.
+  const markerLimit =
+    selectedTypes.length === FACILITY_TYPE_OPTIONS.length
+      ? ALL_LAYERS_MARKER_LIMIT
+      : selectedTypes.length > 1
+        ? COMBINED_LAYERS_MARKER_LIMIT
+        : MAP_MARKER_LIMIT;
   const markerLimitExceeded = !nearbyFacilities && renderableFacilities.length > markerLimit;
   const mapFacilities = markerLimitExceeded
     ? renderableFacilities.slice(0, markerLimit)
     : renderableFacilities;
+  const deferredMapFacilities = useDeferredValue(mapFacilities);
   const listFacilities = useMemo(
     () => (nearbyFacilities ? displayedFacilities : displayedFacilities.slice(0, INITIAL_LIST_LIMIT)),
     [displayedFacilities, nearbyFacilities],
@@ -541,7 +547,7 @@ function App() {
           <div className="workspace">
             <Suspense fallback={<section className="map-panel map-loading">{t.mapLoading}</section>}>
               <FacilityMap
-                facilities={mapFacilities}
+                facilities={deferredMapFacilities}
                 language={language}
                 markerLimitExceeded={markerLimitExceeded}
                 t={t}
