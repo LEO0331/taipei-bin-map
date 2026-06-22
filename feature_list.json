@@ -119,6 +119,14 @@
       "dependencies": ["feat-014"],
       "status": "done",
       "evidence": "npm run convert:bins generated 4163 facilities, including 30 timed collection points and 733 direct drinking stations (695 Taipei, 38 outside Taipei). ./init.sh passed 22 unit/converter tests, production build, and 24 desktop/mobile Playwright tests on 2026-06-18."
+    },
+    {
+      "id": "feat-016",
+      "name": "Used-clothing recycling box expansion",
+      "description": "Add approved Taipei used-clothing recycling boxes as a static facility layer with local CSV conversion, village/organization/phone filters, search, map/list/popups, notices, cache, and documentation.",
+      "dependencies": ["feat-015"],
+      "status": "done",
+      "evidence": "npm run convert:bins generated 5347 facilities, including 1184 used-clothing recycling boxes and 29 coordinate outliers. ./init.sh passed 24 unit/converter tests, production build, and 26 desktop/mobile Playwright tests on 2026-06-22."
     }
   ]
 }

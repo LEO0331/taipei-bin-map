@@ -1,6 +1,10 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { DrinkingFountainFilters } from './components/DrinkingFountainFilters';
-import { DirectDrinkingFilters, TimedCollectionFilters } from './components/AdditionalFacilityFilters';
+import {
+  DirectDrinkingFilters,
+  TimedCollectionFilters,
+  UsedClothingFilters,
+} from './components/AdditionalFacilityFilters';
 import { FacilityList } from './components/FacilityList';
 import { FacilityTypeFilter, FACILITY_TYPE_OPTIONS } from './components/FacilityTypeFilter';
 import { LanguageToggle } from './components/LanguageToggle';
@@ -37,6 +41,7 @@ const DISTRICT_ORDER = [
 
 const INITIAL_LIST_LIMIT = 80;
 const MAP_MARKER_LIMIT = 1800;
+const ALL_LAYERS_MARKER_LIMIT = 500;
 const FacilityMap = lazy(() =>
   import('./components/FacilityMap').then((module) => ({ default: module.FacilityMap })),
 );
@@ -77,6 +82,9 @@ function App() {
     useState<DirectDrinkingPlaceCategory | ''>('');
   const [requiresMaintenanceUrl, setRequiresMaintenanceUrl] = useState(false);
   const [requiresPhotoUrl, setRequiresPhotoUrl] = useState(false);
+  const [usedClothingVillage, setUsedClothingVillage] = useState('');
+  const [usedClothingOrganization, setUsedClothingOrganization] = useState('');
+  const [usedClothingHasPhone, setUsedClothingHasPhone] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -88,6 +96,7 @@ function App() {
   const includesDrinkingFountains = selectedTypes.includes('drinking_fountain');
   const includesTimedCollectionPoints = selectedTypes.includes('timed_collection_point');
   const includesDirectDrinkingStations = selectedTypes.includes('direct_drinking_station');
+  const includesUsedClothing = selectedTypes.includes('used_clothing_recycling_box');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -166,6 +175,14 @@ function App() {
     );
     return [...categories].sort((first, second) => first.localeCompare(second, 'zh-Hant'));
   }, [facilities]);
+  const usedClothingVillages = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'used_clothing_recycling_box').map((facility) => facility.village).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const usedClothingOrganizations = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'used_clothing_recycling_box').map((facility) => facility.organizationName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -188,6 +205,9 @@ function App() {
         directDrinkingPlaceCategory,
         requiresMaintenanceUrl,
         requiresPhotoUrl,
+        usedClothingVillage,
+        usedClothingOrganization,
+        usedClothingHasPhone,
       }),
     [
       district,
@@ -209,6 +229,9 @@ function App() {
       selectedTypes,
       taipeiCityOnly,
       toiletCategory,
+      usedClothingHasPhone,
+      usedClothingOrganization,
+      usedClothingVillage,
     ],
   );
 
@@ -219,9 +242,12 @@ function App() {
       Number.isFinite(facility.longitude) &&
       !facility.isCoordinateOutlier,
   );
-  const markerLimitExceeded = !nearbyFacilities && renderableFacilities.length > MAP_MARKER_LIMIT;
+  const markerLimit = selectedTypes.length === FACILITY_TYPE_OPTIONS.length
+    ? ALL_LAYERS_MARKER_LIMIT
+    : MAP_MARKER_LIMIT;
+  const markerLimitExceeded = !nearbyFacilities && renderableFacilities.length > markerLimit;
   const mapFacilities = markerLimitExceeded
-    ? renderableFacilities.slice(0, MAP_MARKER_LIMIT)
+    ? renderableFacilities.slice(0, markerLimit)
     : renderableFacilities;
   const listFacilities = useMemo(
     () => (nearbyFacilities ? displayedFacilities : displayedFacilities.slice(0, INITIAL_LIST_LIMIT)),
@@ -280,6 +306,11 @@ function App() {
       setDirectDrinkingPlaceCategory('');
       setRequiresMaintenanceUrl(false);
       setRequiresPhotoUrl(false);
+    }
+    if (!value.includes('used_clothing_recycling_box')) {
+      setUsedClothingVillage('');
+      setUsedClothingOrganization('');
+      setUsedClothingHasPhone(false);
     }
     setNearbyFacilities(null);
   };
@@ -467,6 +498,28 @@ function App() {
               onBooleanChange={handleDirectDrinkingBooleanChange}
               onPlaceCategoryChange={(value) => {
                 setDirectDrinkingPlaceCategory(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
+          {includesUsedClothing && (
+            <UsedClothingFilters
+              villages={usedClothingVillages}
+              organizations={usedClothingOrganizations}
+              village={usedClothingVillage}
+              organization={usedClothingOrganization}
+              hasPhone={usedClothingHasPhone}
+              t={t}
+              onVillageChange={(value) => {
+                setUsedClothingVillage(value);
+                setNearbyFacilities(null);
+              }}
+              onOrganizationChange={(value) => {
+                setUsedClothingOrganization(value);
+                setNearbyFacilities(null);
+              }}
+              onHasPhoneChange={(value) => {
+                setUsedClothingHasPhone(value);
                 setNearbyFacilities(null);
               }}
             />

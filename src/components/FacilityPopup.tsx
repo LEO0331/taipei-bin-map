@@ -134,9 +134,18 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.photoUrl && <p><a href={facility.photoUrl} target="_blank" rel="noreferrer">{t.photo}</a></p>}
         </>
       )}
+      {facility.type === 'used_clothing_recycling_box' && (
+        <>
+          {facility.village && <p>{t.village}: {facility.village}</p>}
+          {facility.approvedLocation && <p>{t.approvedLocation}: {facility.approvedLocation}</p>}
+          {facility.organizationName && <p>{t.organizationName}: {facility.organizationName}</p>}
+          {facility.phone && <p>{t.phone}: {facility.phone}</p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
+      {facility.type === 'used_clothing_recycling_box' && <p>{t.notice}: {t.usedClothingRecyclingNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'taipei-public-amenities-map-v7';
+const CACHE_NAME = 'taipei-public-amenities-map-v8';
 const APP_SHELL = [
   '/index.html',
   '/manifest.webmanifest',
@@ -12,6 +12,7 @@ const APP_SHELL = [
   '/data/drinking-fountains.json',
   '/data/timed-collection-points.json',
   '/data/direct-drinking-stations.json',
+  '/data/used-clothing-recycling-boxes.json',
   '/data/conversion-report.json',
 ];
 

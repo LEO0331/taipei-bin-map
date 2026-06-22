@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-18 13:48 Asia/Taipei  
+**Last Updated:** 2026-06-22 09:00 Asia/Taipei  
 **Active Feature:** None
 
 ## Status
@@ -19,10 +19,11 @@
 - [x] Added 30 timed collection points with conservative accepted-item parsing and special-hours filtering.
 - [x] Added 733 direct drinking stations with status, Taipei-only, place-type, maintenance, and photo filters.
 - [x] Added local Big5/CP950 fetch/copy scripts, raw source metadata, individual JSON outputs, combined conversion, map/list/popups, notices, cache entries, README, and tests.
+- [x] Added 1,184 approved used-clothing recycling boxes with village, organization, phone, search, nearby, map/list/popup, notice, cache, and local CSV workflow support.
 
 ### What's In Progress
 
-- [x] No active feature work remains for feat-015.
+- [x] No active feature work remains for feat-016.
 
 ### What's Next
 
@@ -36,6 +37,8 @@
 - [ ] Public drinking fountain data is a fetched API snapshot, not live runtime data.
 - [ ] Timed collection capabilities are conservatively inferred from notes; unknown values are intentionally not treated as false.
 - [ ] Direct drinking station status and sampling dates are listed-data snapshots, not real-time guarantees.
+- [ ] Used-clothing box coordinates include 29 outliers; they remain listed and are excluded from map rendering.
+- [ ] Used-clothing box availability and accepted-item rules are not real-time.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -84,7 +87,11 @@
 - [x] `npm run build` passed.
 - [x] `npm run test:e2e` and `./init.sh` passed 24 desktop/mobile Playwright tests.
 - [x] Responsive smoke at 390px and 1440px found no horizontal overflow with six facility buttons.
+- [x] `npm run convert:bins` generated 5,347 facilities, including 1,184 used-clothing recycling boxes from 48 organizations and 367 villages.
+- [x] `npm test` passed 24 utility/converter tests.
+- [x] `npm run build` passed.
+- [x] `npm run test:e2e` and `./init.sh` passed 26 desktop/mobile Playwright tests.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The six-layer public amenities expansion is implemented and verified.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The seven-layer public amenities expansion is implemented and verified.

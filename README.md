@@ -1,6 +1,6 @@
 # Taipei Public Amenities Map / 台北市公共便利設施地圖
 
-Mobile-first bilingual map for finding public toilets, pedestrian garbage bins, dog-waste bag boxes, drinking facilities, and timed collection points in Taipei.
+Mobile-first bilingual map for finding public toilets, recycling boxes, garbage bins, dog-waste bag boxes, drinking facilities, and timed collection points in Taipei.
 
 The app is static, bilingual, PWA-ready, and requires no backend, login, admin page, database, Google Maps API key, or paid map service.
 
@@ -11,10 +11,11 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Traditional Chinese UI by default, with English toggle persisted in `localStorage`.
 - Leaflet + OpenStreetMap map, no Google Maps API key required.
 - Local static amenity data loaded from `public/data/facilities.json`.
-- Facility type filter for pedestrian garbage bins, dog-waste bag boxes, public toilets, public-place drinking fountains, timed collection points, and direct drinking stations.
+- Facility type filter for pedestrian garbage bins, dog-waste bag boxes, public toilets, public-place drinking fountains, timed collection points, direct drinking stations, and used-clothing recycling boxes.
 - Public toilet category, accessible-toilet, and parent-child-toilet filters.
 - Public drinking fountain place-category and opening-hour filters.
 - Timed collection accepted-item/special-note filters and direct drinking station status, city, place-type, maintenance, and photo filters.
+- Used-clothing recycling box village, organization, and phone filters.
 - Search across district, address, road, location, note, toilet name, toilet category, manager, public drinking fountain place name, install location, and opening hours.
 - Taipei district filter and nearest-facility lookup using browser geolocation.
 - Emoji map markers and legend for each facility type.
@@ -53,6 +54,16 @@ npm run data:fetch:direct-drinking
 npm run convert:facilities
 ```
 
+The used-clothing recycling layer also uses a local Big5/CP950 CSV copy:
+
+```bash
+npm run data:fetch:used-clothing
+npm run data:convert:used-clothing
+npm run convert:facilities
+```
+
+Fields map from approval ID, district, village, approved location, organization, phone, longitude, and latitude into the shared facility model.
+
 Fetch the raw API JSON, then regenerate the static public data:
 
 ```bash
@@ -90,6 +101,7 @@ public/data/public-toilets.json
 public/data/drinking-fountains.json
 public/data/timed-collection-points.json
 public/data/direct-drinking-stations.json
+public/data/used-clothing-recycling-boxes.json
 public/data/conversion-report.json
 ```
 
@@ -138,7 +150,7 @@ More detail: [docs/deployment.en.md](docs/deployment.en.md)
 
 ### Data Notice
 
-Pedestrian garbage bins, dog-waste bag boxes, public toilets, public-place drinking fountains, timed collection points, and direct drinking stations are different facility types. Accepted-item flags are conservatively inferred from notes; unknown does not mean unavailable. Listed station status, opening hours, accepted items, availability, and water-quality information must be verified with on-site and official notices.
+Pedestrian garbage bins, dog-waste bag boxes, public toilets, drinking facilities, timed collection points, direct drinking stations, and used-clothing recycling boxes are different facility types. Accepted-item flags are conservatively inferred from notes; unknown does not mean unavailable. Listed status, opening hours, accepted items, recycling-box availability, and water-quality information must be verified with on-site and official notices.
 
 ## 中文
 
@@ -147,10 +159,11 @@ Pedestrian garbage bins, dog-waste bag boxes, public toilets, public-place drink
 - 預設使用繁體中文介面，並提供 English 切換；語言選擇會存在 `localStorage`。
 - 使用 Leaflet + OpenStreetMap，不需要 Google Maps API key。
 - 從 `public/data/facilities.json` 載入本機靜態便利設施資料。
-- 支援行人專用清潔箱、狗便袋箱、公廁、公共場所飲水機、限時收受點與直飲臺的設施類型篩選。
+- 支援行人專用清潔箱、狗便袋箱、公廁、公共場所飲水機、限時收受點、直飲臺與舊衣回收箱的設施類型篩選。
 - 支援公廁類別、無障礙廁所、親子廁所篩選。
 - 支援公共場所飲水機場所類型與開放時間資料篩選。
 - 支援限時收受點收受項目／特殊備註，以及直飲臺狀態、縣市、場所類型、維護資訊與照片篩選。
+- 支援舊衣回收箱里別、設置團體與電話資料篩選。
 - 搜尋涵蓋行政區、地址、路名、位置、備註、公廁名稱、公廁類別、管理單位、飲水機場所名稱、設置地點與開放時間。
 - 支援台北市行政區篩選與瀏覽器定位找附近設施。
 - 不同設施類型使用 emoji 地圖標記與圖例。
@@ -189,6 +202,16 @@ npm run data:fetch:direct-drinking
 npm run convert:facilities
 ```
 
+舊衣回收箱圖層也使用 Big5/CP950 本機 CSV：
+
+```bash
+npm run data:fetch:used-clothing
+npm run data:convert:used-clothing
+npm run convert:facilities
+```
+
+欄位會將核准編號、行政區、里別、核准地點、團體名稱、電話與座標映射到共用設施模型。
+
 先擷取 API，再重新產生靜態資料：
 
 ```bash
@@ -226,6 +249,7 @@ public/data/public-toilets.json
 public/data/drinking-fountains.json
 public/data/timed-collection-points.json
 public/data/direct-drinking-stations.json
+public/data/used-clothing-recycling-boxes.json
 public/data/conversion-report.json
 ```
 
@@ -274,4 +298,4 @@ npm run preview
 
 ### 資料提醒
 
-行人專用清潔箱、狗便袋箱、公廁、公共場所飲水機、限時收受點與直飲臺是不同設施。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、可用狀態與水質維護資訊請以現場及主管機關公告為準。
+行人專用清潔箱、狗便袋箱、公廁、飲水設施、限時收受點、直飲臺與舊衣回收箱是不同設施。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、舊衣回收箱可投遞狀態與水質維護資訊請以現場及主管機關公告為準。

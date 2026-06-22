@@ -113,6 +113,15 @@ export function FacilityList({
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}
+              {facility.type === 'used_clothing_recycling_box' && (
+                <small>
+                  {[
+                    facility.village ? `${t.village}: ${facility.village}` : '',
+                    facility.organizationName ? `${t.organizationName}: ${facility.organizationName}` : '',
+                    facility.phone ? `${t.phone}: ${facility.phone}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
               {facility.note && <small>{facility.note}</small>}
               {facility.isCoordinateOutlier && <small className="outlier-warning">{t.coordinateOutlierWarning}</small>}
               <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">

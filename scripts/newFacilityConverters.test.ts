@@ -8,6 +8,7 @@ import {
   convertTimedCollectionRows,
   parseTimedCollectionCapabilities,
 } from './convertTimedCollectionPoints';
+import { convertUsedClothingRows } from './convertUsedClothingRecyclingBoxes';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -46,5 +47,27 @@ describe('new facility converters', () => {
       isCoordinateOutlier: true,
     });
     expect(converted.report.invalidCoordinateRows).toHaveLength(1);
+  });
+
+  it('maps used-clothing rows and preserves village and organization', () => {
+    const converted = convertUsedClothingRows([
+      {
+        核准編號: '1',
+        行政區: '大安',
+        里別: '德安',
+        臺北市核准地點: '四維路旁',
+        團體名稱: '測試協會',
+        電話: '02-12345678',
+        經度: '121.54',
+        緯度: '25.03',
+      },
+    ]);
+
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'used_clothing_recycling_box',
+      district: '大安區',
+      village: '德安',
+      organizationName: '測試協會',
+    });
   });
 });

@@ -6,7 +6,8 @@ export type FacilityType =
   | 'public_toilet'
   | 'drinking_fountain'
   | 'timed_collection_point'
-  | 'direct_drinking_station';
+  | 'direct_drinking_station'
+  | 'used_clothing_recycling_box';
 
 export type DrinkingFountainPlaceCategory =
   | 'sports_center'
@@ -70,6 +71,10 @@ export type Facility = {
   maintenanceUrl?: string;
   photoUrl?: string;
   isTaipeiCity?: boolean;
+  approvalId?: string;
+  village?: string;
+  approvedLocation?: string;
+  organizationName?: string;
 };
 
 export type FacilityWithDistance = Facility & {

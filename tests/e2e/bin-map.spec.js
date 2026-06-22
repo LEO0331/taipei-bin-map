@@ -25,9 +25,14 @@ const defaultDirectDrinkingCount = facilities
       facility.isTaipeiCity,
   )
   .length.toString();
+const usedClothingFacilities = facilities.filter(
+  (facility) => facility.type === 'used_clothing_recycling_box',
+);
+const usedClothingCount = usedClothingFacilities.length.toString();
+const usedClothingSample = usedClothingFacilities[0];
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all six local datasets and avoids default marker clutter', async ({ page }) => {
+  test('loads all seven local datasets and avoids default marker clutter', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -39,6 +44,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('公共場所飲水機');
     await expect(page.getByLabel('地圖圖例')).toContainText('限時收受點');
     await expect(page.getByLabel('地圖圖例')).toContainText('直飲臺');
+    await expect(page.getByLabel('地圖圖例')).toContainText('舊衣回收箱');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-list li')).toHaveCount(80);
@@ -57,6 +63,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByRole('button', { name: 'Public Drinking Fountains' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Timed Collection Points' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Direct Drinking Stations' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Used Clothing Recycling Boxes' })).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {
@@ -134,6 +141,19 @@ test.describe('Taipei public amenities map public flows', () => {
     await page.getByLabel('包含暫停').check();
     await page.getByPlaceholder('搜尋地址、路名、地點或設施名稱').fill('剝皮寮');
     await expect(page.locator('.facility-list li').first()).toContainText('暫停');
+  });
+
+  test('filters used-clothing recycling boxes by village and organization', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '舊衣回收箱' }).click();
+    await expect(page.getByText(`${usedClothingCount} 筆資料`)).toBeVisible();
+    await page.getByLabel('里別').selectOption(usedClothingSample.village);
+    await page.getByLabel('設置團體').selectOption(usedClothingSample.organizationName);
+    await page.getByLabel('有電話').check();
+
+    await expect(page.locator('.facility-list li').first()).toContainText(usedClothingSample.organizationName);
+    await expect(page.locator('.facility-list li').first()).toContainText(usedClothingSample.village);
   });
 
   test('searches dog road/location fields and shows coordinate warnings', async ({ page }) => {

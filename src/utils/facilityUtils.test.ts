@@ -99,6 +99,21 @@ const facilities: Facility[] = [
     maintenanceUrl: 'https://example.test/water',
     isTaipeiCity: true,
   },
+  {
+    id: 'used_clothing_recycling_box_0001',
+    type: 'used_clothing_recycling_box',
+    district: '大安區',
+    address: '四維路52巷10號旁',
+    longitude: 121.54708,
+    latitude: 25.03507,
+    note: '',
+    source: '臺北市社會福利團體(機構)設置舊衣回收設施據點',
+    name: '台北市自閉症家長協會',
+    village: '德安',
+    approvedLocation: '四維路52巷10號旁',
+    organizationName: '台北市自閉症家長協會',
+    phone: '(02)25953937',
+  },
 ];
 
 describe('calculateDistanceMeters', () => {
@@ -243,6 +258,20 @@ describe('filterFacilities', () => {
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('direct_drinking_station_0001');
   });
+
+  it('filters and searches used-clothing recycling boxes', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '自閉症',
+      district: '大安區',
+      facilityTypes: ['used_clothing_recycling_box'],
+      usedClothingVillage: '德安',
+      usedClothingOrganization: '台北市自閉症家長協會',
+      usedClothingHasPhone: true,
+    });
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('used_clothing_recycling_box_0001');
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -253,6 +282,7 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('drinking_fountain', 'en')).toBe('Public Drinking Fountain');
     expect(getFacilityTypeLabel('timed_collection_point', 'en')).toBe('Timed Collection Point');
     expect(getFacilityTypeLabel('direct_drinking_station', 'zh')).toBe('直飲臺');
+    expect(getFacilityTypeLabel('used_clothing_recycling_box', 'en')).toBe('Used Clothing Recycling Box');
   });
 });
 

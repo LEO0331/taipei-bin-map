@@ -81,3 +81,40 @@ export function DirectDrinkingFilters(props: DirectDrinkingFiltersProps) {
     </fieldset>
   );
 }
+
+type UsedClothingFiltersProps = {
+  villages: string[];
+  organizations: string[];
+  village: string;
+  organization: string;
+  hasPhone: boolean;
+  t: Translation;
+  onVillageChange: (value: string) => void;
+  onOrganizationChange: (value: string) => void;
+  onHasPhoneChange: (value: boolean) => void;
+};
+
+export function UsedClothingFilters(props: UsedClothingFiltersProps) {
+  return (
+    <fieldset className="toilet-filters">
+      <label>
+        {props.t.village}
+        <select value={props.village} onChange={(event) => props.onVillageChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.villages.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.organizationName}
+        <select value={props.organization} onChange={(event) => props.onOrganizationChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.organizations.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label className="checkbox-filter">
+        <input type="checkbox" checked={props.hasPhone} onChange={(event) => props.onHasPhoneChange(event.target.checked)} />
+        <span>{props.t.hasPhone}</span>
+      </label>
+    </fieldset>
+  );
+}

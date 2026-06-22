@@ -526,6 +526,10 @@ a:focus-visible {
   background: #cdeeff;
 }
 
+.facility-div-marker.used_clothing_recycling_box span {
+  background: #f2e4ff;
+}
+
 .map-popup {
   max-width: 15rem;
 }

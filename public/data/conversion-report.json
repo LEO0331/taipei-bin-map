@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-18T05:39:47.116Z",
-  "totalValidRows": 4163,
+  "generatedAt": "2026-06-22T00:47:10.321Z",
+  "totalValidRows": 5347,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -53,6 +53,15 @@
       "validRows": 733,
       "droppedRows": 0,
       "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": []
+    },
+    {
+      "sourceFilename": "臺北市核准設置舊衣回收箱設置清冊(0530).csv",
+      "totalRows": 1184,
+      "validRows": 1184,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 29,
       "invalidCoordinateRows": [],
       "missingRequiredFields": []
     }

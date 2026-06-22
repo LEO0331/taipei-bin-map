@@ -1,0 +1,8 @@
+{
+  "sourceUrl": "https://data.taipei/dataset/detail?id=33de0950-24df-463d-b199-da3fbf612ef1",
+  "fetchedAt": "2026-06-22T00:46:56.604Z",
+  "filename": "臺北市核准設置舊衣回收箱設置清冊(0530).csv",
+  "fileSize": 118218,
+  "encoding": "Big5/CP950",
+  "notes": "Copied from local uploaded CSV; use --input and --force to replace it."
+}

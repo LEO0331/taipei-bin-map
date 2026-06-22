@@ -81,6 +81,9 @@ export function filterFacilities(
     directDrinkingPlaceCategory,
     requiresMaintenanceUrl = false,
     requiresPhotoUrl = false,
+    usedClothingVillage,
+    usedClothingOrganization,
+    usedClothingHasPhone = false,
   }: {
     searchTerm: string;
     district: string;
@@ -100,6 +103,9 @@ export function filterFacilities(
     directDrinkingPlaceCategory?: DirectDrinkingPlaceCategory | '';
     requiresMaintenanceUrl?: boolean;
     requiresPhotoUrl?: boolean;
+    usedClothingVillage?: string;
+    usedClothingOrganization?: string;
+    usedClothingHasPhone?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -147,6 +153,11 @@ export function filterFacilities(
         (!directDrinkingPlaceCategory || facility.directDrinkingPlaceCategory === directDrinkingPlaceCategory) &&
         (!requiresMaintenanceUrl || Boolean(facility.maintenanceUrl)) &&
         (!requiresPhotoUrl || Boolean(facility.photoUrl)));
+    const matchesUsedClothing =
+      facility.type !== 'used_clothing_recycling_box' ||
+      ((!usedClothingVillage || facility.village === usedClothingVillage) &&
+        (!usedClothingOrganization || facility.organizationName === usedClothingOrganization) &&
+        (!usedClothingHasPhone || Boolean(facility.phone)));
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -167,6 +178,13 @@ export function filterFacilities(
         facility.city,
         facility.placeType,
         facility.directDrinkingStatus,
+        facility.village,
+        facility.approvedLocation,
+        facility.organizationName,
+        facility.source,
+        facility.type === 'used_clothing_recycling_box'
+          ? '舊衣回收箱 used clothing recycling box'
+          : '',
         facility.acceptsGarbage === true ? '一般垃圾 general garbage' : '',
         facility.acceptsRecycling === true ? '資源回收 recycling' : '',
         facility.acceptsFoodWaste === true ? '廚餘 food waste' : '',
@@ -184,6 +202,7 @@ export function filterFacilities(
       matchesOpeningHours &&
       matchesTimedCollection &&
       matchesDirectDrinking &&
+      matchesUsedClothing &&
       matchesSearch
     );
   });
@@ -210,7 +229,11 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '限時收受點' : 'Timed Collection Point';
   }
 
-  return language === 'zh' ? '直飲臺' : 'Direct Drinking Station';
+  if (type === 'direct_drinking_station') {
+    return language === 'zh' ? '直飲臺' : 'Direct Drinking Station';
+  }
+
+  return language === 'zh' ? '舊衣回收箱' : 'Used Clothing Recycling Box';
 }
 
 export function getAcceptedItemsLabel(facility: Facility, language: Language) {

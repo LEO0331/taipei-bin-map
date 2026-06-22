@@ -33,6 +33,10 @@ export function MapLegend({ t }: MapLegendProps) {
         {t.directDrinkingStations}
       </span>
       <span>
+        <i aria-hidden="true">👕</i>
+        {t.usedClothingRecyclingBoxes}
+      </span>
+      <span>
         <i aria-hidden="true">📍</i>
         {t.userLocation}
       </span>
