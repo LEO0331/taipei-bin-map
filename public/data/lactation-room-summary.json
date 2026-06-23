@@ -1,0 +1,130 @@
+{
+  "totalRecords": 483,
+  "uniqueFacilityCount": 483,
+  "districtCount": 12,
+  "recordsWithOpeningHours": 483,
+  "recordsWithPhone": 481,
+  "recordsWithMobile": 27,
+  "recordsWithLocationGuidance": 238,
+  "recordsWithCertificationValidity": 299,
+  "recordsWithNotes": 418,
+  "recordsAppearingInLegalRequiredList": 483,
+  "byDistrict": [
+    {
+      "district": "中正區",
+      "count": 71,
+      "withOpeningHours": 71,
+      "withCertificationValidity": 44,
+      "withLocationGuidance": 44
+    },
+    {
+      "district": "信義區",
+      "count": 49,
+      "withOpeningHours": 49,
+      "withCertificationValidity": 38,
+      "withLocationGuidance": 16
+    },
+    {
+      "district": "北投區",
+      "count": 48,
+      "withOpeningHours": 48,
+      "withCertificationValidity": 36,
+      "withLocationGuidance": 31
+    },
+    {
+      "district": "中山區",
+      "count": 42,
+      "withOpeningHours": 42,
+      "withCertificationValidity": 13,
+      "withLocationGuidance": 19
+    },
+    {
+      "district": "大安區",
+      "count": 41,
+      "withOpeningHours": 41,
+      "withCertificationValidity": 25,
+      "withLocationGuidance": 0
+    },
+    {
+      "district": "文山區",
+      "count": 39,
+      "withOpeningHours": 39,
+      "withCertificationValidity": 26,
+      "withLocationGuidance": 36
+    },
+    {
+      "district": "士林區",
+      "count": 39,
+      "withOpeningHours": 39,
+      "withCertificationValidity": 30,
+      "withLocationGuidance": 19
+    },
+    {
+      "district": "萬華區",
+      "count": 37,
+      "withOpeningHours": 37,
+      "withCertificationValidity": 16,
+      "withLocationGuidance": 11
+    },
+    {
+      "district": "大同區",
+      "count": 36,
+      "withOpeningHours": 36,
+      "withCertificationValidity": 27,
+      "withLocationGuidance": 1
+    },
+    {
+      "district": "松山區",
+      "count": 34,
+      "withOpeningHours": 34,
+      "withCertificationValidity": 15,
+      "withLocationGuidance": 34
+    },
+    {
+      "district": "南港區",
+      "count": 27,
+      "withOpeningHours": 27,
+      "withCertificationValidity": 15,
+      "withLocationGuidance": 13
+    },
+    {
+      "district": "內湖區",
+      "count": 20,
+      "withOpeningHours": 20,
+      "withCertificationValidity": 14,
+      "withLocationGuidance": 14
+    }
+  ],
+  "byBasicEquipment": [
+    {
+      "equipment": "靠背椅",
+      "count": 483
+    },
+    {
+      "equipment": "有蓋垃圾桶",
+      "count": 483
+    },
+    {
+      "equipment": "電源設備 （插座或延長線）",
+      "count": 483
+    },
+    {
+      "equipment": "可由內部上鎖之門",
+      "count": 483
+    },
+    {
+      "equipment": "緊急求救設備 （求救鈴或電話等）",
+      "count": 483
+    },
+    {
+      "equipment": "洗手設施 （洗手台或乾洗手液）",
+      "count": 483
+    }
+  ],
+  "byFriendlyEquipmentOrService": [
+    {
+      "service": "依各場所實際公告內容為主",
+      "count": 483
+    }
+  ]
+}

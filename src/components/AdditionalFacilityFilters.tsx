@@ -118,3 +118,60 @@ export function UsedClothingFilters(props: UsedClothingFiltersProps) {
     </fieldset>
   );
 }
+
+type LactationRoomFiltersProps = {
+  basicEquipmentOptions: string[];
+  friendlyServiceOptions: string[];
+  values: {
+    openingHours: boolean;
+    phone: boolean;
+    mobile: boolean;
+    locationGuidance: boolean;
+    certification: boolean;
+    notes: boolean;
+    legalRequired: boolean;
+    basicEquipment: string;
+    friendlyService: string;
+  };
+  t: Translation;
+  onBooleanChange: (name: 'openingHours' | 'phone' | 'mobile' | 'locationGuidance' | 'certification' | 'notes' | 'legalRequired', value: boolean) => void;
+  onBasicEquipmentChange: (value: string) => void;
+  onFriendlyServiceChange: (value: string) => void;
+};
+
+export function LactationRoomFilters(props: LactationRoomFiltersProps) {
+  const checks = [
+    ['openingHours', props.t.hasOpeningHours, props.values.openingHours],
+    ['phone', props.t.hasPhone, props.values.phone],
+    ['mobile', props.t.hasMobile, props.values.mobile],
+    ['locationGuidance', props.t.hasLocationGuidance, props.values.locationGuidance],
+    ['certification', props.t.hasCertificationValidity, props.values.certification],
+    ['notes', props.t.hasNotes, props.values.notes],
+    ['legalRequired', props.t.legalRequiredList, props.values.legalRequired],
+  ] as const;
+
+  return (
+    <fieldset className="toilet-filters">
+      <label>
+        {props.t.basicEquipment}
+        <select value={props.values.basicEquipment} onChange={(event) => props.onBasicEquipmentChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.basicEquipmentOptions.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.friendlyEquipmentOrServices}
+        <select value={props.values.friendlyService} onChange={(event) => props.onFriendlyServiceChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.friendlyServiceOptions.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      {checks.map(([name, label, checked]) => (
+        <label className="checkbox-filter" key={name}>
+          <input type="checkbox" checked={checked} onChange={(event) => props.onBooleanChange(name, event.target.checked)} />
+          <span>{label}</span>
+        </label>
+      ))}
+    </fieldset>
+  );
+}

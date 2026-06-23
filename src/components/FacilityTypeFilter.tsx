@@ -15,6 +15,7 @@ export const FACILITY_TYPE_OPTIONS: FacilityType[] = [
   'timed_collection_point',
   'direct_drinking_station',
   'used_clothing_recycling_box',
+  'lactation_room',
 ];
 
 export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeFilterProps) {
@@ -26,6 +27,7 @@ export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeF
     timed_collection_point: t.timedCollectionPoints,
     direct_drinking_station: t.directDrinkingStations,
     used_clothing_recycling_box: t.usedClothingRecyclingBoxes,
+    lactation_room: t.lactationRooms,
   } satisfies Record<FacilityType, string>;
 
   const allSelected = selectedTypes.length === FACILITY_TYPE_OPTIONS.length;

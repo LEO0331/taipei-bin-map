@@ -84,6 +84,15 @@ export function filterFacilities(
     usedClothingVillage,
     usedClothingOrganization,
     usedClothingHasPhone = false,
+    lactationHasOpeningHours = false,
+    lactationHasPhone = false,
+    lactationHasMobile = false,
+    lactationHasLocationGuidance = false,
+    lactationHasCertification = false,
+    lactationHasNotes = false,
+    lactationLegalRequired = false,
+    lactationBasicEquipment,
+    lactationFriendlyService,
   }: {
     searchTerm: string;
     district: string;
@@ -106,6 +115,15 @@ export function filterFacilities(
     usedClothingVillage?: string;
     usedClothingOrganization?: string;
     usedClothingHasPhone?: boolean;
+    lactationHasOpeningHours?: boolean;
+    lactationHasPhone?: boolean;
+    lactationHasMobile?: boolean;
+    lactationHasLocationGuidance?: boolean;
+    lactationHasCertification?: boolean;
+    lactationHasNotes?: boolean;
+    lactationLegalRequired?: boolean;
+    lactationBasicEquipment?: string;
+    lactationFriendlyService?: string;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -158,6 +176,17 @@ export function filterFacilities(
       ((!usedClothingVillage || facility.village === usedClothingVillage) &&
         (!usedClothingOrganization || facility.organizationName === usedClothingOrganization) &&
         (!usedClothingHasPhone || Boolean(facility.phone)));
+    const matchesLactation =
+      facility.type !== 'lactation_room' ||
+      ((!lactationHasOpeningHours || Boolean(facility.openingHours)) &&
+        (!lactationHasPhone || Boolean(facility.phone)) &&
+        (!lactationHasMobile || Boolean(facility.mobile)) &&
+        (!lactationHasLocationGuidance || Boolean(facility.locationGuidance)) &&
+        (!lactationHasCertification || Boolean(facility.certificationValidityRaw)) &&
+        (!lactationHasNotes || Boolean(facility.notes)) &&
+        (!lactationLegalRequired || facility.appearsInLegalRequiredList === true) &&
+        (!lactationBasicEquipment || facility.basicEquipment?.includes(lactationBasicEquipment)) &&
+        (!lactationFriendlyService || facility.friendlyEquipmentOrServices?.includes(lactationFriendlyService)));
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -181,6 +210,11 @@ export function filterFacilities(
         facility.village,
         facility.approvedLocation,
         facility.organizationName,
+        facility.facilityName,
+        facility.locationGuidance,
+        facility.basicEquipmentRaw,
+        facility.friendlyEquipmentOrServicesRaw,
+        facility.notes,
         facility.source,
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
@@ -203,6 +237,7 @@ export function filterFacilities(
       matchesTimedCollection &&
       matchesDirectDrinking &&
       matchesUsedClothing &&
+      matchesLactation &&
       matchesSearch
     );
   });
@@ -233,7 +268,11 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '直飲臺' : 'Direct Drinking Station';
   }
 
-  return language === 'zh' ? '舊衣回收箱' : 'Used Clothing Recycling Box';
+  if (type === 'used_clothing_recycling_box') {
+    return language === 'zh' ? '舊衣回收箱' : 'Used Clothing Recycling Box';
+  }
+
+  return language === 'zh' ? '哺集乳室' : 'Lactation Room';
 }
 
 export function getAcceptedItemsLabel(facility: Facility, language: Language) {
@@ -323,6 +362,9 @@ export function getToiletCategoryLabel(category: string, language: Language) {
 }
 
 export function getFacilityGoogleMapsUrl(facility: Facility) {
+  if (facility.locationPrecision === 'address_only') {
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(facility.address)}`;
+  }
   return `https://www.google.com/maps/search/?api=1&query=${facility.latitude},${facility.longitude}`;
 }
 

@@ -2,6 +2,7 @@ import { lazy, Suspense, useDeferredValue, useEffect, useMemo, useState } from '
 import { DrinkingFountainFilters } from './components/DrinkingFountainFilters';
 import {
   DirectDrinkingFilters,
+  LactationRoomFilters,
   TimedCollectionFilters,
   UsedClothingFilters,
 } from './components/AdditionalFacilityFilters';
@@ -52,7 +53,7 @@ type UserLocation = {
   longitude: number;
 };
 
-type ErrorKey = 'load' | 'location' | '';
+type ErrorKey = 'load' | 'location' | 'distance' | '';
 
 const getInitialLanguage = (): Language => {
   const stored = window.localStorage.getItem('language');
@@ -86,6 +87,15 @@ function App() {
   const [usedClothingVillage, setUsedClothingVillage] = useState('');
   const [usedClothingOrganization, setUsedClothingOrganization] = useState('');
   const [usedClothingHasPhone, setUsedClothingHasPhone] = useState(false);
+  const [lactationHasOpeningHours, setLactationHasOpeningHours] = useState(false);
+  const [lactationHasPhone, setLactationHasPhone] = useState(false);
+  const [lactationHasMobile, setLactationHasMobile] = useState(false);
+  const [lactationHasLocationGuidance, setLactationHasLocationGuidance] = useState(false);
+  const [lactationHasCertification, setLactationHasCertification] = useState(false);
+  const [lactationHasNotes, setLactationHasNotes] = useState(false);
+  const [lactationLegalRequired, setLactationLegalRequired] = useState(false);
+  const [lactationBasicEquipment, setLactationBasicEquipment] = useState('');
+  const [lactationFriendlyService, setLactationFriendlyService] = useState('');
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -98,6 +108,7 @@ function App() {
   const includesTimedCollectionPoints = selectedTypes.includes('timed_collection_point');
   const includesDirectDrinkingStations = selectedTypes.includes('direct_drinking_station');
   const includesUsedClothing = selectedTypes.includes('used_clothing_recycling_box');
+  const includesLactationRooms = selectedTypes.includes('lactation_room');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -184,6 +195,14 @@ function App() {
     () => [...new Set(facilities.filter((facility) => facility.type === 'used_clothing_recycling_box').map((facility) => facility.organizationName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
     [facilities],
   );
+  const lactationBasicEquipmentOptions = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'lactation_room').flatMap((facility) => facility.basicEquipment ?? []))].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const lactationFriendlyServiceOptions = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'lactation_room').flatMap((facility) => facility.friendlyEquipmentOrServices ?? []))].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -209,6 +228,15 @@ function App() {
         usedClothingVillage,
         usedClothingOrganization,
         usedClothingHasPhone,
+        lactationHasOpeningHours,
+        lactationHasPhone,
+        lactationHasMobile,
+        lactationHasLocationGuidance,
+        lactationHasCertification,
+        lactationHasNotes,
+        lactationLegalRequired,
+        lactationBasicEquipment,
+        lactationFriendlyService,
       }),
     [
       district,
@@ -233,14 +261,37 @@ function App() {
       usedClothingHasPhone,
       usedClothingOrganization,
       usedClothingVillage,
+      lactationBasicEquipment,
+      lactationFriendlyService,
+      lactationHasCertification,
+      lactationHasLocationGuidance,
+      lactationHasMobile,
+      lactationHasNotes,
+      lactationHasOpeningHours,
+      lactationHasPhone,
+      lactationLegalRequired,
     ],
   );
 
   const displayedFacilities = nearbyFacilities ?? filteredFacilities;
+  const lactationDistrictSummaries = useMemo(() => {
+    const rooms = displayedFacilities.filter((facility) => facility.type === 'lactation_room');
+    return [...new Set(rooms.map((facility) => facility.district).filter(Boolean))].map((district) => {
+      const rows = rooms.filter((facility) => facility.district === district);
+      return {
+        district,
+        count: rows.length,
+        withOpeningHours: rows.filter((facility) => facility.openingHours).length,
+        withLocationGuidance: rows.filter((facility) => facility.locationGuidance).length,
+        withCertificationValidity: rows.filter((facility) => facility.certificationValidityRaw).length,
+      };
+    });
+  }, [displayedFacilities]);
   const renderableFacilities = displayedFacilities.filter(
     (facility) =>
       Number.isFinite(facility.latitude) &&
       Number.isFinite(facility.longitude) &&
+      facility.locationPrecision !== 'address_only' &&
       !facility.isCoordinateOutlier,
   );
   // ponytail: cap combined previews; add clustering only if users need every marker at once.
@@ -260,7 +311,12 @@ function App() {
     [displayedFacilities, nearbyFacilities],
   );
   const isListLimited = !nearbyFacilities && displayedFacilities.length > listFacilities.length;
-  const listHeading = nearbyFacilities ? t.nearestFacilities : t.matchingFacilities;
+  const isLactationOnly = selectedTypes.length === 1 && includesLactationRooms;
+  const listHeading = nearbyFacilities
+    ? t.nearestFacilities
+    : isLactationOnly
+      ? t.lactationRoomDirectory
+      : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
     if (!report?.generatedAt) {
       return '';
@@ -317,6 +373,17 @@ function App() {
       setUsedClothingVillage('');
       setUsedClothingOrganization('');
       setUsedClothingHasPhone(false);
+    }
+    if (!value.includes('lactation_room')) {
+      setLactationHasOpeningHours(false);
+      setLactationHasPhone(false);
+      setLactationHasMobile(false);
+      setLactationHasLocationGuidance(false);
+      setLactationHasCertification(false);
+      setLactationHasNotes(false);
+      setLactationLegalRequired(false);
+      setLactationBasicEquipment('');
+      setLactationFriendlyService('');
     }
     setNearbyFacilities(null);
   };
@@ -380,6 +447,14 @@ function App() {
       return;
     }
 
+    const distanceCandidates = filteredFacilities.filter(
+      (facility) => facility.locationPrecision !== 'address_only' && !facility.isCoordinateOutlier,
+    );
+    if (distanceCandidates.length === 0) {
+      setError('distance');
+      return;
+    }
+
     if (!navigator.geolocation) {
       setError('location');
       return;
@@ -395,7 +470,7 @@ function App() {
           longitude: position.coords.longitude,
         };
 
-        const nearest = filteredFacilities
+        const nearest = distanceCandidates
           .map((facility) => ({
             ...facility,
             distanceMeters: calculateDistanceMeters(
@@ -453,6 +528,7 @@ function App() {
           <SearchFilters
             district={district}
             districts={districts}
+            placeholder={isLactationOnly ? t.lactationRoomSearchPlaceholder : t.searchPlaceholder}
             searchTerm={searchTerm}
             t={t}
             onDistrictChange={handleDistrictChange}
@@ -530,9 +606,46 @@ function App() {
               }}
             />
           )}
+          {hasFocusedTypes && includesLactationRooms && (
+            <LactationRoomFilters
+              basicEquipmentOptions={lactationBasicEquipmentOptions}
+              friendlyServiceOptions={lactationFriendlyServiceOptions}
+              values={{
+                openingHours: lactationHasOpeningHours,
+                phone: lactationHasPhone,
+                mobile: lactationHasMobile,
+                locationGuidance: lactationHasLocationGuidance,
+                certification: lactationHasCertification,
+                notes: lactationHasNotes,
+                legalRequired: lactationLegalRequired,
+                basicEquipment: lactationBasicEquipment,
+                friendlyService: lactationFriendlyService,
+              }}
+              t={t}
+              onBooleanChange={(name, value) => {
+                if (name === 'openingHours') setLactationHasOpeningHours(value);
+                if (name === 'phone') setLactationHasPhone(value);
+                if (name === 'mobile') setLactationHasMobile(value);
+                if (name === 'locationGuidance') setLactationHasLocationGuidance(value);
+                if (name === 'certification') setLactationHasCertification(value);
+                if (name === 'notes') setLactationHasNotes(value);
+                if (name === 'legalRequired') setLactationLegalRequired(value);
+                setNearbyFacilities(null);
+              }}
+              onBasicEquipmentChange={(value) => {
+                setLactationBasicEquipment(value);
+                setNearbyFacilities(null);
+              }}
+              onFriendlyServiceChange={(value) => {
+                setLactationFriendlyService(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
           <NearbyButton
             disabled={isLoadingFacilities || filteredFacilities.length === 0}
             isLoading={isLocating}
+            label={isLactationOnly ? t.viewLactationRoomsByNearbyDistrict : undefined}
             t={t}
             onClick={handleNearbyClick}
           />
@@ -540,7 +653,16 @@ function App() {
 
         <WarningNotice selectedTypes={selectedTypes} t={t} />
 
-        {error && <p className="status-message error">{error === 'load' ? t.loadError : t.unableToGetLocation}</p>}
+        {error && (
+          <p className="status-message error">
+            {error === 'load'
+              ? t.loadError
+              : error === 'distance'
+                ? t.lactationRoomDistanceUnavailableNotice
+                : t.unableToGetLocation}
+          </p>
+        )}
+        {includesLactationRooms && <p className="status-message">{t.lactationRoomNoCoordinateNotice}</p>}
         {isLoadingFacilities ? (
           <p className="status-message">{t.loading}</p>
         ) : (
@@ -550,6 +672,7 @@ function App() {
                 facilities={deferredMapFacilities}
                 language={language}
                 markerLimitExceeded={markerLimitExceeded}
+                lactationDistrictSummaries={lactationDistrictSummaries}
                 t={t}
                 userLocation={userLocation}
               />

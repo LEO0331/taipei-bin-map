@@ -4,6 +4,7 @@ type SearchFiltersProps = {
   searchTerm: string;
   district: string;
   districts: string[];
+  placeholder?: string;
   t: Translation;
   onSearchChange: (value: string) => void;
   onDistrictChange: (value: string) => void;
@@ -14,17 +15,18 @@ export function SearchFilters({
   district,
   districts,
   t,
+  placeholder = t.searchPlaceholder,
   onSearchChange,
   onDistrictChange,
 }: SearchFiltersProps) {
   return (
     <div className="search-filters">
       <label>
-        <span>{t.searchPlaceholder}</span>
+        <span>{placeholder}</span>
         <input
           type="search"
           inputMode="search"
-          placeholder={t.searchPlaceholder}
+          placeholder={placeholder}
           value={searchTerm}
           onChange={(event) => onSearchChange(event.target.value)}
         />

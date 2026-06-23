@@ -142,10 +142,25 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.phone && <p>{t.phone}: {facility.phone}</p>}
         </>
       )}
+      {facility.type === 'lactation_room' && (
+        <>
+          {facility.openingHours && <p>{t.openingHours}: {facility.openingHours}</p>}
+          {facility.locationGuidance && <p>{t.locationGuidance}: {facility.locationGuidance}</p>}
+          {facility.phone && <p>{t.phone}: {facility.phone}</p>}
+          {facility.extension && <p>{t.extension}: {facility.extension}</p>}
+          {facility.mobile && <p>{t.mobile}: {facility.mobile}</p>}
+          {facility.basicEquipmentRaw && <p>{t.basicEquipment}: {facility.basicEquipmentRaw}</p>}
+          {facility.friendlyEquipmentOrServicesRaw && <p>{t.friendlyEquipmentOrServices}: {facility.friendlyEquipmentOrServicesRaw}</p>}
+          {facility.certificationValidityRaw && <p>{t.certificationValidity}: {facility.certificationValidityRaw}</p>}
+          {facility.wheelchairAccessibilityRaw && <p>{t.wheelchairAccessibility}: {facility.wheelchairAccessibilityRaw}</p>}
+          {facility.notes && <p>{t.notes}: {facility.notes}</p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
       {facility.type === 'used_clothing_recycling_box' && <p>{t.notice}: {t.usedClothingRecyclingNotice}</p>}
+      {facility.type === 'lactation_room' && <p>{t.notice}: {t.lactationRoomNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

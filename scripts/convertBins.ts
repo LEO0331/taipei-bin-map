@@ -8,6 +8,7 @@ import { loadDirectDrinkingStations } from './convertDirectDrinkingStations';
 import { loadDrinkingFountainFacilities } from './convertDrinkingFountains';
 import { loadTimedCollectionPoints } from './convertTimedCollectionPoints';
 import { loadUsedClothingRecyclingBoxes } from './convertUsedClothingRecyclingBoxes';
+import { loadLactationRooms } from './convertLactationRooms';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -132,6 +133,9 @@ const DRINKING_FOUNTAINS_OUTPUT = resolve(options.outputDir, 'drinking-fountains
 const TIMED_COLLECTION_OUTPUT = resolve(options.outputDir, 'timed-collection-points.json');
 const DIRECT_DRINKING_OUTPUT = resolve(options.outputDir, 'direct-drinking-stations.json');
 const USED_CLOTHING_OUTPUT = resolve(options.outputDir, 'used-clothing-recycling-boxes.json');
+const LACTATION_ROOMS_OUTPUT = resolve(options.outputDir, 'lactation-rooms.json');
+const LACTATION_SUMMARY_OUTPUT = resolve(options.outputDir, 'lactation-room-summary.json');
+const LACTATION_LOCATIONS_OUTPUT = resolve(options.outputDir, 'lactation-room-locations.json');
 const REPORT_OUTPUT = resolve(options.outputDir, 'conversion-report.json');
 
 const clean = (value: unknown) => String(value ?? '').trim();
@@ -388,6 +392,7 @@ const drinkingFountains = loadDrinkingFountainFacilities({
 const timedCollectionPoints = loadTimedCollectionPoints();
 const directDrinkingStations = loadDirectDrinkingStations();
 const usedClothingRecyclingBoxes = loadUsedClothingRecyclingBoxes();
+const lactationRooms = loadLactationRooms();
 
 const facilities = [
   ...pedestrian.facilities,
@@ -397,6 +402,7 @@ const facilities = [
   ...timedCollectionPoints.facilities,
   ...directDrinkingStations.facilities,
   ...usedClothingRecyclingBoxes.facilities,
+  ...lactationRooms.facilities,
 ];
 const report: ConversionReport = {
   generatedAt: new Date().toISOString(),
@@ -409,6 +415,7 @@ const report: ConversionReport = {
     timedCollectionPoints.report,
     directDrinkingStations.report,
     usedClothingRecyclingBoxes.report,
+    lactationRooms.report,
   ],
 };
 
@@ -420,6 +427,9 @@ writeJson(DRINKING_FOUNTAINS_OUTPUT, drinkingFountains.facilities);
 writeJson(TIMED_COLLECTION_OUTPUT, timedCollectionPoints.facilities);
 writeJson(DIRECT_DRINKING_OUTPUT, directDrinkingStations.facilities);
 writeJson(USED_CLOTHING_OUTPUT, usedClothingRecyclingBoxes.facilities);
+writeJson(LACTATION_ROOMS_OUTPUT, lactationRooms.facilities);
+writeJson(LACTATION_SUMMARY_OUTPUT, lactationRooms.summary);
+if (!existsSync(LACTATION_LOCATIONS_OUTPUT)) writeJson(LACTATION_LOCATIONS_OUTPUT, []);
 writeJson(FACILITIES_OUTPUT, facilities);
 writeJson(REPORT_OUTPUT, report);
 
@@ -431,4 +441,5 @@ console.log(`Wrote ${drinkingFountains.facilities.length} drinking fountain reco
 console.log(`Wrote ${timedCollectionPoints.facilities.length} timed collection point records to ${TIMED_COLLECTION_OUTPUT}`);
 console.log(`Wrote ${directDrinkingStations.facilities.length} direct drinking station records to ${DIRECT_DRINKING_OUTPUT}`);
 console.log(`Wrote ${usedClothingRecyclingBoxes.facilities.length} used-clothing recycling box records to ${USED_CLOTHING_OUTPUT}`);
+console.log(`Wrote ${lactationRooms.facilities.length} lactation room records to ${LACTATION_ROOMS_OUTPUT}`);
 console.log(`Wrote conversion report to ${REPORT_OUTPUT}`);

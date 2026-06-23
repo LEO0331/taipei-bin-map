@@ -122,6 +122,16 @@ export function FacilityList({
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}
+              {facility.type === 'lactation_room' && (
+                <small>
+                  {[
+                    facility.openingHours ? `${t.openingHours}: ${facility.openingHours}` : '',
+                    facility.locationGuidance ? `${t.locationGuidance}: ${facility.locationGuidance}` : '',
+                    facility.phone ? `${t.phone}: ${facility.phone}` : '',
+                    facility.certificationValidityRaw ? `${t.certificationValidity}: ${facility.certificationValidityRaw}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
               {facility.note && <small>{facility.note}</small>}
               {facility.isCoordinateOutlier && <small className="outlier-warning">{t.coordinateOutlierWarning}</small>}
               <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">

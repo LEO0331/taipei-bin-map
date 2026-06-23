@@ -17,6 +17,8 @@
     "data:convert:direct-drinking": "tsx scripts/convertDirectDrinkingStations.ts",
     "data:fetch:used-clothing": "tsx scripts/fetchUsedClothingRecyclingBoxes.ts",
     "data:convert:used-clothing": "tsx scripts/convertUsedClothingRecyclingBoxes.ts",
+    "data:fetch:lactation-rooms": "tsx scripts/fetchLactationRooms.ts",
+    "data:convert:lactation-rooms": "tsx scripts/convertLactationRooms.ts && tsx scripts/buildLactationRoomSummary.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

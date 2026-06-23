@@ -1,6 +1,6 @@
 # Taipei Public Amenities Map / 台北市公共便利設施地圖
 
-Mobile-first bilingual map for finding public toilets, recycling boxes, garbage bins, dog-waste bag boxes, drinking facilities, and timed collection points in Taipei.
+Mobile-first bilingual map for finding public toilets, recycling facilities, garbage bins, dog-waste bag boxes, drinking facilities, timed collection points, and lactation rooms in Taipei.
 
 The app is static, bilingual, PWA-ready, and requires no backend, login, admin page, database, Google Maps API key, or paid map service.
 
@@ -16,10 +16,12 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Public drinking fountain place-category and opening-hour filters.
 - Timed collection accepted-item/special-note filters and direct drinking station status, city, place-type, maintenance, and photo filters.
 - Used-clothing recycling box village, organization, and phone filters.
+- Family-friendly facilities: lactation rooms, with opening-hour, contact, location-guidance, certification-information, equipment, service, and legal-list filters.
 - Search across district, address, road, location, note, toilet name, toilet category, manager, public drinking fountain place name, install location, and opening hours.
 - Taipei district filter and nearest-facility lookup using browser geolocation.
 - Emoji map markers and legend for each facility type.
 - Marker rendering is capped for large unfiltered result sets to avoid mobile clutter.
+- Lactation rooms are shown as a searchable directory and district-level summary bubbles because the source files do not contain coordinates.
 - Conversion report for dropped rows, missing fields, invalid coordinates, and coordinate outliers.
 - PWA manifest, icons, and service worker caching for repeat visits.
 
@@ -64,6 +66,19 @@ npm run convert:facilities
 
 Fields map from approval ID, district, village, approved location, organization, phone, longitude, and latitude into the shared facility model.
 
+The lactation-room layer uses two Big5/CP950 resources from `臺北市哺集乳室`:
+
+- `台北哺乳室建置資料清單-1141231.csv` is the richer primary source.
+- `臺北市依法設置哺集乳室清單.csv` is cross-referenced by normalized facility name and address.
+
+```bash
+npm run data:fetch:lactation-rooms
+npm run data:convert:lactation-rooms
+npm run convert:facilities
+```
+
+The converter deduplicates matching records, parses semicolon-separated equipment fields, converts ROC certification dates when possible, and reports unmatched or unparseable examples. Since neither source contains coordinates, the app uses district summary bubbles and address-based Google Maps links. Manually verified coordinates may be added later to `public/data/lactation-room-locations.json`; automatic or paid geocoding is not used.
+
 Fetch the raw API JSON, then regenerate the static public data:
 
 ```bash
@@ -102,6 +117,9 @@ public/data/drinking-fountains.json
 public/data/timed-collection-points.json
 public/data/direct-drinking-stations.json
 public/data/used-clothing-recycling-boxes.json
+public/data/lactation-rooms.json
+public/data/lactation-room-summary.json
+public/data/lactation-room-locations.json
 public/data/conversion-report.json
 ```
 
@@ -150,7 +168,7 @@ More detail: [docs/deployment.en.md](docs/deployment.en.md)
 
 ### Data Notice
 
-Pedestrian garbage bins, dog-waste bag boxes, public toilets, drinking facilities, timed collection points, direct drinking stations, and used-clothing recycling boxes are different facility types. Accepted-item flags are conservatively inferred from notes; unknown does not mean unavailable. Listed status, opening hours, accepted items, recycling-box availability, and water-quality information must be verified with on-site and official notices.
+Pedestrian garbage bins, dog-waste bag boxes, public toilets, drinking facilities, recycling facilities, and lactation rooms are different facility types. Lactation-room data includes publicly accessible listings and places appearing in the legal-required list, but it has no coordinates or real-time availability. Listed status, opening hours, equipment, accepted items, and availability must be verified with venue, on-site, managing-unit, or official notices.
 
 ## 中文
 
@@ -164,10 +182,12 @@ Pedestrian garbage bins, dog-waste bag boxes, public toilets, drinking facilitie
 - 支援公共場所飲水機場所類型與開放時間資料篩選。
 - 支援限時收受點收受項目／特殊備註，以及直飲臺狀態、縣市、場所類型、維護資訊與照片篩選。
 - 支援舊衣回收箱里別、設置團體與電話資料篩選。
+- 親子友善設施：哺集乳室，支援開放時間、聯絡方式、位置指引、認證資訊、設備、友善服務與依法設置清單篩選。
 - 搜尋涵蓋行政區、地址、路名、位置、備註、公廁名稱、公廁類別、管理單位、飲水機場所名稱、設置地點與開放時間。
 - 支援台北市行政區篩選與瀏覽器定位找附近設施。
 - 不同設施類型使用 emoji 地圖標記與圖例。
 - 大量未篩選結果不會直接渲染所有地圖標記，避免手機地圖過度擁擠。
+- 哺集乳室來源未提供座標，因此以前端清單與行政區彙總泡泡呈現。
 - 轉換報告會記錄刪除列、缺漏欄位、無效座標與座標疑似異常列。
 - 已具備 PWA manifest、icons 與 service worker，支援重複造訪時的快取。
 
@@ -212,6 +232,19 @@ npm run convert:facilities
 
 欄位會將核准編號、行政區、里別、核准地點、團體名稱、電話與座標映射到共用設施模型。
 
+哺集乳室圖層使用 `臺北市哺集乳室` 的兩份 Big5/CP950 資料：
+
+- `台北哺乳室建置資料清單-1141231.csv` 作為欄位較完整的主要來源。
+- `臺北市依法設置哺集乳室清單.csv` 依正規化後的機構名稱與地址交叉比對。
+
+```bash
+npm run data:fetch:lactation-rooms
+npm run data:convert:lactation-rooms
+npm run convert:facilities
+```
+
+轉換程序會去除重複設施、解析分號分隔設備欄位、轉換民國認證日期，並記錄未配對或無法解析的範例。兩份來源都沒有座標，因此地圖只顯示行政區彙總，Google Maps 連結使用地址查詢。日後可將人工驗證座標加入 `public/data/lactation-room-locations.json`；目前不使用自動或付費地理編碼。
+
 先擷取 API，再重新產生靜態資料：
 
 ```bash
@@ -250,6 +283,9 @@ public/data/drinking-fountains.json
 public/data/timed-collection-points.json
 public/data/direct-drinking-stations.json
 public/data/used-clothing-recycling-boxes.json
+public/data/lactation-rooms.json
+public/data/lactation-room-summary.json
+public/data/lactation-room-locations.json
 public/data/conversion-report.json
 ```
 

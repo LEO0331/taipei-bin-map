@@ -2,8 +2,8 @@
 
 ## Current Objective
 
-- Goal: Maintain the seven-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
-- Current status: feat-016 is implemented and verified.
+- Goal: Maintain the eight-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
+- Current status: feat-017 is implemented and verified.
 - Branch / commit: Working tree has uncommitted app, data, docs, and test changes.
 
 ## Completed
@@ -19,13 +19,15 @@
 - Added village, organization, and phone filters plus search, nearby, marker, legend, list, popup, notice, cache, README, and local CSV scripts.
 - Combined-layer map updates are deferred and capped at 700 markers; all-layer previews use 500 markers. Single-layer limits remain unchanged.
 - Static data is cache-first through the versioned service worker for faster repeat visits.
+- Added 483 lactation rooms from two Big5/CP950 resources, with normalized deduplication and legal-required-list cross-reference.
+- Added lactation directory filters, district summary bubbles, address-based Google Maps links, bilingual notices, summary JSON, and an optional verified-coordinate cache.
 
 ## Verification
 
 | Check | Result |
 |---|---|
-| `npm run convert:bins` | 5,347 total facilities |
-| `npm test` | 24 tests passed |
+| `npm run convert:bins` | 5,830 total facilities |
+| `npm test` | 29 tests passed |
 | `npm run build` | Passed |
 | `npm run test:e2e` | 26 desktop/mobile tests passed |
 | `./init.sh` | Passed |
@@ -36,6 +38,7 @@
 - No dashboard charts: the app has no chart dashboard surface.
 - No extra nearby shortcut buttons: the existing nearby action already respects selected layers.
 - No frontend Taipei Open Data calls: all runtime data remains static local JSON.
+- No automatic geocoding: lactation rooms remain address-only unless manually verified coordinates are supplied.
 
 ## Risks
 
@@ -43,3 +46,4 @@
 - Used-clothing data has 29 coordinate outliers; the app lists them but does not render their markers.
 - Timed collection accepted-item flags are based only on explicit note text.
 - Existing Vite/esbuild moderate development-server advisory remains pending a breaking toolchain upgrade.
+- Lactation-room source files have no coordinates, so exact nearby sorting is intentionally unavailable for those records.

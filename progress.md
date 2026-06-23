@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-22 13:50 Asia/Taipei  
+**Last Updated:** 2026-06-23 Asia/Taipei
 **Active Feature:** None
 
 ## Status
@@ -21,14 +21,16 @@
 - [x] Added local Big5/CP950 fetch/copy scripts, raw source metadata, individual JSON outputs, combined conversion, map/list/popups, notices, cache entries, README, and tests.
 - [x] Added 1,184 approved used-clothing recycling boxes with village, organization, phone, search, nearby, map/list/popup, notice, cache, and local CSV workflow support.
 - [x] Improved combined-layer responsiveness with deferred map updates, 700-marker combined previews, 500-marker all-layer previews, and cache-first static data.
+- [x] Added 483 lactation rooms from two Big5/CP950 resources with deduplication and legal-list cross-reference.
+- [x] Added lactation search, filters, directory details, district summary bubbles, address-based Google Maps links, notices, PWA cache entries, and optional verified-coordinate cache support.
 
 ### What's In Progress
 
-- [x] No active feature work remains for feat-016.
+- [x] No active feature work remains for feat-017.
 
 ### What's Next
 
-1. Review and commit the six-layer public amenities expansion.
+1. Review and commit the eight-layer public amenities expansion.
 2. Refresh source CSVs before publishing when newer snapshots are available.
 
 ## Blockers / Risks
@@ -40,6 +42,8 @@
 - [ ] Direct drinking station status and sampling dates are listed-data snapshots, not real-time guarantees.
 - [ ] Used-clothing box coordinates include 29 outliers; they remain listed and are excluded from map rendering.
 - [ ] Used-clothing box availability and accepted-item rules are not real-time.
+- [ ] Lactation-room sources contain no coordinates; exact nearby sorting remains unavailable until coordinates are manually verified.
+- [ ] Lactation-room opening hours, equipment, availability, and venue rules are not real-time.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -48,6 +52,7 @@
 - **Keep API access out of the frontend**: The app loads static JSON only; Taipei Open Data access is handled by `scripts/fetchDrinkingFountains.ts`.
 - **Keep drinking fountains scoped to public-place equipment**: Labels avoid implying complete coverage of every outdoor direct-drinking station in Taipei.
 - **Do not add dashboard charts**: The app has no existing dashboard surface.
+- **Do not geocode lactation rooms automatically**: Address-only records use district summaries and address-based Google Maps links until verified coordinates are added.
 - **Skip optional nearby shortcut buttons**: The existing nearby button already respects selected facility layers.
 
 ## Files Modified This Session
@@ -93,7 +98,9 @@
 - [x] `npm run build` passed.
 - [x] `npm run test:e2e` and `./init.sh` passed 26 desktop/mobile Playwright tests.
 - [x] Repeat visits now read static facility JSON from the service-worker cache while deployments refresh it through the versioned cache.
+- [x] `npm run convert:bins` generated 5,830 facilities, including 483 lactation rooms across all 12 Taipei districts.
+- [x] Lactation conversion cross-referenced all current records with the legal-required list and parsed all provided certification dates.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The seven-layer public amenities expansion is implemented and verified.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The eight-layer public amenities expansion is implemented and verified.

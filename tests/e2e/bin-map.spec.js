@@ -30,9 +30,11 @@ const usedClothingFacilities = facilities.filter(
 );
 const usedClothingCount = usedClothingFacilities.length.toString();
 const usedClothingSample = usedClothingFacilities[0];
+const lactationRooms = facilities.filter((facility) => facility.type === 'lactation_room');
+const lactationRoomCount = lactationRooms.length.toString();
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all seven local datasets and avoids default marker clutter', async ({ page }) => {
+  test('loads all eight local datasets and avoids default marker clutter', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -45,6 +47,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('限時收受點');
     await expect(page.getByLabel('地圖圖例')).toContainText('直飲臺');
     await expect(page.getByLabel('地圖圖例')).toContainText('舊衣回收箱');
+    await expect(page.getByLabel('地圖圖例')).toContainText('哺集乳室');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-list li')).toHaveCount(80);
@@ -64,6 +67,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByRole('button', { name: 'Timed Collection Points' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Direct Drinking Stations' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Used Clothing Recycling Boxes' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Lactation Rooms' })).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {
@@ -154,6 +158,29 @@ test.describe('Taipei public amenities map public flows', () => {
 
     await expect(page.locator('.facility-list li').first()).toContainText(usedClothingSample.organizationName);
     await expect(page.locator('.facility-list li').first()).toContainText(usedClothingSample.village);
+  });
+
+  test('shows and filters coordinate-free lactation room records', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '哺集乳室' }).click();
+    await expect(page.getByText(`${lactationRoomCount} 筆資料`)).toBeVisible();
+    await expect(page.getByText('哺集乳室資料未提供經緯度')).toBeVisible();
+    await page.getByLabel('有位置指引').check();
+
+    await expect(page.locator('.facility-list li').first()).toContainText('哺集乳室');
+    await expect(page.locator('.facility-list li').first()).toContainText('位置指引');
+    await expect(page.locator('.facility-list li').first()).not.toContainText('此筆座標可能有誤');
+    await expect(page.locator('.leaflet-map canvas')).toBeVisible();
+  });
+
+  test('explains why exact nearby distance is unavailable for lactation rooms', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '哺集乳室' }).click();
+    await page.getByRole('button', { name: '查看附近行政區哺集乳室' }).click();
+
+    await expect(page.getByText('哺集乳室資料未提供經緯度，目前無法計算精確距離。')).toBeVisible();
   });
 
   test('searches dog road/location fields and shows coordinate warnings', async ({ page }) => {

@@ -14,6 +14,7 @@ const noticeTypes: FacilityType[] = [
   'timed_collection_point',
   'direct_drinking_station',
   'used_clothing_recycling_box',
+  'lactation_room',
 ];
 
 export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
@@ -46,6 +47,10 @@ export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
     used_clothing_recycling_box: {
       label: t.usedClothingRecyclingBoxes,
       notice: t.usedClothingRecyclingNotice,
+    },
+    lactation_room: {
+      label: t.lactationRooms,
+      notice: t.lactationRoomNotice,
     },
   } satisfies Record<FacilityType, { label: string; notice: string }>;
 

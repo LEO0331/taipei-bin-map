@@ -9,6 +9,11 @@ import {
   parseTimedCollectionCapabilities,
 } from './convertTimedCollectionPoints';
 import { convertUsedClothingRows } from './convertUsedClothingRecyclingBoxes';
+import {
+  convertLactationRows,
+  normalizeDistrictCode,
+  parseRocChineseDate,
+} from './convertLactationRooms';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -68,6 +73,58 @@ describe('new facility converters', () => {
       district: '大安區',
       village: '德安',
       organizationName: '測試協會',
+    });
+  });
+
+  it('normalizes lactation room district codes and ROC dates', () => {
+    expect(normalizeDistrictCode('63000030.0')).toBe('63000030');
+    expect(parseRocChineseDate('114年12月31日')).toBe('2025-12-31');
+  });
+
+  it('deduplicates lactation rooms, parses equipment, and cross-references the legal list', () => {
+    const primary = {
+      行政區: '63000030.0',
+      機構名稱: '測試哺集乳室',
+      地址: '臺北市大安區測試路1號',
+      開放時間: '09:00-18:00',
+      基本設備: '尿布台;洗手台',
+      友善設備或服務: '熱水',
+      優良哺集乳室認證效期: '114年12月31日',
+    };
+    const converted = convertLactationRows(
+      [primary, primary],
+      [{ 機關名稱: '測試哺集乳室', 地址: '台北市大安區測試路1號' }],
+    );
+
+    expect(converted.facilities).toHaveLength(1);
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'lactation_room',
+      district: '大安區',
+      locationPrecision: 'address_only',
+      basicEquipment: ['尿布台', '洗手台'],
+      certificationValidUntil: '2025-12-31',
+      appearsInLegalRequiredList: true,
+    });
+    expect(converted.report.coordinateOutlierRows).toBe(0);
+  });
+
+  it('uses only manually verified lactation-room coordinates for exact markers', () => {
+    const converted = convertLactationRows(
+      [{ 行政區: '63000030', 機構名稱: '測試哺集乳室', 地址: '臺北市大安區測試路1號' }],
+      [],
+      [{
+        normalizedName: '測試哺集乳室',
+        normalizedAddress: '台北市大安區測試路1號',
+        latitude: 25.03,
+        longitude: 121.54,
+        sourceNote: 'Manual verification',
+      }],
+    );
+
+    expect(converted.facilities[0]).toMatchObject({
+      latitude: 25.03,
+      longitude: 121.54,
+      locationPrecision: 'exact',
     });
   });
 });

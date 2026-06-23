@@ -114,6 +114,28 @@ const facilities: Facility[] = [
     organizationName: '台北市自閉症家長協會',
     phone: '(02)25953937',
   },
+  {
+    id: 'lactation_room-0001',
+    type: 'lactation_room',
+    district: '大安區',
+    address: '臺北市大安區仁愛路四段1號',
+    longitude: 0,
+    latitude: 0,
+    note: '請洽服務台',
+    source: '臺北市哺集乳室',
+    locationPrecision: 'address_only',
+    name: '測試哺集乳室',
+    facilityName: '測試哺集乳室',
+    openingHours: '09:00-18:00',
+    phone: '02-12345678',
+    locationGuidance: '一樓服務台旁',
+    basicEquipment: ['尿布台', '洗手台'],
+    basicEquipmentRaw: '尿布台;洗手台',
+    friendlyEquipmentOrServices: ['熱水'],
+    friendlyEquipmentOrServicesRaw: '熱水',
+    certificationValidityRaw: '114年12月31日',
+    appearsInLegalRequiredList: true,
+  },
 ];
 
 describe('calculateDistanceMeters', () => {
@@ -272,6 +294,24 @@ describe('filterFacilities', () => {
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('used_clothing_recycling_box_0001');
   });
+
+  it('filters and searches lactation room service fields', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '服務台旁',
+      district: '大安區',
+      facilityTypes: ['lactation_room'],
+      lactationHasOpeningHours: true,
+      lactationHasPhone: true,
+      lactationHasLocationGuidance: true,
+      lactationHasCertification: true,
+      lactationLegalRequired: true,
+      lactationBasicEquipment: '尿布台',
+      lactationFriendlyService: '熱水',
+    });
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('lactation_room-0001');
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -283,6 +323,7 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('timed_collection_point', 'en')).toBe('Timed Collection Point');
     expect(getFacilityTypeLabel('direct_drinking_station', 'zh')).toBe('直飲臺');
     expect(getFacilityTypeLabel('used_clothing_recycling_box', 'en')).toBe('Used Clothing Recycling Box');
+    expect(getFacilityTypeLabel('lactation_room', 'en')).toBe('Lactation Room');
   });
 });
 
@@ -310,6 +351,12 @@ describe('getFacilityGoogleMapsUrl', () => {
   it('builds a Google Maps query URL from facility coordinates', () => {
     expect(getFacilityGoogleMapsUrl(facilities[0])).toBe(
       'https://www.google.com/maps/search/?api=1&query=25.0463,121.5168',
+    );
+  });
+
+  it('builds an address-based Google Maps URL for coordinate-free facilities', () => {
+    expect(getFacilityGoogleMapsUrl(facilities.at(-1)!)).toBe(
+      'https://www.google.com/maps/search/?api=1&query=%E8%87%BA%E5%8C%97%E5%B8%82%E5%A4%A7%E5%AE%89%E5%8D%80%E4%BB%81%E6%84%9B%E8%B7%AF%E5%9B%9B%E6%AE%B51%E8%99%9F',
     );
   });
 });

@@ -7,7 +7,10 @@ export type FacilityType =
   | 'drinking_fountain'
   | 'timed_collection_point'
   | 'direct_drinking_station'
-  | 'used_clothing_recycling_box';
+  | 'used_clothing_recycling_box'
+  | 'lactation_room';
+
+export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 
 export type DrinkingFountainPlaceCategory =
   | 'sports_center'
@@ -38,6 +41,8 @@ export type Facility = {
   latitude: number;
   note: string;
   source: string;
+  primarySourceName?: string;
+  secondarySourceName?: string;
   isCoordinateOutlier?: boolean;
   name?: string;
   manager?: string;
@@ -75,6 +80,52 @@ export type Facility = {
   village?: string;
   approvedLocation?: string;
   organizationName?: string;
+  districtCode?: string;
+  locationPrecision?: LocationPrecision;
+  facilityName?: string;
+  extension?: string;
+  mobile?: string;
+  locationGuidance?: string;
+  basicEquipment?: string[];
+  basicEquipmentRaw?: string;
+  friendlyEquipmentOrServices?: string[];
+  friendlyEquipmentOrServicesRaw?: string;
+  certificationValidityRaw?: string;
+  certificationValidUntil?: string;
+  wheelchairAccessibilityRaw?: string;
+  notes?: string;
+  appearsInLegalRequiredList?: boolean;
+};
+
+export type LactationRoomLocation = {
+  normalizedName: string;
+  normalizedAddress: string;
+  latitude: number;
+  longitude: number;
+  sourceNote: string;
+  verifiedAt?: string;
+};
+
+export type LactationRoomSummary = {
+  totalRecords: number;
+  uniqueFacilityCount: number;
+  districtCount: number;
+  recordsWithOpeningHours: number;
+  recordsWithPhone: number;
+  recordsWithMobile: number;
+  recordsWithLocationGuidance: number;
+  recordsWithCertificationValidity: number;
+  recordsWithNotes: number;
+  recordsAppearingInLegalRequiredList: number;
+  byDistrict: Array<{
+    district: string;
+    count: number;
+    withOpeningHours: number;
+    withCertificationValidity: number;
+    withLocationGuidance: number;
+  }>;
+  byBasicEquipment: Array<{ equipment: string; count: number }>;
+  byFriendlyEquipmentOrService: Array<{ service: string; count: number }>;
 };
 
 export type FacilityWithDistance = Facility & {
@@ -96,6 +147,8 @@ export type ConversionSourceReport = {
     rowNumber: number;
     fields: string[];
   }>;
+  unmatchedSecondaryRows?: Array<{ rowNumber: number; name?: string; address?: string }>;
+  failedCertificationDates?: Array<{ rowNumber: number; value: string }>;
 };
 
 export type ConversionReport = {

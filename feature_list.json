@@ -127,6 +127,14 @@
       "dependencies": ["feat-015"],
       "status": "done",
       "evidence": "npm run convert:bins generated 5347 facilities, including 1184 used-clothing recycling boxes and 29 coordinate outliers. ./init.sh passed 24 unit/converter tests, production build, and 26 desktop/mobile Playwright tests on 2026-06-22."
+    },
+    {
+      "id": "feat-017",
+      "name": "Lactation room family-friendly expansion",
+      "description": "Add Taipei lactation rooms from two Big5/CP950 resources with deduplication, legal-list cross-reference, district summaries, directory filters, address-based map links, optional verified coordinates, cache support, and bilingual notices.",
+      "dependencies": ["feat-016"],
+      "status": "done",
+      "evidence": "npm run convert:bins generated 5830 facilities, including 483 lactation rooms across all 12 districts. Verification completed with 29 unit/converter tests, production build, and 30 desktop/mobile Playwright tests."
     }
   ]
 }
