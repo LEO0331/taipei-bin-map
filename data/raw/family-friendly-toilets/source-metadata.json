@@ -1,0 +1,8 @@
+{
+  "sourceUrl": "https://data.taipei/dataset/detail?id=9d7488f5-0f19-45c3-adf9-badf686dda18",
+  "fetchedAt": "2026-06-23T05:39:00.783Z",
+  "filename": "臺北市親子友善廁所點位資訊.csv",
+  "fileSize": 54663,
+  "encoding": "Big5/CP950",
+  "notes": "Copied from local uploaded CSV; use --input and --force to replace it."
+}

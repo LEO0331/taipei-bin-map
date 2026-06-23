@@ -32,9 +32,13 @@ const usedClothingCount = usedClothingFacilities.length.toString();
 const usedClothingSample = usedClothingFacilities[0];
 const lactationRooms = facilities.filter((facility) => facility.type === 'lactation_room');
 const lactationRoomCount = lactationRooms.length.toString();
+const riversideToilets = facilities.filter((facility) => facility.type === 'riverside_toilet');
+const familyFriendlyToilets = facilities.filter((facility) => facility.type === 'family_friendly_toilet');
+const riversideToiletCount = riversideToilets.length.toString();
+const familyFriendlyToiletCount = familyFriendlyToilets.length.toString();
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all eight local datasets and avoids default marker clutter', async ({ page }) => {
+  test('loads all ten local datasets and avoids default marker clutter', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -48,6 +52,8 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('直飲臺');
     await expect(page.getByLabel('地圖圖例')).toContainText('舊衣回收箱');
     await expect(page.getByLabel('地圖圖例')).toContainText('哺集乳室');
+    await expect(page.getByLabel('地圖圖例')).toContainText('河濱廁所');
+    await expect(page.getByLabel('地圖圖例')).toContainText('親子友善廁所');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-list li')).toHaveCount(80);
@@ -68,6 +74,8 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByRole('button', { name: 'Direct Drinking Stations' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Used Clothing Recycling Boxes' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Lactation Rooms' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Riverside Toilets' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Family-Friendly Toilets' })).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {
@@ -93,6 +101,37 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.facility-list li').first()).toContainText('公廁');
     await expect(page.locator('.facility-list li').first()).toContainText('交通');
     await expect(page.locator('.facility-list li').first()).toContainText('親子廁座數');
+  });
+
+  test('filters riverside toilets and supports nearby sorting', async ({ page, context }) => {
+    await context.grantPermissions(['geolocation']);
+    await context.setGeolocation({ latitude: 25.0746, longitude: 121.5359 });
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '河濱廁所' }).click();
+    await expect(page.getByText(`${riversideToiletCount} 筆資料`)).toBeVisible();
+    await page.getByRole('combobox', { name: '河濱公園', exact: true }).selectOption('大佳河濱公園');
+    await page.getByRole('combobox', { name: '廁所類型', exact: true }).selectOption('scenic');
+    await page.getByRole('button', { name: '顯示附近河濱廁所' }).click();
+
+    await expect(page.getByRole('heading', { name: '最近的設施' })).toBeVisible();
+    await expect(page.locator('.facility-list li').first()).toContainText('河濱廁所');
+    await expect(page.locator('.facility-list li').first()).toContainText('大佳河濱公園');
+    await expect(page.locator('.distance').first()).toContainText(/公尺|公里/);
+  });
+
+  test('filters family-friendly toilets by equipment and award fields', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '親子友善廁所' }).click();
+    await expect(page.getByText(`${familyFriendlyToiletCount} 筆資料`)).toBeVisible();
+    await page.getByLabel('有尿布臺').check();
+    await page.getByLabel('有兒童座椅').check();
+    await page.getByLabel('親子友善評鑑獲獎').check();
+
+    await expect(page.locator('.facility-list li').first()).toContainText('親子友善廁所');
+    await expect(page.locator('.facility-list li').first()).toContainText('尿布臺設置數量');
+    await expect(page.locator('.facility-list li').first()).toContainText('兒童座椅設置數量');
   });
 
   test('searches public toilet name, manager, and address fields', async ({ page }) => {

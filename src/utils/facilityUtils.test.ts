@@ -136,6 +136,43 @@ const facilities: Facility[] = [
     certificationValidityRaw: '114年12月31日',
     appearsInLegalRequiredList: true,
   },
+  {
+    id: 'riverside_toilet-0001',
+    type: 'riverside_toilet',
+    district: '中山區',
+    address: '大佳河濱公園 兒童遊戲區',
+    longitude: 121.535869,
+    latitude: 25.074578,
+    note: '景觀廁所',
+    source: '臺北市河濱廁所',
+    riversidePark: '大佳河濱公園',
+    locationDescription: '兒童遊戲區',
+    riversideToiletTypeRaw: '景觀',
+    riversideToiletType: 'scenic',
+    remark: '景觀廁所',
+    coordinateStatus: 'valid',
+  },
+  {
+    id: 'family_friendly_toilet-0001',
+    type: 'family_friendly_toilet',
+    district: '士林區',
+    address: '臺北市士林區中山北路五段65號',
+    longitude: 121.525078,
+    latitude: 25.084873,
+    note: '',
+    source: '臺北市親子友善廁所點位資訊',
+    name: '捷運劍潭站親子廁所',
+    toiletName: '捷運劍潭站親子廁所',
+    toiletId: 'A147',
+    toiletCategory: '交通',
+    toiletLocation: '北側親子',
+    toiletGrade: '特優級(分)',
+    manager: '捷運劍潭站',
+    diaperTableCount: 1,
+    childSeatCount: 1,
+    hasFamilyFriendlyAward: true,
+    coordinateStatus: 'valid',
+  },
 ];
 
 describe('calculateDistanceMeters', () => {
@@ -312,6 +349,33 @@ describe('filterFacilities', () => {
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('lactation_room-0001');
   });
+
+  it('filters riverside toilets by park, type, remark, and search', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '兒童遊戲區',
+      district: '中山區',
+      facilityTypes: ['riverside_toilet'],
+      riversidePark: '大佳河濱公園',
+      riversideToiletType: 'scenic',
+      riversideHasRemark: true,
+    });
+    expect(result.map((item) => item.id)).toEqual(['riverside_toilet-0001']);
+  });
+
+  it('filters family-friendly toilets by equipment, category, grade, award, and manager', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: 'A147',
+      district: '士林區',
+      facilityTypes: ['family_friendly_toilet'],
+      familyToiletCategory: '交通',
+      familyToiletGrade: '特優級(分)',
+      familyManager: '捷運劍潭站',
+      familyHasDiaperTable: true,
+      familyHasChildSeat: true,
+      familyHasAward: true,
+    });
+    expect(result.map((item) => item.id)).toEqual(['family_friendly_toilet-0001']);
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -319,6 +383,8 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('pedestrian_bin', 'zh')).toBe('行人專用清潔箱');
     expect(getFacilityTypeLabel('dog_waste_bag_box', 'en')).toBe('Dog Waste Bag Box');
     expect(getFacilityTypeLabel('public_toilet', 'en')).toBe('Public Toilet');
+    expect(getFacilityTypeLabel('riverside_toilet', 'en')).toBe('Riverside Toilet');
+    expect(getFacilityTypeLabel('family_friendly_toilet', 'zh')).toBe('親子友善廁所');
     expect(getFacilityTypeLabel('drinking_fountain', 'en')).toBe('Public Drinking Fountain');
     expect(getFacilityTypeLabel('timed_collection_point', 'en')).toBe('Timed Collection Point');
     expect(getFacilityTypeLabel('direct_drinking_station', 'zh')).toBe('直飲臺');
@@ -355,7 +421,7 @@ describe('getFacilityGoogleMapsUrl', () => {
   });
 
   it('builds an address-based Google Maps URL for coordinate-free facilities', () => {
-    expect(getFacilityGoogleMapsUrl(facilities.at(-1)!)).toBe(
+    expect(getFacilityGoogleMapsUrl(facilities.find((item) => item.type === 'lactation_room')!)).toBe(
       'https://www.google.com/maps/search/?api=1&query=%E8%87%BA%E5%8C%97%E5%B8%82%E5%A4%A7%E5%AE%89%E5%8D%80%E4%BB%81%E6%84%9B%E8%B7%AF%E5%9B%9B%E6%AE%B51%E8%99%9F',
     );
   });

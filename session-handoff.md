@@ -2,8 +2,8 @@
 
 ## Current Objective
 
-- Goal: Maintain the eight-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
-- Current status: feat-017 is implemented and verified.
+- Goal: Maintain the ten-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
+- Current status: feat-018 is implemented and verified.
 - Branch / commit: Working tree has uncommitted app, data, docs, and test changes.
 
 ## Completed
@@ -21,15 +21,17 @@
 - Static data is cache-first through the versioned service worker for faster repeat visits.
 - Added 483 lactation rooms from two Big5/CP950 resources, with normalized deduplication and legal-required-list cross-reference.
 - Added lactation directory filters, district summary bubbles, address-based Google Maps links, bilingual notices, summary JSON, and an optional verified-coordinate cache.
+- Added 334 riverside toilets and 393 family-friendly toilets with valid coordinates, filters, nearby lookup, map/list/popup details, summary JSON, and PWA caching.
+- Soft-matched all current family-friendly toilet records to general public-toilet records without merging the specialized layer.
 
 ## Verification
 
 | Check | Result |
 |---|---|
-| `npm run convert:bins` | 5,830 total facilities |
-| `npm test` | 29 tests passed |
+| `npm run convert:bins` | 6,557 total facilities |
+| `npm test` | 33 tests passed |
 | `npm run build` | Passed |
-| `npm run test:e2e` | 26 desktop/mobile tests passed |
+| `npm run test:e2e` | 34 desktop/mobile tests passed |
 | `./init.sh` | Passed |
 | Responsive smoke | No horizontal overflow at 390px or 1440px |
 
@@ -47,3 +49,4 @@
 - Timed collection accepted-item flags are based only on explicit note text.
 - Existing Vite/esbuild moderate development-server advisory remains pending a breaking toolchain upgrade.
 - Lactation-room source files have no coordinates, so exact nearby sorting is intentionally unavailable for those records.
+- New toilet datasets are snapshots and do not guarantee cleanliness, maintenance, opening status, or equipment availability.

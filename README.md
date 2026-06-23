@@ -1,6 +1,6 @@
 # Taipei Public Amenities Map / 台北市公共便利設施地圖
 
-Mobile-first bilingual map for finding public toilets, recycling facilities, garbage bins, dog-waste bag boxes, drinking facilities, timed collection points, and lactation rooms in Taipei.
+Mobile-first bilingual map for finding public toilets, riverside toilets, family-friendly toilets, recycling facilities, drinking facilities, and other Taipei public amenities.
 
 The app is static, bilingual, PWA-ready, and requires no backend, login, admin page, database, Google Maps API key, or paid map service.
 
@@ -11,7 +11,8 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Traditional Chinese UI by default, with English toggle persisted in `localStorage`.
 - Leaflet + OpenStreetMap map, no Google Maps API key required.
 - Local static amenity data loaded from `public/data/facilities.json`.
-- Facility type filter for pedestrian garbage bins, dog-waste bag boxes, public toilets, public-place drinking fountains, timed collection points, direct drinking stations, and used-clothing recycling boxes.
+- Facility type filter for pedestrian garbage bins, dog-waste bag boxes, public toilets, riverside toilets, family-friendly toilets, drinking facilities, timed collection points, used-clothing recycling boxes, and lactation rooms.
+- Toilet layers: public toilets, riverside toilets, and family-friendly toilets.
 - Public toilet category, accessible-toilet, and parent-child-toilet filters.
 - Public drinking fountain place-category and opening-hour filters.
 - Timed collection accepted-item/special-note filters and direct drinking station status, city, place-type, maintenance, and photo filters.
@@ -79,6 +80,19 @@ npm run convert:facilities
 
 The converter deduplicates matching records, parses semicolon-separated equipment fields, converts ROC certification dates when possible, and reports unmatched or unparseable examples. Since neither source contains coordinates, the app uses district summary bubbles and address-based Google Maps links. Manually verified coordinates may be added later to `public/data/lactation-room-locations.json`; automatic or paid geocoding is not used.
 
+Two additional Big5/CP950 toilet layers use local CSV snapshots:
+
+- `115年度河濱公廁點位(含景觀)0209.csv`: WGS84 map coordinates, TWD97 reference fields, riverside park, location, type, and remarks.
+- `臺北市親子友善廁所點位資訊.csv`: toilet identity, category, grade, manager, diaper-table count, child-seat count, and award field.
+
+```bash
+npm run data:fetch:riverside-toilets
+npm run data:fetch:family-friendly-toilets
+npm run convert:facilities
+```
+
+Family-friendly records are kept as a specialized layer and softly cross-referenced to general public toilets by normalized name and address. Blank award fields are preserved as “not listed,” not interpreted as poor quality.
+
 Fetch the raw API JSON, then regenerate the static public data:
 
 ```bash
@@ -113,6 +127,11 @@ public/data/facilities.json
 public/data/pedestrian-bins.json
 public/data/dog-waste-bag-boxes.json
 public/data/public-toilets.json
+public/data/riverside-toilets.json
+public/data/riverside-toilet-summary.json
+public/data/family-friendly-toilets.json
+public/data/family-friendly-toilet-summary.json
+public/data/toilet-summary.json
 public/data/drinking-fountains.json
 public/data/timed-collection-points.json
 public/data/direct-drinking-stations.json
@@ -168,7 +187,7 @@ More detail: [docs/deployment.en.md](docs/deployment.en.md)
 
 ### Data Notice
 
-Pedestrian garbage bins, dog-waste bag boxes, public toilets, drinking facilities, recycling facilities, and lactation rooms are different facility types. Lactation-room data includes publicly accessible listings and places appearing in the legal-required list, but it has no coordinates or real-time availability. Listed status, opening hours, equipment, accepted items, and availability must be verified with venue, on-site, managing-unit, or official notices.
+Public toilets, riverside toilets, and family-friendly toilets remain separate source-specific layers. Equipment counts, award fields, cleanliness, maintenance, opening status, and availability are public-data snapshots rather than real-time guarantees. Verify details with official, venue, managing-unit, or on-site notices.
 
 ## 中文
 
@@ -177,7 +196,8 @@ Pedestrian garbage bins, dog-waste bag boxes, public toilets, drinking facilitie
 - 預設使用繁體中文介面，並提供 English 切換；語言選擇會存在 `localStorage`。
 - 使用 Leaflet + OpenStreetMap，不需要 Google Maps API key。
 - 從 `public/data/facilities.json` 載入本機靜態便利設施資料。
-- 支援行人專用清潔箱、狗便袋箱、公廁、公共場所飲水機、限時收受點、直飲臺與舊衣回收箱的設施類型篩選。
+- 支援行人專用清潔箱、狗便袋箱、公廁、河濱廁所、親子友善廁所、飲水設施、限時收受點、舊衣回收箱與哺集乳室的設施類型篩選。
+- 公廁圖層包含一般公廁、河濱廁所與親子友善廁所。
 - 支援公廁類別、無障礙廁所、親子廁所篩選。
 - 支援公共場所飲水機場所類型與開放時間資料篩選。
 - 支援限時收受點收受項目／特殊備註，以及直飲臺狀態、縣市、場所類型、維護資訊與照片篩選。
@@ -245,6 +265,19 @@ npm run convert:facilities
 
 轉換程序會去除重複設施、解析分號分隔設備欄位、轉換民國認證日期，並記錄未配對或無法解析的範例。兩份來源都沒有座標，因此地圖只顯示行政區彙總，Google Maps 連結使用地址查詢。日後可將人工驗證座標加入 `public/data/lactation-room-locations.json`；目前不使用自動或付費地理編碼。
 
+另外兩個 Big5/CP950 公廁圖層使用本機 CSV 快照：
+
+- `115年度河濱公廁點位(含景觀)0209.csv`：包含 WGS84 地圖座標、TWD97 參考座標、河濱公園、位置、類型與備註。
+- `臺北市親子友善廁所點位資訊.csv`：包含公廁識別、類別、等級、管理單位、尿布臺、兒童座椅與評鑑獲獎欄位。
+
+```bash
+npm run data:fetch:riverside-toilets
+npm run data:fetch:family-friendly-toilets
+npm run convert:facilities
+```
+
+親子友善廁所會保留為獨立專門圖層，並依正規化名稱與地址與一般公廁進行柔性比對。評鑑欄位空白只表示資料未列值，不代表品質不佳。
+
 先擷取 API，再重新產生靜態資料：
 
 ```bash
@@ -279,6 +312,11 @@ public/data/facilities.json
 public/data/pedestrian-bins.json
 public/data/dog-waste-bag-boxes.json
 public/data/public-toilets.json
+public/data/riverside-toilets.json
+public/data/riverside-toilet-summary.json
+public/data/family-friendly-toilets.json
+public/data/family-friendly-toilet-summary.json
+public/data/toilet-summary.json
 public/data/drinking-fountains.json
 public/data/timed-collection-points.json
 public/data/direct-drinking-stations.json

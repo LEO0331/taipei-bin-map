@@ -10,6 +10,8 @@ const noticeTypes: FacilityType[] = [
   'pedestrian_bin',
   'dog_waste_bag_box',
   'public_toilet',
+  'riverside_toilet',
+  'family_friendly_toilet',
   'drinking_fountain',
   'timed_collection_point',
   'direct_drinking_station',
@@ -31,6 +33,14 @@ export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
     public_toilet: {
       label: t.publicToilets,
       notice: t.publicToiletNotice,
+    },
+    riverside_toilet: {
+      label: t.riversideToilets,
+      notice: t.riversideToiletDataNote,
+    },
+    family_friendly_toilet: {
+      label: t.familyFriendlyToilets,
+      notice: t.familyFriendlyToiletDataNote,
     },
     drinking_fountain: {
       label: t.drinkingFountains,

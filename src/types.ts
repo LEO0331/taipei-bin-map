@@ -4,6 +4,8 @@ export type FacilityType =
   | 'pedestrian_bin'
   | 'dog_waste_bag_box'
   | 'public_toilet'
+  | 'riverside_toilet'
+  | 'family_friendly_toilet'
   | 'drinking_fountain'
   | 'timed_collection_point'
   | 'direct_drinking_station'
@@ -11,6 +13,8 @@ export type FacilityType =
   | 'lactation_room';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
+export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
+export type RiversideToiletType = 'scenic' | 'standard' | 'accessible' | 'fixed' | 'other' | 'unknown';
 
 export type DrinkingFountainPlaceCategory =
   | 'sports_center'
@@ -44,6 +48,7 @@ export type Facility = {
   primarySourceName?: string;
   secondarySourceName?: string;
   isCoordinateOutlier?: boolean;
+  coordinateStatus?: CoordinateStatus;
   name?: string;
   manager?: string;
   phone?: string;
@@ -95,6 +100,65 @@ export type Facility = {
   wheelchairAccessibilityRaw?: string;
   notes?: string;
   appearsInLegalRequiredList?: boolean;
+  sourceId?: string;
+  riversidePark?: string;
+  locationDescription?: string;
+  riversideToiletTypeRaw?: string;
+  riversideToiletType?: RiversideToiletType;
+  remark?: string;
+  longitudeTwd97?: number;
+  latitudeTwd97?: number;
+  toiletId?: string;
+  toiletCategory?: string;
+  toiletName?: string;
+  toiletLocation?: string;
+  toiletGrade?: string;
+  diaperTableCount?: number;
+  childSeatCount?: number;
+  familyFriendlyAwardRaw?: string;
+  hasFamilyFriendlyAward?: boolean;
+  matchedPublicToiletId?: string;
+};
+
+export type RiversideToiletSummary = {
+  totalRecords: number;
+  validCoordinateCount: number;
+  districtCount: number;
+  riversideParkCount: number;
+  byDistrict: Array<{ district: string; count: number }>;
+  byRiversidePark: Array<{ riversidePark: string; count: number }>;
+  byType: Array<{ riversideToiletType: RiversideToiletType; riversideToiletTypeRaw?: string; count: number }>;
+};
+
+export type FamilyFriendlyToiletSummary = {
+  totalRecords: number;
+  validCoordinateCount: number;
+  districtCount: number;
+  totalDiaperTableCount: number;
+  totalChildSeatCount: number;
+  recordsWithDiaperTables: number;
+  recordsWithChildSeats: number;
+  awardRecordCount: number;
+  byDistrict: Array<{ district: string; count: number; diaperTableCount: number; childSeatCount: number; awardRecordCount: number }>;
+  byCategory: Array<{ toiletCategory: string; count: number }>;
+  byGrade: Array<{ toiletGrade: string; count: number }>;
+  byManager: Array<{ manager: string; count: number }>;
+};
+
+export type ToiletSummary = {
+  publicToiletCount: number;
+  riversideToiletCount: number;
+  familyFriendlyToiletCount: number;
+  totalDiaperTableCount: number;
+  totalChildSeatCount: number;
+  byDistrict: Array<{
+    district: string;
+    publicToiletCount: number;
+    riversideToiletCount: number;
+    familyFriendlyToiletCount: number;
+    diaperTableCount: number;
+    childSeatCount: number;
+  }>;
 };
 
 export type LactationRoomLocation = {
@@ -149,6 +213,7 @@ export type ConversionSourceReport = {
   }>;
   unmatchedSecondaryRows?: Array<{ rowNumber: number; name?: string; address?: string }>;
   failedCertificationDates?: Array<{ rowNumber: number; value: string }>;
+  matchedPublicToiletCount?: number;
 };
 
 export type ConversionReport = {

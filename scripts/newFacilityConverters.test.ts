@@ -14,6 +14,14 @@ import {
   normalizeDistrictCode,
   parseRocChineseDate,
 } from './convertLactationRooms';
+import {
+  classifyRiversideToiletType,
+  convertRiversideToiletRows,
+} from './convertRiversideToilets';
+import {
+  convertFamilyFriendlyToiletRows,
+  parseFamilyFriendlyAward,
+} from './convertFamilyFriendlyToilets';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -125,6 +133,62 @@ describe('new facility converters', () => {
       latitude: 25.03,
       longitude: 121.54,
       locationPrecision: 'exact',
+    });
+  });
+
+  it('classifies and maps riverside toilet coordinates', () => {
+    const converted = convertRiversideToiletRows([{
+      NO: '1',
+      'Administrative district': '中山區 ',
+      'Riverside Park': '大佳河濱公園',
+      Location: '兒童遊戲區',
+      Type: '無障礙',
+      Longitude: '121.535869',
+      Latitude: '25.074578',
+      Long_TWD97: '304058.4359',
+      Lat_WD97: '2774145.154',
+    }]);
+
+    expect(classifyRiversideToiletType('固定式')).toBe('fixed');
+    expect(converted.facilities[0]).toMatchObject({
+      district: '中山區',
+      riversideToiletType: 'accessible',
+      coordinateStatus: 'valid',
+      longitudeTwd97: 304058.4359,
+    });
+  });
+
+  it('parses family-friendly equipment, awards, and public-toilet matches', () => {
+    const converted = convertFamilyFriendlyToiletRows([{
+      行政區: '士林區',
+      公廁編號: 'A147',
+      公廁類別: '交通',
+      公廁名稱: '捷運劍潭站',
+      公廁地址: '臺北市士林區中山北路五段65號',
+      經度: '121.525078',
+      緯度: '25.084873',
+      尿布臺設置數量: '2',
+      兒童座椅設置數量: '1',
+      親子友善評鑑獲獎: 'V',
+    }], [{
+      id: 'public_toilet-1',
+      type: 'public_toilet',
+      district: '士林區',
+      address: '台北市士林區中山北路五段65號',
+      longitude: 121.525078,
+      latitude: 25.084873,
+      note: '',
+      source: '',
+      name: '捷運劍潭站',
+    }]);
+
+    expect(parseFamilyFriendlyAward('獲獎')).toBe(true);
+    expect(converted.facilities[0]).toMatchObject({
+      diaperTableCount: 2,
+      childSeatCount: 1,
+      hasFamilyFriendlyAward: true,
+      matchedPublicToiletId: 'public_toilet-1',
+      coordinateStatus: 'valid',
     });
   });
 });

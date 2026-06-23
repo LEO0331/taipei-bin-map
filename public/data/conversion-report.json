@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-23T01:31:46.540Z",
-  "totalValidRows": 5830,
+  "generatedAt": "2026-06-23T05:39:10.574Z",
+  "totalValidRows": 6557,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -28,6 +28,25 @@
       "coordinateOutlierRows": 0,
       "invalidCoordinateRows": [],
       "missingRequiredFields": []
+    },
+    {
+      "sourceFilename": "115年度河濱公廁點位(含景觀)0209.csv",
+      "totalRows": 334,
+      "validRows": 334,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": []
+    },
+    {
+      "sourceFilename": "臺北市親子友善廁所點位資訊.csv",
+      "totalRows": 393,
+      "validRows": 393,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": [],
+      "matchedPublicToiletCount": 393
     },
     {
       "sourceFilename": "臺北市公共場所飲水機資訊",

@@ -319,6 +319,23 @@ main {
   height: 1rem;
 }
 
+.nearby-radius {
+  display: grid;
+  gap: 0.3rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.nearby-radius select {
+  min-height: 2.5rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  padding: 0 0.75rem;
+}
+
 .nearby-button:focus-visible,
 .language-toggle button:focus-visible,
 .facility-type-filter button:focus-visible,
@@ -504,6 +521,14 @@ a:focus-visible {
 
 .facility-div-marker.public_toilet span {
   background: #e9eef8;
+}
+
+.facility-div-marker.riverside_toilet span {
+  background: #d5eef2;
+}
+
+.facility-div-marker.family_friendly_toilet span {
+  background: #ffe1ec;
 }
 
 .facility-div-marker.dog_waste_bag_box span {

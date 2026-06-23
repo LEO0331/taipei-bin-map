@@ -135,6 +135,14 @@
       "dependencies": ["feat-016"],
       "status": "done",
       "evidence": "npm run convert:bins generated 5830 facilities, including 483 lactation rooms across all 12 districts. Verification completed with 29 unit/converter tests, production build, and 30 desktop/mobile Playwright tests."
+    },
+    {
+      "id": "feat-018",
+      "name": "Specialized toilet layer expansion",
+      "description": "Add Taipei riverside toilets and family-friendly toilets as distinct static layers with CP950 conversion, coordinate validation, soft public-toilet matching, focused filters, nearby results, summaries, cache support, and bilingual notices.",
+      "dependencies": ["feat-017"],
+      "status": "done",
+      "evidence": "npm run convert:bins generated 6557 facilities, including 334 riverside toilets and 393 family-friendly toilets. All new coordinates were valid, all current family-friendly records matched general public-toilet records, and 33 unit/converter plus 34 desktop/mobile Playwright tests passed."
     }
   ]
 }

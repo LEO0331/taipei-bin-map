@@ -23,10 +23,12 @@
 - [x] Improved combined-layer responsiveness with deferred map updates, 700-marker combined previews, 500-marker all-layer previews, and cache-first static data.
 - [x] Added 483 lactation rooms from two Big5/CP950 resources with deduplication and legal-list cross-reference.
 - [x] Added lactation search, filters, directory details, district summary bubbles, address-based Google Maps links, notices, PWA cache entries, and optional verified-coordinate cache support.
+- [x] Added 334 riverside toilets and 393 family-friendly toilets with exact markers, focused filters, nearby results, summaries, bilingual notices, and service-worker cache entries.
+- [x] Preserved specialized toilet records and cross-referenced all current family-friendly records to the general public-toilet dataset.
 
 ### What's In Progress
 
-- [x] No active feature work remains for feat-017.
+- [x] No active feature work remains for feat-018.
 
 ### What's Next
 
@@ -44,6 +46,7 @@
 - [ ] Used-clothing box availability and accepted-item rules are not real-time.
 - [ ] Lactation-room sources contain no coordinates; exact nearby sorting remains unavailable until coordinates are manually verified.
 - [ ] Lactation-room opening hours, equipment, availability, and venue rules are not real-time.
+- [ ] Toilet cleanliness, maintenance, opening status, equipment counts, and award fields are snapshot data rather than real-time guarantees.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -53,6 +56,7 @@
 - **Keep drinking fountains scoped to public-place equipment**: Labels avoid implying complete coverage of every outdoor direct-drinking station in Taipei.
 - **Do not add dashboard charts**: The app has no existing dashboard surface.
 - **Do not geocode lactation rooms automatically**: Address-only records use district summaries and address-based Google Maps links until verified coordinates are added.
+- **Keep specialized toilet layers separate**: Cross-reference matches aid traceability but do not merge away source-specific fields.
 - **Skip optional nearby shortcut buttons**: The existing nearby button already respects selected facility layers.
 
 ## Files Modified This Session
@@ -100,7 +104,10 @@
 - [x] Repeat visits now read static facility JSON from the service-worker cache while deployments refresh it through the versioned cache.
 - [x] `npm run convert:bins` generated 5,830 facilities, including 483 lactation rooms across all 12 Taipei districts.
 - [x] Lactation conversion cross-referenced all current records with the legal-required list and parsed all provided certification dates.
+- [x] `npm run convert:bins` generated 6,557 facilities, including 334 riverside toilets and 393 family-friendly toilets.
+- [x] Both new toilet datasets decoded as CP950 and produced 727 valid WGS84 coordinates with no outliers.
+- [x] `npm test` passed 33 unit/converter tests and `npm run test:e2e` passed 34 desktop/mobile tests.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The eight-layer public amenities expansion is implemented and verified.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The ten-layer public amenities expansion is implemented and verified.

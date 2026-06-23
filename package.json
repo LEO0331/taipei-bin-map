@@ -19,6 +19,11 @@
     "data:convert:used-clothing": "tsx scripts/convertUsedClothingRecyclingBoxes.ts",
     "data:fetch:lactation-rooms": "tsx scripts/fetchLactationRooms.ts",
     "data:convert:lactation-rooms": "tsx scripts/convertLactationRooms.ts && tsx scripts/buildLactationRoomSummary.ts",
+    "data:fetch:riverside-toilets": "tsx scripts/fetchRiversideToilets.ts",
+    "data:convert:riverside-toilets": "tsx scripts/convertRiversideToilets.ts",
+    "data:fetch:family-friendly-toilets": "tsx scripts/fetchFamilyFriendlyToilets.ts",
+    "data:convert:family-friendly-toilets": "tsx scripts/convertFamilyFriendlyToilets.ts",
+    "data:build:toilet-summaries": "tsx scripts/buildToiletSummaries.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

@@ -1,0 +1,926 @@
+{
+  "totalRecords": 393,
+  "validCoordinateCount": 393,
+  "districtCount": 12,
+  "totalDiaperTableCount": 295,
+  "totalChildSeatCount": 283,
+  "recordsWithDiaperTables": 294,
+  "recordsWithChildSeats": 283,
+  "awardRecordCount": 9,
+  "byDistrict": [
+    {
+      "district": "中正區",
+      "count": 56,
+      "diaperTableCount": 40,
+      "childSeatCount": 38,
+      "awardRecordCount": 1
+    },
+    {
+      "district": "信義區",
+      "count": 53,
+      "diaperTableCount": 31,
+      "childSeatCount": 31,
+      "awardRecordCount": 4
+    },
+    {
+      "district": "北投區",
+      "count": 47,
+      "diaperTableCount": 45,
+      "childSeatCount": 42,
+      "awardRecordCount": 1
+    },
+    {
+      "district": "萬華區",
+      "count": 46,
+      "diaperTableCount": 38,
+      "childSeatCount": 35,
+      "awardRecordCount": 0
+    },
+    {
+      "district": "松山區",
+      "count": 37,
+      "diaperTableCount": 30,
+      "childSeatCount": 28,
+      "awardRecordCount": 0
+    },
+    {
+      "district": "士林區",
+      "count": 33,
+      "diaperTableCount": 18,
+      "childSeatCount": 18,
+      "awardRecordCount": 0
+    },
+    {
+      "district": "文山區",
+      "count": 28,
+      "diaperTableCount": 22,
+      "childSeatCount": 18,
+      "awardRecordCount": 0
+    },
+    {
+      "district": "大安區",
+      "count": 22,
+      "diaperTableCount": 20,
+      "childSeatCount": 20,
+      "awardRecordCount": 1
+    },
+    {
+      "district": "大同區",
+      "count": 19,
+      "diaperTableCount": 19,
+      "childSeatCount": 15,
+      "awardRecordCount": 1
+    },
+    {
+      "district": "內湖區",
+      "count": 19,
+      "diaperTableCount": 12,
+      "childSeatCount": 12,
+      "awardRecordCount": 0
+    },
+    {
+      "district": "中山區",
+      "count": 18,
+      "diaperTableCount": 15,
+      "childSeatCount": 17,
+      "awardRecordCount": 0
+    },
+    {
+      "district": "南港區",
+      "count": 15,
+      "diaperTableCount": 5,
+      "childSeatCount": 9,
+      "awardRecordCount": 1
+    }
+  ],
+  "byCategory": [
+    {
+      "toiletCategory": "交通",
+      "count": 113
+    },
+    {
+      "toiletCategory": "醫院",
+      "count": 50
+    },
+    {
+      "toiletCategory": "公園",
+      "count": 50
+    },
+    {
+      "toiletCategory": "綜合零售賣場",
+      "count": 48
+    },
+    {
+      "toiletCategory": "文化育樂場所",
+      "count": 44
+    },
+    {
+      "toiletCategory": "機關",
+      "count": 43
+    },
+    {
+      "toiletCategory": "觀光遊憩",
+      "count": 23
+    },
+    {
+      "toiletCategory": "市場",
+      "count": 20
+    },
+    {
+      "toiletCategory": "宗教",
+      "count": 2
+    }
+  ],
+  "byGrade": [
+    {
+      "toiletGrade": "特優級(分)",
+      "count": 306
+    },
+    {
+      "toiletGrade": "優等級(分)",
+      "count": 71
+    }
+  ],
+  "byManager": [
+    {
+      "manager": "臺北榮民總醫院",
+      "count": 22
+    },
+    {
+      "manager": "臺北市市場處公有環南綜合市場",
+      "count": 18
+    },
+    {
+      "manager": "水利處高灘地南區管理站",
+      "count": 14
+    },
+    {
+      "manager": "公園路燈工程管理處青年公園管理所",
+      "count": 13
+    },
+    {
+      "manager": "臺北大眾捷運股份有限公司",
+      "count": 11
+    },
+    {
+      "manager": "臺北市市政大樓公共事務管理中心",
+      "count": 11
+    },
+    {
+      "manager": "國立臺灣大學醫學院附設醫院",
+      "count": 9
+    },
+    {
+      "manager": "臺北市立動物園",
+      "count": 9
+    },
+    {
+      "manager": "新光三越百貨股份有限公司台北信義新天地A8館",
+      "count": 8
+    },
+    {
+      "manager": "國立臺灣科學教育館",
+      "count": 7
+    },
+    {
+      "manager": "內政部國家公園署陽明山國家公園管理處",
+      "count": 6
+    },
+    {
+      "manager": "臺北田徑場",
+      "count": 5
+    },
+    {
+      "manager": "臺鐵公司北區營運處臺北運務段臺北站",
+      "count": 4
+    },
+    {
+      "manager": "內湖運動中心",
+      "count": 4
+    },
+    {
+      "manager": "公園路燈工程管理處南港公園管理所",
+      "count": 4
+    },
+    {
+      "manager": "工務局公園路燈工程管理處",
+      "count": 4
+    },
+    {
+      "manager": "八德立體停車場(夜)",
+      "count": 4
+    },
+    {
+      "manager": "新光三越百貨股份有限公司台北信義新天地A9館",
+      "count": 4
+    },
+    {
+      "manager": "遠東百貨股份有限公司",
+      "count": 4
+    },
+    {
+      "manager": "遠雄巨蛋事業股份有限公司",
+      "count": 4
+    },
+    {
+      "manager": "臺北流行音樂中心",
+      "count": 4
+    },
+    {
+      "manager": "公園路燈工程管理處陽明山公園管理所",
+      "count": 3
+    },
+    {
+      "manager": "臺北市立美術館",
+      "count": 3
+    },
+    {
+      "manager": "誠品生活股份有限公司",
+      "count": 3
+    },
+    {
+      "manager": "捷運臺北車站",
+      "count": 3
+    },
+    {
+      "manager": "三創生活園區",
+      "count": 3
+    },
+    {
+      "manager": "桃園國際機場捷運臺北站",
+      "count": 3
+    },
+    {
+      "manager": "臺北市立聯合醫院和平婦幼院區(和平)",
+      "count": 3
+    },
+    {
+      "manager": "三軍總醫院內湖院區",
+      "count": 3
+    },
+    {
+      "manager": "交通部民航局臺北國際航空站",
+      "count": 3
+    },
+    {
+      "manager": "微風廣場",
+      "count": 3
+    },
+    {
+      "manager": "三軍總醫院松山分院",
+      "count": 3
+    },
+    {
+      "manager": "新光三越百貨股份有限公司臺北天母店",
+      "count": 2
+    },
+    {
+      "manager": "大葉高島屋百貨股份有限公司",
+      "count": 2
+    },
+    {
+      "manager": "公園路燈工程管理處園藝管理所",
+      "count": 2
+    },
+    {
+      "manager": "公園路燈工程管理處花卉試驗中心",
+      "count": 2
+    },
+    {
+      "manager": "國立故宮博物院",
+      "count": 2
+    },
+    {
+      "manager": "捷運民權西路站",
+      "count": 2
+    },
+    {
+      "manager": "捷運北門站",
+      "count": 2
+    },
+    {
+      "manager": "捷運中山站",
+      "count": 2
+    },
+    {
+      "manager": "京站時尚廣場",
+      "count": 2
+    },
+    {
+      "manager": "捷運大安森林公園站",
+      "count": 2
+    },
+    {
+      "manager": "捷運忠孝復興站",
+      "count": 2
+    },
+    {
+      "manager": "正好停股份有限公司",
+      "count": 2
+    },
+    {
+      "manager": "捷運松江南京站",
+      "count": 2
+    },
+    {
+      "manager": "公園路燈工程管理處圓山公園管理所新生公園",
+      "count": 2
+    },
+    {
+      "manager": "捷運西門站",
+      "count": 2
+    },
+    {
+      "manager": "捷運中正紀念堂站",
+      "count": 2
+    },
+    {
+      "manager": "臺北市政府青年局",
+      "count": 2
+    },
+    {
+      "manager": "司法新廈管理委員會臺灣臺北地方法院",
+      "count": 2
+    },
+    {
+      "manager": "國立臺灣博物館",
+      "count": 2
+    },
+    {
+      "manager": "捷運北投站",
+      "count": 2
+    },
+    {
+      "manager": "洲美運動公園",
+      "count": 2
+    },
+    {
+      "manager": "臺北市停車管理工程處",
+      "count": 2
+    },
+    {
+      "manager": "捷運南京復興站",
+      "count": 2
+    },
+    {
+      "manager": "捷運台北小巨蛋站",
+      "count": 2
+    },
+    {
+      "manager": "捷運松山站",
+      "count": 2
+    },
+    {
+      "manager": "民生社區中心",
+      "count": 2
+    },
+    {
+      "manager": "臺鐵公司北區營運處臺北運務段松山站",
+      "count": 2
+    },
+    {
+      "manager": "臺北市信義區公所",
+      "count": 2
+    },
+    {
+      "manager": "捷運劍潭站(夜)",
+      "count": 1
+    },
+    {
+      "manager": "捷運士林站",
+      "count": 1
+    },
+    {
+      "manager": "捷運芝山站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市士林地政事務所",
+      "count": 1
+    },
+    {
+      "manager": "臺北市士林區公所",
+      "count": 1
+    },
+    {
+      "manager": "臺北市輪椅網球推廣協會",
+      "count": 1
+    },
+    {
+      "manager": "特力屋股份有限公司",
+      "count": 1
+    },
+    {
+      "manager": "臺北市士林區戶政事務所",
+      "count": 1
+    },
+    {
+      "manager": "臺北市停車管理工程處百齡高中地下停車場",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立聯合醫院陽明院區",
+      "count": 1
+    },
+    {
+      "manager": "公園路燈工程管理處陽明公園管理所",
+      "count": 1
+    },
+    {
+      "manager": "水利處河川管理科高灘地北區管理站",
+      "count": 1
+    },
+    {
+      "manager": "臺北表演藝術中心",
+      "count": 1
+    },
+    {
+      "manager": "園藝工程隊(北區分隊)",
+      "count": 1
+    },
+    {
+      "manager": "臺北市市場處公有大龍市場",
+      "count": 1
+    },
+    {
+      "manager": "捷運圓山站",
+      "count": 1
+    },
+    {
+      "manager": "捷運大橋頭站",
+      "count": 1
+    },
+    {
+      "manager": "捷運雙連站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市孔廟管理委員會",
+      "count": 1
+    },
+    {
+      "manager": "財團法人臺灣文創發展基金會",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立圖書館蘭州民眾閱覽室",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立圖書館大同分館",
+      "count": 1
+    },
+    {
+      "manager": "歐特儀股份有限公司延平地下停車場",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立圖書館延吉民眾閱覽室",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立聯合醫院仁愛院區",
+      "count": 1
+    },
+    {
+      "manager": "捷運信義安和站",
+      "count": 1
+    },
+    {
+      "manager": "捷運忠孝敦化站",
+      "count": 1
+    },
+    {
+      "manager": "捷運東門站",
+      "count": 1
+    },
+    {
+      "manager": "捷運忠孝新生站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市停車管理工程處金華公園地下停車場",
+      "count": 1
+    },
+    {
+      "manager": "臺北市大安地政事務所",
+      "count": 1
+    },
+    {
+      "manager": "臺北市停車管理工程處大安森林公園地下停車場",
+      "count": 1
+    },
+    {
+      "manager": "美麗華城市發展股份有限公司",
+      "count": 1
+    },
+    {
+      "manager": "捷運劍南路站",
+      "count": 1
+    },
+    {
+      "manager": "捷運大直站",
+      "count": 1
+    },
+    {
+      "manager": "捷運中山國小站",
+      "count": 1
+    },
+    {
+      "manager": "捷運行天宮站",
+      "count": 1
+    },
+    {
+      "manager": "捷運中山國中站",
+      "count": 1
+    },
+    {
+      "manager": "財政部臺北國稅局中北稽徵所",
+      "count": 1
+    },
+    {
+      "manager": "全民防衛動員署後備指揮部",
+      "count": 1
+    },
+    {
+      "manager": "臺北市中山堂管理所",
+      "count": 1
+    },
+    {
+      "manager": "三軍總醫院汀州院區",
+      "count": 1
+    },
+    {
+      "manager": "中正運動中心",
+      "count": 1
+    },
+    {
+      "manager": "財團法人二二八事件紀念基金會",
+      "count": 1
+    },
+    {
+      "manager": "微風台北車站",
+      "count": 1
+    },
+    {
+      "manager": "捷運台電大樓站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市客家事務委員會",
+      "count": 1
+    },
+    {
+      "manager": "捷運古亭站",
+      "count": 1
+    },
+    {
+      "manager": "捷運公館站",
+      "count": 1
+    },
+    {
+      "manager": "捷運善導寺站",
+      "count": 1
+    },
+    {
+      "manager": "新光三越百貨股份有限公司",
+      "count": 1
+    },
+    {
+      "manager": "臺北市市場處公有南門市場",
+      "count": 1
+    },
+    {
+      "manager": "捷運小南門站",
+      "count": 1
+    },
+    {
+      "manager": "東森得易購股份有限公司 K區東森廣場營業所",
+      "count": 1
+    },
+    {
+      "manager": "國立歷史博物館",
+      "count": 1
+    },
+    {
+      "manager": "自來水園區",
+      "count": 1
+    },
+    {
+      "manager": "捷運東湖站",
+      "count": 1
+    },
+    {
+      "manager": "捷運葫洲站",
+      "count": 1
+    },
+    {
+      "manager": "捷運大湖公園站",
+      "count": 1
+    },
+    {
+      "manager": "捷運內湖站",
+      "count": 1
+    },
+    {
+      "manager": "捷運文德站",
+      "count": 1
+    },
+    {
+      "manager": "捷運港墘站",
+      "count": 1
+    },
+    {
+      "manager": "捷運西湖站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立圖書館東湖分館",
+      "count": 1
+    },
+    {
+      "manager": "中國醫藥大學附設醫院臺北分院",
+      "count": 1
+    },
+    {
+      "manager": "全聯實業股份有限公司",
+      "count": 1
+    },
+    {
+      "manager": "好市多購物中心內湖店",
+      "count": 1
+    },
+    {
+      "manager": "臺北市政府體育局",
+      "count": 1
+    },
+    {
+      "manager": "捷運木柵站",
+      "count": 1
+    },
+    {
+      "manager": "捷運萬芳醫院站",
+      "count": 1
+    },
+    {
+      "manager": "捷運動物園站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市停車管理工程處景美國小地下停車場",
+      "count": 1
+    },
+    {
+      "manager": "臺北市文山區戶政事務所所本部",
+      "count": 1
+    },
+    {
+      "manager": "捷運萬隆站",
+      "count": 1
+    },
+    {
+      "manager": "捷運景美站(夜)",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立萬芳醫院",
+      "count": 1
+    },
+    {
+      "manager": "交通部台灣區國道高速公路局北區工程處木柵工務段",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立圖書館文山分館",
+      "count": 1
+    },
+    {
+      "manager": "捷運石牌站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市停車管理工程處七星公園地下停車場",
+      "count": 1
+    },
+    {
+      "manager": "捷運明德站",
+      "count": 1
+    },
+    {
+      "manager": "捷運奇岩站",
+      "count": 1
+    },
+    {
+      "manager": "捷運新北投站",
+      "count": 1
+    },
+    {
+      "manager": "捷運唭哩岸站",
+      "count": 1
+    },
+    {
+      "manager": "捷運復興崗站",
+      "count": 1
+    },
+    {
+      "manager": "捷運忠義站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市公園路燈管理處陽明山管理所",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立圖書館稻香分館",
+      "count": 1
+    },
+    {
+      "manager": "好市多購物中心北投店",
+      "count": 1
+    },
+    {
+      "manager": "醫療財團法人辜公亮基金會和信治癌中心醫院",
+      "count": 1
+    },
+    {
+      "manager": "南京復興站",
+      "count": 1
+    },
+    {
+      "manager": "捷運南京三民站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市松山區戶政事務所",
+      "count": 1
+    },
+    {
+      "manager": "臺北市松山區健康服務中心",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立圖書館民生分館",
+      "count": 1
+    },
+    {
+      "manager": "財團法人基督復臨安息日會臺安醫院",
+      "count": 1
+    },
+    {
+      "manager": "財團法人台北市行天宮附設玄空圖書館敦化總館",
+      "count": 1
+    },
+    {
+      "manager": "松山車站地下停車場(夜.署)",
+      "count": 1
+    },
+    {
+      "manager": "捷運象山站",
+      "count": 1
+    },
+    {
+      "manager": "信義區公所民政課",
+      "count": 1
+    },
+    {
+      "manager": "捷運國父紀念館站",
+      "count": 1
+    },
+    {
+      "manager": "捷運市政府站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市停車管理工程處春光公園地下停車場",
+      "count": 1
+    },
+    {
+      "manager": "BELLAVITA寶麗廣場",
+      "count": 1
+    },
+    {
+      "manager": "臺北市松山地政事務所",
+      "count": 1
+    },
+    {
+      "manager": "台北101購物中心",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立圖書館三興分館",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立圖書館永春分館",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立圖書館廣慈分館",
+      "count": 1
+    },
+    {
+      "manager": "統一時代百貨台北店",
+      "count": 1
+    },
+    {
+      "manager": "臺北市工務局公園路燈工程管理處南港所",
+      "count": 1
+    },
+    {
+      "manager": "臺北市政府公園路燈管理工程處南港公園管理所",
+      "count": 1
+    },
+    {
+      "manager": "捷運南港展覽館站",
+      "count": 1
+    },
+    {
+      "manager": "捷運南港軟體園區站",
+      "count": 1
+    },
+    {
+      "manager": "捷運南港站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立聯合醫院忠孝院區",
+      "count": 1
+    },
+    {
+      "manager": "捷運後山埤站",
+      "count": 1
+    },
+    {
+      "manager": "台灣高速鐵路股份有限公司南港站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立圖書館南港分館",
+      "count": 1
+    },
+    {
+      "manager": "捷運昆陽站",
+      "count": 1
+    },
+    {
+      "manager": "中國信託商業銀行股份有限公司",
+      "count": 1
+    },
+    {
+      "manager": "南港運動中心",
+      "count": 1
+    },
+    {
+      "manager": "捷運龍山寺站",
+      "count": 1
+    },
+    {
+      "manager": "財政部臺北國稅局萬華稽徵所",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立聯合醫院萬華門診部",
+      "count": 1
+    },
+    {
+      "manager": "國立臺灣大學醫學院附設醫院北護分院",
+      "count": 1
+    },
+    {
+      "manager": "洛陽停車場",
+      "count": 1
+    },
+    {
+      "manager": "臺北市政府停車管理處青年公園棒球場地下停車場",
+      "count": 1
+    },
+    {
+      "manager": "臺北市立圖書館西園分館",
+      "count": 1
+    },
+    {
+      "manager": "臺鐵公司北區營運處臺北運務段萬華站",
+      "count": 1
+    },
+    {
+      "manager": "臺北市停車管理工程處雙園國中地下停車場",
+      "count": 1
+    },
+    {
+      "manager": "臺北市萬華區戶政事務所",
+      "count": 1
+    },
+    {
+      "manager": "臺北市動產質借處龍山分處",
+      "count": 1
+    },
+    {
+      "manager": "好停企業有限公司",
+      "count": 1
+    },
+    {
+      "manager": "臺北市停車管理工程處青年公園高爾夫球場地下停車場",
+      "count": 1
+    }
+  ]
+}

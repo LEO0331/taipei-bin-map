@@ -1,0 +1,244 @@
+{
+  "totalRecords": 334,
+  "validCoordinateCount": 334,
+  "districtCount": 10,
+  "riversideParkCount": 43,
+  "byDistrict": [
+    {
+      "district": "中山區",
+      "count": 71
+    },
+    {
+      "district": "士林區",
+      "count": 62
+    },
+    {
+      "district": "文山區",
+      "count": 41
+    },
+    {
+      "district": "萬華區",
+      "count": 39
+    },
+    {
+      "district": "內湖區",
+      "count": 33
+    },
+    {
+      "district": "松山區",
+      "count": 24
+    },
+    {
+      "district": "北投區",
+      "count": 20
+    },
+    {
+      "district": "大同區",
+      "count": 18
+    },
+    {
+      "district": "中正區",
+      "count": 16
+    },
+    {
+      "district": "南港區",
+      "count": 10
+    }
+  ],
+  "byRiversidePark": [
+    {
+      "riversidePark": "大佳河濱公園",
+      "count": 27
+    },
+    {
+      "riversidePark": "延平河濱公園",
+      "count": 21
+    },
+    {
+      "riversidePark": "美堤河濱公園",
+      "count": 21
+    },
+    {
+      "riversidePark": "迎風河濱公園",
+      "count": 19
+    },
+    {
+      "riversidePark": "華中河濱公園",
+      "count": 19
+    },
+    {
+      "riversidePark": "百齡左岸河濱公園",
+      "count": 18
+    },
+    {
+      "riversidePark": "彩虹河濱公園",
+      "count": 17
+    },
+    {
+      "riversidePark": "觀山河濱公園",
+      "count": 16
+    },
+    {
+      "riversidePark": "百齡右岸河濱公園",
+      "count": 15
+    },
+    {
+      "riversidePark": "左岸道南河濱公園",
+      "count": 12
+    },
+    {
+      "riversidePark": "溪洲河濱公園",
+      "count": 10
+    },
+    {
+      "riversidePark": "雙園河濱公園",
+      "count": 10
+    },
+    {
+      "riversidePark": "古亭河濱公園",
+      "count": 9
+    },
+    {
+      "riversidePark": "成美右岸河濱公園",
+      "count": 9
+    },
+    {
+      "riversidePark": "社子島基隆河側",
+      "count": 9
+    },
+    {
+      "riversidePark": "成美左岸河濱公園",
+      "count": 8
+    },
+    {
+      "riversidePark": "成美左岸河濱公園外",
+      "count": 8
+    },
+    {
+      "riversidePark": "右岸道南河濱公園",
+      "count": 8
+    },
+    {
+      "riversidePark": "中正河濱公園",
+      "count": 7
+    },
+    {
+      "riversidePark": "關渡水岸公園",
+      "count": 6
+    },
+    {
+      "riversidePark": "馬場町河濱公園",
+      "count": 5
+    },
+    {
+      "riversidePark": "龍山河濱公園",
+      "count": 5
+    },
+    {
+      "riversidePark": "福安河濱公園",
+      "count": 5
+    },
+    {
+      "riversidePark": "雙溪右岸河濱公園",
+      "count": 4
+    },
+    {
+      "riversidePark": "洲美共構段",
+      "count": 4
+    },
+    {
+      "riversidePark": "南湖左岸河濱公園",
+      "count": 4
+    },
+    {
+      "riversidePark": "貴子坑溪",
+      "count": 3
+    },
+    {
+      "riversidePark": "河雙21河濱公園",
+      "count": 3
+    },
+    {
+      "riversidePark": "社子島頭公園",
+      "count": 3
+    },
+    {
+      "riversidePark": "道南右岸河濱公園",
+      "count": 3
+    },
+    {
+      "riversidePark": "道南左岸河濱公園",
+      "count": 3
+    },
+    {
+      "riversidePark": "富洲河濱公園",
+      "count": 3
+    },
+    {
+      "riversidePark": "南湖右岸河濱公園",
+      "count": 3
+    },
+    {
+      "riversidePark": "景美河濱公園",
+      "count": 3
+    },
+    {
+      "riversidePark": "雙溪左岸河濱公園",
+      "count": 2
+    },
+    {
+      "riversidePark": "河雙21號河濱公園",
+      "count": 2
+    },
+    {
+      "riversidePark": "成美右岸河濱公園外",
+      "count": 2
+    },
+    {
+      "riversidePark": "圓山河濱公園",
+      "count": 2
+    },
+    {
+      "riversidePark": "木柵河濱公園",
+      "count": 2
+    },
+    {
+      "riversidePark": "大溝溪親水公園",
+      "count": 1
+    },
+    {
+      "riversidePark": "金瑞治水園區",
+      "count": 1
+    },
+    {
+      "riversidePark": "關渡防潮堤",
+      "count": 1
+    },
+    {
+      "riversidePark": "關渡自然公園",
+      "count": 1
+    }
+  ],
+  "byType": [
+    {
+      "riversideToiletType": "scenic",
+      "riversideToiletTypeRaw": "景觀",
+      "count": 138
+    },
+    {
+      "riversideToiletType": "standard",
+      "riversideToiletTypeRaw": "一般型",
+      "count": 135
+    },
+    {
+      "riversideToiletType": "accessible",
+      "riversideToiletTypeRaw": "無障礙",
+      "count": 57
+    },
+    {
+      "riversideToiletType": "fixed",
+      "riversideToiletTypeRaw": "固定式",
+      "count": 4
+    }
+  ]
+}

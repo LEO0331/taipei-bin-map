@@ -6,6 +6,7 @@ import {
   getDirectDrinkingStatusLabel,
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
+  getRiversideToiletTypeLabel,
   getToiletCategoryLabel,
 } from '../utils/facilityUtils';
 
@@ -21,6 +22,9 @@ type FacilityListProps = {
 const getFacilityPlace = (facility: FacilityWithDistance) => {
   if (facility.type === 'dog_waste_bag_box') {
     return [facility.road, facility.location].filter(Boolean).join(' ');
+  }
+  if (facility.type === 'riverside_toilet') {
+    return [facility.riversidePark, facility.locationDescription].filter(Boolean).join(' ');
   }
 
   return facility.address;
@@ -79,6 +83,26 @@ export function FacilityList({
                   ]
                     .filter(Boolean)
                     .join(' · ')}
+                </small>
+              )}
+              {facility.type === 'riverside_toilet' && (
+                <small>
+                  {[
+                    facility.riversidePark ? `${t.riversidePark}: ${facility.riversidePark}` : '',
+                    facility.riversideToiletType ? `${t.toiletType}: ${getRiversideToiletTypeLabel(facility.riversideToiletType, language)}` : '',
+                    facility.remark ? `${t.remark}: ${facility.remark}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
+              {facility.type === 'family_friendly_toilet' && (
+                <small>
+                  {[
+                    facility.toiletCategory ? `${t.toiletCategory}: ${facility.toiletCategory}` : '',
+                    facility.toiletLocation ? `${t.toiletLocation}: ${facility.toiletLocation}` : '',
+                    `${t.diaperTableCount}: ${facility.diaperTableCount ?? 0}`,
+                    `${t.childSeatCount}: ${facility.childSeatCount ?? 0}`,
+                    facility.hasFamilyFriendlyAward ? t.familyFriendlyAward : '',
+                  ].filter(Boolean).join(' · ')}
                 </small>
               )}
               {facility.type === 'drinking_fountain' && (

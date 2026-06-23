@@ -1,6 +1,6 @@
 import type { Translation } from '../i18n';
-import type { DirectDrinkingPlaceCategory, Language } from '../types';
-import { getDirectDrinkingPlaceLabel } from '../utils/facilityUtils';
+import type { DirectDrinkingPlaceCategory, Language, RiversideToiletType } from '../types';
+import { getDirectDrinkingPlaceLabel, getRiversideToiletTypeLabel } from '../utils/facilityUtils';
 
 type TimedCollectionFiltersProps = {
   acceptsGarbage: boolean;
@@ -170,6 +170,89 @@ export function LactationRoomFilters(props: LactationRoomFiltersProps) {
         <label className="checkbox-filter" key={name}>
           <input type="checkbox" checked={checked} onChange={(event) => props.onBooleanChange(name, event.target.checked)} />
           <span>{label}</span>
+        </label>
+      ))}
+    </fieldset>
+  );
+}
+
+type RiversideToiletFiltersProps = {
+  parks: string[];
+  park: string;
+  toiletType: RiversideToiletType | '';
+  hasRemark: boolean;
+  language: Language;
+  t: Translation;
+  onParkChange: (value: string) => void;
+  onTypeChange: (value: RiversideToiletType | '') => void;
+  onHasRemarkChange: (value: boolean) => void;
+};
+
+export function RiversideToiletFilters(props: RiversideToiletFiltersProps) {
+  const types: RiversideToiletType[] = ['scenic', 'standard', 'accessible', 'fixed', 'other'];
+  return (
+    <fieldset className="toilet-filters">
+      <label>
+        {props.t.riversidePark}
+        <select value={props.park} onChange={(event) => props.onParkChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.parks.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.toiletType}
+        <select value={props.toiletType} onChange={(event) => props.onTypeChange(event.target.value as RiversideToiletType | '')}>
+          <option value="">{props.t.all}</option>
+          {types.map((value) => <option key={value} value={value}>{getRiversideToiletTypeLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label className="checkbox-filter">
+        <input type="checkbox" checked={props.hasRemark} onChange={(event) => props.onHasRemarkChange(event.target.checked)} />
+        <span>{props.t.hasRemark}</span>
+      </label>
+    </fieldset>
+  );
+}
+
+type FamilyFriendlyToiletFiltersProps = {
+  categories: string[];
+  grades: string[];
+  managers: string[];
+  category: string;
+  grade: string;
+  manager: string;
+  hasDiaperTable: boolean;
+  hasChildSeat: boolean;
+  hasAward: boolean;
+  t: Translation;
+  onChange: (name: 'category' | 'grade' | 'manager', value: string) => void;
+  onBooleanChange: (name: 'diaper' | 'childSeat' | 'award', value: boolean) => void;
+};
+
+export function FamilyFriendlyToiletFilters(props: FamilyFriendlyToiletFiltersProps) {
+  return (
+    <fieldset className="toilet-filters">
+      {[
+        ['category', props.t.toiletCategory, props.category, props.categories],
+        ['grade', props.t.toiletGrade, props.grade, props.grades],
+        ['manager', props.t.managingUnit, props.manager, props.managers],
+      ].map(([name, label, value, options]) => (
+        <label key={name as string}>
+          {label as string}
+          <select value={value as string} onChange={(event) => props.onChange(name as 'category' | 'grade' | 'manager', event.target.value)}>
+            <option value="">{props.t.all}</option>
+            {(options as string[]).map((option) => <option key={option} value={option}>{option}</option>)}
+          </select>
+        </label>
+      ))}
+      {[
+        ['diaper', props.t.hasDiaperTable, props.hasDiaperTable],
+        ['childSeat', props.t.hasChildSeat, props.hasChildSeat],
+        ['award', props.t.familyFriendlyAward, props.hasAward],
+      ].map(([name, label, checked]) => (
+        <label className="checkbox-filter" key={name as string}>
+          <input type="checkbox" checked={checked as boolean} onChange={(event) => props.onBooleanChange(name as 'diaper' | 'childSeat' | 'award', event.target.checked)} />
+          <span>{label as string}</span>
         </label>
       ))}
     </fieldset>

@@ -2,7 +2,9 @@ import { lazy, Suspense, useDeferredValue, useEffect, useMemo, useState } from '
 import { DrinkingFountainFilters } from './components/DrinkingFountainFilters';
 import {
   DirectDrinkingFilters,
+  FamilyFriendlyToiletFilters,
   LactationRoomFilters,
+  RiversideToiletFilters,
   TimedCollectionFilters,
   UsedClothingFilters,
 } from './components/AdditionalFacilityFilters';
@@ -22,6 +24,7 @@ import type {
   FacilityType,
   FacilityWithDistance,
   Language,
+  RiversideToiletType,
 } from './types';
 import { calculateDistanceMeters, filterFacilities } from './utils/facilityUtils';
 
@@ -96,6 +99,16 @@ function App() {
   const [lactationLegalRequired, setLactationLegalRequired] = useState(false);
   const [lactationBasicEquipment, setLactationBasicEquipment] = useState('');
   const [lactationFriendlyService, setLactationFriendlyService] = useState('');
+  const [riversidePark, setRiversidePark] = useState('');
+  const [riversideToiletType, setRiversideToiletType] = useState<RiversideToiletType | ''>('');
+  const [riversideHasRemark, setRiversideHasRemark] = useState(false);
+  const [familyToiletCategory, setFamilyToiletCategory] = useState('');
+  const [familyToiletGrade, setFamilyToiletGrade] = useState('');
+  const [familyManager, setFamilyManager] = useState('');
+  const [familyHasDiaperTable, setFamilyHasDiaperTable] = useState(false);
+  const [familyHasChildSeat, setFamilyHasChildSeat] = useState(false);
+  const [familyHasAward, setFamilyHasAward] = useState(false);
+  const [nearbyRadiusMeters, setNearbyRadiusMeters] = useState(1000);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -104,6 +117,8 @@ function App() {
 
   const t = translations[language];
   const includesPublicToilets = selectedTypes.includes('public_toilet');
+  const includesRiversideToilets = selectedTypes.includes('riverside_toilet');
+  const includesFamilyFriendlyToilets = selectedTypes.includes('family_friendly_toilet');
   const includesDrinkingFountains = selectedTypes.includes('drinking_fountain');
   const includesTimedCollectionPoints = selectedTypes.includes('timed_collection_point');
   const includesDirectDrinkingStations = selectedTypes.includes('direct_drinking_station');
@@ -203,6 +218,22 @@ function App() {
     () => [...new Set(facilities.filter((facility) => facility.type === 'lactation_room').flatMap((facility) => facility.friendlyEquipmentOrServices ?? []))].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
     [facilities],
   );
+  const riversideParks = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'riverside_toilet').map((facility) => facility.riversidePark).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const familyToiletCategories = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'family_friendly_toilet').map((facility) => facility.toiletCategory).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const familyToiletGrades = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'family_friendly_toilet').map((facility) => facility.toiletGrade).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const familyToiletManagers = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'family_friendly_toilet').map((facility) => facility.manager).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -237,6 +268,15 @@ function App() {
         lactationLegalRequired,
         lactationBasicEquipment,
         lactationFriendlyService,
+        riversidePark,
+        riversideToiletType,
+        riversideHasRemark,
+        familyToiletCategory,
+        familyToiletGrade,
+        familyManager,
+        familyHasDiaperTable,
+        familyHasChildSeat,
+        familyHasAward,
       }),
     [
       district,
@@ -270,6 +310,15 @@ function App() {
       lactationHasOpeningHours,
       lactationHasPhone,
       lactationLegalRequired,
+      riversidePark,
+      riversideToiletType,
+      riversideHasRemark,
+      familyToiletCategory,
+      familyToiletGrade,
+      familyManager,
+      familyHasDiaperTable,
+      familyHasChildSeat,
+      familyHasAward,
     ],
   );
 
@@ -312,6 +361,9 @@ function App() {
   );
   const isListLimited = !nearbyFacilities && displayedFacilities.length > listFacilities.length;
   const isLactationOnly = selectedTypes.length === 1 && includesLactationRooms;
+  const isRiversideOnly = selectedTypes.length === 1 && includesRiversideToilets;
+  const isFamilyToiletOnly = selectedTypes.length === 1 && includesFamilyFriendlyToilets;
+  const isSpecializedToiletOnly = isRiversideOnly || isFamilyToiletOnly;
   const listHeading = nearbyFacilities
     ? t.nearestFacilities
     : isLactationOnly
@@ -384,6 +436,19 @@ function App() {
       setLactationLegalRequired(false);
       setLactationBasicEquipment('');
       setLactationFriendlyService('');
+    }
+    if (!value.includes('riverside_toilet')) {
+      setRiversidePark('');
+      setRiversideToiletType('');
+      setRiversideHasRemark(false);
+    }
+    if (!value.includes('family_friendly_toilet')) {
+      setFamilyToiletCategory('');
+      setFamilyToiletGrade('');
+      setFamilyManager('');
+      setFamilyHasDiaperTable(false);
+      setFamilyHasChildSeat(false);
+      setFamilyHasAward(false);
     }
     setNearbyFacilities(null);
   };
@@ -480,6 +545,7 @@ function App() {
               facility.longitude,
             ),
           }))
+          .filter((facility) => !isSpecializedToiletOnly || (facility.distanceMeters ?? Infinity) <= nearbyRadiusMeters)
           .sort((first, second) => (first.distanceMeters ?? 0) - (second.distanceMeters ?? 0))
           .slice(0, 10);
 
@@ -528,7 +594,11 @@ function App() {
           <SearchFilters
             district={district}
             districts={districts}
-            placeholder={isLactationOnly ? t.lactationRoomSearchPlaceholder : t.searchPlaceholder}
+            placeholder={isLactationOnly
+              ? t.lactationRoomSearchPlaceholder
+              : isSpecializedToiletOnly
+                ? t.toiletSearchPlaceholder
+                : t.searchPlaceholder}
             searchTerm={searchTerm}
             t={t}
             onDistrictChange={handleDistrictChange}
@@ -547,6 +617,64 @@ function App() {
               onAccessibleChange={handleAccessibleToiletChange}
               onParentChildChange={handleParentChildToiletChange}
             />
+          )}
+          {hasFocusedTypes && includesRiversideToilets && (
+            <RiversideToiletFilters
+              parks={riversideParks}
+              park={riversidePark}
+              toiletType={riversideToiletType}
+              hasRemark={riversideHasRemark}
+              language={language}
+              t={t}
+              onParkChange={(value) => {
+                setRiversidePark(value);
+                setNearbyFacilities(null);
+              }}
+              onTypeChange={(value) => {
+                setRiversideToiletType(value);
+                setNearbyFacilities(null);
+              }}
+              onHasRemarkChange={(value) => {
+                setRiversideHasRemark(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
+          {hasFocusedTypes && includesFamilyFriendlyToilets && (
+            <FamilyFriendlyToiletFilters
+              categories={familyToiletCategories}
+              grades={familyToiletGrades}
+              managers={familyToiletManagers}
+              category={familyToiletCategory}
+              grade={familyToiletGrade}
+              manager={familyManager}
+              hasDiaperTable={familyHasDiaperTable}
+              hasChildSeat={familyHasChildSeat}
+              hasAward={familyHasAward}
+              t={t}
+              onChange={(name, value) => {
+                if (name === 'category') setFamilyToiletCategory(value);
+                if (name === 'grade') setFamilyToiletGrade(value);
+                if (name === 'manager') setFamilyManager(value);
+                setNearbyFacilities(null);
+              }}
+              onBooleanChange={(name, value) => {
+                if (name === 'diaper') setFamilyHasDiaperTable(value);
+                if (name === 'childSeat') setFamilyHasChildSeat(value);
+                if (name === 'award') setFamilyHasAward(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
+          {isSpecializedToiletOnly && (
+            <label className="nearby-radius">
+              <span>{t.nearbyRadius}</span>
+              <select value={nearbyRadiusMeters} onChange={(event) => setNearbyRadiusMeters(Number(event.target.value))}>
+                {[300, 500, 1000, 2000, 5000].map((value) => (
+                  <option key={value} value={value}>{value < 1000 ? `${value} m` : `${value / 1000} km`}</option>
+                ))}
+              </select>
+            </label>
           )}
           {hasFocusedTypes && includesDrinkingFountains && (
             <DrinkingFountainFilters
@@ -645,7 +773,13 @@ function App() {
           <NearbyButton
             disabled={isLoadingFacilities || filteredFacilities.length === 0}
             isLoading={isLocating}
-            label={isLactationOnly ? t.viewLactationRoomsByNearbyDistrict : undefined}
+            label={isLactationOnly
+              ? t.viewLactationRoomsByNearbyDistrict
+              : isRiversideOnly
+                ? t.showNearbyRiversideToilets
+                : isFamilyToiletOnly
+                  ? t.showNearbyFamilyFriendlyToilets
+                  : undefined}
             t={t}
             onClick={handleNearbyClick}
           />

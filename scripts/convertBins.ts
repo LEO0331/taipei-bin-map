@@ -9,6 +9,8 @@ import { loadDrinkingFountainFacilities } from './convertDrinkingFountains';
 import { loadTimedCollectionPoints } from './convertTimedCollectionPoints';
 import { loadUsedClothingRecyclingBoxes } from './convertUsedClothingRecyclingBoxes';
 import { loadLactationRooms } from './convertLactationRooms';
+import { loadRiversideToilets } from './convertRiversideToilets';
+import { loadFamilyFriendlyToilets } from './convertFamilyFriendlyToilets';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -129,6 +131,11 @@ const FACILITIES_OUTPUT = resolve(options.outputDir, 'facilities.json');
 const PEDESTRIAN_OUTPUT = resolve(options.outputDir, 'pedestrian-bins.json');
 const DOG_WASTE_OUTPUT = resolve(options.outputDir, 'dog-waste-bag-boxes.json');
 const PUBLIC_TOILET_OUTPUT = resolve(options.outputDir, 'public-toilets.json');
+const RIVERSIDE_TOILET_OUTPUT = resolve(options.outputDir, 'riverside-toilets.json');
+const RIVERSIDE_TOILET_SUMMARY_OUTPUT = resolve(options.outputDir, 'riverside-toilet-summary.json');
+const FAMILY_FRIENDLY_TOILET_OUTPUT = resolve(options.outputDir, 'family-friendly-toilets.json');
+const FAMILY_FRIENDLY_TOILET_SUMMARY_OUTPUT = resolve(options.outputDir, 'family-friendly-toilet-summary.json');
+const TOILET_SUMMARY_OUTPUT = resolve(options.outputDir, 'toilet-summary.json');
 const DRINKING_FOUNTAINS_OUTPUT = resolve(options.outputDir, 'drinking-fountains.json');
 const TIMED_COLLECTION_OUTPUT = resolve(options.outputDir, 'timed-collection-points.json');
 const DIRECT_DRINKING_OUTPUT = resolve(options.outputDir, 'direct-drinking-stations.json');
@@ -384,6 +391,8 @@ function writeJson(path: string, data: unknown) {
 const pedestrian = loadPedestrianFacilities();
 const dogWaste = loadDogWasteFacilities();
 const publicToilets = loadPublicToiletFacilities();
+const riversideToilets = loadRiversideToilets();
+const familyFriendlyToilets = loadFamilyFriendlyToilets(publicToilets.facilities);
 const drinkingFountains = loadDrinkingFountainFacilities({
   rawDir: options.drinkingFountainsRawDir,
   outputDir: options.outputDir,
@@ -398,6 +407,8 @@ const facilities = [
   ...pedestrian.facilities,
   ...dogWaste.facilities,
   ...publicToilets.facilities,
+  ...riversideToilets.facilities,
+  ...familyFriendlyToilets.facilities,
   ...drinkingFountains.facilities,
   ...timedCollectionPoints.facilities,
   ...directDrinkingStations.facilities,
@@ -411,6 +422,8 @@ const report: ConversionReport = {
     pedestrian.report,
     dogWaste.report,
     publicToilets.report,
+    riversideToilets.report,
+    familyFriendlyToilets.report,
     drinkingFountains.report,
     timedCollectionPoints.report,
     directDrinkingStations.report,
@@ -423,6 +436,30 @@ mkdirSync(options.outputDir, { recursive: true });
 writeJson(PEDESTRIAN_OUTPUT, pedestrian.facilities);
 writeJson(DOG_WASTE_OUTPUT, dogWaste.facilities);
 writeJson(PUBLIC_TOILET_OUTPUT, publicToilets.facilities);
+writeJson(RIVERSIDE_TOILET_OUTPUT, riversideToilets.facilities);
+writeJson(RIVERSIDE_TOILET_SUMMARY_OUTPUT, riversideToilets.summary);
+writeJson(FAMILY_FRIENDLY_TOILET_OUTPUT, familyFriendlyToilets.facilities);
+writeJson(FAMILY_FRIENDLY_TOILET_SUMMARY_OUTPUT, familyFriendlyToilets.summary);
+const toiletDistricts = [...new Set([
+  ...publicToilets.facilities,
+  ...riversideToilets.facilities,
+  ...familyFriendlyToilets.facilities,
+].map((item) => item.district).filter(Boolean))];
+writeJson(TOILET_SUMMARY_OUTPUT, {
+  publicToiletCount: publicToilets.facilities.length,
+  riversideToiletCount: riversideToilets.facilities.length,
+  familyFriendlyToiletCount: familyFriendlyToilets.facilities.length,
+  totalDiaperTableCount: familyFriendlyToilets.facilities.reduce((sum, item) => sum + (item.diaperTableCount ?? 0), 0),
+  totalChildSeatCount: familyFriendlyToilets.facilities.reduce((sum, item) => sum + (item.childSeatCount ?? 0), 0),
+  byDistrict: toiletDistricts.map((district) => ({
+    district,
+    publicToiletCount: publicToilets.facilities.filter((item) => item.district === district).length,
+    riversideToiletCount: riversideToilets.facilities.filter((item) => item.district === district).length,
+    familyFriendlyToiletCount: familyFriendlyToilets.facilities.filter((item) => item.district === district).length,
+    diaperTableCount: familyFriendlyToilets.facilities.filter((item) => item.district === district).reduce((sum, item) => sum + (item.diaperTableCount ?? 0), 0),
+    childSeatCount: familyFriendlyToilets.facilities.filter((item) => item.district === district).reduce((sum, item) => sum + (item.childSeatCount ?? 0), 0),
+  })),
+});
 writeJson(DRINKING_FOUNTAINS_OUTPUT, drinkingFountains.facilities);
 writeJson(TIMED_COLLECTION_OUTPUT, timedCollectionPoints.facilities);
 writeJson(DIRECT_DRINKING_OUTPUT, directDrinkingStations.facilities);
@@ -437,6 +474,8 @@ console.log(`Wrote ${facilities.length} total facility records to ${FACILITIES_O
 console.log(`Wrote ${pedestrian.facilities.length} pedestrian bin records to ${PEDESTRIAN_OUTPUT}`);
 console.log(`Wrote ${dogWaste.facilities.length} dog-waste bag box records to ${DOG_WASTE_OUTPUT}`);
 console.log(`Wrote ${publicToilets.facilities.length} public toilet records to ${PUBLIC_TOILET_OUTPUT}`);
+console.log(`Wrote ${riversideToilets.facilities.length} riverside toilet records to ${RIVERSIDE_TOILET_OUTPUT}`);
+console.log(`Wrote ${familyFriendlyToilets.facilities.length} family-friendly toilet records to ${FAMILY_FRIENDLY_TOILET_OUTPUT}`);
 console.log(`Wrote ${drinkingFountains.facilities.length} drinking fountain records to ${DRINKING_FOUNTAINS_OUTPUT}`);
 console.log(`Wrote ${timedCollectionPoints.facilities.length} timed collection point records to ${TIMED_COLLECTION_OUTPUT}`);
 console.log(`Wrote ${directDrinkingStations.facilities.length} direct drinking station records to ${DIRECT_DRINKING_OUTPUT}`);

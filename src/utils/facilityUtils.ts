@@ -4,6 +4,7 @@ import type {
   Facility,
   FacilityType,
   Language,
+  RiversideToiletType,
 } from '../types';
 
 const EARTH_RADIUS_METERS = 6_371_000;
@@ -93,6 +94,15 @@ export function filterFacilities(
     lactationLegalRequired = false,
     lactationBasicEquipment,
     lactationFriendlyService,
+    riversidePark,
+    riversideToiletType,
+    riversideHasRemark = false,
+    familyToiletCategory,
+    familyToiletGrade,
+    familyHasDiaperTable = false,
+    familyHasChildSeat = false,
+    familyHasAward = false,
+    familyManager,
   }: {
     searchTerm: string;
     district: string;
@@ -124,6 +134,15 @@ export function filterFacilities(
     lactationLegalRequired?: boolean;
     lactationBasicEquipment?: string;
     lactationFriendlyService?: string;
+    riversidePark?: string;
+    riversideToiletType?: RiversideToiletType | '';
+    riversideHasRemark?: boolean;
+    familyToiletCategory?: string;
+    familyToiletGrade?: string;
+    familyHasDiaperTable?: boolean;
+    familyHasChildSeat?: boolean;
+    familyHasAward?: boolean;
+    familyManager?: string;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -134,6 +153,10 @@ export function filterFacilities(
   const includesDrinkingFountains = selectedTypes.size === 0 || selectedTypes.has('drinking_fountain');
   const hasDrinkingFountainFilters = Boolean(drinkingFountainPlaceCategory) || requiresOpeningHours;
   const drinkingFountainFiltersOnly = includesDrinkingFountains && hasDrinkingFountainFilters;
+  const hasRiversideFilters = Boolean(riversidePark || riversideToiletType || riversideHasRemark);
+  const hasFamilyToiletFilters = Boolean(
+    familyToiletCategory || familyToiletGrade || familyHasDiaperTable || familyHasChildSeat || familyHasAward || familyManager,
+  );
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -187,6 +210,23 @@ export function filterFacilities(
         (!lactationLegalRequired || facility.appearsInLegalRequiredList === true) &&
         (!lactationBasicEquipment || facility.basicEquipment?.includes(lactationBasicEquipment)) &&
         (!lactationFriendlyService || facility.friendlyEquipmentOrServices?.includes(lactationFriendlyService)));
+    const matchesRiverside =
+      facility.type !== 'riverside_toilet' ||
+      ((!riversidePark || facility.riversidePark === riversidePark) &&
+        (!riversideToiletType || facility.riversideToiletType === riversideToiletType) &&
+        (!riversideHasRemark || Boolean(facility.remark)));
+    const matchesFamilyToilet =
+      facility.type !== 'family_friendly_toilet' ||
+      ((!familyToiletCategory || facility.toiletCategory === familyToiletCategory) &&
+        (!familyToiletGrade || facility.toiletGrade === familyToiletGrade) &&
+        (!familyHasDiaperTable || (facility.diaperTableCount ?? 0) > 0) &&
+        (!familyHasChildSeat || (facility.childSeatCount ?? 0) > 0) &&
+        (!familyHasAward || facility.hasFamilyFriendlyAward === true) &&
+        (!familyManager || facility.manager === familyManager));
+    const matchesSpecializedToiletScope =
+      (!hasRiversideFilters && !hasFamilyToiletFilters) ||
+      (hasRiversideFilters && facility.type === 'riverside_toilet') ||
+      (hasFamilyToiletFilters && facility.type === 'family_friendly_toilet');
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -216,6 +256,15 @@ export function filterFacilities(
         facility.friendlyEquipmentOrServicesRaw,
         facility.notes,
         facility.source,
+        facility.riversidePark,
+        facility.locationDescription,
+        facility.riversideToiletTypeRaw,
+        facility.remark,
+        facility.toiletId,
+        facility.toiletName,
+        facility.toiletLocation,
+        facility.toiletGrade,
+        facility.toiletCategory,
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
           : '',
@@ -238,6 +287,9 @@ export function filterFacilities(
       matchesDirectDrinking &&
       matchesUsedClothing &&
       matchesLactation &&
+      matchesRiverside &&
+      matchesFamilyToilet &&
+      matchesSpecializedToiletScope &&
       matchesSearch
     );
   });
@@ -254,6 +306,14 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
 
   if (type === 'public_toilet') {
     return language === 'zh' ? '公廁' : 'Public Toilet';
+  }
+
+  if (type === 'riverside_toilet') {
+    return language === 'zh' ? '河濱廁所' : 'Riverside Toilet';
+  }
+
+  if (type === 'family_friendly_toilet') {
+    return language === 'zh' ? '親子友善廁所' : 'Family-Friendly Toilet';
   }
 
   if (type === 'drinking_fountain') {
@@ -273,6 +333,13 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
   }
 
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';
+}
+
+export function getRiversideToiletTypeLabel(type: RiversideToiletType | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? { scenic: '景觀', standard: '一般型', accessible: '無障礙', fixed: '固定式', other: '其他', unknown: '未知' }
+    : { scenic: 'Scenic', standard: 'Standard', accessible: 'Accessible', fixed: 'Fixed', other: 'Other', unknown: 'Unknown' };
+  return labels[type ?? 'unknown'];
 }
 
 export function getAcceptedItemsLabel(facility: Facility, language: Language) {

@@ -1,0 +1,105 @@
+{
+  "publicToiletCount": 1549,
+  "riversideToiletCount": 334,
+  "familyFriendlyToiletCount": 393,
+  "totalDiaperTableCount": 295,
+  "totalChildSeatCount": 283,
+  "byDistrict": [
+    {
+      "district": "士林區",
+      "publicToiletCount": 197,
+      "riversideToiletCount": 62,
+      "familyFriendlyToiletCount": 33,
+      "diaperTableCount": 18,
+      "childSeatCount": 18
+    },
+    {
+      "district": "大同區",
+      "publicToiletCount": 110,
+      "riversideToiletCount": 18,
+      "familyFriendlyToiletCount": 19,
+      "diaperTableCount": 19,
+      "childSeatCount": 15
+    },
+    {
+      "district": "大安區",
+      "publicToiletCount": 122,
+      "riversideToiletCount": 0,
+      "familyFriendlyToiletCount": 22,
+      "diaperTableCount": 20,
+      "childSeatCount": 20
+    },
+    {
+      "district": "中山區",
+      "publicToiletCount": 142,
+      "riversideToiletCount": 71,
+      "familyFriendlyToiletCount": 18,
+      "diaperTableCount": 15,
+      "childSeatCount": 17
+    },
+    {
+      "district": "中正區",
+      "publicToiletCount": 166,
+      "riversideToiletCount": 16,
+      "familyFriendlyToiletCount": 56,
+      "diaperTableCount": 40,
+      "childSeatCount": 38
+    },
+    {
+      "district": "內湖區",
+      "publicToiletCount": 131,
+      "riversideToiletCount": 33,
+      "familyFriendlyToiletCount": 19,
+      "diaperTableCount": 12,
+      "childSeatCount": 12
+    },
+    {
+      "district": "文山區",
+      "publicToiletCount": 123,
+      "riversideToiletCount": 41,
+      "familyFriendlyToiletCount": 28,
+      "diaperTableCount": 22,
+      "childSeatCount": 18
+    },
+    {
+      "district": "北投區",
+      "publicToiletCount": 128,
+      "riversideToiletCount": 20,
+      "familyFriendlyToiletCount": 47,
+      "diaperTableCount": 45,
+      "childSeatCount": 42
+    },
+    {
+      "district": "松山區",
+      "publicToiletCount": 97,
+      "riversideToiletCount": 24,
+      "familyFriendlyToiletCount": 37,
+      "diaperTableCount": 30,
+      "childSeatCount": 28
+    },
+    {
+      "district": "信義區",
+      "publicToiletCount": 119,
+      "riversideToiletCount": 0,
+      "familyFriendlyToiletCount": 53,
+      "diaperTableCount": 31,
+      "childSeatCount": 31
+    },
+    {
+      "district": "南港區",
+      "publicToiletCount": 66,
+      "riversideToiletCount": 10,
+      "familyFriendlyToiletCount": 15,
+      "diaperTableCount": 5,
+      "childSeatCount": 9
+    },
+    {
+      "district": "萬華區",
+      "publicToiletCount": 148,
+      "riversideToiletCount": 39,
+      "familyFriendlyToiletCount": 46,
+      "diaperTableCount": 38,
+      "childSeatCount": 35
+    }
+  ]
+}

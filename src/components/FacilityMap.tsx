@@ -68,6 +68,8 @@ const markerEmojiByType = {
   pedestrian_bin: '🗑️',
   dog_waste_bag_box: '🐾',
   public_toilet: '🚻',
+  riverside_toilet: '🌊',
+  family_friendly_toilet: '🚼',
   drinking_fountain: '🚰',
   timed_collection_point: '♻️',
   direct_drinking_station: '🚰',

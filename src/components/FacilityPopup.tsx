@@ -5,6 +5,7 @@ import {
   getDirectDrinkingStatusLabel,
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
+  getRiversideToiletTypeLabel,
   getToiletCategoryLabel,
 } from '../utils/facilityUtils';
 
@@ -34,6 +35,27 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
               {t.toiletCategory}: {getToiletCategoryLabel(facility.category, language)}
             </p>
           )}
+        </>
+      )}
+      {facility.type === 'riverside_toilet' && (
+        <>
+          {facility.riversidePark && <p>{t.riversidePark}: {facility.riversidePark}</p>}
+          {facility.locationDescription && <p>{t.locationDescription}: {facility.locationDescription}</p>}
+          {facility.riversideToiletType && <p>{t.toiletType}: {getRiversideToiletTypeLabel(facility.riversideToiletType, language)}</p>}
+          {facility.remark && <p>{t.remark}: {facility.remark}</p>}
+        </>
+      )}
+      {facility.type === 'family_friendly_toilet' && (
+        <>
+          {facility.toiletName && <p>{t.toiletName}: {facility.toiletName}</p>}
+          {facility.toiletId && <p>{t.toiletId}: {facility.toiletId}</p>}
+          {facility.toiletCategory && <p>{t.toiletCategory}: {facility.toiletCategory}</p>}
+          {facility.toiletLocation && <p>{t.toiletLocation}: {facility.toiletLocation}</p>}
+          {facility.toiletGrade && <p>{t.toiletGrade}: {facility.toiletGrade}</p>}
+          {facility.manager && <p>{t.managingUnit}: {facility.manager}</p>}
+          <p>{t.diaperTableCount}: {facility.diaperTableCount ?? 0}</p>
+          <p>{t.childSeatCount}: {facility.childSeatCount ?? 0}</p>
+          {facility.hasFamilyFriendlyAward && <p>{t.familyFriendlyAward}: {facility.familyFriendlyAwardRaw ?? 'V'}</p>}
         </>
       )}
       {facility.type === 'drinking_fountain' && facility.name && (
