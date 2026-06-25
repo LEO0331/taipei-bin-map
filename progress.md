@@ -25,10 +25,11 @@
 - [x] Added lactation search, filters, directory details, district summary bubbles, address-based Google Maps links, notices, PWA cache entries, and optional verified-coordinate cache support.
 - [x] Added 334 riverside toilets and 393 family-friendly toilets with exact markers, focused filters, nearby results, summaries, bilingual notices, and service-worker cache entries.
 - [x] Preserved specialized toilet records and cross-referenced all current family-friendly records to the general public-toilet dataset.
+- [x] Added 245 motorcycle inspection stations with UTF-8-SIG conversion, district summary bubbles, brand/postal/phone filters, address-based Google Maps links, notices, cache entries, and privacy-minimized default UI.
 
 ### What's In Progress
 
-- [x] No active feature work remains for feat-018.
+- [x] No active feature work remains for feat-019.
 
 ### What's Next
 
@@ -47,6 +48,7 @@
 - [ ] Lactation-room sources contain no coordinates; exact nearby sorting remains unavailable until coordinates are manually verified.
 - [ ] Lactation-room opening hours, equipment, availability, and venue rules are not real-time.
 - [ ] Toilet cleanliness, maintenance, opening status, equipment counts, and award fields are snapshot data rather than real-time guarantees.
+- [ ] Motorcycle inspection station business hours, service status, and inspection rules are snapshot/public-data references, not real-time guarantees.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -57,7 +59,9 @@
 - **Do not add dashboard charts**: The app has no existing dashboard surface.
 - **Do not geocode lactation rooms automatically**: Address-only records use district summaries and address-based Google Maps links until verified coordinates are added.
 - **Keep specialized toilet layers separate**: Cross-reference matches aid traceability but do not merge away source-specific fields.
+- **Hide responsible person by default**: `responsiblePersonName` remains in JSON but is not shown in normal cards/popups.
 - **Skip optional nearby shortcut buttons**: The existing nearby button already respects selected facility layers.
+- **Use a strict E2E dev server**: Playwright always starts this app on port 5173 and fails fast if the port is occupied, preventing accidental tests against another local Vite app.
 
 ## Files Modified This Session
 
@@ -107,7 +111,11 @@
 - [x] `npm run convert:bins` generated 6,557 facilities, including 334 riverside toilets and 393 family-friendly toilets.
 - [x] Both new toilet datasets decoded as CP950 and produced 727 valid WGS84 coordinates with no outliers.
 - [x] `npm test` passed 33 unit/converter tests and `npm run test:e2e` passed 34 desktop/mobile tests.
+- [x] `npm run convert:bins` generated 6,802 facilities, including 245 motorcycle inspection stations across 12 districts and 9 brands.
+- [x] `npm test` passed 35 unit/converter tests.
+- [x] `npm run build` passed.
+- [x] `npm run test:e2e` passed 38 desktop/mobile Playwright tests.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The ten-layer public amenities expansion is implemented and verified.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The eleven-layer public amenities expansion is implemented and verified.

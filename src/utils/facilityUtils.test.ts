@@ -173,6 +173,25 @@ const facilities: Facility[] = [
     hasFamilyFriendlyAward: true,
     coordinateStatus: 'valid',
   },
+  {
+    id: 'motorcycle_inspection_station-0001',
+    type: 'motorcycle_inspection_station',
+    district: '大安區',
+    address: '臺北市大安區和平東路2段141號',
+    longitude: 0,
+    latitude: 0,
+    note: '',
+    source: '臺北市機車定檢站位置',
+    sourceAgency: '臺北市政府環境保護局',
+    locationPrecision: 'address_only',
+    stationId: 'A12',
+    brand: '山葉',
+    stationName: '宏立機車事業有限公司',
+    name: '宏立機車事業有限公司',
+    postalCode: '106025',
+    phone: '(02)27065429',
+    responsiblePersonName: '沈鳳雲',
+  },
 ];
 
 describe('calculateDistanceMeters', () => {
@@ -376,6 +395,18 @@ describe('filterFacilities', () => {
     });
     expect(result.map((item) => item.id)).toEqual(['family_friendly_toilet-0001']);
   });
+
+  it('filters and searches motorcycle inspection stations without requiring coordinates', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: 'A12',
+      district: '大安區',
+      facilityTypes: ['motorcycle_inspection_station'],
+      inspectionBrand: '山葉',
+      inspectionPostalCode: '106025',
+      inspectionHasPhone: true,
+    });
+    expect(result.map((item) => item.id)).toEqual(['motorcycle_inspection_station-0001']);
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -390,6 +421,7 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('direct_drinking_station', 'zh')).toBe('直飲臺');
     expect(getFacilityTypeLabel('used_clothing_recycling_box', 'en')).toBe('Used Clothing Recycling Box');
     expect(getFacilityTypeLabel('lactation_room', 'en')).toBe('Lactation Room');
+    expect(getFacilityTypeLabel('motorcycle_inspection_station', 'en')).toBe('Motorcycle Inspection Station');
   });
 });
 

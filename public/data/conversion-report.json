@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-23T05:39:10.574Z",
-  "totalValidRows": 6557,
+  "generatedAt": "2026-06-25T01:19:27.993Z",
+  "totalValidRows": 6802,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -94,6 +94,15 @@
       "missingRequiredFields": [],
       "unmatchedSecondaryRows": [],
       "failedCertificationDates": []
+    },
+    {
+      "sourceFilename": "115年臺北市定檢站(245).csv",
+      "totalRows": 245,
+      "validRows": 245,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": []
     }
   ]
 }

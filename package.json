@@ -24,6 +24,8 @@
     "data:fetch:family-friendly-toilets": "tsx scripts/fetchFamilyFriendlyToilets.ts",
     "data:convert:family-friendly-toilets": "tsx scripts/convertFamilyFriendlyToilets.ts",
     "data:build:toilet-summaries": "tsx scripts/buildToiletSummaries.ts",
+    "data:fetch:motorcycle-inspection-stations": "tsx scripts/fetchMotorcycleInspectionStations.ts",
+    "data:convert:motorcycle-inspection-stations": "tsx scripts/convertMotorcycleInspectionStations.ts && tsx scripts/buildMotorcycleInspectionStationSummary.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

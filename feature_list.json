@@ -143,6 +143,14 @@
       "dependencies": ["feat-017"],
       "status": "done",
       "evidence": "npm run convert:bins generated 6557 facilities, including 334 riverside toilets and 393 family-friendly toilets. All new coordinates were valid, all current family-friendly records matched general public-toilet records, and 33 unit/converter plus 34 desktop/mobile Playwright tests passed."
+    },
+    {
+      "id": "feat-019",
+      "name": "Motorcycle inspection station expansion",
+      "description": "Add Taipei motorcycle inspection stations as a public-service location layer with UTF-8-SIG conversion, district summaries, brand/postal/phone filters, address-based links, cache support, and privacy-minimized UI.",
+      "dependencies": ["feat-018"],
+      "status": "done",
+      "evidence": "npm run convert:bins generated 6802 facilities, including 245 motorcycle inspection stations across all 12 districts. Responsible-person data is preserved in JSON but not shown on default cards/popups."
     }
   ]
 }

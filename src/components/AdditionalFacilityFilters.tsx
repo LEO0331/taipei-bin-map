@@ -258,3 +258,40 @@ export function FamilyFriendlyToiletFilters(props: FamilyFriendlyToiletFiltersPr
     </fieldset>
   );
 }
+
+type MotorcycleInspectionStationFiltersProps = {
+  brands: string[];
+  postalCodes: string[];
+  brand: string;
+  postalCode: string;
+  hasPhone: boolean;
+  t: Translation;
+  onBrandChange: (value: string) => void;
+  onPostalCodeChange: (value: string) => void;
+  onHasPhoneChange: (value: boolean) => void;
+};
+
+export function MotorcycleInspectionStationFilters(props: MotorcycleInspectionStationFiltersProps) {
+  return (
+    <fieldset className="toilet-filters">
+      <label>
+        {props.t.brand}
+        <select value={props.brand} onChange={(event) => props.onBrandChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.brands.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.postalCode}
+        <select value={props.postalCode} onChange={(event) => props.onPostalCodeChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.postalCodes.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label className="checkbox-filter">
+        <input type="checkbox" checked={props.hasPhone} onChange={(event) => props.onHasPhoneChange(event.target.checked)} />
+        <span>{props.t.hasPhone}</span>
+      </label>
+    </fieldset>
+  );
+}

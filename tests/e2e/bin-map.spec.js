@@ -36,9 +36,11 @@ const riversideToilets = facilities.filter((facility) => facility.type === 'rive
 const familyFriendlyToilets = facilities.filter((facility) => facility.type === 'family_friendly_toilet');
 const riversideToiletCount = riversideToilets.length.toString();
 const familyFriendlyToiletCount = familyFriendlyToilets.length.toString();
+const inspectionStations = facilities.filter((facility) => facility.type === 'motorcycle_inspection_station');
+const inspectionStationCount = inspectionStations.length.toString();
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all ten local datasets and avoids default marker clutter', async ({ page }) => {
+  test('loads all eleven local datasets and avoids default marker clutter', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -54,6 +56,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('哺集乳室');
     await expect(page.getByLabel('地圖圖例')).toContainText('河濱廁所');
     await expect(page.getByLabel('地圖圖例')).toContainText('親子友善廁所');
+    await expect(page.getByLabel('地圖圖例')).toContainText('機車定檢站');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-list li')).toHaveCount(80);
@@ -76,6 +79,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByRole('button', { name: 'Lactation Rooms' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Riverside Toilets' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Family-Friendly Toilets' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Motorcycle Inspection Stations' })).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {
@@ -132,6 +136,31 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.facility-list li').first()).toContainText('親子友善廁所');
     await expect(page.locator('.facility-list li').first()).toContainText('尿布臺設置數量');
     await expect(page.locator('.facility-list li').first()).toContainText('兒童座椅設置數量');
+  });
+
+  test('shows coordinate-free motorcycle inspection stations without responsible person on cards', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '機車定檢站' }).click();
+    await expect(page.getByText(`${inspectionStationCount} 筆資料`)).toBeVisible();
+    await expect(page.getByText('機車定檢站資料未提供經緯度')).toBeVisible();
+    await page.getByLabel('廠牌').selectOption('山葉');
+    await page.getByLabel('有電話').check();
+    await page.getByPlaceholder('搜尋站號、廠牌、站名、行政區、地址或電話').fill('A12');
+
+    await expect(page.locator('.facility-list li')).toHaveCount(1);
+    await expect(page.locator('.facility-list li').first()).toContainText('機車定檢站');
+    await expect(page.locator('.facility-list li').first()).toContainText('宏立機車事業有限公司');
+    await expect(page.locator('.facility-list li').first()).not.toContainText('沈鳳雲');
+  });
+
+  test('explains why exact nearby distance is unavailable for motorcycle inspection stations', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '機車定檢站' }).click();
+    await page.getByRole('button', { name: '查看附近行政區機車定檢站' }).click();
+
+    await expect(page.getByText('機車定檢站資料未提供經緯度，目前無法計算精確距離。')).toBeVisible();
   });
 
   test('searches public toilet name, manager, and address fields', async ({ page }) => {

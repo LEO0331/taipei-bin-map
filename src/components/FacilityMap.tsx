@@ -24,6 +24,11 @@ type FacilityMapProps = {
     withLocationGuidance: number;
     withCertificationValidity: number;
   }>;
+  inspectionDistrictSummaries: Array<{
+    district: string;
+    count: number;
+    topBrands: Array<{ brand: string; count: number }>;
+  }>;
 };
 
 const taipeiCenter: [number, number] = [25.0478, 121.5319];
@@ -75,6 +80,7 @@ const markerEmojiByType = {
   direct_drinking_station: '🚰',
   used_clothing_recycling_box: '👕',
   lactation_room: '🍼',
+  motorcycle_inspection_station: '🏍️',
 } satisfies Record<FacilityType, string>;
 
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {
@@ -124,6 +130,7 @@ export function FacilityMap({
   userLocation,
   t,
   lactationDistrictSummaries,
+  inspectionDistrictSummaries,
 }: FacilityMapProps) {
   const renderedFacilities = useChunkedFacilities(facilities);
   const userIcon = useMemo(
@@ -195,6 +202,27 @@ export function FacilityMap({
                   <p>{t.recordsWithOpeningHours}: {summary.withOpeningHours}</p>
                   <p>{t.recordsWithLocationGuidance}: {summary.withLocationGuidance}</p>
                   <p>{t.recordsWithCertificationValidity}: {summary.withCertificationValidity}</p>
+                </div>
+              </Popup>
+            </CircleMarker>
+          );
+        })}
+        {inspectionDistrictSummaries.map((summary) => {
+          const center = districtCentroids[summary.district];
+          if (!center) return null;
+          return (
+            <CircleMarker
+              key={`inspection-${summary.district}`}
+              center={center}
+              radius={Math.min(26, 10 + Math.sqrt(summary.count) * 1.8)}
+              pathOptions={{ color: '#61451f', fillColor: '#f2ce7e', fillOpacity: 0.78, weight: 2 }}
+            >
+              <Popup>
+                <div className="map-popup">
+                  <strong>{t.motorcycleInspectionStations}</strong>
+                  <p>{t.district}: {summary.district}</p>
+                  <p>{t.stationCount}: {summary.count}</p>
+                  <p>{t.topBrands}: {summary.topBrands.map((item) => `${item.brand} ${item.count}`).join('、')}</p>
                 </div>
               </Popup>
             </CircleMarker>

@@ -4,6 +4,7 @@ import {
   DirectDrinkingFilters,
   FamilyFriendlyToiletFilters,
   LactationRoomFilters,
+  MotorcycleInspectionStationFilters,
   RiversideToiletFilters,
   TimedCollectionFilters,
   UsedClothingFilters,
@@ -109,6 +110,9 @@ function App() {
   const [familyHasChildSeat, setFamilyHasChildSeat] = useState(false);
   const [familyHasAward, setFamilyHasAward] = useState(false);
   const [nearbyRadiusMeters, setNearbyRadiusMeters] = useState(1000);
+  const [inspectionBrand, setInspectionBrand] = useState('');
+  const [inspectionPostalCode, setInspectionPostalCode] = useState('');
+  const [inspectionHasPhone, setInspectionHasPhone] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -124,6 +128,7 @@ function App() {
   const includesDirectDrinkingStations = selectedTypes.includes('direct_drinking_station');
   const includesUsedClothing = selectedTypes.includes('used_clothing_recycling_box');
   const includesLactationRooms = selectedTypes.includes('lactation_room');
+  const includesInspectionStations = selectedTypes.includes('motorcycle_inspection_station');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -234,6 +239,14 @@ function App() {
     () => [...new Set(facilities.filter((facility) => facility.type === 'family_friendly_toilet').map((facility) => facility.manager).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
     [facilities],
   );
+  const inspectionBrands = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'motorcycle_inspection_station').map((facility) => facility.brand).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const inspectionPostalCodes = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'motorcycle_inspection_station').map((facility) => facility.postalCode).filter(Boolean) as string[])].sort(),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -277,6 +290,9 @@ function App() {
         familyHasDiaperTable,
         familyHasChildSeat,
         familyHasAward,
+        inspectionBrand,
+        inspectionPostalCode,
+        inspectionHasPhone,
       }),
     [
       district,
@@ -319,6 +335,9 @@ function App() {
       familyHasDiaperTable,
       familyHasChildSeat,
       familyHasAward,
+      inspectionBrand,
+      inspectionPostalCode,
+      inspectionHasPhone,
     ],
   );
 
@@ -333,6 +352,19 @@ function App() {
         withOpeningHours: rows.filter((facility) => facility.openingHours).length,
         withLocationGuidance: rows.filter((facility) => facility.locationGuidance).length,
         withCertificationValidity: rows.filter((facility) => facility.certificationValidityRaw).length,
+      };
+    });
+  }, [displayedFacilities]);
+  const inspectionDistrictSummaries = useMemo(() => {
+    const stations = displayedFacilities.filter((facility) => facility.type === 'motorcycle_inspection_station');
+    return [...new Set(stations.map((facility) => facility.district).filter(Boolean))].map((district) => {
+      const rows = stations.filter((facility) => facility.district === district);
+      const brandCounts = new Map<string, number>();
+      rows.forEach((facility) => facility.brand && brandCounts.set(facility.brand, (brandCounts.get(facility.brand) ?? 0) + 1));
+      return {
+        district,
+        count: rows.length,
+        topBrands: [...brandCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([brand, count]) => ({ brand, count })),
       };
     });
   }, [displayedFacilities]);
@@ -363,12 +395,15 @@ function App() {
   const isLactationOnly = selectedTypes.length === 1 && includesLactationRooms;
   const isRiversideOnly = selectedTypes.length === 1 && includesRiversideToilets;
   const isFamilyToiletOnly = selectedTypes.length === 1 && includesFamilyFriendlyToilets;
+  const isInspectionOnly = selectedTypes.length === 1 && includesInspectionStations;
   const isSpecializedToiletOnly = isRiversideOnly || isFamilyToiletOnly;
   const listHeading = nearbyFacilities
     ? t.nearestFacilities
-    : isLactationOnly
-      ? t.lactationRoomDirectory
-      : t.matchingFacilities;
+      : isLactationOnly
+        ? t.lactationRoomDirectory
+        : isInspectionOnly
+          ? t.motorcycleInspectionStationDirectory
+          : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
     if (!report?.generatedAt) {
       return '';
@@ -449,6 +484,11 @@ function App() {
       setFamilyHasDiaperTable(false);
       setFamilyHasChildSeat(false);
       setFamilyHasAward(false);
+    }
+    if (!value.includes('motorcycle_inspection_station')) {
+      setInspectionBrand('');
+      setInspectionPostalCode('');
+      setInspectionHasPhone(false);
     }
     setNearbyFacilities(null);
   };
@@ -596,6 +636,8 @@ function App() {
             districts={districts}
             placeholder={isLactationOnly
               ? t.lactationRoomSearchPlaceholder
+              : isInspectionOnly
+                ? t.inspectionStationSearchPlaceholder
               : isSpecializedToiletOnly
                 ? t.toiletSearchPlaceholder
                 : t.searchPlaceholder}
@@ -662,6 +704,28 @@ function App() {
                 if (name === 'diaper') setFamilyHasDiaperTable(value);
                 if (name === 'childSeat') setFamilyHasChildSeat(value);
                 if (name === 'award') setFamilyHasAward(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
+          {hasFocusedTypes && includesInspectionStations && (
+            <MotorcycleInspectionStationFilters
+              brands={inspectionBrands}
+              postalCodes={inspectionPostalCodes}
+              brand={inspectionBrand}
+              postalCode={inspectionPostalCode}
+              hasPhone={inspectionHasPhone}
+              t={t}
+              onBrandChange={(value) => {
+                setInspectionBrand(value);
+                setNearbyFacilities(null);
+              }}
+              onPostalCodeChange={(value) => {
+                setInspectionPostalCode(value);
+                setNearbyFacilities(null);
+              }}
+              onHasPhoneChange={(value) => {
+                setInspectionHasPhone(value);
                 setNearbyFacilities(null);
               }}
             />
@@ -775,6 +839,8 @@ function App() {
             isLoading={isLocating}
             label={isLactationOnly
               ? t.viewLactationRoomsByNearbyDistrict
+              : isInspectionOnly
+                ? t.viewInspectionStationsByNearbyDistrict
               : isRiversideOnly
                 ? t.showNearbyRiversideToilets
                 : isFamilyToiletOnly
@@ -792,11 +858,14 @@ function App() {
             {error === 'load'
               ? t.loadError
               : error === 'distance'
-                ? t.lactationRoomDistanceUnavailableNotice
+                ? includesInspectionStations
+                  ? t.inspectionStationDistanceUnavailableNotice
+                  : t.lactationRoomDistanceUnavailableNotice
                 : t.unableToGetLocation}
           </p>
         )}
         {includesLactationRooms && <p className="status-message">{t.lactationRoomNoCoordinateNotice}</p>}
+        {includesInspectionStations && <p className="status-message">{t.inspectionStationNoCoordinateNotice}</p>}
         {isLoadingFacilities ? (
           <p className="status-message">{t.loading}</p>
         ) : (
@@ -807,6 +876,7 @@ function App() {
                 language={language}
                 markerLimitExceeded={markerLimitExceeded}
                 lactationDistrictSummaries={lactationDistrictSummaries}
+                inspectionDistrictSummaries={inspectionDistrictSummaries}
                 t={t}
                 userLocation={userLocation}
               />

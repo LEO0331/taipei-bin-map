@@ -156,6 +156,16 @@ export function FacilityList({
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}
+              {facility.type === 'motorcycle_inspection_station' && (
+                <small>
+                  {[
+                    facility.stationId ? `${t.stationId}: ${facility.stationId}` : '',
+                    facility.brand ? `${t.brand}: ${facility.brand}` : '',
+                    facility.postalCode ? `${t.postalCode}: ${facility.postalCode}` : '',
+                    facility.phone ? `${t.phone}: ${facility.phone}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
               {facility.note && <small>{facility.note}</small>}
               {facility.isCoordinateOutlier && <small className="outlier-warning">{t.coordinateOutlierWarning}</small>}
               <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">

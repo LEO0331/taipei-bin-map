@@ -178,11 +178,21 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.notes && <p>{t.notes}: {facility.notes}</p>}
         </>
       )}
+      {facility.type === 'motorcycle_inspection_station' && (
+        <>
+          {facility.stationId && <p>{t.stationId}: {facility.stationId}</p>}
+          {facility.brand && <p>{t.brand}: {facility.brand}</p>}
+          {facility.stationName && <p>{t.stationName}: {facility.stationName}</p>}
+          {facility.postalCode && <p>{t.postalCode}: {facility.postalCode}</p>}
+          {facility.phone && <p>{t.phone}: {facility.phone}</p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
       {facility.type === 'used_clothing_recycling_box' && <p>{t.notice}: {t.usedClothingRecyclingNotice}</p>}
       {facility.type === 'lactation_room' && <p>{t.notice}: {t.lactationRoomNotice}</p>}
+      {facility.type === 'motorcycle_inspection_station' && <p>{t.notice}: {t.inspectionStationNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

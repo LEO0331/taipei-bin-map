@@ -49,6 +49,10 @@ export function MapLegend({ t }: MapLegendProps) {
         {t.lactationRooms}
       </span>
       <span>
+        <i aria-hidden="true">🏍️</i>
+        {t.motorcycleInspectionStations}
+      </span>
+      <span>
         <i aria-hidden="true">📍</i>
         {t.userLocation}
       </span>

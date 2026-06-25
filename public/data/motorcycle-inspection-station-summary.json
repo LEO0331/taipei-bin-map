@@ -1,0 +1,1039 @@
+{
+  "totalRecords": 245,
+  "uniqueStationIdCount": 245,
+  "districtCount": 12,
+  "brandCount": 9,
+  "recordsWithPhone": 245,
+  "recordsWithAddress": 245,
+  "recordsWithPostalCode": 245,
+  "byDistrict": [
+    {
+      "district": "內湖區",
+      "count": 28,
+      "topBrands": [
+        {
+          "brand": "山葉",
+          "count": 11
+        },
+        {
+          "brand": "光陽",
+          "count": 10
+        },
+        {
+          "brand": "三陽",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "district": "北投區",
+      "count": 27,
+      "topBrands": [
+        {
+          "brand": "光陽",
+          "count": 10
+        },
+        {
+          "brand": "山葉",
+          "count": 6
+        },
+        {
+          "brand": "三陽",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "district": "信義區",
+      "count": 26,
+      "topBrands": [
+        {
+          "brand": "光陽",
+          "count": 8
+        },
+        {
+          "brand": "山葉",
+          "count": 8
+        },
+        {
+          "brand": "三陽",
+          "count": 7
+        }
+      ]
+    },
+    {
+      "district": "文山區",
+      "count": 25,
+      "topBrands": [
+        {
+          "brand": "三陽",
+          "count": 8
+        },
+        {
+          "brand": "光陽",
+          "count": 7
+        },
+        {
+          "brand": "山葉",
+          "count": 7
+        }
+      ]
+    },
+    {
+      "district": "士林區",
+      "count": 24,
+      "topBrands": [
+        {
+          "brand": "三陽",
+          "count": 10
+        },
+        {
+          "brand": "山葉",
+          "count": 5
+        },
+        {
+          "brand": "光陽",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "district": "萬華區",
+      "count": 21,
+      "topBrands": [
+        {
+          "brand": "山葉",
+          "count": 9
+        },
+        {
+          "brand": "光陽",
+          "count": 6
+        },
+        {
+          "brand": "三陽",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "district": "大安區",
+      "count": 19,
+      "topBrands": [
+        {
+          "brand": "商會",
+          "count": 6
+        },
+        {
+          "brand": "山葉",
+          "count": 5
+        },
+        {
+          "brand": "光陽",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "district": "中山區",
+      "count": 17,
+      "topBrands": [
+        {
+          "brand": "光陽",
+          "count": 10
+        },
+        {
+          "brand": "山葉",
+          "count": 2
+        },
+        {
+          "brand": "三陽",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "district": "大同區",
+      "count": 16,
+      "topBrands": [
+        {
+          "brand": "山葉",
+          "count": 6
+        },
+        {
+          "brand": "三陽",
+          "count": 5
+        },
+        {
+          "brand": "光陽",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "district": "南港區",
+      "count": 16,
+      "topBrands": [
+        {
+          "brand": "光陽",
+          "count": 6
+        },
+        {
+          "brand": "三陽",
+          "count": 5
+        },
+        {
+          "brand": "山葉",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "district": "松山區",
+      "count": 13,
+      "topBrands": [
+        {
+          "brand": "光陽",
+          "count": 5
+        },
+        {
+          "brand": "山葉",
+          "count": 4
+        },
+        {
+          "brand": "三陽",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "district": "中正區",
+      "count": 13,
+      "topBrands": [
+        {
+          "brand": "山葉",
+          "count": 6
+        },
+        {
+          "brand": "三陽",
+          "count": 4
+        },
+        {
+          "brand": "光陽",
+          "count": 3
+        }
+      ]
+    }
+  ],
+  "byBrand": [
+    {
+      "brand": "山葉",
+      "count": 74
+    },
+    {
+      "brand": "光陽",
+      "count": 74
+    },
+    {
+      "brand": "三陽",
+      "count": 63
+    },
+    {
+      "brand": "商會",
+      "count": 21
+    },
+    {
+      "brand": "台鈴",
+      "count": 7
+    },
+    {
+      "brand": "自營",
+      "count": 3
+    },
+    {
+      "brand": "偉士伯",
+      "count": 1
+    },
+    {
+      "brand": "哈特佛",
+      "count": 1
+    },
+    {
+      "brand": "協隆電機",
+      "count": 1
+    }
+  ],
+  "byPostalCode": [
+    {
+      "postalCode": "100056",
+      "count": 5
+    },
+    {
+      "postalCode": "115011",
+      "count": 3
+    },
+    {
+      "postalCode": "112023",
+      "count": 3
+    },
+    {
+      "postalCode": "116005",
+      "count": 3
+    },
+    {
+      "postalCode": "115016",
+      "count": 3
+    },
+    {
+      "postalCode": "112018",
+      "count": 3
+    },
+    {
+      "postalCode": "105056",
+      "count": 2
+    },
+    {
+      "postalCode": "105072",
+      "count": 2
+    },
+    {
+      "postalCode": "103001",
+      "count": 2
+    },
+    {
+      "postalCode": "108033",
+      "count": 2
+    },
+    {
+      "postalCode": "108018",
+      "count": 2
+    },
+    {
+      "postalCode": "108012",
+      "count": 2
+    },
+    {
+      "postalCode": "114032",
+      "count": 2
+    },
+    {
+      "postalCode": "112053",
+      "count": 2
+    },
+    {
+      "postalCode": "108030",
+      "count": 2
+    },
+    {
+      "postalCode": "103047",
+      "count": 2
+    },
+    {
+      "postalCode": "111044",
+      "count": 2
+    },
+    {
+      "postalCode": "111064",
+      "count": 2
+    },
+    {
+      "postalCode": "103034",
+      "count": 2
+    },
+    {
+      "postalCode": "100054",
+      "count": 2
+    },
+    {
+      "postalCode": "116017",
+      "count": 2
+    },
+    {
+      "postalCode": "116065",
+      "count": 2
+    },
+    {
+      "postalCode": "116052",
+      "count": 2
+    },
+    {
+      "postalCode": "112058",
+      "count": 2
+    },
+    {
+      "postalCode": "110041",
+      "count": 2
+    },
+    {
+      "postalCode": "115021",
+      "count": 2
+    },
+    {
+      "postalCode": "111048",
+      "count": 2
+    },
+    {
+      "postalCode": "110003",
+      "count": 2
+    },
+    {
+      "postalCode": "114015",
+      "count": 2
+    },
+    {
+      "postalCode": "110015",
+      "count": 2
+    },
+    {
+      "postalCode": "108024",
+      "count": 2
+    },
+    {
+      "postalCode": "106022",
+      "count": 2
+    },
+    {
+      "postalCode": "108028",
+      "count": 2
+    },
+    {
+      "postalCode": "114006",
+      "count": 2
+    },
+    {
+      "postalCode": "106069",
+      "count": 2
+    },
+    {
+      "postalCode": "111068",
+      "count": 2
+    },
+    {
+      "postalCode": "112026",
+      "count": 2
+    },
+    {
+      "postalCode": "108027",
+      "count": 2
+    },
+    {
+      "postalCode": "114061",
+      "count": 2
+    },
+    {
+      "postalCode": "114024",
+      "count": 2
+    },
+    {
+      "postalCode": "110014",
+      "count": 2
+    },
+    {
+      "postalCode": "110038",
+      "count": 2
+    },
+    {
+      "postalCode": "114031",
+      "count": 2
+    },
+    {
+      "postalCode": "110005",
+      "count": 2
+    },
+    {
+      "postalCode": "106025",
+      "count": 1
+    },
+    {
+      "postalCode": "105073",
+      "count": 1
+    },
+    {
+      "postalCode": "111062",
+      "count": 1
+    },
+    {
+      "postalCode": "111066",
+      "count": 1
+    },
+    {
+      "postalCode": "111035",
+      "count": 1
+    },
+    {
+      "postalCode": "103006",
+      "count": 1
+    },
+    {
+      "postalCode": "103011",
+      "count": 1
+    },
+    {
+      "postalCode": "103041",
+      "count": 1
+    },
+    {
+      "postalCode": "114020",
+      "count": 1
+    },
+    {
+      "postalCode": "108010",
+      "count": 1
+    },
+    {
+      "postalCode": "104097",
+      "count": 1
+    },
+    {
+      "postalCode": "116058",
+      "count": 1
+    },
+    {
+      "postalCode": "112028",
+      "count": 1
+    },
+    {
+      "postalCode": "110067",
+      "count": 1
+    },
+    {
+      "postalCode": "110072",
+      "count": 1
+    },
+    {
+      "postalCode": "116059",
+      "count": 1
+    },
+    {
+      "postalCode": "116074",
+      "count": 1
+    },
+    {
+      "postalCode": "106020",
+      "count": 1
+    },
+    {
+      "postalCode": "112022",
+      "count": 1
+    },
+    {
+      "postalCode": "100033",
+      "count": 1
+    },
+    {
+      "postalCode": "100013",
+      "count": 1
+    },
+    {
+      "postalCode": "103019",
+      "count": 1
+    },
+    {
+      "postalCode": "103013",
+      "count": 1
+    },
+    {
+      "postalCode": "115027",
+      "count": 1
+    },
+    {
+      "postalCode": "111056",
+      "count": 1
+    },
+    {
+      "postalCode": "106083",
+      "count": 1
+    },
+    {
+      "postalCode": "106055",
+      "count": 1
+    },
+    {
+      "postalCode": "106079",
+      "count": 1
+    },
+    {
+      "postalCode": "106013",
+      "count": 1
+    },
+    {
+      "postalCode": "104062",
+      "count": 1
+    },
+    {
+      "postalCode": "104044",
+      "count": 1
+    },
+    {
+      "postalCode": "104023",
+      "count": 1
+    },
+    {
+      "postalCode": "104101",
+      "count": 1
+    },
+    {
+      "postalCode": "104084",
+      "count": 1
+    },
+    {
+      "postalCode": "104076",
+      "count": 1
+    },
+    {
+      "postalCode": "100064",
+      "count": 1
+    },
+    {
+      "postalCode": "114033",
+      "count": 1
+    },
+    {
+      "postalCode": "116002",
+      "count": 1
+    },
+    {
+      "postalCode": "116022",
+      "count": 1
+    },
+    {
+      "postalCode": "116018",
+      "count": 1
+    },
+    {
+      "postalCode": "116024",
+      "count": 1
+    },
+    {
+      "postalCode": "116066",
+      "count": 1
+    },
+    {
+      "postalCode": "116069",
+      "count": 1
+    },
+    {
+      "postalCode": "112015",
+      "count": 1
+    },
+    {
+      "postalCode": "112051",
+      "count": 1
+    },
+    {
+      "postalCode": "105046",
+      "count": 1
+    },
+    {
+      "postalCode": "115017",
+      "count": 1
+    },
+    {
+      "postalCode": "105002",
+      "count": 1
+    },
+    {
+      "postalCode": "105010",
+      "count": 1
+    },
+    {
+      "postalCode": "105033",
+      "count": 1
+    },
+    {
+      "postalCode": "105023",
+      "count": 1
+    },
+    {
+      "postalCode": "115024",
+      "count": 1
+    },
+    {
+      "postalCode": "103012",
+      "count": 1
+    },
+    {
+      "postalCode": "108035",
+      "count": 1
+    },
+    {
+      "postalCode": "108032",
+      "count": 1
+    },
+    {
+      "postalCode": "108045",
+      "count": 1
+    },
+    {
+      "postalCode": "111054",
+      "count": 1
+    },
+    {
+      "postalCode": "111036",
+      "count": 1
+    },
+    {
+      "postalCode": "111011",
+      "count": 1
+    },
+    {
+      "postalCode": "103046",
+      "count": 1
+    },
+    {
+      "postalCode": "106035",
+      "count": 1
+    },
+    {
+      "postalCode": "104004",
+      "count": 1
+    },
+    {
+      "postalCode": "104035",
+      "count": 1
+    },
+    {
+      "postalCode": "100049",
+      "count": 1
+    },
+    {
+      "postalCode": "114046",
+      "count": 1
+    },
+    {
+      "postalCode": "114038",
+      "count": 1
+    },
+    {
+      "postalCode": "112050",
+      "count": 1
+    },
+    {
+      "postalCode": "108003",
+      "count": 1
+    },
+    {
+      "postalCode": "112034",
+      "count": 1
+    },
+    {
+      "postalCode": "110032",
+      "count": 1
+    },
+    {
+      "postalCode": "108056",
+      "count": 1
+    },
+    {
+      "postalCode": "111069",
+      "count": 1
+    },
+    {
+      "postalCode": "106054",
+      "count": 1
+    },
+    {
+      "postalCode": "114054",
+      "count": 1
+    },
+    {
+      "postalCode": "114747",
+      "count": 1
+    },
+    {
+      "postalCode": "114008",
+      "count": 1
+    },
+    {
+      "postalCode": "112061",
+      "count": 1
+    },
+    {
+      "postalCode": "110050",
+      "count": 1
+    },
+    {
+      "postalCode": "115006",
+      "count": 1
+    },
+    {
+      "postalCode": "100015",
+      "count": 1
+    },
+    {
+      "postalCode": "106086",
+      "count": 1
+    },
+    {
+      "postalCode": "114047",
+      "count": 1
+    },
+    {
+      "postalCode": "111020",
+      "count": 1
+    },
+    {
+      "postalCode": "112043",
+      "count": 1
+    },
+    {
+      "postalCode": "110004",
+      "count": 1
+    },
+    {
+      "postalCode": "106006",
+      "count": 1
+    },
+    {
+      "postalCode": "116071",
+      "count": 1
+    },
+    {
+      "postalCode": "105030",
+      "count": 1
+    },
+    {
+      "postalCode": "111004",
+      "count": 1
+    },
+    {
+      "postalCode": "110021",
+      "count": 1
+    },
+    {
+      "postalCode": "110062",
+      "count": 1
+    },
+    {
+      "postalCode": "103030",
+      "count": 1
+    },
+    {
+      "postalCode": "110037",
+      "count": 1
+    },
+    {
+      "postalCode": "104009",
+      "count": 1
+    },
+    {
+      "postalCode": "112004",
+      "count": 1
+    },
+    {
+      "postalCode": "112031",
+      "count": 1
+    },
+    {
+      "postalCode": "116081",
+      "count": 1
+    },
+    {
+      "postalCode": "116008",
+      "count": 1
+    },
+    {
+      "postalCode": "111041",
+      "count": 1
+    },
+    {
+      "postalCode": "111006",
+      "count": 1
+    },
+    {
+      "postalCode": "104068",
+      "count": 1
+    },
+    {
+      "postalCode": "114055",
+      "count": 1
+    },
+    {
+      "postalCode": "108025",
+      "count": 1
+    },
+    {
+      "postalCode": "106004",
+      "count": 1
+    },
+    {
+      "postalCode": "110057",
+      "count": 1
+    },
+    {
+      "postalCode": "114027",
+      "count": 1
+    },
+    {
+      "postalCode": "110047",
+      "count": 1
+    },
+    {
+      "postalCode": "104087",
+      "count": 1
+    },
+    {
+      "postalCode": "104015",
+      "count": 1
+    },
+    {
+      "postalCode": "111065",
+      "count": 1
+    },
+    {
+      "postalCode": "116007",
+      "count": 1
+    },
+    {
+      "postalCode": "105060",
+      "count": 1
+    },
+    {
+      "postalCode": "115005",
+      "count": 1
+    },
+    {
+      "postalCode": "106052",
+      "count": 1
+    },
+    {
+      "postalCode": "104033",
+      "count": 1
+    },
+    {
+      "postalCode": "111012",
+      "count": 1
+    },
+    {
+      "postalCode": "115026",
+      "count": 1
+    },
+    {
+      "postalCode": "103024",
+      "count": 1
+    },
+    {
+      "postalCode": "114035",
+      "count": 1
+    },
+    {
+      "postalCode": "110019",
+      "count": 1
+    },
+    {
+      "postalCode": "116067",
+      "count": 1
+    },
+    {
+      "postalCode": "111063",
+      "count": 1
+    },
+    {
+      "postalCode": "106011",
+      "count": 1
+    },
+    {
+      "postalCode": "110068",
+      "count": 1
+    },
+    {
+      "postalCode": "104020",
+      "count": 1
+    },
+    {
+      "postalCode": "104111",
+      "count": 1
+    },
+    {
+      "postalCode": "114044",
+      "count": 1
+    },
+    {
+      "postalCode": "106029",
+      "count": 1
+    },
+    {
+      "postalCode": "103004",
+      "count": 1
+    },
+    {
+      "postalCode": "114040",
+      "count": 1
+    },
+    {
+      "postalCode": "111095",
+      "count": 1
+    },
+    {
+      "postalCode": "105047",
+      "count": 1
+    },
+    {
+      "postalCode": "115029",
+      "count": 1
+    },
+    {
+      "postalCode": "116021",
+      "count": 1
+    },
+    {
+      "postalCode": "110044",
+      "count": 1
+    },
+    {
+      "postalCode": "115008",
+      "count": 1
+    },
+    {
+      "postalCode": "114021",
+      "count": 1
+    },
+    {
+      "postalCode": "114011",
+      "count": 1
+    },
+    {
+      "postalCode": "104047",
+      "count": 1
+    },
+    {
+      "postalCode": "116001",
+      "count": 1
+    },
+    {
+      "postalCode": "112040",
+      "count": 1
+    },
+    {
+      "postalCode": "112011",
+      "count": 1
+    },
+    {
+      "postalCode": "112009",
+      "count": 1
+    },
+    {
+      "postalCode": "100050",
+      "count": 1
+    },
+    {
+      "postalCode": "114053",
+      "count": 1
+    },
+    {
+      "postalCode": "106068",
+      "count": 1
+    },
+    {
+      "postalCode": "110006",
+      "count": 1
+    },
+    {
+      "postalCode": "112063",
+      "count": 1
+    },
+    {
+      "postalCode": "112062",
+      "count": 1
+    }
+  ]
+}

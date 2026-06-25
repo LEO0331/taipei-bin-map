@@ -1,0 +1,9 @@
+{
+  "sourceUrl": "https://data.taipei/dataset/detail?id=a81edafd-c1e9-4678-9df2-bad8ce0fc383",
+  "resourceName": "115年臺北市定檢站",
+  "fetchedAt": "2026-06-25T01:19:20.430Z",
+  "filename": "115年臺北市定檢站(245).csv",
+  "fileSize": 26886,
+  "encoding": "UTF-8-SIG",
+  "notes": "Copied from local uploaded CSV; use --input and --force to replace it."
+}

@@ -26,6 +26,7 @@ export function SearchFilters({
         <input
           type="search"
           inputMode="search"
+          aria-label={t.search}
           placeholder={placeholder}
           value={searchTerm}
           onChange={(event) => onSearchChange(event.target.value)}

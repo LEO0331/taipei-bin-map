@@ -10,7 +10,8 @@ export type FacilityType =
   | 'timed_collection_point'
   | 'direct_drinking_station'
   | 'used_clothing_recycling_box'
-  | 'lactation_room';
+  | 'lactation_room'
+  | 'motorcycle_inspection_station';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
@@ -45,6 +46,7 @@ export type Facility = {
   latitude: number;
   note: string;
   source: string;
+  sourceAgency?: string;
   primarySourceName?: string;
   secondarySourceName?: string;
   isCoordinateOutlier?: boolean;
@@ -118,6 +120,33 @@ export type Facility = {
   familyFriendlyAwardRaw?: string;
   hasFamilyFriendlyAward?: boolean;
   matchedPublicToiletId?: string;
+  brand?: string;
+  stationName?: string;
+  postalCode?: string;
+  responsiblePersonName?: string;
+};
+
+export type MotorcycleInspectionStationLocation = {
+  stationId: string;
+  stationName?: string;
+  address?: string;
+  latitude: number;
+  longitude: number;
+  sourceNote: string;
+  verifiedAt?: string;
+};
+
+export type MotorcycleInspectionStationSummary = {
+  totalRecords: number;
+  uniqueStationIdCount: number;
+  districtCount: number;
+  brandCount: number;
+  recordsWithPhone: number;
+  recordsWithAddress: number;
+  recordsWithPostalCode: number;
+  byDistrict: Array<{ district: string; count: number; topBrands: Array<{ brand: string; count: number }> }>;
+  byBrand: Array<{ brand: string; count: number }>;
+  byPostalCode: Array<{ postalCode: string; count: number }>;
 };
 
 export type RiversideToiletSummary = {

@@ -103,6 +103,9 @@ export function filterFacilities(
     familyHasChildSeat = false,
     familyHasAward = false,
     familyManager,
+    inspectionBrand,
+    inspectionPostalCode,
+    inspectionHasPhone = false,
   }: {
     searchTerm: string;
     district: string;
@@ -143,6 +146,9 @@ export function filterFacilities(
     familyHasChildSeat?: boolean;
     familyHasAward?: boolean;
     familyManager?: string;
+    inspectionBrand?: string;
+    inspectionPostalCode?: string;
+    inspectionHasPhone?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -157,6 +163,7 @@ export function filterFacilities(
   const hasFamilyToiletFilters = Boolean(
     familyToiletCategory || familyToiletGrade || familyHasDiaperTable || familyHasChildSeat || familyHasAward || familyManager,
   );
+  const hasInspectionFilters = Boolean(inspectionBrand || inspectionPostalCode || inspectionHasPhone);
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -227,6 +234,12 @@ export function filterFacilities(
       (!hasRiversideFilters && !hasFamilyToiletFilters) ||
       (hasRiversideFilters && facility.type === 'riverside_toilet') ||
       (hasFamilyToiletFilters && facility.type === 'family_friendly_toilet');
+    const matchesInspection =
+      facility.type !== 'motorcycle_inspection_station' ||
+      ((!inspectionBrand || facility.brand === inspectionBrand) &&
+        (!inspectionPostalCode || facility.postalCode === inspectionPostalCode) &&
+        (!inspectionHasPhone || Boolean(facility.phone)));
+    const matchesInspectionScope = !hasInspectionFilters || facility.type === 'motorcycle_inspection_station';
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -265,6 +278,9 @@ export function filterFacilities(
         facility.toiletLocation,
         facility.toiletGrade,
         facility.toiletCategory,
+        facility.brand,
+        facility.stationName,
+        facility.postalCode,
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
           : '',
@@ -290,6 +306,8 @@ export function filterFacilities(
       matchesRiverside &&
       matchesFamilyToilet &&
       matchesSpecializedToiletScope &&
+      matchesInspection &&
+      matchesInspectionScope &&
       matchesSearch
     );
   });
@@ -330,6 +348,10 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
 
   if (type === 'used_clothing_recycling_box') {
     return language === 'zh' ? '舊衣回收箱' : 'Used Clothing Recycling Box';
+  }
+
+  if (type === 'motorcycle_inspection_station') {
+    return language === 'zh' ? '機車定檢站' : 'Motorcycle Inspection Station';
   }
 
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';

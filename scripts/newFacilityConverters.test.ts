@@ -22,6 +22,7 @@ import {
   convertFamilyFriendlyToiletRows,
   parseFamilyFriendlyAward,
 } from './convertFamilyFriendlyToilets';
+import { convertMotorcycleInspectionStationRows } from './convertMotorcycleInspectionStations';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -190,5 +191,31 @@ describe('new facility converters', () => {
       matchedPublicToiletId: 'public_toilet-1',
       coordinateStatus: 'valid',
     });
+  });
+
+  it('maps motorcycle inspection stations as address-only records and preserves responsible person data', () => {
+    const converted = convertMotorcycleInspectionStationRows([
+      {
+        站號: 'A12',
+        廠牌: '山葉',
+        站名: '宏立機車事業有限公司',
+        行政區: '大安區 ',
+        郵遞區號: '106025',
+        地址: '臺北市大安區和平東路2段141號',
+        電話: '(02)27065429',
+        負責人: '沈鳳雲',
+      },
+    ]);
+
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'motorcycle_inspection_station',
+      stationId: 'A12',
+      brand: '山葉',
+      district: '大安區',
+      postalCode: '106025',
+      locationPrecision: 'address_only',
+      responsiblePersonName: '沈鳳雲',
+    });
+    expect(converted.summary).toMatchObject({ totalRecords: 1, uniqueStationIdCount: 1, brandCount: 1 });
   });
 });

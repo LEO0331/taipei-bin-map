@@ -1,6 +1,6 @@
 # Taipei Public Amenities Map / 台北市公共便利設施地圖
 
-Mobile-first bilingual map for finding public toilets, riverside toilets, family-friendly toilets, recycling facilities, drinking facilities, and other Taipei public amenities.
+Mobile-first bilingual map for finding public toilets, riverside toilets, family-friendly toilets, motorcycle inspection stations, recycling facilities, drinking facilities, and other Taipei public amenities.
 
 The app is static, bilingual, PWA-ready, and requires no backend, login, admin page, database, Google Maps API key, or paid map service.
 
@@ -12,6 +12,7 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Leaflet + OpenStreetMap map, no Google Maps API key required.
 - Local static amenity data loaded from `public/data/facilities.json`.
 - Facility type filter for pedestrian garbage bins, dog-waste bag boxes, public toilets, riverside toilets, family-friendly toilets, drinking facilities, timed collection points, used-clothing recycling boxes, and lactation rooms.
+- Public service locations: motorcycle inspection stations.
 - Toilet layers: public toilets, riverside toilets, and family-friendly toilets.
 - Public toilet category, accessible-toilet, and parent-child-toilet filters.
 - Public drinking fountain place-category and opening-hour filters.
@@ -93,6 +94,16 @@ npm run convert:facilities
 
 Family-friendly records are kept as a specialized layer and softly cross-referenced to general public toilets by normalized name and address. Blank award fields are preserved as “not listed,” not interpreted as poor quality.
 
+The motorcycle inspection station layer uses the UTF-8-SIG `115年臺北市定檢站(245).csv` resource:
+
+```bash
+npm run data:fetch:motorcycle-inspection-stations
+npm run data:convert:motorcycle-inspection-stations
+npm run convert:facilities
+```
+
+The source has no coordinates, so the app shows a district-level directory and address-based Google Maps links. `負責人` is preserved in JSON for source fidelity but is not shown on default cards or popups. Manually verified coordinates can be added later to `public/data/motorcycle-inspection-station-locations.json`; automatic geocoding is not used.
+
 Fetch the raw API JSON, then regenerate the static public data:
 
 ```bash
@@ -139,6 +150,9 @@ public/data/used-clothing-recycling-boxes.json
 public/data/lactation-rooms.json
 public/data/lactation-room-summary.json
 public/data/lactation-room-locations.json
+public/data/motorcycle-inspection-stations.json
+public/data/motorcycle-inspection-station-summary.json
+public/data/motorcycle-inspection-station-locations.json
 public/data/conversion-report.json
 ```
 
@@ -187,7 +201,7 @@ More detail: [docs/deployment.en.md](docs/deployment.en.md)
 
 ### Data Notice
 
-Public toilets, riverside toilets, and family-friendly toilets remain separate source-specific layers. Equipment counts, award fields, cleanliness, maintenance, opening status, and availability are public-data snapshots rather than real-time guarantees. Verify details with official, venue, managing-unit, or on-site notices.
+Public toilets, riverside toilets, family-friendly toilets, and motorcycle inspection stations remain separate source-specific layers. Equipment counts, award fields, business hours, cleanliness, maintenance, opening status, and availability are public-data snapshots rather than real-time guarantees. Verify details with official, venue, managing-unit, station, or on-site notices.
 
 ## 中文
 
@@ -197,6 +211,7 @@ Public toilets, riverside toilets, and family-friendly toilets remain separate s
 - 使用 Leaflet + OpenStreetMap，不需要 Google Maps API key。
 - 從 `public/data/facilities.json` 載入本機靜態便利設施資料。
 - 支援行人專用清潔箱、狗便袋箱、公廁、河濱廁所、親子友善廁所、飲水設施、限時收受點、舊衣回收箱與哺集乳室的設施類型篩選。
+- 公共服務站點：機車定檢站。
 - 公廁圖層包含一般公廁、河濱廁所與親子友善廁所。
 - 支援公廁類別、無障礙廁所、親子廁所篩選。
 - 支援公共場所飲水機場所類型與開放時間資料篩選。
@@ -278,6 +293,16 @@ npm run convert:facilities
 
 親子友善廁所會保留為獨立專門圖層，並依正規化名稱與地址與一般公廁進行柔性比對。評鑑欄位空白只表示資料未列值，不代表品質不佳。
 
+機車定檢站圖層使用 UTF-8-SIG 的 `115年臺北市定檢站(245).csv`：
+
+```bash
+npm run data:fetch:motorcycle-inspection-stations
+npm run data:convert:motorcycle-inspection-stations
+npm run convert:facilities
+```
+
+來源沒有座標，因此以前端清單與行政區彙總呈現，Google Maps 連結使用地址查詢。`負責人` 會保存在 JSON 以保留來源欄位，但不顯示於預設卡片或彈窗。日後可將人工驗證座標加入 `public/data/motorcycle-inspection-station-locations.json`；目前不使用自動地理編碼。
+
 先擷取 API，再重新產生靜態資料：
 
 ```bash
@@ -324,6 +349,9 @@ public/data/used-clothing-recycling-boxes.json
 public/data/lactation-rooms.json
 public/data/lactation-room-summary.json
 public/data/lactation-room-locations.json
+public/data/motorcycle-inspection-stations.json
+public/data/motorcycle-inspection-station-summary.json
+public/data/motorcycle-inspection-station-locations.json
 public/data/conversion-report.json
 ```
 
