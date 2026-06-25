@@ -7,6 +7,7 @@ import {
   formatDistance,
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
+  getElectricMotorcycleChargingLocationCategoryLabel,
   isCoordinateOutlier,
   normalizeTaipeiDistrict,
 } from './facilityUtils';
@@ -191,6 +192,25 @@ const facilities: Facility[] = [
     postalCode: '106025',
     phone: '(02)27065429',
     responsiblePersonName: '沈鳳雲',
+  },
+  {
+    id: 'electric_motorcycle_charging_station-0001',
+    type: 'electric_motorcycle_charging_station',
+    district: '士林區',
+    address: '臺北市士林區延平北路6段434號',
+    longitude: 0,
+    latitude: 0,
+    note: '',
+    source: '臺北市電動機車充電站',
+    sourceAgency: '臺北市政府環境保護局',
+    locationPrecision: 'address_only',
+    stationId: 'R01',
+    unitName: '中華汽車社子服務廠',
+    name: '中華汽車社子服務廠',
+    city: '臺北市',
+    districtCode: '63000110',
+    locationCategoryRaw: '中華汽車服務廠',
+    locationCategory: 'service_factory',
   },
 ];
 
@@ -407,6 +427,19 @@ describe('filterFacilities', () => {
     });
     expect(result.map((item) => item.id)).toEqual(['motorcycle_inspection_station-0001']);
   });
+
+  it('filters and searches electric motorcycle charging stations without requiring coordinates', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: 'R01',
+      district: '士林區',
+      facilityTypes: ['electric_motorcycle_charging_station'],
+      chargingLocationCategory: 'service_factory',
+      chargingCity: '臺北市',
+      chargingDistrictCode: '63000110',
+      chargingHasAddress: true,
+    });
+    expect(result.map((item) => item.id)).toEqual(['electric_motorcycle_charging_station-0001']);
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -422,6 +455,8 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('used_clothing_recycling_box', 'en')).toBe('Used Clothing Recycling Box');
     expect(getFacilityTypeLabel('lactation_room', 'en')).toBe('Lactation Room');
     expect(getFacilityTypeLabel('motorcycle_inspection_station', 'en')).toBe('Motorcycle Inspection Station');
+    expect(getFacilityTypeLabel('electric_motorcycle_charging_station', 'zh')).toBe('電動機車充電站');
+    expect(getElectricMotorcycleChargingLocationCategoryLabel('service_factory', 'en')).toBe('Service factory');
   });
 });
 

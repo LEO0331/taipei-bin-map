@@ -3,6 +3,7 @@ import type { FacilityWithDistance, Language } from '../types';
 import {
   getAcceptedItemsLabel,
   getDirectDrinkingStatusLabel,
+  getElectricMotorcycleChargingLocationCategoryLabel,
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
   getRiversideToiletTypeLabel,
@@ -187,12 +188,22 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.phone && <p>{t.phone}: {facility.phone}</p>}
         </>
       )}
+      {facility.type === 'electric_motorcycle_charging_station' && (
+        <>
+          {facility.stationId && <p>{t.stationId}: {facility.stationId}</p>}
+          {facility.unitName && <p>{t.unitName}: {facility.unitName}</p>}
+          {facility.city && <p>{t.city}: {facility.city}</p>}
+          {facility.districtCode && <p>{t.districtCode}: {facility.districtCode}</p>}
+          {facility.locationCategory && <p>{t.locationCategory}: {getElectricMotorcycleChargingLocationCategoryLabel(facility.locationCategory, language)}</p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
       {facility.type === 'used_clothing_recycling_box' && <p>{t.notice}: {t.usedClothingRecyclingNotice}</p>}
       {facility.type === 'lactation_room' && <p>{t.notice}: {t.lactationRoomNotice}</p>}
       {facility.type === 'motorcycle_inspection_station' && <p>{t.notice}: {t.inspectionStationNotice}</p>}
+      {facility.type === 'electric_motorcycle_charging_station' && <p>{t.notice}: {t.chargingStationNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

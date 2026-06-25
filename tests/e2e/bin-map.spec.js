@@ -38,9 +38,11 @@ const riversideToiletCount = riversideToilets.length.toString();
 const familyFriendlyToiletCount = familyFriendlyToilets.length.toString();
 const inspectionStations = facilities.filter((facility) => facility.type === 'motorcycle_inspection_station');
 const inspectionStationCount = inspectionStations.length.toString();
+const chargingStations = facilities.filter((facility) => facility.type === 'electric_motorcycle_charging_station');
+const chargingStationCount = chargingStations.length.toString();
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all eleven local datasets and avoids default marker clutter', async ({ page }) => {
+  test('loads all twelve local datasets and avoids default marker clutter', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -57,6 +59,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('河濱廁所');
     await expect(page.getByLabel('地圖圖例')).toContainText('親子友善廁所');
     await expect(page.getByLabel('地圖圖例')).toContainText('機車定檢站');
+    await expect(page.getByLabel('地圖圖例')).toContainText('電動機車充電站');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-list li')).toHaveCount(80);
@@ -80,6 +83,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByRole('button', { name: 'Riverside Toilets' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Family-Friendly Toilets' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Motorcycle Inspection Stations' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Electric Motorcycle Charging Stations' })).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {
@@ -161,6 +165,26 @@ test.describe('Taipei public amenities map public flows', () => {
     await page.getByRole('button', { name: '查看附近行政區機車定檢站' }).click();
 
     await expect(page.getByText('機車定檢站資料未提供經緯度，目前無法計算精確距離。')).toBeVisible();
+  });
+
+  test('shows coordinate-free electric motorcycle charging stations and focused filters', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '電動機車充電站' }).click();
+    await expect(page.getByText(`${chargingStationCount} 筆資料`)).toBeVisible();
+    await expect(page.getByText('電動機車充電站資料未提供經緯度')).toBeVisible();
+    await page.getByLabel('地點分類').selectOption('service_factory');
+    await page.getByLabel('縣市').selectOption('臺北市');
+    await page.getByLabel('行政區域代碼').selectOption('63000110');
+    await page.getByLabel('有地址').check();
+    await page.getByPlaceholder('搜尋編號、單位、行政區、地址或地點分類').fill('R01');
+
+    await expect(page.locator('.facility-list li')).toHaveCount(1);
+    await expect(page.locator('.facility-list li').first()).toContainText('電動機車充電站');
+    await expect(page.locator('.facility-list li').first()).toContainText('中華汽車社子服務廠');
+    await expect(page.locator('.facility-list li').first()).not.toContainText('即時');
+    await page.getByRole('button', { name: '查看附近行政區電動機車充電站' }).click();
+    await expect(page.getByText('電動機車充電站資料未提供經緯度，目前無法計算精確距離。')).toBeVisible();
   });
 
   test('searches public toilet name, manager, and address fields', async ({ page }) => {

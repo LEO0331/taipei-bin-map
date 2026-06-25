@@ -23,6 +23,7 @@ import {
   parseFamilyFriendlyAward,
 } from './convertFamilyFriendlyToilets';
 import { convertMotorcycleInspectionStationRows } from './convertMotorcycleInspectionStations';
+import { convertElectricMotorcycleChargingStationRows } from './convertElectricMotorcycleChargingStations';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -217,5 +218,45 @@ describe('new facility converters', () => {
       responsiblePersonName: '沈鳳雲',
     });
     expect(converted.summary).toMatchObject({ totalRecords: 1, uniqueStationIdCount: 1, brandCount: 1 });
+  });
+
+  it('maps electric motorcycle charging stations without dropping duplicate station IDs', () => {
+    const converted = convertElectricMotorcycleChargingStationRows([
+      {
+        編號: 'R01',
+        單位: '中華汽車社子服務廠',
+        縣市: '臺北市',
+        行政區: '士林區',
+        行政區域代碼: '63000110.0',
+        地址: '臺北市士林區延平北路6段434號',
+        備註: '中華汽車服務廠',
+      },
+      {
+        編號: 'R01',
+        單位: '另一站',
+        縣市: '臺北市',
+        行政區: '士林區',
+        行政區域代碼: '63000110',
+        地址: '臺北市士林區測試路1號',
+        備註: '公有停車場',
+      },
+    ]);
+
+    expect(converted.facilities).toHaveLength(2);
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'electric_motorcycle_charging_station',
+      stationId: 'R01',
+      unitName: '中華汽車社子服務廠',
+      district: '士林區',
+      districtCode: '63000110',
+      locationCategory: 'service_factory',
+      locationPrecision: 'address_only',
+    });
+    expect(converted.summary).toMatchObject({
+      totalRecords: 2,
+      uniqueStationIdCount: 1,
+      duplicateStationIdCount: 1,
+    });
+    expect(converted.report.duplicateStationIds).toEqual([{ stationId: 'R01', count: 2 }]);
   });
 });

@@ -26,6 +26,8 @@
     "data:build:toilet-summaries": "tsx scripts/buildToiletSummaries.ts",
     "data:fetch:motorcycle-inspection-stations": "tsx scripts/fetchMotorcycleInspectionStations.ts",
     "data:convert:motorcycle-inspection-stations": "tsx scripts/convertMotorcycleInspectionStations.ts && tsx scripts/buildMotorcycleInspectionStationSummary.ts",
+    "data:fetch:electric-motorcycle-charging-stations": "tsx scripts/fetchElectricMotorcycleChargingStations.ts",
+    "data:convert:electric-motorcycle-charging-stations": "tsx scripts/convertElectricMotorcycleChargingStations.ts && tsx scripts/buildElectricMotorcycleChargingStationSummary.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

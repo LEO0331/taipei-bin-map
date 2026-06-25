@@ -11,11 +11,28 @@ export type FacilityType =
   | 'direct_drinking_station'
   | 'used_clothing_recycling_box'
   | 'lactation_room'
-  | 'motorcycle_inspection_station';
+  | 'motorcycle_inspection_station'
+  | 'electric_motorcycle_charging_station';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
 export type RiversideToiletType = 'scenic' | 'standard' | 'accessible' | 'fixed' | 'other' | 'unknown';
+
+export type ElectricMotorcycleChargingLocationCategory =
+  | 'inspection_station'
+  | 'public_parking_lot'
+  | 'motorcycle_shop'
+  | 'cleaning_team'
+  | 'metro_station'
+  | 'village_office'
+  | 'service_factory'
+  | 'government_parking_lot'
+  | 'incineration_plant'
+  | 'campus_parking_lot'
+  | 'store'
+  | 'sports_center'
+  | 'other'
+  | 'unknown';
 
 export type DrinkingFountainPlaceCategory =
   | 'sports_center'
@@ -124,6 +141,9 @@ export type Facility = {
   stationName?: string;
   postalCode?: string;
   responsiblePersonName?: string;
+  unitName?: string;
+  locationCategoryRaw?: string;
+  locationCategory?: ElectricMotorcycleChargingLocationCategory;
 };
 
 export type MotorcycleInspectionStationLocation = {
@@ -147,6 +167,41 @@ export type MotorcycleInspectionStationSummary = {
   byDistrict: Array<{ district: string; count: number; topBrands: Array<{ brand: string; count: number }> }>;
   byBrand: Array<{ brand: string; count: number }>;
   byPostalCode: Array<{ postalCode: string; count: number }>;
+};
+
+export type ElectricMotorcycleChargingStationLocation = {
+  stationId?: string;
+  unitName?: string;
+  address?: string;
+  latitude: number;
+  longitude: number;
+  sourceNote: string;
+  verifiedAt?: string;
+};
+
+export type ElectricMotorcycleChargingStationSummary = {
+  totalRecords: number;
+  uniqueStationIdCount: number;
+  districtCount: number;
+  locationCategoryCount: number;
+  recordsWithAddress: number;
+  recordsWithDistrictCode: number;
+  duplicateStationIdCount: number;
+  byDistrict: Array<{
+    district: string;
+    count: number;
+    topLocationCategories: Array<{
+      locationCategory: ElectricMotorcycleChargingLocationCategory;
+      locationCategoryRaw?: string;
+      count: number;
+    }>;
+  }>;
+  byLocationCategory: Array<{
+    locationCategory: ElectricMotorcycleChargingLocationCategory;
+    locationCategoryRaw?: string;
+    count: number;
+  }>;
+  byDistrictCode: Array<{ districtCode: string; district?: string; count: number }>;
 };
 
 export type RiversideToiletSummary = {
@@ -243,6 +298,8 @@ export type ConversionSourceReport = {
   unmatchedSecondaryRows?: Array<{ rowNumber: number; name?: string; address?: string }>;
   failedCertificationDates?: Array<{ rowNumber: number; value: string }>;
   matchedPublicToiletCount?: number;
+  duplicateStationIds?: Array<{ stationId: string; count: number }>;
+  districtCodeConflicts?: Array<{ rowNumber: number; district?: string; districtCode?: string; districtFromCode?: string }>;
 };
 
 export type ConversionReport = {

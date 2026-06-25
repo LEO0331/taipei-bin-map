@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-25T01:19:27.993Z",
-  "totalValidRows": 6802,
+  "generatedAt": "2026-06-25T06:10:16.419Z",
+  "totalValidRows": 7200,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -103,6 +103,22 @@
       "coordinateOutlierRows": 0,
       "invalidCoordinateRows": [],
       "missingRequiredFields": []
+    },
+    {
+      "sourceFilename": "115年臺北市電動機車充電地點(398).csv",
+      "totalRows": 398,
+      "validRows": 398,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": [],
+      "duplicateStationIds": [
+        {
+          "stationId": "R01",
+          "count": 2
+        }
+      ],
+      "districtCodeConflicts": []
     }
   ]
 }

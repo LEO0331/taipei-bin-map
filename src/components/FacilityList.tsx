@@ -4,6 +4,7 @@ import {
   formatDistance,
   getAcceptedItemsLabel,
   getDirectDrinkingStatusLabel,
+  getElectricMotorcycleChargingLocationCategoryLabel,
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
   getRiversideToiletTypeLabel,
@@ -163,6 +164,17 @@ export function FacilityList({
                     facility.brand ? `${t.brand}: ${facility.brand}` : '',
                     facility.postalCode ? `${t.postalCode}: ${facility.postalCode}` : '',
                     facility.phone ? `${t.phone}: ${facility.phone}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
+              {facility.type === 'electric_motorcycle_charging_station' && (
+                <small>
+                  {[
+                    facility.stationId ? `${t.stationId}: ${facility.stationId}` : '',
+                    facility.unitName ? `${t.unitName}: ${facility.unitName}` : '',
+                    facility.city ? `${t.city}: ${facility.city}` : '',
+                    facility.districtCode ? `${t.districtCode}: ${facility.districtCode}` : '',
+                    facility.locationCategory ? `${t.locationCategory}: ${getElectricMotorcycleChargingLocationCategoryLabel(facility.locationCategory, language)}` : '',
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}

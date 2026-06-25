@@ -12,6 +12,7 @@ import { loadLactationRooms } from './convertLactationRooms';
 import { loadRiversideToilets } from './convertRiversideToilets';
 import { loadFamilyFriendlyToilets } from './convertFamilyFriendlyToilets';
 import { loadMotorcycleInspectionStations } from './convertMotorcycleInspectionStations';
+import { loadElectricMotorcycleChargingStations } from './convertElectricMotorcycleChargingStations';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -140,6 +141,9 @@ const TOILET_SUMMARY_OUTPUT = resolve(options.outputDir, 'toilet-summary.json');
 const MOTORCYCLE_INSPECTION_STATION_OUTPUT = resolve(options.outputDir, 'motorcycle-inspection-stations.json');
 const MOTORCYCLE_INSPECTION_STATION_SUMMARY_OUTPUT = resolve(options.outputDir, 'motorcycle-inspection-station-summary.json');
 const MOTORCYCLE_INSPECTION_STATION_LOCATIONS_OUTPUT = resolve(options.outputDir, 'motorcycle-inspection-station-locations.json');
+const ELECTRIC_MOTORCYCLE_CHARGING_STATION_OUTPUT = resolve(options.outputDir, 'electric-motorcycle-charging-stations.json');
+const ELECTRIC_MOTORCYCLE_CHARGING_STATION_SUMMARY_OUTPUT = resolve(options.outputDir, 'electric-motorcycle-charging-station-summary.json');
+const ELECTRIC_MOTORCYCLE_CHARGING_STATION_LOCATIONS_OUTPUT = resolve(options.outputDir, 'electric-motorcycle-charging-station-locations.json');
 const DRINKING_FOUNTAINS_OUTPUT = resolve(options.outputDir, 'drinking-fountains.json');
 const TIMED_COLLECTION_OUTPUT = resolve(options.outputDir, 'timed-collection-points.json');
 const DIRECT_DRINKING_OUTPUT = resolve(options.outputDir, 'direct-drinking-stations.json');
@@ -407,6 +411,7 @@ const directDrinkingStations = loadDirectDrinkingStations();
 const usedClothingRecyclingBoxes = loadUsedClothingRecyclingBoxes();
 const lactationRooms = loadLactationRooms();
 const motorcycleInspectionStations = loadMotorcycleInspectionStations();
+const electricMotorcycleChargingStations = loadElectricMotorcycleChargingStations();
 
 const facilities = [
   ...pedestrian.facilities,
@@ -420,6 +425,7 @@ const facilities = [
   ...usedClothingRecyclingBoxes.facilities,
   ...lactationRooms.facilities,
   ...motorcycleInspectionStations.facilities,
+  ...electricMotorcycleChargingStations.facilities,
 ];
 const report: ConversionReport = {
   generatedAt: new Date().toISOString(),
@@ -436,6 +442,7 @@ const report: ConversionReport = {
     usedClothingRecyclingBoxes.report,
     lactationRooms.report,
     motorcycleInspectionStations.report,
+    electricMotorcycleChargingStations.report,
   ],
 };
 
@@ -477,6 +484,9 @@ if (!existsSync(LACTATION_LOCATIONS_OUTPUT)) writeJson(LACTATION_LOCATIONS_OUTPU
 writeJson(MOTORCYCLE_INSPECTION_STATION_OUTPUT, motorcycleInspectionStations.facilities);
 writeJson(MOTORCYCLE_INSPECTION_STATION_SUMMARY_OUTPUT, motorcycleInspectionStations.summary);
 if (!existsSync(MOTORCYCLE_INSPECTION_STATION_LOCATIONS_OUTPUT)) writeJson(MOTORCYCLE_INSPECTION_STATION_LOCATIONS_OUTPUT, []);
+writeJson(ELECTRIC_MOTORCYCLE_CHARGING_STATION_OUTPUT, electricMotorcycleChargingStations.facilities);
+writeJson(ELECTRIC_MOTORCYCLE_CHARGING_STATION_SUMMARY_OUTPUT, electricMotorcycleChargingStations.summary);
+if (!existsSync(ELECTRIC_MOTORCYCLE_CHARGING_STATION_LOCATIONS_OUTPUT)) writeJson(ELECTRIC_MOTORCYCLE_CHARGING_STATION_LOCATIONS_OUTPUT, []);
 writeJson(FACILITIES_OUTPUT, facilities);
 writeJson(REPORT_OUTPUT, report);
 
@@ -492,4 +502,5 @@ console.log(`Wrote ${directDrinkingStations.facilities.length} direct drinking s
 console.log(`Wrote ${usedClothingRecyclingBoxes.facilities.length} used-clothing recycling box records to ${USED_CLOTHING_OUTPUT}`);
 console.log(`Wrote ${lactationRooms.facilities.length} lactation room records to ${LACTATION_ROOMS_OUTPUT}`);
 console.log(`Wrote ${motorcycleInspectionStations.facilities.length} motorcycle inspection station records to ${MOTORCYCLE_INSPECTION_STATION_OUTPUT}`);
+console.log(`Wrote ${electricMotorcycleChargingStations.facilities.length} electric motorcycle charging station records to ${ELECTRIC_MOTORCYCLE_CHARGING_STATION_OUTPUT}`);
 console.log(`Wrote conversion report to ${REPORT_OUTPUT}`);

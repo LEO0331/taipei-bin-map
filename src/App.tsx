@@ -2,6 +2,7 @@ import { lazy, Suspense, useDeferredValue, useEffect, useMemo, useState } from '
 import { DrinkingFountainFilters } from './components/DrinkingFountainFilters';
 import {
   DirectDrinkingFilters,
+  ElectricMotorcycleChargingStationFilters,
   FamilyFriendlyToiletFilters,
   LactationRoomFilters,
   MotorcycleInspectionStationFilters,
@@ -21,6 +22,7 @@ import type {
   ConversionReport,
   DirectDrinkingPlaceCategory,
   DrinkingFountainPlaceCategory,
+  ElectricMotorcycleChargingLocationCategory,
   Facility,
   FacilityType,
   FacilityWithDistance,
@@ -113,6 +115,11 @@ function App() {
   const [inspectionBrand, setInspectionBrand] = useState('');
   const [inspectionPostalCode, setInspectionPostalCode] = useState('');
   const [inspectionHasPhone, setInspectionHasPhone] = useState(false);
+  const [chargingLocationCategory, setChargingLocationCategory] =
+    useState<ElectricMotorcycleChargingLocationCategory | ''>('');
+  const [chargingCity, setChargingCity] = useState('');
+  const [chargingDistrictCode, setChargingDistrictCode] = useState('');
+  const [chargingHasAddress, setChargingHasAddress] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -129,6 +136,7 @@ function App() {
   const includesUsedClothing = selectedTypes.includes('used_clothing_recycling_box');
   const includesLactationRooms = selectedTypes.includes('lactation_room');
   const includesInspectionStations = selectedTypes.includes('motorcycle_inspection_station');
+  const includesChargingStations = selectedTypes.includes('electric_motorcycle_charging_station');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -247,6 +255,14 @@ function App() {
     () => [...new Set(facilities.filter((facility) => facility.type === 'motorcycle_inspection_station').map((facility) => facility.postalCode).filter(Boolean) as string[])].sort(),
     [facilities],
   );
+  const chargingCities = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'electric_motorcycle_charging_station').map((facility) => facility.city).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const chargingDistrictCodes = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'electric_motorcycle_charging_station').map((facility) => facility.districtCode).filter(Boolean) as string[])].sort(),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -293,6 +309,10 @@ function App() {
         inspectionBrand,
         inspectionPostalCode,
         inspectionHasPhone,
+        chargingLocationCategory,
+        chargingCity,
+        chargingDistrictCode,
+        chargingHasAddress,
       }),
     [
       district,
@@ -338,6 +358,10 @@ function App() {
       inspectionBrand,
       inspectionPostalCode,
       inspectionHasPhone,
+      chargingLocationCategory,
+      chargingCity,
+      chargingDistrictCode,
+      chargingHasAddress,
     ],
   );
 
@@ -365,6 +389,28 @@ function App() {
         district,
         count: rows.length,
         topBrands: [...brandCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([brand, count]) => ({ brand, count })),
+      };
+    });
+  }, [displayedFacilities]);
+  const chargingDistrictSummaries = useMemo(() => {
+    const stations = displayedFacilities.filter((facility) => facility.type === 'electric_motorcycle_charging_station');
+    return [...new Set(stations.map((facility) => facility.district).filter(Boolean))].map((district) => {
+      const rows = stations.filter((facility) => facility.district === district);
+      const categoryCounts = new Map<string, { raw?: string; count: number }>();
+      rows.forEach((facility) => {
+        const category = facility.locationCategory ?? 'unknown';
+        const entry = categoryCounts.get(category) ?? { raw: facility.locationCategoryRaw, count: 0 };
+        entry.count += 1;
+        categoryCounts.set(category, entry);
+      });
+      return {
+        district,
+        count: rows.length,
+        topLocationCategories: [...categoryCounts.entries()].sort((a, b) => b[1].count - a[1].count).slice(0, 3).map(([locationCategory, item]) => ({
+          locationCategory: locationCategory as ElectricMotorcycleChargingLocationCategory,
+          locationCategoryRaw: item.raw,
+          count: item.count,
+        })),
       };
     });
   }, [displayedFacilities]);
@@ -396,6 +442,7 @@ function App() {
   const isRiversideOnly = selectedTypes.length === 1 && includesRiversideToilets;
   const isFamilyToiletOnly = selectedTypes.length === 1 && includesFamilyFriendlyToilets;
   const isInspectionOnly = selectedTypes.length === 1 && includesInspectionStations;
+  const isChargingOnly = selectedTypes.length === 1 && includesChargingStations;
   const isSpecializedToiletOnly = isRiversideOnly || isFamilyToiletOnly;
   const listHeading = nearbyFacilities
     ? t.nearestFacilities
@@ -403,6 +450,8 @@ function App() {
         ? t.lactationRoomDirectory
         : isInspectionOnly
           ? t.motorcycleInspectionStationDirectory
+          : isChargingOnly
+            ? t.electricMotorcycleChargingStationDirectory
           : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
     if (!report?.generatedAt) {
@@ -489,6 +538,12 @@ function App() {
       setInspectionBrand('');
       setInspectionPostalCode('');
       setInspectionHasPhone(false);
+    }
+    if (!value.includes('electric_motorcycle_charging_station')) {
+      setChargingLocationCategory('');
+      setChargingCity('');
+      setChargingDistrictCode('');
+      setChargingHasAddress(false);
     }
     setNearbyFacilities(null);
   };
@@ -638,6 +693,8 @@ function App() {
               ? t.lactationRoomSearchPlaceholder
               : isInspectionOnly
                 ? t.inspectionStationSearchPlaceholder
+                : isChargingOnly
+                  ? t.chargingStationSearchPlaceholder
               : isSpecializedToiletOnly
                 ? t.toiletSearchPlaceholder
                 : t.searchPlaceholder}
@@ -726,6 +783,34 @@ function App() {
               }}
               onHasPhoneChange={(value) => {
                 setInspectionHasPhone(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
+          {hasFocusedTypes && includesChargingStations && (
+            <ElectricMotorcycleChargingStationFilters
+              cities={chargingCities}
+              districtCodes={chargingDistrictCodes}
+              locationCategory={chargingLocationCategory}
+              city={chargingCity}
+              districtCode={chargingDistrictCode}
+              hasAddress={chargingHasAddress}
+              language={language}
+              t={t}
+              onLocationCategoryChange={(value) => {
+                setChargingLocationCategory(value);
+                setNearbyFacilities(null);
+              }}
+              onCityChange={(value) => {
+                setChargingCity(value);
+                setNearbyFacilities(null);
+              }}
+              onDistrictCodeChange={(value) => {
+                setChargingDistrictCode(value);
+                setNearbyFacilities(null);
+              }}
+              onHasAddressChange={(value) => {
+                setChargingHasAddress(value);
                 setNearbyFacilities(null);
               }}
             />
@@ -841,6 +926,8 @@ function App() {
               ? t.viewLactationRoomsByNearbyDistrict
               : isInspectionOnly
                 ? t.viewInspectionStationsByNearbyDistrict
+                : isChargingOnly
+                  ? t.viewChargingStationsByNearbyDistrict
               : isRiversideOnly
                 ? t.showNearbyRiversideToilets
                 : isFamilyToiletOnly
@@ -860,12 +947,15 @@ function App() {
               : error === 'distance'
                 ? includesInspectionStations
                   ? t.inspectionStationDistanceUnavailableNotice
+                  : includesChargingStations
+                    ? t.chargingStationDistanceUnavailableNotice
                   : t.lactationRoomDistanceUnavailableNotice
                 : t.unableToGetLocation}
           </p>
         )}
         {includesLactationRooms && <p className="status-message">{t.lactationRoomNoCoordinateNotice}</p>}
         {includesInspectionStations && <p className="status-message">{t.inspectionStationNoCoordinateNotice}</p>}
+        {includesChargingStations && <p className="status-message">{t.chargingStationNoCoordinateNotice}</p>}
         {isLoadingFacilities ? (
           <p className="status-message">{t.loading}</p>
         ) : (
@@ -877,6 +967,7 @@ function App() {
                 markerLimitExceeded={markerLimitExceeded}
                 lactationDistrictSummaries={lactationDistrictSummaries}
                 inspectionDistrictSummaries={inspectionDistrictSummaries}
+                chargingDistrictSummaries={chargingDistrictSummaries}
                 t={t}
                 userLocation={userLocation}
               />

@@ -1,0 +1,387 @@
+{
+  "totalRecords": 398,
+  "uniqueStationIdCount": 397,
+  "districtCount": 12,
+  "locationCategoryCount": 12,
+  "recordsWithAddress": 398,
+  "recordsWithDistrictCode": 398,
+  "duplicateStationIdCount": 1,
+  "byDistrict": [
+    {
+      "district": "北投區",
+      "count": 49,
+      "topLocationCategories": [
+        {
+          "locationCategory": "inspection_station",
+          "locationCategoryRaw": "檢驗站",
+          "count": 27
+        },
+        {
+          "locationCategory": "motorcycle_shop",
+          "locationCategoryRaw": "車行",
+          "count": 7
+        },
+        {
+          "locationCategory": "metro_station",
+          "locationCategoryRaw": "捷運站",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "district": "士林區",
+      "count": 39,
+      "topLocationCategories": [
+        {
+          "locationCategory": "inspection_station",
+          "locationCategoryRaw": "檢驗站",
+          "count": 24
+        },
+        {
+          "locationCategory": "motorcycle_shop",
+          "locationCategoryRaw": "車行",
+          "count": 5
+        },
+        {
+          "locationCategory": "public_parking_lot",
+          "locationCategoryRaw": "公有停車場",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "district": "內湖區",
+      "count": 39,
+      "topLocationCategories": [
+        {
+          "locationCategory": "inspection_station",
+          "locationCategoryRaw": "檢驗站",
+          "count": 28
+        },
+        {
+          "locationCategory": "motorcycle_shop",
+          "locationCategoryRaw": "車行",
+          "count": 5
+        },
+        {
+          "locationCategory": "public_parking_lot",
+          "locationCategoryRaw": "公有停車場",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "district": "文山區",
+      "count": 38,
+      "topLocationCategories": [
+        {
+          "locationCategory": "inspection_station",
+          "locationCategoryRaw": "檢驗站",
+          "count": 25
+        },
+        {
+          "locationCategory": "public_parking_lot",
+          "locationCategoryRaw": "公有停車場",
+          "count": 6
+        },
+        {
+          "locationCategory": "government_parking_lot",
+          "locationCategoryRaw": "公務單位停車場",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "district": "信義區",
+      "count": 37,
+      "topLocationCategories": [
+        {
+          "locationCategory": "inspection_station",
+          "locationCategoryRaw": "檢驗站",
+          "count": 25
+        },
+        {
+          "locationCategory": "public_parking_lot",
+          "locationCategoryRaw": "公有停車場",
+          "count": 9
+        },
+        {
+          "locationCategory": "motorcycle_shop",
+          "locationCategoryRaw": "車行",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "district": "萬華區",
+      "count": 35,
+      "topLocationCategories": [
+        {
+          "locationCategory": "inspection_station",
+          "locationCategoryRaw": "檢驗站",
+          "count": 21
+        },
+        {
+          "locationCategory": "public_parking_lot",
+          "locationCategoryRaw": "公有停車場",
+          "count": 6
+        },
+        {
+          "locationCategory": "motorcycle_shop",
+          "locationCategoryRaw": "車行",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "district": "中山區",
+      "count": 33,
+      "topLocationCategories": [
+        {
+          "locationCategory": "inspection_station",
+          "locationCategoryRaw": "檢驗站",
+          "count": 17
+        },
+        {
+          "locationCategory": "cleaning_team",
+          "locationCategoryRaw": "清潔隊",
+          "count": 6
+        },
+        {
+          "locationCategory": "public_parking_lot",
+          "locationCategoryRaw": "公有停車場",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "district": "大安區",
+      "count": 31,
+      "topLocationCategories": [
+        {
+          "locationCategory": "inspection_station",
+          "locationCategoryRaw": "檢驗站",
+          "count": 19
+        },
+        {
+          "locationCategory": "cleaning_team",
+          "locationCategoryRaw": "清潔隊",
+          "count": 6
+        },
+        {
+          "locationCategory": "public_parking_lot",
+          "locationCategoryRaw": "公有停車場",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "district": "南港區",
+      "count": 29,
+      "topLocationCategories": [
+        {
+          "locationCategory": "inspection_station",
+          "locationCategoryRaw": "檢驗站",
+          "count": 17
+        },
+        {
+          "locationCategory": "public_parking_lot",
+          "locationCategoryRaw": "公有停車場",
+          "count": 5
+        },
+        {
+          "locationCategory": "motorcycle_shop",
+          "locationCategoryRaw": "車行",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "district": "大同區",
+      "count": 29,
+      "topLocationCategories": [
+        {
+          "locationCategory": "inspection_station",
+          "locationCategoryRaw": "檢驗站",
+          "count": 16
+        },
+        {
+          "locationCategory": "public_parking_lot",
+          "locationCategoryRaw": "公有停車場",
+          "count": 5
+        },
+        {
+          "locationCategory": "cleaning_team",
+          "locationCategoryRaw": "清潔隊",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "district": "松山區",
+      "count": 20,
+      "topLocationCategories": [
+        {
+          "locationCategory": "inspection_station",
+          "locationCategoryRaw": "檢驗站",
+          "count": 13
+        },
+        {
+          "locationCategory": "public_parking_lot",
+          "locationCategoryRaw": "公有停車場",
+          "count": 4
+        },
+        {
+          "locationCategory": "government_parking_lot",
+          "locationCategoryRaw": "公務單位停車場",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "district": "中正區",
+      "count": 19,
+      "topLocationCategories": [
+        {
+          "locationCategory": "inspection_station",
+          "locationCategoryRaw": "檢驗站",
+          "count": 13
+        },
+        {
+          "locationCategory": "village_office",
+          "locationCategoryRaw": "里辦公室",
+          "count": 2
+        },
+        {
+          "locationCategory": "cleaning_team",
+          "locationCategoryRaw": "清潔隊",
+          "count": 2
+        }
+      ]
+    }
+  ],
+  "byLocationCategory": [
+    {
+      "locationCategory": "inspection_station",
+      "locationCategoryRaw": "檢驗站",
+      "count": 245
+    },
+    {
+      "locationCategory": "public_parking_lot",
+      "locationCategoryRaw": "公有停車場",
+      "count": 54
+    },
+    {
+      "locationCategory": "motorcycle_shop",
+      "locationCategoryRaw": "車行",
+      "count": 41
+    },
+    {
+      "locationCategory": "cleaning_team",
+      "locationCategoryRaw": "清潔隊",
+      "count": 31
+    },
+    {
+      "locationCategory": "metro_station",
+      "locationCategoryRaw": "捷運站",
+      "count": 8
+    },
+    {
+      "locationCategory": "village_office",
+      "locationCategoryRaw": "里辦公室",
+      "count": 6
+    },
+    {
+      "locationCategory": "service_factory",
+      "locationCategoryRaw": "中華汽車服務廠",
+      "count": 4
+    },
+    {
+      "locationCategory": "government_parking_lot",
+      "locationCategoryRaw": "公務單位停車場",
+      "count": 3
+    },
+    {
+      "locationCategory": "incineration_plant",
+      "locationCategoryRaw": "焚化廠",
+      "count": 3
+    },
+    {
+      "locationCategory": "campus_parking_lot",
+      "locationCategoryRaw": "校園停車場",
+      "count": 1
+    },
+    {
+      "locationCategory": "store",
+      "locationCategoryRaw": "商店",
+      "count": 1
+    },
+    {
+      "locationCategory": "sports_center",
+      "locationCategoryRaw": "運動中心",
+      "count": 1
+    }
+  ],
+  "byDistrictCode": [
+    {
+      "districtCode": "63000120",
+      "district": "北投區",
+      "count": 49
+    },
+    {
+      "districtCode": "63000110",
+      "district": "士林區",
+      "count": 39
+    },
+    {
+      "districtCode": "63000100",
+      "district": "內湖區",
+      "count": 39
+    },
+    {
+      "districtCode": "63000080",
+      "district": "文山區",
+      "count": 38
+    },
+    {
+      "districtCode": "63000020",
+      "district": "信義區",
+      "count": 37
+    },
+    {
+      "districtCode": "63000070",
+      "district": "萬華區",
+      "count": 35
+    },
+    {
+      "districtCode": "63000040",
+      "district": "中山區",
+      "count": 33
+    },
+    {
+      "districtCode": "63000030",
+      "district": "大安區",
+      "count": 31
+    },
+    {
+      "districtCode": "63000090",
+      "district": "南港區",
+      "count": 29
+    },
+    {
+      "districtCode": "63000060",
+      "district": "大同區",
+      "count": 29
+    },
+    {
+      "districtCode": "63000010",
+      "district": "松山區",
+      "count": 20
+    },
+    {
+      "districtCode": "63000050",
+      "district": "中正區",
+      "count": 19
+    }
+  ]
+}

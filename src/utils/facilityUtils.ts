@@ -1,6 +1,7 @@
 import type {
   DirectDrinkingPlaceCategory,
   DrinkingFountainPlaceCategory,
+  ElectricMotorcycleChargingLocationCategory,
   Facility,
   FacilityType,
   Language,
@@ -106,6 +107,10 @@ export function filterFacilities(
     inspectionBrand,
     inspectionPostalCode,
     inspectionHasPhone = false,
+    chargingLocationCategory,
+    chargingCity,
+    chargingDistrictCode,
+    chargingHasAddress = false,
   }: {
     searchTerm: string;
     district: string;
@@ -149,6 +154,10 @@ export function filterFacilities(
     inspectionBrand?: string;
     inspectionPostalCode?: string;
     inspectionHasPhone?: boolean;
+    chargingLocationCategory?: ElectricMotorcycleChargingLocationCategory | '';
+    chargingCity?: string;
+    chargingDistrictCode?: string;
+    chargingHasAddress?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -164,6 +173,7 @@ export function filterFacilities(
     familyToiletCategory || familyToiletGrade || familyHasDiaperTable || familyHasChildSeat || familyHasAward || familyManager,
   );
   const hasInspectionFilters = Boolean(inspectionBrand || inspectionPostalCode || inspectionHasPhone);
+  const hasChargingFilters = Boolean(chargingLocationCategory || chargingCity || chargingDistrictCode || chargingHasAddress);
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -240,6 +250,13 @@ export function filterFacilities(
         (!inspectionPostalCode || facility.postalCode === inspectionPostalCode) &&
         (!inspectionHasPhone || Boolean(facility.phone)));
     const matchesInspectionScope = !hasInspectionFilters || facility.type === 'motorcycle_inspection_station';
+    const matchesCharging =
+      facility.type !== 'electric_motorcycle_charging_station' ||
+      ((!chargingLocationCategory || facility.locationCategory === chargingLocationCategory) &&
+        (!chargingCity || facility.city === chargingCity) &&
+        (!chargingDistrictCode || facility.districtCode === chargingDistrictCode) &&
+        (!chargingHasAddress || Boolean(facility.address)));
+    const matchesChargingScope = !hasChargingFilters || facility.type === 'electric_motorcycle_charging_station';
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -281,6 +298,10 @@ export function filterFacilities(
         facility.brand,
         facility.stationName,
         facility.postalCode,
+        facility.unitName,
+        facility.districtCode,
+        facility.locationCategory,
+        facility.locationCategoryRaw,
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
           : '',
@@ -308,6 +329,8 @@ export function filterFacilities(
       matchesSpecializedToiletScope &&
       matchesInspection &&
       matchesInspectionScope &&
+      matchesCharging &&
+      matchesChargingScope &&
       matchesSearch
     );
   });
@@ -354,7 +377,71 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '機車定檢站' : 'Motorcycle Inspection Station';
   }
 
+  if (type === 'electric_motorcycle_charging_station') {
+    return language === 'zh' ? '電動機車充電站' : 'Electric Motorcycle Charging Station';
+  }
+
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';
+}
+
+export function classifyElectricMotorcycleChargingLocationCategory(
+  raw: string | undefined,
+): ElectricMotorcycleChargingLocationCategory {
+  const text = raw?.trim() ?? '';
+  if (!text) return 'unknown';
+  if (text.includes('檢驗站')) return 'inspection_station';
+  if (text.includes('公有停車場')) return 'public_parking_lot';
+  if (text.includes('車行')) return 'motorcycle_shop';
+  if (text.includes('清潔隊')) return 'cleaning_team';
+  if (text.includes('捷運站')) return 'metro_station';
+  if (text.includes('里辦公室')) return 'village_office';
+  if (text.includes('中華汽車服務廠')) return 'service_factory';
+  if (text.includes('公務單位停車場')) return 'government_parking_lot';
+  if (text.includes('焚化廠')) return 'incineration_plant';
+  if (text.includes('校園停車場')) return 'campus_parking_lot';
+  if (text.includes('商店')) return 'store';
+  if (text.includes('運動中心')) return 'sports_center';
+  return 'other';
+}
+
+export function getElectricMotorcycleChargingLocationCategoryLabel(
+  category: ElectricMotorcycleChargingLocationCategory | undefined,
+  language: Language,
+) {
+  const labels = language === 'zh'
+    ? {
+      inspection_station: '檢驗站',
+      public_parking_lot: '公有停車場',
+      motorcycle_shop: '車行',
+      cleaning_team: '清潔隊',
+      metro_station: '捷運站',
+      village_office: '里辦公室',
+      service_factory: '服務廠',
+      government_parking_lot: '公務單位停車場',
+      incineration_plant: '焚化廠',
+      campus_parking_lot: '校園停車場',
+      store: '商店',
+      sports_center: '運動中心',
+      other: '其他',
+      unknown: '未知分類',
+    }
+    : {
+      inspection_station: 'Inspection station',
+      public_parking_lot: 'Public parking lot',
+      motorcycle_shop: 'Motorcycle shop',
+      cleaning_team: 'Cleaning team',
+      metro_station: 'Metro station',
+      village_office: 'Village office',
+      service_factory: 'Service factory',
+      government_parking_lot: 'Government parking lot',
+      incineration_plant: 'Incineration plant',
+      campus_parking_lot: 'Campus parking lot',
+      store: 'Store',
+      sports_center: 'Sports center',
+      other: 'Other',
+      unknown: 'Unknown category',
+    };
+  return labels[category ?? 'unknown'];
 }
 
 export function getRiversideToiletTypeLabel(type: RiversideToiletType | undefined, language: Language) {

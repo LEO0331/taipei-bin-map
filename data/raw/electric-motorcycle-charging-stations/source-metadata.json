@@ -1,0 +1,9 @@
+{
+  "sourceUrl": "https://data.taipei/dataset/detail?id=c66e2f53-92f5-4ccd-8aa9-eb71a288e09e",
+  "resourceName": "115年臺北市電動機車充電地點",
+  "fetchedAt": "2026-06-25T06:10:10.688Z",
+  "filename": "115年臺北市電動機車充電地點(398).csv",
+  "fileSize": 41677,
+  "encoding": "UTF-8-SIG",
+  "notes": "Copied from local uploaded CSV; use --input and --force to replace it. No automatic geocoding."
+}

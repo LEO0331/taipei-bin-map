@@ -49,6 +49,7 @@
 - [ ] Lactation-room opening hours, equipment, availability, and venue rules are not real-time.
 - [ ] Toilet cleanliness, maintenance, opening status, equipment counts, and award fields are snapshot data rather than real-time guarantees.
 - [ ] Motorcycle inspection station business hours, service status, and inspection rules are snapshot/public-data references, not real-time guarantees.
+- [ ] Electric motorcycle charging station availability, business hours, charger specifications, pricing, and on-site rules are snapshot/public-data references, not real-time guarantees.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -62,6 +63,7 @@
 - **Hide responsible person by default**: `responsiblePersonName` remains in JSON but is not shown in normal cards/popups.
 - **Skip optional nearby shortcut buttons**: The existing nearby button already respects selected facility layers.
 - **Use a strict E2E dev server**: Playwright always starts this app on port 5173 and fails fast if the port is occupied, preventing accidental tests against another local Vite app.
+- **Do not geocode electric motorcycle charging stations automatically**: Address-only records use district summaries and address-based Google Maps links until verified coordinates are added.
 
 ## Files Modified This Session
 
@@ -115,7 +117,12 @@
 - [x] `npm test` passed 35 unit/converter tests.
 - [x] `npm run build` passed.
 - [x] `npm run test:e2e` passed 38 desktop/mobile Playwright tests.
+- [x] `npm run data:fetch:electric-motorcycle-charging-stations` copied the UTF-8-SIG 398-row source CSV into `data/raw/electric-motorcycle-charging-stations/`.
+- [x] `npm run convert:bins` generated 7,200 facilities, including 398 electric motorcycle charging stations across all 12 districts.
+- [x] `npm test` passed 37 unit/converter tests.
+- [x] `npm run build` passed.
+- [x] `npm run test:e2e` and `./init.sh` passed 40 desktop/mobile Playwright tests.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The eleven-layer public amenities expansion is implemented and verified.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The twelve-layer public amenities expansion is implemented and verified.

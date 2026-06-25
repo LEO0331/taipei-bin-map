@@ -559,6 +559,10 @@ a:focus-visible {
   background: #ffe7b0;
 }
 
+.facility-div-marker.electric_motorcycle_charging_station span {
+  background: #c8f2e9;
+}
+
 .map-popup {
   max-width: 15rem;
 }

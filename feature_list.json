@@ -151,6 +151,14 @@
       "dependencies": ["feat-018"],
       "status": "done",
       "evidence": "npm run convert:bins generated 6802 facilities, including 245 motorcycle inspection stations across all 12 districts. Responsible-person data is preserved in JSON but not shown on default cards/popups."
+    },
+    {
+      "id": "feat-020",
+      "name": "Electric motorcycle charging station expansion",
+      "description": "Add Taipei electric motorcycle charging stations as an address-only public-service layer with UTF-8-SIG conversion, category filters, district summaries, address-based links, cache support, and no real-time availability claims.",
+      "dependencies": ["feat-019"],
+      "status": "done",
+      "evidence": "npm run convert:bins generated 7200 facilities, including 398 electric motorcycle charging stations across all 12 districts. The source has no coordinates, so the UI uses district summaries and address-based Google Maps links."
     }
   ]
 }

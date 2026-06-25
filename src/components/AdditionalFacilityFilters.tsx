@@ -1,6 +1,10 @@
 import type { Translation } from '../i18n';
-import type { DirectDrinkingPlaceCategory, Language, RiversideToiletType } from '../types';
-import { getDirectDrinkingPlaceLabel, getRiversideToiletTypeLabel } from '../utils/facilityUtils';
+import type { DirectDrinkingPlaceCategory, ElectricMotorcycleChargingLocationCategory, Language, RiversideToiletType } from '../types';
+import {
+  getDirectDrinkingPlaceLabel,
+  getElectricMotorcycleChargingLocationCategoryLabel,
+  getRiversideToiletTypeLabel,
+} from '../utils/facilityUtils';
 
 type TimedCollectionFiltersProps = {
   acceptsGarbage: boolean;
@@ -291,6 +295,70 @@ export function MotorcycleInspectionStationFilters(props: MotorcycleInspectionSt
       <label className="checkbox-filter">
         <input type="checkbox" checked={props.hasPhone} onChange={(event) => props.onHasPhoneChange(event.target.checked)} />
         <span>{props.t.hasPhone}</span>
+      </label>
+    </fieldset>
+  );
+}
+
+const chargingCategories: ElectricMotorcycleChargingLocationCategory[] = [
+  'inspection_station',
+  'public_parking_lot',
+  'motorcycle_shop',
+  'cleaning_team',
+  'metro_station',
+  'village_office',
+  'service_factory',
+  'government_parking_lot',
+  'incineration_plant',
+  'campus_parking_lot',
+  'store',
+  'sports_center',
+  'other',
+  'unknown',
+];
+
+type ElectricMotorcycleChargingStationFiltersProps = {
+  cities: string[];
+  districtCodes: string[];
+  locationCategory: ElectricMotorcycleChargingLocationCategory | '';
+  city: string;
+  districtCode: string;
+  hasAddress: boolean;
+  language: Language;
+  t: Translation;
+  onLocationCategoryChange: (value: ElectricMotorcycleChargingLocationCategory | '') => void;
+  onCityChange: (value: string) => void;
+  onDistrictCodeChange: (value: string) => void;
+  onHasAddressChange: (value: boolean) => void;
+};
+
+export function ElectricMotorcycleChargingStationFilters(props: ElectricMotorcycleChargingStationFiltersProps) {
+  return (
+    <fieldset className="toilet-filters">
+      <label>
+        {props.t.locationCategory}
+        <select value={props.locationCategory} onChange={(event) => props.onLocationCategoryChange(event.target.value as ElectricMotorcycleChargingLocationCategory | '')}>
+          <option value="">{props.t.all}</option>
+          {chargingCategories.map((value) => <option key={value} value={value}>{getElectricMotorcycleChargingLocationCategoryLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.city}
+        <select value={props.city} onChange={(event) => props.onCityChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.cities.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.districtCode}
+        <select value={props.districtCode} onChange={(event) => props.onDistrictCodeChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.districtCodes.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label className="checkbox-filter">
+        <input type="checkbox" checked={props.hasAddress} onChange={(event) => props.onHasAddressChange(event.target.checked)} />
+        <span>{props.t.hasAddress}</span>
       </label>
     </fieldset>
   );
