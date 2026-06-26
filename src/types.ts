@@ -13,7 +13,8 @@ export type FacilityType =
   | 'lactation_room'
   | 'motorcycle_inspection_station'
   | 'electric_motorcycle_charging_station'
-  | 'commercial_ev_charging_swap_station';
+  | 'commercial_ev_charging_swap_station'
+  | 'gas_lpg_station';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
@@ -24,6 +25,9 @@ export type CommercialEvServiceType =
   | 'electric_motorcycle_charging'
   | 'electric_motorcycle_battery_swap'
   | 'unknown';
+
+export type FuelStationServiceType = 'gasoline' | 'lpg' | 'self_service';
+export type FuelStationStatus = 'active_or_unspecified' | 'terminated' | 'unknown';
 
 export type ElectricMotorcycleChargingLocationCategory =
   | 'inspection_station'
@@ -159,6 +163,19 @@ export type Facility = {
   cityCode?: string;
   addressNormalized?: string;
   hasInferredDistrict?: boolean;
+  companyName?: string;
+  supplier?: string;
+  businessHoursRaw?: string;
+  businessHours?: string;
+  isTwentyFourHours?: boolean;
+  hasLimitedHours?: boolean;
+  hasOil?: boolean;
+  hasLpg?: boolean;
+  hasSelfService?: boolean;
+  stationServiceTypes?: FuelStationServiceType[];
+  stationStatus?: FuelStationStatus;
+  xTwd97?: number;
+  yTwd97?: number;
 };
 
 export type MotorcycleInspectionStationLocation = {
@@ -252,6 +269,41 @@ export type CommercialEvChargingSwapStationSummary = {
     topOperators: Array<{ operatorName: string; count: number }>;
   }>;
   byCity: Array<{ city: string; count: number }>;
+};
+
+export type GasLpgStationSummary = {
+  totalRecords: number;
+  districtCount: number;
+  supplierCount: number;
+  validCoordinateCount: number;
+  missingCoordinateCount: number;
+  outlierCoordinateCount: number;
+  oilStationCount: number;
+  lpgStationCount: number;
+  selfServiceStationCount: number;
+  terminatedStationCount: number;
+  twentyFourHourRecordCount: number;
+  limitedHourRecordCount: number;
+  recordsWithPhone: number;
+  recordsWithBusinessHours: number;
+  byDistrict: Array<{
+    district: string;
+    totalCount: number;
+    oilStationCount: number;
+    lpgStationCount: number;
+    selfServiceStationCount: number;
+    twentyFourHourRecordCount: number;
+    topSuppliers: Array<{ supplier: string; count: number }>;
+  }>;
+  bySupplier: Array<{
+    supplier: string;
+    count: number;
+    oilStationCount: number;
+    lpgStationCount: number;
+    selfServiceStationCount: number;
+  }>;
+  byServiceType: Array<{ serviceType: FuelStationServiceType; count: number }>;
+  byBusinessHours: Array<{ businessHoursRaw: string; count: number }>;
 };
 
 export type RiversideToiletSummary = {
@@ -352,6 +404,8 @@ export type ConversionSourceReport = {
   districtCodeConflicts?: Array<{ rowNumber: number; district?: string; districtCode?: string; districtFromCode?: string }>;
   addressParseWarnings?: Array<{ rowNumber: number; address?: string; warning: string }>;
   unknownServiceTypeFiles?: string[];
+  unexpectedBooleanValues?: Array<{ rowNumber: number; field: string; value: string }>;
+  duplicateStationNames?: Array<{ stationName: string; count: number }>;
 };
 
 export type ConversionReport = {

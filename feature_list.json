@@ -167,6 +167,14 @@
       "dependencies": ["feat-020"],
       "status": "done",
       "evidence": "npm run convert:bins generated 7817 facilities, including 617 commercial EV charging and battery-swap stations. The source has no coordinates, so the UI uses district summaries and address-based Google Maps links."
+    },
+    {
+      "id": "feat-022",
+      "name": "Gas and LPG station expansion",
+      "description": "Add Taipei gas and LPG stations as an exact-marker public-service layer with UTF-8-SIG conversion, TWD97-to-WGS84 conversion, supplier/service/hour/status filters, nearby lookup, cache support, and no real-time fuel availability or price claims.",
+      "dependencies": ["feat-021"],
+      "status": "done",
+      "evidence": "npm run convert:bins generated 7892 facilities, including 75 gas/LPG stations with valid converted WGS84 coordinates across all 12 districts."
     }
   ]
 }

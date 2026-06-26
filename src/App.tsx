@@ -5,6 +5,7 @@ import {
   DirectDrinkingFilters,
   ElectricMotorcycleChargingStationFilters,
   FamilyFriendlyToiletFilters,
+  GasLpgStationFilters,
   LactationRoomFilters,
   MotorcycleInspectionStationFilters,
   RiversideToiletFilters,
@@ -28,6 +29,7 @@ import type {
   Facility,
   FacilityType,
   FacilityWithDistance,
+  FuelStationStatus,
   Language,
   RiversideToiletType,
 } from './types';
@@ -128,6 +130,14 @@ function App() {
   const [commercialEvCityCode, setCommercialEvCityCode] = useState('');
   const [commercialEvHasAddress, setCommercialEvHasAddress] = useState(false);
   const [commercialEvHasDistrict, setCommercialEvHasDistrict] = useState(false);
+  const [gasLpgSupplier, setGasLpgSupplier] = useState('');
+  const [gasLpgHasOil, setGasLpgHasOil] = useState(false);
+  const [gasLpgHasLpg, setGasLpgHasLpg] = useState(false);
+  const [gasLpgHasSelfService, setGasLpgHasSelfService] = useState(false);
+  const [gasLpgTwentyFourHours, setGasLpgTwentyFourHours] = useState(false);
+  const [gasLpgLimitedHours, setGasLpgLimitedHours] = useState(false);
+  const [gasLpgStationStatus, setGasLpgStationStatus] = useState<FuelStationStatus | ''>('');
+  const [gasLpgHasPhone, setGasLpgHasPhone] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -146,6 +156,7 @@ function App() {
   const includesInspectionStations = selectedTypes.includes('motorcycle_inspection_station');
   const includesChargingStations = selectedTypes.includes('electric_motorcycle_charging_station');
   const includesCommercialEvStations = selectedTypes.includes('commercial_ev_charging_swap_station');
+  const includesGasLpgStations = selectedTypes.includes('gas_lpg_station');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -284,6 +295,10 @@ function App() {
     () => [...new Set(facilities.filter((facility) => facility.type === 'commercial_ev_charging_swap_station').map((facility) => facility.cityCode).filter(Boolean) as string[])].sort(),
     [facilities],
   );
+  const gasLpgSuppliers = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'gas_lpg_station').map((facility) => facility.supplier).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -340,6 +355,14 @@ function App() {
         commercialEvCityCode,
         commercialEvHasAddress,
         commercialEvHasDistrict,
+        gasLpgSupplier,
+        gasLpgHasOil,
+        gasLpgHasLpg,
+        gasLpgHasSelfService,
+        gasLpgTwentyFourHours,
+        gasLpgLimitedHours,
+        gasLpgStationStatus,
+        gasLpgHasPhone,
       }),
     [
       district,
@@ -395,6 +418,14 @@ function App() {
       commercialEvCityCode,
       commercialEvHasAddress,
       commercialEvHasDistrict,
+      gasLpgSupplier,
+      gasLpgHasOil,
+      gasLpgHasLpg,
+      gasLpgHasSelfService,
+      gasLpgTwentyFourHours,
+      gasLpgLimitedHours,
+      gasLpgStationStatus,
+      gasLpgHasPhone,
     ],
   );
 
@@ -468,6 +499,7 @@ function App() {
       Number.isFinite(facility.latitude) &&
       Number.isFinite(facility.longitude) &&
       facility.locationPrecision !== 'address_only' &&
+      (!facility.coordinateStatus || facility.coordinateStatus === 'valid') &&
       !facility.isCoordinateOutlier,
   );
   // ponytail: cap combined previews; add clustering only if users need every marker at once.
@@ -493,6 +525,7 @@ function App() {
   const isInspectionOnly = selectedTypes.length === 1 && includesInspectionStations;
   const isChargingOnly = selectedTypes.length === 1 && includesChargingStations;
   const isCommercialEvOnly = selectedTypes.length === 1 && includesCommercialEvStations;
+  const isGasLpgOnly = selectedTypes.length === 1 && includesGasLpgStations;
   const isSpecializedToiletOnly = isRiversideOnly || isFamilyToiletOnly;
   const listHeading = nearbyFacilities
     ? t.nearestFacilities
@@ -504,7 +537,9 @@ function App() {
             ? t.electricMotorcycleChargingStationDirectory
             : isCommercialEvOnly
               ? t.commercialEvChargingSwapStationDirectory
-          : t.matchingFacilities;
+              : isGasLpgOnly
+                ? t.gasLpgStationDirectory
+                : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
     if (!report?.generatedAt) {
       return '';
@@ -605,6 +640,16 @@ function App() {
       setCommercialEvHasAddress(false);
       setCommercialEvHasDistrict(false);
     }
+    if (!value.includes('gas_lpg_station')) {
+      setGasLpgSupplier('');
+      setGasLpgHasOil(false);
+      setGasLpgHasLpg(false);
+      setGasLpgHasSelfService(false);
+      setGasLpgTwentyFourHours(false);
+      setGasLpgLimitedHours(false);
+      setGasLpgStationStatus('');
+      setGasLpgHasPhone(false);
+    }
     setNearbyFacilities(null);
   };
 
@@ -668,7 +713,10 @@ function App() {
     }
 
     const distanceCandidates = filteredFacilities.filter(
-      (facility) => facility.locationPrecision !== 'address_only' && !facility.isCoordinateOutlier,
+      (facility) =>
+        facility.locationPrecision !== 'address_only' &&
+        (!facility.coordinateStatus || facility.coordinateStatus === 'valid') &&
+        !facility.isCoordinateOutlier,
     );
     if (distanceCandidates.length === 0) {
       setError('distance');
@@ -757,6 +805,8 @@ function App() {
                   ? t.chargingStationSearchPlaceholder
                   : isCommercialEvOnly
                     ? t.commercialEvSearchPlaceholder
+                    : isGasLpgOnly
+                      ? t.gasLpgSearchPlaceholder
               : isSpecializedToiletOnly
                 ? t.toiletSearchPlaceholder
                 : t.searchPlaceholder}
@@ -916,6 +966,37 @@ function App() {
               }}
             />
           )}
+          {hasFocusedTypes && includesGasLpgStations && (
+            <GasLpgStationFilters
+              suppliers={gasLpgSuppliers}
+              supplier={gasLpgSupplier}
+              hasOil={gasLpgHasOil}
+              hasLpg={gasLpgHasLpg}
+              hasSelfService={gasLpgHasSelfService}
+              twentyFourHours={gasLpgTwentyFourHours}
+              limitedHours={gasLpgLimitedHours}
+              stationStatus={gasLpgStationStatus}
+              hasPhone={gasLpgHasPhone}
+              t={t}
+              onSupplierChange={(value) => {
+                setGasLpgSupplier(value);
+                setNearbyFacilities(null);
+              }}
+              onStatusChange={(value) => {
+                setGasLpgStationStatus(value);
+                setNearbyFacilities(null);
+              }}
+              onBooleanChange={(name, value) => {
+                if (name === 'oil') setGasLpgHasOil(value);
+                if (name === 'lpg') setGasLpgHasLpg(value);
+                if (name === 'self') setGasLpgHasSelfService(value);
+                if (name === 'twentyFourHours') setGasLpgTwentyFourHours(value);
+                if (name === 'limitedHours') setGasLpgLimitedHours(value);
+                if (name === 'phone') setGasLpgHasPhone(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
           {isSpecializedToiletOnly && (
             <label className="nearby-radius">
               <span>{t.nearbyRadius}</span>
@@ -1031,6 +1112,8 @@ function App() {
                     ? t.viewChargingStationsByNearbyDistrict
                     : isCommercialEvOnly
                       ? t.viewCommercialEvStationsByNearbyDistrict
+                      : isGasLpgOnly
+                        ? t.showNearbyGasLpgStations
               : isRiversideOnly
                 ? t.showNearbyRiversideToilets
                 : isFamilyToiletOnly

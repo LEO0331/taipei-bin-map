@@ -30,6 +30,8 @@
     "data:convert:electric-motorcycle-charging-stations": "tsx scripts/convertElectricMotorcycleChargingStations.ts && tsx scripts/buildElectricMotorcycleChargingStationSummary.ts",
     "data:fetch:commercial-ev": "tsx scripts/fetchCommercialEvChargingSwapStations.ts",
     "data:convert:commercial-ev": "tsx scripts/convertCommercialEvChargingSwapStations.ts && tsx scripts/buildCommercialEvChargingSwapStationSummary.ts",
+    "data:fetch:gas-lpg-stations": "tsx scripts/fetchGasLpgStations.ts",
+    "data:convert:gas-lpg-stations": "tsx scripts/convertGasLpgStations.ts && tsx scripts/buildGasLpgStationSummary.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

@@ -1,5 +1,12 @@
 import type { Translation } from '../i18n';
-import type { CommercialEvServiceType, DirectDrinkingPlaceCategory, ElectricMotorcycleChargingLocationCategory, Language, RiversideToiletType } from '../types';
+import type {
+  CommercialEvServiceType,
+  DirectDrinkingPlaceCategory,
+  ElectricMotorcycleChargingLocationCategory,
+  FuelStationStatus,
+  Language,
+  RiversideToiletType,
+} from '../types';
 import {
   getDirectDrinkingPlaceLabel,
   getCommercialEvServiceTypeLabel,
@@ -431,6 +438,65 @@ export function CommercialEvChargingSwapStationFilters(props: CommercialEvChargi
         <input type="checkbox" checked={props.hasDistrict} onChange={(event) => props.onHasDistrictChange(event.target.checked)} />
         <span>{props.t.hasDistrict}</span>
       </label>
+    </fieldset>
+  );
+}
+
+type GasLpgStationFiltersProps = {
+  suppliers: string[];
+  supplier: string;
+  hasOil: boolean;
+  hasLpg: boolean;
+  hasSelfService: boolean;
+  twentyFourHours: boolean;
+  limitedHours: boolean;
+  stationStatus: FuelStationStatus | '';
+  hasPhone: boolean;
+  t: Translation;
+  onSupplierChange: (value: string) => void;
+  onStatusChange: (value: FuelStationStatus | '') => void;
+  onBooleanChange: (
+    name: 'oil' | 'lpg' | 'self' | 'twentyFourHours' | 'limitedHours' | 'phone',
+    value: boolean,
+  ) => void;
+};
+
+export function GasLpgStationFilters(props: GasLpgStationFiltersProps) {
+  return (
+    <fieldset className="toilet-filters">
+      <label>
+        {props.t.supplier}
+        <select value={props.supplier} onChange={(event) => props.onSupplierChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.suppliers.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.stationStatus}
+        <select value={props.stationStatus} onChange={(event) => props.onStatusChange(event.target.value as FuelStationStatus | '')}>
+          <option value="">{props.t.all}</option>
+          <option value="active_or_unspecified">{props.t.activeOrUnspecified}</option>
+          <option value="terminated">{props.t.terminated}</option>
+          <option value="unknown">{props.t.unknownStatus}</option>
+        </select>
+      </label>
+      {[
+        ['oil', props.t.hasOil, props.hasOil],
+        ['lpg', props.t.hasLpg, props.hasLpg],
+        ['self', props.t.hasSelfService, props.hasSelfService],
+        ['twentyFourHours', props.t.sourceSays24Hours, props.twentyFourHours],
+        ['limitedHours', props.t.sourceSaysLimitedHours, props.limitedHours],
+        ['phone', props.t.hasPhone, props.hasPhone],
+      ].map(([name, label, checked]) => (
+        <label className="checkbox-filter" key={name as string}>
+          <input
+            type="checkbox"
+            checked={checked as boolean}
+            onChange={(event) => props.onBooleanChange(name as 'oil' | 'lpg' | 'self' | 'twentyFourHours' | 'limitedHours' | 'phone', event.target.checked)}
+          />
+          <span>{label as string}</span>
+        </label>
+      ))}
     </fieldset>
   );
 }

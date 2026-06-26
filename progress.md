@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-23 Asia/Taipei
+**Last Updated:** 2026-06-26 Asia/Taipei
 **Active Feature:** None
 
 ## Status
@@ -12,6 +12,9 @@
 - [x] Added 617 commercial EV charging and battery-swap station records from three Big5/CP950 commercial EV source files.
 - [x] Added service-type classification, operator/city/city-code/address/district filters, address-based Google Maps links, district summary bubbles, notices, legend entry, PWA cache entries, README notes, and tests for the commercial EV layer.
 - [x] Kept commercial EV records address-only because the source files do not include coordinates; no automatic geocoding or fake markers were added.
+- [x] Added 75 gas/LPG station records from the UTF-8-SIG `臺北市加油站及加氣站分布圖.csv` source.
+- [x] Converted TWD97 coordinates to WGS84 at build time and rendered exact gas/LPG markers with supplier/service/hour/status filters and nearby lookup.
+- [x] Kept gas/LPG business hours, service flags, and status as source-data fields only; no real-time opening, fuel availability, price, or recommendation claims were added.
 - [x] Added `drinking_fountain` to the shared `FacilityType` and drinking fountain fields to `Facility`.
 - [x] Added `npm run fetch:drinking-fountains` to fetch `臺北市公共場所飲水機資訊` from Taipei Open Data into `data/raw/drinking-fountains/`.
 - [x] Added drinking fountain conversion from raw API JSON with trimmed headers, district normalization, numeric parsing, place-category classification, and coordinate reporting.
@@ -32,7 +35,7 @@
 
 ### What's In Progress
 
-- [x] No active feature work remains for feat-021.
+- [x] No active feature work remains for feat-022.
 
 ### What's Next
 
@@ -54,6 +57,7 @@
 - [ ] Motorcycle inspection station business hours, service status, and inspection rules are snapshot/public-data references, not real-time guarantees.
 - [ ] Electric motorcycle charging station availability, business hours, charger specifications, pricing, and on-site rules are snapshot/public-data references, not real-time guarantees.
 - [ ] Commercial EV charging and battery-swap station availability, fees, payment methods, membership rules, equipment specs, and battery inventory are snapshot/public-data references, not real-time guarantees.
+- [ ] Gas/LPG station business hours, fuel/LPG supply, pricing, self-service availability, and operating status are snapshot/public-data references, not real-time guarantees.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -69,6 +73,7 @@
 - **Use a strict E2E dev server**: Playwright always starts this app on port 5173 and fails fast if the port is occupied, preventing accidental tests against another local Vite app.
 - **Do not geocode electric motorcycle charging stations automatically**: Address-only records use district summaries and address-based Google Maps links until verified coordinates are added.
 - **Do not geocode commercial EV charging/swap stations automatically**: Address-only records use district summaries and address-based Google Maps links until verified coordinates are added.
+- **Convert gas/LPG station coordinates offline**: Source TWD97 coordinates are converted during data conversion; frontend stays on static WGS84 JSON.
 
 ## Files Modified This Session
 
@@ -134,7 +139,12 @@
 - [x] `npm test` passed 39 unit/converter tests.
 - [x] `npm run build` passed.
 - [x] `npm run test:e2e` and `./init.sh` passed 42 desktop/mobile Playwright tests.
+- [x] `npm run data:fetch:gas-lpg-stations` copied the UTF-8-SIG gas/LPG source CSV into `data/raw/gas-lpg-stations/`.
+- [x] `npm run convert:bins` generated 7,892 facilities, including 75 gas/LPG stations with 75 valid converted coordinates across all 12 districts.
+- [x] `npm test` passed 41 unit/converter tests.
+- [x] `npm run build` passed.
+- [x] `npm run test:e2e` and `./init.sh` passed 44 desktop/mobile Playwright tests.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The thirteen-layer public amenities expansion is implemented and verified.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The fourteen-layer public amenities expansion is implemented and verified.

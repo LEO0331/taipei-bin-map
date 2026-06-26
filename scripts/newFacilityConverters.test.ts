@@ -29,6 +29,13 @@ import {
   convertCommercialEvChargingSwapRows,
   parseCommercialEvAddress,
 } from './convertCommercialEvChargingSwapStations';
+import {
+  convertGasLpgStationRows,
+  convertTwd97ToWgs84,
+  deriveFuelStationStatus,
+  parseBusinessHours,
+  parseSourceBooleanY,
+} from './convertGasLpgStations';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -302,6 +309,51 @@ describe('new facility converters', () => {
       rowNumber: 4,
       address: '臺北市南港經貿二路88巷19號',
       warning: 'inferred_district_from_high_confidence_hint',
+    });
+  });
+
+  it('converts gas/LPG TWD97 coordinates and derives source fields', () => {
+    expect(parseSourceBooleanY('Y')).toBe(true);
+    expect(parseSourceBooleanY('')).toBe(false);
+    expect(parseBusinessHours('7~22時')).toMatchObject({ businessHoursRaw: '7~22時', hasLimitedHours: true });
+    expect(parseBusinessHours('24小時')).toMatchObject({ isTwentyFourHours: true });
+    expect(deriveFuelStationStatus('測試站終止營業')).toBe('terminated');
+    expect(convertTwd97ToWgs84(302655, 2775585)).toMatchObject({
+      longitude: expect.closeTo(121.522, 3),
+      latitude: expect.closeTo(25.088, 3),
+    });
+
+    const converted = convertGasLpgStationRows([{
+      CITYZONE: '士林區',
+      NAME: '台亞',
+      S_NAME: '台亞基河加油站',
+      SUPPLIER: '台塑',
+      ADDRESS: '承德路四段200號',
+      電話: '(02)28815335',
+      DUTY_TIME: '24小時',
+      HAVEOIL: 'Y',
+      HAVEGAS: '',
+      HAVESELF: 'Y',
+      ADDR_X: '302655',
+      ADDR_Y: '2775585',
+    }]);
+
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'gas_lpg_station',
+      district: '士林區',
+      stationName: '台亞基河加油站',
+      supplier: '台塑',
+      hasOil: true,
+      hasLpg: false,
+      hasSelfService: true,
+      stationServiceTypes: ['gasoline', 'self_service'],
+      coordinateStatus: 'valid',
+    });
+    expect(converted.summary).toMatchObject({
+      totalRecords: 1,
+      validCoordinateCount: 1,
+      oilStationCount: 1,
+      selfServiceStationCount: 1,
     });
   });
 });

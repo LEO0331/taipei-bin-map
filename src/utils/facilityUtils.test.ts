@@ -10,6 +10,7 @@ import {
   getFacilityTypeLabel,
   getElectricMotorcycleChargingLocationCategoryLabel,
   isCoordinateOutlier,
+  getFuelStationStatusLabel,
   normalizeTaipeiDistrict,
 } from './facilityUtils';
 
@@ -233,6 +234,34 @@ const facilities: Facility[] = [
     cityCode: '63000',
     addressNormalized: '臺北市南港經貿二路88巷19號',
     hasInferredDistrict: true,
+  },
+  {
+    id: 'gas_lpg_station-0001',
+    type: 'gas_lpg_station',
+    district: '士林區',
+    address: '承德路四段200號',
+    longitude: 121.52201272952914,
+    latitude: 25.087626531764496,
+    note: '',
+    source: '臺北市加油站及加氣站分布圖',
+    sourceAgency: '臺北市政府產業發展局',
+    coordinateStatus: 'valid',
+    name: '台亞基河加油站',
+    companyName: '台亞',
+    stationName: '台亞基河加油站',
+    supplier: '台塑',
+    phone: '(02)28815335',
+    businessHoursRaw: '24小時',
+    businessHours: '24小時',
+    isTwentyFourHours: true,
+    hasLimitedHours: false,
+    hasOil: true,
+    hasLpg: false,
+    hasSelfService: true,
+    stationServiceTypes: ['gasoline', 'self_service'],
+    stationStatus: 'active_or_unspecified',
+    xTwd97: 302655,
+    yTwd97: 2775585,
   },
 ];
 
@@ -477,6 +506,21 @@ describe('filterFacilities', () => {
     });
     expect(result.map((item) => item.id)).toEqual(['commercial_ev_charging_swap_station-0001']);
   });
+
+  it('filters and searches gas/LPG stations', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '基河',
+      district: '士林區',
+      facilityTypes: ['gas_lpg_station'],
+      gasLpgSupplier: '台塑',
+      gasLpgHasOil: true,
+      gasLpgHasSelfService: true,
+      gasLpgTwentyFourHours: true,
+      gasLpgStationStatus: 'active_or_unspecified',
+      gasLpgHasPhone: true,
+    });
+    expect(result.map((item) => item.id)).toEqual(['gas_lpg_station-0001']);
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -494,8 +538,10 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('motorcycle_inspection_station', 'en')).toBe('Motorcycle Inspection Station');
     expect(getFacilityTypeLabel('electric_motorcycle_charging_station', 'zh')).toBe('電動機車充電站');
     expect(getFacilityTypeLabel('commercial_ev_charging_swap_station', 'en')).toBe('Commercial EV Charging & Battery Swap Station');
+    expect(getFacilityTypeLabel('gas_lpg_station', 'en')).toBe('Gas & LPG Station');
     expect(getElectricMotorcycleChargingLocationCategoryLabel('service_factory', 'en')).toBe('Service factory');
     expect(getCommercialEvServiceTypeLabel('electric_motorcycle_battery_swap', 'zh')).toBe('電動機車換電站');
+    expect(getFuelStationStatusLabel('terminated', 'zh')).toBe('來源標示終止營業');
   });
 });
 

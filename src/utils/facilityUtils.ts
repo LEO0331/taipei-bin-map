@@ -5,6 +5,8 @@ import type {
   ElectricMotorcycleChargingLocationCategory,
   Facility,
   FacilityType,
+  FuelStationServiceType,
+  FuelStationStatus,
   Language,
   RiversideToiletType,
 } from '../types';
@@ -118,6 +120,14 @@ export function filterFacilities(
     commercialEvCityCode,
     commercialEvHasAddress = false,
     commercialEvHasDistrict = false,
+    gasLpgSupplier,
+    gasLpgHasOil = false,
+    gasLpgHasLpg = false,
+    gasLpgHasSelfService = false,
+    gasLpgTwentyFourHours = false,
+    gasLpgLimitedHours = false,
+    gasLpgStationStatus,
+    gasLpgHasPhone = false,
   }: {
     searchTerm: string;
     district: string;
@@ -171,6 +181,14 @@ export function filterFacilities(
     commercialEvCityCode?: string;
     commercialEvHasAddress?: boolean;
     commercialEvHasDistrict?: boolean;
+    gasLpgSupplier?: string;
+    gasLpgHasOil?: boolean;
+    gasLpgHasLpg?: boolean;
+    gasLpgHasSelfService?: boolean;
+    gasLpgTwentyFourHours?: boolean;
+    gasLpgLimitedHours?: boolean;
+    gasLpgStationStatus?: FuelStationStatus | '';
+    gasLpgHasPhone?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -188,6 +206,7 @@ export function filterFacilities(
   const hasInspectionFilters = Boolean(inspectionBrand || inspectionPostalCode || inspectionHasPhone);
   const hasChargingFilters = Boolean(chargingLocationCategory || chargingCity || chargingDistrictCode || chargingHasAddress);
   const hasCommercialEvFilters = Boolean(commercialEvServiceType || commercialEvOperator || commercialEvCity || commercialEvCityCode || commercialEvHasAddress || commercialEvHasDistrict);
+  const hasGasLpgFilters = Boolean(gasLpgSupplier || gasLpgHasOil || gasLpgHasLpg || gasLpgHasSelfService || gasLpgTwentyFourHours || gasLpgLimitedHours || gasLpgStationStatus || gasLpgHasPhone);
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -280,6 +299,17 @@ export function filterFacilities(
         (!commercialEvHasAddress || Boolean(facility.address)) &&
         (!commercialEvHasDistrict || Boolean(facility.district)));
     const matchesCommercialEvScope = !hasCommercialEvFilters || facility.type === 'commercial_ev_charging_swap_station';
+    const matchesGasLpg =
+      facility.type !== 'gas_lpg_station' ||
+      ((!gasLpgSupplier || facility.supplier === gasLpgSupplier) &&
+        (!gasLpgHasOil || facility.hasOil === true) &&
+        (!gasLpgHasLpg || facility.hasLpg === true) &&
+        (!gasLpgHasSelfService || facility.hasSelfService === true) &&
+        (!gasLpgTwentyFourHours || facility.isTwentyFourHours === true) &&
+        (!gasLpgLimitedHours || facility.hasLimitedHours === true) &&
+        (!gasLpgStationStatus || facility.stationStatus === gasLpgStationStatus) &&
+        (!gasLpgHasPhone || Boolean(facility.phone)));
+    const matchesGasLpgScope = !hasGasLpgFilters || facility.type === 'gas_lpg_station';
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -330,6 +360,11 @@ export function filterFacilities(
         facility.operatorName,
         facility.cityCode,
         facility.addressNormalized,
+        facility.companyName,
+        facility.supplier,
+        facility.businessHoursRaw,
+        facility.stationStatus,
+        facility.stationServiceTypes?.join(' '),
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
           : '',
@@ -361,6 +396,8 @@ export function filterFacilities(
       matchesChargingScope &&
       matchesCommercialEv &&
       matchesCommercialEvScope &&
+      matchesGasLpg &&
+      matchesGasLpgScope &&
       matchesSearch
     );
   });
@@ -415,7 +452,23 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '營利型電動車充換電站' : 'Commercial EV Charging & Battery Swap Station';
   }
 
+  if (type === 'gas_lpg_station') {
+    return language === 'zh' ? '加油站及加氣站' : 'Gas & LPG Station';
+  }
+
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';
+}
+
+export function getFuelStationServiceTypeLabel(type: FuelStationServiceType, language: Language) {
+  if (type === 'gasoline') return language === 'zh' ? '加油' : 'Gasoline';
+  if (type === 'lpg') return language === 'zh' ? '加氣' : 'LPG';
+  return language === 'zh' ? '自助加油' : 'Self-service';
+}
+
+export function getFuelStationStatusLabel(status: FuelStationStatus | undefined, language: Language) {
+  if (status === 'terminated') return language === 'zh' ? '來源標示終止營業' : 'Source marked as terminated';
+  if (status === 'unknown') return language === 'zh' ? '未知' : 'Unknown';
+  return language === 'zh' ? '來源未標示停業' : 'Not marked as terminated';
 }
 
 export function getCommercialEvServiceTypeLabel(type: CommercialEvServiceType | undefined, language: Language) {

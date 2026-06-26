@@ -567,6 +567,10 @@ a:focus-visible {
   background: #d7e6ff;
 }
 
+.facility-div-marker.gas_lpg_station span {
+  background: #ffe0bd;
+}
+
 .map-popup {
   max-width: 15rem;
 }

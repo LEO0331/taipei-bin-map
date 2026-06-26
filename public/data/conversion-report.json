@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-26T00:36:33.381Z",
-  "totalValidRows": 7817,
+  "generatedAt": "2026-06-26T00:50:51.197Z",
+  "totalValidRows": 7892,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -158,6 +158,17 @@
         }
       ],
       "unknownServiceTypeFiles": []
+    },
+    {
+      "sourceFilename": "臺北市加油站及加氣站分布圖.csv",
+      "totalRows": 75,
+      "validRows": 75,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": [],
+      "unexpectedBooleanValues": [],
+      "duplicateStationNames": []
     }
   ]
 }

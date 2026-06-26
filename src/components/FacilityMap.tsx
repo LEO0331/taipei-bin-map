@@ -110,6 +110,7 @@ const markerEmojiByType = {
   motorcycle_inspection_station: '🏍️',
   electric_motorcycle_charging_station: '🔌',
   commercial_ev_charging_swap_station: '🔋',
+  gas_lpg_station: '⛽',
 } satisfies Record<FacilityType, string>;
 
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {

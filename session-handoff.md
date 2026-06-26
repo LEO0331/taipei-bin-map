@@ -2,8 +2,8 @@
 
 ## Current Objective
 
-- Goal: Maintain the thirteen-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
-- Current status: feat-021 is implemented and verified.
+- Goal: Maintain the fourteen-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
+- Current status: feat-022 is implemented and verified.
 - Branch / commit: Working tree has uncommitted app, data, docs, and test changes.
 
 ## Completed
@@ -28,16 +28,17 @@
 - Added 398 electric motorcycle charging stations with district summaries, category/city/district-code/address filters, address-based map links, summary JSON, and PWA caching.
 - Added 617 commercial EV charging and battery-swap stations with service/operator/city/city-code/address/district filters, district summaries, address-based map links, summary JSON, and PWA caching.
 - Kept commercial EV stations as address-only records because the source files do not provide coordinates.
+- Added 75 gas/LPG stations with UTF-8-SIG conversion, TWD97-to-WGS84 conversion, exact markers, supplier/service/hour/status filters, nearby lookup, summary JSON, and PWA caching.
 - Tightened the Playwright web server so E2E tests cannot silently reuse an unrelated local app on port 5173.
 
 ## Verification
 
 | Check | Result |
 |---|---|
-| `npm run convert:bins` | 7,817 total facilities |
-| `npm test` | 39 tests passed |
+| `npm run convert:bins` | 7,892 total facilities |
+| `npm test` | 41 tests passed |
 | `npm run build` | Passed |
-| `npm run test:e2e` | 42 desktop/mobile tests passed |
+| `npm run test:e2e` | 44 desktop/mobile tests passed |
 | `./init.sh` | Passed |
 | Responsive smoke | No horizontal overflow at 390px or 1440px |
 
@@ -60,3 +61,4 @@
 - Electric motorcycle charging station records have no coordinates, so exact nearby sorting is intentionally unavailable until verified coordinates are added.
 - Commercial EV charging and battery-swap station records have no coordinates, so exact nearby sorting is intentionally unavailable until verified coordinates are added.
 - Commercial EV availability, fees, payment methods, membership rules, equipment specs, and battery inventory are not real-time guarantees.
+- Gas/LPG station business hours, fuel/LPG supply, pricing, self-service availability, and operating status are not real-time guarantees.

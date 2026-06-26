@@ -7,6 +7,8 @@ import {
   getElectricMotorcycleChargingLocationCategoryLabel,
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
+  getFuelStationServiceTypeLabel,
+  getFuelStationStatusLabel,
   getRiversideToiletTypeLabel,
   getToiletCategoryLabel,
 } from '../utils/facilityUtils';
@@ -208,6 +210,22 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.cityCode && <p>{t.cityCode}: {facility.cityCode}</p>}
         </>
       )}
+      {facility.type === 'gas_lpg_station' && (
+        <>
+          {facility.companyName && <p>{t.companyName}: {facility.companyName}</p>}
+          {facility.stationName && <p>{t.stationName}: {facility.stationName}</p>}
+          {facility.supplier && <p>{t.supplier}: {facility.supplier}</p>}
+          {facility.phone && <p>{t.phone}: {facility.phone}</p>}
+          {facility.businessHours && <p>{t.businessHours}: {facility.businessHours}</p>}
+          <p>{t.hasOil}: {facility.hasOil ? t.yes : t.no}</p>
+          <p>{t.hasLpg}: {facility.hasLpg ? t.yes : t.no}</p>
+          <p>{t.hasSelfService}: {facility.hasSelfService ? t.yes : t.no}</p>
+          {facility.stationServiceTypes?.length && <p>{t.serviceType}: {facility.stationServiceTypes.map((type) => getFuelStationServiceTypeLabel(type, language)).join('、')}</p>}
+          <p>{t.stationStatus}: {getFuelStationStatusLabel(facility.stationStatus, language)}</p>
+          {facility.xTwd97 && <p>{t.xTwd97}: {facility.xTwd97}</p>}
+          {facility.yTwd97 && <p>{t.yTwd97}: {facility.yTwd97}</p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
@@ -216,6 +234,7 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       {facility.type === 'motorcycle_inspection_station' && <p>{t.notice}: {t.inspectionStationNotice}</p>}
       {facility.type === 'electric_motorcycle_charging_station' && <p>{t.notice}: {t.chargingStationNotice}</p>}
       {facility.type === 'commercial_ev_charging_swap_station' && <p>{t.notice}: {t.commercialEvNotice}</p>}
+      {facility.type === 'gas_lpg_station' && <p>{t.notice}: {t.gasLpgPopupNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

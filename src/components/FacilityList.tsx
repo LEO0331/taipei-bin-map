@@ -8,6 +8,8 @@ import {
   getElectricMotorcycleChargingLocationCategoryLabel,
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
+  getFuelStationServiceTypeLabel,
+  getFuelStationStatusLabel,
   getRiversideToiletTypeLabel,
   getToiletCategoryLabel,
 } from '../utils/facilityUtils';
@@ -187,6 +189,18 @@ export function FacilityList({
                     facility.sourceSequenceNumber ? `${t.sourceSequenceNumber}: ${facility.sourceSequenceNumber}` : '',
                     facility.city ? `${t.city}: ${facility.city}` : '',
                     facility.cityCode ? `${t.cityCode}: ${facility.cityCode}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
+              {facility.type === 'gas_lpg_station' && (
+                <small>
+                  {[
+                    facility.companyName ? `${t.companyName}: ${facility.companyName}` : '',
+                    facility.supplier ? `${t.supplier}: ${facility.supplier}` : '',
+                    facility.businessHours ? `${t.businessHours}: ${facility.businessHours}` : '',
+                    facility.stationServiceTypes?.length ? facility.stationServiceTypes.map((type) => getFuelStationServiceTypeLabel(type, language)).join('、') : '',
+                    `${t.stationStatus}: ${getFuelStationStatusLabel(facility.stationStatus, language)}`,
+                    facility.phone ? `${t.phone}: ${facility.phone}` : '',
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}

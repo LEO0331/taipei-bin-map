@@ -45,9 +45,12 @@ const commercialEvStationCount = commercialEvStations.length.toString();
 const commercialEvSample =
   commercialEvStations.find((facility) => facility.serviceType === 'electric_motorcycle_battery_swap' && facility.operatorName === 'Gogoro Network') ??
   commercialEvStations[0];
+const gasLpgStations = facilities.filter((facility) => facility.type === 'gas_lpg_station');
+const gasLpgStationCount = gasLpgStations.length.toString();
+const gasLpgSample = gasLpgStations.find((facility) => facility.supplier === '台塑' && facility.hasSelfService) ?? gasLpgStations[0];
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all thirteen local datasets and avoids default marker clutter', async ({ page }) => {
+  test('loads all fourteen local datasets and avoids default marker clutter', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -66,6 +69,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('機車定檢站');
     await expect(page.getByLabel('地圖圖例')).toContainText('電動機車充電站');
     await expect(page.getByLabel('地圖圖例')).toContainText('營利型電動車充換電站');
+    await expect(page.getByLabel('地圖圖例')).toContainText('加油站及加氣站');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-list li')).toHaveCount(80);
@@ -91,6 +95,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByRole('button', { name: 'Motorcycle Inspection Stations' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Electric Motorcycle Charging Stations' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Commercial EV Charging & Battery Swap Stations' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Gas & LPG Stations' })).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {
@@ -215,6 +220,29 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.facility-list li').first()).not.toContainText('即時');
     await page.getByRole('button', { name: '查看附近行政區營利型電動車充換電站' }).click();
     await expect(page.getByText('營利型電動車充換電站資料未提供經緯度，目前無法計算精確距離。')).toBeVisible();
+  });
+
+  test('filters gas and LPG stations and supports nearby sorting', async ({ page, context }) => {
+    await context.grantPermissions(['geolocation']);
+    await context.setGeolocation({ latitude: gasLpgSample.latitude, longitude: gasLpgSample.longitude });
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '加油站及加氣站' }).click();
+    await expect(page.getByText(`${gasLpgStationCount} 筆資料`)).toBeVisible();
+    await page.getByLabel('供油廠商').selectOption(gasLpgSample.supplier);
+    await page.getByRole('checkbox', { name: '加油站', exact: true }).check();
+    await page.getByRole('checkbox', { name: '自助加油', exact: true }).check();
+    await page.getByRole('checkbox', { name: '來源標示24小時', exact: true }).check();
+    await page.getByRole('checkbox', { name: '有電話', exact: true }).check();
+    await page.getByPlaceholder('搜尋站名、供油廠商、行政區、地址或電話').fill(gasLpgSample.stationName);
+
+    await expect(page.locator('.facility-list li').first()).toContainText('加油站及加氣站');
+    await expect(page.locator('.facility-list li').first()).toContainText(gasLpgSample.stationName);
+    await expect(page.locator('.facility-list li').first()).toContainText(gasLpgSample.supplier);
+    await expect(page.locator('.facility-list li').first()).not.toContainText('即時');
+    await page.getByRole('button', { name: '顯示附近加油站及加氣站' }).click();
+    await expect(page.getByRole('heading', { name: '最近的設施' })).toBeVisible();
+    await expect(page.locator('.distance').first()).toContainText(/公尺|公里/);
   });
 
   test('searches public toilet name, manager, and address fields', async ({ page }) => {

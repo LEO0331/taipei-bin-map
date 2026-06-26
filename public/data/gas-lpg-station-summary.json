@@ -1,0 +1,316 @@
+{
+  "totalRecords": 75,
+  "districtCount": 12,
+  "supplierCount": 4,
+  "validCoordinateCount": 75,
+  "missingCoordinateCount": 0,
+  "outlierCoordinateCount": 0,
+  "oilStationCount": 75,
+  "lpgStationCount": 5,
+  "selfServiceStationCount": 55,
+  "terminatedStationCount": 2,
+  "twentyFourHourRecordCount": 67,
+  "limitedHourRecordCount": 9,
+  "recordsWithPhone": 75,
+  "recordsWithBusinessHours": 75,
+  "byDistrict": [
+    {
+      "district": "內湖區",
+      "totalCount": 16,
+      "oilStationCount": 16,
+      "lpgStationCount": 1,
+      "selfServiceStationCount": 11,
+      "twentyFourHourRecordCount": 13,
+      "topSuppliers": [
+        {
+          "supplier": "台塑",
+          "count": 6
+        },
+        {
+          "supplier": "中油直營站",
+          "count": 5
+        },
+        {
+          "supplier": "中油加盟站",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "district": "士林區",
+      "totalCount": 10,
+      "oilStationCount": 10,
+      "lpgStationCount": 0,
+      "selfServiceStationCount": 6,
+      "twentyFourHourRecordCount": 10,
+      "topSuppliers": [
+        {
+          "supplier": "台塑",
+          "count": 4
+        },
+        {
+          "supplier": "中油直營站",
+          "count": 4
+        },
+        {
+          "supplier": "中油加盟站",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "district": "大安區",
+      "totalCount": 8,
+      "oilStationCount": 8,
+      "lpgStationCount": 0,
+      "selfServiceStationCount": 4,
+      "twentyFourHourRecordCount": 6,
+      "topSuppliers": [
+        {
+          "supplier": "中油直營站",
+          "count": 6
+        },
+        {
+          "supplier": "中油加盟站",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "district": "中山區",
+      "totalCount": 8,
+      "oilStationCount": 8,
+      "lpgStationCount": 1,
+      "selfServiceStationCount": 6,
+      "twentyFourHourRecordCount": 7,
+      "topSuppliers": [
+        {
+          "supplier": "中油直營站",
+          "count": 5
+        },
+        {
+          "supplier": "中油加盟站",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "district": "北投區",
+      "totalCount": 8,
+      "oilStationCount": 8,
+      "lpgStationCount": 2,
+      "selfServiceStationCount": 5,
+      "twentyFourHourRecordCount": 8,
+      "topSuppliers": [
+        {
+          "supplier": "中油加盟站",
+          "count": 4
+        },
+        {
+          "supplier": "中油直營站",
+          "count": 3
+        },
+        {
+          "supplier": "台塑直營站",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "district": "文山區",
+      "totalCount": 7,
+      "oilStationCount": 7,
+      "lpgStationCount": 0,
+      "selfServiceStationCount": 5,
+      "twentyFourHourRecordCount": 7,
+      "topSuppliers": [
+        {
+          "supplier": "中油加盟站",
+          "count": 4
+        },
+        {
+          "supplier": "中油直營站",
+          "count": 2
+        },
+        {
+          "supplier": "台塑",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "district": "松山區",
+      "totalCount": 6,
+      "oilStationCount": 6,
+      "lpgStationCount": 1,
+      "selfServiceStationCount": 6,
+      "twentyFourHourRecordCount": 5,
+      "topSuppliers": [
+        {
+          "supplier": "中油直營站",
+          "count": 5
+        },
+        {
+          "supplier": "台塑",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "district": "萬華區",
+      "totalCount": 4,
+      "oilStationCount": 4,
+      "lpgStationCount": 0,
+      "selfServiceStationCount": 4,
+      "twentyFourHourRecordCount": 3,
+      "topSuppliers": [
+        {
+          "supplier": "中油直營站",
+          "count": 2
+        },
+        {
+          "supplier": "中油加盟站",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "district": "中正區",
+      "totalCount": 3,
+      "oilStationCount": 3,
+      "lpgStationCount": 0,
+      "selfServiceStationCount": 3,
+      "twentyFourHourRecordCount": 3,
+      "topSuppliers": [
+        {
+          "supplier": "中油直營站",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "district": "信義區",
+      "totalCount": 2,
+      "oilStationCount": 2,
+      "lpgStationCount": 0,
+      "selfServiceStationCount": 2,
+      "twentyFourHourRecordCount": 2,
+      "topSuppliers": [
+        {
+          "supplier": "中油直營站",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "district": "南港區",
+      "totalCount": 2,
+      "oilStationCount": 2,
+      "lpgStationCount": 0,
+      "selfServiceStationCount": 2,
+      "twentyFourHourRecordCount": 2,
+      "topSuppliers": [
+        {
+          "supplier": "台塑",
+          "count": 1
+        },
+        {
+          "supplier": "中油直營站",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "district": "大同區",
+      "totalCount": 1,
+      "oilStationCount": 1,
+      "lpgStationCount": 0,
+      "selfServiceStationCount": 1,
+      "twentyFourHourRecordCount": 1,
+      "topSuppliers": [
+        {
+          "supplier": "中油直營站",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "bySupplier": [
+    {
+      "supplier": "中油直營站",
+      "count": 39,
+      "oilStationCount": 39,
+      "lpgStationCount": 4,
+      "selfServiceStationCount": 34
+    },
+    {
+      "supplier": "中油加盟站",
+      "count": 22,
+      "oilStationCount": 22,
+      "lpgStationCount": 1,
+      "selfServiceStationCount": 8
+    },
+    {
+      "supplier": "台塑",
+      "count": 13,
+      "oilStationCount": 13,
+      "lpgStationCount": 0,
+      "selfServiceStationCount": 12
+    },
+    {
+      "supplier": "台塑直營站",
+      "count": 1,
+      "oilStationCount": 1,
+      "lpgStationCount": 0,
+      "selfServiceStationCount": 1
+    }
+  ],
+  "byServiceType": [
+    {
+      "serviceType": "gasoline",
+      "count": 75
+    },
+    {
+      "serviceType": "lpg",
+      "count": 5
+    },
+    {
+      "serviceType": "self_service",
+      "count": 55
+    }
+  ],
+  "byBusinessHours": [
+    {
+      "businessHoursRaw": "24小時",
+      "count": 65
+    },
+    {
+      "businessHoursRaw": "7~22時",
+      "count": 4
+    },
+    {
+      "businessHoursRaw": "7~24時",
+      "count": 1
+    },
+    {
+      "businessHoursRaw": "7-23時",
+      "count": 1
+    },
+    {
+      "businessHoursRaw": "24小時 -車用液化石油氣供應商為中油",
+      "count": 1
+    },
+    {
+      "businessHoursRaw": "7-22時",
+      "count": 1
+    },
+    {
+      "businessHoursRaw": "7~23時",
+      "count": 1
+    },
+    {
+      "businessHoursRaw": "汽車及自助加油24小時，機車及柴油7~22時",
+      "count": 1
+    }
+  ]
+}
