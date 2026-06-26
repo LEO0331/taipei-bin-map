@@ -76,6 +76,12 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.facility-list li')).toHaveCount(80);
   });
 
+  test('uses the deployed base-map tile provider', async ({ page }) => {
+    await page.goto('/');
+
+    await expect(page.locator('img.leaflet-tile').first()).toHaveAttribute('src', /basemaps\.cartocdn\.com/);
+  });
+
   test('restores markers for a narrowed single facility type', async ({ page }) => {
     await page.goto('/');
 

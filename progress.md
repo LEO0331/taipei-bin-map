@@ -27,6 +27,7 @@
 - [x] Added local Big5/CP950 fetch/copy scripts, raw source metadata, individual JSON outputs, combined conversion, map/list/popups, notices, cache entries, README, and tests.
 - [x] Added 1,184 approved used-clothing recycling boxes with village, organization, phone, search, nearby, map/list/popup, notice, cache, and local CSV workflow support.
 - [x] Improved combined-layer responsiveness with deferred map updates, cache-first static data, and a list-first marker policy: broad selections hide individual pins while nearby and small single-layer results keep exact markers.
+- [x] Replaced the deployed OpenStreetMap tile endpoint with CARTO's no-key light basemap after the former rendered an empty gray map in production.
 - [x] Added 483 lactation rooms from two Big5/CP950 resources with deduplication and legal-list cross-reference.
 - [x] Added lactation search, filters, directory details, district summary bubbles, address-based Google Maps links, notices, PWA cache entries, and optional verified-coordinate cache support.
 - [x] Added 334 riverside toilets and 393 family-friendly toilets with exact markers, focused filters, nearby results, summaries, bilingual notices, and service-worker cache entries.
@@ -74,6 +75,7 @@
 - **Do not geocode commercial EV charging/swap stations automatically**: Address-only records use district summaries and address-based Google Maps links until verified coordinates are added.
 - **Convert gas/LPG station coordinates offline**: Source TWD97 coordinates are converted during data conversion; frontend stays on static WGS84 JSON.
 - **Keep broad map views list-first**: Rendering hundreds of individual Leaflet markers blocks mobile interaction. Broad selections hide exact pins; nearby results and small single-type selections render them.
+- **Use CARTO for base tiles**: The previous OpenStreetMap tile endpoint failed to render in the deployed app; CARTO preserves a no-key static Leaflet map.
 
 ## Files Modified This Session
 
@@ -97,6 +99,8 @@
 - `package.json` - Added fetch and drinking-fountain conversion scripts.
 - `README.md` - Documented the drinking fountain static data workflow and disclaimer.
 - `feature_list.json`, `progress.md` - Updated harness state.
+- `src/components/FacilityMap.tsx`, `index.html` - Switched the Leaflet base tiles and preconnects from OpenStreetMap to CARTO.
+- `tests/e2e/bin-map.spec.js` - Added a regression assertion for the deployed tile host.
 
 ## Evidence of Completion
 
@@ -146,6 +150,7 @@
 - [x] `npm run test:e2e` and `./init.sh` passed 44 desktop/mobile Playwright tests.
 - [x] Added a list-first marker-rendering policy: broad selections mount no individual markers, while narrowed single-type/district views and nearby results retain exact markers.
 - [x] `./init.sh` passed 41 unit/converter tests, production build, and 46 desktop/mobile Playwright tests after the marker policy update.
+- [x] `./init.sh` passed 41 unit/converter tests, production build, and 48 desktop/mobile Playwright tests after the CARTO base-map fix.
 
 ## Notes for Next Session
 

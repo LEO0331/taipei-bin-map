@@ -183,6 +183,14 @@
       "dependencies": ["feat-022"],
       "status": "done",
       "evidence": "./init.sh passed 41 unit/converter tests, production build, and 46 desktop/mobile Playwright tests. Broad default results mount zero facility pins; narrowed public-toilet district and nearby results retain markers."
+    },
+    {
+      "id": "feat-024",
+      "name": "Reliable deployed base map",
+      "description": "Replace the unavailable public OpenStreetMap tile endpoint with a no-key CARTO basemap while preserving the static Leaflet architecture.",
+      "dependencies": ["feat-023"],
+      "status": "done",
+      "evidence": "A regression test first confirmed tiles pointed to the unavailable OpenStreetMap host. After the provider change, ./init.sh passed 41 unit/converter tests, production build, and 48 desktop/mobile Playwright tests on 2026-06-26."
     }
   ]
 }

@@ -3,8 +3,8 @@
 ## Current Objective
 
 - Goal: Maintain the fourteen-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
-- Current status: feat-023 is implemented and verified.
-- Branch / commit: Working tree has uncommitted app, docs, and test changes.
+- Current status: feat-024 is implemented and verified.
+- Branch / commit: Working tree has uncommitted map, metadata, test, and harness changes.
 
 ## Completed
 
@@ -18,6 +18,7 @@
 - Added 1,184 approved used-clothing recycling boxes from 48 organizations and 367 villages.
 - Added village, organization, and phone filters plus search, nearby, marker, legend, list, popup, notice, cache, README, and local CSV scripts.
 - Broad map views are list-first: they do not mount individual facility markers. Nearby results and narrowed single-facility views with at most 500 valid coordinates retain exact markers.
+- Replaced the deployed OpenStreetMap tile host with CARTO's no-key light basemap after OpenStreetMap tiles rendered as a gray empty map in production.
 - Static data is cache-first through the versioned service worker for faster repeat visits.
 - Added 483 lactation rooms from two Big5/CP950 resources, with normalized deduplication and legal-required-list cross-reference.
 - Added lactation directory filters, district summary bubbles, address-based Google Maps links, bilingual notices, summary JSON, and an optional verified-coordinate cache.
@@ -38,7 +39,7 @@
 | `npm run convert:bins` | 7,892 total facilities |
 | `npm test` | 41 tests passed |
 | `npm run build` | Passed |
-| `./init.sh` | 41 unit/converter tests, production build, and 46 desktop/mobile tests passed |
+| `./init.sh` | 41 unit/converter tests, production build, and 48 desktop/mobile tests passed |
 | Responsive smoke | No horizontal overflow at 390px or 1440px |
 
 ## Deliberate Omissions
