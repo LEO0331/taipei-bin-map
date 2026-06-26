@@ -13,6 +13,7 @@ import { loadRiversideToilets } from './convertRiversideToilets';
 import { loadFamilyFriendlyToilets } from './convertFamilyFriendlyToilets';
 import { loadMotorcycleInspectionStations } from './convertMotorcycleInspectionStations';
 import { loadElectricMotorcycleChargingStations } from './convertElectricMotorcycleChargingStations';
+import { loadCommercialEvChargingSwapStations } from './convertCommercialEvChargingSwapStations';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -144,6 +145,9 @@ const MOTORCYCLE_INSPECTION_STATION_LOCATIONS_OUTPUT = resolve(options.outputDir
 const ELECTRIC_MOTORCYCLE_CHARGING_STATION_OUTPUT = resolve(options.outputDir, 'electric-motorcycle-charging-stations.json');
 const ELECTRIC_MOTORCYCLE_CHARGING_STATION_SUMMARY_OUTPUT = resolve(options.outputDir, 'electric-motorcycle-charging-station-summary.json');
 const ELECTRIC_MOTORCYCLE_CHARGING_STATION_LOCATIONS_OUTPUT = resolve(options.outputDir, 'electric-motorcycle-charging-station-locations.json');
+const COMMERCIAL_EV_OUTPUT = resolve(options.outputDir, 'commercial-ev-charging-swap-stations.json');
+const COMMERCIAL_EV_SUMMARY_OUTPUT = resolve(options.outputDir, 'commercial-ev-charging-swap-station-summary.json');
+const COMMERCIAL_EV_LOCATIONS_OUTPUT = resolve(options.outputDir, 'commercial-ev-charging-swap-station-locations.json');
 const DRINKING_FOUNTAINS_OUTPUT = resolve(options.outputDir, 'drinking-fountains.json');
 const TIMED_COLLECTION_OUTPUT = resolve(options.outputDir, 'timed-collection-points.json');
 const DIRECT_DRINKING_OUTPUT = resolve(options.outputDir, 'direct-drinking-stations.json');
@@ -412,6 +416,7 @@ const usedClothingRecyclingBoxes = loadUsedClothingRecyclingBoxes();
 const lactationRooms = loadLactationRooms();
 const motorcycleInspectionStations = loadMotorcycleInspectionStations();
 const electricMotorcycleChargingStations = loadElectricMotorcycleChargingStations();
+const commercialEvStations = loadCommercialEvChargingSwapStations();
 
 const facilities = [
   ...pedestrian.facilities,
@@ -426,6 +431,7 @@ const facilities = [
   ...lactationRooms.facilities,
   ...motorcycleInspectionStations.facilities,
   ...electricMotorcycleChargingStations.facilities,
+  ...commercialEvStations.facilities,
 ];
 const report: ConversionReport = {
   generatedAt: new Date().toISOString(),
@@ -443,6 +449,7 @@ const report: ConversionReport = {
     lactationRooms.report,
     motorcycleInspectionStations.report,
     electricMotorcycleChargingStations.report,
+    ...commercialEvStations.reports,
   ],
 };
 
@@ -487,6 +494,9 @@ if (!existsSync(MOTORCYCLE_INSPECTION_STATION_LOCATIONS_OUTPUT)) writeJson(MOTOR
 writeJson(ELECTRIC_MOTORCYCLE_CHARGING_STATION_OUTPUT, electricMotorcycleChargingStations.facilities);
 writeJson(ELECTRIC_MOTORCYCLE_CHARGING_STATION_SUMMARY_OUTPUT, electricMotorcycleChargingStations.summary);
 if (!existsSync(ELECTRIC_MOTORCYCLE_CHARGING_STATION_LOCATIONS_OUTPUT)) writeJson(ELECTRIC_MOTORCYCLE_CHARGING_STATION_LOCATIONS_OUTPUT, []);
+writeJson(COMMERCIAL_EV_OUTPUT, commercialEvStations.facilities);
+writeJson(COMMERCIAL_EV_SUMMARY_OUTPUT, commercialEvStations.summary);
+if (!existsSync(COMMERCIAL_EV_LOCATIONS_OUTPUT)) writeJson(COMMERCIAL_EV_LOCATIONS_OUTPUT, []);
 writeJson(FACILITIES_OUTPUT, facilities);
 writeJson(REPORT_OUTPUT, report);
 
@@ -503,4 +513,5 @@ console.log(`Wrote ${usedClothingRecyclingBoxes.facilities.length} used-clothing
 console.log(`Wrote ${lactationRooms.facilities.length} lactation room records to ${LACTATION_ROOMS_OUTPUT}`);
 console.log(`Wrote ${motorcycleInspectionStations.facilities.length} motorcycle inspection station records to ${MOTORCYCLE_INSPECTION_STATION_OUTPUT}`);
 console.log(`Wrote ${electricMotorcycleChargingStations.facilities.length} electric motorcycle charging station records to ${ELECTRIC_MOTORCYCLE_CHARGING_STATION_OUTPUT}`);
+console.log(`Wrote ${commercialEvStations.facilities.length} commercial EV charging/swap station records to ${COMMERCIAL_EV_OUTPUT}`);
 console.log(`Wrote conversion report to ${REPORT_OUTPUT}`);

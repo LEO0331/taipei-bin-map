@@ -24,6 +24,11 @@ import {
 } from './convertFamilyFriendlyToilets';
 import { convertMotorcycleInspectionStationRows } from './convertMotorcycleInspectionStations';
 import { convertElectricMotorcycleChargingStationRows } from './convertElectricMotorcycleChargingStations';
+import {
+  classifyCommercialEvServiceType,
+  convertCommercialEvChargingSwapRows,
+  parseCommercialEvAddress,
+} from './convertCommercialEvChargingSwapStations';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -258,5 +263,45 @@ describe('new facility converters', () => {
       duplicateStationIdCount: 1,
     });
     expect(converted.report.duplicateStationIds).toEqual([{ stationId: 'R01', count: 2 }]);
+  });
+
+  it('classifies commercial EV service files and keeps address-only records', () => {
+    expect(classifyCommercialEvServiceType('臺北市營利電動車充電站-240站.csv')).toBe('electric_car_charging');
+    expect(classifyCommercialEvServiceType('臺北市營利電動機車充電站-12站.csv')).toBe('electric_motorcycle_charging');
+    expect(classifyCommercialEvServiceType('臺北市營利電動機車換電站-365站.csv')).toBe('electric_motorcycle_battery_swap');
+
+    expect(parseCommercialEvAddress('台北市南港經貿二路88巷19號')).toMatchObject({
+      district: '南港區',
+      address: '臺北市南港經貿二路88巷19號',
+      warning: 'inferred_district_from_high_confidence_hint',
+    });
+
+    const rows = [
+      { 序號: '1', 廠商: '業者A', 名稱: '站A', 地址: '臺北市大安區測試路1號', 縣市: '臺北市', 縣市代碼: '63000.0' },
+      { 序號: '2', 廠商: '業者B', 名稱: '站B', 地址: '臺北市信義區測試路2號', 縣市: '臺北市', 縣市代碼: '63000' },
+      { 序號: '3', 廠商: '業者C', 名稱: '站C', 地址: '臺北市南港經貿二路88巷19號', 縣市: '臺北市', 縣市代碼: '63000.0' },
+    ];
+    const converted = convertCommercialEvChargingSwapRows([
+      { fileName: '臺北市營利電動機車換電站-365站.csv', rows },
+    ]);
+
+    expect(converted.facilities).toHaveLength(3);
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'commercial_ev_charging_swap_station',
+      serviceType: 'electric_motorcycle_battery_swap',
+      sourceSequenceNumber: 1,
+      cityCode: '63000',
+      locationPrecision: 'address_only',
+    });
+    expect(converted.summary).toMatchObject({
+      totalRecords: 3,
+      electricMotorcycleBatterySwapCount: 3,
+      districtCount: 3,
+    });
+    expect(converted.reports[0].addressParseWarnings).toContainEqual({
+      rowNumber: 4,
+      address: '臺北市南港經貿二路88巷19號',
+      warning: 'inferred_district_from_high_confidence_hint',
+    });
   });
 });

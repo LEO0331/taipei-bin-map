@@ -1,0 +1,457 @@
+{
+  "totalRecords": 617,
+  "electricCarChargingCount": 240,
+  "electricMotorcycleChargingCount": 12,
+  "electricMotorcycleBatterySwapCount": 365,
+  "uniqueOperatorCount": 24,
+  "districtCount": 12,
+  "recordsWithAddress": 617,
+  "recordsWithDistrict": 617,
+  "recordsWithInferredDistrict": 1,
+  "recordsMissingDistrict": 0,
+  "byServiceType": [
+    {
+      "serviceType": "electric_car_charging",
+      "count": 240
+    },
+    {
+      "serviceType": "electric_motorcycle_charging",
+      "count": 12
+    },
+    {
+      "serviceType": "electric_motorcycle_battery_swap",
+      "count": 365
+    }
+  ],
+  "byOperator": [
+    {
+      "operatorName": "Gogoro Network",
+      "count": 191,
+      "serviceTypes": [
+        "electric_motorcycle_battery_swap"
+      ]
+    },
+    {
+      "operatorName": "光捷",
+      "count": 156,
+      "serviceTypes": [
+        "electric_motorcycle_battery_swap"
+      ]
+    },
+    {
+      "operatorName": "華城電能",
+      "count": 98,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "源點科技",
+      "count": 71,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "中油",
+      "count": 23,
+      "serviceTypes": [
+        "electric_motorcycle_charging",
+        "electric_motorcycle_battery_swap"
+      ]
+    },
+    {
+      "operatorName": "Tesla",
+      "count": 14,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "中興電工",
+      "count": 8,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "中華汽車",
+      "count": 7,
+      "serviceTypes": [
+        "electric_motorcycle_charging"
+      ]
+    },
+    {
+      "operatorName": "裕電?電",
+      "count": 7,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "TAIL 特爾電力",
+      "count": 6,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "遠傳電信",
+      "count": 5,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "旭電馳科研",
+      "count": 5,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "和潤電能",
+      "count": 5,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "台灣賓士",
+      "count": 4,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "星舟快充",
+      "count": 4,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "新凱汽車(VOLVO)",
+      "count": 3,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "奧迪福斯汽車",
+      "count": 2,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "全國加油站",
+      "count": 2,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "匯勝汽車(VOLVO)",
+      "count": 1,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "普立斯國際開發",
+      "count": 1,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "宜家家居",
+      "count": 1,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "台泥儲能",
+      "count": 1,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "Mr.Charger 恰吉先生",
+      "count": 1,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    },
+    {
+      "operatorName": "和潤電能(充壩技術)",
+      "count": 1,
+      "serviceTypes": [
+        "electric_car_charging"
+      ]
+    }
+  ],
+  "byDistrict": [
+    {
+      "district": "內湖區",
+      "totalCount": 80,
+      "electricCarChargingCount": 30,
+      "electricMotorcycleChargingCount": 3,
+      "electricMotorcycleBatterySwapCount": 47,
+      "topOperators": [
+        {
+          "operatorName": "Gogoro Network",
+          "count": 23
+        },
+        {
+          "operatorName": "光捷",
+          "count": 19
+        },
+        {
+          "operatorName": "華城電能",
+          "count": 9
+        }
+      ]
+    },
+    {
+      "district": "中山區",
+      "totalCount": 67,
+      "electricCarChargingCount": 30,
+      "electricMotorcycleChargingCount": 2,
+      "electricMotorcycleBatterySwapCount": 35,
+      "topOperators": [
+        {
+          "operatorName": "Gogoro Network",
+          "count": 22
+        },
+        {
+          "operatorName": "光捷",
+          "count": 11
+        },
+        {
+          "operatorName": "華城電能",
+          "count": 9
+        }
+      ]
+    },
+    {
+      "district": "信義區",
+      "totalCount": 62,
+      "electricCarChargingCount": 30,
+      "electricMotorcycleChargingCount": 0,
+      "electricMotorcycleBatterySwapCount": 32,
+      "topOperators": [
+        {
+          "operatorName": "Gogoro Network",
+          "count": 19
+        },
+        {
+          "operatorName": "源點科技",
+          "count": 18
+        },
+        {
+          "operatorName": "光捷",
+          "count": 13
+        }
+      ]
+    },
+    {
+      "district": "士林區",
+      "totalCount": 60,
+      "electricCarChargingCount": 27,
+      "electricMotorcycleChargingCount": 1,
+      "electricMotorcycleBatterySwapCount": 32,
+      "topOperators": [
+        {
+          "operatorName": "Gogoro Network",
+          "count": 17
+        },
+        {
+          "operatorName": "光捷",
+          "count": 14
+        },
+        {
+          "operatorName": "華城電能",
+          "count": 14
+        }
+      ]
+    },
+    {
+      "district": "北投區",
+      "totalCount": 57,
+      "electricCarChargingCount": 22,
+      "electricMotorcycleChargingCount": 0,
+      "electricMotorcycleBatterySwapCount": 35,
+      "topOperators": [
+        {
+          "operatorName": "光捷",
+          "count": 18
+        },
+        {
+          "operatorName": "Gogoro Network",
+          "count": 16
+        },
+        {
+          "operatorName": "華城電能",
+          "count": 16
+        }
+      ]
+    },
+    {
+      "district": "文山區",
+      "totalCount": 56,
+      "electricCarChargingCount": 16,
+      "electricMotorcycleChargingCount": 0,
+      "electricMotorcycleBatterySwapCount": 40,
+      "topOperators": [
+        {
+          "operatorName": "光捷",
+          "count": 25
+        },
+        {
+          "operatorName": "Gogoro Network",
+          "count": 14
+        },
+        {
+          "operatorName": "源點科技",
+          "count": 12
+        }
+      ]
+    },
+    {
+      "district": "大安區",
+      "totalCount": 51,
+      "electricCarChargingCount": 22,
+      "electricMotorcycleChargingCount": 1,
+      "electricMotorcycleBatterySwapCount": 28,
+      "topOperators": [
+        {
+          "operatorName": "Gogoro Network",
+          "count": 18
+        },
+        {
+          "operatorName": "光捷",
+          "count": 7
+        },
+        {
+          "operatorName": "華城電能",
+          "count": 7
+        }
+      ]
+    },
+    {
+      "district": "松山區",
+      "totalCount": 40,
+      "electricCarChargingCount": 13,
+      "electricMotorcycleChargingCount": 2,
+      "electricMotorcycleBatterySwapCount": 25,
+      "topOperators": [
+        {
+          "operatorName": "Gogoro Network",
+          "count": 14
+        },
+        {
+          "operatorName": "光捷",
+          "count": 9
+        },
+        {
+          "operatorName": "源點科技",
+          "count": 8
+        }
+      ]
+    },
+    {
+      "district": "南港區",
+      "totalCount": 39,
+      "electricCarChargingCount": 14,
+      "electricMotorcycleChargingCount": 0,
+      "electricMotorcycleBatterySwapCount": 25,
+      "topOperators": [
+        {
+          "operatorName": "Gogoro Network",
+          "count": 13
+        },
+        {
+          "operatorName": "光捷",
+          "count": 11
+        },
+        {
+          "operatorName": "華城電能",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "district": "大同區",
+      "totalCount": 38,
+      "electricCarChargingCount": 13,
+      "electricMotorcycleChargingCount": 1,
+      "electricMotorcycleBatterySwapCount": 24,
+      "topOperators": [
+        {
+          "operatorName": "Gogoro Network",
+          "count": 13
+        },
+        {
+          "operatorName": "光捷",
+          "count": 11
+        },
+        {
+          "operatorName": "華城電能",
+          "count": 10
+        }
+      ]
+    },
+    {
+      "district": "中正區",
+      "totalCount": 34,
+      "electricCarChargingCount": 13,
+      "electricMotorcycleChargingCount": 0,
+      "electricMotorcycleBatterySwapCount": 21,
+      "topOperators": [
+        {
+          "operatorName": "Gogoro Network",
+          "count": 12
+        },
+        {
+          "operatorName": "光捷",
+          "count": 7
+        },
+        {
+          "operatorName": "華城電能",
+          "count": 7
+        }
+      ]
+    },
+    {
+      "district": "萬華區",
+      "totalCount": 33,
+      "electricCarChargingCount": 10,
+      "electricMotorcycleChargingCount": 2,
+      "electricMotorcycleBatterySwapCount": 21,
+      "topOperators": [
+        {
+          "operatorName": "光捷",
+          "count": 11
+        },
+        {
+          "operatorName": "Gogoro Network",
+          "count": 10
+        },
+        {
+          "operatorName": "華城電能",
+          "count": 8
+        }
+      ]
+    }
+  ],
+  "byCity": [
+    {
+      "city": "臺北市",
+      "count": 617
+    }
+  ]
+}

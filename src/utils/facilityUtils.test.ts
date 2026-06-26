@@ -5,6 +5,7 @@ import {
   classifyDrinkingFountainPlace,
   filterFacilities,
   formatDistance,
+  getCommercialEvServiceTypeLabel,
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
   getElectricMotorcycleChargingLocationCategoryLabel,
@@ -211,6 +212,27 @@ const facilities: Facility[] = [
     districtCode: '63000110',
     locationCategoryRaw: '中華汽車服務廠',
     locationCategory: 'service_factory',
+  },
+  {
+    id: 'commercial_ev_charging_swap_station-0001',
+    type: 'commercial_ev_charging_swap_station',
+    district: '南港區',
+    address: '臺北市南港經貿二路88巷19號',
+    longitude: 0,
+    latitude: 0,
+    note: '',
+    source: '臺北市營利型電動車充換電站資訊',
+    sourceAgency: '臺北市政府產業發展局',
+    locationPrecision: 'address_only',
+    sourceSequenceNumber: 3,
+    serviceType: 'electric_motorcycle_battery_swap',
+    operatorName: 'Gogoro Network',
+    stationName: '南港經貿站',
+    name: '南港經貿站',
+    city: '臺北市',
+    cityCode: '63000',
+    addressNormalized: '臺北市南港經貿二路88巷19號',
+    hasInferredDistrict: true,
   },
 ];
 
@@ -440,6 +462,21 @@ describe('filterFacilities', () => {
     });
     expect(result.map((item) => item.id)).toEqual(['electric_motorcycle_charging_station-0001']);
   });
+
+  it('filters and searches commercial EV charging and swap stations without requiring coordinates', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '南港經貿',
+      district: '南港區',
+      facilityTypes: ['commercial_ev_charging_swap_station'],
+      commercialEvServiceType: 'electric_motorcycle_battery_swap',
+      commercialEvOperator: 'Gogoro Network',
+      commercialEvCity: '臺北市',
+      commercialEvCityCode: '63000',
+      commercialEvHasAddress: true,
+      commercialEvHasDistrict: true,
+    });
+    expect(result.map((item) => item.id)).toEqual(['commercial_ev_charging_swap_station-0001']);
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -456,7 +493,9 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('lactation_room', 'en')).toBe('Lactation Room');
     expect(getFacilityTypeLabel('motorcycle_inspection_station', 'en')).toBe('Motorcycle Inspection Station');
     expect(getFacilityTypeLabel('electric_motorcycle_charging_station', 'zh')).toBe('電動機車充電站');
+    expect(getFacilityTypeLabel('commercial_ev_charging_swap_station', 'en')).toBe('Commercial EV Charging & Battery Swap Station');
     expect(getElectricMotorcycleChargingLocationCategoryLabel('service_factory', 'en')).toBe('Service factory');
+    expect(getCommercialEvServiceTypeLabel('electric_motorcycle_battery_swap', 'zh')).toBe('電動機車換電站');
   });
 });
 

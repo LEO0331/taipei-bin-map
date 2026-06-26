@@ -1,7 +1,8 @@
 import type { Translation } from '../i18n';
-import type { DirectDrinkingPlaceCategory, ElectricMotorcycleChargingLocationCategory, Language, RiversideToiletType } from '../types';
+import type { CommercialEvServiceType, DirectDrinkingPlaceCategory, ElectricMotorcycleChargingLocationCategory, Language, RiversideToiletType } from '../types';
 import {
   getDirectDrinkingPlaceLabel,
+  getCommercialEvServiceTypeLabel,
   getElectricMotorcycleChargingLocationCategoryLabel,
   getRiversideToiletTypeLabel,
 } from '../utils/facilityUtils';
@@ -359,6 +360,76 @@ export function ElectricMotorcycleChargingStationFilters(props: ElectricMotorcyc
       <label className="checkbox-filter">
         <input type="checkbox" checked={props.hasAddress} onChange={(event) => props.onHasAddressChange(event.target.checked)} />
         <span>{props.t.hasAddress}</span>
+      </label>
+    </fieldset>
+  );
+}
+
+const commercialEvServiceTypes: CommercialEvServiceType[] = [
+  'electric_car_charging',
+  'electric_motorcycle_charging',
+  'electric_motorcycle_battery_swap',
+  'unknown',
+];
+
+type CommercialEvChargingSwapStationFiltersProps = {
+  operators: string[];
+  cities: string[];
+  cityCodes: string[];
+  serviceType: CommercialEvServiceType | '';
+  operator: string;
+  city: string;
+  cityCode: string;
+  hasAddress: boolean;
+  hasDistrict: boolean;
+  language: Language;
+  t: Translation;
+  onServiceTypeChange: (value: CommercialEvServiceType | '') => void;
+  onOperatorChange: (value: string) => void;
+  onCityChange: (value: string) => void;
+  onCityCodeChange: (value: string) => void;
+  onHasAddressChange: (value: boolean) => void;
+  onHasDistrictChange: (value: boolean) => void;
+};
+
+export function CommercialEvChargingSwapStationFilters(props: CommercialEvChargingSwapStationFiltersProps) {
+  return (
+    <fieldset className="toilet-filters">
+      <label>
+        {props.t.serviceType}
+        <select value={props.serviceType} onChange={(event) => props.onServiceTypeChange(event.target.value as CommercialEvServiceType | '')}>
+          <option value="">{props.t.all}</option>
+          {commercialEvServiceTypes.map((value) => <option key={value} value={value}>{getCommercialEvServiceTypeLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.operatorName}
+        <select value={props.operator} onChange={(event) => props.onOperatorChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.operators.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.city}
+        <select value={props.city} onChange={(event) => props.onCityChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.cities.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.cityCode}
+        <select value={props.cityCode} onChange={(event) => props.onCityCodeChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.cityCodes.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label className="checkbox-filter">
+        <input type="checkbox" checked={props.hasAddress} onChange={(event) => props.onHasAddressChange(event.target.checked)} />
+        <span>{props.t.hasAddress}</span>
+      </label>
+      <label className="checkbox-filter">
+        <input type="checkbox" checked={props.hasDistrict} onChange={(event) => props.onHasDistrictChange(event.target.checked)} />
+        <span>{props.t.hasDistrict}</span>
       </label>
     </fieldset>
   );

@@ -3,6 +3,7 @@ import type { FacilityWithDistance, Language } from '../types';
 import {
   formatDistance,
   getAcceptedItemsLabel,
+  getCommercialEvServiceTypeLabel,
   getDirectDrinkingStatusLabel,
   getElectricMotorcycleChargingLocationCategoryLabel,
   getFacilityGoogleMapsUrl,
@@ -175,6 +176,17 @@ export function FacilityList({
                     facility.city ? `${t.city}: ${facility.city}` : '',
                     facility.districtCode ? `${t.districtCode}: ${facility.districtCode}` : '',
                     facility.locationCategory ? `${t.locationCategory}: ${getElectricMotorcycleChargingLocationCategoryLabel(facility.locationCategory, language)}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
+              {facility.type === 'commercial_ev_charging_swap_station' && (
+                <small>
+                  {[
+                    facility.serviceType ? `${t.serviceType}: ${getCommercialEvServiceTypeLabel(facility.serviceType, language)}` : '',
+                    facility.operatorName ? `${t.operatorName}: ${facility.operatorName}` : '',
+                    facility.sourceSequenceNumber ? `${t.sourceSequenceNumber}: ${facility.sourceSequenceNumber}` : '',
+                    facility.city ? `${t.city}: ${facility.city}` : '',
+                    facility.cityCode ? `${t.cityCode}: ${facility.cityCode}` : '',
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}

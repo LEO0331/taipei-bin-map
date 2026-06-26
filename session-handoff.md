@@ -2,8 +2,8 @@
 
 ## Current Objective
 
-- Goal: Maintain the twelve-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
-- Current status: feat-020 is implemented and verified.
+- Goal: Maintain the thirteen-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
+- Current status: feat-021 is implemented and verified.
 - Branch / commit: Working tree has uncommitted app, data, docs, and test changes.
 
 ## Completed
@@ -26,16 +26,18 @@
 - Added 245 motorcycle inspection stations with district summaries, brand/postal/phone filters, address-based map links, summary JSON, and PWA caching.
 - Preserved `responsiblePersonName` in JSON while keeping it out of default cards/popups.
 - Added 398 electric motorcycle charging stations with district summaries, category/city/district-code/address filters, address-based map links, summary JSON, and PWA caching.
+- Added 617 commercial EV charging and battery-swap stations with service/operator/city/city-code/address/district filters, district summaries, address-based map links, summary JSON, and PWA caching.
+- Kept commercial EV stations as address-only records because the source files do not provide coordinates.
 - Tightened the Playwright web server so E2E tests cannot silently reuse an unrelated local app on port 5173.
 
 ## Verification
 
 | Check | Result |
 |---|---|
-| `npm run convert:bins` | 7,200 total facilities |
-| `npm test` | 37 tests passed |
+| `npm run convert:bins` | 7,817 total facilities |
+| `npm test` | 39 tests passed |
 | `npm run build` | Passed |
-| `npm run test:e2e` | 40 desktop/mobile tests passed |
+| `npm run test:e2e` | 42 desktop/mobile tests passed |
 | `./init.sh` | Passed |
 | Responsive smoke | No horizontal overflow at 390px or 1440px |
 
@@ -56,3 +58,5 @@
 - New toilet datasets are snapshots and do not guarantee cleanliness, maintenance, opening status, or equipment availability.
 - Motorcycle inspection station records have no coordinates, so exact nearby sorting is intentionally unavailable until verified coordinates are added.
 - Electric motorcycle charging station records have no coordinates, so exact nearby sorting is intentionally unavailable until verified coordinates are added.
+- Commercial EV charging and battery-swap station records have no coordinates, so exact nearby sorting is intentionally unavailable until verified coordinates are added.
+- Commercial EV availability, fees, payment methods, membership rules, equipment specs, and battery inventory are not real-time guarantees.

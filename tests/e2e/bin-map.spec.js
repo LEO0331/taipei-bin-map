@@ -40,9 +40,14 @@ const inspectionStations = facilities.filter((facility) => facility.type === 'mo
 const inspectionStationCount = inspectionStations.length.toString();
 const chargingStations = facilities.filter((facility) => facility.type === 'electric_motorcycle_charging_station');
 const chargingStationCount = chargingStations.length.toString();
+const commercialEvStations = facilities.filter((facility) => facility.type === 'commercial_ev_charging_swap_station');
+const commercialEvStationCount = commercialEvStations.length.toString();
+const commercialEvSample =
+  commercialEvStations.find((facility) => facility.serviceType === 'electric_motorcycle_battery_swap' && facility.operatorName === 'Gogoro Network') ??
+  commercialEvStations[0];
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all twelve local datasets and avoids default marker clutter', async ({ page }) => {
+  test('loads all thirteen local datasets and avoids default marker clutter', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -60,6 +65,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('親子友善廁所');
     await expect(page.getByLabel('地圖圖例')).toContainText('機車定檢站');
     await expect(page.getByLabel('地圖圖例')).toContainText('電動機車充電站');
+    await expect(page.getByLabel('地圖圖例')).toContainText('營利型電動車充換電站');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-list li')).toHaveCount(80);
@@ -84,6 +90,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByRole('button', { name: 'Family-Friendly Toilets' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Motorcycle Inspection Stations' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Electric Motorcycle Charging Stations' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Commercial EV Charging & Battery Swap Stations' })).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {
@@ -185,6 +192,29 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.facility-list li').first()).not.toContainText('即時');
     await page.getByRole('button', { name: '查看附近行政區電動機車充電站' }).click();
     await expect(page.getByText('電動機車充電站資料未提供經緯度，目前無法計算精確距離。')).toBeVisible();
+  });
+
+  test('shows commercial EV charging and swap stations as address-only records', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '營利型電動車充換電站' }).click();
+    await expect(page.getByText(`${commercialEvStationCount} 筆資料`)).toBeVisible();
+    await expect(page.getByText('營利型電動車充換電站資料未提供經緯度')).toBeVisible();
+    await page.getByLabel('服務類型').selectOption(commercialEvSample.serviceType);
+    await page.getByLabel('業者').selectOption(commercialEvSample.operatorName);
+    await page.getByRole('combobox', { name: '縣市', exact: true }).selectOption(commercialEvSample.city);
+    await page.getByRole('combobox', { name: '縣市代碼', exact: true }).selectOption(commercialEvSample.cityCode);
+    await page.getByLabel('有地址').check();
+    await page.getByLabel('有行政區').check();
+    await page.getByPlaceholder('搜尋業者、站名、行政區、地址或服務類型').fill(commercialEvSample.stationName);
+
+    await expect(page.locator('.facility-list li').first()).toContainText('營利型電動車充換電站');
+    await expect(page.locator('.facility-list li').first()).toContainText(commercialEvSample.stationName);
+    await expect(page.locator('.facility-list li').first()).toContainText(commercialEvSample.operatorName);
+    await expect(page.locator('.facility-list li').first()).toContainText('電動機車換電站');
+    await expect(page.locator('.facility-list li').first()).not.toContainText('即時');
+    await page.getByRole('button', { name: '查看附近行政區營利型電動車充換電站' }).click();
+    await expect(page.getByText('營利型電動車充換電站資料未提供經緯度，目前無法計算精確距離。')).toBeVisible();
   });
 
   test('searches public toilet name, manager, and address fields', async ({ page }) => {

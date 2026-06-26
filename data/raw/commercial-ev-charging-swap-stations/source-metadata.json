@@ -1,0 +1,21 @@
+{
+  "sourceUrl": "https://data.taipei/dataset/detail?id=668313d7-bcfc-4c90-b769-e398b08a1b2d",
+  "resourceName": "臺北市營利型電動車充換電站資訊",
+  "fetchedAt": "2026-06-26T00:27:48.417Z",
+  "files": [
+    {
+      "filename": "臺北市營利電動車充電站-240站.csv",
+      "fileSize": 19213
+    },
+    {
+      "filename": "臺北市營利電動機車充電站-12站.csv",
+      "fileSize": 857
+    },
+    {
+      "filename": "臺北市營利電動機車換電站-365站.csv",
+      "fileSize": 27863
+    }
+  ],
+  "encoding": "Big5/CP950",
+  "notes": "Copied from local uploaded CSV files; use --force to replace. No automatic geocoding."
+}

@@ -28,6 +28,8 @@
     "data:convert:motorcycle-inspection-stations": "tsx scripts/convertMotorcycleInspectionStations.ts && tsx scripts/buildMotorcycleInspectionStationSummary.ts",
     "data:fetch:electric-motorcycle-charging-stations": "tsx scripts/fetchElectricMotorcycleChargingStations.ts",
     "data:convert:electric-motorcycle-charging-stations": "tsx scripts/convertElectricMotorcycleChargingStations.ts && tsx scripts/buildElectricMotorcycleChargingStationSummary.ts",
+    "data:fetch:commercial-ev": "tsx scripts/fetchCommercialEvChargingSwapStations.ts",
+    "data:convert:commercial-ev": "tsx scripts/convertCommercialEvChargingSwapStations.ts && tsx scripts/buildCommercialEvChargingSwapStationSummary.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'taipei-public-amenities-map-v13';
+const CACHE_NAME = 'taipei-public-amenities-map-v14';
 const APP_SHELL = [
   '/index.html',
   '/manifest.webmanifest',
@@ -27,6 +27,9 @@ const APP_SHELL = [
   '/data/electric-motorcycle-charging-stations.json',
   '/data/electric-motorcycle-charging-station-summary.json',
   '/data/electric-motorcycle-charging-station-locations.json',
+  '/data/commercial-ev-charging-swap-stations.json',
+  '/data/commercial-ev-charging-swap-station-summary.json',
+  '/data/commercial-ev-charging-swap-station-locations.json',
   '/data/conversion-report.json',
 ];
 

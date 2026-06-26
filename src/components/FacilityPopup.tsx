@@ -2,6 +2,7 @@ import type { Translation } from '../i18n';
 import type { FacilityWithDistance, Language } from '../types';
 import {
   getAcceptedItemsLabel,
+  getCommercialEvServiceTypeLabel,
   getDirectDrinkingStatusLabel,
   getElectricMotorcycleChargingLocationCategoryLabel,
   getFacilityGoogleMapsUrl,
@@ -197,6 +198,16 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.locationCategory && <p>{t.locationCategory}: {getElectricMotorcycleChargingLocationCategoryLabel(facility.locationCategory, language)}</p>}
         </>
       )}
+      {facility.type === 'commercial_ev_charging_swap_station' && (
+        <>
+          {facility.serviceType && <p>{t.serviceType}: {getCommercialEvServiceTypeLabel(facility.serviceType, language)}</p>}
+          {facility.operatorName && <p>{t.operatorName}: {facility.operatorName}</p>}
+          {facility.stationName && <p>{t.stationName}: {facility.stationName}</p>}
+          {facility.sourceSequenceNumber && <p>{t.sourceSequenceNumber}: {facility.sourceSequenceNumber}</p>}
+          {facility.city && <p>{t.city}: {facility.city}</p>}
+          {facility.cityCode && <p>{t.cityCode}: {facility.cityCode}</p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
@@ -204,6 +215,7 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       {facility.type === 'lactation_room' && <p>{t.notice}: {t.lactationRoomNotice}</p>}
       {facility.type === 'motorcycle_inspection_station' && <p>{t.notice}: {t.inspectionStationNotice}</p>}
       {facility.type === 'electric_motorcycle_charging_station' && <p>{t.notice}: {t.chargingStationNotice}</p>}
+      {facility.type === 'commercial_ev_charging_swap_station' && <p>{t.notice}: {t.commercialEvNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

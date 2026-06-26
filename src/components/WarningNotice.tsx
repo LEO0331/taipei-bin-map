@@ -19,6 +19,7 @@ const noticeTypes: FacilityType[] = [
   'lactation_room',
   'motorcycle_inspection_station',
   'electric_motorcycle_charging_station',
+  'commercial_ev_charging_swap_station',
 ];
 
 export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
@@ -71,6 +72,10 @@ export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
     electric_motorcycle_charging_station: {
       label: t.electricMotorcycleChargingStations,
       notice: t.chargingStationNotice,
+    },
+    commercial_ev_charging_swap_station: {
+      label: t.commercialEvChargingSwapStations,
+      notice: t.commercialEvNotice,
     },
   } satisfies Record<FacilityType, { label: string; notice: string }>;
 

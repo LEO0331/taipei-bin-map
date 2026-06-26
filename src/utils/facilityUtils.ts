@@ -1,6 +1,7 @@
 import type {
   DirectDrinkingPlaceCategory,
   DrinkingFountainPlaceCategory,
+  CommercialEvServiceType,
   ElectricMotorcycleChargingLocationCategory,
   Facility,
   FacilityType,
@@ -111,6 +112,12 @@ export function filterFacilities(
     chargingCity,
     chargingDistrictCode,
     chargingHasAddress = false,
+    commercialEvServiceType,
+    commercialEvOperator,
+    commercialEvCity,
+    commercialEvCityCode,
+    commercialEvHasAddress = false,
+    commercialEvHasDistrict = false,
   }: {
     searchTerm: string;
     district: string;
@@ -158,6 +165,12 @@ export function filterFacilities(
     chargingCity?: string;
     chargingDistrictCode?: string;
     chargingHasAddress?: boolean;
+    commercialEvServiceType?: CommercialEvServiceType | '';
+    commercialEvOperator?: string;
+    commercialEvCity?: string;
+    commercialEvCityCode?: string;
+    commercialEvHasAddress?: boolean;
+    commercialEvHasDistrict?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -174,6 +187,7 @@ export function filterFacilities(
   );
   const hasInspectionFilters = Boolean(inspectionBrand || inspectionPostalCode || inspectionHasPhone);
   const hasChargingFilters = Boolean(chargingLocationCategory || chargingCity || chargingDistrictCode || chargingHasAddress);
+  const hasCommercialEvFilters = Boolean(commercialEvServiceType || commercialEvOperator || commercialEvCity || commercialEvCityCode || commercialEvHasAddress || commercialEvHasDistrict);
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -257,6 +271,15 @@ export function filterFacilities(
         (!chargingDistrictCode || facility.districtCode === chargingDistrictCode) &&
         (!chargingHasAddress || Boolean(facility.address)));
     const matchesChargingScope = !hasChargingFilters || facility.type === 'electric_motorcycle_charging_station';
+    const matchesCommercialEv =
+      facility.type !== 'commercial_ev_charging_swap_station' ||
+      ((!commercialEvServiceType || facility.serviceType === commercialEvServiceType) &&
+        (!commercialEvOperator || facility.operatorName === commercialEvOperator) &&
+        (!commercialEvCity || facility.city === commercialEvCity) &&
+        (!commercialEvCityCode || facility.cityCode === commercialEvCityCode) &&
+        (!commercialEvHasAddress || Boolean(facility.address)) &&
+        (!commercialEvHasDistrict || Boolean(facility.district)));
+    const matchesCommercialEvScope = !hasCommercialEvFilters || facility.type === 'commercial_ev_charging_swap_station';
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -302,6 +325,11 @@ export function filterFacilities(
         facility.districtCode,
         facility.locationCategory,
         facility.locationCategoryRaw,
+        facility.sourceSequenceNumber ? String(facility.sourceSequenceNumber) : '',
+        facility.serviceType,
+        facility.operatorName,
+        facility.cityCode,
+        facility.addressNormalized,
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
           : '',
@@ -331,6 +359,8 @@ export function filterFacilities(
       matchesInspectionScope &&
       matchesCharging &&
       matchesChargingScope &&
+      matchesCommercialEv &&
+      matchesCommercialEvScope &&
       matchesSearch
     );
   });
@@ -381,7 +411,28 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '電動機車充電站' : 'Electric Motorcycle Charging Station';
   }
 
+  if (type === 'commercial_ev_charging_swap_station') {
+    return language === 'zh' ? '營利型電動車充換電站' : 'Commercial EV Charging & Battery Swap Station';
+  }
+
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';
+}
+
+export function getCommercialEvServiceTypeLabel(type: CommercialEvServiceType | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? {
+      electric_car_charging: '電動車充電站',
+      electric_motorcycle_charging: '電動機車充電站',
+      electric_motorcycle_battery_swap: '電動機車換電站',
+      unknown: '未知服務類型',
+    }
+    : {
+      electric_car_charging: 'Electric car charging station',
+      electric_motorcycle_charging: 'Electric motorcycle charging station',
+      electric_motorcycle_battery_swap: 'Electric motorcycle battery swap station',
+      unknown: 'Unknown service type',
+    };
+  return labels[type ?? 'unknown'];
 }
 
 export function classifyElectricMotorcycleChargingLocationCategory(

@@ -2,8 +2,17 @@ import { useEffect, useMemo, useState } from 'react';
 import L from 'leaflet';
 import { CircleMarker, MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import type { Translation } from '../i18n';
-import type { ElectricMotorcycleChargingLocationCategory, FacilityType, FacilityWithDistance, Language } from '../types';
-import { getElectricMotorcycleChargingLocationCategoryLabel } from '../utils/facilityUtils';
+import type {
+  CommercialEvServiceType,
+  ElectricMotorcycleChargingLocationCategory,
+  FacilityType,
+  FacilityWithDistance,
+  Language,
+} from '../types';
+import {
+  getCommercialEvServiceTypeLabel,
+  getElectricMotorcycleChargingLocationCategoryLabel,
+} from '../utils/facilityUtils';
 import { FacilityPopup } from './FacilityPopup';
 import { MapLegend } from './MapLegend';
 
@@ -38,6 +47,14 @@ type FacilityMapProps = {
       locationCategoryRaw?: string;
       count: number;
     }>;
+  }>;
+  commercialEvDistrictSummaries: Array<{
+    district: string;
+    count: number;
+    electricCarChargingCount: number;
+    electricMotorcycleChargingCount: number;
+    electricMotorcycleBatterySwapCount: number;
+    topOperators: Array<{ operatorName: string; count: number }>;
   }>;
 };
 
@@ -92,6 +109,7 @@ const markerEmojiByType = {
   lactation_room: '🍼',
   motorcycle_inspection_station: '🏍️',
   electric_motorcycle_charging_station: '🔌',
+  commercial_ev_charging_swap_station: '🔋',
 } satisfies Record<FacilityType, string>;
 
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {
@@ -143,6 +161,7 @@ export function FacilityMap({
   lactationDistrictSummaries,
   inspectionDistrictSummaries,
   chargingDistrictSummaries,
+  commercialEvDistrictSummaries,
 }: FacilityMapProps) {
   const renderedFacilities = useChunkedFacilities(facilities);
   const userIcon = useMemo(
@@ -256,6 +275,33 @@ export function FacilityMap({
                   <p>{t.district}: {summary.district}</p>
                   <p>{t.stationCount}: {summary.count}</p>
                   <p>{t.topLocationCategories}: {summary.topLocationCategories.map((item) => `${getElectricMotorcycleChargingLocationCategoryLabel(item.locationCategory, language)} ${item.count}`).join('、')}</p>
+                </div>
+              </Popup>
+            </CircleMarker>
+          );
+        })}
+        {commercialEvDistrictSummaries.map((summary) => {
+          const center = districtCentroids[summary.district];
+          if (!center) return null;
+          const serviceCounts: Array<[CommercialEvServiceType, number]> = [
+            ['electric_car_charging', summary.electricCarChargingCount],
+            ['electric_motorcycle_charging', summary.electricMotorcycleChargingCount],
+            ['electric_motorcycle_battery_swap', summary.electricMotorcycleBatterySwapCount],
+          ];
+          return (
+            <CircleMarker
+              key={`commercial-ev-${summary.district}`}
+              center={center}
+              radius={Math.min(26, 10 + Math.sqrt(summary.count) * 1.8)}
+              pathOptions={{ color: '#2f4a75', fillColor: '#b9d4ff', fillOpacity: 0.78, weight: 2 }}
+            >
+              <Popup>
+                <div className="map-popup">
+                  <strong>{t.commercialEvChargingSwapStations}</strong>
+                  <p>{t.district}: {summary.district}</p>
+                  <p>{t.stationCount}: {summary.count}</p>
+                  <p>{t.serviceType}: {serviceCounts.map(([type, count]) => `${getCommercialEvServiceTypeLabel(type, language)} ${count}`).join('、')}</p>
+                  <p>{t.topOperators}: {summary.topOperators.map((item) => `${item.operatorName} ${item.count}`).join('、')}</p>
                 </div>
               </Popup>
             </CircleMarker>

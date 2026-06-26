@@ -563,6 +563,10 @@ a:focus-visible {
   background: #c8f2e9;
 }
 
+.facility-div-marker.commercial_ev_charging_swap_station span {
+  background: #d7e6ff;
+}
+
 .map-popup {
   max-width: 15rem;
 }

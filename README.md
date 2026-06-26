@@ -1,6 +1,6 @@
 # Taipei Public Amenities Map / 台北市公共便利設施地圖
 
-Mobile-first bilingual map for finding public toilets, riverside toilets, family-friendly toilets, motorcycle inspection stations, electric motorcycle charging stations, recycling facilities, drinking facilities, and other Taipei public amenities.
+Mobile-first bilingual map for finding public toilets, riverside toilets, family-friendly toilets, motorcycle inspection stations, electric motorcycle charging and commercial EV charging/swap stations, recycling facilities, drinking facilities, and other Taipei public amenities.
 
 The app is static, bilingual, PWA-ready, and requires no backend, login, admin page, database, Google Maps API key, or paid map service.
 
@@ -12,7 +12,7 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Leaflet + OpenStreetMap map, no Google Maps API key required.
 - Local static amenity data loaded from `public/data/facilities.json`.
 - Facility type filter for pedestrian garbage bins, dog-waste bag boxes, public toilets, riverside toilets, family-friendly toilets, drinking facilities, timed collection points, used-clothing recycling boxes, and lactation rooms.
-- Public service locations: motorcycle inspection stations and electric motorcycle charging stations.
+- Public service locations: motorcycle inspection stations, electric motorcycle charging stations, and commercial EV charging/battery-swap stations.
 - Toilet layers: public toilets, riverside toilets, and family-friendly toilets.
 - Public toilet category, accessible-toilet, and parent-child-toilet filters.
 - Public drinking fountain place-category and opening-hour filters.
@@ -23,7 +23,7 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Taipei district filter and nearest-facility lookup using browser geolocation.
 - Emoji map markers and legend for each facility type.
 - Marker rendering is capped for large unfiltered result sets to avoid mobile clutter.
-- Lactation rooms, motorcycle inspection stations, and electric motorcycle charging stations are shown as searchable directories and district-level summary bubbles when the source files do not contain coordinates.
+- Lactation rooms, motorcycle inspection stations, electric motorcycle charging stations, and commercial EV charging/battery-swap stations are shown as searchable directories and district-level summary bubbles when the source files do not contain coordinates.
 - Conversion report for dropped rows, missing fields, invalid coordinates, and coordinate outliers.
 - PWA manifest, icons, and service worker caching for repeat visits.
 
@@ -114,6 +114,20 @@ npm run convert:facilities
 
 The source has no coordinates, so the app shows a district-level directory and address-based Google Maps links. `備註` is parsed into location categories such as inspection station, public parking lot, service factory, and cleaning team. Manually verified coordinates can be added later to `public/data/electric-motorcycle-charging-station-locations.json`; automatic geocoding is not used. The app does not claim real-time charger availability, pricing, charging speed, or equipment status.
 
+The commercial EV charging and battery-swap layer uses three Big5/CP950 local CSV snapshots:
+
+- `臺北市營利電動車充電站-240站.csv`
+- `臺北市營利電動機車充電站-12站.csv`
+- `臺北市營利電動機車換電站-365站.csv`
+
+```bash
+npm run data:fetch:commercial-ev
+npm run data:convert:commercial-ev
+npm run convert:facilities
+```
+
+The source files do not provide coordinates, so records stay address-only with district summary bubbles and address-based Google Maps links. Service type is derived from the source filename. This layer is distinct from the non-commercial electric motorcycle charging station dataset and does not claim real-time availability, pricing, payment support, membership eligibility, charging speed, or battery inventory.
+
 Fetch the raw API JSON, then regenerate the static public data:
 
 ```bash
@@ -166,6 +180,9 @@ public/data/motorcycle-inspection-station-locations.json
 public/data/electric-motorcycle-charging-stations.json
 public/data/electric-motorcycle-charging-station-summary.json
 public/data/electric-motorcycle-charging-station-locations.json
+public/data/commercial-ev-charging-swap-stations.json
+public/data/commercial-ev-charging-swap-station-summary.json
+public/data/commercial-ev-charging-swap-station-locations.json
 public/data/conversion-report.json
 ```
 
@@ -214,7 +231,7 @@ More detail: [docs/deployment.en.md](docs/deployment.en.md)
 
 ### Data Notice
 
-Public toilets, riverside toilets, family-friendly toilets, motorcycle inspection stations, and electric motorcycle charging stations remain separate source-specific layers. Equipment counts, award fields, business hours, cleanliness, maintenance, opening status, charger availability, pricing, and service availability are public-data snapshots rather than real-time guarantees. Verify details with official, venue, managing-unit, station, or on-site notices.
+Public toilets, riverside toilets, family-friendly toilets, motorcycle inspection stations, electric motorcycle charging stations, and commercial EV charging/battery-swap stations remain separate source-specific layers. Equipment counts, award fields, business hours, cleanliness, maintenance, opening status, charger availability, pricing, payment methods, membership requirements, battery inventory, and service availability are public-data snapshots rather than real-time guarantees. Verify details with official, operator, venue, managing-unit, station, or on-site notices.
 
 ## 中文
 
@@ -224,7 +241,7 @@ Public toilets, riverside toilets, family-friendly toilets, motorcycle inspectio
 - 使用 Leaflet + OpenStreetMap，不需要 Google Maps API key。
 - 從 `public/data/facilities.json` 載入本機靜態便利設施資料。
 - 支援行人專用清潔箱、狗便袋箱、公廁、河濱廁所、親子友善廁所、飲水設施、限時收受點、舊衣回收箱與哺集乳室的設施類型篩選。
-- 公共服務站點：機車定檢站與電動機車充電站。
+- 公共服務站點：機車定檢站、電動機車充電站與營利型電動車充換電站。
 - 公廁圖層包含一般公廁、河濱廁所與親子友善廁所。
 - 支援公廁類別、無障礙廁所、親子廁所篩選。
 - 支援公共場所飲水機場所類型與開放時間資料篩選。
@@ -235,7 +252,7 @@ Public toilets, riverside toilets, family-friendly toilets, motorcycle inspectio
 - 支援台北市行政區篩選與瀏覽器定位找附近設施。
 - 不同設施類型使用 emoji 地圖標記與圖例。
 - 大量未篩選結果不會直接渲染所有地圖標記，避免手機地圖過度擁擠。
-- 哺集乳室、機車定檢站與電動機車充電站來源若未提供座標，會以前端清單與行政區彙總泡泡呈現。
+- 哺集乳室、機車定檢站、電動機車充電站與營利型電動車充換電站來源若未提供座標，會以前端清單與行政區彙總泡泡呈現。
 - 轉換報告會記錄刪除列、缺漏欄位、無效座標與座標疑似異常列。
 - 已具備 PWA manifest、icons 與 service worker，支援重複造訪時的快取。
 
@@ -326,6 +343,20 @@ npm run convert:facilities
 
 來源沒有座標，因此以前端清單與行政區彙總呈現，Google Maps 連結使用地址查詢。`備註` 會解析為檢驗站、公有停車場、服務廠、清潔隊等地點分類。日後可將人工驗證座標加入 `public/data/electric-motorcycle-charging-station-locations.json`；目前不使用自動地理編碼。本網站不宣稱即時可用、充電價格、充電速度或設備狀態。
 
+營利型電動車充換電站圖層使用三份 Big5/CP950 本機 CSV 快照：
+
+- `臺北市營利電動車充電站-240站.csv`
+- `臺北市營利電動機車充電站-12站.csv`
+- `臺北市營利電動機車換電站-365站.csv`
+
+```bash
+npm run data:fetch:commercial-ev
+npm run data:convert:commercial-ev
+npm run convert:facilities
+```
+
+來源沒有座標，因此以前端清單與行政區彙總呈現，Google Maps 連結使用地址查詢。服務類型由來源檔名判斷。此圖層與非營利的電動機車充電站資料分開處理，且不宣稱即時可用、費率、付款方式、會員資格、充電速度或可換電池庫存。
+
 先擷取 API，再重新產生靜態資料：
 
 ```bash
@@ -378,6 +409,9 @@ public/data/motorcycle-inspection-station-locations.json
 public/data/electric-motorcycle-charging-stations.json
 public/data/electric-motorcycle-charging-station-summary.json
 public/data/electric-motorcycle-charging-station-locations.json
+public/data/commercial-ev-charging-swap-stations.json
+public/data/commercial-ev-charging-swap-station-summary.json
+public/data/commercial-ev-charging-swap-station-locations.json
 public/data/conversion-report.json
 ```
 
@@ -426,4 +460,4 @@ npm run preview
 
 ### 資料提醒
 
-行人專用清潔箱、狗便袋箱、公廁、飲水設施、限時收受點、直飲臺、舊衣回收箱、機車定檢站與電動機車充電站是不同設施或站點。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、舊衣回收箱可投遞狀態、機車定檢站服務、電動機車充電站可用狀態與水質維護資訊請以現場及主管機關公告為準。
+行人專用清潔箱、狗便袋箱、公廁、飲水設施、限時收受點、直飲臺、舊衣回收箱、機車定檢站、電動機車充電站與營利型電動車充換電站是不同設施或站點。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、舊衣回收箱可投遞狀態、機車定檢站服務、充換電站可用狀態、費率、付款方式、會員資格與水質維護資訊請以現場、業者及主管機關公告為準。

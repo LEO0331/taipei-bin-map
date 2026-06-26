@@ -9,6 +9,9 @@
 
 ### What's Done
 
+- [x] Added 617 commercial EV charging and battery-swap station records from three Big5/CP950 commercial EV source files.
+- [x] Added service-type classification, operator/city/city-code/address/district filters, address-based Google Maps links, district summary bubbles, notices, legend entry, PWA cache entries, README notes, and tests for the commercial EV layer.
+- [x] Kept commercial EV records address-only because the source files do not include coordinates; no automatic geocoding or fake markers were added.
 - [x] Added `drinking_fountain` to the shared `FacilityType` and drinking fountain fields to `Facility`.
 - [x] Added `npm run fetch:drinking-fountains` to fetch `臺北市公共場所飲水機資訊` from Taipei Open Data into `data/raw/drinking-fountains/`.
 - [x] Added drinking fountain conversion from raw API JSON with trimmed headers, district normalization, numeric parsing, place-category classification, and coordinate reporting.
@@ -29,7 +32,7 @@
 
 ### What's In Progress
 
-- [x] No active feature work remains for feat-019.
+- [x] No active feature work remains for feat-021.
 
 ### What's Next
 
@@ -50,6 +53,7 @@
 - [ ] Toilet cleanliness, maintenance, opening status, equipment counts, and award fields are snapshot data rather than real-time guarantees.
 - [ ] Motorcycle inspection station business hours, service status, and inspection rules are snapshot/public-data references, not real-time guarantees.
 - [ ] Electric motorcycle charging station availability, business hours, charger specifications, pricing, and on-site rules are snapshot/public-data references, not real-time guarantees.
+- [ ] Commercial EV charging and battery-swap station availability, fees, payment methods, membership rules, equipment specs, and battery inventory are snapshot/public-data references, not real-time guarantees.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -64,6 +68,7 @@
 - **Skip optional nearby shortcut buttons**: The existing nearby button already respects selected facility layers.
 - **Use a strict E2E dev server**: Playwright always starts this app on port 5173 and fails fast if the port is occupied, preventing accidental tests against another local Vite app.
 - **Do not geocode electric motorcycle charging stations automatically**: Address-only records use district summaries and address-based Google Maps links until verified coordinates are added.
+- **Do not geocode commercial EV charging/swap stations automatically**: Address-only records use district summaries and address-based Google Maps links until verified coordinates are added.
 
 ## Files Modified This Session
 
@@ -122,7 +127,14 @@
 - [x] `npm test` passed 37 unit/converter tests.
 - [x] `npm run build` passed.
 - [x] `npm run test:e2e` and `./init.sh` passed 40 desktop/mobile Playwright tests.
+- [x] `npm run data:fetch:commercial-ev` copied the three Big5/CP950 commercial EV charging/swap source CSVs into `data/raw/commercial-ev-charging-swap-stations/`.
+- [x] `npm run data:convert:commercial-ev` generated 617 commercial EV charging/swap station records and summary JSON.
+- [x] `npm run convert:bins` generated 7,817 facilities, including 240 commercial electric-car charging records, 12 commercial electric-motorcycle charging records, and 365 commercial electric-motorcycle battery-swap records.
+- [x] Commercial EV records are all `address_only` and span all 12 Taipei districts; no fake coordinates were generated.
+- [x] `npm test` passed 39 unit/converter tests.
+- [x] `npm run build` passed.
+- [x] `npm run test:e2e` and `./init.sh` passed 42 desktop/mobile Playwright tests.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The twelve-layer public amenities expansion is implemented and verified.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The thirteen-layer public amenities expansion is implemented and verified.

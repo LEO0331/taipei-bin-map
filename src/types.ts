@@ -12,11 +12,18 @@ export type FacilityType =
   | 'used_clothing_recycling_box'
   | 'lactation_room'
   | 'motorcycle_inspection_station'
-  | 'electric_motorcycle_charging_station';
+  | 'electric_motorcycle_charging_station'
+  | 'commercial_ev_charging_swap_station';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
 export type RiversideToiletType = 'scenic' | 'standard' | 'accessible' | 'fixed' | 'other' | 'unknown';
+
+export type CommercialEvServiceType =
+  | 'electric_car_charging'
+  | 'electric_motorcycle_charging'
+  | 'electric_motorcycle_battery_swap'
+  | 'unknown';
 
 export type ElectricMotorcycleChargingLocationCategory =
   | 'inspection_station'
@@ -144,6 +151,14 @@ export type Facility = {
   unitName?: string;
   locationCategoryRaw?: string;
   locationCategory?: ElectricMotorcycleChargingLocationCategory;
+  sourceResourceName?: string;
+  sourceFileName?: string;
+  sourceSequenceNumber?: number;
+  serviceType?: CommercialEvServiceType;
+  operatorName?: string;
+  cityCode?: string;
+  addressNormalized?: string;
+  hasInferredDistrict?: boolean;
 };
 
 export type MotorcycleInspectionStationLocation = {
@@ -202,6 +217,41 @@ export type ElectricMotorcycleChargingStationSummary = {
     count: number;
   }>;
   byDistrictCode: Array<{ districtCode: string; district?: string; count: number }>;
+};
+
+export type CommercialEvChargingSwapStationLocation = {
+  serviceType: CommercialEvServiceType;
+  operatorName?: string;
+  stationName?: string;
+  address?: string;
+  latitude: number;
+  longitude: number;
+  sourceNote: string;
+  verifiedAt?: string;
+};
+
+export type CommercialEvChargingSwapStationSummary = {
+  totalRecords: number;
+  electricCarChargingCount: number;
+  electricMotorcycleChargingCount: number;
+  electricMotorcycleBatterySwapCount: number;
+  uniqueOperatorCount: number;
+  districtCount: number;
+  recordsWithAddress: number;
+  recordsWithDistrict: number;
+  recordsWithInferredDistrict: number;
+  recordsMissingDistrict: number;
+  byServiceType: Array<{ serviceType: CommercialEvServiceType; count: number }>;
+  byOperator: Array<{ operatorName: string; count: number; serviceTypes: CommercialEvServiceType[] }>;
+  byDistrict: Array<{
+    district: string;
+    totalCount: number;
+    electricCarChargingCount: number;
+    electricMotorcycleChargingCount: number;
+    electricMotorcycleBatterySwapCount: number;
+    topOperators: Array<{ operatorName: string; count: number }>;
+  }>;
+  byCity: Array<{ city: string; count: number }>;
 };
 
 export type RiversideToiletSummary = {
@@ -300,6 +350,8 @@ export type ConversionSourceReport = {
   matchedPublicToiletCount?: number;
   duplicateStationIds?: Array<{ stationId: string; count: number }>;
   districtCodeConflicts?: Array<{ rowNumber: number; district?: string; districtCode?: string; districtFromCode?: string }>;
+  addressParseWarnings?: Array<{ rowNumber: number; address?: string; warning: string }>;
+  unknownServiceTypeFiles?: string[];
 };
 
 export type ConversionReport = {

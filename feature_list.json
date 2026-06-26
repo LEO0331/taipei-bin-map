@@ -159,6 +159,14 @@
       "dependencies": ["feat-019"],
       "status": "done",
       "evidence": "npm run convert:bins generated 7200 facilities, including 398 electric motorcycle charging stations across all 12 districts. The source has no coordinates, so the UI uses district summaries and address-based Google Maps links."
+    },
+    {
+      "id": "feat-021",
+      "name": "Commercial EV charging and swap station expansion",
+      "description": "Add Taipei commercial EV charging and battery-swap stations as an address-only service layer with CP950 conversion, service/operator/city filters, district summaries, address-based links, cache support, and no real-time availability claims.",
+      "dependencies": ["feat-020"],
+      "status": "done",
+      "evidence": "npm run convert:bins generated 7817 facilities, including 617 commercial EV charging and battery-swap stations. The source has no coordinates, so the UI uses district summaries and address-based Google Maps links."
     }
   ]
 }

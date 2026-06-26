@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-25T06:10:16.419Z",
-  "totalValidRows": 7200,
+  "generatedAt": "2026-06-26T00:36:33.381Z",
+  "totalValidRows": 7817,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -119,6 +119,45 @@
         }
       ],
       "districtCodeConflicts": []
+    },
+    {
+      "sourceFilename": "臺北市營利電動機車充電站-12站.csv",
+      "totalRows": 12,
+      "validRows": 12,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": [],
+      "addressParseWarnings": [],
+      "unknownServiceTypeFiles": []
+    },
+    {
+      "sourceFilename": "臺北市營利電動機車換電站-365站.csv",
+      "totalRows": 365,
+      "validRows": 365,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": [],
+      "addressParseWarnings": [],
+      "unknownServiceTypeFiles": []
+    },
+    {
+      "sourceFilename": "臺北市營利電動車充電站-240站.csv",
+      "totalRows": 240,
+      "validRows": 240,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": [],
+      "addressParseWarnings": [
+        {
+          "rowNumber": 33,
+          "address": "臺北市南港經貿二路88巷19號",
+          "warning": "inferred_district_from_high_confidence_hint"
+        }
+      ],
+      "unknownServiceTypeFiles": []
     }
   ]
 }
