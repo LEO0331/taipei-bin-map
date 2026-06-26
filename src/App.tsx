@@ -51,9 +51,7 @@ const DISTRICT_ORDER = [
 ];
 
 const INITIAL_LIST_LIMIT = 80;
-const MAP_MARKER_LIMIT = 1800;
-const COMBINED_LAYERS_MARKER_LIMIT = 700;
-const ALL_LAYERS_MARKER_LIMIT = 500;
+const SINGLE_LAYER_MARKER_LIMIT = 500;
 const FacilityMap = lazy(() =>
   import('./components/FacilityMap').then((module) => ({ default: module.FacilityMap })),
 );
@@ -502,17 +500,12 @@ function App() {
       (!facility.coordinateStatus || facility.coordinateStatus === 'valid') &&
       !facility.isCoordinateOutlier,
   );
-  // ponytail: cap combined previews; add clustering only if users need every marker at once.
-  const markerLimit =
-    selectedTypes.length === FACILITY_TYPE_OPTIONS.length
-      ? ALL_LAYERS_MARKER_LIMIT
-      : selectedTypes.length > 1
-        ? COMBINED_LAYERS_MARKER_LIMIT
-        : MAP_MARKER_LIMIT;
-  const markerLimitExceeded = !nearbyFacilities && renderableFacilities.length > markerLimit;
-  const mapFacilities = markerLimitExceeded
-    ? renderableFacilities.slice(0, markerLimit)
-    : renderableFacilities;
+  // ponytail: broad views use the list; nearby results always render their exact markers.
+  const shouldRenderMapMarkers =
+    Boolean(nearbyFacilities) ||
+    (selectedTypes.length === 1 && renderableFacilities.length <= SINGLE_LAYER_MARKER_LIMIT);
+  const markerLimitExceeded = !shouldRenderMapMarkers && renderableFacilities.length > 0;
+  const mapFacilities = shouldRenderMapMarkers ? renderableFacilities : [];
   const deferredMapFacilities = useDeferredValue(mapFacilities);
   const listFacilities = useMemo(
     () => (nearbyFacilities ? displayedFacilities : displayedFacilities.slice(0, INITIAL_LIST_LIMIT)),

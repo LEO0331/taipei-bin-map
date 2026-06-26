@@ -26,7 +26,7 @@
 - [x] Added 733 direct drinking stations with status, Taipei-only, place-type, maintenance, and photo filters.
 - [x] Added local Big5/CP950 fetch/copy scripts, raw source metadata, individual JSON outputs, combined conversion, map/list/popups, notices, cache entries, README, and tests.
 - [x] Added 1,184 approved used-clothing recycling boxes with village, organization, phone, search, nearby, map/list/popup, notice, cache, and local CSV workflow support.
-- [x] Improved combined-layer responsiveness with deferred map updates, 700-marker combined previews, 500-marker all-layer previews, and cache-first static data.
+- [x] Improved combined-layer responsiveness with deferred map updates, cache-first static data, and a list-first marker policy: broad selections hide individual pins while nearby and small single-layer results keep exact markers.
 - [x] Added 483 lactation rooms from two Big5/CP950 resources with deduplication and legal-list cross-reference.
 - [x] Added lactation search, filters, directory details, district summary bubbles, address-based Google Maps links, notices, PWA cache entries, and optional verified-coordinate cache support.
 - [x] Added 334 riverside toilets and 393 family-friendly toilets with exact markers, focused filters, nearby results, summaries, bilingual notices, and service-worker cache entries.
@@ -35,12 +35,11 @@
 
 ### What's In Progress
 
-- [x] No active feature work remains for feat-022.
+- [x] No active feature work remains for feat-023.
 
 ### What's Next
 
-1. Review and commit the eight-layer public amenities expansion.
-2. Refresh source CSVs before publishing when newer snapshots are available.
+1. Refresh source CSVs before publishing when newer snapshots are available.
 
 ## Blockers / Risks
 
@@ -74,6 +73,7 @@
 - **Do not geocode electric motorcycle charging stations automatically**: Address-only records use district summaries and address-based Google Maps links until verified coordinates are added.
 - **Do not geocode commercial EV charging/swap stations automatically**: Address-only records use district summaries and address-based Google Maps links until verified coordinates are added.
 - **Convert gas/LPG station coordinates offline**: Source TWD97 coordinates are converted during data conversion; frontend stays on static WGS84 JSON.
+- **Keep broad map views list-first**: Rendering hundreds of individual Leaflet markers blocks mobile interaction. Broad selections hide exact pins; nearby results and small single-type selections render them.
 
 ## Files Modified This Session
 
@@ -144,6 +144,8 @@
 - [x] `npm test` passed 41 unit/converter tests.
 - [x] `npm run build` passed.
 - [x] `npm run test:e2e` and `./init.sh` passed 44 desktop/mobile Playwright tests.
+- [x] Added a list-first marker-rendering policy: broad selections mount no individual markers, while narrowed single-type/district views and nearby results retain exact markers.
+- [x] `./init.sh` passed 41 unit/converter tests, production build, and 46 desktop/mobile Playwright tests after the marker policy update.
 
 ## Notes for Next Session
 

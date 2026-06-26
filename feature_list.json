@@ -175,6 +175,14 @@
       "dependencies": ["feat-021"],
       "status": "done",
       "evidence": "npm run convert:bins generated 7892 facilities, including 75 gas/LPG stations with valid converted WGS84 coordinates across all 12 districts."
+    },
+    {
+      "id": "feat-023",
+      "name": "Responsive broad-map marker policy",
+      "description": "Keep the shared map responsive by making broad selections list-first while preserving exact markers for nearby results and narrowed single-layer views.",
+      "dependencies": ["feat-022"],
+      "status": "done",
+      "evidence": "./init.sh passed 41 unit/converter tests, production build, and 46 desktop/mobile Playwright tests. Broad default results mount zero facility pins; narrowed public-toilet district and nearby results retain markers."
     }
   ]
 }

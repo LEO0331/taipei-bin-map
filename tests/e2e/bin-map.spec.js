@@ -50,7 +50,7 @@ const gasLpgStationCount = gasLpgStations.length.toString();
 const gasLpgSample = gasLpgStations.find((facility) => facility.supplier === '台塑' && facility.hasSelfService) ?? gasLpgStations[0];
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all fourteen local datasets and avoids default marker clutter', async ({ page }) => {
+  test('loads all fourteen local datasets without mounting broad-view facility pins', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -72,7 +72,17 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('加油站及加氣站');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
+    await expect(page.locator('.facility-div-marker')).toHaveCount(0);
     await expect(page.locator('.facility-list li')).toHaveCount(80);
+  });
+
+  test('restores markers for a narrowed single facility type', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '公廁' }).click();
+    await page.getByLabel('行政區').selectOption('士林區');
+
+    await expect(page.locator('.facility-div-marker').first()).toBeVisible();
   });
 
   test('persists the English language selection across reloads', async ({ page }) => {

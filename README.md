@@ -22,7 +22,7 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Search across district, address, road, location, note, toilet name, toilet category, manager, public drinking fountain place name, install location, and opening hours.
 - Taipei district filter and nearest-facility lookup using browser geolocation.
 - Emoji map markers and legend for each facility type.
-- Marker rendering is capped for large unfiltered result sets to avoid mobile clutter.
+- Broad multi-layer map views are list-first: individual markers return for nearby results or a narrowed single layer with at most 500 valid coordinates.
 - Lactation rooms, motorcycle inspection stations, electric motorcycle charging stations, and commercial EV charging/battery-swap stations are shown as searchable directories and district-level summary bubbles when the source files do not contain coordinates.
 - Conversion report for dropped rows, missing fields, invalid coordinates, and coordinate outliers.
 - PWA manifest, icons, and service worker caching for repeat visits.
