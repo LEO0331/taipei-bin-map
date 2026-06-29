@@ -4,12 +4,14 @@ import {
   formatDistance,
   getAcceptedItemsLabel,
   getCommercialEvServiceTypeLabel,
+  getDesignatedSmokingAreaTypeLabel,
   getDirectDrinkingStatusLabel,
   getElectricMotorcycleChargingLocationCategoryLabel,
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
   getFuelStationServiceTypeLabel,
   getFuelStationStatusLabel,
+  getOpeningHoursTypeLabel,
   getRiversideToiletTypeLabel,
   getToiletCategoryLabel,
 } from '../utils/facilityUtils';
@@ -204,7 +206,22 @@ export function FacilityList({
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}
+              {facility.type === 'designated_smoking_area' && (
+                <small>
+                  {[
+                    facility.smokingAreaType ? `${t.smokingAreaType}: ${getDesignatedSmokingAreaTypeLabel(facility.smokingAreaType, language)}` : '',
+                    facility.openingHours ? `${t.openingHours}: ${facility.openingHours}` : '',
+                    facility.openingHoursType ? `${t.openingHoursType}: ${getOpeningHoursTypeLabel(facility.openingHoursType, language)}` : '',
+                    facility.relativeLocation ? `${t.relativeLocation}: ${facility.relativeLocation}` : '',
+                    facility.managingUnit ? `${t.managingUnit}: ${facility.managingUnit}` : '',
+                    facility.managingUnitPhone ? `${t.managingUnitPhone}: ${facility.managingUnitPhone}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
               {facility.note && <small>{facility.note}</small>}
+              {facility.type === 'designated_smoking_area' && facility.photoUrl && (
+                <a href={facility.photoUrl} target="_blank" rel="noreferrer">{t.photo}</a>
+              )}
               {facility.isCoordinateOutlier && <small className="outlier-warning">{t.coordinateOutlierWarning}</small>}
               <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
                 {t.openGoogleMaps}

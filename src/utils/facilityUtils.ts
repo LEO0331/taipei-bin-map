@@ -1,6 +1,7 @@
 import type {
   DirectDrinkingPlaceCategory,
   DrinkingFountainPlaceCategory,
+  DesignatedSmokingAreaType,
   CommercialEvServiceType,
   ElectricMotorcycleChargingLocationCategory,
   Facility,
@@ -8,6 +9,8 @@ import type {
   FuelStationServiceType,
   FuelStationStatus,
   Language,
+  ManagingUnitCategory,
+  OpeningHoursType,
   RiversideToiletType,
 } from '../types';
 
@@ -128,6 +131,13 @@ export function filterFacilities(
     gasLpgLimitedHours = false,
     gasLpgStationStatus,
     gasLpgHasPhone = false,
+    smokingAreaType,
+    smokingOpeningHoursType,
+    smokingListed24Hours = false,
+    smokingHasPhoto = false,
+    smokingHasRelativeLocation = false,
+    smokingManagingUnitCategory,
+    smokingManagingUnit,
   }: {
     searchTerm: string;
     district: string;
@@ -189,6 +199,13 @@ export function filterFacilities(
     gasLpgLimitedHours?: boolean;
     gasLpgStationStatus?: FuelStationStatus | '';
     gasLpgHasPhone?: boolean;
+    smokingAreaType?: DesignatedSmokingAreaType | '';
+    smokingOpeningHoursType?: OpeningHoursType | '';
+    smokingListed24Hours?: boolean;
+    smokingHasPhoto?: boolean;
+    smokingHasRelativeLocation?: boolean;
+    smokingManagingUnitCategory?: ManagingUnitCategory | '';
+    smokingManagingUnit?: string;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -207,6 +224,7 @@ export function filterFacilities(
   const hasChargingFilters = Boolean(chargingLocationCategory || chargingCity || chargingDistrictCode || chargingHasAddress);
   const hasCommercialEvFilters = Boolean(commercialEvServiceType || commercialEvOperator || commercialEvCity || commercialEvCityCode || commercialEvHasAddress || commercialEvHasDistrict);
   const hasGasLpgFilters = Boolean(gasLpgSupplier || gasLpgHasOil || gasLpgHasLpg || gasLpgHasSelfService || gasLpgTwentyFourHours || gasLpgLimitedHours || gasLpgStationStatus || gasLpgHasPhone);
+  const hasSmokingFilters = Boolean(smokingAreaType || smokingOpeningHoursType || smokingListed24Hours || smokingHasPhoto || smokingHasRelativeLocation || smokingManagingUnitCategory || smokingManagingUnit);
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -310,6 +328,16 @@ export function filterFacilities(
         (!gasLpgStationStatus || facility.stationStatus === gasLpgStationStatus) &&
         (!gasLpgHasPhone || Boolean(facility.phone)));
     const matchesGasLpgScope = !hasGasLpgFilters || facility.type === 'gas_lpg_station';
+    const matchesSmoking =
+      facility.type !== 'designated_smoking_area' ||
+      ((!smokingAreaType || facility.smokingAreaType === smokingAreaType) &&
+        (!smokingOpeningHoursType || facility.openingHoursType === smokingOpeningHoursType) &&
+        (!smokingListed24Hours || facility.isListed24Hours === true) &&
+        (!smokingHasPhoto || facility.hasPhotoUrl === true) &&
+        (!smokingHasRelativeLocation || facility.hasRelativeLocation === true) &&
+        (!smokingManagingUnitCategory || facility.managingUnitCategory === smokingManagingUnitCategory) &&
+        (!smokingManagingUnit || facility.managingUnit === smokingManagingUnit || facility.manager === smokingManagingUnit));
+    const matchesSmokingScope = !hasSmokingFilters || facility.type === 'designated_smoking_area';
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -365,6 +393,12 @@ export function filterFacilities(
         facility.businessHoursRaw,
         facility.stationStatus,
         facility.stationServiceTypes?.join(' '),
+        facility.placeName,
+        facility.smokingAreaTypeRaw,
+        facility.openingHoursRaw,
+        facility.relativeLocation,
+        facility.managingUnit,
+        facility.managingUnitPhone,
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
           : '',
@@ -398,6 +432,8 @@ export function filterFacilities(
       matchesCommercialEvScope &&
       matchesGasLpg &&
       matchesGasLpgScope &&
+      matchesSmoking &&
+      matchesSmokingScope &&
       matchesSearch
     );
   });
@@ -456,7 +492,80 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '加油站及加氣站' : 'Gas & LPG Station';
   }
 
+  if (type === 'designated_smoking_area') {
+    return language === 'zh' ? '指定吸菸區' : 'Designated Smoking Area';
+  }
+
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';
+}
+
+export function getDesignatedSmokingAreaTypeLabel(type: DesignatedSmokingAreaType | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? {
+      outdoor_open: '戶外開放式吸菸區',
+      outdoor_negative_pressure: '戶外負壓式吸菸區',
+      indoor_smoking_room: '室內吸菸室',
+      other: '其他',
+      unknown: '未知',
+    }
+    : {
+      outdoor_open: 'Outdoor open smoking area',
+      outdoor_negative_pressure: 'Outdoor negative-pressure smoking area',
+      indoor_smoking_room: 'Indoor smoking room',
+      other: 'Other',
+      unknown: 'Unknown',
+    };
+  return labels[type ?? 'unknown'];
+}
+
+export function getOpeningHoursTypeLabel(type: OpeningHoursType | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? {
+      listed_24_hours: '24小時開放',
+      fixed_hours: '固定時段',
+      weekday_or_holiday_rule: '平日 / 假日規則',
+      depends_on_facility_hours: '依場館時間',
+      custom_text: '自訂文字',
+      missing: '缺漏',
+      unknown: '未知',
+    }
+    : {
+      listed_24_hours: 'Listed 24 hours',
+      fixed_hours: 'Fixed hours',
+      weekday_or_holiday_rule: 'Weekday / holiday rule',
+      depends_on_facility_hours: 'Depends on facility hours',
+      custom_text: 'Custom text',
+      missing: 'Missing',
+      unknown: 'Unknown',
+    };
+  return labels[type ?? 'unknown'];
+}
+
+export function getManagingUnitCategoryLabel(type: ManagingUnitCategory | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? {
+      taipei_city_government: '臺北市政府機關',
+      district_office: '區公所',
+      central_government: '中央政府機關',
+      transportation_or_mrt: '交通或捷運相關單位',
+      park_or_public_space: '公園或公共空間管理',
+      private_operator: '民間營運單位',
+      cultural_or_sports_facility: '文化或體育場館',
+      other: '其他',
+      unknown: '未知',
+    }
+    : {
+      taipei_city_government: 'Taipei City Government agency',
+      district_office: 'District office',
+      central_government: 'Central government agency',
+      transportation_or_mrt: 'Transportation or MRT-related unit',
+      park_or_public_space: 'Park or public-space management',
+      private_operator: 'Private operator',
+      cultural_or_sports_facility: 'Cultural or sports facility',
+      other: 'Other',
+      unknown: 'Unknown',
+    };
+  return labels[type ?? 'unknown'];
 }
 
 export function getFuelStationServiceTypeLabel(type: FuelStationServiceType, language: Language) {

@@ -2,6 +2,7 @@ import { lazy, Suspense, useDeferredValue, useEffect, useMemo, useState } from '
 import { DrinkingFountainFilters } from './components/DrinkingFountainFilters';
 import {
   CommercialEvChargingSwapStationFilters,
+  DesignatedSmokingAreaFilters,
   DirectDrinkingFilters,
   ElectricMotorcycleChargingStationFilters,
   FamilyFriendlyToiletFilters,
@@ -24,6 +25,7 @@ import type {
   ConversionReport,
   CommercialEvServiceType,
   DirectDrinkingPlaceCategory,
+  DesignatedSmokingAreaType,
   DrinkingFountainPlaceCategory,
   ElectricMotorcycleChargingLocationCategory,
   Facility,
@@ -31,6 +33,8 @@ import type {
   FacilityWithDistance,
   FuelStationStatus,
   Language,
+  ManagingUnitCategory,
+  OpeningHoursType,
   RiversideToiletType,
 } from './types';
 import { calculateDistanceMeters, filterFacilities } from './utils/facilityUtils';
@@ -136,6 +140,13 @@ function App() {
   const [gasLpgLimitedHours, setGasLpgLimitedHours] = useState(false);
   const [gasLpgStationStatus, setGasLpgStationStatus] = useState<FuelStationStatus | ''>('');
   const [gasLpgHasPhone, setGasLpgHasPhone] = useState(false);
+  const [smokingAreaType, setSmokingAreaType] = useState<DesignatedSmokingAreaType | ''>('');
+  const [smokingOpeningHoursType, setSmokingOpeningHoursType] = useState<OpeningHoursType | ''>('');
+  const [smokingListed24Hours, setSmokingListed24Hours] = useState(false);
+  const [smokingHasPhoto, setSmokingHasPhoto] = useState(false);
+  const [smokingHasRelativeLocation, setSmokingHasRelativeLocation] = useState(false);
+  const [smokingManagingUnitCategory, setSmokingManagingUnitCategory] = useState<ManagingUnitCategory | ''>('');
+  const [smokingManagingUnit, setSmokingManagingUnit] = useState('');
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -155,6 +166,7 @@ function App() {
   const includesChargingStations = selectedTypes.includes('electric_motorcycle_charging_station');
   const includesCommercialEvStations = selectedTypes.includes('commercial_ev_charging_swap_station');
   const includesGasLpgStations = selectedTypes.includes('gas_lpg_station');
+  const includesDesignatedSmokingAreas = selectedTypes.includes('designated_smoking_area');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -297,6 +309,10 @@ function App() {
     () => [...new Set(facilities.filter((facility) => facility.type === 'gas_lpg_station').map((facility) => facility.supplier).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
     [facilities],
   );
+  const smokingManagingUnits = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'designated_smoking_area').map((facility) => facility.managingUnit).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -361,6 +377,13 @@ function App() {
         gasLpgLimitedHours,
         gasLpgStationStatus,
         gasLpgHasPhone,
+        smokingAreaType,
+        smokingOpeningHoursType,
+        smokingListed24Hours,
+        smokingHasPhoto,
+        smokingHasRelativeLocation,
+        smokingManagingUnitCategory,
+        smokingManagingUnit,
       }),
     [
       district,
@@ -424,6 +447,13 @@ function App() {
       gasLpgLimitedHours,
       gasLpgStationStatus,
       gasLpgHasPhone,
+      smokingAreaType,
+      smokingOpeningHoursType,
+      smokingListed24Hours,
+      smokingHasPhoto,
+      smokingHasRelativeLocation,
+      smokingManagingUnitCategory,
+      smokingManagingUnit,
     ],
   );
 
@@ -519,6 +549,7 @@ function App() {
   const isChargingOnly = selectedTypes.length === 1 && includesChargingStations;
   const isCommercialEvOnly = selectedTypes.length === 1 && includesCommercialEvStations;
   const isGasLpgOnly = selectedTypes.length === 1 && includesGasLpgStations;
+  const isDesignatedSmokingAreaOnly = selectedTypes.length === 1 && includesDesignatedSmokingAreas;
   const isSpecializedToiletOnly = isRiversideOnly || isFamilyToiletOnly;
   const listHeading = nearbyFacilities
     ? t.nearestFacilities
@@ -532,6 +563,8 @@ function App() {
               ? t.commercialEvChargingSwapStationDirectory
               : isGasLpgOnly
                 ? t.gasLpgStationDirectory
+                : isDesignatedSmokingAreaOnly
+                  ? t.designatedSmokingAreaDirectory
                 : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
     if (!report?.generatedAt) {
@@ -642,6 +675,15 @@ function App() {
       setGasLpgLimitedHours(false);
       setGasLpgStationStatus('');
       setGasLpgHasPhone(false);
+    }
+    if (!value.includes('designated_smoking_area')) {
+      setSmokingAreaType('');
+      setSmokingOpeningHoursType('');
+      setSmokingListed24Hours(false);
+      setSmokingHasPhoto(false);
+      setSmokingHasRelativeLocation(false);
+      setSmokingManagingUnitCategory('');
+      setSmokingManagingUnit('');
     }
     setNearbyFacilities(null);
   };
@@ -800,6 +842,8 @@ function App() {
                     ? t.commercialEvSearchPlaceholder
                     : isGasLpgOnly
                       ? t.gasLpgSearchPlaceholder
+                      : isDesignatedSmokingAreaOnly
+                        ? t.designatedSmokingAreaSearchPlaceholder
               : isSpecializedToiletOnly
                 ? t.toiletSearchPlaceholder
                 : t.searchPlaceholder}
@@ -990,6 +1034,42 @@ function App() {
               }}
             />
           )}
+          {hasFocusedTypes && includesDesignatedSmokingAreas && (
+            <DesignatedSmokingAreaFilters
+              managingUnits={smokingManagingUnits}
+              smokingAreaType={smokingAreaType}
+              openingHoursType={smokingOpeningHoursType}
+              listed24Hours={smokingListed24Hours}
+              hasPhoto={smokingHasPhoto}
+              hasRelativeLocation={smokingHasRelativeLocation}
+              managingUnitCategory={smokingManagingUnitCategory}
+              managingUnit={smokingManagingUnit}
+              language={language}
+              t={t}
+              onSmokingAreaTypeChange={(value) => {
+                setSmokingAreaType(value);
+                setNearbyFacilities(null);
+              }}
+              onOpeningHoursTypeChange={(value) => {
+                setSmokingOpeningHoursType(value);
+                setNearbyFacilities(null);
+              }}
+              onManagingUnitCategoryChange={(value) => {
+                setSmokingManagingUnitCategory(value);
+                setNearbyFacilities(null);
+              }}
+              onManagingUnitChange={(value) => {
+                setSmokingManagingUnit(value);
+                setNearbyFacilities(null);
+              }}
+              onBooleanChange={(name, value) => {
+                if (name === 'listed24Hours') setSmokingListed24Hours(value);
+                if (name === 'photo') setSmokingHasPhoto(value);
+                if (name === 'relativeLocation') setSmokingHasRelativeLocation(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
           {isSpecializedToiletOnly && (
             <label className="nearby-radius">
               <span>{t.nearbyRadius}</span>
@@ -1107,6 +1187,8 @@ function App() {
                       ? t.viewCommercialEvStationsByNearbyDistrict
                       : isGasLpgOnly
                         ? t.showNearbyGasLpgStations
+                        : isDesignatedSmokingAreaOnly
+                          ? t.findNearbyDesignatedSmokingAreas
               : isRiversideOnly
                 ? t.showNearbyRiversideToilets
                 : isFamilyToiletOnly

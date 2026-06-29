@@ -65,6 +65,10 @@ export function MapLegend({ t }: MapLegendProps) {
         {t.gasLpgStations}
       </span>
       <span>
+        <i aria-hidden="true">⌖</i>
+        {t.designatedSmokingAreas}
+      </span>
+      <span>
         <i aria-hidden="true">📍</i>
         {t.userLocation}
       </span>

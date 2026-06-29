@@ -191,6 +191,14 @@
       "dependencies": ["feat-023"],
       "status": "done",
       "evidence": "A regression test first confirmed tiles pointed to the unavailable OpenStreetMap host. After the provider change, ./init.sh passed 41 unit/converter tests, production build, and 48 desktop/mobile Playwright tests on 2026-06-26."
+    },
+    {
+      "id": "feat-025",
+      "name": "Designated smoking area expansion",
+      "description": "Add Taipei designated smoking areas as an exact-marker public-health/environment layer with UTF-8-SIG conversion, type/opening-hour/manager filters, nearby lookup, notices, cache support, and no real-time availability or legal/health/smoking-advice claims.",
+      "dependencies": ["feat-024"],
+      "status": "done",
+      "evidence": "npm run convert:facilities generated 8094 facilities, including 202 designated smoking areas with valid WGS84 coordinates. ./init.sh passed 43 unit/converter tests, production build, and 50 desktop/mobile Playwright tests on 2026-06-29."
     }
   ]
 }

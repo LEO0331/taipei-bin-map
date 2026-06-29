@@ -3,12 +3,14 @@ import type { FacilityWithDistance, Language } from '../types';
 import {
   getAcceptedItemsLabel,
   getCommercialEvServiceTypeLabel,
+  getDesignatedSmokingAreaTypeLabel,
   getDirectDrinkingStatusLabel,
   getElectricMotorcycleChargingLocationCategoryLabel,
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
   getFuelStationServiceTypeLabel,
   getFuelStationStatusLabel,
+  getOpeningHoursTypeLabel,
   getRiversideToiletTypeLabel,
   getToiletCategoryLabel,
 } from '../utils/facilityUtils';
@@ -68,6 +70,9 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
         </p>
       )}
       {facility.type === 'direct_drinking_station' && facility.name && (
+        <p>{t.placeName}: {facility.name}</p>
+      )}
+      {facility.type === 'designated_smoking_area' && facility.name && (
         <p>{t.placeName}: {facility.name}</p>
       )}
       <p>
@@ -226,6 +231,17 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.yTwd97 && <p>{t.yTwd97}: {facility.yTwd97}</p>}
         </>
       )}
+      {facility.type === 'designated_smoking_area' && (
+        <>
+          {facility.smokingAreaType && <p>{t.smokingAreaType}: {getDesignatedSmokingAreaTypeLabel(facility.smokingAreaType, language)}</p>}
+          {facility.openingHours && <p>{t.openingHours}: {facility.openingHours}</p>}
+          {facility.openingHoursType && <p>{t.openingHoursType}: {getOpeningHoursTypeLabel(facility.openingHoursType, language)}</p>}
+          {facility.relativeLocation && <p>{t.relativeLocation}: {facility.relativeLocation}</p>}
+          {facility.managingUnit && <p>{t.managingUnit}: {facility.managingUnit}</p>}
+          {facility.managingUnitPhone && <p>{t.managingUnitPhone}: {facility.managingUnitPhone}</p>}
+          {facility.photoUrl && <p><a href={facility.photoUrl} target="_blank" rel="noreferrer">{t.photo}</a></p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
@@ -235,6 +251,7 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       {facility.type === 'electric_motorcycle_charging_station' && <p>{t.notice}: {t.chargingStationNotice}</p>}
       {facility.type === 'commercial_ev_charging_swap_station' && <p>{t.notice}: {t.commercialEvNotice}</p>}
       {facility.type === 'gas_lpg_station' && <p>{t.notice}: {t.gasLpgPopupNotice}</p>}
+      {facility.type === 'designated_smoking_area' && <p>{t.notice}: {t.designatedSmokingAreaPopupNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

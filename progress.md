@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-26 Asia/Taipei
+**Last Updated:** 2026-06-29 Asia/Taipei
 **Active Feature:** None
 
 ## Status
@@ -28,6 +28,8 @@
 - [x] Added 1,184 approved used-clothing recycling boxes with village, organization, phone, search, nearby, map/list/popup, notice, cache, and local CSV workflow support.
 - [x] Improved combined-layer responsiveness with deferred map updates, cache-first static data, and a list-first marker policy: broad selections hide individual pins while nearby and small single-layer results keep exact markers.
 - [x] Replaced the deployed OpenStreetMap tile endpoint with CARTO's no-key light basemap after the former rendered an empty gray map in production.
+- [x] Added 202 designated smoking areas from the UTF-8-SIG `臺北市指定吸菸區.csv` source.
+- [x] Added source WGS84 exact markers, type/opening-hour/photo/relative-location/management filters, nearby lookup, notices, PWA cache entries, README notes, and tests for the designated smoking area layer.
 - [x] Added 483 lactation rooms from two Big5/CP950 resources with deduplication and legal-list cross-reference.
 - [x] Added lactation search, filters, directory details, district summary bubbles, address-based Google Maps links, notices, PWA cache entries, and optional verified-coordinate cache support.
 - [x] Added 334 riverside toilets and 393 family-friendly toilets with exact markers, focused filters, nearby results, summaries, bilingual notices, and service-worker cache entries.
@@ -36,7 +38,7 @@
 
 ### What's In Progress
 
-- [x] No active feature work remains for feat-023.
+- [x] No active feature work remains for feat-025.
 
 ### What's Next
 
@@ -58,6 +60,7 @@
 - [ ] Electric motorcycle charging station availability, business hours, charger specifications, pricing, and on-site rules are snapshot/public-data references, not real-time guarantees.
 - [ ] Commercial EV charging and battery-swap station availability, fees, payment methods, membership rules, equipment specs, and battery inventory are snapshot/public-data references, not real-time guarantees.
 - [ ] Gas/LPG station business hours, fuel/LPG supply, pricing, self-service availability, and operating status are snapshot/public-data references, not real-time guarantees.
+- [ ] Designated smoking area opening hours, on-site usability, legal applicability, health interpretation, and complete legal boundaries are snapshot/public-data references, not real-time guarantees or advice.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -76,6 +79,7 @@
 - **Convert gas/LPG station coordinates offline**: Source TWD97 coordinates are converted during data conversion; frontend stays on static WGS84 JSON.
 - **Keep broad map views list-first**: Rendering hundreds of individual Leaflet markers blocks mobile interaction. Broad selections hide exact pins; nearby results and small single-type selections render them.
 - **Use CARTO for base tiles**: The previous OpenStreetMap tile endpoint failed to render in the deployed app; CARTO preserves a no-key static Leaflet map.
+- **Keep designated smoking areas as lookup data**: The layer shows source fields and nearby distance only; UI copy avoids smoking recommendations, health advice, legal interpretation, and current-availability claims.
 
 ## Files Modified This Session
 
@@ -101,6 +105,12 @@
 - `feature_list.json`, `progress.md` - Updated harness state.
 - `src/components/FacilityMap.tsx`, `index.html` - Switched the Leaflet base tiles and preconnects from OpenStreetMap to CARTO.
 - `tests/e2e/bin-map.spec.js` - Added a regression assertion for the deployed tile host.
+- `scripts/fetchDesignatedSmokingAreas.ts` - Added local CSV copy and metadata script for the Taipei designated smoking area dataset.
+- `scripts/convertDesignatedSmokingAreas.ts` - Added UTF-8-SIG/CP950 fallback parsing, WGS84 coordinate validation, type/opening-hour/manager classification, and summary generation.
+- `scripts/convertBins.ts` - Merged designated smoking areas into combined static facility output.
+- `src/types.ts`, `src/utils/facilityUtils.ts`, `src/components/*`, `src/i18n.ts`, `src/App.tsx` - Added the shared facility type, filters, labels, marker, popup/list fields, and notices.
+- `public/data/designated-smoking-areas.json`, `public/data/designated-smoking-area-summary.json`, `public/data/facilities.json`, `public/data/conversion-report.json` - Regenerated static data with the new layer.
+- `public/service-worker.js`, `README.md`, `package.json`, `tests/e2e/bin-map.spec.js`, `scripts/newFacilityConverters.test.ts`, `src/utils/facilityUtils.test.ts` - Updated cache, docs, scripts, and regression coverage.
 
 ## Evidence of Completion
 
@@ -151,7 +161,11 @@
 - [x] Added a list-first marker-rendering policy: broad selections mount no individual markers, while narrowed single-type/district views and nearby results retain exact markers.
 - [x] `./init.sh` passed 41 unit/converter tests, production build, and 46 desktop/mobile Playwright tests after the marker policy update.
 - [x] `./init.sh` passed 41 unit/converter tests, production build, and 48 desktop/mobile Playwright tests after the CARTO base-map fix.
+- [x] `npm run data:fetch:designated-smoking-areas` copied the UTF-8-SIG 202-row source CSV into `data/raw/designated-smoking-areas/`.
+- [x] `npm run convert:facilities` generated 8,094 facilities, including 202 designated smoking areas.
+- [x] Targeted converter/filter tests passed with 43 tests before final full verification.
+- [x] `./init.sh` passed 43 unit/converter tests, production build, and 50 desktop/mobile Playwright tests after the designated smoking area layer.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The fourteen-layer public amenities expansion is implemented and verified.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The fifteen-layer public amenities expansion is implemented and verified.

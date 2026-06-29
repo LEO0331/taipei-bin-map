@@ -2,9 +2,9 @@
 
 ## Current Objective
 
-- Goal: Maintain the fourteen-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
-- Current status: feat-024 is implemented and verified.
-- Branch / commit: Working tree has uncommitted map, metadata, test, and harness changes.
+- Goal: Maintain the fifteen-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
+- Current status: feat-025 is implemented and verified.
+- Branch / commit: Working tree has uncommitted designated-smoking-area data, UI, tests, docs, and harness changes.
 
 ## Completed
 
@@ -30,16 +30,19 @@
 - Added 617 commercial EV charging and battery-swap stations with service/operator/city/city-code/address/district filters, district summaries, address-based map links, summary JSON, and PWA caching.
 - Kept commercial EV stations as address-only records because the source files do not provide coordinates.
 - Added 75 gas/LPG stations with UTF-8-SIG conversion, TWD97-to-WGS84 conversion, exact markers, supplier/service/hour/status filters, nearby lookup, summary JSON, and PWA caching.
+- Added 202 designated smoking areas with UTF-8-SIG conversion, exact WGS84 markers, type/opening-hour/photo/relative-location/management filters, nearby lookup, summary JSON, notices, and PWA caching.
+- Kept designated smoking area copy limited to public-data lookup; no real-time availability, legal interpretation, health advice, smoking advice, or complete legal-boundary claim is made.
 - Tightened the Playwright web server so E2E tests cannot silently reuse an unrelated local app on port 5173.
 
 ## Verification
 
 | Check | Result |
 |---|---|
-| `npm run convert:bins` | 7,892 total facilities |
-| `npm test` | 41 tests passed |
+| `npm run convert:facilities` | 8,094 total facilities |
+| Targeted tests | 43 converter/filter tests passed |
+| `npm test` | 43 tests passed |
 | `npm run build` | Passed |
-| `./init.sh` | 41 unit/converter tests, production build, and 48 desktop/mobile tests passed |
+| `./init.sh` | 43 unit/converter tests, production build, and 50 desktop/mobile tests passed |
 | Responsive smoke | No horizontal overflow at 390px or 1440px |
 
 ## Deliberate Omissions
@@ -49,6 +52,7 @@
 - No frontend Taipei Open Data calls: all runtime data remains static local JSON.
 - No automatic geocoding: coordinate-free layers remain address-only unless manually verified coordinates are supplied.
 - No separate map per facility category: one shared map keeps search, filtering, nearby lookup, and links consistent.
+- No dedicated smoking-area dashboard/directory page: the existing shared list, filter, map, popup, and nearby surfaces cover the layer without adding a new page system.
 
 ## Risks
 
@@ -63,3 +67,4 @@
 - Commercial EV charging and battery-swap station records have no coordinates, so exact nearby sorting is intentionally unavailable until verified coordinates are added.
 - Commercial EV availability, fees, payment methods, membership rules, equipment specs, and battery inventory are not real-time guarantees.
 - Gas/LPG station business hours, fuel/LPG supply, pricing, self-service availability, and operating status are not real-time guarantees.
+- Designated smoking area opening hours, on-site usability, legal applicability, health interpretation, and complete legal boundaries are not real-time guarantees or advice.

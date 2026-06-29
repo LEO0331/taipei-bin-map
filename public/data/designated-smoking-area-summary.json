@@ -1,0 +1,479 @@
+{
+  "totalRecords": 202,
+  "validCoordinateCount": 202,
+  "missingCoordinateCount": 0,
+  "outlierCoordinateCount": 0,
+  "districtCount": 12,
+  "uniquePlaceNameCount": 202,
+  "uniqueAddressCount": 172,
+  "recordsWithPhotoUrl": 95,
+  "recordsWithRelativeLocation": 200,
+  "recordsWithManagingUnitPhone": 202,
+  "listed24HoursCount": 177,
+  "customOpeningHoursCount": 25,
+  "byDistrict": [
+    {
+      "district": "中正區",
+      "count": 31
+    },
+    {
+      "district": "信義區",
+      "count": 23
+    },
+    {
+      "district": "大安區",
+      "count": 22
+    },
+    {
+      "district": "南港區",
+      "count": 19
+    },
+    {
+      "district": "中山區",
+      "count": 19
+    },
+    {
+      "district": "士林區",
+      "count": 17
+    },
+    {
+      "district": "北投區",
+      "count": 16
+    },
+    {
+      "district": "松山區",
+      "count": 15
+    },
+    {
+      "district": "大同區",
+      "count": 11
+    },
+    {
+      "district": "文山區",
+      "count": 10
+    },
+    {
+      "district": "內湖區",
+      "count": 10
+    },
+    {
+      "district": "萬華區",
+      "count": 9
+    }
+  ],
+  "bySmokingAreaType": [
+    {
+      "smokingAreaType": "outdoor_open",
+      "smokingAreaTypeRaw": "戶外開放式吸菸區",
+      "count": 191
+    },
+    {
+      "smokingAreaType": "indoor_smoking_room",
+      "smokingAreaTypeRaw": "室內吸菸室",
+      "count": 5
+    },
+    {
+      "smokingAreaType": "outdoor_negative_pressure",
+      "smokingAreaTypeRaw": "戶外負壓式吸菸區",
+      "count": 6
+    }
+  ],
+  "byOpeningHoursType": [
+    {
+      "openingHoursType": "listed_24_hours",
+      "count": 177
+    },
+    {
+      "openingHoursType": "weekday_or_holiday_rule",
+      "count": 4
+    },
+    {
+      "openingHoursType": "fixed_hours",
+      "count": 20
+    },
+    {
+      "openingHoursType": "depends_on_facility_hours",
+      "count": 1
+    }
+  ],
+  "byManagingUnitCategory": [
+    {
+      "managingUnitCategory": "taipei_city_government",
+      "count": 83
+    },
+    {
+      "managingUnitCategory": "other",
+      "count": 39
+    },
+    {
+      "managingUnitCategory": "private_operator",
+      "count": 13
+    },
+    {
+      "managingUnitCategory": "district_office",
+      "count": 43
+    },
+    {
+      "managingUnitCategory": "central_government",
+      "count": 10
+    },
+    {
+      "managingUnitCategory": "transportation_or_mrt",
+      "count": 7
+    },
+    {
+      "managingUnitCategory": "cultural_or_sports_facility",
+      "count": 7
+    }
+  ],
+  "byManagingUnit": [
+    {
+      "managingUnit": "臺北市停車管理工程處",
+      "count": 13
+    },
+    {
+      "managingUnit": "設置：臺北市政府交通局、維護清潔：臺北市政府工務局公園路燈工程管理處、臺北市政府環境保護局",
+      "count": 13
+    },
+    {
+      "managingUnit": "內政部國家公園署陽明山國家公園管理處",
+      "count": 10
+    },
+    {
+      "managingUnit": "遠雄巨蛋事業股份有限公司",
+      "count": 6
+    },
+    {
+      "managingUnit": "臺北市殯葬管理處",
+      "count": 6
+    },
+    {
+      "managingUnit": "國家表演藝術中心國家兩廳院",
+      "count": 6
+    },
+    {
+      "managingUnit": "設置：臺北市政府交通局；維護清潔：臺北市政府工務局公園路燈工程管理處、臺北市政府環境保護局",
+      "count": 6
+    },
+    {
+      "managingUnit": "臺北市萬華區公所",
+      "count": 5
+    },
+    {
+      "managingUnit": "臺北市中山區公所",
+      "count": 5
+    },
+    {
+      "managingUnit": "臺北市中正區公所",
+      "count": 4
+    },
+    {
+      "managingUnit": "臺北市大安區公所",
+      "count": 4
+    },
+    {
+      "managingUnit": "臺北市內湖區公所",
+      "count": 4
+    },
+    {
+      "managingUnit": "臺北大眾捷運股份有限公司",
+      "count": 4
+    },
+    {
+      "managingUnit": "臺北市北投區公所",
+      "count": 4
+    },
+    {
+      "managingUnit": "臺北市市政大樓公共事務管理中心",
+      "count": 3
+    },
+    {
+      "managingUnit": "南港展覽館2館",
+      "count": 3
+    },
+    {
+      "managingUnit": "臺北市士林區公所",
+      "count": 3
+    },
+    {
+      "managingUnit": "國立故宮博物院秘書室",
+      "count": 3
+    },
+    {
+      "managingUnit": "TFC南港經貿大樓管理中心",
+      "count": 3
+    },
+    {
+      "managingUnit": "臺北市政府衛生局",
+      "count": 3
+    },
+    {
+      "managingUnit": "臺北市光華商場數位新天地發展協會、鐵棧道發展協會",
+      "count": 3
+    },
+    {
+      "managingUnit": "臺北國際航空站業務組",
+      "count": 3
+    },
+    {
+      "managingUnit": "臺北市信義區公所",
+      "count": 3
+    },
+    {
+      "managingUnit": "臺北市南港區公所",
+      "count": 3
+    },
+    {
+      "managingUnit": "臺北市松山區公所",
+      "count": 3
+    },
+    {
+      "managingUnit": "臺北市大同區公所",
+      "count": 3
+    },
+    {
+      "managingUnit": "臺北市政府財政局",
+      "count": 3
+    },
+    {
+      "managingUnit": "臺北市市場處",
+      "count": 3
+    },
+    {
+      "managingUnit": "臺北市政府體育局",
+      "count": 2
+    },
+    {
+      "managingUnit": "臺北市文山區公所",
+      "count": 2
+    },
+    {
+      "managingUnit": "中華民國對外貿易發展協會南港展覽館1館管理組",
+      "count": 2
+    },
+    {
+      "managingUnit": "國營臺灣鐵路股份有限公司北區營運處臺北運務段臺北站",
+      "count": 2
+    },
+    {
+      "managingUnit": "新光三越 臺北信義新天地A8店舖管理",
+      "count": 2
+    },
+    {
+      "managingUnit": "中國信託商業銀行（中國信託金融園區管理中心）",
+      "count": 2
+    },
+    {
+      "managingUnit": "北捷遊憩股份有限公司",
+      "count": 2
+    },
+    {
+      "managingUnit": "臺北市政府環境保護局",
+      "count": 2
+    },
+    {
+      "managingUnit": "臺北自來水事業處",
+      "count": 2
+    },
+    {
+      "managingUnit": "臺北市政府客家事務委員會",
+      "count": 2
+    },
+    {
+      "managingUnit": "臺北市政府兵役局",
+      "count": 2
+    },
+    {
+      "managingUnit": "中捷公寓大廈管理維護股份有限公司",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北晶華酒店工程部",
+      "count": 1
+    },
+    {
+      "managingUnit": "MAJI集食行樂(營運廠商:好味全市集股份有限公司)",
+      "count": 1
+    },
+    {
+      "managingUnit": "設置：臺北市政府交通局、維護清潔：台北金融大樓股份有限公司",
+      "count": 1
+    },
+    {
+      "managingUnit": "中國信託商業銀行股份有限公司（中國信託金融園區管理中心）",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市文山運動中心",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府工務局新建工程處",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府工務局工務局衛生下水道工程處",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府工務局工務局水利處",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府工務局工務局公園處",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府工務局工務局大地處",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府警察局中正第一分局",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府警察局士林分局",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府警察局北投分局",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府警察局刑事警察大隊",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府警察局少年警察隊暨婦幼警察隊",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府警察局民防管制中心",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府環境保護局內湖垃圾焚化廠",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府環境保護局木柵垃圾焚化廠",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府環境保護局北投垃圾焚化廠",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北自來水事業處東區營業分處",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北自來水事業處西區營業分處",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北自來水事業處陽明營業分處",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府捷運工程局第一區工程處",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府捷運工程局",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府消防局",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府消防局木柵分隊",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府消防局信義分隊",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府消防局圓山分隊",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府消防局大同分隊",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北廣播電臺",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府衛生局社區心理衛生中心",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市大同區健康服務中心",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市北投區健康服務中心(環境檢驗大樓)",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市立聯合醫院松德院區",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市立動物園",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市立美術館",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府警察局內湖分局",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府警察局大同分局",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府警察局中山分局",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府警察局中正第二分局",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府警察局文山第二分局",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府警察局交通警察大隊",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市中山堂管理所",
+      "count": 1
+    },
+    {
+      "managingUnit": "財團法人台北市文化基金會藝術村營運部",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市古亭地政事務所",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府勞動局",
+      "count": 1
+    },
+    {
+      "managingUnit": "臺北市政府青年局",
+      "count": 1
+    }
+  ]
+}

@@ -36,6 +36,11 @@ import {
   parseBusinessHours,
   parseSourceBooleanY,
 } from './convertGasLpgStations';
+import {
+  classifyDesignatedSmokingAreaType,
+  classifyOpeningHoursType,
+  convertDesignatedSmokingAreaRows,
+} from './convertDesignatedSmokingAreas';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -354,6 +359,46 @@ describe('new facility converters', () => {
       validCoordinateCount: 1,
       oilStationCount: 1,
       selfServiceStationCount: 1,
+    });
+  });
+
+  it('maps designated smoking areas with WGS84 coordinates and source fields', () => {
+    expect(classifyDesignatedSmokingAreaType('戶外負壓式吸菸區')).toBe('outdoor_negative_pressure');
+    expect(classifyOpeningHoursType('週一至週五07:00-19:00，例假日不開放')).toBe('weekday_or_holiday_rule');
+
+    const converted = convertDesignatedSmokingAreaRows([{
+      行政區: '松山區',
+      地點: '臺北體育館',
+      地址: '南京東路4段10號',
+      樣態: '戶外開放式吸菸區',
+      開放時間: '24小時開放',
+      緯度: '25.05135',
+      經度: '121.55292',
+      相對位置: '體育館後方停車場',
+      照片連結: 'https://example.com/photo.jpg',
+      管理單位: '臺北市政府體育局',
+      管理單位電話: '(02)25702330',
+      備註: '本位置資訊僅供參考',
+    }]);
+
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'designated_smoking_area',
+      district: '松山區',
+      name: '臺北體育館',
+      address: '南京東路4段10號',
+      smokingAreaType: 'outdoor_open',
+      openingHoursType: 'listed_24_hours',
+      isListed24Hours: true,
+      hasPhotoUrl: true,
+      coordinateStatus: 'valid',
+      longitude: 121.55292,
+      latitude: 25.05135,
+    });
+    expect(converted.summary).toMatchObject({
+      totalRecords: 1,
+      validCoordinateCount: 1,
+      listed24HoursCount: 1,
+      recordsWithPhotoUrl: 1,
     });
   });
 });

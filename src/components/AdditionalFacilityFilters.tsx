@@ -2,15 +2,21 @@ import type { Translation } from '../i18n';
 import type {
   CommercialEvServiceType,
   DirectDrinkingPlaceCategory,
+  DesignatedSmokingAreaType,
   ElectricMotorcycleChargingLocationCategory,
   FuelStationStatus,
   Language,
+  ManagingUnitCategory,
+  OpeningHoursType,
   RiversideToiletType,
 } from '../types';
 import {
   getDirectDrinkingPlaceLabel,
   getCommercialEvServiceTypeLabel,
+  getDesignatedSmokingAreaTypeLabel,
   getElectricMotorcycleChargingLocationCategoryLabel,
+  getManagingUnitCategoryLabel,
+  getOpeningHoursTypeLabel,
   getRiversideToiletTypeLabel,
 } from '../utils/facilityUtils';
 
@@ -493,6 +499,103 @@ export function GasLpgStationFilters(props: GasLpgStationFiltersProps) {
             type="checkbox"
             checked={checked as boolean}
             onChange={(event) => props.onBooleanChange(name as 'oil' | 'lpg' | 'self' | 'twentyFourHours' | 'limitedHours' | 'phone', event.target.checked)}
+          />
+          <span>{label as string}</span>
+        </label>
+      ))}
+    </fieldset>
+  );
+}
+
+const smokingAreaTypes: DesignatedSmokingAreaType[] = [
+  'outdoor_open',
+  'outdoor_negative_pressure',
+  'indoor_smoking_room',
+  'other',
+  'unknown',
+];
+
+const openingHoursTypes: OpeningHoursType[] = [
+  'listed_24_hours',
+  'fixed_hours',
+  'weekday_or_holiday_rule',
+  'depends_on_facility_hours',
+  'custom_text',
+  'missing',
+  'unknown',
+];
+
+const managingUnitCategories: ManagingUnitCategory[] = [
+  'taipei_city_government',
+  'district_office',
+  'central_government',
+  'transportation_or_mrt',
+  'park_or_public_space',
+  'private_operator',
+  'cultural_or_sports_facility',
+  'other',
+  'unknown',
+];
+
+type DesignatedSmokingAreaFiltersProps = {
+  managingUnits: string[];
+  smokingAreaType: DesignatedSmokingAreaType | '';
+  openingHoursType: OpeningHoursType | '';
+  listed24Hours: boolean;
+  hasPhoto: boolean;
+  hasRelativeLocation: boolean;
+  managingUnitCategory: ManagingUnitCategory | '';
+  managingUnit: string;
+  language: Language;
+  t: Translation;
+  onSmokingAreaTypeChange: (value: DesignatedSmokingAreaType | '') => void;
+  onOpeningHoursTypeChange: (value: OpeningHoursType | '') => void;
+  onManagingUnitCategoryChange: (value: ManagingUnitCategory | '') => void;
+  onManagingUnitChange: (value: string) => void;
+  onBooleanChange: (name: 'listed24Hours' | 'photo' | 'relativeLocation', value: boolean) => void;
+};
+
+export function DesignatedSmokingAreaFilters(props: DesignatedSmokingAreaFiltersProps) {
+  return (
+    <fieldset className="toilet-filters">
+      <label>
+        {props.t.smokingAreaType}
+        <select aria-label={props.t.smokingAreaType} value={props.smokingAreaType} onChange={(event) => props.onSmokingAreaTypeChange(event.target.value as DesignatedSmokingAreaType | '')}>
+          <option value="">{props.t.all}</option>
+          {smokingAreaTypes.map((value) => <option key={value} value={value}>{getDesignatedSmokingAreaTypeLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.openingHoursType}
+        <select aria-label={props.t.openingHoursType} value={props.openingHoursType} onChange={(event) => props.onOpeningHoursTypeChange(event.target.value as OpeningHoursType | '')}>
+          <option value="">{props.t.all}</option>
+          {openingHoursTypes.map((value) => <option key={value} value={value}>{getOpeningHoursTypeLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.managingUnitCategory}
+        <select aria-label={props.t.managingUnitCategory} value={props.managingUnitCategory} onChange={(event) => props.onManagingUnitCategoryChange(event.target.value as ManagingUnitCategory | '')}>
+          <option value="">{props.t.all}</option>
+          {managingUnitCategories.map((value) => <option key={value} value={value}>{getManagingUnitCategoryLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.managingUnit}
+        <select aria-label={props.t.managingUnit} value={props.managingUnit} onChange={(event) => props.onManagingUnitChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.managingUnits.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      {[
+        ['listed24Hours', props.t.listed24Hours, props.listed24Hours],
+        ['photo', props.t.hasPhoto, props.hasPhoto],
+        ['relativeLocation', props.t.hasRelativeLocation, props.hasRelativeLocation],
+      ].map(([name, label, checked]) => (
+        <label className="checkbox-filter" key={name as string}>
+          <input
+            type="checkbox"
+            checked={checked as boolean}
+            onChange={(event) => props.onBooleanChange(name as 'listed24Hours' | 'photo' | 'relativeLocation', event.target.checked)}
           />
           <span>{label as string}</span>
         </label>

@@ -1,6 +1,6 @@
 # Taipei Public Amenities Map / 台北市公共便利設施地圖
 
-Mobile-first bilingual map for finding public toilets, riverside toilets, family-friendly toilets, motorcycle inspection stations, EV charging/swap stations, gas/LPG stations, recycling facilities, drinking facilities, and other Taipei public amenities.
+Mobile-first bilingual map for finding public toilets, riverside toilets, family-friendly toilets, motorcycle inspection stations, EV charging/swap stations, gas/LPG stations, designated smoking areas, recycling facilities, drinking facilities, and other Taipei public amenities.
 
 The app is static, bilingual, PWA-ready, and requires no backend, login, admin page, database, Google Maps API key, or paid map service.
 
@@ -13,6 +13,7 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Local static amenity data loaded from `public/data/facilities.json`.
 - Facility type filter for pedestrian garbage bins, dog-waste bag boxes, public toilets, riverside toilets, family-friendly toilets, drinking facilities, timed collection points, used-clothing recycling boxes, and lactation rooms.
 - Public service locations: motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, and gas/LPG stations.
+- Public health and environmental facilities: Taipei designated smoking areas with listed opening hours, relative location notes, photo links, managing units, and contact phone fields.
 - Toilet layers: public toilets, riverside toilets, and family-friendly toilets.
 - Public toilet category, accessible-toilet, and parent-child-toilet filters.
 - Public drinking fountain place-category and opening-hour filters.
@@ -138,6 +139,16 @@ npm run convert:facilities
 
 The converter preserves gasoline, LPG, self-service, supplier, phone, business-hour text, and source status fields. It converts TWD97 `ADDR_X` / `ADDR_Y` coordinates to WGS84 for Leaflet markers. Business hours are source text only; the app does not claim current opening status, fuel/LPG availability, prices, or recommendations.
 
+The designated smoking area layer uses the UTF-8-SIG `臺北市指定吸菸區.csv` resource:
+
+```bash
+npm run data:fetch:designated-smoking-areas
+npm run data:convert:designated-smoking-areas
+npm run convert:facilities
+```
+
+The converter preserves place name, address, type, listed opening-hour text, relative location, photo URL, managing unit, phone, and note fields. Coordinates are source WGS84 latitude/longitude. This layer is for public-data location lookup only; it does not claim real-time opening status, legal interpretation, health advice, smoking advice, or complete legal smoking boundaries.
+
 Fetch the raw API JSON, then regenerate the static public data:
 
 ```bash
@@ -195,6 +206,8 @@ public/data/commercial-ev-charging-swap-station-summary.json
 public/data/commercial-ev-charging-swap-station-locations.json
 public/data/gas-lpg-stations.json
 public/data/gas-lpg-station-summary.json
+public/data/designated-smoking-areas.json
+public/data/designated-smoking-area-summary.json
 public/data/conversion-report.json
 ```
 
@@ -254,6 +267,7 @@ Public toilets, riverside toilets, family-friendly toilets, motorcycle inspectio
 - 從 `public/data/facilities.json` 載入本機靜態便利設施資料。
 - 支援行人專用清潔箱、狗便袋箱、公廁、河濱廁所、親子友善廁所、飲水設施、限時收受點、舊衣回收箱與哺集乳室的設施類型篩選。
 - 公共服務站點：機車定檢站、電動機車充電站、營利型電動車充換電站與加油站及加氣站。
+- 公共健康與環境設施：指定吸菸區，包含開放時間、相對位置、照片連結、管理單位與電話。
 - 公廁圖層包含一般公廁、河濱廁所與親子友善廁所。
 - 支援公廁類別、無障礙廁所、親子廁所篩選。
 - 支援公共場所飲水機場所類型與開放時間資料篩選。
@@ -379,6 +393,16 @@ npm run convert:facilities
 
 轉換程序會保留加油、加氣、自助加油、供油廠商、電話、營業時間來源文字與來源狀態欄位，並將 TWD97 `ADDR_X` / `ADDR_Y` 轉為 WGS84 經緯度供 Leaflet 顯示。營業時間只是來源文字；本網站不宣稱即時營業狀態、油氣供應、價格或推薦程度。
 
+指定吸菸區圖層使用 UTF-8-SIG 的 `臺北市指定吸菸區.csv`：
+
+```bash
+npm run data:fetch:designated-smoking-areas
+npm run data:convert:designated-smoking-areas
+npm run convert:facilities
+```
+
+轉換程序會保留地點、地址、樣態、開放時間來源文字、相對位置、照片連結、管理單位、電話與備註欄位。座標為來源 WGS84 經緯度。此圖層僅供公開資料點位查詢，不代表即時開放狀態、法規解釋、健康建議、吸菸建議或完整合法吸菸範圍。
+
 先擷取 API，再重新產生靜態資料：
 
 ```bash
@@ -436,6 +460,8 @@ public/data/commercial-ev-charging-swap-station-summary.json
 public/data/commercial-ev-charging-swap-station-locations.json
 public/data/gas-lpg-stations.json
 public/data/gas-lpg-station-summary.json
+public/data/designated-smoking-areas.json
+public/data/designated-smoking-area-summary.json
 public/data/conversion-report.json
 ```
 
@@ -484,4 +510,4 @@ npm run preview
 
 ### 資料提醒
 
-行人專用清潔箱、狗便袋箱、公廁、飲水設施、限時收受點、直飲臺、舊衣回收箱、機車定檢站、電動機車充電站、營利型電動車充換電站與加油站及加氣站是不同設施或站點。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、舊衣回收箱可投遞狀態、機車定檢站服務、充換電站可用狀態、油氣供應、費率、付款方式、會員資格與水質維護資訊請以現場、業者及主管機關公告為準。
+行人專用清潔箱、狗便袋箱、公廁、飲水設施、限時收受點、直飲臺、舊衣回收箱、機車定檢站、電動機車充電站、營利型電動車充換電站、加油站及加氣站與指定吸菸區是不同設施或站點。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、舊衣回收箱可投遞狀態、機車定檢站服務、充換電站可用狀態、油氣供應、費率、付款方式、會員資格、指定吸菸區現場標示與水質維護資訊請以現場、業者及主管機關公告為準。

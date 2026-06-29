@@ -111,6 +111,7 @@ const markerEmojiByType = {
   electric_motorcycle_charging_station: '🔌',
   commercial_ev_charging_swap_station: '🔋',
   gas_lpg_station: '⛽',
+  designated_smoking_area: '⌖',
 } satisfies Record<FacilityType, string>;
 
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {

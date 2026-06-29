@@ -263,6 +263,28 @@ const facilities: Facility[] = [
     xTwd97: 302655,
     yTwd97: 2775585,
   },
+  {
+    id: 'designated_smoking_area-0001',
+    type: 'designated_smoking_area',
+    district: '松山區',
+    address: '南京東路4段10號',
+    longitude: 121.55292,
+    latitude: 25.05135,
+    note: '本位置資訊僅供參考',
+    source: '臺北市指定吸菸區',
+    sourceAgency: '臺北市政府衛生局',
+    coordinateStatus: 'valid',
+    name: '臺北體育館',
+    smokingAreaTypeRaw: '戶外開放式吸菸區',
+    smokingAreaType: 'outdoor_open',
+    openingHours: '24小時開放',
+    openingHoursType: 'listed_24_hours',
+    isListed24Hours: true,
+    hasCustomOpeningHours: false,
+    hasPhotoUrl: true,
+    manager: '臺北市政府體育局',
+    phone: '(02)25702330',
+  },
 ];
 
 describe('calculateDistanceMeters', () => {
@@ -521,6 +543,20 @@ describe('filterFacilities', () => {
     });
     expect(result.map((item) => item.id)).toEqual(['gas_lpg_station-0001']);
   });
+
+  it('filters and searches designated smoking areas', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '體育局',
+      district: '',
+      facilityTypes: ['designated_smoking_area'],
+      smokingAreaType: 'outdoor_open',
+      smokingOpeningHoursType: 'listed_24_hours',
+      smokingListed24Hours: true,
+      smokingHasPhoto: true,
+      smokingManagingUnit: '臺北市政府體育局',
+    });
+    expect(result.map((item) => item.id)).toEqual(['designated_smoking_area-0001']);
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -539,6 +575,7 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('electric_motorcycle_charging_station', 'zh')).toBe('電動機車充電站');
     expect(getFacilityTypeLabel('commercial_ev_charging_swap_station', 'en')).toBe('Commercial EV Charging & Battery Swap Station');
     expect(getFacilityTypeLabel('gas_lpg_station', 'en')).toBe('Gas & LPG Station');
+    expect(getFacilityTypeLabel('designated_smoking_area', 'zh')).toBe('指定吸菸區');
     expect(getElectricMotorcycleChargingLocationCategoryLabel('service_factory', 'en')).toBe('Service factory');
     expect(getCommercialEvServiceTypeLabel('electric_motorcycle_battery_swap', 'zh')).toBe('電動機車換電站');
     expect(getFuelStationStatusLabel('terminated', 'zh')).toBe('來源標示終止營業');

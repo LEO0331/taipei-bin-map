@@ -14,7 +14,8 @@ export type FacilityType =
   | 'motorcycle_inspection_station'
   | 'electric_motorcycle_charging_station'
   | 'commercial_ev_charging_swap_station'
-  | 'gas_lpg_station';
+  | 'gas_lpg_station'
+  | 'designated_smoking_area';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
@@ -28,6 +29,9 @@ export type CommercialEvServiceType =
 
 export type FuelStationServiceType = 'gasoline' | 'lpg' | 'self_service';
 export type FuelStationStatus = 'active_or_unspecified' | 'terminated' | 'unknown';
+export type DesignatedSmokingAreaType = 'outdoor_open' | 'outdoor_negative_pressure' | 'indoor_smoking_room' | 'other' | 'unknown';
+export type OpeningHoursType = 'listed_24_hours' | 'fixed_hours' | 'weekday_or_holiday_rule' | 'depends_on_facility_hours' | 'custom_text' | 'missing' | 'unknown';
+export type ManagingUnitCategory = 'taipei_city_government' | 'district_office' | 'central_government' | 'transportation_or_mrt' | 'park_or_public_space' | 'private_operator' | 'cultural_or_sports_facility' | 'other' | 'unknown';
 
 export type ElectricMotorcycleChargingLocationCategory =
   | 'inspection_station'
@@ -176,6 +180,26 @@ export type Facility = {
   stationStatus?: FuelStationStatus;
   xTwd97?: number;
   yTwd97?: number;
+  placeName?: string;
+  smokingAreaTypeRaw?: string;
+  smokingAreaType?: DesignatedSmokingAreaType;
+  openingHoursRaw?: string;
+  openingHoursDisplay?: string;
+  openingHoursType?: OpeningHoursType;
+  isListed24Hours?: boolean;
+  hasCustomOpeningHours?: boolean;
+  relativeLocation?: string;
+  hasRelativeLocation?: boolean;
+  hasPhotoUrl?: boolean;
+  managingUnit?: string;
+  managingUnitCategory?: ManagingUnitCategory;
+  managingUnitPhone?: string;
+  managingUnitPhoneDisplay?: string;
+  managingUnitPhoneDialHref?: string;
+  hasManagingUnitPhone?: boolean;
+  googleMapsQuery?: string;
+  roadName?: string;
+  sourceRecordHash?: string;
 };
 
 export type MotorcycleInspectionStationLocation = {
@@ -304,6 +328,26 @@ export type GasLpgStationSummary = {
   }>;
   byServiceType: Array<{ serviceType: FuelStationServiceType; count: number }>;
   byBusinessHours: Array<{ businessHoursRaw: string; count: number }>;
+};
+
+export type DesignatedSmokingAreaSummary = {
+  totalRecords: number;
+  validCoordinateCount: number;
+  missingCoordinateCount: number;
+  outlierCoordinateCount: number;
+  districtCount: number;
+  uniquePlaceNameCount: number;
+  uniqueAddressCount: number;
+  recordsWithPhotoUrl: number;
+  recordsWithRelativeLocation: number;
+  recordsWithManagingUnitPhone: number;
+  listed24HoursCount: number;
+  customOpeningHoursCount: number;
+  byDistrict: Array<{ district: string; count: number }>;
+  bySmokingAreaType: Array<{ smokingAreaType: DesignatedSmokingAreaType; smokingAreaTypeRaw?: string; count: number }>;
+  byOpeningHoursType: Array<{ openingHoursType: OpeningHoursType; count: number }>;
+  byManagingUnitCategory: Array<{ managingUnitCategory: ManagingUnitCategory; count: number }>;
+  byManagingUnit: Array<{ managingUnit: string; count: number }>;
 };
 
 export type RiversideToiletSummary = {

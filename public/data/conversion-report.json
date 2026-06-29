@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-26T00:50:51.197Z",
-  "totalValidRows": 7892,
+  "generatedAt": "2026-06-29T06:15:52.408Z",
+  "totalValidRows": 8094,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -169,6 +169,15 @@
       "missingRequiredFields": [],
       "unexpectedBooleanValues": [],
       "duplicateStationNames": []
+    },
+    {
+      "sourceFilename": "臺北市指定吸菸區.csv",
+      "totalRows": 202,
+      "validRows": 202,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": []
     }
   ]
 }
