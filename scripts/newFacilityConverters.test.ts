@@ -41,6 +41,11 @@ import {
   classifyOpeningHoursType,
   convertDesignatedSmokingAreaRows,
 } from './convertDesignatedSmokingAreas';
+import {
+  convertAnnouncedNoSmokingPlaceSources,
+  normalizeAnnouncementDate,
+  parseNoSmokingCoordinates,
+} from './convertAnnouncedNoSmokingPlaces';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -399,6 +404,83 @@ describe('new facility converters', () => {
       validCoordinateCount: 1,
       listed24HoursCount: 1,
       recordsWithPhotoUrl: 1,
+    });
+  });
+
+  it('maps announced no-smoking place resources with dates, coordinates, and district codes', () => {
+    expect(normalizeAnnouncementDate('20120430')).toBe('2012-04-30');
+    expect(parseNoSmokingCoordinates('121.5629231', '25.05662219')).toMatchObject({
+      longitude: 121.5629231,
+      latitude: 25.05662219,
+      coordinateSystem: 'wgs84',
+      coordinateStatus: 'valid',
+    });
+
+    const converted = convertAnnouncedNoSmokingPlaceSources([
+      {
+        fileName: '臺北市公告戶外禁菸場所一覽表(僅包含有明確地址者用於製作禁菸地圖)1140912.csv',
+        rows: [{
+          縣市別代碼: '63000',
+          行政區: '63000010',
+          地點: '健康國小周邊人行道',
+          地址: '延壽街168號',
+          X: '121.5629231',
+          Y: '25.05662219',
+        }],
+      },
+      {
+        fileName: '臺北市公告戶外禁菸場所一覽表0912修.csv',
+        rows: [{
+          序號: '1',
+          行政區別: '63000010',
+          場所名稱: '健康國小周邊人行道',
+          公告禁菸日期: '20120430',
+          縣市別: '63000',
+        }],
+      },
+      {
+        fileName: '臺北市除吸菸區外全面禁菸公園綠地_0609修.csv',
+        rows: [{
+          項次: '1',
+          縣市別代碼: '63000',
+          行政區: '士 林',
+          公園名稱: '士林官邸',
+          位置: '中山北路5段378巷以北',
+        }],
+      },
+    ]);
+
+    expect(converted.facilities).toHaveLength(3);
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'announced_no_smoking_place',
+      recordType: 'outdoor_no_smoking_place',
+      district: '松山區',
+      placeName: '健康國小周邊人行道',
+      address: '延壽街168號',
+      hasCoordinates: true,
+      coordinateSystem: 'wgs84',
+      coordinateStatus: 'valid',
+    });
+    expect(converted.facilities[1]).toMatchObject({
+      district: '松山區',
+      announcementDate: '2012-04-30',
+      announcementYear: 2012,
+      announcementMonthKey: '2012-04',
+      hasCoordinates: false,
+      locationPrecision: 'address_only',
+    });
+    expect(converted.facilities[2]).toMatchObject({
+      recordType: 'smoke_free_park_green_space',
+      district: '士林區',
+      parkName: '士林官邸',
+      locationDescription: '中山北路5段378巷以北',
+      hasLocationDescription: true,
+    });
+    expect(converted.summary).toMatchObject({
+      totalRecords: 3,
+      withCoordinatesCount: 1,
+      withAnnouncementDateCount: 1,
+      smokeFreeParkGreenSpaceCount: 1,
     });
   });
 });

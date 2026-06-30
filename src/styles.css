@@ -575,6 +575,10 @@ a:focus-visible {
   background: #dedbd2;
 }
 
+.facility-div-marker.announced_no_smoking_place span {
+  background: #ffdede;
+}
+
 .map-popup {
   max-width: 15rem;
 }

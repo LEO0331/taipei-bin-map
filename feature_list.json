@@ -199,6 +199,14 @@
       "dependencies": ["feat-024"],
       "status": "done",
       "evidence": "npm run convert:facilities generated 8094 facilities, including 202 designated smoking areas with valid WGS84 coordinates. ./init.sh passed 43 unit/converter tests, production build, and 50 desktop/mobile Playwright tests on 2026-06-29."
+    },
+    {
+      "id": "feat-026",
+      "name": "Announced no-smoking place expansion",
+      "description": "Add Taipei announced no-smoking places and smoke-free parks/green spaces as a public-health/environment lookup layer with mixed UTF-8-SIG/CP950 conversion, coordinate/date/source filters, notices, cache support, and no legal-boundary, enforcement, health, or smoking-advice claims.",
+      "dependencies": ["feat-025"],
+      "status": "done",
+      "evidence": "npm run convert:facilities generated 11880 facilities, including 3786 announced no-smoking place records. ./init.sh passed 45 unit/converter tests, production build, and 52 desktop/mobile Playwright tests on 2026-06-30."
     }
   ]
 }

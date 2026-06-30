@@ -34,6 +34,8 @@
     "data:convert:gas-lpg-stations": "tsx scripts/convertGasLpgStations.ts && tsx scripts/buildGasLpgStationSummary.ts",
     "data:fetch:designated-smoking-areas": "tsx scripts/fetchDesignatedSmokingAreas.ts",
     "data:convert:designated-smoking-areas": "tsx scripts/convertDesignatedSmokingAreas.ts",
+    "data:fetch:no-smoking": "tsx scripts/fetchAnnouncedNoSmokingPlaces.ts",
+    "data:convert:no-smoking": "tsx scripts/convertAnnouncedNoSmokingPlaces.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

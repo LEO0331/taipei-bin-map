@@ -2,6 +2,7 @@ import type { Translation } from '../i18n';
 import type { FacilityWithDistance, Language } from '../types';
 import {
   getAcceptedItemsLabel,
+  getAnnouncedNoSmokingRecordTypeLabel,
   getCommercialEvServiceTypeLabel,
   getDesignatedSmokingAreaTypeLabel,
   getDirectDrinkingStatusLabel,
@@ -74,6 +75,12 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       )}
       {facility.type === 'designated_smoking_area' && facility.name && (
         <p>{t.placeName}: {facility.name}</p>
+      )}
+      {facility.type === 'announced_no_smoking_place' && (
+        <>
+          {facility.placeName && <p>{t.placeName}: {facility.placeName}</p>}
+          {facility.parkName && <p>{t.parkName}: {facility.parkName}</p>}
+        </>
       )}
       <p>
         {t.district}: {facility.district}
@@ -242,6 +249,14 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.photoUrl && <p><a href={facility.photoUrl} target="_blank" rel="noreferrer">{t.photo}</a></p>}
         </>
       )}
+      {facility.type === 'announced_no_smoking_place' && (
+        <>
+          {facility.recordType && <p>{t.noSmokingRecordType}: {getAnnouncedNoSmokingRecordTypeLabel(facility.recordType, language)}</p>}
+          {facility.announcementDate && <p>{t.announcementDate}: {facility.announcementDate}</p>}
+          {facility.locationDescription && <p>{t.locationDescription}: {facility.locationDescription}</p>}
+          {facility.sourceResourceName && <p>{t.sourceResource}: {facility.sourceResourceName}</p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
@@ -252,6 +267,7 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       {facility.type === 'commercial_ev_charging_swap_station' && <p>{t.notice}: {t.commercialEvNotice}</p>}
       {facility.type === 'gas_lpg_station' && <p>{t.notice}: {t.gasLpgPopupNotice}</p>}
       {facility.type === 'designated_smoking_area' && <p>{t.notice}: {t.designatedSmokingAreaPopupNotice}</p>}
+      {facility.type === 'announced_no_smoking_place' && <p>{t.notice}: {t.announcedNoSmokingPlacePopupNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

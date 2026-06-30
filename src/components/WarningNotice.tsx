@@ -22,6 +22,7 @@ const noticeTypes: FacilityType[] = [
   'commercial_ev_charging_swap_station',
   'gas_lpg_station',
   'designated_smoking_area',
+  'announced_no_smoking_place',
 ];
 
 export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
@@ -86,6 +87,10 @@ export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
     designated_smoking_area: {
       label: t.designatedSmokingAreas,
       notice: t.designatedSmokingAreaNotice,
+    },
+    announced_no_smoking_place: {
+      label: t.announcedNoSmokingPlaces,
+      notice: t.announcedNoSmokingPlaceNotice,
     },
   } satisfies Record<FacilityType, { label: string; notice: string }>;
 

@@ -3,6 +3,7 @@ import type { FacilityWithDistance, Language } from '../types';
 import {
   formatDistance,
   getAcceptedItemsLabel,
+  getAnnouncedNoSmokingRecordTypeLabel,
   getCommercialEvServiceTypeLabel,
   getDesignatedSmokingAreaTypeLabel,
   getDirectDrinkingStatusLabel,
@@ -31,6 +32,9 @@ const getFacilityPlace = (facility: FacilityWithDistance) => {
   }
   if (facility.type === 'riverside_toilet') {
     return [facility.riversidePark, facility.locationDescription].filter(Boolean).join(' ');
+  }
+  if (facility.type === 'announced_no_smoking_place') {
+    return [facility.address, facility.locationDescription].filter(Boolean).join(' ');
   }
 
   return facility.address;
@@ -215,6 +219,17 @@ export function FacilityList({
                     facility.relativeLocation ? `${t.relativeLocation}: ${facility.relativeLocation}` : '',
                     facility.managingUnit ? `${t.managingUnit}: ${facility.managingUnit}` : '',
                     facility.managingUnitPhone ? `${t.managingUnitPhone}: ${facility.managingUnitPhone}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
+              {facility.type === 'announced_no_smoking_place' && (
+                <small>
+                  {[
+                    facility.recordType ? `${t.noSmokingRecordType}: ${getAnnouncedNoSmokingRecordTypeLabel(facility.recordType, language)}` : '',
+                    facility.announcementDate ? `${t.announcementDate}: ${facility.announcementDate}` : '',
+                    facility.locationDescription ? `${t.locationDescription}: ${facility.locationDescription}` : '',
+                    facility.sourceResourceName ? `${t.sourceResource}: ${facility.sourceResourceName}` : '',
+                    facility.coordinateStatus === 'missing' ? t.missingCoordinates : '',
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}

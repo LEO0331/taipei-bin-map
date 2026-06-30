@@ -53,9 +53,14 @@ const designatedSmokingAreaCount = designatedSmokingAreas.length.toString();
 const designatedSmokingSample =
   designatedSmokingAreas.find((facility) => facility.smokingAreaType === 'outdoor_open' && facility.isListed24Hours && facility.hasPhotoUrl) ??
   designatedSmokingAreas[0];
+const announcedNoSmokingPlaces = facilities.filter((facility) => facility.type === 'announced_no_smoking_place');
+const announcedNoSmokingPlaceCount = announcedNoSmokingPlaces.length.toString();
+const announcedNoSmokingSample =
+  announcedNoSmokingPlaces.find((facility) => facility.hasCoordinates && facility.recordType === 'outdoor_no_smoking_place') ??
+  announcedNoSmokingPlaces[0];
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all fifteen local datasets without mounting broad-view facility pins', async ({ page }) => {
+  test('loads all sixteen local datasets without mounting broad-view facility pins', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -76,6 +81,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('營利型電動車充換電站');
     await expect(page.getByLabel('地圖圖例')).toContainText('加油站及加氣站');
     await expect(page.getByLabel('地圖圖例')).toContainText('指定吸菸區');
+    await expect(page.getByLabel('地圖圖例')).toContainText('公告禁菸場所');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-div-marker')).toHaveCount(0);
@@ -119,6 +125,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByRole('button', { name: 'Commercial EV Charging & Battery Swap Stations' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Gas & LPG Stations' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Designated Smoking Areas' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Announced No-Smoking Places' })).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {
@@ -286,6 +293,29 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.facility-list li').first()).toContainText(designatedSmokingSample.managingUnit);
     await expect(page.locator('.facility-list li').first()).not.toContainText('現在可使用');
     await page.getByRole('button', { name: '找附近指定吸菸區' }).click();
+    await expect(page.getByRole('heading', { name: '最近的設施' })).toBeVisible();
+    await expect(page.locator('.distance').first()).toContainText(/公尺|公里/);
+  });
+
+  test('filters announced no-smoking places without legal-boundary claims', async ({ page, context }) => {
+    await context.grantPermissions(['geolocation']);
+    await context.setGeolocation({ latitude: announcedNoSmokingSample.latitude, longitude: announcedNoSmokingSample.longitude });
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '公告禁菸場所' }).click();
+    await expect(page.getByText(`${announcedNoSmokingPlaceCount} 筆資料`)).toBeVisible();
+    await page.getByLabel('禁菸場所類型').selectOption(announcedNoSmokingSample.recordType);
+    if (announcedNoSmokingSample.announcementYear) {
+      await page.getByLabel('公告年份').selectOption(String(announcedNoSmokingSample.announcementYear));
+    }
+    await page.getByLabel('座標狀態').selectOption(announcedNoSmokingSample.coordinateStatus);
+    await page.getByPlaceholder('搜尋場所、公園、地址、行政區、公告日期或來源').fill(announcedNoSmokingSample.placeName);
+
+    await expect(page.locator('.facility-list li').first()).toContainText('公告禁菸場所');
+    await expect(page.locator('.facility-list li').first()).toContainText(announcedNoSmokingSample.placeName);
+    await expect(page.getByLabel('使用提醒')).toContainText('點位不代表完整法定邊界');
+    await expect(page.locator('.facility-list li').first()).not.toContainText('完整禁菸邊界');
+    await page.getByRole('button', { name: '找附近公告禁菸場所' }).click();
     await expect(page.getByRole('heading', { name: '最近的設施' })).toBeVisible();
     await expect(page.locator('.distance').first()).toContainText(/公尺|公里/);
   });

@@ -9,6 +9,7 @@ import {
   getFacilityGoogleMapsUrl,
   getFacilityTypeLabel,
   getElectricMotorcycleChargingLocationCategoryLabel,
+  getAnnouncedNoSmokingRecordTypeLabel,
   isCoordinateOutlier,
   getFuelStationStatusLabel,
   normalizeTaipeiDistrict,
@@ -285,6 +286,35 @@ const facilities: Facility[] = [
     manager: '臺北市政府體育局',
     phone: '(02)25702330',
   },
+  {
+    id: 'announced_no_smoking_place-0001',
+    type: 'announced_no_smoking_place',
+    district: '松山區',
+    address: '延壽街168號',
+    longitude: 121.5629231,
+    latitude: 25.05662219,
+    note: '公告禁菸場所點位僅供來源資料查詢，實際範圍、現場標示與最新公告請以主管機關及現場資訊為準。',
+    source: '臺北市公告禁菸場所資料',
+    sourceAgency: '臺北市政府衛生局',
+    coordinateStatus: 'valid',
+    recordType: 'outdoor_no_smoking_place',
+    sourceResourceName: '臺北市公告戶外禁菸場所一覽表(僅包含有明確地址者用於製作禁菸地圖)',
+    placeName: '健康國小周邊人行道',
+    name: '健康國小周邊人行道',
+    cityCode: '63000',
+    districtCode: '63000010',
+    addressNormalized: '延壽街168號',
+    roadName: '延壽街',
+    hasCoordinates: true,
+    hasAddress: true,
+    hasLocationDescription: false,
+    announcementDate: '2012-04-30',
+    announcementYear: 2012,
+    announcementMonth: 4,
+    announcementMonthKey: '2012-04',
+    hasAnnouncementDate: true,
+    coordinateSystem: 'wgs84',
+  },
 ];
 
 describe('calculateDistanceMeters', () => {
@@ -557,6 +587,19 @@ describe('filterFacilities', () => {
     });
     expect(result.map((item) => item.id)).toEqual(['designated_smoking_area-0001']);
   });
+
+  it('filters and searches announced no-smoking places', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '健康國小',
+      district: '松山區',
+      facilityTypes: ['announced_no_smoking_place'],
+      noSmokingRecordType: 'outdoor_no_smoking_place',
+      noSmokingAnnouncementYear: '2012',
+      noSmokingCoordinateStatus: 'valid',
+      noSmokingHasAddress: true,
+    });
+    expect(result.map((item) => item.id)).toEqual(['announced_no_smoking_place-0001']);
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -576,6 +619,8 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('commercial_ev_charging_swap_station', 'en')).toBe('Commercial EV Charging & Battery Swap Station');
     expect(getFacilityTypeLabel('gas_lpg_station', 'en')).toBe('Gas & LPG Station');
     expect(getFacilityTypeLabel('designated_smoking_area', 'zh')).toBe('指定吸菸區');
+    expect(getFacilityTypeLabel('announced_no_smoking_place', 'zh')).toBe('公告禁菸場所');
+    expect(getAnnouncedNoSmokingRecordTypeLabel('smoke_free_park_green_space', 'en')).toBe('Smoke-Free Park / Green Space');
     expect(getElectricMotorcycleChargingLocationCategoryLabel('service_factory', 'en')).toBe('Service factory');
     expect(getCommercialEvServiceTypeLabel('electric_motorcycle_battery_swap', 'zh')).toBe('電動機車換電站');
     expect(getFuelStationStatusLabel('terminated', 'zh')).toBe('來源標示終止營業');

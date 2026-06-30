@@ -2,6 +2,7 @@ import { lazy, Suspense, useDeferredValue, useEffect, useMemo, useState } from '
 import { DrinkingFountainFilters } from './components/DrinkingFountainFilters';
 import {
   CommercialEvChargingSwapStationFilters,
+  AnnouncedNoSmokingPlaceFilters,
   DesignatedSmokingAreaFilters,
   DirectDrinkingFilters,
   ElectricMotorcycleChargingStationFilters,
@@ -23,6 +24,7 @@ import { WarningNotice } from './components/WarningNotice';
 import { translations } from './i18n';
 import type {
   ConversionReport,
+  AnnouncedNoSmokingPlaceRecordType,
   CommercialEvServiceType,
   DirectDrinkingPlaceCategory,
   DesignatedSmokingAreaType,
@@ -147,6 +149,13 @@ function App() {
   const [smokingHasRelativeLocation, setSmokingHasRelativeLocation] = useState(false);
   const [smokingManagingUnitCategory, setSmokingManagingUnitCategory] = useState<ManagingUnitCategory | ''>('');
   const [smokingManagingUnit, setSmokingManagingUnit] = useState('');
+  const [noSmokingRecordType, setNoSmokingRecordType] = useState<AnnouncedNoSmokingPlaceRecordType | ''>('');
+  const [noSmokingAnnouncementYear, setNoSmokingAnnouncementYear] = useState('');
+  const [noSmokingCoordinateStatus, setNoSmokingCoordinateStatus] = useState('');
+  const [noSmokingSourceResource, setNoSmokingSourceResource] = useState('');
+  const [noSmokingHasCoordinates, setNoSmokingHasCoordinates] = useState(false);
+  const [noSmokingHasAddress, setNoSmokingHasAddress] = useState(false);
+  const [noSmokingHasLocationDescription, setNoSmokingHasLocationDescription] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -167,6 +176,7 @@ function App() {
   const includesCommercialEvStations = selectedTypes.includes('commercial_ev_charging_swap_station');
   const includesGasLpgStations = selectedTypes.includes('gas_lpg_station');
   const includesDesignatedSmokingAreas = selectedTypes.includes('designated_smoking_area');
+  const includesAnnouncedNoSmokingPlaces = selectedTypes.includes('announced_no_smoking_place');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -313,6 +323,16 @@ function App() {
     () => [...new Set(facilities.filter((facility) => facility.type === 'designated_smoking_area').map((facility) => facility.managingUnit).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
     [facilities],
   );
+  const noSmokingAnnouncementYears = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'announced_no_smoking_place').map((facility) => facility.announcementYear).filter(Boolean) as number[])]
+      .sort((a, b) => b - a)
+      .map(String),
+    [facilities],
+  );
+  const noSmokingSourceResources = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'announced_no_smoking_place').map((facility) => facility.sourceResourceName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -384,6 +404,13 @@ function App() {
         smokingHasRelativeLocation,
         smokingManagingUnitCategory,
         smokingManagingUnit,
+        noSmokingRecordType,
+        noSmokingAnnouncementYear,
+        noSmokingCoordinateStatus,
+        noSmokingSourceResource,
+        noSmokingHasCoordinates,
+        noSmokingHasAddress,
+        noSmokingHasLocationDescription,
       }),
     [
       district,
@@ -454,6 +481,13 @@ function App() {
       smokingHasRelativeLocation,
       smokingManagingUnitCategory,
       smokingManagingUnit,
+      noSmokingRecordType,
+      noSmokingAnnouncementYear,
+      noSmokingCoordinateStatus,
+      noSmokingSourceResource,
+      noSmokingHasCoordinates,
+      noSmokingHasAddress,
+      noSmokingHasLocationDescription,
     ],
   );
 
@@ -550,6 +584,7 @@ function App() {
   const isCommercialEvOnly = selectedTypes.length === 1 && includesCommercialEvStations;
   const isGasLpgOnly = selectedTypes.length === 1 && includesGasLpgStations;
   const isDesignatedSmokingAreaOnly = selectedTypes.length === 1 && includesDesignatedSmokingAreas;
+  const isAnnouncedNoSmokingPlaceOnly = selectedTypes.length === 1 && includesAnnouncedNoSmokingPlaces;
   const isSpecializedToiletOnly = isRiversideOnly || isFamilyToiletOnly;
   const listHeading = nearbyFacilities
     ? t.nearestFacilities
@@ -563,8 +598,10 @@ function App() {
               ? t.commercialEvChargingSwapStationDirectory
               : isGasLpgOnly
                 ? t.gasLpgStationDirectory
-                : isDesignatedSmokingAreaOnly
+              : isDesignatedSmokingAreaOnly
                   ? t.designatedSmokingAreaDirectory
+                  : isAnnouncedNoSmokingPlaceOnly
+                    ? t.announcedNoSmokingPlaceDirectory
                 : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
     if (!report?.generatedAt) {
@@ -684,6 +721,15 @@ function App() {
       setSmokingHasRelativeLocation(false);
       setSmokingManagingUnitCategory('');
       setSmokingManagingUnit('');
+    }
+    if (!value.includes('announced_no_smoking_place')) {
+      setNoSmokingRecordType('');
+      setNoSmokingAnnouncementYear('');
+      setNoSmokingCoordinateStatus('');
+      setNoSmokingSourceResource('');
+      setNoSmokingHasCoordinates(false);
+      setNoSmokingHasAddress(false);
+      setNoSmokingHasLocationDescription(false);
     }
     setNearbyFacilities(null);
   };
@@ -844,6 +890,8 @@ function App() {
                       ? t.gasLpgSearchPlaceholder
                       : isDesignatedSmokingAreaOnly
                         ? t.designatedSmokingAreaSearchPlaceholder
+                        : isAnnouncedNoSmokingPlaceOnly
+                          ? t.announcedNoSmokingPlaceSearchPlaceholder
               : isSpecializedToiletOnly
                 ? t.toiletSearchPlaceholder
                 : t.searchPlaceholder}
@@ -1070,6 +1118,43 @@ function App() {
               }}
             />
           )}
+          {hasFocusedTypes && includesAnnouncedNoSmokingPlaces && (
+            <AnnouncedNoSmokingPlaceFilters
+              sourceResources={noSmokingSourceResources}
+              announcementYears={noSmokingAnnouncementYears}
+              recordType={noSmokingRecordType}
+              announcementYear={noSmokingAnnouncementYear}
+              coordinateStatus={noSmokingCoordinateStatus}
+              sourceResource={noSmokingSourceResource}
+              hasCoordinates={noSmokingHasCoordinates}
+              hasAddress={noSmokingHasAddress}
+              hasLocationDescription={noSmokingHasLocationDescription}
+              language={language}
+              t={t}
+              onRecordTypeChange={(value) => {
+                setNoSmokingRecordType(value);
+                setNearbyFacilities(null);
+              }}
+              onAnnouncementYearChange={(value) => {
+                setNoSmokingAnnouncementYear(value);
+                setNearbyFacilities(null);
+              }}
+              onCoordinateStatusChange={(value) => {
+                setNoSmokingCoordinateStatus(value);
+                setNearbyFacilities(null);
+              }}
+              onSourceResourceChange={(value) => {
+                setNoSmokingSourceResource(value);
+                setNearbyFacilities(null);
+              }}
+              onBooleanChange={(name, value) => {
+                if (name === 'coordinates') setNoSmokingHasCoordinates(value);
+                if (name === 'address') setNoSmokingHasAddress(value);
+                if (name === 'locationDescription') setNoSmokingHasLocationDescription(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
           {isSpecializedToiletOnly && (
             <label className="nearby-radius">
               <span>{t.nearbyRadius}</span>
@@ -1189,6 +1274,8 @@ function App() {
                         ? t.showNearbyGasLpgStations
                         : isDesignatedSmokingAreaOnly
                           ? t.findNearbyDesignatedSmokingAreas
+                          : isAnnouncedNoSmokingPlaceOnly
+                            ? t.findNearbyAnnouncedNoSmokingPlaces
               : isRiversideOnly
                 ? t.showNearbyRiversideToilets
                 : isFamilyToiletOnly
@@ -1210,8 +1297,10 @@ function App() {
                   ? t.inspectionStationDistanceUnavailableNotice
                   : includesChargingStations
                     ? t.chargingStationDistanceUnavailableNotice
-                    : includesCommercialEvStations
-                      ? t.commercialEvDistanceUnavailableNotice
+                  : includesCommercialEvStations
+                    ? t.commercialEvDistanceUnavailableNotice
+                    : includesAnnouncedNoSmokingPlaces
+                      ? t.announcedNoSmokingPlaceDistanceUnavailableNotice
                   : t.lactationRoomDistanceUnavailableNotice
                 : t.unableToGetLocation}
           </p>
@@ -1220,6 +1309,7 @@ function App() {
         {includesInspectionStations && <p className="status-message">{t.inspectionStationNoCoordinateNotice}</p>}
         {includesChargingStations && <p className="status-message">{t.chargingStationNoCoordinateNotice}</p>}
         {includesCommercialEvStations && <p className="status-message">{t.commercialEvNoCoordinateNotice}</p>}
+        {includesAnnouncedNoSmokingPlaces && <p className="status-message">{t.announcedNoSmokingPlaceNotice}</p>}
         {isLoadingFacilities ? (
           <p className="status-message">{t.loading}</p>
         ) : (

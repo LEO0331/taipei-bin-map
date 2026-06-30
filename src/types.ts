@@ -15,7 +15,8 @@ export type FacilityType =
   | 'electric_motorcycle_charging_station'
   | 'commercial_ev_charging_swap_station'
   | 'gas_lpg_station'
-  | 'designated_smoking_area';
+  | 'designated_smoking_area'
+  | 'announced_no_smoking_place';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
@@ -30,6 +31,8 @@ export type CommercialEvServiceType =
 export type FuelStationServiceType = 'gasoline' | 'lpg' | 'self_service';
 export type FuelStationStatus = 'active_or_unspecified' | 'terminated' | 'unknown';
 export type DesignatedSmokingAreaType = 'outdoor_open' | 'outdoor_negative_pressure' | 'indoor_smoking_room' | 'other' | 'unknown';
+export type AnnouncedNoSmokingPlaceRecordType = 'outdoor_no_smoking_place' | 'smoke_free_park_green_space' | 'unknown';
+export type CoordinateSystem = 'wgs84' | 'twd97' | 'unknown';
 export type OpeningHoursType = 'listed_24_hours' | 'fixed_hours' | 'weekday_or_holiday_rule' | 'depends_on_facility_hours' | 'custom_text' | 'missing' | 'unknown';
 export type ManagingUnitCategory = 'taipei_city_government' | 'district_office' | 'central_government' | 'transportation_or_mrt' | 'park_or_public_space' | 'private_operator' | 'cultural_or_sports_facility' | 'other' | 'unknown';
 
@@ -200,6 +203,22 @@ export type Facility = {
   googleMapsQuery?: string;
   roadName?: string;
   sourceRecordHash?: string;
+  recordType?: AnnouncedNoSmokingPlaceRecordType;
+  resourceName?: string;
+  cityName?: string;
+  parkName?: string;
+  announcementDateRaw?: string;
+  announcementDate?: string;
+  announcementYear?: number;
+  announcementMonth?: number;
+  announcementMonthKey?: string;
+  hasAnnouncementDate?: boolean;
+  hasLocationDescription?: boolean;
+  hasAddress?: boolean;
+  sourceX?: string;
+  sourceY?: string;
+  coordinateSystem?: CoordinateSystem;
+  hasCoordinates?: boolean;
 };
 
 export type MotorcycleInspectionStationLocation = {
@@ -348,6 +367,22 @@ export type DesignatedSmokingAreaSummary = {
   byOpeningHoursType: Array<{ openingHoursType: OpeningHoursType; count: number }>;
   byManagingUnitCategory: Array<{ managingUnitCategory: ManagingUnitCategory; count: number }>;
   byManagingUnit: Array<{ managingUnit: string; count: number }>;
+};
+
+export type AnnouncedNoSmokingPlaceSummary = {
+  totalRecords: number;
+  outdoorNoSmokingPlaceCount: number;
+  smokeFreeParkGreenSpaceCount: number;
+  withCoordinatesCount: number;
+  validCoordinateCount: number;
+  missingCoordinateCount: number;
+  outlierCoordinateCount: number;
+  withAnnouncementDateCount: number;
+  districtCount: number;
+  byDistrict: Array<{ district: string; count: number }>;
+  byRecordType: Array<{ recordType: AnnouncedNoSmokingPlaceRecordType; count: number }>;
+  byAnnouncementYear: Array<{ year: number; count: number }>;
+  bySourceResource: Array<{ sourceResourceName: string; count: number }>;
 };
 
 export type RiversideToiletSummary = {

@@ -1,6 +1,7 @@
 import type { Translation } from '../i18n';
 import type {
   CommercialEvServiceType,
+  AnnouncedNoSmokingPlaceRecordType,
   DirectDrinkingPlaceCategory,
   DesignatedSmokingAreaType,
   ElectricMotorcycleChargingLocationCategory,
@@ -18,6 +19,7 @@ import {
   getManagingUnitCategoryLabel,
   getOpeningHoursTypeLabel,
   getRiversideToiletTypeLabel,
+  getAnnouncedNoSmokingRecordTypeLabel,
 } from '../utils/facilityUtils';
 
 type TimedCollectionFiltersProps = {
@@ -596,6 +598,82 @@ export function DesignatedSmokingAreaFilters(props: DesignatedSmokingAreaFilters
             type="checkbox"
             checked={checked as boolean}
             onChange={(event) => props.onBooleanChange(name as 'listed24Hours' | 'photo' | 'relativeLocation', event.target.checked)}
+          />
+          <span>{label as string}</span>
+        </label>
+      ))}
+    </fieldset>
+  );
+}
+
+const noSmokingRecordTypes: AnnouncedNoSmokingPlaceRecordType[] = [
+  'outdoor_no_smoking_place',
+  'smoke_free_park_green_space',
+  'unknown',
+];
+
+type AnnouncedNoSmokingPlaceFiltersProps = {
+  sourceResources: string[];
+  announcementYears: string[];
+  recordType: AnnouncedNoSmokingPlaceRecordType | '';
+  announcementYear: string;
+  coordinateStatus: string;
+  sourceResource: string;
+  hasCoordinates: boolean;
+  hasAddress: boolean;
+  hasLocationDescription: boolean;
+  language: Language;
+  t: Translation;
+  onRecordTypeChange: (value: AnnouncedNoSmokingPlaceRecordType | '') => void;
+  onAnnouncementYearChange: (value: string) => void;
+  onCoordinateStatusChange: (value: string) => void;
+  onSourceResourceChange: (value: string) => void;
+  onBooleanChange: (name: 'coordinates' | 'address' | 'locationDescription', value: boolean) => void;
+};
+
+export function AnnouncedNoSmokingPlaceFilters(props: AnnouncedNoSmokingPlaceFiltersProps) {
+  return (
+    <fieldset className="toilet-filters">
+      <label>
+        {props.t.noSmokingRecordType}
+        <select value={props.recordType} onChange={(event) => props.onRecordTypeChange(event.target.value as AnnouncedNoSmokingPlaceRecordType | '')}>
+          <option value="">{props.t.all}</option>
+          {noSmokingRecordTypes.map((value) => <option key={value} value={value}>{getAnnouncedNoSmokingRecordTypeLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.announcementYear}
+        <select value={props.announcementYear} onChange={(event) => props.onAnnouncementYearChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.announcementYears.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.coordinateStatus}
+        <select value={props.coordinateStatus} onChange={(event) => props.onCoordinateStatusChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          <option value="valid">{props.t.validCoordinates}</option>
+          <option value="missing">{props.t.missingCoordinates}</option>
+          <option value="outlier">{props.t.outlierCoordinates}</option>
+        </select>
+      </label>
+      <label>
+        {props.t.sourceResource}
+        <select value={props.sourceResource} onChange={(event) => props.onSourceResourceChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.sourceResources.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      {[
+        ['coordinates', props.t.hasCoordinates, props.hasCoordinates],
+        ['address', props.t.hasAddress, props.hasAddress],
+        ['locationDescription', props.t.hasLocationDescription, props.hasLocationDescription],
+      ].map(([name, label, checked]) => (
+        <label className="checkbox-filter" key={name as string}>
+          <input
+            type="checkbox"
+            checked={checked as boolean}
+            onChange={(event) => props.onBooleanChange(name as 'coordinates' | 'address' | 'locationDescription', event.target.checked)}
           />
           <span>{label as string}</span>
         </label>

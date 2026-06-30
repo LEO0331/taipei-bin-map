@@ -2,9 +2,9 @@
 
 ## Current Objective
 
-- Goal: Maintain the fifteen-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
-- Current status: feat-025 is implemented and verified.
-- Branch / commit: Working tree has uncommitted designated-smoking-area data, UI, tests, docs, and harness changes.
+- Goal: Maintain the sixteen-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
+- Current status: feat-026 is implemented and verified.
+- Branch / commit: Working tree has uncommitted announced-no-smoking-place data, UI, tests, docs, and harness changes.
 
 ## Completed
 
@@ -32,18 +32,21 @@
 - Added 75 gas/LPG stations with UTF-8-SIG conversion, TWD97-to-WGS84 conversion, exact markers, supplier/service/hour/status filters, nearby lookup, summary JSON, and PWA caching.
 - Added 202 designated smoking areas with UTF-8-SIG conversion, exact WGS84 markers, type/opening-hour/photo/relative-location/management filters, nearby lookup, summary JSON, notices, and PWA caching.
 - Kept designated smoking area copy limited to public-data lookup; no real-time availability, legal interpretation, health advice, smoking advice, or complete legal-boundary claim is made.
+- Added 3,786 announced no-smoking place records from one UTF-8-SIG coordinate resource and two Big5/CP950 no-coordinate resources.
+- Added no-smoking record type/year/source/coordinate filters, marker/legend/list/popup details, summary JSON, PWA caching, README notes, and no legal-boundary/enforcement/health/smoking-advice claims.
 - Tightened the Playwright web server so E2E tests cannot silently reuse an unrelated local app on port 5173.
 
 ## Verification
 
 | Check | Result |
 |---|---|
-| `npm run convert:facilities` | 8,094 total facilities |
-| Targeted tests | 43 converter/filter tests passed |
-| `npm test` | 43 tests passed |
+| `npm run convert:facilities` | 11,880 total facilities |
+| Targeted tests | 45 converter/filter tests passed |
+| `npm test` | 45 tests passed |
 | `npm run build` | Passed |
-| `./init.sh` | 43 unit/converter tests, production build, and 50 desktop/mobile tests passed |
-| Responsive smoke | No horizontal overflow at 390px or 1440px |
+| `npm run test:e2e` | 52 desktop/mobile tests passed |
+| `./init.sh` | 45 unit/converter tests, production build, and 52 desktop/mobile tests passed |
+| Responsive smoke | Covered by mobile/desktop Playwright suite |
 
 ## Deliberate Omissions
 
@@ -53,6 +56,7 @@
 - No automatic geocoding: coordinate-free layers remain address-only unless manually verified coordinates are supplied.
 - No separate map per facility category: one shared map keeps search, filtering, nearby lookup, and links consistent.
 - No dedicated smoking-area dashboard/directory page: the existing shared list, filter, map, popup, and nearby surfaces cover the layer without adding a new page system.
+- No separate no-smoking map or legal-boundary view: the existing shared map/list/search flow covers source point records without implying polygon boundaries.
 
 ## Risks
 
@@ -68,3 +72,4 @@
 - Commercial EV availability, fees, payment methods, membership rules, equipment specs, and battery inventory are not real-time guarantees.
 - Gas/LPG station business hours, fuel/LPG supply, pricing, self-service availability, and operating status are not real-time guarantees.
 - Designated smoking area opening hours, on-site usability, legal applicability, health interpretation, and complete legal boundaries are not real-time guarantees or advice.
+- Announced no-smoking place points are source-location references and not complete legal boundaries, real-time enforcement status, legal advice, health advice, smoking advice, or signage guarantees.

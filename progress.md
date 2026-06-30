@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-29 Asia/Taipei
+**Last Updated:** 2026-06-30 Asia/Taipei
 **Active Feature:** None
 
 ## Status
@@ -30,6 +30,8 @@
 - [x] Replaced the deployed OpenStreetMap tile endpoint with CARTO's no-key light basemap after the former rendered an empty gray map in production.
 - [x] Added 202 designated smoking areas from the UTF-8-SIG `臺北市指定吸菸區.csv` source.
 - [x] Added source WGS84 exact markers, type/opening-hour/photo/relative-location/management filters, nearby lookup, notices, PWA cache entries, README notes, and tests for the designated smoking area layer.
+- [x] Added 3,786 announced no-smoking place records from three Taipei Department of Health CSV resources.
+- [x] Added mixed UTF-8-SIG/CP950 conversion, district-code normalization, WGS84/TWD97 coordinate detection, announcement-date parsing, no-smoking record type/year/source/coordinate filters, marker/legend/list/popup details, notices, PWA cache entries, README notes, and tests for the announced no-smoking place layer.
 - [x] Added 483 lactation rooms from two Big5/CP950 resources with deduplication and legal-list cross-reference.
 - [x] Added lactation search, filters, directory details, district summary bubbles, address-based Google Maps links, notices, PWA cache entries, and optional verified-coordinate cache support.
 - [x] Added 334 riverside toilets and 393 family-friendly toilets with exact markers, focused filters, nearby results, summaries, bilingual notices, and service-worker cache entries.
@@ -38,7 +40,7 @@
 
 ### What's In Progress
 
-- [x] No active feature work remains for feat-025.
+- [x] No active feature work remains for feat-026.
 
 ### What's Next
 
@@ -61,6 +63,7 @@
 - [ ] Commercial EV charging and battery-swap station availability, fees, payment methods, membership rules, equipment specs, and battery inventory are snapshot/public-data references, not real-time guarantees.
 - [ ] Gas/LPG station business hours, fuel/LPG supply, pricing, self-service availability, and operating status are snapshot/public-data references, not real-time guarantees.
 - [ ] Designated smoking area opening hours, on-site usability, legal applicability, health interpretation, and complete legal boundaries are snapshot/public-data references, not real-time guarantees or advice.
+- [ ] Announced no-smoking place points are source-location references, not complete legal boundaries, real-time enforcement status, legal advice, health advice, smoking advice, or on-site signage guarantees.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -80,6 +83,7 @@
 - **Keep broad map views list-first**: Rendering hundreds of individual Leaflet markers blocks mobile interaction. Broad selections hide exact pins; nearby results and small single-type selections render them.
 - **Use CARTO for base tiles**: The previous OpenStreetMap tile endpoint failed to render in the deployed app; CARTO preserves a no-key static Leaflet map.
 - **Keep designated smoking areas as lookup data**: The layer shows source fields and nearby distance only; UI copy avoids smoking recommendations, health advice, legal interpretation, and current-availability claims.
+- **Keep announced no-smoking places as lookup data**: The layer complements designated smoking areas but does not claim complete no-smoking boundaries, enforcement status, legal interpretation, health advice, or smoking advice.
 
 ## Files Modified This Session
 
@@ -111,6 +115,11 @@
 - `src/types.ts`, `src/utils/facilityUtils.ts`, `src/components/*`, `src/i18n.ts`, `src/App.tsx` - Added the shared facility type, filters, labels, marker, popup/list fields, and notices.
 - `public/data/designated-smoking-areas.json`, `public/data/designated-smoking-area-summary.json`, `public/data/facilities.json`, `public/data/conversion-report.json` - Regenerated static data with the new layer.
 - `public/service-worker.js`, `README.md`, `package.json`, `tests/e2e/bin-map.spec.js`, `scripts/newFacilityConverters.test.ts`, `src/utils/facilityUtils.test.ts` - Updated cache, docs, scripts, and regression coverage.
+- `scripts/fetchAnnouncedNoSmokingPlaces.ts`, `scripts/convertAnnouncedNoSmokingPlaces.ts` - Added local CSV copy and mixed-encoding conversion for announced no-smoking places and smoke-free parks/green spaces.
+- `scripts/convertBins.ts` - Merged announced no-smoking places into combined static facility output.
+- `src/types.ts`, `src/utils/facilityUtils.ts`, `src/components/*`, `src/i18n.ts`, `src/App.tsx` - Added the shared facility type, focused filters, labels, marker, popup/list fields, and no legal-boundary/enforcement/advice notices.
+- `public/data/announced-no-smoking-places.json`, `public/data/announced-no-smoking-place-summary.json`, `public/data/facilities.json`, `public/data/conversion-report.json` - Regenerated static data with the new layer.
+- `public/service-worker.js`, `README.md`, `package.json`, `tests/e2e/bin-map.spec.js`, `scripts/newFacilityConverters.test.ts`, `src/utils/facilityUtils.test.ts` - Updated cache, docs, scripts, and regression coverage for the no-smoking layer.
 
 ## Evidence of Completion
 
@@ -165,7 +174,13 @@
 - [x] `npm run convert:facilities` generated 8,094 facilities, including 202 designated smoking areas.
 - [x] Targeted converter/filter tests passed with 43 tests before final full verification.
 - [x] `./init.sh` passed 43 unit/converter tests, production build, and 50 desktop/mobile Playwright tests after the designated smoking area layer.
+- [x] `npm run data:fetch:no-smoking` copied three announced no-smoking CSV resources into `data/raw/announced-no-smoking-places/`.
+- [x] `npm run convert:facilities` generated 11,880 facilities, including 3,786 announced no-smoking place records.
+- [x] Targeted converter/filter tests passed with 45 tests.
+- [x] `npm run build` passed after the announced no-smoking layer.
+- [x] `npm run test:e2e` passed 52 desktop/mobile Playwright tests, including the announced no-smoking flow.
+- [x] `./init.sh` passed 45 unit/converter tests, production build, and 52 desktop/mobile Playwright tests after the announced no-smoking layer.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The fifteen-layer public amenities expansion is implemented and verified.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The sixteen-layer public amenities expansion is implemented and verified.

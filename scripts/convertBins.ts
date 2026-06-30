@@ -16,6 +16,7 @@ import { loadElectricMotorcycleChargingStations } from './convertElectricMotorcy
 import { loadCommercialEvChargingSwapStations } from './convertCommercialEvChargingSwapStations';
 import { loadGasLpgStations } from './convertGasLpgStations';
 import { loadDesignatedSmokingAreas } from './convertDesignatedSmokingAreas';
+import { loadAnnouncedNoSmokingPlaces } from './convertAnnouncedNoSmokingPlaces';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -154,6 +155,8 @@ const GAS_LPG_OUTPUT = resolve(options.outputDir, 'gas-lpg-stations.json');
 const GAS_LPG_SUMMARY_OUTPUT = resolve(options.outputDir, 'gas-lpg-station-summary.json');
 const DESIGNATED_SMOKING_AREAS_OUTPUT = resolve(options.outputDir, 'designated-smoking-areas.json');
 const DESIGNATED_SMOKING_AREA_SUMMARY_OUTPUT = resolve(options.outputDir, 'designated-smoking-area-summary.json');
+const ANNOUNCED_NO_SMOKING_PLACES_OUTPUT = resolve(options.outputDir, 'announced-no-smoking-places.json');
+const ANNOUNCED_NO_SMOKING_PLACE_SUMMARY_OUTPUT = resolve(options.outputDir, 'announced-no-smoking-place-summary.json');
 const DRINKING_FOUNTAINS_OUTPUT = resolve(options.outputDir, 'drinking-fountains.json');
 const TIMED_COLLECTION_OUTPUT = resolve(options.outputDir, 'timed-collection-points.json');
 const DIRECT_DRINKING_OUTPUT = resolve(options.outputDir, 'direct-drinking-stations.json');
@@ -425,6 +428,7 @@ const electricMotorcycleChargingStations = loadElectricMotorcycleChargingStation
 const commercialEvStations = loadCommercialEvChargingSwapStations();
 const gasLpgStations = loadGasLpgStations();
 const designatedSmokingAreas = loadDesignatedSmokingAreas();
+const announcedNoSmokingPlaces = loadAnnouncedNoSmokingPlaces();
 
 const facilities = [
   ...pedestrian.facilities,
@@ -442,6 +446,7 @@ const facilities = [
   ...commercialEvStations.facilities,
   ...gasLpgStations.facilities,
   ...designatedSmokingAreas.facilities,
+  ...announcedNoSmokingPlaces.facilities,
 ];
 const report: ConversionReport = {
   generatedAt: new Date().toISOString(),
@@ -462,6 +467,7 @@ const report: ConversionReport = {
     ...commercialEvStations.reports,
     gasLpgStations.report,
     designatedSmokingAreas.report,
+    ...announcedNoSmokingPlaces.reports,
   ],
 };
 
@@ -513,6 +519,8 @@ writeJson(GAS_LPG_OUTPUT, gasLpgStations.facilities);
 writeJson(GAS_LPG_SUMMARY_OUTPUT, gasLpgStations.summary);
 writeJson(DESIGNATED_SMOKING_AREAS_OUTPUT, designatedSmokingAreas.facilities);
 writeJson(DESIGNATED_SMOKING_AREA_SUMMARY_OUTPUT, designatedSmokingAreas.summary);
+writeJson(ANNOUNCED_NO_SMOKING_PLACES_OUTPUT, announcedNoSmokingPlaces.facilities);
+writeJson(ANNOUNCED_NO_SMOKING_PLACE_SUMMARY_OUTPUT, announcedNoSmokingPlaces.summary);
 writeJson(FACILITIES_OUTPUT, facilities);
 writeJson(REPORT_OUTPUT, report);
 
@@ -532,4 +540,5 @@ console.log(`Wrote ${motorcycleInspectionStations.facilities.length} motorcycle 
 console.log(`Wrote ${electricMotorcycleChargingStations.facilities.length} electric motorcycle charging station records to ${ELECTRIC_MOTORCYCLE_CHARGING_STATION_OUTPUT}`);
 console.log(`Wrote ${commercialEvStations.facilities.length} commercial EV charging/swap station records to ${COMMERCIAL_EV_OUTPUT}`);
 console.log(`Wrote ${gasLpgStations.facilities.length} gas/LPG station records to ${GAS_LPG_OUTPUT}`);
+console.log(`Wrote ${announcedNoSmokingPlaces.facilities.length} announced no-smoking place records to ${ANNOUNCED_NO_SMOKING_PLACES_OUTPUT}`);
 console.log(`Wrote conversion report to ${REPORT_OUTPUT}`);

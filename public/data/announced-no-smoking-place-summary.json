@@ -1,0 +1,167 @@
+{
+  "totalRecords": 3786,
+  "outdoorNoSmokingPlaceCount": 2944,
+  "smokeFreeParkGreenSpaceCount": 842,
+  "withCoordinatesCount": 2431,
+  "validCoordinateCount": 2429,
+  "missingCoordinateCount": 1355,
+  "outlierCoordinateCount": 2,
+  "withAnnouncementDateCount": 511,
+  "districtCount": 15,
+  "byDistrict": [
+    {
+      "district": "中山區",
+      "count": 442
+    },
+    {
+      "district": "大安區",
+      "count": 439
+    },
+    {
+      "district": "內湖區",
+      "count": 401
+    },
+    {
+      "district": "文山區",
+      "count": 365
+    },
+    {
+      "district": "士林區",
+      "count": 361
+    },
+    {
+      "district": "北投區",
+      "count": 335
+    },
+    {
+      "district": "信義區",
+      "count": 288
+    },
+    {
+      "district": "松山區",
+      "count": 274
+    },
+    {
+      "district": "中正區",
+      "count": 255
+    },
+    {
+      "district": "萬華區",
+      "count": 212
+    },
+    {
+      "district": "南港區",
+      "count": 192
+    },
+    {
+      "district": "大同區",
+      "count": 186
+    },
+    {
+      "district": "河濱公園",
+      "count": 28
+    },
+    {
+      "district": "63000000",
+      "count": 7
+    },
+    {
+      "district": "跨區",
+      "count": 1
+    }
+  ],
+  "byRecordType": [
+    {
+      "recordType": "outdoor_no_smoking_place",
+      "count": 2944
+    },
+    {
+      "recordType": "smoke_free_park_green_space",
+      "count": 842
+    }
+  ],
+  "byAnnouncementYear": [
+    {
+      "year": 2502,
+      "count": 1
+    },
+    {
+      "year": 2025,
+      "count": 23
+    },
+    {
+      "year": 2024,
+      "count": 105
+    },
+    {
+      "year": 2023,
+      "count": 6
+    },
+    {
+      "year": 2022,
+      "count": 6
+    },
+    {
+      "year": 2021,
+      "count": 12
+    },
+    {
+      "year": 2020,
+      "count": 11
+    },
+    {
+      "year": 2019,
+      "count": 7
+    },
+    {
+      "year": 2018,
+      "count": 13
+    },
+    {
+      "year": 2017,
+      "count": 7
+    },
+    {
+      "year": 2016,
+      "count": 222
+    },
+    {
+      "year": 2015,
+      "count": 35
+    },
+    {
+      "year": 2014,
+      "count": 32
+    },
+    {
+      "year": 2013,
+      "count": 19
+    },
+    {
+      "year": 2012,
+      "count": 4
+    },
+    {
+      "year": 2011,
+      "count": 3
+    },
+    {
+      "year": 2010,
+      "count": 3
+    },
+    {
+      "year": 2009,
+      "count": 2
+    }
+  ],
+  "bySourceResource": [
+    {
+      "sourceResourceName": "臺北市公告戶外禁菸場所一覽表",
+      "count": 2944
+    },
+    {
+      "sourceResourceName": "臺北市除吸菸區外全面禁菸公園綠地",
+      "count": 842
+    }
+  ]
+}

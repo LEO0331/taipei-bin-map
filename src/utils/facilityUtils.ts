@@ -1,4 +1,5 @@
 import type {
+  AnnouncedNoSmokingPlaceRecordType,
   DirectDrinkingPlaceCategory,
   DrinkingFountainPlaceCategory,
   DesignatedSmokingAreaType,
@@ -138,6 +139,13 @@ export function filterFacilities(
     smokingHasRelativeLocation = false,
     smokingManagingUnitCategory,
     smokingManagingUnit,
+    noSmokingRecordType,
+    noSmokingAnnouncementYear,
+    noSmokingCoordinateStatus,
+    noSmokingSourceResource,
+    noSmokingHasCoordinates = false,
+    noSmokingHasAddress = false,
+    noSmokingHasLocationDescription = false,
   }: {
     searchTerm: string;
     district: string;
@@ -206,6 +214,13 @@ export function filterFacilities(
     smokingHasRelativeLocation?: boolean;
     smokingManagingUnitCategory?: ManagingUnitCategory | '';
     smokingManagingUnit?: string;
+    noSmokingRecordType?: AnnouncedNoSmokingPlaceRecordType | '';
+    noSmokingAnnouncementYear?: string;
+    noSmokingCoordinateStatus?: string;
+    noSmokingSourceResource?: string;
+    noSmokingHasCoordinates?: boolean;
+    noSmokingHasAddress?: boolean;
+    noSmokingHasLocationDescription?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -225,6 +240,7 @@ export function filterFacilities(
   const hasCommercialEvFilters = Boolean(commercialEvServiceType || commercialEvOperator || commercialEvCity || commercialEvCityCode || commercialEvHasAddress || commercialEvHasDistrict);
   const hasGasLpgFilters = Boolean(gasLpgSupplier || gasLpgHasOil || gasLpgHasLpg || gasLpgHasSelfService || gasLpgTwentyFourHours || gasLpgLimitedHours || gasLpgStationStatus || gasLpgHasPhone);
   const hasSmokingFilters = Boolean(smokingAreaType || smokingOpeningHoursType || smokingListed24Hours || smokingHasPhoto || smokingHasRelativeLocation || smokingManagingUnitCategory || smokingManagingUnit);
+  const hasNoSmokingFilters = Boolean(noSmokingRecordType || noSmokingAnnouncementYear || noSmokingCoordinateStatus || noSmokingSourceResource || noSmokingHasCoordinates || noSmokingHasAddress || noSmokingHasLocationDescription);
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -338,6 +354,16 @@ export function filterFacilities(
         (!smokingManagingUnitCategory || facility.managingUnitCategory === smokingManagingUnitCategory) &&
         (!smokingManagingUnit || facility.managingUnit === smokingManagingUnit || facility.manager === smokingManagingUnit));
     const matchesSmokingScope = !hasSmokingFilters || facility.type === 'designated_smoking_area';
+    const matchesNoSmoking =
+      facility.type !== 'announced_no_smoking_place' ||
+      ((!noSmokingRecordType || facility.recordType === noSmokingRecordType) &&
+        (!noSmokingAnnouncementYear || String(facility.announcementYear ?? '') === noSmokingAnnouncementYear) &&
+        (!noSmokingCoordinateStatus || facility.coordinateStatus === noSmokingCoordinateStatus) &&
+        (!noSmokingSourceResource || facility.sourceResourceName === noSmokingSourceResource) &&
+        (!noSmokingHasCoordinates || facility.hasCoordinates === true) &&
+        (!noSmokingHasAddress || facility.hasAddress === true) &&
+        (!noSmokingHasLocationDescription || facility.hasLocationDescription === true));
+    const matchesNoSmokingScope = !hasNoSmokingFilters || facility.type === 'announced_no_smoking_place';
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -399,6 +425,13 @@ export function filterFacilities(
         facility.relativeLocation,
         facility.managingUnit,
         facility.managingUnitPhone,
+        facility.recordType,
+        facility.resourceName,
+        facility.sourceResourceName,
+        facility.placeName,
+        facility.parkName,
+        facility.announcementDate,
+        facility.announcementDateRaw,
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
           : '',
@@ -434,6 +467,8 @@ export function filterFacilities(
       matchesGasLpgScope &&
       matchesSmoking &&
       matchesSmokingScope &&
+      matchesNoSmoking &&
+      matchesNoSmokingScope &&
       matchesSearch
     );
   });
@@ -496,7 +531,26 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '指定吸菸區' : 'Designated Smoking Area';
   }
 
+  if (type === 'announced_no_smoking_place') {
+    return language === 'zh' ? '公告禁菸場所' : 'Announced No-Smoking Place';
+  }
+
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';
+}
+
+export function getAnnouncedNoSmokingRecordTypeLabel(type: AnnouncedNoSmokingPlaceRecordType | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? {
+      outdoor_no_smoking_place: '公告戶外禁菸場所',
+      smoke_free_park_green_space: '除吸菸區外全面禁菸公園綠地',
+      unknown: '未知',
+    }
+    : {
+      outdoor_no_smoking_place: 'Announced Outdoor No-Smoking Place',
+      smoke_free_park_green_space: 'Smoke-Free Park / Green Space',
+      unknown: 'Unknown',
+    };
+  return labels[type ?? 'unknown'];
 }
 
 export function getDesignatedSmokingAreaTypeLabel(type: DesignatedSmokingAreaType | undefined, language: Language) {
@@ -703,7 +757,7 @@ export function getDirectDrinkingPlaceLabel(category: DirectDrinkingPlaceCategor
 }
 
 export function normalizeTaipeiDistrict(district: string) {
-  const normalized = district.trim();
+  const normalized = district.trim().replace(/\s+/g, '');
   return taipeiDistrictByShortName[normalized] ?? normalized;
 }
 

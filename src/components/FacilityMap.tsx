@@ -112,6 +112,7 @@ const markerEmojiByType = {
   commercial_ev_charging_swap_station: '🔋',
   gas_lpg_station: '⛽',
   designated_smoking_area: '⌖',
+  announced_no_smoking_place: '🚭',
 } satisfies Record<FacilityType, string>;
 
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {
