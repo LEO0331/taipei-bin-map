@@ -46,6 +46,10 @@ import {
   normalizeAnnouncementDate,
   parseNoSmokingCoordinates,
 } from './convertAnnouncedNoSmokingPlaces';
+import {
+  convertCommunityRecyclingStationRows,
+  parseCommunityRecyclingStationAddress,
+} from './convertCommunityRecyclingStations';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -482,5 +486,44 @@ describe('new facility converters', () => {
       withAnnouncementDateCount: 1,
       smokeFreeParkGreenSpaceCount: 1,
     });
+  });
+
+  it('maps community recycling stations as address-only records and summarizes duplicates', () => {
+    expect(parseCommunityRecyclingStationAddress('台北市信義區松德路89號')).toMatchObject({
+      address: '臺北市信義區松德路89號',
+      districtFromAddress: '信義區',
+      roadName: '松德路',
+    });
+
+    const converted = convertCommunityRecyclingStationRows([
+      { 編號: '1', 回收站名稱: '信惠社區資源回收站', 行政區: '信義區', 行政區代碼: '63000020', 地址: '台北市信義區松德路89號' },
+      { 編號: '2', 回收站名稱: '信惠社區資源回收站', 行政區: '信義區', 行政區代碼: '63000020', 地址: '台北市信義區松德路89號' },
+    ]);
+
+    expect(converted.facilities).toHaveLength(2);
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'community_recycling_station',
+      sourceSequenceNumber: 1,
+      stationName: '信惠社區資源回收站',
+      district: '信義區',
+      districtCode: '63000020',
+      address: '臺北市信義區松德路89號',
+      roadName: '松德路',
+      hasAddress: true,
+      hasParsedRoadName: true,
+      locationPrecision: 'address_only',
+      longitude: 0,
+      latitude: 0,
+    });
+    expect(converted.summary).toMatchObject({
+      totalRecords: 2,
+      districtCount: 1,
+      uniqueStationNameCount: 1,
+      uniqueAddressCount: 1,
+      recordsWithAddress: 2,
+      recordsWithParsedRoadName: 2,
+    });
+    expect(converted.summary.duplicateStationNames).toEqual([{ stationName: '信惠社區資源回收站', count: 2 }]);
+    expect(converted.summary.duplicateAddresses).toEqual([{ address: '臺北市信義區松德路89號', count: 2 }]);
   });
 });

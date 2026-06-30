@@ -16,7 +16,8 @@ export type FacilityType =
   | 'commercial_ev_charging_swap_station'
   | 'gas_lpg_station'
   | 'designated_smoking_area'
-  | 'announced_no_smoking_place';
+  | 'announced_no_smoking_place'
+  | 'community_recycling_station';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
@@ -219,6 +220,10 @@ export type Facility = {
   sourceY?: string;
   coordinateSystem?: CoordinateSystem;
   hasCoordinates?: boolean;
+  stationNameNormalized?: string;
+  districtNormalized?: string;
+  districtCodeNormalized?: string;
+  hasParsedRoadName?: boolean;
 };
 
 export type MotorcycleInspectionStationLocation = {
@@ -385,6 +390,19 @@ export type AnnouncedNoSmokingPlaceSummary = {
   bySourceResource: Array<{ sourceResourceName: string; count: number }>;
 };
 
+export type CommunityRecyclingStationSummary = {
+  totalRecords: number;
+  districtCount: number;
+  uniqueStationNameCount: number;
+  uniqueAddressCount: number;
+  recordsWithAddress: number;
+  recordsWithParsedRoadName: number;
+  byDistrict: Array<{ district: string; stationCount: number; uniqueAddressCount: number }>;
+  byRoadName: Array<{ roadName: string; count: number }>;
+  duplicateStationNames: Array<{ stationName: string; count: number }>;
+  duplicateAddresses: Array<{ address: string; count: number }>;
+};
+
 export type RiversideToiletSummary = {
   totalRecords: number;
   validCoordinateCount: number;
@@ -485,6 +503,7 @@ export type ConversionSourceReport = {
   unknownServiceTypeFiles?: string[];
   unexpectedBooleanValues?: Array<{ rowNumber: number; field: string; value: string }>;
   duplicateStationNames?: Array<{ stationName: string; count: number }>;
+  duplicateAddresses?: Array<{ address: string; count: number }>;
 };
 
 export type ConversionReport = {

@@ -11,7 +11,7 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Traditional Chinese UI by default, with English toggle persisted in `localStorage`.
 - Leaflet + OpenStreetMap map, no Google Maps API key required.
 - Local static amenity data loaded from `public/data/facilities.json`.
-- Facility type filter for pedestrian garbage bins, dog-waste bag boxes, public toilets, riverside toilets, family-friendly toilets, drinking facilities, timed collection points, used-clothing recycling boxes, and lactation rooms.
+- Facility type filter for pedestrian garbage bins, dog-waste bag boxes, public toilets, riverside toilets, family-friendly toilets, drinking facilities, timed collection points, used-clothing recycling boxes, community recycling stations, and lactation rooms.
 - Public service locations: motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, and gas/LPG stations.
 - Public health and environmental facilities: Taipei designated smoking areas plus announced no-smoking places with source fields, listed dates where available, and location references.
 - Toilet layers: public toilets, riverside toilets, and family-friendly toilets.
@@ -19,12 +19,13 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Public drinking fountain place-category and opening-hour filters.
 - Timed collection accepted-item/special-note filters and direct drinking station status, city, place-type, maintenance, and photo filters.
 - Used-clothing recycling box village, organization, and phone filters.
+- Community recycling station district-code, road-name, address, and parsed-road filters.
 - Family-friendly facilities: lactation rooms, with opening-hour, contact, location-guidance, certification-information, equipment, service, and legal-list filters.
 - Search across district, address, road, location, note, toilet name, toilet category, manager, public drinking fountain place name, install location, and opening hours.
 - Taipei district filter and nearest-facility lookup using browser geolocation.
 - Emoji map markers and legend for each facility type.
 - Broad multi-layer map views are list-first: individual markers return for nearby results or a narrowed single layer with at most 500 valid coordinates.
-- Lactation rooms, motorcycle inspection stations, electric motorcycle charging stations, and commercial EV charging/battery-swap stations are shown as searchable directories and district-level summary bubbles when the source files do not contain coordinates.
+- Lactation rooms, motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, and community recycling stations are shown as searchable directories and district-level summary bubbles when the source files do not contain coordinates.
 - Conversion report for dropped rows, missing fields, invalid coordinates, and coordinate outliers.
 - PWA manifest, icons, and service worker caching for repeat visits.
 
@@ -68,6 +69,16 @@ npm run convert:facilities
 ```
 
 Fields map from approval ID, district, village, approved location, organization, phone, longitude, and latitude into the shared facility model.
+
+The community recycling station layer uses the CP950/Big5 `臺北市社區資源回收站資訊.csv` resource:
+
+```bash
+npm run data:fetch:community-recycling
+npm run data:convert:community-recycling
+npm run convert:facilities
+```
+
+The source provides station name, district, district code, and address, but no coordinates. The app keeps these as address-only records, shows district summary bubbles, and uses address-based Google Maps lookup links. It does not claim real-time operating status, current opening hours, accepted recyclable items, service availability, complete recycling rules, collection schedules, waste-disposal advice, or official guarantee.
 
 The lactation-room layer uses two Big5/CP950 resources from `臺北市哺集乳室`:
 
@@ -206,6 +217,8 @@ public/data/drinking-fountains.json
 public/data/timed-collection-points.json
 public/data/direct-drinking-stations.json
 public/data/used-clothing-recycling-boxes.json
+public/data/community-recycling-stations.json
+public/data/community-recycling-station-summary.json
 public/data/lactation-rooms.json
 public/data/lactation-room-summary.json
 public/data/lactation-room-locations.json
@@ -224,6 +237,7 @@ public/data/designated-smoking-areas.json
 public/data/designated-smoking-area-summary.json
 public/data/announced-no-smoking-places.json
 public/data/announced-no-smoking-place-summary.json
+public/data/public-amenities-summary.json
 public/data/conversion-report.json
 ```
 
@@ -272,7 +286,7 @@ More detail: [docs/deployment.en.md](docs/deployment.en.md)
 
 ### Data Notice
 
-Public toilets, riverside toilets, family-friendly toilets, motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, and gas/LPG stations remain separate source-specific layers. Equipment counts, award fields, business hours, cleanliness, maintenance, opening status, charger availability, fuel/LPG availability, pricing, payment methods, membership requirements, battery inventory, and service availability are public-data snapshots rather than real-time guarantees. Verify details with official, operator, venue, managing-unit, station, or on-site notices.
+Public toilets, riverside toilets, family-friendly toilets, recycling-related facilities, motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, gas/LPG stations, designated smoking areas, and announced no-smoking places remain separate source-specific layers. Equipment counts, award fields, business hours, cleanliness, maintenance, opening status, accepted recyclable items, recycling rules, collection schedules, charger availability, fuel/LPG availability, pricing, payment methods, membership requirements, battery inventory, legal boundaries, and service availability are public-data snapshots rather than real-time guarantees. Verify details with official, operator, venue, managing-unit, station, community-management, competent-authority, or on-site notices.
 
 ## 中文
 
@@ -281,7 +295,7 @@ Public toilets, riverside toilets, family-friendly toilets, motorcycle inspectio
 - 預設使用繁體中文介面，並提供 English 切換；語言選擇會存在 `localStorage`。
 - 使用 Leaflet + OpenStreetMap，不需要 Google Maps API key。
 - 從 `public/data/facilities.json` 載入本機靜態便利設施資料。
-- 支援行人專用清潔箱、狗便袋箱、公廁、河濱廁所、親子友善廁所、飲水設施、限時收受點、舊衣回收箱與哺集乳室的設施類型篩選。
+- 支援行人專用清潔箱、狗便袋箱、公廁、河濱廁所、親子友善廁所、飲水設施、限時收受點、舊衣回收箱、社區資源回收站與哺集乳室的設施類型篩選。
 - 公共服務站點：機車定檢站、電動機車充電站、營利型電動車充換電站與加油站及加氣站。
 - 公共健康與環境設施：指定吸菸區，包含開放時間、相對位置、照片連結、管理單位與電話。
 - 公廁圖層包含一般公廁、河濱廁所與親子友善廁所。
@@ -289,12 +303,13 @@ Public toilets, riverside toilets, family-friendly toilets, motorcycle inspectio
 - 支援公共場所飲水機場所類型與開放時間資料篩選。
 - 支援限時收受點收受項目／特殊備註，以及直飲臺狀態、縣市、場所類型、維護資訊與照片篩選。
 - 支援舊衣回收箱里別、設置團體與電話資料篩選。
+- 支援社區資源回收站行政區域代碼、道路名稱、有地址與有道路名稱篩選。
 - 親子友善設施：哺集乳室，支援開放時間、聯絡方式、位置指引、認證資訊、設備、友善服務與依法設置清單篩選。
 - 搜尋涵蓋行政區、地址、路名、位置、備註、公廁名稱、公廁類別、管理單位、飲水機場所名稱、設置地點與開放時間。
 - 支援台北市行政區篩選與瀏覽器定位找附近設施。
 - 不同設施類型使用 emoji 地圖標記與圖例。
 - 大量未篩選結果不會直接渲染所有地圖標記，避免手機地圖過度擁擠。
-- 哺集乳室、機車定檢站、電動機車充電站與營利型電動車充換電站來源若未提供座標，會以前端清單與行政區彙總泡泡呈現。
+- 哺集乳室、機車定檢站、電動機車充電站、營利型電動車充換電站與社區資源回收站來源若未提供座標，會以前端清單與行政區彙總泡泡呈現。
 - 轉換報告會記錄刪除列、缺漏欄位、無效座標與座標疑似異常列。
 - 已具備 PWA manifest、icons 與 service worker，支援重複造訪時的快取。
 
@@ -338,6 +353,16 @@ npm run convert:facilities
 ```
 
 欄位會將核准編號、行政區、里別、核准地點、團體名稱、電話與座標映射到共用設施模型。
+
+社區資源回收站圖層使用 CP950/Big5 的 `臺北市社區資源回收站資訊.csv`：
+
+```bash
+npm run data:fetch:community-recycling
+npm run data:convert:community-recycling
+npm run convert:facilities
+```
+
+來源提供回收站名稱、行政區、行政區代碼與地址，但沒有座標。本網站保留為地址型清單資料，以行政區彙總泡泡呈現，Google Maps 連結使用地址查詢。此圖層不代表即時營運狀態、即時開放時間、目前可回收項目、服務可用性、完整回收規定、清運時程、廢棄物處理建議或官方保證。
 
 哺集乳室圖層使用 `臺北市哺集乳室` 的兩份 Big5/CP950 資料：
 
@@ -476,6 +501,8 @@ public/data/drinking-fountains.json
 public/data/timed-collection-points.json
 public/data/direct-drinking-stations.json
 public/data/used-clothing-recycling-boxes.json
+public/data/community-recycling-stations.json
+public/data/community-recycling-station-summary.json
 public/data/lactation-rooms.json
 public/data/lactation-room-summary.json
 public/data/lactation-room-locations.json
@@ -494,6 +521,7 @@ public/data/designated-smoking-areas.json
 public/data/designated-smoking-area-summary.json
 public/data/announced-no-smoking-places.json
 public/data/announced-no-smoking-place-summary.json
+public/data/public-amenities-summary.json
 public/data/conversion-report.json
 ```
 
@@ -542,4 +570,4 @@ npm run preview
 
 ### 資料提醒
 
-行人專用清潔箱、狗便袋箱、公廁、飲水設施、限時收受點、直飲臺、舊衣回收箱、機車定檢站、電動機車充電站、營利型電動車充換電站、加油站及加氣站、指定吸菸區與公告禁菸場所是不同設施或站點。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、舊衣回收箱可投遞狀態、機車定檢站服務、充換電站可用狀態、油氣供應、費率、付款方式、會員資格、指定吸菸區與公告禁菸場所之現場標示、法規適用與邊界、水質維護資訊請以現場、業者及主管機關公告為準。
+行人專用清潔箱、狗便袋箱、公廁、飲水設施、限時收受點、直飲臺、舊衣回收箱、社區資源回收站、機車定檢站、電動機車充電站、營利型電動車充換電站、加油站及加氣站、指定吸菸區與公告禁菸場所是不同設施或站點。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、社區資源回收站營運狀態、目前可回收項目、服務可用性、回收規定、清運時程、舊衣回收箱可投遞狀態、機車定檢站服務、充換電站可用狀態、油氣供應、費率、付款方式、會員資格、指定吸菸區與公告禁菸場所之現場標示、法規適用與邊界、水質維護資訊請以現場、社區管理單位、業者及主管機關公告為準。

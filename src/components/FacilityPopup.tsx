@@ -82,6 +82,9 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.parkName && <p>{t.parkName}: {facility.parkName}</p>}
         </>
       )}
+      {facility.type === 'community_recycling_station' && facility.stationName && (
+        <p>{t.stationName}: {facility.stationName}</p>
+      )}
       <p>
         {t.district}: {facility.district}
       </p>
@@ -257,6 +260,13 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.sourceResourceName && <p>{t.sourceResource}: {facility.sourceResourceName}</p>}
         </>
       )}
+      {facility.type === 'community_recycling_station' && (
+        <>
+          {facility.sourceSequenceNumber && <p>{t.sourceSequenceNumber}: {facility.sourceSequenceNumber}</p>}
+          {facility.districtCode && <p>{t.districtCode}: {facility.districtCode}</p>}
+          {facility.roadName && <p>{t.roadName}: {facility.roadName}</p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
@@ -268,6 +278,7 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       {facility.type === 'gas_lpg_station' && <p>{t.notice}: {t.gasLpgPopupNotice}</p>}
       {facility.type === 'designated_smoking_area' && <p>{t.notice}: {t.designatedSmokingAreaPopupNotice}</p>}
       {facility.type === 'announced_no_smoking_place' && <p>{t.notice}: {t.announcedNoSmokingPlacePopupNotice}</p>}
+      {facility.type === 'community_recycling_station' && <p>{t.notice}: {t.communityRecyclingStationPopupNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

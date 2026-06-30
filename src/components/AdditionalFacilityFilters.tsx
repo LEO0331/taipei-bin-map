@@ -681,3 +681,45 @@ export function AnnouncedNoSmokingPlaceFilters(props: AnnouncedNoSmokingPlaceFil
     </fieldset>
   );
 }
+
+type CommunityRecyclingStationFiltersProps = {
+  districtCodes: string[];
+  roadNames: string[];
+  districtCode: string;
+  roadName: string;
+  hasAddress: boolean;
+  hasParsedRoadName: boolean;
+  t: Translation;
+  onDistrictCodeChange: (value: string) => void;
+  onRoadNameChange: (value: string) => void;
+  onBooleanChange: (name: 'address' | 'road', value: boolean) => void;
+};
+
+export function CommunityRecyclingStationFilters(props: CommunityRecyclingStationFiltersProps) {
+  return (
+    <fieldset className="toilet-filters">
+      <label>
+        {props.t.districtCode}
+        <select value={props.districtCode} onChange={(event) => props.onDistrictCodeChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.districtCodes.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.roadName}
+        <select value={props.roadName} onChange={(event) => props.onRoadNameChange(event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.roadNames.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label className="checkbox-filter">
+        <input type="checkbox" checked={props.hasAddress} onChange={(event) => props.onBooleanChange('address', event.target.checked)} />
+        <span>{props.t.hasAddress}</span>
+      </label>
+      <label className="checkbox-filter">
+        <input type="checkbox" checked={props.hasParsedRoadName} onChange={(event) => props.onBooleanChange('road', event.target.checked)} />
+        <span>{props.t.hasParsedRoadName}</span>
+      </label>
+    </fieldset>
+  );
+}

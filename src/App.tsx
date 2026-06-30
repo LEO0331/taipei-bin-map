@@ -3,6 +3,7 @@ import { DrinkingFountainFilters } from './components/DrinkingFountainFilters';
 import {
   CommercialEvChargingSwapStationFilters,
   AnnouncedNoSmokingPlaceFilters,
+  CommunityRecyclingStationFilters,
   DesignatedSmokingAreaFilters,
   DirectDrinkingFilters,
   ElectricMotorcycleChargingStationFilters,
@@ -156,6 +157,10 @@ function App() {
   const [noSmokingHasCoordinates, setNoSmokingHasCoordinates] = useState(false);
   const [noSmokingHasAddress, setNoSmokingHasAddress] = useState(false);
   const [noSmokingHasLocationDescription, setNoSmokingHasLocationDescription] = useState(false);
+  const [communityRecyclingDistrictCode, setCommunityRecyclingDistrictCode] = useState('');
+  const [communityRecyclingRoadName, setCommunityRecyclingRoadName] = useState('');
+  const [communityRecyclingHasAddress, setCommunityRecyclingHasAddress] = useState(false);
+  const [communityRecyclingHasParsedRoadName, setCommunityRecyclingHasParsedRoadName] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -177,6 +182,7 @@ function App() {
   const includesGasLpgStations = selectedTypes.includes('gas_lpg_station');
   const includesDesignatedSmokingAreas = selectedTypes.includes('designated_smoking_area');
   const includesAnnouncedNoSmokingPlaces = selectedTypes.includes('announced_no_smoking_place');
+  const includesCommunityRecyclingStations = selectedTypes.includes('community_recycling_station');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -333,6 +339,14 @@ function App() {
     () => [...new Set(facilities.filter((facility) => facility.type === 'announced_no_smoking_place').map((facility) => facility.sourceResourceName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
     [facilities],
   );
+  const communityRecyclingDistrictCodes = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'community_recycling_station').map((facility) => facility.districtCode).filter(Boolean) as string[])].sort(),
+    [facilities],
+  );
+  const communityRecyclingRoadNames = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'community_recycling_station').map((facility) => facility.roadName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -411,6 +425,10 @@ function App() {
         noSmokingHasCoordinates,
         noSmokingHasAddress,
         noSmokingHasLocationDescription,
+        communityRecyclingDistrictCode,
+        communityRecyclingRoadName,
+        communityRecyclingHasAddress,
+        communityRecyclingHasParsedRoadName,
       }),
     [
       district,
@@ -488,6 +506,10 @@ function App() {
       noSmokingHasCoordinates,
       noSmokingHasAddress,
       noSmokingHasLocationDescription,
+      communityRecyclingDistrictCode,
+      communityRecyclingRoadName,
+      communityRecyclingHasAddress,
+      communityRecyclingHasParsedRoadName,
     ],
   );
 
@@ -556,6 +578,17 @@ function App() {
       };
     });
   }, [displayedFacilities]);
+  const communityRecyclingDistrictSummaries = useMemo(() => {
+    const stations = displayedFacilities.filter((facility) => facility.type === 'community_recycling_station');
+    return [...new Set(stations.map((facility) => facility.district).filter(Boolean))].map((district) => {
+      const rows = stations.filter((facility) => facility.district === district);
+      return {
+        district,
+        count: rows.length,
+        uniqueAddressCount: new Set(rows.map((facility) => facility.addressNormalized || facility.address).filter(Boolean)).size,
+      };
+    });
+  }, [displayedFacilities]);
   const renderableFacilities = displayedFacilities.filter(
     (facility) =>
       Number.isFinite(facility.latitude) &&
@@ -585,6 +618,7 @@ function App() {
   const isGasLpgOnly = selectedTypes.length === 1 && includesGasLpgStations;
   const isDesignatedSmokingAreaOnly = selectedTypes.length === 1 && includesDesignatedSmokingAreas;
   const isAnnouncedNoSmokingPlaceOnly = selectedTypes.length === 1 && includesAnnouncedNoSmokingPlaces;
+  const isCommunityRecyclingOnly = selectedTypes.length === 1 && includesCommunityRecyclingStations;
   const isSpecializedToiletOnly = isRiversideOnly || isFamilyToiletOnly;
   const listHeading = nearbyFacilities
     ? t.nearestFacilities
@@ -602,6 +636,8 @@ function App() {
                   ? t.designatedSmokingAreaDirectory
                   : isAnnouncedNoSmokingPlaceOnly
                     ? t.announcedNoSmokingPlaceDirectory
+                    : isCommunityRecyclingOnly
+                      ? t.communityRecyclingStationDirectory
                 : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
     if (!report?.generatedAt) {
@@ -730,6 +766,12 @@ function App() {
       setNoSmokingHasCoordinates(false);
       setNoSmokingHasAddress(false);
       setNoSmokingHasLocationDescription(false);
+    }
+    if (!value.includes('community_recycling_station')) {
+      setCommunityRecyclingDistrictCode('');
+      setCommunityRecyclingRoadName('');
+      setCommunityRecyclingHasAddress(false);
+      setCommunityRecyclingHasParsedRoadName(false);
     }
     setNearbyFacilities(null);
   };
@@ -892,6 +934,8 @@ function App() {
                         ? t.designatedSmokingAreaSearchPlaceholder
                         : isAnnouncedNoSmokingPlaceOnly
                           ? t.announcedNoSmokingPlaceSearchPlaceholder
+                          : isCommunityRecyclingOnly
+                            ? t.communityRecyclingStationSearchPlaceholder
               : isSpecializedToiletOnly
                 ? t.toiletSearchPlaceholder
                 : t.searchPlaceholder}
@@ -1155,6 +1199,30 @@ function App() {
               }}
             />
           )}
+          {hasFocusedTypes && includesCommunityRecyclingStations && (
+            <CommunityRecyclingStationFilters
+              districtCodes={communityRecyclingDistrictCodes}
+              roadNames={communityRecyclingRoadNames}
+              districtCode={communityRecyclingDistrictCode}
+              roadName={communityRecyclingRoadName}
+              hasAddress={communityRecyclingHasAddress}
+              hasParsedRoadName={communityRecyclingHasParsedRoadName}
+              t={t}
+              onDistrictCodeChange={(value) => {
+                setCommunityRecyclingDistrictCode(value);
+                setNearbyFacilities(null);
+              }}
+              onRoadNameChange={(value) => {
+                setCommunityRecyclingRoadName(value);
+                setNearbyFacilities(null);
+              }}
+              onBooleanChange={(name, value) => {
+                if (name === 'address') setCommunityRecyclingHasAddress(value);
+                if (name === 'road') setCommunityRecyclingHasParsedRoadName(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
           {isSpecializedToiletOnly && (
             <label className="nearby-radius">
               <span>{t.nearbyRadius}</span>
@@ -1270,6 +1338,8 @@ function App() {
                     ? t.viewChargingStationsByNearbyDistrict
                     : isCommercialEvOnly
                       ? t.viewCommercialEvStationsByNearbyDistrict
+                      : isCommunityRecyclingOnly
+                        ? t.viewCommunityRecyclingStationsByNearbyDistrict
                       : isGasLpgOnly
                         ? t.showNearbyGasLpgStations
                         : isDesignatedSmokingAreaOnly
@@ -1301,6 +1371,8 @@ function App() {
                     ? t.commercialEvDistanceUnavailableNotice
                     : includesAnnouncedNoSmokingPlaces
                       ? t.announcedNoSmokingPlaceDistanceUnavailableNotice
+                      : includesCommunityRecyclingStations
+                        ? t.communityRecyclingStationDistanceUnavailableNotice
                   : t.lactationRoomDistanceUnavailableNotice
                 : t.unableToGetLocation}
           </p>
@@ -1310,6 +1382,7 @@ function App() {
         {includesChargingStations && <p className="status-message">{t.chargingStationNoCoordinateNotice}</p>}
         {includesCommercialEvStations && <p className="status-message">{t.commercialEvNoCoordinateNotice}</p>}
         {includesAnnouncedNoSmokingPlaces && <p className="status-message">{t.announcedNoSmokingPlaceNotice}</p>}
+        {includesCommunityRecyclingStations && <p className="status-message">{t.communityRecyclingStationMapNotice}</p>}
         {isLoadingFacilities ? (
           <p className="status-message">{t.loading}</p>
         ) : (
@@ -1323,6 +1396,7 @@ function App() {
                 inspectionDistrictSummaries={inspectionDistrictSummaries}
                 chargingDistrictSummaries={chargingDistrictSummaries}
                 commercialEvDistrictSummaries={commercialEvDistrictSummaries}
+                communityRecyclingDistrictSummaries={communityRecyclingDistrictSummaries}
                 t={t}
                 userLocation={userLocation}
               />

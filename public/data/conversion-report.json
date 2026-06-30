@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-30T01:12:05.642Z",
-  "totalValidRows": 11880,
+  "generatedAt": "2026-06-30T02:14:17.238Z",
+  "totalValidRows": 12269,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -241,6 +241,236 @@
       "coordinateOutlierRows": 0,
       "invalidCoordinateRows": [],
       "missingRequiredFields": []
+    },
+    {
+      "sourceFilename": "臺北市社區資源回收站資訊.csv",
+      "totalRows": 389,
+      "validRows": 389,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": [],
+      "addressParseWarnings": [],
+      "duplicateStationNames": [
+        {
+          "stationName": "帝璽社區資源回收站",
+          "count": 2
+        },
+        {
+          "stationName": "京華DC大樓",
+          "count": 2
+        }
+      ],
+      "duplicateAddresses": [
+        {
+          "address": "臺北市萬華區西藏路127號",
+          "count": 6
+        },
+        {
+          "address": "臺北市內湖區內湖路一段91巷102弄16號",
+          "count": 2
+        },
+        {
+          "address": "臺北市松山區健康路329號",
+          "count": 3
+        },
+        {
+          "address": "臺北市松山區延壽街330巷17弄2號",
+          "count": 2
+        },
+        {
+          "address": "臺北市信義區忠孝東路5段365號",
+          "count": 2
+        },
+        {
+          "address": "臺北市信義區松仁路242~266號",
+          "count": 2
+        },
+        {
+          "address": "臺北市內湖區康寧路一段290號",
+          "count": 2
+        },
+        {
+          "address": "臺北市文山區木柵路二段109巷100弄10號",
+          "count": 2
+        },
+        {
+          "address": "臺北市中山區中山北路二段59巷45號",
+          "count": 2
+        },
+        {
+          "address": "臺北市大安區師大路105巷18號",
+          "count": 2
+        },
+        {
+          "address": "臺北市中山區建國北路3段55號",
+          "count": 2
+        },
+        {
+          "address": "臺北市中正區青島東路5號3樓",
+          "count": 2
+        },
+        {
+          "address": "臺北市大安區信義路二段132號到142號",
+          "count": 2
+        },
+        {
+          "address": "臺北市內湖區五分街72巷1號",
+          "count": 2
+        },
+        {
+          "address": "臺北市中山區中山北路一段83巷32號",
+          "count": 2
+        },
+        {
+          "address": "臺北市中山區明水路397巷19弄28號",
+          "count": 2
+        },
+        {
+          "address": "臺北市中山區明水路397巷19弄17號",
+          "count": 4
+        },
+        {
+          "address": "臺北市大安區敦化南路二段104號",
+          "count": 2
+        },
+        {
+          "address": "臺北市中山區北安路630巷25弄18號",
+          "count": 3
+        },
+        {
+          "address": "臺北市中山區明水路649~659號",
+          "count": 2
+        },
+        {
+          "address": "臺北市士林區陽明山莊頂路168號",
+          "count": 2
+        },
+        {
+          "address": "臺北市北投區泉源路35巷36之10-29號",
+          "count": 2
+        },
+        {
+          "address": "臺北市文山區萬和街6號",
+          "count": 2
+        },
+        {
+          "address": "臺北市文山區福興路62號",
+          "count": 2
+        },
+        {
+          "address": "臺北市北投區石牌路二段362號",
+          "count": 2
+        },
+        {
+          "address": "臺北市中山區明水路557巷10-16號",
+          "count": 2
+        },
+        {
+          "address": "臺北市南港區興華路64巷1-11號",
+          "count": 2
+        },
+        {
+          "address": "臺北市中山區北安路761號",
+          "count": 2
+        },
+        {
+          "address": "臺北市信義區信義路4段151號",
+          "count": 2
+        },
+        {
+          "address": "臺北市文山區木新路三段95巷42號",
+          "count": 2
+        },
+        {
+          "address": "臺北市大安區復興南路一段259號",
+          "count": 2
+        },
+        {
+          "address": "臺北市萬華區西園路二段127~139號",
+          "count": 2
+        },
+        {
+          "address": "臺北市文山區三福街9巷2~12號",
+          "count": 3
+        },
+        {
+          "address": "臺北市士林區士商路167號",
+          "count": 2
+        },
+        {
+          "address": "臺北市萬華區萬青街186號",
+          "count": 4
+        },
+        {
+          "address": "臺北市大同區重慶北路2段63號",
+          "count": 2
+        },
+        {
+          "address": "臺北市中山區龍江路120巷9號",
+          "count": 2
+        },
+        {
+          "address": "臺北市大同區重慶北路三段76號",
+          "count": 2
+        },
+        {
+          "address": "臺北市大同區民權西路146號",
+          "count": 2
+        },
+        {
+          "address": "臺北市松山區延壽街33巷8弄7-1號",
+          "count": 2
+        },
+        {
+          "address": "臺北市松山區延壽街330巷16弄5號",
+          "count": 2
+        },
+        {
+          "address": "臺北市內湖區民權東路6段298-326號",
+          "count": 3
+        },
+        {
+          "address": "臺北市文山區興隆路4段105巷3-29號",
+          "count": 3
+        },
+        {
+          "address": "臺北市內湖區金龍路222巷2號",
+          "count": 3
+        },
+        {
+          "address": "臺北市士林區天母北路68號",
+          "count": 2
+        },
+        {
+          "address": "臺北市文山區政大一街36巷5號",
+          "count": 2
+        },
+        {
+          "address": "臺北市文山區興隆路二段301巷18號",
+          "count": 2
+        },
+        {
+          "address": "臺北市北投區竹子湖路35號之一",
+          "count": 2
+        },
+        {
+          "address": "臺北市松山區南京東路五段47號",
+          "count": 2
+        },
+        {
+          "address": "臺北市松山區復興北路427巷11號",
+          "count": 2
+        },
+        {
+          "address": "臺北市信義區松德路307巷26號",
+          "count": 3
+        },
+        {
+          "address": "臺北市信義區松德路200巷8號",
+          "count": 3
+        }
+      ]
     }
   ]
 }

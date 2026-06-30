@@ -24,6 +24,7 @@ export const FACILITY_TYPE_OPTIONS: FacilityType[] = [
   'gas_lpg_station',
   'designated_smoking_area',
   'announced_no_smoking_place',
+  'community_recycling_station',
 ];
 
 export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeFilterProps) {
@@ -44,6 +45,7 @@ export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeF
     gas_lpg_station: t.gasLpgStations,
     designated_smoking_area: t.designatedSmokingAreas,
     announced_no_smoking_place: t.announcedNoSmokingPlaces,
+    community_recycling_station: t.communityRecyclingStations,
   } satisfies Record<FacilityType, string>;
 
   const allSelected = selectedTypes.length === FACILITY_TYPE_OPTIONS.length;

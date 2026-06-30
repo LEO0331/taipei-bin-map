@@ -1,0 +1,9 @@
+{
+  "source": "/Users/Leo/Downloads/臺北市社區資源回收站資訊.csv",
+  "target": "/Users/Leo/Documents/taipei-bin-map/data/raw/community-recycling-stations/臺北市社區資源回收站資訊.csv",
+  "dataset": "臺北市社區資源回收站資訊",
+  "sourceAgency": "環保局",
+  "copiedAt": "2026-06-30T02:14:10.928Z",
+  "fileSizeBytes": 25872,
+  "encoding": "cp950"
+}

@@ -10,6 +10,7 @@ import {
   getFacilityTypeLabel,
   getElectricMotorcycleChargingLocationCategoryLabel,
   getAnnouncedNoSmokingRecordTypeLabel,
+  getCommunityRecyclingStationLabel,
   isCoordinateOutlier,
   getFuelStationStatusLabel,
   normalizeTaipeiDistrict,
@@ -315,6 +316,27 @@ const facilities: Facility[] = [
     hasAnnouncementDate: true,
     coordinateSystem: 'wgs84',
   },
+  {
+    id: 'community_recycling_station-0001',
+    type: 'community_recycling_station',
+    district: '信義區',
+    address: '臺北市信義區松德路89號',
+    longitude: 0,
+    latitude: 0,
+    note: '',
+    source: '臺北市社區資源回收站資訊',
+    sourceAgency: '臺北市政府環境保護局',
+    locationPrecision: 'address_only',
+    sourceSequenceNumber: 1,
+    stationName: '信惠社區資源回收站',
+    name: '信惠社區資源回收站',
+    districtCode: '63000020',
+    districtCodeNormalized: '63000020',
+    addressNormalized: '台北市信義區松德路89號',
+    roadName: '松德路',
+    hasAddress: true,
+    hasParsedRoadName: true,
+  },
 ];
 
 describe('calculateDistanceMeters', () => {
@@ -600,6 +622,19 @@ describe('filterFacilities', () => {
     });
     expect(result.map((item) => item.id)).toEqual(['announced_no_smoking_place-0001']);
   });
+
+  it('filters and searches community recycling stations without coordinates', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '松德',
+      district: '信義區',
+      facilityTypes: ['community_recycling_station'],
+      communityRecyclingDistrictCode: '63000020',
+      communityRecyclingRoadName: '松德路',
+      communityRecyclingHasAddress: true,
+      communityRecyclingHasParsedRoadName: true,
+    });
+    expect(result.map((item) => item.id)).toEqual(['community_recycling_station-0001']);
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -621,6 +656,8 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('designated_smoking_area', 'zh')).toBe('指定吸菸區');
     expect(getFacilityTypeLabel('announced_no_smoking_place', 'zh')).toBe('公告禁菸場所');
     expect(getAnnouncedNoSmokingRecordTypeLabel('smoke_free_park_green_space', 'en')).toBe('Smoke-Free Park / Green Space');
+    expect(getFacilityTypeLabel('community_recycling_station', 'zh')).toBe('社區資源回收站');
+    expect(getCommunityRecyclingStationLabel('short', 'en')).toBe('Community Recycling');
     expect(getElectricMotorcycleChargingLocationCategoryLabel('service_factory', 'en')).toBe('Service factory');
     expect(getCommercialEvServiceTypeLabel('electric_motorcycle_battery_swap', 'zh')).toBe('電動機車換電站');
     expect(getFuelStationStatusLabel('terminated', 'zh')).toBe('來源標示終止營業');

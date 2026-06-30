@@ -579,6 +579,10 @@ a:focus-visible {
   background: #ffdede;
 }
 
+.facility-div-marker.community_recycling_station span {
+  background: #d8f0d8;
+}
+
 .map-popup {
   max-width: 15rem;
 }

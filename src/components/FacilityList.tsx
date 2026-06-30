@@ -233,6 +233,15 @@ export function FacilityList({
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}
+              {facility.type === 'community_recycling_station' && (
+                <small>
+                  {[
+                    facility.sourceSequenceNumber ? `${t.sourceSequenceNumber}: ${facility.sourceSequenceNumber}` : '',
+                    facility.districtCode ? `${t.districtCode}: ${facility.districtCode}` : '',
+                    facility.roadName ? `${t.roadName}: ${facility.roadName}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
               {facility.note && <small>{facility.note}</small>}
               {facility.type === 'designated_smoking_area' && facility.photoUrl && (
                 <a href={facility.photoUrl} target="_blank" rel="noreferrer">{t.photo}</a>

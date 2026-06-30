@@ -36,6 +36,8 @@
     "data:convert:designated-smoking-areas": "tsx scripts/convertDesignatedSmokingAreas.ts",
     "data:fetch:no-smoking": "tsx scripts/fetchAnnouncedNoSmokingPlaces.ts",
     "data:convert:no-smoking": "tsx scripts/convertAnnouncedNoSmokingPlaces.ts",
+    "data:fetch:community-recycling": "tsx scripts/fetchCommunityRecyclingStations.ts",
+    "data:convert:community-recycling": "tsx scripts/convertCommunityRecyclingStations.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

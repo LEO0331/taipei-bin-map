@@ -1,0 +1,1060 @@
+{
+  "totalRecords": 389,
+  "districtCount": 12,
+  "uniqueStationNameCount": 387,
+  "uniqueAddressCount": 321,
+  "recordsWithAddress": 389,
+  "recordsWithParsedRoadName": 387,
+  "byDistrict": [
+    {
+      "district": "中山區",
+      "stationCount": 58,
+      "uniqueAddressCount": 45
+    },
+    {
+      "district": "內湖區",
+      "stationCount": 57,
+      "uniqueAddressCount": 50
+    },
+    {
+      "district": "文山區",
+      "stationCount": 47,
+      "uniqueAddressCount": 37
+    },
+    {
+      "district": "大安區",
+      "stationCount": 39,
+      "uniqueAddressCount": 35
+    },
+    {
+      "district": "信義區",
+      "stationCount": 38,
+      "uniqueAddressCount": 31
+    },
+    {
+      "district": "松山區",
+      "stationCount": 36,
+      "uniqueAddressCount": 29
+    },
+    {
+      "district": "萬華區",
+      "stationCount": 28,
+      "uniqueAddressCount": 19
+    },
+    {
+      "district": "士林區",
+      "stationCount": 21,
+      "uniqueAddressCount": 18
+    },
+    {
+      "district": "中正區",
+      "stationCount": 20,
+      "uniqueAddressCount": 19
+    },
+    {
+      "district": "大同區",
+      "stationCount": 18,
+      "uniqueAddressCount": 15
+    },
+    {
+      "district": "北投區",
+      "stationCount": 16,
+      "uniqueAddressCount": 13
+    },
+    {
+      "district": "南港區",
+      "stationCount": 11,
+      "uniqueAddressCount": 10
+    }
+  ],
+  "byRoadName": [
+    {
+      "roadName": "光復南路",
+      "count": 12
+    },
+    {
+      "roadName": "明水路",
+      "count": 12
+    },
+    {
+      "roadName": "松德路",
+      "count": 11
+    },
+    {
+      "roadName": "三民路",
+      "count": 8
+    },
+    {
+      "roadName": "民權東路6段",
+      "count": 8
+    },
+    {
+      "roadName": "內湖路3段",
+      "count": 8
+    },
+    {
+      "roadName": "西藏路",
+      "count": 7
+    },
+    {
+      "roadName": "健康路",
+      "count": 7
+    },
+    {
+      "roadName": "北安路",
+      "count": 7
+    },
+    {
+      "roadName": "延壽街",
+      "count": 6
+    },
+    {
+      "roadName": "復興北路",
+      "count": 6
+    },
+    {
+      "roadName": "士商路",
+      "count": 6
+    },
+    {
+      "roadName": "內湖路一段",
+      "count": 4
+    },
+    {
+      "roadName": "松仁路",
+      "count": 4
+    },
+    {
+      "roadName": "忠孝東路五段",
+      "count": 4
+    },
+    {
+      "roadName": "重慶北路2段",
+      "count": 4
+    },
+    {
+      "roadName": "萬青街",
+      "count": 4
+    },
+    {
+      "roadName": "承德路三段",
+      "count": 4
+    },
+    {
+      "roadName": "水源路",
+      "count": 3
+    },
+    {
+      "roadName": "永吉路",
+      "count": 3
+    },
+    {
+      "roadName": "中山北路二段",
+      "count": 3
+    },
+    {
+      "roadName": "青島東路",
+      "count": 3
+    },
+    {
+      "roadName": "敦化南路一段",
+      "count": 3
+    },
+    {
+      "roadName": "泉源路",
+      "count": 3
+    },
+    {
+      "roadName": "興華路",
+      "count": 3
+    },
+    {
+      "roadName": "基湖路",
+      "count": 3
+    },
+    {
+      "roadName": "成功路2段",
+      "count": 3
+    },
+    {
+      "roadName": "木新路三段",
+      "count": 3
+    },
+    {
+      "roadName": "林森北路",
+      "count": 3
+    },
+    {
+      "roadName": "長安東路一段",
+      "count": 3
+    },
+    {
+      "roadName": "興隆路二段",
+      "count": 3
+    },
+    {
+      "roadName": "三福街",
+      "count": 3
+    },
+    {
+      "roadName": "康寧路3段",
+      "count": 3
+    },
+    {
+      "roadName": "吉林路",
+      "count": 3
+    },
+    {
+      "roadName": "成功路五段",
+      "count": 3
+    },
+    {
+      "roadName": "德昌街",
+      "count": 3
+    },
+    {
+      "roadName": "重慶北路三段",
+      "count": 3
+    },
+    {
+      "roadName": "興隆路四段",
+      "count": 3
+    },
+    {
+      "roadName": "興隆路4段",
+      "count": 3
+    },
+    {
+      "roadName": "金龍路",
+      "count": 3
+    },
+    {
+      "roadName": "南京東路五段",
+      "count": 3
+    },
+    {
+      "roadName": "忠孝東路5段",
+      "count": 2
+    },
+    {
+      "roadName": "康寧路一段",
+      "count": 2
+    },
+    {
+      "roadName": "木柵路二段",
+      "count": 2
+    },
+    {
+      "roadName": "敦化北路",
+      "count": 2
+    },
+    {
+      "roadName": "麗水街",
+      "count": 2
+    },
+    {
+      "roadName": "師大路",
+      "count": 2
+    },
+    {
+      "roadName": "仁愛路4段",
+      "count": 2
+    },
+    {
+      "roadName": "建國北路3段",
+      "count": 2
+    },
+    {
+      "roadName": "信義路二段",
+      "count": 2
+    },
+    {
+      "roadName": "信義路五段",
+      "count": 2
+    },
+    {
+      "roadName": "五分街",
+      "count": 2
+    },
+    {
+      "roadName": "中山北路一段",
+      "count": 2
+    },
+    {
+      "roadName": "中華路一段",
+      "count": 2
+    },
+    {
+      "roadName": "敦化南路二段",
+      "count": 2
+    },
+    {
+      "roadName": "陽明山莊頂路",
+      "count": 2
+    },
+    {
+      "roadName": "久康街",
+      "count": 2
+    },
+    {
+      "roadName": "萬和街",
+      "count": 2
+    },
+    {
+      "roadName": "福興路",
+      "count": 2
+    },
+    {
+      "roadName": "石牌路二段",
+      "count": 2
+    },
+    {
+      "roadName": "民權東路六段",
+      "count": 2
+    },
+    {
+      "roadName": "星雲街",
+      "count": 2
+    },
+    {
+      "roadName": "青田街",
+      "count": 2
+    },
+    {
+      "roadName": "羅斯福路1段",
+      "count": 2
+    },
+    {
+      "roadName": "信義路4段",
+      "count": 2
+    },
+    {
+      "roadName": "港墘路",
+      "count": 2
+    },
+    {
+      "roadName": "大湖山莊街",
+      "count": 2
+    },
+    {
+      "roadName": "杭州南路1段",
+      "count": 2
+    },
+    {
+      "roadName": "復興南路一段",
+      "count": 2
+    },
+    {
+      "roadName": "和平東路三段",
+      "count": 2
+    },
+    {
+      "roadName": "天母西路",
+      "count": 2
+    },
+    {
+      "roadName": "西園路二段",
+      "count": 2
+    },
+    {
+      "roadName": "指南路三段",
+      "count": 2
+    },
+    {
+      "roadName": "忠孝東路四段",
+      "count": 2
+    },
+    {
+      "roadName": "金湖路",
+      "count": 2
+    },
+    {
+      "roadName": "吳興街",
+      "count": 2
+    },
+    {
+      "roadName": "萬壽路",
+      "count": 2
+    },
+    {
+      "roadName": "龍江路",
+      "count": 2
+    },
+    {
+      "roadName": "民權西路",
+      "count": 2
+    },
+    {
+      "roadName": "萬大路",
+      "count": 2
+    },
+    {
+      "roadName": "重陽路",
+      "count": 2
+    },
+    {
+      "roadName": "天母北路",
+      "count": 2
+    },
+    {
+      "roadName": "南京東路四段",
+      "count": 2
+    },
+    {
+      "roadName": "政大一街",
+      "count": 2
+    },
+    {
+      "roadName": "竹子湖路",
+      "count": 2
+    },
+    {
+      "roadName": "長安東路二段",
+      "count": 2
+    },
+    {
+      "roadName": "中正路",
+      "count": 1
+    },
+    {
+      "roadName": "長安西路",
+      "count": 1
+    },
+    {
+      "roadName": "和平東路1段",
+      "count": 1
+    },
+    {
+      "roadName": "中坡南路",
+      "count": 1
+    },
+    {
+      "roadName": "羅斯福路四段",
+      "count": 1
+    },
+    {
+      "roadName": "忠孝東路一段",
+      "count": 1
+    },
+    {
+      "roadName": "信義路三段",
+      "count": 1
+    },
+    {
+      "roadName": "松勤街",
+      "count": 1
+    },
+    {
+      "roadName": "民權東路二段",
+      "count": 1
+    },
+    {
+      "roadName": "基隆路1段",
+      "count": 1
+    },
+    {
+      "roadName": "忠孝東路2段",
+      "count": 1
+    },
+    {
+      "roadName": "太原路",
+      "count": 1
+    },
+    {
+      "roadName": "忠順街一段",
+      "count": 1
+    },
+    {
+      "roadName": "松平路",
+      "count": 1
+    },
+    {
+      "roadName": "安康路",
+      "count": 1
+    },
+    {
+      "roadName": "峨眉街",
+      "count": 1
+    },
+    {
+      "roadName": "瑞安街",
+      "count": 1
+    },
+    {
+      "roadName": "潭美街",
+      "count": 1
+    },
+    {
+      "roadName": "通北街",
+      "count": 1
+    },
+    {
+      "roadName": "木柵路一段",
+      "count": 1
+    },
+    {
+      "roadName": "羅斯福路三段",
+      "count": 1
+    },
+    {
+      "roadName": "東華街二段",
+      "count": 1
+    },
+    {
+      "roadName": "辛亥路四段",
+      "count": 1
+    },
+    {
+      "roadName": "天祥路",
+      "count": 1
+    },
+    {
+      "roadName": "溫泉路",
+      "count": 1
+    },
+    {
+      "roadName": "敬業三路",
+      "count": 1
+    },
+    {
+      "roadName": "市民大道四段",
+      "count": 1
+    },
+    {
+      "roadName": "堤頂大道二段",
+      "count": 1
+    },
+    {
+      "roadName": "敬業二路",
+      "count": 1
+    },
+    {
+      "roadName": "新光路一段",
+      "count": 1
+    },
+    {
+      "roadName": "羅斯福路2段",
+      "count": 1
+    },
+    {
+      "roadName": "洛陽街",
+      "count": 1
+    },
+    {
+      "roadName": "南深路",
+      "count": 1
+    },
+    {
+      "roadName": "基隆路一段",
+      "count": 1
+    },
+    {
+      "roadName": "信義路6段",
+      "count": 1
+    },
+    {
+      "roadName": "成功路4段",
+      "count": 1
+    },
+    {
+      "roadName": "環河南路2段",
+      "count": 1
+    },
+    {
+      "roadName": "文湖路",
+      "count": 1
+    },
+    {
+      "roadName": "文德路",
+      "count": 1
+    },
+    {
+      "roadName": "金華街",
+      "count": 1
+    },
+    {
+      "roadName": "陽光街",
+      "count": 1
+    },
+    {
+      "roadName": "寧波西街",
+      "count": 1
+    },
+    {
+      "roadName": "南京東路4段",
+      "count": 1
+    },
+    {
+      "roadName": "新生南路",
+      "count": 1
+    },
+    {
+      "roadName": "基隆路二段",
+      "count": 1
+    },
+    {
+      "roadName": "東園街",
+      "count": 1
+    },
+    {
+      "roadName": "中山北路六段",
+      "count": 1
+    },
+    {
+      "roadName": "農安街",
+      "count": 1
+    },
+    {
+      "roadName": "劍潭路",
+      "count": 1
+    },
+    {
+      "roadName": "天母東路",
+      "count": 1
+    },
+    {
+      "roadName": "北投泉源路",
+      "count": 1
+    },
+    {
+      "roadName": "長安東路2段",
+      "count": 1
+    },
+    {
+      "roadName": "松江路",
+      "count": 1
+    },
+    {
+      "roadName": "木柵路四段",
+      "count": 1
+    },
+    {
+      "roadName": "萬美街一段",
+      "count": 1
+    },
+    {
+      "roadName": "政大二街",
+      "count": 1
+    },
+    {
+      "roadName": "汀州路4段",
+      "count": 1
+    },
+    {
+      "roadName": "金山南路2段",
+      "count": 1
+    },
+    {
+      "roadName": "中山北路6段",
+      "count": 1
+    },
+    {
+      "roadName": "知行路",
+      "count": 1
+    },
+    {
+      "roadName": "大同街",
+      "count": 1
+    },
+    {
+      "roadName": "軍功路",
+      "count": 1
+    },
+    {
+      "roadName": "辛亥路6段",
+      "count": 1
+    },
+    {
+      "roadName": "環河北路一段",
+      "count": 1
+    },
+    {
+      "roadName": "承德路一段",
+      "count": 1
+    },
+    {
+      "roadName": "桂林路",
+      "count": 1
+    },
+    {
+      "roadName": "仁愛路二段",
+      "count": 1
+    },
+    {
+      "roadName": "羅斯福路一段",
+      "count": 1
+    },
+    {
+      "roadName": "景興路",
+      "count": 1
+    },
+    {
+      "roadName": "和平東路3段",
+      "count": 1
+    },
+    {
+      "roadName": "景華街",
+      "count": 1
+    },
+    {
+      "roadName": "八德路四段",
+      "count": 1
+    },
+    {
+      "roadName": "樂群二路",
+      "count": 1
+    },
+    {
+      "roadName": "南京東路六段",
+      "count": 1
+    },
+    {
+      "roadName": "北寧路",
+      "count": 1
+    },
+    {
+      "roadName": "承德路四段",
+      "count": 1
+    },
+    {
+      "roadName": "基河路",
+      "count": 1
+    },
+    {
+      "roadName": "開封街二段",
+      "count": 1
+    },
+    {
+      "roadName": "漢口街二段",
+      "count": 1
+    },
+    {
+      "roadName": "長沙街二段",
+      "count": 1
+    },
+    {
+      "roadName": "松河街",
+      "count": 1
+    },
+    {
+      "roadName": "政大三街",
+      "count": 1
+    },
+    {
+      "roadName": "向陽路",
+      "count": 1
+    },
+    {
+      "roadName": "秀明路二段",
+      "count": 1
+    },
+    {
+      "roadName": "信義路四段",
+      "count": 1
+    },
+    {
+      "roadName": "南京西路",
+      "count": 1
+    },
+    {
+      "roadName": "羅斯福路五段",
+      "count": 1
+    },
+    {
+      "roadName": "興隆路三段",
+      "count": 1
+    },
+    {
+      "roadName": "中央南路二段",
+      "count": 1
+    },
+    {
+      "roadName": "中央北路三段",
+      "count": 1
+    },
+    {
+      "roadName": "石牌路一段",
+      "count": 1
+    },
+    {
+      "roadName": "洲美街",
+      "count": 1
+    },
+    {
+      "roadName": "成功路二段",
+      "count": 1
+    },
+    {
+      "roadName": "內湖路二段",
+      "count": 1
+    },
+    {
+      "roadName": "福德街",
+      "count": 1
+    },
+    {
+      "roadName": "雨農路",
+      "count": 1
+    },
+    {
+      "roadName": "和平東路一段",
+      "count": 1
+    },
+    {
+      "roadName": "五原路",
+      "count": 1
+    },
+    {
+      "roadName": "仰德大道3段",
+      "count": 1
+    },
+    {
+      "roadName": "文山區興隆路4段",
+      "count": 1
+    },
+    {
+      "roadName": "東湖路",
+      "count": 1
+    },
+    {
+      "roadName": "忠孝東路4段",
+      "count": 1
+    },
+    {
+      "roadName": "長春路",
+      "count": 1
+    },
+    {
+      "roadName": "臨沂街",
+      "count": 1
+    },
+    {
+      "roadName": "民生東路三段",
+      "count": 1
+    },
+    {
+      "roadName": "樟新街",
+      "count": 1
+    }
+  ],
+  "duplicateStationNames": [
+    {
+      "stationName": "帝璽社區資源回收站",
+      "count": 2
+    },
+    {
+      "stationName": "京華DC大樓",
+      "count": 2
+    }
+  ],
+  "duplicateAddresses": [
+    {
+      "address": "臺北市萬華區西藏路127號",
+      "count": 6
+    },
+    {
+      "address": "臺北市內湖區內湖路一段91巷102弄16號",
+      "count": 2
+    },
+    {
+      "address": "臺北市松山區健康路329號",
+      "count": 3
+    },
+    {
+      "address": "臺北市松山區延壽街330巷17弄2號",
+      "count": 2
+    },
+    {
+      "address": "臺北市信義區忠孝東路5段365號",
+      "count": 2
+    },
+    {
+      "address": "臺北市信義區松仁路242~266號",
+      "count": 2
+    },
+    {
+      "address": "臺北市內湖區康寧路一段290號",
+      "count": 2
+    },
+    {
+      "address": "臺北市文山區木柵路二段109巷100弄10號",
+      "count": 2
+    },
+    {
+      "address": "臺北市中山區中山北路二段59巷45號",
+      "count": 2
+    },
+    {
+      "address": "臺北市大安區師大路105巷18號",
+      "count": 2
+    },
+    {
+      "address": "臺北市中山區建國北路3段55號",
+      "count": 2
+    },
+    {
+      "address": "臺北市中正區青島東路5號3樓",
+      "count": 2
+    },
+    {
+      "address": "臺北市大安區信義路二段132號到142號",
+      "count": 2
+    },
+    {
+      "address": "臺北市內湖區五分街72巷1號",
+      "count": 2
+    },
+    {
+      "address": "臺北市中山區中山北路一段83巷32號",
+      "count": 2
+    },
+    {
+      "address": "臺北市中山區明水路397巷19弄28號",
+      "count": 2
+    },
+    {
+      "address": "臺北市中山區明水路397巷19弄17號",
+      "count": 4
+    },
+    {
+      "address": "臺北市大安區敦化南路二段104號",
+      "count": 2
+    },
+    {
+      "address": "臺北市中山區北安路630巷25弄18號",
+      "count": 3
+    },
+    {
+      "address": "臺北市中山區明水路649~659號",
+      "count": 2
+    },
+    {
+      "address": "臺北市士林區陽明山莊頂路168號",
+      "count": 2
+    },
+    {
+      "address": "臺北市北投區泉源路35巷36之10-29號",
+      "count": 2
+    },
+    {
+      "address": "臺北市文山區萬和街6號",
+      "count": 2
+    },
+    {
+      "address": "臺北市文山區福興路62號",
+      "count": 2
+    },
+    {
+      "address": "臺北市北投區石牌路二段362號",
+      "count": 2
+    },
+    {
+      "address": "臺北市中山區明水路557巷10-16號",
+      "count": 2
+    },
+    {
+      "address": "臺北市南港區興華路64巷1-11號",
+      "count": 2
+    },
+    {
+      "address": "臺北市中山區北安路761號",
+      "count": 2
+    },
+    {
+      "address": "臺北市信義區信義路4段151號",
+      "count": 2
+    },
+    {
+      "address": "臺北市文山區木新路三段95巷42號",
+      "count": 2
+    },
+    {
+      "address": "臺北市大安區復興南路一段259號",
+      "count": 2
+    },
+    {
+      "address": "臺北市萬華區西園路二段127~139號",
+      "count": 2
+    },
+    {
+      "address": "臺北市文山區三福街9巷2~12號",
+      "count": 3
+    },
+    {
+      "address": "臺北市士林區士商路167號",
+      "count": 2
+    },
+    {
+      "address": "臺北市萬華區萬青街186號",
+      "count": 4
+    },
+    {
+      "address": "臺北市大同區重慶北路2段63號",
+      "count": 2
+    },
+    {
+      "address": "臺北市中山區龍江路120巷9號",
+      "count": 2
+    },
+    {
+      "address": "臺北市大同區重慶北路三段76號",
+      "count": 2
+    },
+    {
+      "address": "臺北市大同區民權西路146號",
+      "count": 2
+    },
+    {
+      "address": "臺北市松山區延壽街33巷8弄7-1號",
+      "count": 2
+    },
+    {
+      "address": "臺北市松山區延壽街330巷16弄5號",
+      "count": 2
+    },
+    {
+      "address": "臺北市內湖區民權東路6段298-326號",
+      "count": 3
+    },
+    {
+      "address": "臺北市文山區興隆路4段105巷3-29號",
+      "count": 3
+    },
+    {
+      "address": "臺北市內湖區金龍路222巷2號",
+      "count": 3
+    },
+    {
+      "address": "臺北市士林區天母北路68號",
+      "count": 2
+    },
+    {
+      "address": "臺北市文山區政大一街36巷5號",
+      "count": 2
+    },
+    {
+      "address": "臺北市文山區興隆路二段301巷18號",
+      "count": 2
+    },
+    {
+      "address": "臺北市北投區竹子湖路35號之一",
+      "count": 2
+    },
+    {
+      "address": "臺北市松山區南京東路五段47號",
+      "count": 2
+    },
+    {
+      "address": "臺北市松山區復興北路427巷11號",
+      "count": 2
+    },
+    {
+      "address": "臺北市信義區松德路307巷26號",
+      "count": 3
+    },
+    {
+      "address": "臺北市信義區松德路200巷8號",
+      "count": 3
+    }
+  ]
+}

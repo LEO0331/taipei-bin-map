@@ -56,6 +56,11 @@ type FacilityMapProps = {
     electricMotorcycleBatterySwapCount: number;
     topOperators: Array<{ operatorName: string; count: number }>;
   }>;
+  communityRecyclingDistrictSummaries: Array<{
+    district: string;
+    count: number;
+    uniqueAddressCount: number;
+  }>;
 };
 
 const taipeiCenter: [number, number] = [25.0478, 121.5319];
@@ -113,6 +118,7 @@ const markerEmojiByType = {
   gas_lpg_station: '⛽',
   designated_smoking_area: '⌖',
   announced_no_smoking_place: '🚭',
+  community_recycling_station: '🏘️',
 } satisfies Record<FacilityType, string>;
 
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {
@@ -165,6 +171,7 @@ export function FacilityMap({
   inspectionDistrictSummaries,
   chargingDistrictSummaries,
   commercialEvDistrictSummaries,
+  communityRecyclingDistrictSummaries,
 }: FacilityMapProps) {
   const renderedFacilities = useChunkedFacilities(facilities);
   const userIcon = useMemo(
@@ -305,6 +312,28 @@ export function FacilityMap({
                   <p>{t.stationCount}: {summary.count}</p>
                   <p>{t.serviceType}: {serviceCounts.map(([type, count]) => `${getCommercialEvServiceTypeLabel(type, language)} ${count}`).join('、')}</p>
                   <p>{t.topOperators}: {summary.topOperators.map((item) => `${item.operatorName} ${item.count}`).join('、')}</p>
+                </div>
+              </Popup>
+            </CircleMarker>
+          );
+        })}
+        {communityRecyclingDistrictSummaries.map((summary) => {
+          const center = districtCentroids[summary.district];
+          if (!center) return null;
+          return (
+            <CircleMarker
+              key={`community-recycling-${summary.district}`}
+              center={center}
+              radius={Math.min(28, 10 + Math.sqrt(summary.count) * 1.8)}
+              pathOptions={{ color: '#2f6b4f', fillColor: '#a7dfba', fillOpacity: 0.78, weight: 2 }}
+            >
+              <Popup>
+                <div className="map-popup">
+                  <strong>{t.communityRecyclingStationDistrictDistribution}</strong>
+                  <p>{t.district}: {summary.district}</p>
+                  <p>{t.communityRecyclingStationCount}: {summary.count}</p>
+                  <p>{t.uniqueAddressCount}: {summary.uniqueAddressCount}</p>
+                  <p>{t.notice}: {t.communityRecyclingStationPopupNotice}</p>
                 </div>
               </Popup>
             </CircleMarker>

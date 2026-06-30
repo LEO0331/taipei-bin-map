@@ -58,9 +58,12 @@ const announcedNoSmokingPlaceCount = announcedNoSmokingPlaces.length.toString();
 const announcedNoSmokingSample =
   announcedNoSmokingPlaces.find((facility) => facility.hasCoordinates && facility.recordType === 'outdoor_no_smoking_place') ??
   announcedNoSmokingPlaces[0];
+const communityRecyclingStations = facilities.filter((facility) => facility.type === 'community_recycling_station');
+const communityRecyclingStationCount = communityRecyclingStations.length.toString();
+const communityRecyclingSample = communityRecyclingStations.find((facility) => facility.roadName) ?? communityRecyclingStations[0];
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all sixteen local datasets without mounting broad-view facility pins', async ({ page }) => {
+  test('loads all seventeen local datasets without mounting broad-view facility pins', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -82,6 +85,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('加油站及加氣站');
     await expect(page.getByLabel('地圖圖例')).toContainText('指定吸菸區');
     await expect(page.getByLabel('地圖圖例')).toContainText('公告禁菸場所');
+    await expect(page.getByLabel('地圖圖例')).toContainText('社區資源回收站');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-div-marker')).toHaveCount(0);
@@ -126,6 +130,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByRole('button', { name: 'Gas & LPG Stations' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Designated Smoking Areas' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Announced No-Smoking Places' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Community Recycling Stations' })).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {
@@ -318,6 +323,26 @@ test.describe('Taipei public amenities map public flows', () => {
     await page.getByRole('button', { name: '找附近公告禁菸場所' }).click();
     await expect(page.getByRole('heading', { name: '最近的設施' })).toBeVisible();
     await expect(page.locator('.distance').first()).toContainText(/公尺|公里/);
+  });
+
+  test('shows community recycling stations as address-only directory records', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '社區資源回收站' }).click();
+    await expect(page.getByText(`${communityRecyclingStationCount} 筆資料`)).toBeVisible();
+    await expect(page.getByText('社區資源回收站資料未提供官方經緯度')).toBeVisible();
+    await page.getByLabel('行政區域代碼').selectOption(communityRecyclingSample.districtCode);
+    await page.getByRole('combobox', { name: '道路名稱', exact: true }).selectOption(communityRecyclingSample.roadName);
+    await page.getByLabel('有地址').check();
+    await page.getByLabel('有道路名稱').check();
+    await page.getByPlaceholder('搜尋回收站名稱、行政區、行政區代碼、地址或道路').fill(communityRecyclingSample.stationName);
+
+    await expect(page.locator('.facility-list li').first()).toContainText('社區資源回收站');
+    await expect(page.locator('.facility-list li').first()).toContainText(communityRecyclingSample.stationName);
+    await expect(page.locator('.facility-list li').first()).toContainText(communityRecyclingSample.districtCode);
+    await expect(page.locator('.facility-list li').first()).not.toContainText('即時營運');
+    await page.getByRole('button', { name: '查看附近行政區社區回收站' }).click();
+    await expect(page.getByText('社區資源回收站資料未提供官方經緯度，目前無法計算精確距離。')).toBeVisible();
   });
 
   test('searches public toilet name, manager, and address fields', async ({ page }) => {

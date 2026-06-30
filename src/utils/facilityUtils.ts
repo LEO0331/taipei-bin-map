@@ -146,6 +146,10 @@ export function filterFacilities(
     noSmokingHasCoordinates = false,
     noSmokingHasAddress = false,
     noSmokingHasLocationDescription = false,
+    communityRecyclingDistrictCode,
+    communityRecyclingRoadName,
+    communityRecyclingHasAddress = false,
+    communityRecyclingHasParsedRoadName = false,
   }: {
     searchTerm: string;
     district: string;
@@ -221,6 +225,10 @@ export function filterFacilities(
     noSmokingHasCoordinates?: boolean;
     noSmokingHasAddress?: boolean;
     noSmokingHasLocationDescription?: boolean;
+    communityRecyclingDistrictCode?: string;
+    communityRecyclingRoadName?: string;
+    communityRecyclingHasAddress?: boolean;
+    communityRecyclingHasParsedRoadName?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -241,6 +249,7 @@ export function filterFacilities(
   const hasGasLpgFilters = Boolean(gasLpgSupplier || gasLpgHasOil || gasLpgHasLpg || gasLpgHasSelfService || gasLpgTwentyFourHours || gasLpgLimitedHours || gasLpgStationStatus || gasLpgHasPhone);
   const hasSmokingFilters = Boolean(smokingAreaType || smokingOpeningHoursType || smokingListed24Hours || smokingHasPhoto || smokingHasRelativeLocation || smokingManagingUnitCategory || smokingManagingUnit);
   const hasNoSmokingFilters = Boolean(noSmokingRecordType || noSmokingAnnouncementYear || noSmokingCoordinateStatus || noSmokingSourceResource || noSmokingHasCoordinates || noSmokingHasAddress || noSmokingHasLocationDescription);
+  const hasCommunityRecyclingFilters = Boolean(communityRecyclingDistrictCode || communityRecyclingRoadName || communityRecyclingHasAddress || communityRecyclingHasParsedRoadName);
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -364,6 +373,13 @@ export function filterFacilities(
         (!noSmokingHasAddress || facility.hasAddress === true) &&
         (!noSmokingHasLocationDescription || facility.hasLocationDescription === true));
     const matchesNoSmokingScope = !hasNoSmokingFilters || facility.type === 'announced_no_smoking_place';
+    const matchesCommunityRecycling =
+      facility.type !== 'community_recycling_station' ||
+      ((!communityRecyclingDistrictCode || facility.districtCode === communityRecyclingDistrictCode) &&
+        (!communityRecyclingRoadName || facility.roadName === communityRecyclingRoadName) &&
+        (!communityRecyclingHasAddress || facility.hasAddress === true) &&
+        (!communityRecyclingHasParsedRoadName || facility.hasParsedRoadName === true));
+    const matchesCommunityRecyclingScope = !hasCommunityRecyclingFilters || facility.type === 'community_recycling_station';
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -432,6 +448,11 @@ export function filterFacilities(
         facility.parkName,
         facility.announcementDate,
         facility.announcementDateRaw,
+        facility.stationName,
+        facility.stationNameNormalized,
+        facility.districtCode,
+        facility.districtCodeNormalized,
+        facility.roadName,
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
           : '',
@@ -469,6 +490,8 @@ export function filterFacilities(
       matchesSmokingScope &&
       matchesNoSmoking &&
       matchesNoSmokingScope &&
+      matchesCommunityRecycling &&
+      matchesCommunityRecyclingScope &&
       matchesSearch
     );
   });
@@ -535,7 +558,16 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '公告禁菸場所' : 'Announced No-Smoking Place';
   }
 
+  if (type === 'community_recycling_station') {
+    return language === 'zh' ? '社區資源回收站' : 'Community Recycling Station';
+  }
+
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';
+}
+
+export function getCommunityRecyclingStationLabel(kind: 'short' | 'full', language: Language) {
+  if (kind === 'short') return language === 'zh' ? '社區回收站' : 'Community Recycling';
+  return language === 'zh' ? '臺北市社區資源回收站資訊' : 'Taipei Community Recycling Station Information';
 }
 
 export function getAnnouncedNoSmokingRecordTypeLabel(type: AnnouncedNoSmokingPlaceRecordType | undefined, language: Language) {
