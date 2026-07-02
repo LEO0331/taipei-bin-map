@@ -1,0 +1,9 @@
+{
+  "source": "/Users/Leo/Downloads/樹籍資料匯出-202603201657.csv",
+  "target": "/Users/Leo/Documents/taipei-bin-map/data/raw/protected-trees/樹籍資料匯出-202603201657.csv",
+  "dataset": "臺北市受保護樹木",
+  "sourceAgency": "文化局",
+  "copiedAt": "2026-07-02T06:29:29.029Z",
+  "fileSizeBytes": 784519,
+  "encoding": "utf8-bom"
+}

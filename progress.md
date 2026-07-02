@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-30 Asia/Taipei
+**Last Updated:** 2026-07-02 Asia/Taipei
 **Active Feature:** None
 
 ## Status
@@ -37,10 +37,12 @@
 - [x] Added 334 riverside toilets and 393 family-friendly toilets with exact markers, focused filters, nearby results, summaries, bilingual notices, and service-worker cache entries.
 - [x] Preserved specialized toilet records and cross-referenced all current family-friendly records to the general public-toilet dataset.
 - [x] Added 245 motorcycle inspection stations with UTF-8-SIG conversion, district summary bubbles, brand/postal/phone filters, address-based Google Maps links, notices, cache entries, and privacy-minimized default UI.
+- [x] Added 3,874 protected tree records from the UTF-8-SIG `樹籍資料匯出-202603201657.csv` source with exact coordinates.
+- [x] Added protected tree ID/species/scientific-name/English-name/location-type/management-unit/diameter/circumference/coordinate-quality filters, exact markers for narrowed views, list/popup fields, bilingual notices, cache entries, README notes, and tests.
 
 ### What's In Progress
 
-- [x] No active feature work remains for feat-026.
+- [x] No active feature work remains for feat-028.
 
 ### What's Next
 
@@ -64,6 +66,7 @@
 - [ ] Gas/LPG station business hours, fuel/LPG supply, pricing, self-service availability, and operating status are snapshot/public-data references, not real-time guarantees.
 - [ ] Designated smoking area opening hours, on-site usability, legal applicability, health interpretation, and complete legal boundaries are snapshot/public-data references, not real-time guarantees or advice.
 - [ ] Announced no-smoking place points are source-location references, not complete legal boundaries, real-time enforcement status, legal advice, health advice, smoking advice, or on-site signage guarantees.
+- [ ] Protected tree records are source-data lookup points, not real-time tree health, collapse-risk, pruning/transplant permit, land-ownership, cadastral-boundary, maintenance-progress, legal-advice, or tourism-ranking data.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -84,6 +87,7 @@
 - **Use CARTO for base tiles**: The previous OpenStreetMap tile endpoint failed to render in the deployed app; CARTO preserves a no-key static Leaflet map.
 - **Keep designated smoking areas as lookup data**: The layer shows source fields and nearby distance only; UI copy avoids smoking recommendations, health advice, legal interpretation, and current-availability claims.
 - **Keep announced no-smoking places as lookup data**: The layer complements designated smoking areas but does not claim complete no-smoking boundaries, enforcement status, legal interpretation, health advice, or smoking advice.
+- **Keep protected trees in the shared facility surface**: The app has no standalone dashboard module, so protected trees use the existing map/list/filter/popup workflow.
 
 ## Files Modified This Session
 
@@ -187,7 +191,14 @@
 - [x] `npm run test:e2e -- --grep "clean needle"` passed desktop/mobile Playwright coverage for the clean needle flow.
 - [x] `npm run test:e2e` passed 56 desktop/mobile Playwright tests after the clean needle layer.
 - [x] `./init.sh` passed 49 unit/converter tests, production build, and 56 desktop/mobile Playwright tests after the clean needle layer.
+- [x] `npm run data:fetch:protected-trees` copied the UTF-8-SIG protected tree source CSV into `data/raw/protected-trees/`.
+- [x] `npm run convert:facilities` generated 16,231 facilities, including 3,874 protected tree records.
+- [x] `npm test` passed 51 unit/converter tests.
+- [x] `npm run build` passed after the protected tree layer.
+- [x] `npm run test:e2e -- --grep "protected trees"` passed desktop/mobile Playwright coverage for the protected tree flow.
+- [x] `npm run test:e2e` passed 58 desktop/mobile Playwright tests after the protected tree layer.
+- [x] `./init.sh` passed 51 unit/converter tests, production build, and 58 desktop/mobile Playwright tests after the protected tree layer.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The clean needle public-health layer is implemented and full `./init.sh` verification passed in this session.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The protected tree layer is implemented and full `./init.sh` verification passed in this session.

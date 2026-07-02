@@ -26,6 +26,7 @@ export const FACILITY_TYPE_OPTIONS: FacilityType[] = [
   'announced_no_smoking_place',
   'community_recycling_station',
   'clean_needle_exchange_service_point',
+  'protected_tree',
 ];
 
 export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeFilterProps) {
@@ -48,6 +49,7 @@ export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeF
     announced_no_smoking_place: t.announcedNoSmokingPlaces,
     community_recycling_station: t.communityRecyclingStations,
     clean_needle_exchange_service_point: t.cleanNeedleExchangeServicePoints,
+    protected_tree: t.protectedTrees,
   } satisfies Record<FacilityType, string>;
 
   const allSelected = selectedTypes.length === FACILITY_TYPE_OPTIONS.length;

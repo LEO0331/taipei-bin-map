@@ -13,7 +13,10 @@ import {
   getFuelStationServiceTypeLabel,
   getFuelStationStatusLabel,
   getOpeningHoursTypeLabel,
+  getProtectedTreeLocationTypeLabel,
   getRiversideToiletTypeLabel,
+  getTreeCircumferenceCategoryLabel,
+  getTreeDiameterCategoryLabel,
   getToiletCategoryLabel,
 } from '../utils/facilityUtils';
 
@@ -252,6 +255,20 @@ export function FacilityList({
                     facility.extensionDisplay ? `${t.extension}: ${facility.extensionDisplay}` : '',
                     facility.serviceHours ? `${t.serviceHours}: ${facility.serviceHours}` : '',
                     facility.isTwentyFourHourService ? t.twentyFourHourService : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
+              {facility.type === 'protected_tree' && (
+                <small>
+                  {[
+                    facility.treeId ? `${t.treeId}: ${facility.treeId}` : '',
+                    facility.speciesNameZh ? `${t.speciesNameZh}: ${facility.speciesNameZh}` : '',
+                    facility.scientificName ? `${t.scientificName}: ${facility.scientificName}` : '',
+                    facility.speciesNameEn ? `${t.speciesNameEn}: ${facility.speciesNameEn}` : '',
+                    facility.diameterAtBreastHeightMeters ? `${t.diameterAtBreastHeightMeters}: ${facility.diameterAtBreastHeightMeters} m (${getTreeDiameterCategoryLabel(facility.diameterCategory, language)})` : '',
+                    facility.circumferenceAtBreastHeightMeters ? `${t.circumferenceAtBreastHeightMeters}: ${facility.circumferenceAtBreastHeightMeters} m (${getTreeCircumferenceCategoryLabel(facility.circumferenceCategory, language)})` : '',
+                    facility.locationTypeCategory ? `${t.locationType}: ${getProtectedTreeLocationTypeLabel(facility.locationTypeCategory, language)}` : '',
+                    facility.managementUnit ? `${t.managementUnit}: ${facility.managementUnit}` : '',
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}

@@ -19,6 +19,7 @@ import { loadDesignatedSmokingAreas } from './convertDesignatedSmokingAreas';
 import { loadAnnouncedNoSmokingPlaces } from './convertAnnouncedNoSmokingPlaces';
 import { loadCommunityRecyclingStations } from './convertCommunityRecyclingStations';
 import { loadCleanNeedleExchangeServicePoints } from './convertCleanNeedleExchangeServicePoints';
+import { loadProtectedTrees } from './convertProtectedTrees';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -163,6 +164,8 @@ const COMMUNITY_RECYCLING_STATIONS_OUTPUT = resolve(options.outputDir, 'communit
 const COMMUNITY_RECYCLING_STATION_SUMMARY_OUTPUT = resolve(options.outputDir, 'community-recycling-station-summary.json');
 const CLEAN_NEEDLE_OUTPUT = resolve(options.outputDir, 'clean-needle-exchange-service-points.json');
 const CLEAN_NEEDLE_SUMMARY_OUTPUT = resolve(options.outputDir, 'clean-needle-exchange-service-point-summary.json');
+const PROTECTED_TREES_OUTPUT = resolve(options.outputDir, 'protected-trees.json');
+const PROTECTED_TREE_SUMMARY_OUTPUT = resolve(options.outputDir, 'protected-tree-summary.json');
 const PUBLIC_AMENITIES_SUMMARY_OUTPUT = resolve(options.outputDir, 'public-amenities-summary.json');
 const DRINKING_FOUNTAINS_OUTPUT = resolve(options.outputDir, 'drinking-fountains.json');
 const TIMED_COLLECTION_OUTPUT = resolve(options.outputDir, 'timed-collection-points.json');
@@ -438,6 +441,7 @@ const designatedSmokingAreas = loadDesignatedSmokingAreas();
 const announcedNoSmokingPlaces = loadAnnouncedNoSmokingPlaces();
 const communityRecyclingStations = loadCommunityRecyclingStations();
 const cleanNeedleServicePoints = loadCleanNeedleExchangeServicePoints();
+const protectedTrees = loadProtectedTrees();
 
 const facilities = [
   ...pedestrian.facilities,
@@ -458,6 +462,7 @@ const facilities = [
   ...announcedNoSmokingPlaces.facilities,
   ...communityRecyclingStations.facilities,
   ...cleanNeedleServicePoints.facilities,
+  ...protectedTrees.facilities,
 ];
 const report: ConversionReport = {
   generatedAt: new Date().toISOString(),
@@ -481,6 +486,7 @@ const report: ConversionReport = {
     ...announcedNoSmokingPlaces.reports,
     communityRecyclingStations.report,
     cleanNeedleServicePoints.report,
+    protectedTrees.report,
   ],
 };
 
@@ -538,10 +544,13 @@ writeJson(COMMUNITY_RECYCLING_STATIONS_OUTPUT, communityRecyclingStations.facili
 writeJson(COMMUNITY_RECYCLING_STATION_SUMMARY_OUTPUT, communityRecyclingStations.summary);
 writeJson(CLEAN_NEEDLE_OUTPUT, cleanNeedleServicePoints.facilities);
 writeJson(CLEAN_NEEDLE_SUMMARY_OUTPUT, cleanNeedleServicePoints.summary);
+writeJson(PROTECTED_TREES_OUTPUT, protectedTrees.facilities);
+writeJson(PROTECTED_TREE_SUMMARY_OUTPUT, protectedTrees.summary);
 writeJson(PUBLIC_AMENITIES_SUMMARY_OUTPUT, {
   totalFacilityRecords: facilities.length,
   communityRecyclingStationCount: communityRecyclingStations.facilities.length,
   cleanNeedleServicePointCount: cleanNeedleServicePoints.facilities.length,
+  protectedTreeCount: protectedTrees.facilities.length,
   timedCollectionPointCount: timedCollectionPoints.facilities.length,
   usedClothingRecyclingBoxCount: usedClothingRecyclingBoxes.facilities.length,
 });
@@ -567,4 +576,5 @@ console.log(`Wrote ${gasLpgStations.facilities.length} gas/LPG station records t
 console.log(`Wrote ${announcedNoSmokingPlaces.facilities.length} announced no-smoking place records to ${ANNOUNCED_NO_SMOKING_PLACES_OUTPUT}`);
 console.log(`Wrote ${communityRecyclingStations.facilities.length} community recycling station records to ${COMMUNITY_RECYCLING_STATIONS_OUTPUT}`);
 console.log(`Wrote ${cleanNeedleServicePoints.facilities.length} clean needle exchange service point records to ${CLEAN_NEEDLE_OUTPUT}`);
+console.log(`Wrote ${protectedTrees.facilities.length} protected tree records to ${PROTECTED_TREES_OUTPUT}`);
 console.log(`Wrote conversion report to ${REPORT_OUTPUT}`);

@@ -18,7 +18,8 @@ export type FacilityType =
   | 'designated_smoking_area'
   | 'announced_no_smoking_place'
   | 'community_recycling_station'
-  | 'clean_needle_exchange_service_point';
+  | 'clean_needle_exchange_service_point'
+  | 'protected_tree';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
@@ -46,6 +47,19 @@ export type CleanNeedleServicePointCategory =
   | 'park_market_public_toilet'
   | 'other'
   | 'unknown';
+export type ProtectedTreeLocationTypeCategory =
+  | 'park_green_space'
+  | 'school'
+  | 'road_sidewalk'
+  | 'public_place'
+  | 'private_residence'
+  | 'suburban_mountain'
+  | 'other'
+  | 'missing'
+  | 'unknown';
+export type TreeDiameterCategory = 'under_0_5m' | '0_5m_to_1m' | '1m_to_2m' | '2m_to_3m' | 'over_3m' | 'missing';
+export type TreeCircumferenceCategory = 'under_1m' | '1m_to_3m' | '3m_to_5m' | '5m_to_10m' | 'over_10m' | 'missing';
+export type ProtectedTreeCoordinateQuality = 'valid_wgs84_taipei' | 'outside_taipei_bounds' | 'invalid' | 'missing';
 export type CoordinateSystem = 'wgs84' | 'twd97' | 'unknown';
 export type OpeningHoursType = 'listed_24_hours' | 'fixed_hours' | 'weekday_or_holiday_rule' | 'depends_on_facility_hours' | 'custom_text' | 'missing' | 'unknown';
 export type ManagingUnitCategory = 'taipei_city_government' | 'district_office' | 'central_government' | 'transportation_or_mrt' | 'park_or_public_space' | 'private_operator' | 'cultural_or_sports_facility' | 'other' | 'unknown';
@@ -263,6 +277,28 @@ export type Facility = {
   serviceTimeRanges?: Array<{ start?: string; end?: string; raw: string; crossesMidnight?: boolean }>;
   isTwentyFourHourService?: boolean;
   hasServiceHours?: boolean;
+  treeId?: string;
+  treeIdNormalized?: string;
+  speciesNameZh?: string;
+  speciesNameZhNormalized?: string;
+  scientificName?: string;
+  scientificNameNormalized?: string;
+  speciesNameEn?: string;
+  speciesNameEnNormalized?: string;
+  diameterAtBreastHeightMetersRaw?: string;
+  diameterAtBreastHeightMeters?: number;
+  diameterCategory?: TreeDiameterCategory;
+  circumferenceAtBreastHeightMetersRaw?: string;
+  circumferenceAtBreastHeightMeters?: number;
+  circumferenceCategory?: TreeCircumferenceCategory;
+  sizeDataQualityFlags?: string[];
+  locationTypeRaw?: string;
+  locationType?: string;
+  locationTypeCategory?: ProtectedTreeLocationTypeCategory;
+  managementUnit?: string;
+  managementUnitNormalized?: string;
+  coordinateQuality?: ProtectedTreeCoordinateQuality;
+  coordinatePairKey?: string;
 };
 
 export type MotorcycleInspectionStationLocation = {
@@ -478,6 +514,49 @@ export type CleanNeedleExchangeServicePointSummary = {
     missingAddressCount: number;
     unparsedAddressDistrictCount: number;
     missingServiceHoursCount: number;
+  };
+};
+
+export type ProtectedTreeSummary = {
+  totalRecords: number;
+  uniqueTreeIdCount: number;
+  uniqueSpeciesNameZhCount: number;
+  uniqueScientificNameCount: number;
+  uniqueSpeciesNameEnCount: number;
+  uniqueAddressCount: number;
+  uniqueManagementUnitCount: number;
+  uniqueCoordinatePairCount: number;
+  recordsWithValidCoordinates: number;
+  recordsWithLocationType: number;
+  recordsWithParsedDistrictFromAddress: number;
+  minDiameterMeters?: number;
+  maxDiameterMeters?: number;
+  averageDiameterMeters?: number;
+  minCircumferenceMeters?: number;
+  maxCircumferenceMeters?: number;
+  averageCircumferenceMeters?: number;
+  byDistrict: Array<{ district: string; treeCount: number; uniqueSpeciesCount: number; uniqueAddressCount: number }>;
+  bySpecies: Array<{ speciesNameZh: string; scientificName?: string; speciesNameEn?: string; treeCount: number; districtCount: number }>;
+  byLocationType: Array<{ locationType: string; locationTypeCategory: ProtectedTreeLocationTypeCategory; treeCount: number; uniqueSpeciesCount: number }>;
+  byManagementUnit: Array<{ managementUnit: string; treeCount: number; uniqueSpeciesCount: number; districtCount: number }>;
+  byDiameterCategory: Array<{ diameterCategory: TreeDiameterCategory; treeCount: number }>;
+  byCircumferenceCategory: Array<{ circumferenceCategory: TreeCircumferenceCategory; treeCount: number }>;
+  coordinateQuality: {
+    validWgs84Taipei: number;
+    outsideTaipeiBounds: number;
+    invalid: number;
+    missing: number;
+    duplicateCoordinatePairCount: number;
+  };
+  dataQuality: {
+    missingTreeIdCount: number;
+    duplicateTreeIdCount: number;
+    missingLocationTypeCount: number;
+    invalidDiameterCount: number;
+    suspiciousDiameterCount: number;
+    invalidCircumferenceCount: number;
+    suspiciousCircumferenceCount: number;
+    duplicateAddressCount: number;
   };
 };
 

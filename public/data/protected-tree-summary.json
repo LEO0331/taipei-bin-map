@@ -1,0 +1,4274 @@
+{
+  "totalRecords": 3874,
+  "uniqueTreeIdCount": 3874,
+  "uniqueSpeciesNameZhCount": 136,
+  "uniqueScientificNameCount": 136,
+  "uniqueSpeciesNameEnCount": 136,
+  "uniqueAddressCount": 2186,
+  "uniqueManagementUnitCount": 512,
+  "uniqueCoordinatePairCount": 3290,
+  "recordsWithValidCoordinates": 3874,
+  "recordsWithLocationType": 2817,
+  "recordsWithParsedDistrictFromAddress": 3874,
+  "minDiameterMeters": 0.07,
+  "maxDiameterMeters": 4.58,
+  "averageDiameterMeters": 0.85,
+  "minCircumferenceMeters": 0.19,
+  "maxCircumferenceMeters": 227,
+  "averageCircumferenceMeters": 2.76,
+  "byDistrict": [
+    {
+      "district": "士林區",
+      "treeCount": 754,
+      "uniqueSpeciesCount": 49,
+      "uniqueAddressCount": 407
+    },
+    {
+      "district": "北投區",
+      "treeCount": 693,
+      "uniqueSpeciesCount": 48,
+      "uniqueAddressCount": 459
+    },
+    {
+      "district": "中正區",
+      "treeCount": 517,
+      "uniqueSpeciesCount": 71,
+      "uniqueAddressCount": 293
+    },
+    {
+      "district": "大安區",
+      "treeCount": 488,
+      "uniqueSpeciesCount": 55,
+      "uniqueAddressCount": 331
+    },
+    {
+      "district": "信義區",
+      "treeCount": 330,
+      "uniqueSpeciesCount": 25,
+      "uniqueAddressCount": 51
+    },
+    {
+      "district": "中山區",
+      "treeCount": 286,
+      "uniqueSpeciesCount": 26,
+      "uniqueAddressCount": 159
+    },
+    {
+      "district": "文山區",
+      "treeCount": 228,
+      "uniqueSpeciesCount": 32,
+      "uniqueAddressCount": 121
+    },
+    {
+      "district": "大同區",
+      "treeCount": 163,
+      "uniqueSpeciesCount": 16,
+      "uniqueAddressCount": 70
+    },
+    {
+      "district": "萬華區",
+      "treeCount": 148,
+      "uniqueSpeciesCount": 25,
+      "uniqueAddressCount": 109
+    },
+    {
+      "district": "松山區",
+      "treeCount": 108,
+      "uniqueSpeciesCount": 18,
+      "uniqueAddressCount": 73
+    },
+    {
+      "district": "南港區",
+      "treeCount": 99,
+      "uniqueSpeciesCount": 19,
+      "uniqueAddressCount": 65
+    },
+    {
+      "district": "內湖區",
+      "treeCount": 60,
+      "uniqueSpeciesCount": 18,
+      "uniqueAddressCount": 48
+    }
+  ],
+  "bySpecies": [
+    {
+      "speciesNameZh": "榕",
+      "scientificName": "Ficus microcarpa L. f.",
+      "speciesNameEn": "Banyan",
+      "treeCount": 1539,
+      "districtCount": 12
+    },
+    {
+      "speciesNameZh": "樟",
+      "scientificName": "Cinnamomum camphora (L.) Presl",
+      "speciesNameEn": "Camphor Tree",
+      "treeCount": 241,
+      "districtCount": 10
+    },
+    {
+      "speciesNameZh": "亞力山大椰子",
+      "scientificName": "Archontophoenix alexandrae",
+      "speciesNameEn": "Alexandra palm",
+      "treeCount": 200,
+      "districtCount": 6
+    },
+    {
+      "speciesNameZh": "楓香",
+      "scientificName": "Liquidambar formosana Hance",
+      "speciesNameEn": "Formosan Sweet Gum",
+      "treeCount": 199,
+      "districtCount": 8
+    },
+    {
+      "speciesNameZh": "白千層",
+      "scientificName": "Melaleuca cajuputi cumingiana",
+      "speciesNameEn": "Cajuput Tree",
+      "treeCount": 196,
+      "districtCount": 10
+    },
+    {
+      "speciesNameZh": "大王椰子",
+      "scientificName": "Roystonea regia (H. B. K.) O. F. Cook",
+      "speciesNameEn": "Kuban Royal Palm",
+      "treeCount": 183,
+      "districtCount": 7
+    },
+    {
+      "speciesNameZh": "黑板樹",
+      "scientificName": "Alstonia scholaris (L.) R. Brown",
+      "speciesNameEn": "Palimara Alstonia",
+      "treeCount": 132,
+      "districtCount": 12
+    },
+    {
+      "speciesNameZh": "茄苳",
+      "scientificName": "Bischofia javanica Blume",
+      "speciesNameEn": "Autumn Maple Tree",
+      "treeCount": 90,
+      "districtCount": 12
+    },
+    {
+      "speciesNameZh": "猢猻木",
+      "scientificName": "Adansonia digitata L.",
+      "speciesNameEn": "Baobab",
+      "treeCount": 73,
+      "districtCount": 10
+    },
+    {
+      "speciesNameZh": "印度橡膠樹",
+      "scientificName": "Ficus elastica Roxb",
+      "speciesNameEn": "Indiarubber fig",
+      "treeCount": 71,
+      "districtCount": 11
+    },
+    {
+      "speciesNameZh": "小葉南洋杉",
+      "scientificName": "Araucaria excelsa (Lamb.) R. Brown",
+      "speciesNameEn": "Norfolk Island Pine",
+      "treeCount": 71,
+      "districtCount": 7
+    },
+    {
+      "speciesNameZh": "雀榕",
+      "scientificName": "Ficus superba var. japonica",
+      "speciesNameEn": "Large-leaved Banyan",
+      "treeCount": 65,
+      "districtCount": 12
+    },
+    {
+      "speciesNameZh": "蒲葵",
+      "scientificName": "Livitona chinensis R. Br. var. subglobosa (Mart.) Becc.",
+      "speciesNameEn": "Fan Palm",
+      "treeCount": 61,
+      "districtCount": 3
+    },
+    {
+      "speciesNameZh": "壯幹棕櫚",
+      "scientificName": "Washingtonia robusta H. A. Wendl.",
+      "speciesNameEn": "Mexican Washington Palm",
+      "treeCount": 54,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "大葉雀榕",
+      "scientificName": "Ficus caulocarpa (Miq.) Miq",
+      "speciesNameEn": "Red Fruit Fig-tree",
+      "treeCount": 51,
+      "districtCount": 9
+    },
+    {
+      "speciesNameZh": "芒果",
+      "scientificName": "Mangifera indica L.",
+      "speciesNameEn": "Mango",
+      "treeCount": 48,
+      "districtCount": 8
+    },
+    {
+      "speciesNameZh": "肯氏南洋杉",
+      "scientificName": "Araucaria cunninghamii Sweet",
+      "speciesNameEn": "Hoop Pine",
+      "treeCount": 47,
+      "districtCount": 9
+    },
+    {
+      "speciesNameZh": "香楠",
+      "scientificName": "Machilus zuihoensis Hayata",
+      "speciesNameEn": "Zuiho Machilus",
+      "treeCount": 24,
+      "districtCount": 7
+    },
+    {
+      "speciesNameZh": "刺桐",
+      "scientificName": "Erythrina variegata L.",
+      "speciesNameEn": "Variegated Coralnean",
+      "treeCount": 22,
+      "districtCount": 8
+    },
+    {
+      "speciesNameZh": "朴樹",
+      "scientificName": "Celtis sinensis Persoon",
+      "speciesNameEn": "Chinese Hackberry",
+      "treeCount": 21,
+      "districtCount": 8
+    },
+    {
+      "speciesNameZh": "麵包樹",
+      "scientificName": "Artocarpus treculianus",
+      "speciesNameEn": "Bread-fruit Tree",
+      "treeCount": 21,
+      "districtCount": 7
+    },
+    {
+      "speciesNameZh": "臺灣海棗",
+      "scientificName": "Phoenix hanceana",
+      "speciesNameEn": "Formosan Date Palm",
+      "treeCount": 20,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "白玉蘭",
+      "scientificName": "Michelia alba DC.",
+      "speciesNameEn": "White Champak",
+      "treeCount": 19,
+      "districtCount": 4
+    },
+    {
+      "speciesNameZh": "大葉桉",
+      "scientificName": "Eucalyptus robusta Smith",
+      "speciesNameEn": "Swamp Manogany",
+      "treeCount": 17,
+      "districtCount": 8
+    },
+    {
+      "speciesNameZh": "青剛櫟",
+      "scientificName": "Cyclobalanopsis glauca (Thunb. ex Murray) Oerst",
+      "speciesNameEn": "Ring-cupped Oak",
+      "treeCount": 15,
+      "districtCount": 4
+    },
+    {
+      "speciesNameZh": "苦楝",
+      "scientificName": "Melia azedarach Linn.",
+      "speciesNameEn": "China Berry",
+      "treeCount": 15,
+      "districtCount": 6
+    },
+    {
+      "speciesNameZh": "菩提樹",
+      "scientificName": "Ficus religiosa L.",
+      "speciesNameEn": "Botree",
+      "treeCount": 13,
+      "districtCount": 5
+    },
+    {
+      "speciesNameZh": "小葉欖仁",
+      "scientificName": "Terminalia mantaly H. Perrier",
+      "speciesNameEn": "Madagascar Almond",
+      "treeCount": 13,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "鳳凰木",
+      "scientificName": "Delonix regia (Boj.) Raf",
+      "speciesNameEn": "Flamboyanttree",
+      "treeCount": 12,
+      "districtCount": 5
+    },
+    {
+      "speciesNameZh": "印度紫檀",
+      "scientificName": "Pterocarpus indicus Willd",
+      "speciesNameEn": "Rose Wood",
+      "treeCount": 12,
+      "districtCount": 5
+    },
+    {
+      "speciesNameZh": "日本黑松",
+      "scientificName": "Pinus thunbergii Parl.",
+      "speciesNameEn": "Japanese Black Pine",
+      "treeCount": 12,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "臺灣油杉",
+      "scientificName": "Keteleeria davidiana (Franchet) Beissnervar. formosana Hayata",
+      "speciesNameEn": "Taiwan Cow-tail Fir",
+      "treeCount": 10,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "杜英",
+      "scientificName": "Elaeocarpus sylvestris (Lour.) Pori.",
+      "speciesNameEn": "Common Elaeocarpus",
+      "treeCount": 10,
+      "districtCount": 5
+    },
+    {
+      "speciesNameZh": "森氏紅淡比",
+      "scientificName": "Cleyera japonica Thunb. var. morii (Yamamoto) Masam.",
+      "speciesNameEn": "Mori Cleyera",
+      "treeCount": 9,
+      "districtCount": 6
+    },
+    {
+      "speciesNameZh": "黃椰子",
+      "scientificName": "Chrysalidocarpus lutescens",
+      "speciesNameEn": "Yellow Areca Palm",
+      "treeCount": 9,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "垂葉榕",
+      "scientificName": "Ficus benjamina",
+      "speciesNameEn": "Benjamin Tree",
+      "treeCount": 9,
+      "districtCount": 6
+    },
+    {
+      "speciesNameZh": "臺灣朴",
+      "scientificName": "Celtis formosana Hayata",
+      "speciesNameEn": "Taiwan Hackberry",
+      "treeCount": 8,
+      "districtCount": 4
+    },
+    {
+      "speciesNameZh": "烏桕",
+      "scientificName": "Sapium sebiferum (L.) Roxb.",
+      "speciesNameEn": "Chinese Tallow Tree",
+      "treeCount": 8,
+      "districtCount": 5
+    },
+    {
+      "speciesNameZh": "竹柏",
+      "scientificName": "Nageia nagi (Thunb.) O. Ktze.",
+      "speciesNameEn": "Nagai Podocarpus",
+      "treeCount": 8,
+      "districtCount": 3
+    },
+    {
+      "speciesNameZh": "錫蘭橄欖",
+      "scientificName": "Elaeocarpus serratus L.",
+      "speciesNameEn": "Ceylon-olive Elaeocarpus",
+      "treeCount": 8,
+      "districtCount": 6
+    },
+    {
+      "speciesNameZh": "桂花",
+      "scientificName": "Osmanthus fragrans Lour.",
+      "speciesNameEn": "Sweet Osmanthus",
+      "treeCount": 8,
+      "districtCount": 3
+    },
+    {
+      "speciesNameZh": "大葉山欖",
+      "scientificName": "Palaquium formosanum",
+      "speciesNameEn": "Formosan Nato Tree",
+      "treeCount": 8,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "相思樹",
+      "scientificName": "Acacia confusa Merr.",
+      "speciesNameEn": "Taiwan Acacia",
+      "treeCount": 7,
+      "districtCount": 3
+    },
+    {
+      "speciesNameZh": "大葉合歡",
+      "scientificName": "Albizia lebbeck (L.) Benth",
+      "speciesNameEn": "Siris",
+      "treeCount": 6,
+      "districtCount": 4
+    },
+    {
+      "speciesNameZh": "銀杏",
+      "scientificName": "Ginkgo biloba L.",
+      "speciesNameEn": "Maidenhair Tree",
+      "treeCount": 6,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "印度黃檀",
+      "scientificName": "Dalbergia sissoo DC.",
+      "speciesNameEn": "Sisso tree",
+      "treeCount": 6,
+      "districtCount": 3
+    },
+    {
+      "speciesNameZh": "大葉楠",
+      "scientificName": "Machilus japonica Sieb. & Zucc. var. kusanoi (Hayata) Liao",
+      "speciesNameEn": "Large-leaved Nanmu",
+      "treeCount": 6,
+      "districtCount": 3
+    },
+    {
+      "speciesNameZh": "月橘 (七里香)",
+      "scientificName": "Murraya paniculata (L.) Bl. ex DC.",
+      "speciesNameEn": "Common Jasmin Orange",
+      "treeCount": 5,
+      "districtCount": 3
+    },
+    {
+      "speciesNameZh": "肯氏蒲桃",
+      "scientificName": "Eugenia cumini Druce",
+      "speciesNameEn": "Javaplum",
+      "treeCount": 5,
+      "districtCount": 4
+    },
+    {
+      "speciesNameZh": "臺東蘇鐵",
+      "scientificName": "Cycas taitungensis C. F. Shen, K. D. Hill, C. H. Tsou & C. J. Chen",
+      "speciesNameEn": "Taiwan Cycas",
+      "treeCount": 5,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "木麻黃",
+      "scientificName": "Casuarina equitisetifolia L.",
+      "speciesNameEn": "Beef Wood",
+      "treeCount": 5,
+      "districtCount": 3
+    },
+    {
+      "speciesNameZh": "樹杞",
+      "scientificName": "Ardisia sieboldii Miq.",
+      "speciesNameEn": "Siebold Ardisia",
+      "treeCount": 5,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "紅楠",
+      "scientificName": "Machilus thunbergii Sieb. & Zucc",
+      "speciesNameEn": "Red Nanmu",
+      "treeCount": 5,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "象牙樹",
+      "scientificName": "Diospyros ferrea (Willd.) Bakhuizen",
+      "speciesNameEn": "Ivorywood",
+      "treeCount": 4,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "水黃皮",
+      "scientificName": "Pongamia pinnata (L.) Pierre",
+      "speciesNameEn": "Poongaoil Pongamia",
+      "treeCount": 4,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "檸檬桉",
+      "scientificName": "Eucalyptus maculata Hook. var. citriodora (Hook) F. Muell.",
+      "speciesNameEn": "Lemon Eucaly",
+      "treeCount": 4,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "烏心石",
+      "scientificName": "Michelia compressa (Maxim.) Sargent",
+      "speciesNameEn": "Formosan Michelia",
+      "treeCount": 4,
+      "districtCount": 3
+    },
+    {
+      "speciesNameZh": "落羽杉",
+      "scientificName": "Taxodiun distichum (L.) Rich",
+      "speciesNameEn": "Deciduous Cypress",
+      "treeCount": 4,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "金龜樹",
+      "scientificName": "Pithecellobium dulce (Roxb.) Benth.",
+      "speciesNameEn": "Manila Tamarind",
+      "treeCount": 4,
+      "districtCount": 3
+    },
+    {
+      "speciesNameZh": "菲律賓紫檀",
+      "scientificName": "Pterocarpus vidalianus Rolfe",
+      "speciesNameEn": "Philippine Padauk",
+      "treeCount": 4,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "大葉桃花心木",
+      "scientificName": "Swietenia macrophylla King",
+      "speciesNameEn": "Mahogany",
+      "treeCount": 4,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "大葉羅漢松",
+      "scientificName": "Podocarpus macrophyllus (Thunb.) Sweet",
+      "speciesNameEn": "Broad-leaved Podocarpus",
+      "treeCount": 4,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "無患子",
+      "scientificName": "Sapindus mukorossii Gaertn.",
+      "speciesNameEn": "Chinese Soap Berry",
+      "treeCount": 4,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "木棉",
+      "scientificName": "Bombax malabarica DC.",
+      "speciesNameEn": "Common Bombax",
+      "treeCount": 4,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "江某",
+      "scientificName": "Schefflera octophylla (Lour.) Harms",
+      "speciesNameEn": "Schefflera Tree",
+      "treeCount": 4,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "毛海棗",
+      "scientificName": "Phoenix tomentosa Gentil.",
+      "speciesNameEn": "Phoenix tomentosa",
+      "treeCount": 4,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "臺灣海桐",
+      "scientificName": "Pittosporum pentandrum (Blanco) Merr.",
+      "speciesNameEn": "Fragrant Pittosporum",
+      "treeCount": 3,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "九芎",
+      "scientificName": "Lagerstroemia subcostata Koehne",
+      "speciesNameEn": "Subcostate Crape Myrtle",
+      "treeCount": 3,
+      "districtCount": 3
+    },
+    {
+      "speciesNameZh": "第倫桃",
+      "scientificName": "Dillenia indica L.",
+      "speciesNameEn": "Indian Dillenia",
+      "treeCount": 3,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "香椿",
+      "scientificName": "Toona sinensis (Juss.) M. Roem",
+      "speciesNameEn": "Chinese Toona",
+      "treeCount": 3,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "魯花樹",
+      "scientificName": "Scolopia oldhamii Hance",
+      "speciesNameEn": "Oldham Scolopia",
+      "treeCount": 3,
+      "districtCount": 3
+    },
+    {
+      "speciesNameZh": "黃槿",
+      "scientificName": "Hibiscus tiliaceus L.",
+      "speciesNameEn": "Linden Hibiscus",
+      "treeCount": 3,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "九丁榕",
+      "scientificName": "Ficus nervosa Heyne ex Roth.",
+      "speciesNameEn": "Mountain Fig",
+      "treeCount": 3,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "琉球松",
+      "scientificName": "Pinus luchuensis Mayr.",
+      "speciesNameEn": "Luchu Pine",
+      "treeCount": 3,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "蓮霧",
+      "scientificName": "Syzygium samarangense (Bl.) Merr. & Perry",
+      "speciesNameEn": "Wax Apple",
+      "treeCount": 3,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "紫藤",
+      "scientificName": "Wisteria sinensis (Sims) Sweet",
+      "speciesNameEn": "Chinese Wisteria",
+      "treeCount": 3,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "美人樹",
+      "scientificName": "Chorisia speciosa A.St.-Hil.",
+      "speciesNameEn": "silk floss tree",
+      "treeCount": 3,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "海檬果",
+      "scientificName": "Cerbera manghas",
+      "speciesNameEn": "Common Cerberus Tree",
+      "treeCount": 3,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "光臘樹",
+      "scientificName": "Fraxinus griffithii C.B. Clarke",
+      "speciesNameEn": "Griffith's Ash",
+      "treeCount": 2,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "掌葉蘋婆",
+      "scientificName": "Sterculia foetida L.",
+      "speciesNameEn": "Hazel Bottle Tree",
+      "treeCount": 2,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "桃花心木",
+      "scientificName": "Swietenia mahaoni (L.) Jacq.",
+      "speciesNameEn": "Honduras mahogany",
+      "treeCount": 2,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "黃果垂榕",
+      "scientificName": "Ficus benjamina L. var. comosa King",
+      "speciesNameEn": "White barkfig",
+      "treeCount": 2,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "吉貝木棉",
+      "scientificName": "Ceiba pentandra (L.) Gaertn.",
+      "speciesNameEn": "Kapok",
+      "treeCount": 2,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "闊葉榕",
+      "scientificName": "Ficus altissima Blume",
+      "speciesNameEn": "council tree",
+      "treeCount": 2,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "臺東漆樹",
+      "scientificName": "Semecarpus gigantifolia Vidal",
+      "speciesNameEn": "Largeleaf Markingnut",
+      "treeCount": 2,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "緬梔 (雞蛋花)",
+      "scientificName": "Plumeria rubra L. var. acutifolia (Plir. ex Lam.) Bailey",
+      "speciesNameEn": "Mexican Frangipani",
+      "treeCount": 2,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "龍眼",
+      "scientificName": "Euphoria Longana Lam.",
+      "speciesNameEn": "Longan",
+      "treeCount": 2,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "流蘇",
+      "scientificName": "Chionanthus retusus Lindl. & Paxt.",
+      "speciesNameEn": "Chinese Fringe-tree",
+      "treeCount": 2,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "臺灣肖楠",
+      "scientificName": "Calocedrus macrolepis Kurz var. formosana (Florin) Cheng & L.K. Fu.",
+      "speciesNameEn": "Taiwan Incense Cedar",
+      "treeCount": 2,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "孟加拉榕",
+      "scientificName": "Ficus bengalensis Linn.",
+      "speciesNameEn": "Banyan Fig",
+      "treeCount": 2,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "山黃麻",
+      "scientificName": "Trema orientalis (L.) Blume",
+      "speciesNameEn": "India-charcoal Trema",
+      "treeCount": 2,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "臺灣欒樹",
+      "scientificName": "Koelreuteria henryi Dummer",
+      "speciesNameEn": "Flame Gold-rain Tree",
+      "treeCount": 2,
+      "districtCount": 2
+    },
+    {
+      "speciesNameZh": "穗花棋盤腳",
+      "scientificName": "Barringtonia racemosa (L.) Gl. ex DC.",
+      "speciesNameEn": "Small-leaved Barringtonia",
+      "treeCount": 2,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "優曇華",
+      "scientificName": "Ficus racemosa L.",
+      "speciesNameEn": "Cluster Fig",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "加羅林魚木",
+      "scientificName": "Crateva religiosa Forst.f.",
+      "speciesNameEn": "Sacred Garlic Pear",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "蛋黃果",
+      "scientificName": "Pouteria campechiana",
+      "speciesNameEn": "Egg Fruit",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "印度榆",
+      "scientificName": "Holoptelea integrifolia (Roxb.) Planch.",
+      "speciesNameEn": "Indian elm",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "粗皮桉",
+      "scientificName": "Eucalyptus deglupta Blume",
+      "speciesNameEn": "rainbow eucalyptus",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "大風子",
+      "scientificName": "Hydnocarpus anthelminthicus Pierr. ex Laness",
+      "speciesNameEn": "Common Chaulmoogra Tree",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "黃果蒲桃",
+      "scientificName": "Eugenia xanthocarpa",
+      "speciesNameEn": "Eugenia xanthocarpa",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "圓果榕",
+      "scientificName": "Ficus globosa Blume",
+      "speciesNameEn": "Ara akar",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "大葉巴克豆",
+      "scientificName": "Parkia roxburghii",
+      "speciesNameEn": "African Locust",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "小葉羅漢松",
+      "scientificName": "Podocarpus macrophyllus var. maki",
+      "speciesNameEn": "Chinese Podocarpus",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "披針葉饅頭果",
+      "scientificName": "Glochidion lanceolatum Hayata",
+      "speciesNameEn": "Lanceolate-leaved Glochidion",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "南洋含笑",
+      "scientificName": "Michelia pilifera",
+      "speciesNameEn": "Banana Shrb",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "柿子",
+      "scientificName": "Diospyros kaki Thumb.",
+      "speciesNameEn": "Persimmon",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "厚皮香",
+      "scientificName": "Ternstroemia gymnanthera",
+      "speciesNameEn": "Japanese Ternstroemia",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "密梭倫榕",
+      "scientificName": "Ficus drupacea Thunb. var. pubescens (Roth) Corner",
+      "speciesNameEn": "Mysore Fig",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "臭娘子",
+      "scientificName": "Premna serratifolia L.",
+      "speciesNameEn": "Headache-tree Premna",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "烏來冬青",
+      "scientificName": "Ilex uraiensis Mori & Yamamoto",
+      "speciesNameEn": "Urai Holly",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "山埔姜",
+      "scientificName": "Vitex quinata (Lour.) F. N. Williams",
+      "speciesNameEn": "Fiveleaf Chastetree",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "風箱樹",
+      "scientificName": "Cephalanthus naucleoides DC.",
+      "speciesNameEn": "Buttonbush",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "泡桐(南投梧桐)",
+      "scientificName": "Paulownia fortunei Hemsl.",
+      "speciesNameEn": "Fortune Paulownia",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "狹葉堇寶蓮",
+      "scientificName": "Syzygium cumini caryophllifolium",
+      "speciesNameEn": "Jambolan",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "麻六甲合歡",
+      "scientificName": "Albizia falcata Bacher ex Merill",
+      "speciesNameEn": "Moluccan albizia",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "欖仁",
+      "scientificName": "Terminalia catappa L.",
+      "speciesNameEn": "Indian Almond",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "龍柏",
+      "scientificName": "Juniperus chinensis L. var. kaizuka Hort. ex Endl.",
+      "speciesNameEn": "Dragon Chinese Juniper",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "銀樺",
+      "scientificName": "Grevillea robusta A. Cunn.",
+      "speciesNameEn": "silk oak",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "牛樟",
+      "scientificName": "Cinnamomum kanehirai",
+      "speciesNameEn": "Stout Camphor Tree",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "青楓",
+      "scientificName": "Acer serrulatum Hayata",
+      "speciesNameEn": "Green Maple",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "山紅柿",
+      "scientificName": "Diospyros morisiana Hance",
+      "speciesNameEn": "Morris Persimmon",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "鐵冬青",
+      "scientificName": "Ilex rotunda Thumb.",
+      "speciesNameEn": "Ilex rotunda Thumb.",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "臺灣雅楠",
+      "scientificName": "Phoebe formosana",
+      "speciesNameEn": "Taiwan Phoebe",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "番石榴",
+      "scientificName": "Psidium guajava",
+      "speciesNameEn": "Guava",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "女王椰子",
+      "scientificName": "Syagrus romanzoffiana (Chamisso) Glassman",
+      "speciesNameEn": "Queen Palm",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "梅",
+      "scientificName": "Prunus mume Sieb. et Zucc.",
+      "speciesNameEn": "Mume Plant",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "鐵刀木",
+      "scientificName": "Senna siamea (Lamarck) Irwin & Barneby",
+      "speciesNameEn": "Bomboy Blackwood",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "山豬肉",
+      "scientificName": "Meliosma rhoifolia Maxim.",
+      "speciesNameEn": "lacquerleaf meliosma",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "細葉桉",
+      "scientificName": "Eucalyptus tereticornis Smith",
+      "speciesNameEn": "forest red gum",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "白桕",
+      "scientificName": "Sapium discolor Muell. Arg.",
+      "speciesNameEn": "Taiwan Sapium",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "紅淡比",
+      "scientificName": "Cleyera japonica Thumb.",
+      "speciesNameEn": "Cleyera",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "柳杉",
+      "scientificName": "Cryptomeria japonica",
+      "speciesNameEn": "Japanese Cedar",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "黃葛樹",
+      "scientificName": "Ficus virens",
+      "speciesNameEn": "Big-leaved Fig",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "變葉木",
+      "scientificName": "Codiaeum variegatum",
+      "speciesNameEn": "Croton",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "台灣五葉松",
+      "scientificName": "Pinus morrisonicola",
+      "speciesNameEn": "Taiwan Pine",
+      "treeCount": 1,
+      "districtCount": 1
+    },
+    {
+      "speciesNameZh": "蒲桃",
+      "scientificName": "Syzygium jambos",
+      "speciesNameEn": "Rose Apple",
+      "treeCount": 1,
+      "districtCount": 1
+    }
+  ],
+  "byLocationType": [
+    {
+      "locationType": "公園、綠地",
+      "locationTypeCategory": "park_green_space",
+      "treeCount": 778,
+      "uniqueSpeciesCount": 59
+    },
+    {
+      "locationType": "學校",
+      "locationTypeCategory": "school",
+      "treeCount": 578,
+      "uniqueSpeciesCount": 62
+    },
+    {
+      "locationType": "道路、人行道",
+      "locationTypeCategory": "road_sidewalk",
+      "treeCount": 505,
+      "uniqueSpeciesCount": 28
+    },
+    {
+      "locationType": "其他",
+      "locationTypeCategory": "other",
+      "treeCount": 410,
+      "uniqueSpeciesCount": 55
+    },
+    {
+      "locationType": "公共場所",
+      "locationTypeCategory": "public_place",
+      "treeCount": 345,
+      "uniqueSpeciesCount": 48
+    },
+    {
+      "locationType": "私有住宅",
+      "locationTypeCategory": "private_residence",
+      "treeCount": 168,
+      "uniqueSpeciesCount": 44
+    },
+    {
+      "locationType": "郊山",
+      "locationTypeCategory": "suburban_mountain",
+      "treeCount": 33,
+      "uniqueSpeciesCount": 14
+    }
+  ],
+  "byManagementUnit": [
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處",
+      "treeCount": 823,
+      "uniqueSpeciesCount": 51,
+      "districtCount": 12
+    },
+    {
+      "managementUnit": "國立臺灣大學",
+      "treeCount": 210,
+      "uniqueSpeciesCount": 45,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 195,
+      "uniqueSpeciesCount": 13,
+      "districtCount": 11
+    },
+    {
+      "managementUnit": "臺北市政府體育局(遠雄巨蛋事業股份有限公司代管)",
+      "treeCount": 189,
+      "uniqueSpeciesCount": 13,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "私人",
+      "treeCount": 152,
+      "uniqueSpeciesCount": 28,
+      "districtCount": 12
+    },
+    {
+      "managementUnit": "臺北市政府工務局水利工程處",
+      "treeCount": 133,
+      "uniqueSpeciesCount": 6,
+      "districtCount": 8
+    },
+    {
+      "managementUnit": "財團法人大同大學",
+      "treeCount": 88,
+      "uniqueSpeciesCount": 10,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府文化局",
+      "treeCount": 75,
+      "uniqueSpeciesCount": 22,
+      "districtCount": 6
+    },
+    {
+      "managementUnit": "臺灣銀行股份有限公司",
+      "treeCount": 75,
+      "uniqueSpeciesCount": 22,
+      "districtCount": 3
+    },
+    {
+      "managementUnit": "財政部國有財產署",
+      "treeCount": 71,
+      "uniqueSpeciesCount": 19,
+      "districtCount": 9
+    },
+    {
+      "managementUnit": "國立國父紀念館",
+      "treeCount": 69,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "行政院農業委員會林業試驗所",
+      "treeCount": 47,
+      "uniqueSpeciesCount": 22,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立景美女子高級中學",
+      "treeCount": 37,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府都市發展局",
+      "treeCount": 37,
+      "uniqueSpeciesCount": 7,
+      "districtCount": 5
+    },
+    {
+      "managementUnit": "臺北市南港區東新國民小學",
+      "treeCount": 32,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市大同區太平國民小學",
+      "treeCount": 29,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "元利建設企業股份有限公司",
+      "treeCount": 29,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國家表演藝術中心",
+      "treeCount": 26,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "私人(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 25,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "總統府第三局(外交部代管)",
+      "treeCount": 25,
+      "uniqueSpeciesCount": 7,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立建國高級中學",
+      "treeCount": 22,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處(公園處代管)",
+      "treeCount": 22,
+      "uniqueSpeciesCount": 7,
+      "districtCount": 8
+    },
+    {
+      "managementUnit": "中華郵政股份有限公司",
+      "treeCount": 21,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "財政部國有財產署(文化部代管)",
+      "treeCount": 20,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局水利工程處(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 18,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 5
+    },
+    {
+      "managementUnit": "奎山學校財團法人",
+      "treeCount": 18,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、行政院農業委員會農田水利署(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 18,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "交通部鐵道局(臺北市住宅及都市更新中心點交大埕股份有限公司代管)",
+      "treeCount": 17,
+      "uniqueSpeciesCount": 6,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市文山區公所",
+      "treeCount": 17,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市北投區公所代管)",
+      "treeCount": 17,
+      "uniqueSpeciesCount": 6,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府財政局",
+      "treeCount": 15,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 4
+    },
+    {
+      "managementUnit": "國立臺灣大學(臺北市政府文化局代管)",
+      "treeCount": 15,
+      "uniqueSpeciesCount": 10,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部政治作戰局",
+      "treeCount": 15,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 5
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處",
+      "treeCount": 14,
+      "uniqueSpeciesCount": 9,
+      "districtCount": 7
+    },
+    {
+      "managementUnit": "國立臺灣文學館",
+      "treeCount": 14,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局(國防部全民防衛動員署後備指揮部代管)",
+      "treeCount": 14,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "總統府第三局",
+      "treeCount": 14,
+      "uniqueSpeciesCount": 8,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(中山區公所代管)",
+      "treeCount": 13,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立臺北護理健康大學",
+      "treeCount": 13,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "國立臺灣科技大學",
+      "treeCount": 12,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "文化部文化資產局",
+      "treeCount": 11,
+      "uniqueSpeciesCount": 6,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "農業部林業及自然保育署",
+      "treeCount": 11,
+      "uniqueSpeciesCount": 8,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "國家住宅及都市更新中心",
+      "treeCount": 11,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "國立中正紀念堂管理處",
+      "treeCount": 11,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市中正區螢橋國民小學",
+      "treeCount": 10,
+      "uniqueSpeciesCount": 7,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立新民國民中學",
+      "treeCount": 10,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立臺北科技大學",
+      "treeCount": 10,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府衛生局",
+      "treeCount": 10,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市政府工務局水利工程處辦理)",
+      "treeCount": 10,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部政治作戰局(國防部海軍司令部代管)",
+      "treeCount": 9,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 3
+    },
+    {
+      "managementUnit": "臺北市內湖區公所",
+      "treeCount": 9,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國營臺灣鐵路股份有限公司",
+      "treeCount": 9,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 4
+    },
+    {
+      "managementUnit": "國防部軍備局(國防醫學大學三軍總醫院北投分院代管)",
+      "treeCount": 9,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立北投國民中學",
+      "treeCount": 9,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "文化部",
+      "treeCount": 9,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(北區分署)(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 9,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府捷運工程局(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 9,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "國防部軍備局",
+      "treeCount": 8,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 3
+    },
+    {
+      "managementUnit": "財政部國有財產署(北區分署代管)",
+      "treeCount": 8,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 3
+    },
+    {
+      "managementUnit": "經濟部",
+      "treeCount": 8,
+      "uniqueSpeciesCount": 7,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市萬華區龍山國民小學",
+      "treeCount": 8,
+      "uniqueSpeciesCount": 6,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市松山區公所代管)",
+      "treeCount": 8,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(北區分署)",
+      "treeCount": 8,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "財政部國有財產署(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 8,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 3
+    },
+    {
+      "managementUnit": "臺北市士林區陽明山國民小學",
+      "treeCount": 8,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北自來水事業處",
+      "treeCount": 7,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 3
+    },
+    {
+      "managementUnit": "臺北市民族實驗國民中學",
+      "treeCount": 7,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人臺北市私立大同高級中學",
+      "treeCount": 7,
+      "uniqueSpeciesCount": 6,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立臺北教育大學",
+      "treeCount": 7,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "財政部國有財產署北區分署(大朝電視傳媒股份有限公司代管)",
+      "treeCount": 7,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "陽明山國家公園管理處",
+      "treeCount": 7,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署、臺北市政府工務局新建工程處、私人(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 7,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府體育局、臺北市立大學",
+      "treeCount": 7,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市停車管理工程處",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "國立臺灣師範大學",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市孔廟管理委員會",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立永吉國民中學",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局大地工程處",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立景美國民中學",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市士林區士東國民小學",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(萬華區公所代管)",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府體育局",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 4
+    },
+    {
+      "managementUnit": "臺北市北投區逸仙國民小學",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市和平實驗國民小學",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "中央研究院",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "司法院",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北榮民總醫院",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部財政人員訓練所",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "衛生福利部食品藥物管理署",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府文化局與台北市立圖書館共同管理",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "馬偕學校財團法人",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署、臺北市政府工務局新建工程處、行政院農業委員會農田水利署、台灣電力股份有限公司、新北市政府財政局、上揚國際資產管理股份有限公司、私人(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府捷運工程局(臺北大眾捷運股份有限公司代管)",
+      "treeCount": 6,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市政府社會局",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 4
+    },
+    {
+      "managementUnit": "教育部",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 3
+    },
+    {
+      "managementUnit": "臺北市立大學",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市大同區大龍國民小學",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府產業發展局",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市松山區松山國民小學",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市萬華區西門國民小學",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市政府工務局水利工程處代管)",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "財政部國有財產署、私人",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 3
+    },
+    {
+      "managementUnit": "臺北市士林區社子國民小學",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市大安區公所代管)",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "行政院",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市公共運輸處",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "兆豐國際商業銀行",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "萬芳社區管理委員會",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市北投區大屯國民小學",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市停車管理工程處代管)",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市北投區清江國民小學 (臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市北投區明德國民小學 (臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處 (臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "新北市政府財政局(臺北市政府文化局代管)",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 5,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立明德國民中學",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市信義區雙永國民小學",
+      "treeCount": 5,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "台灣電力股份有限公司(秘書處)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府財政局(金毓泰股份有限公司代管)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "中華電信股份有限公司",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "財團法人中華民國佛教慈濟慈善事業基金會",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "內政部警政署",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "私有",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 4
+    },
+    {
+      "managementUnit": "交通部公路總局",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市立中山女子高級中學",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、財政部國有財產署、行政院農業委員會農田水利署、臺灣土地銀行股份有限公司、私人",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立聯合醫院",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立浩然敬老院(臺北市政府捷運工程局第一區工程處代管111.5.27起)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局(國防醫學院三軍總醫院北投分院代管)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人基督教拿撒勒人會",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市大安區大安國民小學",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "內政部警政署保安警察第六總隊",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "台北市立萬華國民中學",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部政治作戰局(後備指揮部代管)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 4,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(中國人壽保險股份有限公司代管)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(南港區公所代管)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "私人(財團法人台北市文化基金會代管)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立清華大學",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局衛生下水道工程處",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "國立臺灣大學(臺北市政府工務局公園處代管)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市文山區興華國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人台北市中和堂",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(工程期間由新建工程處代管)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局(國防部軍備局工程營產中心代管)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、財政部國有財產署(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市政府文化局代管)",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人台北市私立衛理女子高級中學",
+      "treeCount": 4,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立臺灣博物館",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局(國防部憲兵指揮部代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市中正區公所代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "尚志資產開發股份有限公司(財團法人台北市私立大同高級中學代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處、臺北市政府警察局",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市文山區景美國民小學",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "台灣中油股份有限公司",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市政府警察局",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立萬華國民中學",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市萬華區東園國民小學",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立龍山國民中學",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市萬華區華江國民小學",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府都市發展局(臺北市住宅及都市更新中心代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "外交部",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府教育局",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立臺北藝術大學",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立金華國民中學",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市大安區龍安國民小學",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "木蘭居C座公寓大廈管理委員會",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "木蘭居B座公寓大廈管理委員會",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(財團法人國巨基金會代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局水利工程處(公園處代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺灣高等檢察署等多單位共有",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市萬華區新和國民小學",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "中央研究院 臺北市政府工務局公園路燈工程管理處",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市公共運輸處(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府文化局 (財團法人孫運璿學術基金會代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立大安國民中學",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "中升建設股份有限公司",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "交通部臺灣鐵路管理局(國家鐵道博物館籌備處代管至115年12月31日止)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(振興醫院代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、台灣電力股份有限公司(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立景美國民中學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市文山區景興國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市士林區陽明山國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 3,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市教師研習中心",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市內湖區碧湖國民小學",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署、臺北市政府工務局新建工程處(財政部國有財產署北區分署、臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(財政部國有財產署北區分署、臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府文化局(財團法人台北市文化基金會代管)",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部關務署基隆關",
+      "treeCount": 3,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(北區分署/安宏股份有限公司代管至181/04/28)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立弘道國民中學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈管理處(臺北市中正區公所代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "台灣電力股份有限公司",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府文化局 文化資產科",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市中山堂管理所代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "第一商業銀行股份有限公司",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市立啟聰學校",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府捷運工程局",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "財團法人大同大學、尚志資產開發股份有限公司",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市信義區公所",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立成德國民中學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立政治大學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市士林區士林國民小學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "麗水松園管理委員會",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市萬華區老松國民小學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "台北海洋技術學院",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市士林區富安國民小學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市士林區福林國民小學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市北投區北投國民小學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市工務局公園路燈工程管理處",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "雅敍園社區管理委員會",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市北投區石牌國民小學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "振興醫療財團法人振興醫院",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "新北市政府財政局",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺灣土地銀行股份有限公司",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市大安區建安國民小學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "公私共有",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(臺北市大安區公所代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人台灣郵政協會",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市政府都市發展局代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "公園路燈工程管理處",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "財政部國有財產署(薇閣國小代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "台灣糖業股份有限公司(東吳大學代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "大同世界皇家特區管理委員會",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "宋勝海等八人",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "台北市文化基金會 松山文創園區營運中心",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立圖書館",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立北安國民中學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "正大尼龍工業股份有限公司",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "睿泰建設股份有限公司",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署（北區分署）",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部政治作戰局(新華開發股份有限公司代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府文化局(臺北市立大學代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市松山區敦化國民小學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "私人、臺北市政府工務局新建工程處(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "財團法人台北市私立延平高級中學",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(元大人壽保險股份有限公司、台灣普客二四股份有限公司代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府財政局(金毓通股份有限公司代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立故宮博物院",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、財政部國有財產署、新北市政府財政局、私人(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市士林區士林國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立臺灣師範大學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北自來水事業處(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、元利建設企業股份有限公司(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市內湖區西湖國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市文山區辛亥國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府捷運工程局 (臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、吉美建設事業股份有限公司、私人(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "私人(臺北市政府工務局新建工程處代管至113年12月31日)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺灣銀行股份有限公司(台北美國學校代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(北區分署/全球人壽保險股份有限公司代管至179.8.23)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "銓緯投資股份有限公司",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立陽明教養院",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "私人、(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處代管",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 2
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、臺灣土地銀行股份有限公司(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市松山高級工農職業學校",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、私人(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "私人(因道路開闢徵收管理單位為臺北市政府工務局新建工程處，委由公園處代為管理維護)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局(海軍司令部人事軍務處代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "華南商業銀行股份有限公司",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "中華電信股份有限公司、國家住宅及都市更新中心",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 2,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立臺灣大學(國立臺灣大學醫學院附設醫院代管)",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府都市發展局、劍潭整宅C區管理委員會",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "旭泰新股份有限公司",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "祭祀公業普治祖",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺灣士林地方檢察署",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "農業部農田水利署",
+      "treeCount": 2,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(全球人壽保險股份有限公司代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市市場處",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、臺灣土地銀行股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "植心園公寓大廈管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立臺灣大學(臺北市停車管理工程處代管113年4月1日起至116年3月31日止)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺灣臺北地方法院",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "農業部苗栗區農業改良場",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府民政局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(北區分署/臺灣菸酒股份有限公司代管至113/01/31)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立歷史博物館",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "農業部林業試驗所",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立臺灣大學、財政部國有財產署",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺灣高等法院",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "潤泰創新國際股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市中正區代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立成功高級中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "仁愛禧園社區管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市大同區大同國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(大同區公所代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市大同區日新國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市大同區大龍國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市大同區蓬萊國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市大同區雙蓮國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市中山區大直國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "私立大同高中",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人第一社會福利基金會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市南港區玉成國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "衛生福利部",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府文化局(新視紀整合行銷傳播股份有限公司代管)、臺北市政府工務局新建工程處(公園處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "映東騰社區管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處、臺北市政府觀光傳播局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處(中山區公所代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國泰建設股份有限公司、國泰人壽保險股份有限公司、三井工程股份有限公司、國泰建築經理股份有限公司、霖園公寓大廈管理維護股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "台北文山[興安宮",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "第凡內社區管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "大洋塑膠工業股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市文山區公所代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "農業部農田水利署瑠公管理處",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市文山區武功國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市文山區興德國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(中山區公所代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市中山區長安國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立大同高級中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人台北市全台葉姓祖廟",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(達林開發股份有限公司代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市中山區中正國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(內湖區公所代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立士林高級商業職業學校",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "交通部高速公路局北區養護工程分局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "大育營造有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "敦福開發股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府財政局(公園處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署、臺北市政府工務局新建工程處(臺北市政府工務局公園路燈工程管理處代管)、私人",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國泰世華商業銀行股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立華江高級中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市萬華區雙園國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人臺北市私立衛理女子高級中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "台北海洋科技大學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "新凱汽車股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市士林區雨農國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市停車管理工程處(臺北市政府捷運工程局第一區工程處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處(臺北市停車管理工程處代管) 、交通部高速公路局北區養護工程分局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立士林國民中學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、臺北市政府工務局公園路燈工程管理處",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市北投區關渡國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "岳榕莊管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人台北市私立華興育幼院、振興醫療財團法人",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市北投區文化國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立中正高級中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "晴山學社區管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市北投區石牌國民中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府財政局(臺北市市場處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "日勝生活科技股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局(國防醫學院代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "敦有建設有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "天母富桂管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市私立薇閣國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人臺北市關渡宮",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "源之鄉溫泉大廈管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府地政局土地開發總隊",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(振興醫療財團法人振興醫院代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處(公園處代管)、臺北市政府文化局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局(國防醫學院三軍總醫院北投分院)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立北投國民中學(北投區公所代管自114.06.01至117.05.31)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立北投國民中學(北投區公所代管自114年6月1日起至117年5月31日止)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "行政院農業委員會林業試驗所、財政部國有財產署、臺北市政府工務局新建工程處、臺灣土地銀行股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "立法院",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "帝璟苑公寓大廈管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "台北市政府文化局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "公園處",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(北區分署/美邦開發建設有限公司代管至180年8月12日)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "中國信託商業銀行股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市大安區新生國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "台北市政府工務局公園路燈工程管理處",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "嘉新政大花園廣場摘星樓管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺灣高等法院(最高檢察署代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(保活至113年6月交給臺北市工務局公園路燈工程管理處維管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市殯葬管理處",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人台北市私立愛愛院",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "台北市體育局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺灣銀行股份有限公司、新北市政府財政局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(中懋股份有限公司承租到114.3.24)、私人",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北自來水事業處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(財團法人台北市文化基金會代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "永豐商業銀行",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立臺灣大學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "農業部",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "行政院農業委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市文山區永建國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "陳O中、陳O元",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府文化局(財團法人基督教中華信望愛基金會代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "正隆天第大廈管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署、新工處(公園處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部政治作戰局 (玉山商業銀行股份有限公司代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "震一建設股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "閱讀春樹管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立啟聰學校(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府環境保護局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市中正區東門國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "新北市政府人事處",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署北區分署(臺北市市場處代管至119年5月31日止)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "上海商業儲蓄銀行股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市士林區溪山國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "澎湖望安鄉、私人",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局(國防部軍事情報局代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署、臺北市政府工務局新建工程處",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺灣銀行股份有限公司(財團法人台北歐洲學校代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "經濟部水利署",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "內政部國土管理署",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處(大將開發股份有限公司維管至180.12.27)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(北區分署/虹耀建設股份有限公司代管至116.4.28)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府文化局(新視紀整合行銷傳播股份有限公司代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部政治作戰局(陸軍後勤指揮部代管)、財政部國有財產署(北區分署)、臺北市政府財政局、私人",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "康莊社區管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "新光人壽保險股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府都市發展局(臺北市政府消防局代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人台北市私立喬治高級工商職業學校",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "教育部(財團法人台北市南海普陀山慧濟寺代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國美建設股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市萬華區老松國民小學 (文化基金會代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市私立薇閣高級中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市中正區忠義國民小學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "彰化縣員林市公所(文山區公所代為巡查)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署 5.4 1.71",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "亞信營造工程股份有限公司、私人",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人台北行天宮",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "行政院農業委員會林業試驗所、臺北市政府捷運工程局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處（臺北市政府工務局公園路燈工程管理處代管）、行政院農業委員會農田水利署",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "睿信建設股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立中山國民中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市市立內湖國民中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "金義合窯業股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(北區分署/財團法人臺北市私立惇敍高級工商職業學校代管至116.12.31)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "交通部臺灣鐵路管理局(南港國際二股份有限公司代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市公共運輸處(萬達通實業股份有限公司代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部政治作戰局(國防部後備指揮部代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "監察院",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "振興醫療財團法人",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立動物園",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立臺北大學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市士林區社子國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局水利工程處 (臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、國泰世華商業銀行股份有限公司、私人(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、財政部國有財產署、私人(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市大安區大安國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、行政院農業委員會農田水利署、福安開發股份有限公司(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市西湖實驗國民中學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、台新國際商業銀行股份有限公司(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "敦煌別墅社區管理委員會(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人中華基督教衛理公會、私人(臺北市政府工務局公園路燈工程管理處代管",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "敦煌別墅社區管理委員(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立敦化國民中學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立龍山國民中學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市文山區永建國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府文化局 臺北市立圖書館",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部政治作戰局(美邦開發建設有限公司代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局工程營產中心北部地區工程營產處",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市政府捷運工程局第一區工程處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "新北市政府財政局(臺北市政府文化局辦理)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處（臺北市立美術館管理）",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部政治作戰局(國家住宅及都市更新中心代管至121年9月30日)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府捷運工程局、臺北市政府社會局、臺北市中正區忠義國民小學(全權管理)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "監察院、臺北市政府工務局新建工程處(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立建國中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府文化局(社團法人台灣電影文化協會代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(臺北市政府工務局新建工程處辦理)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人天主教會台北教區",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(北區分署/建義建設開發股份有限公司代管至181.5.23)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程管理處(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "衛生福利部胸腔病院(國家住宅及都市更新中心代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "新北市政府財政局(周○屏代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "遠東國際商業銀行股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "新北市政府財政局(北投普濟寺代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "產權未定道路用地(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市士林區百齡國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署、臺北市政府工務局新建工程處、行政院農業委員會農田水利署、元利建設企業股份有限公司、私人、百世多麗投資開發股份有限公司(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立中山國民中學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "私人、友銓投資有限公司(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "中華民國、臺北市、新北市、台灣電力股份有限公司、私人、上揚國際資產管理股份公司(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "柏魯實業股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人台北市濟南基督長老教會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "銓敘部",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處(臺北市政府文化局、財團法人台北市文化基金會代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局 (國防部憲兵指揮部代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "交通部公路局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府客家事務委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立三民國民中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署、臺北市政府工務局新建工程處、澎湖縣望安鄉公所、私人(財政部國有財產署北區分署、臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處(臺北市政府工務局水利工程處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "草山水美管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "彰化商業銀行股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "內政部營建署",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府文化局(文化建設科代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署、臺北市政府工務局新建工程處、臺灣銀行股份有限公司(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署、臺北市政府工務局新建工程處、私人(財政部國有財產署北區分署、臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "北市政府工務局新建工程處、行政院農業委員會農田水利署(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市北投區北投國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府財政局(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局公園路燈工程管理處（臺北市政府工務局水利工程處代管）",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立北安國民中學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市中山區大直國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "交通部台灣鐵路管理局(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、財政部國有財產署、新北市政府財政局、私人(財政部國有財產署北區分署、臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程處、財政部國有財產署、私人、力麒建設股份有限公司、吉美建設事業股份有限公司、上揚國際資產管理股份有限公司(財政部國有財產署北區分署、臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立至善國民中學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "道路用地(產權未定)(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "私人、財政部國有財產署、臺北市政府財政局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "法務部調查局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立復興高級中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局、臺北市政府工務局大地工程處",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局(由三軍總醫院汀州院區代管)、臺北市政府工務局公園路燈工程管理處、臺北市政府財政局、財政部國有財產署、私人",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(財政部國有財產署北區分署)(大安區公所代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署(財政部國有財產署北區分署代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財政部國有財產署署(財政部國有財產署北區分署代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "內政部國家公園署陽明山國家公園管理處",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "考選部",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立南門國民中學(臺北市中正區南門國民小學代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府工務局新建工程管理處(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "中國房屋開發股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部軍備局（財政部國有財產署北區分署）",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國立臺北大學、國泰建設股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "國防部政治作戰局(陸軍後勤指揮部代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市動物保護處",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "私人、臺北市政府財政局",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人台北市私立復興實驗高級中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市政府警察局、新北市政府財政局（臺北市政府文化局代管）",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "財團法人台灣省私立台北仁濟院(中油代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺灣士林地方檢察署、臺灣士林地方法院",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "農業部農田水利署（農業部農田水利署七星管理處代管）",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "奧斯卡雍居仁愛社區管理委員會",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市立仁愛國民中學",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "皇昌營造股份有限公司",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    },
+    {
+      "managementUnit": "臺北市大同區大同國民小學(臺北市政府工務局公園路燈工程管理處代管)",
+      "treeCount": 1,
+      "uniqueSpeciesCount": 1,
+      "districtCount": 1
+    }
+  ],
+  "byDiameterCategory": [
+    {
+      "diameterCategory": "1m_to_2m",
+      "treeCount": 1116
+    },
+    {
+      "diameterCategory": "0_5m_to_1m",
+      "treeCount": 1903
+    },
+    {
+      "diameterCategory": "under_0_5m",
+      "treeCount": 811
+    },
+    {
+      "diameterCategory": "2m_to_3m",
+      "treeCount": 38
+    },
+    {
+      "diameterCategory": "over_3m",
+      "treeCount": 6
+    }
+  ],
+  "byCircumferenceCategory": [
+    {
+      "circumferenceCategory": "3m_to_5m",
+      "treeCount": 1190
+    },
+    {
+      "circumferenceCategory": "1m_to_3m",
+      "treeCount": 2173
+    },
+    {
+      "circumferenceCategory": "under_1m",
+      "treeCount": 376
+    },
+    {
+      "circumferenceCategory": "5m_to_10m",
+      "treeCount": 128
+    },
+    {
+      "circumferenceCategory": "over_10m",
+      "treeCount": 7
+    }
+  ],
+  "coordinateQuality": {
+    "validWgs84Taipei": 3874,
+    "outsideTaipeiBounds": 0,
+    "invalid": 0,
+    "missing": 0,
+    "duplicateCoordinatePairCount": 584
+  },
+  "dataQuality": {
+    "missingTreeIdCount": 0,
+    "duplicateTreeIdCount": 0,
+    "missingLocationTypeCount": 1057,
+    "invalidDiameterCount": 0,
+    "suspiciousDiameterCount": 0,
+    "invalidCircumferenceCount": 0,
+    "suspiciousCircumferenceCount": 2,
+    "duplicateAddressCount": 428
+  }
+}

@@ -12,7 +12,10 @@ import {
   getFuelStationServiceTypeLabel,
   getFuelStationStatusLabel,
   getOpeningHoursTypeLabel,
+  getProtectedTreeLocationTypeLabel,
   getRiversideToiletTypeLabel,
+  getTreeCircumferenceCategoryLabel,
+  getTreeDiameterCategoryLabel,
   getToiletCategoryLabel,
 } from '../utils/facilityUtils';
 
@@ -283,6 +286,19 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.roadName && <p>{t.roadName}: {facility.roadName}</p>}
         </>
       )}
+      {facility.type === 'protected_tree' && (
+        <>
+          {facility.treeId && <p>{t.treeId}: {facility.treeId}</p>}
+          {facility.speciesNameZh && <p>{t.speciesNameZh}: {facility.speciesNameZh}</p>}
+          {facility.scientificName && <p>{t.scientificName}: {facility.scientificName}</p>}
+          {facility.speciesNameEn && <p>{t.speciesNameEn}: {facility.speciesNameEn}</p>}
+          {facility.diameterAtBreastHeightMeters && <p>{t.diameterAtBreastHeightMeters}: {facility.diameterAtBreastHeightMeters} m ({getTreeDiameterCategoryLabel(facility.diameterCategory, language)})</p>}
+          {facility.circumferenceAtBreastHeightMeters && <p>{t.circumferenceAtBreastHeightMeters}: {facility.circumferenceAtBreastHeightMeters} m ({getTreeCircumferenceCategoryLabel(facility.circumferenceCategory, language)})</p>}
+          {facility.locationTypeCategory && <p>{t.locationType}: {getProtectedTreeLocationTypeLabel(facility.locationTypeCategory, language)}</p>}
+          {facility.managementUnit && <p>{t.managementUnit}: {facility.managementUnit}</p>}
+          {facility.coordinateQuality && <p>{t.coordinateQuality}: {facility.coordinateQuality}</p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
@@ -296,6 +312,7 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       {facility.type === 'announced_no_smoking_place' && <p>{t.notice}: {t.announcedNoSmokingPlacePopupNotice}</p>}
       {facility.type === 'community_recycling_station' && <p>{t.notice}: {t.communityRecyclingStationPopupNotice}</p>}
       {facility.type === 'clean_needle_exchange_service_point' && <p>{t.notice}: {t.cleanNeedlePopupNotice}</p>}
+      {facility.type === 'protected_tree' && <p>{t.notice}: {t.protectedTreePopupNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

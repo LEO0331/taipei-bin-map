@@ -215,6 +215,14 @@
       "dependencies": ["feat-026"],
       "status": "done",
       "evidence": "npm run convert:facilities generated 12357 facilities, including 88 clean needle exchange service point records across all 12 districts. ./init.sh passed 49 unit/converter tests, production build, and 56 desktop/mobile Playwright tests on 2026-07-02."
+    },
+    {
+      "id": "feat-028",
+      "name": "Protected tree expansion",
+      "description": "Add Taipei protected trees as an exact-coordinate urban nature and public environment layer with UTF-8-SIG conversion, species/scientific-name/location-type/management/size/coordinate filters, marker/list/popup support, cache support, and no health, risk, permit, legal, or land-ownership claims.",
+      "dependencies": ["feat-027"],
+      "status": "done",
+      "evidence": "npm run convert:facilities generated 16231 facilities, including 3874 protected tree records. ./init.sh passed 51 unit/converter tests, production build, and 58 desktop/mobile Playwright tests on 2026-07-02."
     }
   ]
 }

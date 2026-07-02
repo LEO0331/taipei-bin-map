@@ -372,6 +372,32 @@ const facilities: Facility[] = [
     hasServiceHours: true,
     roadName: '松德路',
   },
+  {
+    id: 'protected_tree-768',
+    type: 'protected_tree',
+    district: '萬華區',
+    address: '臺北市萬華區青年公園1號',
+    longitude: 121.5056,
+    latitude: 25.0232,
+    note: '',
+    source: '臺北市受保護樹木',
+    sourceAgency: '臺北市政府文化局',
+    locationPrecision: 'exact',
+    coordinateStatus: 'valid',
+    treeId: '768',
+    speciesNameZh: '榕',
+    scientificName: 'Ficus microcarpa L. f.',
+    speciesNameEn: 'Banyan',
+    diameterAtBreastHeightMeters: 1.13,
+    diameterCategory: '1m_to_2m',
+    circumferenceAtBreastHeightMeters: 227,
+    circumferenceCategory: 'over_10m',
+    sizeDataQualityFlags: ['circumference_over_20m'],
+    locationType: '公園、綠地',
+    locationTypeCategory: 'park_green_space',
+    managementUnit: '臺北市政府工務局公園路燈工程管理處',
+    coordinateQuality: 'valid_wgs84_taipei',
+  },
 ];
 
 describe('calculateDistanceMeters', () => {
@@ -687,6 +713,25 @@ describe('filterFacilities', () => {
     });
     expect(result.map((item) => item.id)).toEqual(['clean_needle_exchange_service_point-0001']);
   });
+
+  it('filters and searches protected tree source fields', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: 'Banyan',
+      district: '萬華區',
+      facilityTypes: ['protected_tree'],
+      protectedTreeSpecies: '榕',
+      protectedTreeScientificName: 'Ficus microcarpa L. f.',
+      protectedTreeEnglishName: 'Banyan',
+      protectedTreeLocationType: 'park_green_space',
+      protectedTreeManagementUnit: '臺北市政府工務局公園路燈工程管理處',
+      protectedTreeDiameterCategory: '1m_to_2m',
+      protectedTreeCircumferenceCategory: 'over_10m',
+      protectedTreeCoordinateQuality: 'valid_wgs84_taipei',
+      protectedTreeHasLocationType: true,
+      protectedTreeHasSizeFlags: true,
+    });
+    expect(result.map((item) => item.id)).toEqual(['protected_tree-768']);
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -710,6 +755,7 @@ describe('getFacilityTypeLabel', () => {
     expect(getAnnouncedNoSmokingRecordTypeLabel('smoke_free_park_green_space', 'en')).toBe('Smoke-Free Park / Green Space');
     expect(getFacilityTypeLabel('community_recycling_station', 'zh')).toBe('社區資源回收站');
     expect(getFacilityTypeLabel('clean_needle_exchange_service_point', 'en')).toBe('Clean Needle Service Point');
+    expect(getFacilityTypeLabel('protected_tree', 'en')).toBe('Protected Tree');
     expect(getCommunityRecyclingStationLabel('short', 'en')).toBe('Community Recycling');
     expect(getElectricMotorcycleChargingLocationCategoryLabel('service_factory', 'en')).toBe('Service factory');
     expect(getCommercialEvServiceTypeLabel('electric_motorcycle_battery_swap', 'zh')).toBe('電動機車換電站');

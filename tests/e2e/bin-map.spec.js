@@ -64,9 +64,14 @@ const communityRecyclingSample = communityRecyclingStations.find((facility) => f
 const cleanNeedleServicePoints = facilities.filter((facility) => facility.type === 'clean_needle_exchange_service_point');
 const cleanNeedleServicePointCount = cleanNeedleServicePoints.length.toString();
 const cleanNeedleSample = cleanNeedleServicePoints.find((facility) => facility.hasExtension && facility.roadName) ?? cleanNeedleServicePoints[0];
+const protectedTrees = facilities.filter((facility) => facility.type === 'protected_tree');
+const protectedTreeCount = protectedTrees.length.toString();
+const protectedTreeSample =
+  protectedTrees.find((facility) => facility.locationTypeCategory === 'park_green_space' && facility.sizeDataQualityFlags?.length) ??
+  protectedTrees[0];
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all eighteen local datasets without mounting broad-view facility pins', async ({ page }) => {
+  test('loads all nineteen local datasets without mounting broad-view facility pins', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -90,6 +95,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('公告禁菸場所');
     await expect(page.getByLabel('地圖圖例')).toContainText('社區資源回收站');
     await expect(page.getByLabel('地圖圖例')).toContainText('清潔針具服務點');
+    await expect(page.getByLabel('地圖圖例')).toContainText('受保護樹木');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-div-marker')).toHaveCount(0);
@@ -369,6 +375,29 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.facility-list li').first()).not.toContainText('犯罪熱點');
     await page.getByRole('button', { name: '查看附近行政區清潔針具服務點' }).click();
     await expect(page.getByText('清潔針具佈點名單未提供官方經緯度，目前無法計算精確距離。')).toBeVisible();
+  });
+
+  test('filters protected trees as urban nature source records', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '受保護樹木' }).click();
+    await expect(page.getByText(`${protectedTreeCount} 筆資料`)).toBeVisible();
+    await expect(page.getByText('受保護樹木地圖使用來源資料中的緯度與經度')).toBeVisible();
+    await page.getByLabel('樹種名稱').selectOption(protectedTreeSample.speciesNameZh);
+    await page.getByLabel('樹種學名').selectOption(protectedTreeSample.scientificName);
+    await page.getByLabel('英文名').selectOption(protectedTreeSample.speciesNameEn);
+    await page.getByRole('combobox', { name: /^地理位置名稱/ }).selectOption(protectedTreeSample.locationTypeCategory);
+    await page.getByLabel('管理單位').selectOption(protectedTreeSample.managementUnit);
+    await page.getByLabel('座標品質').selectOption('valid_wgs84_taipei');
+    await page.getByLabel('有地理位置名稱').check();
+    await page.getByLabel('尺寸資料品質').check();
+    await page.getByPlaceholder('搜尋樹木編號、樹種、學名、地址或管理單位').fill(protectedTreeSample.treeId);
+
+    await expect(page.locator('.facility-list li').first()).toContainText('受保護樹木');
+    await expect(page.locator('.facility-list li').first()).toContainText(protectedTreeSample.treeId);
+    await expect(page.locator('.facility-list li').first()).toContainText(protectedTreeSample.speciesNameZh);
+    await expect(page.locator('.facility-list li').first()).not.toContainText('垃圾桶');
+    await expect(page.locator('.facility-div-marker').first()).toBeVisible();
   });
 
   test('searches public toilet name, manager, and address fields', async ({ page }) => {

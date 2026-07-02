@@ -12,6 +12,7 @@ import {
   GasLpgStationFilters,
   LactationRoomFilters,
   MotorcycleInspectionStationFilters,
+  ProtectedTreeFilters,
   RiversideToiletFilters,
   TimedCollectionFilters,
   UsedClothingFilters,
@@ -41,7 +42,11 @@ import type {
   Language,
   ManagingUnitCategory,
   OpeningHoursType,
+  ProtectedTreeCoordinateQuality,
+  ProtectedTreeLocationTypeCategory,
   RiversideToiletType,
+  TreeCircumferenceCategory,
+  TreeDiameterCategory,
 } from './types';
 import { calculateDistanceMeters, filterFacilities } from './utils/facilityUtils';
 
@@ -173,6 +178,16 @@ function App() {
   const [cleanNeedleHasPhone, setCleanNeedleHasPhone] = useState(false);
   const [cleanNeedleHasExtension, setCleanNeedleHasExtension] = useState(false);
   const [cleanNeedleTwentyFourHour, setCleanNeedleTwentyFourHour] = useState(false);
+  const [protectedTreeSpecies, setProtectedTreeSpecies] = useState('');
+  const [protectedTreeScientificName, setProtectedTreeScientificName] = useState('');
+  const [protectedTreeEnglishName, setProtectedTreeEnglishName] = useState('');
+  const [protectedTreeLocationType, setProtectedTreeLocationType] = useState<ProtectedTreeLocationTypeCategory | ''>('');
+  const [protectedTreeManagementUnit, setProtectedTreeManagementUnit] = useState('');
+  const [protectedTreeDiameterCategory, setProtectedTreeDiameterCategory] = useState<TreeDiameterCategory | ''>('');
+  const [protectedTreeCircumferenceCategory, setProtectedTreeCircumferenceCategory] = useState<TreeCircumferenceCategory | ''>('');
+  const [protectedTreeCoordinateQuality, setProtectedTreeCoordinateQuality] = useState<ProtectedTreeCoordinateQuality | ''>('');
+  const [protectedTreeHasLocationType, setProtectedTreeHasLocationType] = useState(false);
+  const [protectedTreeHasSizeFlags, setProtectedTreeHasSizeFlags] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -196,6 +211,7 @@ function App() {
   const includesAnnouncedNoSmokingPlaces = selectedTypes.includes('announced_no_smoking_place');
   const includesCommunityRecyclingStations = selectedTypes.includes('community_recycling_station');
   const includesCleanNeedleServicePoints = selectedTypes.includes('clean_needle_exchange_service_point');
+  const includesProtectedTrees = selectedTypes.includes('protected_tree');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -376,6 +392,22 @@ function App() {
     () => [...new Set(facilities.filter((facility) => facility.type === 'clean_needle_exchange_service_point').map((facility) => facility.roadName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
     [facilities],
   );
+  const protectedTreeSpeciesOptions = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'protected_tree').map((facility) => facility.speciesNameZh).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const protectedTreeScientificNameOptions = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'protected_tree').map((facility) => facility.scientificName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b)),
+    [facilities],
+  );
+  const protectedTreeEnglishNameOptions = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'protected_tree').map((facility) => facility.speciesNameEn).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b)),
+    [facilities],
+  );
+  const protectedTreeManagementUnitOptions = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'protected_tree').map((facility) => facility.managementUnit).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -467,6 +499,16 @@ function App() {
         cleanNeedleHasPhone,
         cleanNeedleHasExtension,
         cleanNeedleTwentyFourHour,
+        protectedTreeSpecies,
+        protectedTreeScientificName,
+        protectedTreeEnglishName,
+        protectedTreeLocationType,
+        protectedTreeManagementUnit,
+        protectedTreeDiameterCategory,
+        protectedTreeCircumferenceCategory,
+        protectedTreeCoordinateQuality,
+        protectedTreeHasLocationType,
+        protectedTreeHasSizeFlags,
       }),
     [
       district,
@@ -557,6 +599,16 @@ function App() {
       cleanNeedleHasPhone,
       cleanNeedleHasExtension,
       cleanNeedleTwentyFourHour,
+      protectedTreeSpecies,
+      protectedTreeScientificName,
+      protectedTreeEnglishName,
+      protectedTreeLocationType,
+      protectedTreeManagementUnit,
+      protectedTreeDiameterCategory,
+      protectedTreeCircumferenceCategory,
+      protectedTreeCoordinateQuality,
+      protectedTreeHasLocationType,
+      protectedTreeHasSizeFlags,
     ],
   );
 
@@ -681,6 +733,7 @@ function App() {
   const isAnnouncedNoSmokingPlaceOnly = selectedTypes.length === 1 && includesAnnouncedNoSmokingPlaces;
   const isCommunityRecyclingOnly = selectedTypes.length === 1 && includesCommunityRecyclingStations;
   const isCleanNeedleOnly = selectedTypes.length === 1 && includesCleanNeedleServicePoints;
+  const isProtectedTreeOnly = selectedTypes.length === 1 && includesProtectedTrees;
   const isSpecializedToiletOnly = isRiversideOnly || isFamilyToiletOnly;
   const listHeading = nearbyFacilities
     ? t.nearestFacilities
@@ -702,6 +755,8 @@ function App() {
                       ? t.communityRecyclingStationDirectory
                       : isCleanNeedleOnly
                         ? t.cleanNeedleServicePointDirectory
+                        : isProtectedTreeOnly
+                          ? t.protectedTreeDirectory
                 : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
     if (!report?.generatedAt) {
@@ -847,6 +902,18 @@ function App() {
       setCleanNeedleHasPhone(false);
       setCleanNeedleHasExtension(false);
       setCleanNeedleTwentyFourHour(false);
+    }
+    if (!value.includes('protected_tree')) {
+      setProtectedTreeSpecies('');
+      setProtectedTreeScientificName('');
+      setProtectedTreeEnglishName('');
+      setProtectedTreeLocationType('');
+      setProtectedTreeManagementUnit('');
+      setProtectedTreeDiameterCategory('');
+      setProtectedTreeCircumferenceCategory('');
+      setProtectedTreeCoordinateQuality('');
+      setProtectedTreeHasLocationType(false);
+      setProtectedTreeHasSizeFlags(false);
     }
     setNearbyFacilities(null);
   };
@@ -1013,6 +1080,8 @@ function App() {
                             ? t.communityRecyclingStationSearchPlaceholder
                             : isCleanNeedleOnly
                               ? t.cleanNeedleSearchPlaceholder
+                              : isProtectedTreeOnly
+                                ? t.protectedTreeSearchPlaceholder
               : isSpecializedToiletOnly
                 ? t.toiletSearchPlaceholder
                 : t.searchPlaceholder}
@@ -1333,6 +1402,44 @@ function App() {
               }}
             />
           )}
+          {hasFocusedTypes && includesProtectedTrees && (
+            <ProtectedTreeFilters
+              species={protectedTreeSpeciesOptions}
+              scientificNames={protectedTreeScientificNameOptions}
+              englishNames={protectedTreeEnglishNameOptions}
+              managementUnits={protectedTreeManagementUnitOptions}
+              values={{
+                species: protectedTreeSpecies,
+                scientificName: protectedTreeScientificName,
+                englishName: protectedTreeEnglishName,
+                locationType: protectedTreeLocationType,
+                managementUnit: protectedTreeManagementUnit,
+                diameterCategory: protectedTreeDiameterCategory,
+                circumferenceCategory: protectedTreeCircumferenceCategory,
+                coordinateQuality: protectedTreeCoordinateQuality,
+                hasLocationType: protectedTreeHasLocationType,
+                hasSizeFlags: protectedTreeHasSizeFlags,
+              }}
+              language={language}
+              t={t}
+              onSelectChange={(name, value) => {
+                if (name === 'species') setProtectedTreeSpecies(value);
+                if (name === 'scientificName') setProtectedTreeScientificName(value);
+                if (name === 'englishName') setProtectedTreeEnglishName(value);
+                if (name === 'locationType') setProtectedTreeLocationType(value as ProtectedTreeLocationTypeCategory | '');
+                if (name === 'managementUnit') setProtectedTreeManagementUnit(value);
+                if (name === 'diameterCategory') setProtectedTreeDiameterCategory(value as TreeDiameterCategory | '');
+                if (name === 'circumferenceCategory') setProtectedTreeCircumferenceCategory(value as TreeCircumferenceCategory | '');
+                if (name === 'coordinateQuality') setProtectedTreeCoordinateQuality(value as ProtectedTreeCoordinateQuality | '');
+                setNearbyFacilities(null);
+              }}
+              onBooleanChange={(name, value) => {
+                if (name === 'locationType') setProtectedTreeHasLocationType(value);
+                if (name === 'sizeFlags') setProtectedTreeHasSizeFlags(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
           {isSpecializedToiletOnly && (
             <label className="nearby-radius">
               <span>{t.nearbyRadius}</span>
@@ -1498,6 +1605,7 @@ function App() {
         {includesAnnouncedNoSmokingPlaces && <p className="status-message">{t.announcedNoSmokingPlaceNotice}</p>}
         {includesCommunityRecyclingStations && <p className="status-message">{t.communityRecyclingStationMapNotice}</p>}
         {includesCleanNeedleServicePoints && <p className="status-message">{t.cleanNeedleMapNotice}</p>}
+        {includesProtectedTrees && <p className="status-message">{t.protectedTreeMapNotice}</p>}
         {isLoadingFacilities ? (
           <p className="status-message">{t.loading}</p>
         ) : (

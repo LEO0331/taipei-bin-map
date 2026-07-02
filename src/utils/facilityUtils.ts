@@ -14,7 +14,11 @@ import type {
   Language,
   ManagingUnitCategory,
   OpeningHoursType,
+  ProtectedTreeCoordinateQuality,
+  ProtectedTreeLocationTypeCategory,
   RiversideToiletType,
+  TreeCircumferenceCategory,
+  TreeDiameterCategory,
 } from '../types';
 
 const EARTH_RADIUS_METERS = 6_371_000;
@@ -161,6 +165,16 @@ export function filterFacilities(
     cleanNeedleHasPhone = false,
     cleanNeedleHasExtension = false,
     cleanNeedleTwentyFourHour = false,
+    protectedTreeSpecies,
+    protectedTreeScientificName,
+    protectedTreeEnglishName,
+    protectedTreeLocationType,
+    protectedTreeManagementUnit,
+    protectedTreeDiameterCategory,
+    protectedTreeCircumferenceCategory,
+    protectedTreeCoordinateQuality,
+    protectedTreeHasLocationType = false,
+    protectedTreeHasSizeFlags = false,
   }: {
     searchTerm: string;
     district: string;
@@ -249,6 +263,16 @@ export function filterFacilities(
     cleanNeedleHasPhone?: boolean;
     cleanNeedleHasExtension?: boolean;
     cleanNeedleTwentyFourHour?: boolean;
+    protectedTreeSpecies?: string;
+    protectedTreeScientificName?: string;
+    protectedTreeEnglishName?: string;
+    protectedTreeLocationType?: ProtectedTreeLocationTypeCategory | '';
+    protectedTreeManagementUnit?: string;
+    protectedTreeDiameterCategory?: TreeDiameterCategory | '';
+    protectedTreeCircumferenceCategory?: TreeCircumferenceCategory | '';
+    protectedTreeCoordinateQuality?: ProtectedTreeCoordinateQuality | '';
+    protectedTreeHasLocationType?: boolean;
+    protectedTreeHasSizeFlags?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -271,6 +295,7 @@ export function filterFacilities(
   const hasNoSmokingFilters = Boolean(noSmokingRecordType || noSmokingAnnouncementYear || noSmokingCoordinateStatus || noSmokingSourceResource || noSmokingHasCoordinates || noSmokingHasAddress || noSmokingHasLocationDescription);
   const hasCommunityRecyclingFilters = Boolean(communityRecyclingDistrictCode || communityRecyclingRoadName || communityRecyclingHasAddress || communityRecyclingHasParsedRoadName);
   const hasCleanNeedleFilters = Boolean(cleanNeedleAreaCode || cleanNeedleServiceItem || cleanNeedleServicePointCategory || cleanNeedleServiceItemCategory || cleanNeedleServicePointCategoryGroup || cleanNeedleRoadName || cleanNeedleHasPhone || cleanNeedleHasExtension || cleanNeedleTwentyFourHour);
+  const hasProtectedTreeFilters = Boolean(protectedTreeSpecies || protectedTreeScientificName || protectedTreeEnglishName || protectedTreeLocationType || protectedTreeManagementUnit || protectedTreeDiameterCategory || protectedTreeCircumferenceCategory || protectedTreeCoordinateQuality || protectedTreeHasLocationType || protectedTreeHasSizeFlags);
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -413,6 +438,19 @@ export function filterFacilities(
         (!cleanNeedleHasExtension || facility.hasExtension === true) &&
         (!cleanNeedleTwentyFourHour || facility.isTwentyFourHourService === true));
     const matchesCleanNeedleScope = !hasCleanNeedleFilters || facility.type === 'clean_needle_exchange_service_point';
+    const matchesProtectedTree =
+      facility.type !== 'protected_tree' ||
+      ((!protectedTreeSpecies || facility.speciesNameZh === protectedTreeSpecies) &&
+        (!protectedTreeScientificName || facility.scientificName === protectedTreeScientificName) &&
+        (!protectedTreeEnglishName || facility.speciesNameEn === protectedTreeEnglishName) &&
+        (!protectedTreeLocationType || facility.locationTypeCategory === protectedTreeLocationType) &&
+        (!protectedTreeManagementUnit || facility.managementUnit === protectedTreeManagementUnit) &&
+        (!protectedTreeDiameterCategory || facility.diameterCategory === protectedTreeDiameterCategory) &&
+        (!protectedTreeCircumferenceCategory || facility.circumferenceCategory === protectedTreeCircumferenceCategory) &&
+        (!protectedTreeCoordinateQuality || facility.coordinateQuality === protectedTreeCoordinateQuality) &&
+        (!protectedTreeHasLocationType || Boolean(facility.locationType)) &&
+        (!protectedTreeHasSizeFlags || Boolean(facility.sizeDataQualityFlags?.length)));
+    const matchesProtectedTreeScope = !hasProtectedTreeFilters || facility.type === 'protected_tree';
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -494,6 +532,15 @@ export function filterFacilities(
         facility.extension,
         facility.serviceHours,
         facility.serviceHoursRaw,
+        facility.treeId,
+        facility.speciesNameZh,
+        facility.scientificName,
+        facility.speciesNameEn,
+        facility.locationType,
+        facility.managementUnit,
+        facility.diameterCategory,
+        facility.circumferenceCategory,
+        facility.coordinateQuality,
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
           : '',
@@ -535,6 +582,8 @@ export function filterFacilities(
       matchesCommunityRecyclingScope &&
       matchesCleanNeedle &&
       matchesCleanNeedleScope &&
+      matchesProtectedTree &&
+      matchesProtectedTreeScope &&
       matchesSearch
     );
   });
@@ -609,7 +658,52 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '清潔針具服務點' : 'Clean Needle Service Point';
   }
 
+  if (type === 'protected_tree') {
+    return language === 'zh' ? '受保護樹木' : 'Protected Tree';
+  }
+
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';
+}
+
+export function getProtectedTreeLocationTypeLabel(type: ProtectedTreeLocationTypeCategory | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? {
+      park_green_space: '公園、綠地',
+      school: '學校',
+      road_sidewalk: '道路、人行道',
+      public_place: '公共場所',
+      private_residence: '私有住宅',
+      suburban_mountain: '郊山',
+      other: '其他',
+      missing: '缺漏',
+      unknown: '未知',
+    }
+    : {
+      park_green_space: 'Park / green space',
+      school: 'School',
+      road_sidewalk: 'Road / sidewalk',
+      public_place: 'Public place',
+      private_residence: 'Private residence',
+      suburban_mountain: 'Suburban mountain',
+      other: 'Other',
+      missing: 'Missing',
+      unknown: 'Unknown',
+    };
+  return labels[type ?? 'unknown'];
+}
+
+export function getTreeDiameterCategoryLabel(type: TreeDiameterCategory | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? { under_0_5m: '0.5公尺以下', '0_5m_to_1m': '0.5至1公尺', '1m_to_2m': '1至2公尺', '2m_to_3m': '2至3公尺', over_3m: '3公尺以上', missing: '缺漏' }
+    : { under_0_5m: 'Under 0.5 m', '0_5m_to_1m': '0.5 m to 1 m', '1m_to_2m': '1 m to 2 m', '2m_to_3m': '2 m to 3 m', over_3m: 'Over 3 m', missing: 'Missing' };
+  return labels[type ?? 'missing'];
+}
+
+export function getTreeCircumferenceCategoryLabel(type: TreeCircumferenceCategory | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? { under_1m: '1公尺以下', '1m_to_3m': '1至3公尺', '3m_to_5m': '3至5公尺', '5m_to_10m': '5至10公尺', over_10m: '10公尺以上', missing: '缺漏' }
+    : { under_1m: 'Under 1 m', '1m_to_3m': '1 m to 3 m', '3m_to_5m': '3 m to 5 m', '5m_to_10m': '5 m to 10 m', over_10m: 'Over 10 m', missing: 'Missing' };
+  return labels[type ?? 'missing'];
 }
 
 export function getCommunityRecyclingStationLabel(kind: 'short' | 'full', language: Language) {

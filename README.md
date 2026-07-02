@@ -13,7 +13,7 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Local static amenity data loaded from `public/data/facilities.json`.
 - Facility type filter for pedestrian garbage bins, dog-waste bag boxes, public toilets, riverside toilets, family-friendly toilets, drinking facilities, timed collection points, used-clothing recycling boxes, community recycling stations, and lactation rooms.
 - Public service locations: motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, and gas/LPG stations.
-- Public health and environmental facilities: Taipei designated smoking areas, announced no-smoking places, and clean needle exchange service points with source fields and location references.
+- Public health, urban nature, and environmental facilities: Taipei designated smoking areas, announced no-smoking places, clean needle exchange service points, and protected trees with source fields and location references.
 - Toilet layers: public toilets, riverside toilets, and family-friendly toilets.
 - Public toilet category, accessible-toilet, and parent-child-toilet filters.
 - Public drinking fountain place-category and opening-hour filters.
@@ -21,12 +21,13 @@ The app is static, bilingual, PWA-ready, and requires no backend, login, admin p
 - Used-clothing recycling box village, organization, and phone filters.
 - Community recycling station district-code, road-name, address, and parsed-road filters.
 - Clean needle service point area-code, service-item, service-point-category, road, phone, extension, and 24-hour-service filters.
+- Protected tree species, scientific-name, English-name, location-type, management-unit, size-category, coordinate-quality, and size-data-quality filters.
 - Family-friendly facilities: lactation rooms, with opening-hour, contact, location-guidance, certification-information, equipment, service, and legal-list filters.
 - Search across district, address, road, location, note, toilet name, toilet category, manager, public drinking fountain place name, install location, and opening hours.
 - Taipei district filter and nearest-facility lookup using browser geolocation.
 - Emoji map markers and legend for each facility type.
 - Broad multi-layer map views are list-first: individual markers return for nearby results or a narrowed single layer with at most 500 valid coordinates.
-- Lactation rooms, motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, community recycling stations, and clean needle service points are shown as searchable directories and district-level summary bubbles when the source files do not contain coordinates.
+- Lactation rooms, motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, community recycling stations, and clean needle service points are shown as searchable directories and district-level summary bubbles when the source files do not contain coordinates. Protected trees use validated source coordinates and exact markers when narrowed by search/filter/nearby.
 - Conversion report for dropped rows, missing fields, invalid coordinates, and coordinate outliers.
 - PWA manifest, icons, and service worker caching for repeat visits.
 
@@ -90,6 +91,16 @@ npm run convert:facilities
 ```
 
 The source provides service item, service point category, institution code, service location, phone, extension, address, and service hours, but no coordinates. The app keeps these as address-only public health service records with district summary bubbles and address-based map lookup links. It does not claim real-time service status, inventory quantity, medical advice, emergency service, public safety risk, crime hotspots, drug-use behavior inference, neighborhood risk evaluation, or official endorsement.
+
+The protected-tree layer uses the UTF-8-SIG `樹籍資料匯出-202603201657.csv` resource:
+
+```bash
+npm run data:fetch:protected-trees
+npm run data:convert:protected-trees
+npm run convert:facilities
+```
+
+The converter preserves tree ID, Chinese species name, scientific name, English name, diameter, circumference, address, latitude, longitude, location type, and management unit. It validates source WGS84 coordinates, parses district/road where practical, flags suspicious size values, and writes `public/data/protected-trees.json` plus `public/data/protected-tree-summary.json`. The app does not treat protected-tree data as real-time tree health, hazard risk, pruning/transplant permit, land ownership, cadastral boundary, maintenance progress, legal advice, or tourism ranking data.
 
 The lactation-room layer uses two Big5/CP950 resources from `臺北市哺集乳室`:
 
@@ -299,7 +310,7 @@ More detail: [docs/deployment.en.md](docs/deployment.en.md)
 
 ### Data Notice
 
-Public toilets, riverside toilets, family-friendly toilets, recycling-related facilities, clean needle service points, motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, gas/LPG stations, designated smoking areas, and announced no-smoking places remain separate source-specific layers. Equipment counts, award fields, business hours, cleanliness, maintenance, opening status, accepted recyclable items, recycling rules, collection schedules, service availability, clean needle inventory, medical needs, charger availability, fuel/LPG availability, pricing, payment methods, membership requirements, battery inventory, legal boundaries, and public-safety meanings are public-data snapshots rather than real-time guarantees. Verify details with official, operator, venue, managing-unit, service-provider, station, community-management, competent-authority, or on-site notices.
+Public toilets, riverside toilets, family-friendly toilets, recycling-related facilities, clean needle service points, protected trees, motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, gas/LPG stations, designated smoking areas, and announced no-smoking places remain separate source-specific layers. Equipment counts, award fields, business hours, cleanliness, maintenance, opening status, accepted recyclable items, recycling rules, collection schedules, service availability, clean needle inventory, medical needs, tree health, hazard/risk status, pruning/transplant permits, land ownership, charger availability, fuel/LPG availability, pricing, payment methods, membership requirements, battery inventory, legal boundaries, and public-safety meanings are public-data snapshots rather than real-time guarantees. Verify details with official, operator, venue, managing-unit, service-provider, station, community-management, competent-authority, or on-site notices.
 
 ## 中文
 
@@ -310,7 +321,7 @@ Public toilets, riverside toilets, family-friendly toilets, recycling-related fa
 - 從 `public/data/facilities.json` 載入本機靜態便利設施資料。
 - 支援行人專用清潔箱、狗便袋箱、公廁、河濱廁所、親子友善廁所、飲水設施、限時收受點、舊衣回收箱、社區資源回收站與哺集乳室的設施類型篩選。
 - 公共服務站點：機車定檢站、電動機車充電站、營利型電動車充換電站與加油站及加氣站。
-- 公共健康與環境設施：指定吸菸區、公告禁菸場所與清潔針具服務點，包含來源欄位、位置參考與必要提醒。
+- 公共健康、城市自然與環境設施：指定吸菸區、公告禁菸場所、清潔針具服務點與受保護樹木，包含來源欄位、位置參考與必要提醒。
 - 公廁圖層包含一般公廁、河濱廁所與親子友善廁所。
 - 支援公廁類別、無障礙廁所、親子廁所篩選。
 - 支援公共場所飲水機場所類型與開放時間資料篩選。
@@ -318,12 +329,13 @@ Public toilets, riverside toilets, family-friendly toilets, recycling-related fa
 - 支援舊衣回收箱里別、設置團體與電話資料篩選。
 - 支援社區資源回收站行政區域代碼、道路名稱、有地址與有道路名稱篩選。
 - 支援清潔針具服務點行政區域代碼、設置項目、設置點類別、道路、電話、分機與 24 小時服務篩選。
+- 支援受保護樹木樹種、學名、英文名、地理位置類型、管理單位、尺寸類別、座標品質與尺寸資料品質篩選。
 - 親子友善設施：哺集乳室，支援開放時間、聯絡方式、位置指引、認證資訊、設備、友善服務與依法設置清單篩選。
 - 搜尋涵蓋行政區、地址、路名、位置、備註、公廁名稱、公廁類別、管理單位、飲水機場所名稱、設置地點與開放時間。
 - 支援台北市行政區篩選與瀏覽器定位找附近設施。
 - 不同設施類型使用 emoji 地圖標記與圖例。
 - 大量未篩選結果不會直接渲染所有地圖標記，避免手機地圖過度擁擠。
-- 哺集乳室、機車定檢站、電動機車充電站、營利型電動車充換電站、社區資源回收站與清潔針具服務點來源若未提供座標，會以前端清單與行政區彙總泡泡呈現。
+- 哺集乳室、機車定檢站、電動機車充電站、營利型電動車充換電站、社區資源回收站與清潔針具服務點來源若未提供座標，會以前端清單與行政區彙總泡泡呈現。受保護樹木使用來源提供且通過範圍驗證的經緯度，於縮小範圍後顯示精確標記。
 - 轉換報告會記錄刪除列、缺漏欄位、無效座標與座標疑似異常列。
 - 已具備 PWA manifest、icons 與 service worker，支援重複造訪時的快取。
 
@@ -387,6 +399,16 @@ npm run convert:facilities
 ```
 
 來源提供設置項目、設置點類別、機構代碼、設置地點、電話、分機、地址與服務時間，但沒有座標。本網站保留為地址型公共衛生服務清單，以行政區彙總泡泡呈現，Google Maps 連結使用地址查詢。此圖層不代表即時服務狀態、庫存數量、醫療建議、急診服務、治安風險、犯罪熱點、用藥行為推論、周邊環境風險評價或官方背書。
+
+受保護樹木圖層使用 UTF-8-SIG 的 `樹籍資料匯出-202603201657.csv`：
+
+```bash
+npm run data:fetch:protected-trees
+npm run data:convert:protected-trees
+npm run convert:facilities
+```
+
+轉換程序保留樹木編號、樹種名稱、學名、英文名、胸徑、胸圍、地址、緯度、經度、地理位置名稱與管理單位，並驗證來源 WGS84 座標、解析行政區與道路、標記可疑尺寸資料，輸出 `public/data/protected-trees.json` 與 `public/data/protected-tree-summary.json`。此圖層不代表即時樹木健康、倒塌風險、修剪或移植許可、土地權屬、地籍邊界、維護進度、法律意見或旅遊排名。
 
 哺集乳室圖層使用 `臺北市哺集乳室` 的兩份 Big5/CP950 資料：
 
@@ -596,4 +618,4 @@ npm run preview
 
 ### 資料提醒
 
-行人專用清潔箱、狗便袋箱、公廁、飲水設施、限時收受點、直飲臺、舊衣回收箱、社區資源回收站、清潔針具服務點、機車定檢站、電動機車充電站、營利型電動車充換電站、加油站及加氣站、指定吸菸區與公告禁菸場所是不同設施或站點。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、社區資源回收站營運狀態、目前可回收項目、清潔針具服務狀態、庫存數量、醫療需求、服務可用性、回收規定、清運時程、舊衣回收箱可投遞狀態、機車定檢站服務、充換電站可用狀態、油氣供應、費率、付款方式、會員資格、指定吸菸區與公告禁菸場所之現場標示、法規適用與邊界、水質維護資訊請以現場、社區管理單位、服務單位、業者及主管機關公告為準。
+行人專用清潔箱、狗便袋箱、公廁、飲水設施、限時收受點、直飲臺、舊衣回收箱、社區資源回收站、清潔針具服務點、受保護樹木、機車定檢站、電動機車充電站、營利型電動車充換電站、加油站及加氣站、指定吸菸區與公告禁菸場所是不同設施或站點。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、社區資源回收站營運狀態、目前可回收項目、清潔針具服務狀態、庫存數量、醫療需求、服務可用性、受保護樹木健康或風險、修剪移植許可、土地權屬、回收規定、清運時程、舊衣回收箱可投遞狀態、機車定檢站服務、充換電站可用狀態、油氣供應、費率、付款方式、會員資格、指定吸菸區與公告禁菸場所之現場標示、法規適用與邊界、水質維護資訊請以現場、社區管理單位、服務單位、業者及主管機關公告為準。

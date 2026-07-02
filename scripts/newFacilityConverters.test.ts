@@ -56,6 +56,12 @@ import {
   convertCleanNeedleExchangeServicePointRows,
   parseCleanNeedleServiceHours,
 } from './convertCleanNeedleExchangeServicePoints';
+import {
+  classifyProtectedTreeLocationType,
+  classifyTreeCircumferenceMeters,
+  classifyTreeDiameterMeters,
+  convertProtectedTreeRows,
+} from './convertProtectedTrees';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -574,6 +580,46 @@ describe('new facility converters', () => {
       locationPrecision: 'address_only',
     });
     expect(converted.summary.twentyFourHourServiceCount).toBe(0);
+    expect(converted.report.validRows).toBe(1);
+  });
+
+  it('maps protected trees with exact coordinates and size quality flags', () => {
+    expect(classifyProtectedTreeLocationType('公園、綠地')).toBe('park_green_space');
+    expect(classifyTreeDiameterMeters(1.2)).toBe('1m_to_2m');
+    expect(classifyTreeCircumferenceMeters(22)).toBe('over_10m');
+
+    const converted = convertProtectedTreeRows([
+      {
+        樹木編號: '768',
+        樹種名稱: '榕',
+        樹種學名: 'Ficus microcarpa L. f.',
+        樹胸徑寬度公尺: '1.13',
+        樹胸圍長度公尺: '227',
+        地址: '臺北市萬華區青年公園1號',
+        緯度: '25.0232',
+        經度: '121.5056',
+        地理位置名稱: '公園、綠地',
+        管理單位: '臺北市政府工務局公園路燈工程管理處',
+        英文名: 'Banyan',
+      },
+    ]);
+
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'protected_tree',
+      district: '萬華區',
+      locationPrecision: 'exact',
+      coordinateStatus: 'valid',
+      coordinateQuality: 'valid_wgs84_taipei',
+      treeId: '768',
+      speciesNameZh: '榕',
+      scientificName: 'Ficus microcarpa L. f.',
+      speciesNameEn: 'Banyan',
+      diameterCategory: '1m_to_2m',
+      circumferenceCategory: 'over_10m',
+      locationTypeCategory: 'park_green_space',
+    });
+    expect(converted.facilities[0].sizeDataQualityFlags).toContain('circumference_over_20m');
+    expect(converted.summary.totalRecords).toBe(1);
     expect(converted.report.validRows).toBe(1);
   });
 });

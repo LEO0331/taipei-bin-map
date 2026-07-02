@@ -11,7 +11,11 @@ import type {
   Language,
   ManagingUnitCategory,
   OpeningHoursType,
+  ProtectedTreeCoordinateQuality,
+  ProtectedTreeLocationTypeCategory,
   RiversideToiletType,
+  TreeCircumferenceCategory,
+  TreeDiameterCategory,
 } from '../types';
 import {
   getDirectDrinkingPlaceLabel,
@@ -22,6 +26,9 @@ import {
   getOpeningHoursTypeLabel,
   getRiversideToiletTypeLabel,
   getAnnouncedNoSmokingRecordTypeLabel,
+  getProtectedTreeLocationTypeLabel,
+  getTreeCircumferenceCategoryLabel,
+  getTreeDiameterCategoryLabel,
 } from '../utils/facilityUtils';
 
 type TimedCollectionFiltersProps = {
@@ -815,6 +822,97 @@ export function CleanNeedleServicePointFilters(props: CleanNeedleServicePointFil
           <span>{label as string}</span>
         </label>
       ))}
+    </fieldset>
+  );
+}
+
+type ProtectedTreeFiltersProps = {
+  species: string[];
+  scientificNames: string[];
+  englishNames: string[];
+  managementUnits: string[];
+  values: {
+    species: string;
+    scientificName: string;
+    englishName: string;
+    locationType: ProtectedTreeLocationTypeCategory | '';
+    managementUnit: string;
+    diameterCategory: TreeDiameterCategory | '';
+    circumferenceCategory: TreeCircumferenceCategory | '';
+    coordinateQuality: ProtectedTreeCoordinateQuality | '';
+    hasLocationType: boolean;
+    hasSizeFlags: boolean;
+  };
+  language: Language;
+  t: Translation;
+  onSelectChange: (name: 'species' | 'scientificName' | 'englishName' | 'locationType' | 'managementUnit' | 'diameterCategory' | 'circumferenceCategory' | 'coordinateQuality', value: string) => void;
+  onBooleanChange: (name: 'locationType' | 'sizeFlags', value: boolean) => void;
+};
+
+export function ProtectedTreeFilters(props: ProtectedTreeFiltersProps) {
+  const locationTypes: ProtectedTreeLocationTypeCategory[] = ['park_green_space', 'school', 'road_sidewalk', 'public_place', 'private_residence', 'suburban_mountain', 'other', 'missing', 'unknown'];
+  const diameterCategories: TreeDiameterCategory[] = ['under_0_5m', '0_5m_to_1m', '1m_to_2m', '2m_to_3m', 'over_3m', 'missing'];
+  const circumferenceCategories: TreeCircumferenceCategory[] = ['under_1m', '1m_to_3m', '3m_to_5m', '5m_to_10m', 'over_10m', 'missing'];
+  const coordinateQualities: ProtectedTreeCoordinateQuality[] = ['valid_wgs84_taipei', 'outside_taipei_bounds', 'invalid', 'missing'];
+  const qualityLabel = (value: ProtectedTreeCoordinateQuality) => ({
+    valid_wgs84_taipei: props.t.validWgs84Coordinate,
+    outside_taipei_bounds: props.t.outsideTaipeiBounds,
+    invalid: props.t.invalidCoordinate,
+    missing: props.t.missingCoordinate,
+  })[value];
+
+  return (
+    <fieldset className="toilet-filters">
+      {[
+        ['species', props.t.speciesNameZh, props.values.species, props.species],
+        ['scientificName', props.t.scientificName, props.values.scientificName, props.scientificNames],
+        ['englishName', props.t.speciesNameEn, props.values.englishName, props.englishNames],
+        ['managementUnit', props.t.managementUnit, props.values.managementUnit, props.managementUnits],
+      ].map(([name, label, value, options]) => (
+        <label key={name as string}>
+          {label as string}
+          <select value={value as string} onChange={(event) => props.onSelectChange(name as 'species' | 'scientificName' | 'englishName' | 'managementUnit', event.target.value)}>
+            <option value="">{props.t.all}</option>
+            {(options as string[]).map((option) => <option key={option} value={option}>{option}</option>)}
+          </select>
+        </label>
+      ))}
+      <label>
+        {props.t.locationType}
+        <select value={props.values.locationType} onChange={(event) => props.onSelectChange('locationType', event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {locationTypes.map((value) => <option key={value} value={value}>{getProtectedTreeLocationTypeLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.diameterCategory}
+        <select value={props.values.diameterCategory} onChange={(event) => props.onSelectChange('diameterCategory', event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {diameterCategories.map((value) => <option key={value} value={value}>{getTreeDiameterCategoryLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.circumferenceCategory}
+        <select value={props.values.circumferenceCategory} onChange={(event) => props.onSelectChange('circumferenceCategory', event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {circumferenceCategories.map((value) => <option key={value} value={value}>{getTreeCircumferenceCategoryLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.coordinateQuality}
+        <select value={props.values.coordinateQuality} onChange={(event) => props.onSelectChange('coordinateQuality', event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {coordinateQualities.map((value) => <option key={value} value={value}>{qualityLabel(value)}</option>)}
+        </select>
+      </label>
+      <label className="checkbox-filter">
+        <input type="checkbox" checked={props.values.hasLocationType} onChange={(event) => props.onBooleanChange('locationType', event.target.checked)} />
+        <span>{props.t.hasLocationType}</span>
+      </label>
+      <label className="checkbox-filter">
+        <input type="checkbox" checked={props.values.hasSizeFlags} onChange={(event) => props.onBooleanChange('sizeFlags', event.target.checked)} />
+        <span>{props.t.sizeDataQuality}</span>
+      </label>
     </fieldset>
   );
 }

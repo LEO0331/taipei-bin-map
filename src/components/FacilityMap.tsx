@@ -128,6 +128,7 @@ const markerEmojiByType = {
   announced_no_smoking_place: '🚭',
   community_recycling_station: '🏘️',
   clean_needle_exchange_service_point: '🏥',
+  protected_tree: '🌳',
 } satisfies Record<FacilityType, string>;
 
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {

@@ -40,6 +40,8 @@
     "data:convert:community-recycling": "tsx scripts/convertCommunityRecyclingStations.ts",
     "data:fetch:clean-needle": "tsx scripts/fetchCleanNeedleExchangeServicePoints.ts",
     "data:convert:clean-needle": "tsx scripts/convertCleanNeedleExchangeServicePoints.ts",
+    "data:fetch:protected-trees": "tsx scripts/fetchProtectedTrees.ts",
+    "data:convert:protected-trees": "tsx scripts/convertProtectedTrees.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

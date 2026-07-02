@@ -81,6 +81,10 @@ export function MapLegend({ t }: MapLegendProps) {
         {t.cleanNeedleServicePoints}
       </span>
       <span>
+        <i aria-hidden="true">🌳</i>
+        {t.protectedTrees}
+      </span>
+      <span>
         <i aria-hidden="true">📍</i>
         {t.userLocation}
       </span>
