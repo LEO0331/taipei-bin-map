@@ -77,6 +77,10 @@ export function MapLegend({ t }: MapLegendProps) {
         {t.communityRecyclingStations}
       </span>
       <span>
+        <i aria-hidden="true">🏥</i>
+        {t.cleanNeedleServicePoints}
+      </span>
+      <span>
         <i aria-hidden="true">📍</i>
         {t.userLocation}
       </span>

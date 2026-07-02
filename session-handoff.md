@@ -2,9 +2,9 @@
 
 ## Current Objective
 
-- Goal: Maintain the sixteen-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
-- Current status: feat-026 is implemented and verified.
-- Branch / commit: Working tree has uncommitted announced-no-smoking-place data, UI, tests, docs, and harness changes.
+- Goal: Maintain the eighteen-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
+- Current status: feat-027 is implemented and final full baseline verification passed.
+- Branch / commit: Working tree has uncommitted clean needle service point data, UI, tests, docs, and harness changes.
 
 ## Completed
 
@@ -35,17 +35,19 @@
 - Added 3,786 announced no-smoking place records from one UTF-8-SIG coordinate resource and two Big5/CP950 no-coordinate resources.
 - Added no-smoking record type/year/source/coordinate filters, marker/legend/list/popup details, summary JSON, PWA caching, README notes, and no legal-boundary/enforcement/health/smoking-advice claims.
 - Tightened the Playwright web server so E2E tests cannot silently reuse an unrelated local app on port 5173.
+- Added 88 clean needle exchange service point records from a CP950 source CSV, with service item/category classification, phone/extension parsing, service-hour parsing, district summary bubbles, focused filters, list/popup details, PWA caching, README notes, and no medical, crime, risk, drug-use inference, or real-time inventory claims.
 
 ## Verification
 
 | Check | Result |
 |---|---|
-| `npm run convert:facilities` | 11,880 total facilities |
-| Targeted tests | 45 converter/filter tests passed |
-| `npm test` | 45 tests passed |
+| `npm run convert:facilities` | 12,357 total facilities |
+| Targeted tests | 49 converter/filter tests passed |
+| `npm test` | 49 unit/converter tests passed through `./init.sh` |
 | `npm run build` | Passed |
-| `npm run test:e2e` | 52 desktop/mobile tests passed |
-| `./init.sh` | 45 unit/converter tests, production build, and 52 desktop/mobile tests passed |
+| `npm run test:e2e -- --grep "clean needle"` | 2 desktop/mobile tests passed |
+| `npm run test:e2e` | 56 desktop/mobile tests passed |
+| `./init.sh` | Passed: 49 unit/converter tests, production build, and 56 desktop/mobile Playwright tests |
 | Responsive smoke | Covered by mobile/desktop Playwright suite |
 
 ## Deliberate Omissions
@@ -57,6 +59,7 @@
 - No separate map per facility category: one shared map keeps search, filtering, nearby lookup, and links consistent.
 - No dedicated smoking-area dashboard/directory page: the existing shared list, filter, map, popup, and nearby surfaces cover the layer without adding a new page system.
 - No separate no-smoking map or legal-boundary view: the existing shared map/list/search flow covers source point records without implying polygon boundaries.
+- No clean needle charts/dashboard: the app has no dashboard surface, so the layer uses the existing shared list/filter/map surface.
 
 ## Risks
 
@@ -73,3 +76,4 @@
 - Gas/LPG station business hours, fuel/LPG supply, pricing, self-service availability, and operating status are not real-time guarantees.
 - Designated smoking area opening hours, on-site usability, legal applicability, health interpretation, and complete legal boundaries are not real-time guarantees or advice.
 - Announced no-smoking place points are source-location references and not complete legal boundaries, real-time enforcement status, legal advice, health advice, smoking advice, or signage guarantees.
+- Clean needle service point records have no coordinates, so exact nearby sorting is intentionally unavailable; source data is not a real-time service, inventory, medical, public-safety, crime, or drug-use behavior signal.

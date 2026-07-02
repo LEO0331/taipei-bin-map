@@ -583,6 +583,10 @@ a:focus-visible {
   background: #d8f0d8;
 }
 
+.facility-div-marker.clean_needle_exchange_service_point span {
+  background: #f1d4e4;
+}
+
 .map-popup {
   max-width: 15rem;
 }

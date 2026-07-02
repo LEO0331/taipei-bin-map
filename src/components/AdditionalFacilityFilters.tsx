@@ -1,6 +1,8 @@
 import type { Translation } from '../i18n';
 import type {
   CommercialEvServiceType,
+  CleanNeedleServiceItemCategory,
+  CleanNeedleServicePointCategory,
   AnnouncedNoSmokingPlaceRecordType,
   DirectDrinkingPlaceCategory,
   DesignatedSmokingAreaType,
@@ -720,6 +722,99 @@ export function CommunityRecyclingStationFilters(props: CommunityRecyclingStatio
         <input type="checkbox" checked={props.hasParsedRoadName} onChange={(event) => props.onBooleanChange('road', event.target.checked)} />
         <span>{props.t.hasParsedRoadName}</span>
       </label>
+    </fieldset>
+  );
+}
+
+type CleanNeedleServicePointFiltersProps = {
+  areaCodes: string[];
+  serviceItems: string[];
+  servicePointCategories: string[];
+  roadNames: string[];
+  areaCode: string;
+  serviceItem: string;
+  servicePointCategory: string;
+  serviceItemCategory: CleanNeedleServiceItemCategory | '';
+  servicePointCategoryGroup: CleanNeedleServicePointCategory | '';
+  roadName: string;
+  hasPhone: boolean;
+  hasExtension: boolean;
+  twentyFourHour: boolean;
+  t: Translation;
+  onSelectChange: (name: 'areaCode' | 'serviceItem' | 'servicePointCategory' | 'serviceItemCategory' | 'servicePointCategoryGroup' | 'roadName', value: string) => void;
+  onBooleanChange: (name: 'phone' | 'extension' | 'twentyFourHour', value: boolean) => void;
+};
+
+export function CleanNeedleServicePointFilters(props: CleanNeedleServicePointFiltersProps) {
+  const itemCategories: CleanNeedleServiceItemCategory[] = [
+    'health_education_consultation_station',
+    'needle_return_box',
+    'automatic_service_machine',
+    'other',
+    'unknown',
+  ];
+  const pointCategories: CleanNeedleServicePointCategory[] = [
+    'pharmacy',
+    'medical_institution',
+    'park_market_public_toilet',
+    'other',
+    'unknown',
+  ];
+  const itemCategoryLabel = (value: CleanNeedleServiceItemCategory) => ({
+    health_education_consultation_station: props.t.healthEducationConsultationStation,
+    needle_return_box: props.t.needleReturnBox,
+    automatic_service_machine: props.t.automaticServiceMachine,
+    other: props.t.other,
+    unknown: props.t.unknown,
+  })[value];
+  const pointCategoryLabel = (value: CleanNeedleServicePointCategory) => ({
+    pharmacy: props.t.pharmacy,
+    medical_institution: props.t.medicalInstitution,
+    park_market_public_toilet: props.t.parkMarketPublicToilet,
+    other: props.t.other,
+    unknown: props.t.unknown,
+  })[value];
+
+  return (
+    <fieldset className="toilet-filters">
+      {[
+        ['areaCode', props.t.areaCode, props.areaCode, props.areaCodes],
+        ['serviceItem', props.t.serviceItem, props.serviceItem, props.serviceItems],
+        ['servicePointCategory', props.t.servicePointCategory, props.servicePointCategory, props.servicePointCategories],
+        ['roadName', props.t.roadName, props.roadName, props.roadNames],
+      ].map(([name, label, value, options]) => (
+        <label key={name as string}>
+          {label as string}
+          <select value={value as string} onChange={(event) => props.onSelectChange(name as 'areaCode' | 'serviceItem' | 'servicePointCategory' | 'roadName', event.target.value)}>
+            <option value="">{props.t.all}</option>
+            {(options as string[]).map((option) => <option key={option} value={option}>{option}</option>)}
+          </select>
+        </label>
+      ))}
+      <label>
+        {props.t.serviceItemCategory}
+        <select value={props.serviceItemCategory} onChange={(event) => props.onSelectChange('serviceItemCategory', event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {itemCategories.map((value) => <option key={value} value={value}>{itemCategoryLabel(value)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.servicePointCategoryGroup}
+        <select value={props.servicePointCategoryGroup} onChange={(event) => props.onSelectChange('servicePointCategoryGroup', event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {pointCategories.map((value) => <option key={value} value={value}>{pointCategoryLabel(value)}</option>)}
+        </select>
+      </label>
+      {[
+        ['phone', props.t.hasPhone, props.hasPhone],
+        ['extension', props.t.hasExtension, props.hasExtension],
+        ['twentyFourHour', props.t.twentyFourHourService, props.twentyFourHour],
+      ].map(([name, label, checked]) => (
+        <label className="checkbox-filter" key={name as string}>
+          <input type="checkbox" checked={checked as boolean} onChange={(event) => props.onBooleanChange(name as 'phone' | 'extension' | 'twentyFourHour', event.target.checked)} />
+          <span>{label as string}</span>
+        </label>
+      ))}
     </fieldset>
   );
 }

@@ -38,6 +38,8 @@
     "data:convert:no-smoking": "tsx scripts/convertAnnouncedNoSmokingPlaces.ts",
     "data:fetch:community-recycling": "tsx scripts/fetchCommunityRecyclingStations.ts",
     "data:convert:community-recycling": "tsx scripts/convertCommunityRecyclingStations.ts",
+    "data:fetch:clean-needle": "tsx scripts/fetchCleanNeedleExchangeServicePoints.ts",
+    "data:convert:clean-needle": "tsx scripts/convertCleanNeedleExchangeServicePoints.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

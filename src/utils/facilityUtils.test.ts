@@ -337,6 +337,41 @@ const facilities: Facility[] = [
     hasAddress: true,
     hasParsedRoadName: true,
   },
+  {
+    id: 'clean_needle_exchange_service_point-0001',
+    type: 'clean_needle_exchange_service_point',
+    district: '信義區',
+    address: '臺北市信義區松德路89號',
+    longitude: 0,
+    latitude: 0,
+    note: '',
+    source: '臺北市清潔針具佈點名單',
+    sourceAgency: '臺北市政府衛生局',
+    locationPrecision: 'address_only',
+    sourceSequenceNumber: 1,
+    areaCode: '63000020',
+    districtFromAreaCode: '信義區',
+    districtFromAddress: '信義區',
+    serviceItem: '衛教諮詢站',
+    serviceItemCategory: 'health_education_consultation_station',
+    servicePointCategory: '藥局',
+    servicePointCategoryGroup: 'pharmacy',
+    institutionCode: '5901170011',
+    serviceLocationName: '測試藥局',
+    name: '測試藥局',
+    phone: '(02)2720-0000',
+    phoneDisplay: '(02)2720-0000',
+    phoneType: 'taipei_landline',
+    extension: '123',
+    extensionDisplay: '123',
+    hasPhone: true,
+    hasExtension: true,
+    serviceHours: '09：00~22：00',
+    serviceHoursRaw: '09：00~22：00',
+    isTwentyFourHourService: false,
+    hasServiceHours: true,
+    roadName: '松德路',
+  },
 ];
 
 describe('calculateDistanceMeters', () => {
@@ -635,6 +670,23 @@ describe('filterFacilities', () => {
     });
     expect(result.map((item) => item.id)).toEqual(['community_recycling_station-0001']);
   });
+
+  it('filters and searches clean needle service points without coordinates', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '測試藥局',
+      district: '信義區',
+      facilityTypes: ['clean_needle_exchange_service_point'],
+      cleanNeedleAreaCode: '63000020',
+      cleanNeedleServiceItem: '衛教諮詢站',
+      cleanNeedleServicePointCategory: '藥局',
+      cleanNeedleServiceItemCategory: 'health_education_consultation_station',
+      cleanNeedleServicePointCategoryGroup: 'pharmacy',
+      cleanNeedleRoadName: '松德路',
+      cleanNeedleHasPhone: true,
+      cleanNeedleHasExtension: true,
+    });
+    expect(result.map((item) => item.id)).toEqual(['clean_needle_exchange_service_point-0001']);
+  });
 });
 
 describe('getFacilityTypeLabel', () => {
@@ -657,6 +709,7 @@ describe('getFacilityTypeLabel', () => {
     expect(getFacilityTypeLabel('announced_no_smoking_place', 'zh')).toBe('公告禁菸場所');
     expect(getAnnouncedNoSmokingRecordTypeLabel('smoke_free_park_green_space', 'en')).toBe('Smoke-Free Park / Green Space');
     expect(getFacilityTypeLabel('community_recycling_station', 'zh')).toBe('社區資源回收站');
+    expect(getFacilityTypeLabel('clean_needle_exchange_service_point', 'en')).toBe('Clean Needle Service Point');
     expect(getCommunityRecyclingStationLabel('short', 'en')).toBe('Community Recycling');
     expect(getElectricMotorcycleChargingLocationCategoryLabel('service_factory', 'en')).toBe('Service factory');
     expect(getCommercialEvServiceTypeLabel('electric_motorcycle_battery_swap', 'zh')).toBe('電動機車換電站');

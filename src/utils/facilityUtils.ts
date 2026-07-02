@@ -4,6 +4,8 @@ import type {
   DrinkingFountainPlaceCategory,
   DesignatedSmokingAreaType,
   CommercialEvServiceType,
+  CleanNeedleServiceItemCategory,
+  CleanNeedleServicePointCategory,
   ElectricMotorcycleChargingLocationCategory,
   Facility,
   FacilityType,
@@ -150,6 +152,15 @@ export function filterFacilities(
     communityRecyclingRoadName,
     communityRecyclingHasAddress = false,
     communityRecyclingHasParsedRoadName = false,
+    cleanNeedleAreaCode,
+    cleanNeedleServiceItem,
+    cleanNeedleServicePointCategory,
+    cleanNeedleServiceItemCategory,
+    cleanNeedleServicePointCategoryGroup,
+    cleanNeedleRoadName,
+    cleanNeedleHasPhone = false,
+    cleanNeedleHasExtension = false,
+    cleanNeedleTwentyFourHour = false,
   }: {
     searchTerm: string;
     district: string;
@@ -229,6 +240,15 @@ export function filterFacilities(
     communityRecyclingRoadName?: string;
     communityRecyclingHasAddress?: boolean;
     communityRecyclingHasParsedRoadName?: boolean;
+    cleanNeedleAreaCode?: string;
+    cleanNeedleServiceItem?: string;
+    cleanNeedleServicePointCategory?: string;
+    cleanNeedleServiceItemCategory?: CleanNeedleServiceItemCategory | '';
+    cleanNeedleServicePointCategoryGroup?: CleanNeedleServicePointCategory | '';
+    cleanNeedleRoadName?: string;
+    cleanNeedleHasPhone?: boolean;
+    cleanNeedleHasExtension?: boolean;
+    cleanNeedleTwentyFourHour?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -250,6 +270,7 @@ export function filterFacilities(
   const hasSmokingFilters = Boolean(smokingAreaType || smokingOpeningHoursType || smokingListed24Hours || smokingHasPhoto || smokingHasRelativeLocation || smokingManagingUnitCategory || smokingManagingUnit);
   const hasNoSmokingFilters = Boolean(noSmokingRecordType || noSmokingAnnouncementYear || noSmokingCoordinateStatus || noSmokingSourceResource || noSmokingHasCoordinates || noSmokingHasAddress || noSmokingHasLocationDescription);
   const hasCommunityRecyclingFilters = Boolean(communityRecyclingDistrictCode || communityRecyclingRoadName || communityRecyclingHasAddress || communityRecyclingHasParsedRoadName);
+  const hasCleanNeedleFilters = Boolean(cleanNeedleAreaCode || cleanNeedleServiceItem || cleanNeedleServicePointCategory || cleanNeedleServiceItemCategory || cleanNeedleServicePointCategoryGroup || cleanNeedleRoadName || cleanNeedleHasPhone || cleanNeedleHasExtension || cleanNeedleTwentyFourHour);
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -380,6 +401,18 @@ export function filterFacilities(
         (!communityRecyclingHasAddress || facility.hasAddress === true) &&
         (!communityRecyclingHasParsedRoadName || facility.hasParsedRoadName === true));
     const matchesCommunityRecyclingScope = !hasCommunityRecyclingFilters || facility.type === 'community_recycling_station';
+    const matchesCleanNeedle =
+      facility.type !== 'clean_needle_exchange_service_point' ||
+      ((!cleanNeedleAreaCode || facility.areaCode === cleanNeedleAreaCode) &&
+        (!cleanNeedleServiceItem || facility.serviceItem === cleanNeedleServiceItem) &&
+        (!cleanNeedleServicePointCategory || facility.servicePointCategory === cleanNeedleServicePointCategory) &&
+        (!cleanNeedleServiceItemCategory || facility.serviceItemCategory === cleanNeedleServiceItemCategory) &&
+        (!cleanNeedleServicePointCategoryGroup || facility.servicePointCategoryGroup === cleanNeedleServicePointCategoryGroup) &&
+        (!cleanNeedleRoadName || facility.roadName === cleanNeedleRoadName) &&
+        (!cleanNeedleHasPhone || facility.hasPhone === true) &&
+        (!cleanNeedleHasExtension || facility.hasExtension === true) &&
+        (!cleanNeedleTwentyFourHour || facility.isTwentyFourHourService === true));
+    const matchesCleanNeedleScope = !hasCleanNeedleFilters || facility.type === 'clean_needle_exchange_service_point';
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -453,6 +486,14 @@ export function filterFacilities(
         facility.districtCode,
         facility.districtCodeNormalized,
         facility.roadName,
+        facility.areaCode,
+        facility.serviceItem,
+        facility.servicePointCategory,
+        facility.institutionCode,
+        facility.serviceLocationName,
+        facility.extension,
+        facility.serviceHours,
+        facility.serviceHoursRaw,
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
           : '',
@@ -492,6 +533,8 @@ export function filterFacilities(
       matchesNoSmokingScope &&
       matchesCommunityRecycling &&
       matchesCommunityRecyclingScope &&
+      matchesCleanNeedle &&
+      matchesCleanNeedleScope &&
       matchesSearch
     );
   });
@@ -560,6 +603,10 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
 
   if (type === 'community_recycling_station') {
     return language === 'zh' ? '社區資源回收站' : 'Community Recycling Station';
+  }
+
+  if (type === 'clean_needle_exchange_service_point') {
+    return language === 'zh' ? '清潔針具服務點' : 'Clean Needle Service Point';
   }
 
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';

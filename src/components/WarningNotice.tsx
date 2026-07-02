@@ -24,6 +24,7 @@ const noticeTypes: FacilityType[] = [
   'designated_smoking_area',
   'announced_no_smoking_place',
   'community_recycling_station',
+  'clean_needle_exchange_service_point',
 ];
 
 export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
@@ -96,6 +97,10 @@ export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
     community_recycling_station: {
       label: t.communityRecyclingStations,
       notice: t.communityRecyclingStationInterpretationNote,
+    },
+    clean_needle_exchange_service_point: {
+      label: t.cleanNeedleExchangeServicePoints,
+      notice: t.cleanNeedleInterpretationNote,
     },
   } satisfies Record<FacilityType, { label: string; notice: string }>;
 

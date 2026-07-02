@@ -1,0 +1,9 @@
+{
+  "source": "/Users/Leo/Downloads/臺北市清潔針具佈點名單115s1.csv",
+  "target": "/Users/Leo/Documents/taipei-bin-map/data/raw/clean-needle-exchange-service-points/臺北市清潔針具佈點名單115s1.csv",
+  "dataset": "臺北市清潔針具佈點名單",
+  "sourceAgency": "衛生局",
+  "copiedAt": "2026-07-02T01:28:35.549Z",
+  "fileSizeBytes": 10375,
+  "encoding": "cp950"
+}

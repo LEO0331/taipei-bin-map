@@ -17,7 +17,8 @@ export type FacilityType =
   | 'gas_lpg_station'
   | 'designated_smoking_area'
   | 'announced_no_smoking_place'
-  | 'community_recycling_station';
+  | 'community_recycling_station'
+  | 'clean_needle_exchange_service_point';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
@@ -33,6 +34,18 @@ export type FuelStationServiceType = 'gasoline' | 'lpg' | 'self_service';
 export type FuelStationStatus = 'active_or_unspecified' | 'terminated' | 'unknown';
 export type DesignatedSmokingAreaType = 'outdoor_open' | 'outdoor_negative_pressure' | 'indoor_smoking_room' | 'other' | 'unknown';
 export type AnnouncedNoSmokingPlaceRecordType = 'outdoor_no_smoking_place' | 'smoke_free_park_green_space' | 'unknown';
+export type CleanNeedleServiceItemCategory =
+  | 'health_education_consultation_station'
+  | 'needle_return_box'
+  | 'automatic_service_machine'
+  | 'other'
+  | 'unknown';
+export type CleanNeedleServicePointCategory =
+  | 'pharmacy'
+  | 'medical_institution'
+  | 'park_market_public_toilet'
+  | 'other'
+  | 'unknown';
 export type CoordinateSystem = 'wgs84' | 'twd97' | 'unknown';
 export type OpeningHoursType = 'listed_24_hours' | 'fixed_hours' | 'weekday_or_holiday_rule' | 'depends_on_facility_hours' | 'custom_text' | 'missing' | 'unknown';
 export type ManagingUnitCategory = 'taipei_city_government' | 'district_office' | 'central_government' | 'transportation_or_mrt' | 'park_or_public_space' | 'private_operator' | 'cultural_or_sports_facility' | 'other' | 'unknown';
@@ -224,6 +237,32 @@ export type Facility = {
   districtNormalized?: string;
   districtCodeNormalized?: string;
   hasParsedRoadName?: boolean;
+  areaCode?: string;
+  areaCodeNormalized?: string;
+  districtFromAreaCode?: string;
+  districtFromAddress?: string;
+  districtMismatch?: boolean;
+  serviceItem?: string;
+  serviceItemRaw?: string;
+  serviceItemCategory?: CleanNeedleServiceItemCategory;
+  servicePointCategory?: string;
+  servicePointCategoryRaw?: string;
+  servicePointCategoryGroup?: CleanNeedleServicePointCategory;
+  institutionCode?: string;
+  serviceLocationName?: string;
+  serviceLocationNameNormalized?: string;
+  phoneDisplay?: string;
+  phoneDialHref?: string;
+  phoneType?: 'taipei_landline' | 'other_landline' | 'mobile' | 'extension' | 'multiple' | 'missing' | 'unknown';
+  extensionDisplay?: string;
+  hasPhone?: boolean;
+  hasExtension?: boolean;
+  serviceHoursRaw?: string;
+  serviceHours?: string;
+  serviceHoursNormalized?: string;
+  serviceTimeRanges?: Array<{ start?: string; end?: string; raw: string; crossesMidnight?: boolean }>;
+  isTwentyFourHourService?: boolean;
+  hasServiceHours?: boolean;
 };
 
 export type MotorcycleInspectionStationLocation = {
@@ -403,6 +442,45 @@ export type CommunityRecyclingStationSummary = {
   duplicateAddresses: Array<{ address: string; count: number }>;
 };
 
+export type CleanNeedleExchangeServicePointSummary = {
+  totalRecords: number;
+  uniqueAreaCodeCount: number;
+  taipeiDistrictCount: number;
+  uniqueInstitutionCodeCount: number;
+  uniqueServiceLocationNameCount: number;
+  uniqueAddressCount: number;
+  uniquePhoneCount: number;
+  recordsWithAddress: number;
+  recordsWithPhone: number;
+  recordsWithExtension: number;
+  recordsWithServiceHours: number;
+  twentyFourHourServiceCount: number;
+  byServiceItem: Array<{ serviceItem: string; serviceItemCategory: CleanNeedleServiceItemCategory; count: number; twentyFourHourServiceCount: number }>;
+  byServicePointCategory: Array<{ servicePointCategory: string; servicePointCategoryGroup: CleanNeedleServicePointCategory; count: number; twentyFourHourServiceCount: number }>;
+  byDistrict: Array<{
+    district: string;
+    servicePointCount: number;
+    healthEducationConsultationStationCount: number;
+    needleReturnBoxCount: number;
+    automaticServiceMachineCount: number;
+    twentyFourHourServiceCount: number;
+    uniqueAddressCount: number;
+  }>;
+  byRoadName: Array<{ roadName: string; count: number }>;
+  duplicateInstitutionCodes: Array<{ institutionCode: string; count: number }>;
+  duplicateServiceLocationNames: Array<{ serviceLocationName: string; count: number }>;
+  duplicateAddresses: Array<{ address: string; count: number }>;
+  duplicatePhones: Array<{ phone: string; count: number }>;
+  dataQuality: {
+    invalidAreaCodeCount: number;
+    districtMismatchCount: number;
+    missingServiceLocationNameCount: number;
+    missingAddressCount: number;
+    unparsedAddressDistrictCount: number;
+    missingServiceHoursCount: number;
+  };
+};
+
 export type RiversideToiletSummary = {
   totalRecords: number;
   validCoordinateCount: number;
@@ -489,6 +567,7 @@ export type ConversionSourceReport = {
     rowNumber: number;
     longitude?: string;
     latitude?: string;
+    reason?: string;
   }>;
   missingRequiredFields: Array<{
     rowNumber: number;
@@ -504,6 +583,9 @@ export type ConversionSourceReport = {
   unexpectedBooleanValues?: Array<{ rowNumber: number; field: string; value: string }>;
   duplicateStationNames?: Array<{ stationName: string; count: number }>;
   duplicateAddresses?: Array<{ address: string; count: number }>;
+  duplicateInstitutionCodes?: Array<{ institutionCode: string; count: number }>;
+  duplicateServiceLocationNames?: Array<{ serviceLocationName: string; count: number }>;
+  duplicatePhones?: Array<{ phone: string; count: number }>;
 };
 
 export type ConversionReport = {

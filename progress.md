@@ -180,7 +180,14 @@
 - [x] `npm run build` passed after the announced no-smoking layer.
 - [x] `npm run test:e2e` passed 52 desktop/mobile Playwright tests, including the announced no-smoking flow.
 - [x] `./init.sh` passed 45 unit/converter tests, production build, and 52 desktop/mobile Playwright tests after the announced no-smoking layer.
+- [x] `npm run data:fetch:clean-needle` copied the CP950 clean needle source CSV into `data/raw/clean-needle-exchange-service-points/`.
+- [x] `npm run convert:facilities` generated 12,357 facilities, including 88 clean needle service point records across all 12 districts.
+- [x] Targeted converter/filter tests passed with 49 tests.
+- [x] `npm run build` passed after the clean needle layer.
+- [x] `npm run test:e2e -- --grep "clean needle"` passed desktop/mobile Playwright coverage for the clean needle flow.
+- [x] `npm run test:e2e` passed 56 desktop/mobile Playwright tests after the clean needle layer.
+- [x] `./init.sh` passed 49 unit/converter tests, production build, and 56 desktop/mobile Playwright tests after the clean needle layer.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The sixteen-layer public amenities expansion is implemented and verified.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The clean needle public-health layer is implemented and full `./init.sh` verification passed in this session.

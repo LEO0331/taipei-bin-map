@@ -85,6 +85,9 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       {facility.type === 'community_recycling_station' && facility.stationName && (
         <p>{t.stationName}: {facility.stationName}</p>
       )}
+      {facility.type === 'clean_needle_exchange_service_point' && facility.serviceLocationName && (
+        <p>{t.serviceLocationName}: {facility.serviceLocationName}</p>
+      )}
       <p>
         {t.district}: {facility.district}
       </p>
@@ -267,6 +270,19 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.roadName && <p>{t.roadName}: {facility.roadName}</p>}
         </>
       )}
+      {facility.type === 'clean_needle_exchange_service_point' && (
+        <>
+          {facility.sourceSequenceNumber && <p>{t.sourceSequenceNumber}: {facility.sourceSequenceNumber}</p>}
+          {facility.areaCode && <p>{t.areaCode}: {facility.areaCode}</p>}
+          {facility.serviceItem && <p>{t.serviceItem}: {facility.serviceItem}</p>}
+          {facility.servicePointCategory && <p>{t.servicePointCategory}: {facility.servicePointCategory}</p>}
+          {facility.institutionCode && <p>{t.institutionCode}: {facility.institutionCode}</p>}
+          {facility.phoneDisplay && <p>{t.phone}: {facility.phoneDisplay}</p>}
+          {facility.extensionDisplay && <p>{t.extension}: {facility.extensionDisplay}</p>}
+          {facility.serviceHours && <p>{t.serviceHours}: {facility.serviceHours}</p>}
+          {facility.roadName && <p>{t.roadName}: {facility.roadName}</p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
@@ -279,6 +295,7 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       {facility.type === 'designated_smoking_area' && <p>{t.notice}: {t.designatedSmokingAreaPopupNotice}</p>}
       {facility.type === 'announced_no_smoking_place' && <p>{t.notice}: {t.announcedNoSmokingPlacePopupNotice}</p>}
       {facility.type === 'community_recycling_station' && <p>{t.notice}: {t.communityRecyclingStationPopupNotice}</p>}
+      {facility.type === 'clean_needle_exchange_service_point' && <p>{t.notice}: {t.cleanNeedlePopupNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

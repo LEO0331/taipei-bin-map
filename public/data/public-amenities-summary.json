@@ -1,6 +1,7 @@
 {
-  "totalFacilityRecords": 12269,
+  "totalFacilityRecords": 12357,
   "communityRecyclingStationCount": 389,
+  "cleanNeedleServicePointCount": 88,
   "timedCollectionPointCount": 30,
   "usedClothingRecyclingBoxCount": 1184
 }

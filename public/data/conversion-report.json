@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-30T02:14:17.238Z",
-  "totalValidRows": 12269,
+  "generatedAt": "2026-07-02T01:28:41.101Z",
+  "totalValidRows": 12357,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -469,6 +469,135 @@
         {
           "address": "臺北市信義區松德路200巷8號",
           "count": 3
+        }
+      ]
+    },
+    {
+      "sourceFilename": "臺北市清潔針具佈點名單115s1.csv",
+      "totalRows": 88,
+      "validRows": 88,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": [],
+      "addressParseWarnings": [],
+      "duplicateInstitutionCodes": [],
+      "duplicateServiceLocationNames": [
+        {
+          "serviceLocationName": "大直藥局",
+          "count": 3
+        },
+        {
+          "serviceLocationName": "勝安藥局",
+          "count": 3
+        },
+        {
+          "serviceLocationName": "陽明院區",
+          "count": 3
+        },
+        {
+          "serviceLocationName": "吳興藥局",
+          "count": 2
+        },
+        {
+          "serviceLocationName": "吉星藥局",
+          "count": 3
+        },
+        {
+          "serviceLocationName": "臺北市立聯合醫院(和平院區)",
+          "count": 2
+        },
+        {
+          "serviceLocationName": "裕和藥局",
+          "count": 3
+        },
+        {
+          "serviceLocationName": "啟仁藥局",
+          "count": 3
+        },
+        {
+          "serviceLocationName": "建興藥局",
+          "count": 3
+        },
+        {
+          "serviceLocationName": "健群藥局",
+          "count": 3
+        },
+        {
+          "serviceLocationName": "華君藥局",
+          "count": 3
+        }
+      ],
+      "duplicateAddresses": [
+        {
+          "address": "臺北市松山區南京東路五段309號1樓",
+          "count": 2
+        },
+        {
+          "address": "臺北市大同區鄭州路145號",
+          "count": 2
+        },
+        {
+          "address": "臺北市中山區北安路617號",
+          "count": 3
+        },
+        {
+          "address": "臺北市南港區舊莊街一段165號",
+          "count": 3
+        },
+        {
+          "address": "臺北市士林區雨聲街105號",
+          "count": 2
+        },
+        {
+          "address": "臺北市士林區社正路36號",
+          "count": 2
+        },
+        {
+          "address": "臺北市北投區新民路60號",
+          "count": 5
+        },
+        {
+          "address": "臺北市信義區吳興街279號",
+          "count": 2
+        },
+        {
+          "address": "臺北市中正區襄陽路19號",
+          "count": 2
+        },
+        {
+          "address": "臺北市萬華區萬大路117號",
+          "count": 3
+        },
+        {
+          "address": "臺北市萬華區環河南路二段177號",
+          "count": 3
+        },
+        {
+          "address": "臺北市萬華區昆明街100號",
+          "count": 11
+        },
+        {
+          "address": "臺北市文山區木柵路二段81號",
+          "count": 3
+        },
+        {
+          "address": "臺北市文山區景興路41號",
+          "count": 3
+        },
+        {
+          "address": "臺北市文山區興隆路二段60號",
+          "count": 3
+        }
+      ],
+      "duplicatePhones": [
+        {
+          "phone": "(02)29181518",
+          "count": 19
+        },
+        {
+          "phone": "(02)23703739",
+          "count": 34
         }
       ]
     }

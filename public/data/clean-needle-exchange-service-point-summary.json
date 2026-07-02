@@ -1,0 +1,473 @@
+{
+  "totalRecords": 88,
+  "uniqueAreaCodeCount": 12,
+  "taipeiDistrictCount": 12,
+  "uniqueInstitutionCodeCount": 88,
+  "uniqueServiceLocationNameCount": 68,
+  "uniqueAddressCount": 54,
+  "uniquePhoneCount": 37,
+  "recordsWithAddress": 88,
+  "recordsWithPhone": 88,
+  "recordsWithExtension": 36,
+  "recordsWithServiceHours": 88,
+  "twentyFourHourServiceCount": 52,
+  "byServiceItem": [
+    {
+      "serviceItem": "衛教諮詢站",
+      "serviceItemCategory": "health_education_consultation_station",
+      "count": 36,
+      "twentyFourHourServiceCount": 0
+    },
+    {
+      "serviceItem": "針具回收桶",
+      "serviceItemCategory": "needle_return_box",
+      "count": 33,
+      "twentyFourHourServiceCount": 33
+    },
+    {
+      "serviceItem": "針具自動服務機",
+      "serviceItemCategory": "automatic_service_machine",
+      "count": 19,
+      "twentyFourHourServiceCount": 19
+    }
+  ],
+  "byServicePointCategory": [
+    {
+      "servicePointCategory": "藥局",
+      "servicePointCategoryGroup": "pharmacy",
+      "count": 54,
+      "twentyFourHourServiceCount": 21
+    },
+    {
+      "servicePointCategory": "醫事機構",
+      "servicePointCategoryGroup": "medical_institution",
+      "count": 26,
+      "twentyFourHourServiceCount": 23
+    },
+    {
+      "servicePointCategory": "公園/市場/公廁",
+      "servicePointCategoryGroup": "park_market_public_toilet",
+      "count": 8,
+      "twentyFourHourServiceCount": 8
+    }
+  ],
+  "byDistrict": [
+    {
+      "district": "萬華區",
+      "servicePointCount": 24,
+      "healthEducationConsultationStationCount": 7,
+      "needleReturnBoxCount": 11,
+      "automaticServiceMachineCount": 6,
+      "twentyFourHourServiceCount": 17,
+      "uniqueAddressCount": 10
+    },
+    {
+      "district": "中正區",
+      "servicePointCount": 10,
+      "healthEducationConsultationStationCount": 5,
+      "needleReturnBoxCount": 3,
+      "automaticServiceMachineCount": 2,
+      "twentyFourHourServiceCount": 5,
+      "uniqueAddressCount": 9
+    },
+    {
+      "district": "文山區",
+      "servicePointCount": 10,
+      "healthEducationConsultationStationCount": 4,
+      "needleReturnBoxCount": 3,
+      "automaticServiceMachineCount": 3,
+      "twentyFourHourServiceCount": 6,
+      "uniqueAddressCount": 4
+    },
+    {
+      "district": "中山區",
+      "servicePointCount": 8,
+      "healthEducationConsultationStationCount": 4,
+      "needleReturnBoxCount": 3,
+      "automaticServiceMachineCount": 1,
+      "twentyFourHourServiceCount": 4,
+      "uniqueAddressCount": 6
+    },
+    {
+      "district": "士林區",
+      "servicePointCount": 8,
+      "healthEducationConsultationStationCount": 2,
+      "needleReturnBoxCount": 3,
+      "automaticServiceMachineCount": 3,
+      "twentyFourHourServiceCount": 6,
+      "uniqueAddressCount": 6
+    },
+    {
+      "district": "北投區",
+      "servicePointCount": 8,
+      "healthEducationConsultationStationCount": 4,
+      "needleReturnBoxCount": 4,
+      "automaticServiceMachineCount": 0,
+      "twentyFourHourServiceCount": 4,
+      "uniqueAddressCount": 4
+    },
+    {
+      "district": "大同區",
+      "servicePointCount": 6,
+      "healthEducationConsultationStationCount": 1,
+      "needleReturnBoxCount": 4,
+      "automaticServiceMachineCount": 1,
+      "twentyFourHourServiceCount": 5,
+      "uniqueAddressCount": 5
+    },
+    {
+      "district": "南港區",
+      "servicePointCount": 4,
+      "healthEducationConsultationStationCount": 2,
+      "needleReturnBoxCount": 1,
+      "automaticServiceMachineCount": 1,
+      "twentyFourHourServiceCount": 2,
+      "uniqueAddressCount": 2
+    },
+    {
+      "district": "信義區",
+      "servicePointCount": 4,
+      "healthEducationConsultationStationCount": 2,
+      "needleReturnBoxCount": 1,
+      "automaticServiceMachineCount": 1,
+      "twentyFourHourServiceCount": 2,
+      "uniqueAddressCount": 3
+    },
+    {
+      "district": "內湖區",
+      "servicePointCount": 3,
+      "healthEducationConsultationStationCount": 3,
+      "needleReturnBoxCount": 0,
+      "automaticServiceMachineCount": 0,
+      "twentyFourHourServiceCount": 0,
+      "uniqueAddressCount": 3
+    },
+    {
+      "district": "松山區",
+      "servicePointCount": 2,
+      "healthEducationConsultationStationCount": 1,
+      "needleReturnBoxCount": 0,
+      "automaticServiceMachineCount": 1,
+      "twentyFourHourServiceCount": 1,
+      "uniqueAddressCount": 1
+    },
+    {
+      "district": "大安區",
+      "servicePointCount": 1,
+      "healthEducationConsultationStationCount": 1,
+      "needleReturnBoxCount": 0,
+      "automaticServiceMachineCount": 0,
+      "twentyFourHourServiceCount": 0,
+      "uniqueAddressCount": 1
+    }
+  ],
+  "byRoadName": [
+    {
+      "roadName": "昆明街",
+      "count": 12
+    },
+    {
+      "roadName": "新民路",
+      "count": 5
+    },
+    {
+      "roadName": "雨聲街",
+      "count": 4
+    },
+    {
+      "roadName": "萬大路",
+      "count": 4
+    },
+    {
+      "roadName": "環河南路二段",
+      "count": 4
+    },
+    {
+      "roadName": "北安路",
+      "count": 3
+    },
+    {
+      "roadName": "舊莊街一段",
+      "count": 3
+    },
+    {
+      "roadName": "襄陽路",
+      "count": 3
+    },
+    {
+      "roadName": "木柵路二段",
+      "count": 3
+    },
+    {
+      "roadName": "景興路",
+      "count": 3
+    },
+    {
+      "roadName": "興隆路二段",
+      "count": 3
+    },
+    {
+      "roadName": "南京東路五段",
+      "count": 2
+    },
+    {
+      "roadName": "鄭州路",
+      "count": 2
+    },
+    {
+      "roadName": "林森北路",
+      "count": 2
+    },
+    {
+      "roadName": "社正路",
+      "count": 2
+    },
+    {
+      "roadName": "吳興街",
+      "count": 2
+    },
+    {
+      "roadName": "汀州路三段",
+      "count": 2
+    },
+    {
+      "roadName": "中華路二段",
+      "count": 2
+    },
+    {
+      "roadName": "通化街",
+      "count": 1
+    },
+    {
+      "roadName": "重慶北路三段",
+      "count": 1
+    },
+    {
+      "roadName": "重慶北路",
+      "count": 1
+    },
+    {
+      "roadName": "大龍街",
+      "count": 1
+    },
+    {
+      "roadName": "蘭州街",
+      "count": 1
+    },
+    {
+      "roadName": "吉林路",
+      "count": 1
+    },
+    {
+      "roadName": "錦州街",
+      "count": 1
+    },
+    {
+      "roadName": "民權東路三段",
+      "count": 1
+    },
+    {
+      "roadName": "康樂街",
+      "count": 1
+    },
+    {
+      "roadName": "文德路",
+      "count": 1
+    },
+    {
+      "roadName": "成功路四段",
+      "count": 1
+    },
+    {
+      "roadName": "昆陽街",
+      "count": 1
+    },
+    {
+      "roadName": "德行東路",
+      "count": 1
+    },
+    {
+      "roadName": "中山北路四段",
+      "count": 1
+    },
+    {
+      "roadName": "尊賢街",
+      "count": 1
+    },
+    {
+      "roadName": "公館路",
+      "count": 1
+    },
+    {
+      "roadName": "知行路",
+      "count": 1
+    },
+    {
+      "roadName": "虎林街",
+      "count": 1
+    },
+    {
+      "roadName": "基隆路二段",
+      "count": 1
+    },
+    {
+      "roadName": "衡陽路",
+      "count": 1
+    },
+    {
+      "roadName": "信義路二段",
+      "count": 1
+    },
+    {
+      "roadName": "北平東路",
+      "count": 1
+    },
+    {
+      "roadName": "萬青街",
+      "count": 1
+    },
+    {
+      "roadName": "東園街",
+      "count": 1
+    },
+    {
+      "roadName": "廣州街",
+      "count": 1
+    },
+    {
+      "roadName": "環河南路一段",
+      "count": 1
+    },
+    {
+      "roadName": "溪口街",
+      "count": 1
+    }
+  ],
+  "duplicateInstitutionCodes": [],
+  "duplicateServiceLocationNames": [
+    {
+      "serviceLocationName": "大直藥局",
+      "count": 3
+    },
+    {
+      "serviceLocationName": "勝安藥局",
+      "count": 3
+    },
+    {
+      "serviceLocationName": "陽明院區",
+      "count": 3
+    },
+    {
+      "serviceLocationName": "吳興藥局",
+      "count": 2
+    },
+    {
+      "serviceLocationName": "吉星藥局",
+      "count": 3
+    },
+    {
+      "serviceLocationName": "臺北市立聯合醫院(和平院區)",
+      "count": 2
+    },
+    {
+      "serviceLocationName": "裕和藥局",
+      "count": 3
+    },
+    {
+      "serviceLocationName": "啟仁藥局",
+      "count": 3
+    },
+    {
+      "serviceLocationName": "建興藥局",
+      "count": 3
+    },
+    {
+      "serviceLocationName": "健群藥局",
+      "count": 3
+    },
+    {
+      "serviceLocationName": "華君藥局",
+      "count": 3
+    }
+  ],
+  "duplicateAddresses": [
+    {
+      "address": "臺北市松山區南京東路五段309號1樓",
+      "count": 2
+    },
+    {
+      "address": "臺北市大同區鄭州路145號",
+      "count": 2
+    },
+    {
+      "address": "臺北市中山區北安路617號",
+      "count": 3
+    },
+    {
+      "address": "臺北市南港區舊莊街一段165號",
+      "count": 3
+    },
+    {
+      "address": "臺北市士林區雨聲街105號",
+      "count": 2
+    },
+    {
+      "address": "臺北市士林區社正路36號",
+      "count": 2
+    },
+    {
+      "address": "臺北市北投區新民路60號",
+      "count": 5
+    },
+    {
+      "address": "臺北市信義區吳興街279號",
+      "count": 2
+    },
+    {
+      "address": "臺北市中正區襄陽路19號",
+      "count": 2
+    },
+    {
+      "address": "臺北市萬華區萬大路117號",
+      "count": 3
+    },
+    {
+      "address": "臺北市萬華區環河南路二段177號",
+      "count": 3
+    },
+    {
+      "address": "臺北市萬華區昆明街100號",
+      "count": 11
+    },
+    {
+      "address": "臺北市文山區木柵路二段81號",
+      "count": 3
+    },
+    {
+      "address": "臺北市文山區景興路41號",
+      "count": 3
+    },
+    {
+      "address": "臺北市文山區興隆路二段60號",
+      "count": 3
+    }
+  ],
+  "duplicatePhones": [
+    {
+      "phone": "(02)29181518",
+      "count": 19
+    },
+    {
+      "phone": "(02)23703739",
+      "count": 34
+    }
+  ],
+  "dataQuality": {
+    "invalidAreaCodeCount": 0,
+    "districtMismatchCount": 0,
+    "missingServiceLocationNameCount": 0,
+    "missingAddressCount": 0,
+    "unparsedAddressDistrictCount": 0,
+    "missingServiceHoursCount": 0
+  }
+}

@@ -18,6 +18,7 @@ import { loadGasLpgStations } from './convertGasLpgStations';
 import { loadDesignatedSmokingAreas } from './convertDesignatedSmokingAreas';
 import { loadAnnouncedNoSmokingPlaces } from './convertAnnouncedNoSmokingPlaces';
 import { loadCommunityRecyclingStations } from './convertCommunityRecyclingStations';
+import { loadCleanNeedleExchangeServicePoints } from './convertCleanNeedleExchangeServicePoints';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -160,6 +161,8 @@ const ANNOUNCED_NO_SMOKING_PLACES_OUTPUT = resolve(options.outputDir, 'announced
 const ANNOUNCED_NO_SMOKING_PLACE_SUMMARY_OUTPUT = resolve(options.outputDir, 'announced-no-smoking-place-summary.json');
 const COMMUNITY_RECYCLING_STATIONS_OUTPUT = resolve(options.outputDir, 'community-recycling-stations.json');
 const COMMUNITY_RECYCLING_STATION_SUMMARY_OUTPUT = resolve(options.outputDir, 'community-recycling-station-summary.json');
+const CLEAN_NEEDLE_OUTPUT = resolve(options.outputDir, 'clean-needle-exchange-service-points.json');
+const CLEAN_NEEDLE_SUMMARY_OUTPUT = resolve(options.outputDir, 'clean-needle-exchange-service-point-summary.json');
 const PUBLIC_AMENITIES_SUMMARY_OUTPUT = resolve(options.outputDir, 'public-amenities-summary.json');
 const DRINKING_FOUNTAINS_OUTPUT = resolve(options.outputDir, 'drinking-fountains.json');
 const TIMED_COLLECTION_OUTPUT = resolve(options.outputDir, 'timed-collection-points.json');
@@ -434,6 +437,7 @@ const gasLpgStations = loadGasLpgStations();
 const designatedSmokingAreas = loadDesignatedSmokingAreas();
 const announcedNoSmokingPlaces = loadAnnouncedNoSmokingPlaces();
 const communityRecyclingStations = loadCommunityRecyclingStations();
+const cleanNeedleServicePoints = loadCleanNeedleExchangeServicePoints();
 
 const facilities = [
   ...pedestrian.facilities,
@@ -453,6 +457,7 @@ const facilities = [
   ...designatedSmokingAreas.facilities,
   ...announcedNoSmokingPlaces.facilities,
   ...communityRecyclingStations.facilities,
+  ...cleanNeedleServicePoints.facilities,
 ];
 const report: ConversionReport = {
   generatedAt: new Date().toISOString(),
@@ -475,6 +480,7 @@ const report: ConversionReport = {
     designatedSmokingAreas.report,
     ...announcedNoSmokingPlaces.reports,
     communityRecyclingStations.report,
+    cleanNeedleServicePoints.report,
   ],
 };
 
@@ -530,9 +536,12 @@ writeJson(ANNOUNCED_NO_SMOKING_PLACES_OUTPUT, announcedNoSmokingPlaces.facilitie
 writeJson(ANNOUNCED_NO_SMOKING_PLACE_SUMMARY_OUTPUT, announcedNoSmokingPlaces.summary);
 writeJson(COMMUNITY_RECYCLING_STATIONS_OUTPUT, communityRecyclingStations.facilities);
 writeJson(COMMUNITY_RECYCLING_STATION_SUMMARY_OUTPUT, communityRecyclingStations.summary);
+writeJson(CLEAN_NEEDLE_OUTPUT, cleanNeedleServicePoints.facilities);
+writeJson(CLEAN_NEEDLE_SUMMARY_OUTPUT, cleanNeedleServicePoints.summary);
 writeJson(PUBLIC_AMENITIES_SUMMARY_OUTPUT, {
   totalFacilityRecords: facilities.length,
   communityRecyclingStationCount: communityRecyclingStations.facilities.length,
+  cleanNeedleServicePointCount: cleanNeedleServicePoints.facilities.length,
   timedCollectionPointCount: timedCollectionPoints.facilities.length,
   usedClothingRecyclingBoxCount: usedClothingRecyclingBoxes.facilities.length,
 });
@@ -557,4 +566,5 @@ console.log(`Wrote ${commercialEvStations.facilities.length} commercial EV charg
 console.log(`Wrote ${gasLpgStations.facilities.length} gas/LPG station records to ${GAS_LPG_OUTPUT}`);
 console.log(`Wrote ${announcedNoSmokingPlaces.facilities.length} announced no-smoking place records to ${ANNOUNCED_NO_SMOKING_PLACES_OUTPUT}`);
 console.log(`Wrote ${communityRecyclingStations.facilities.length} community recycling station records to ${COMMUNITY_RECYCLING_STATIONS_OUTPUT}`);
+console.log(`Wrote ${cleanNeedleServicePoints.facilities.length} clean needle exchange service point records to ${CLEAN_NEEDLE_OUTPUT}`);
 console.log(`Wrote conversion report to ${REPORT_OUTPUT}`);

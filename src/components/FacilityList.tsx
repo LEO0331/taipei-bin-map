@@ -242,6 +242,19 @@ export function FacilityList({
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}
+              {facility.type === 'clean_needle_exchange_service_point' && (
+                <small>
+                  {[
+                    facility.serviceItem ? `${t.serviceItem}: ${facility.serviceItem}` : '',
+                    facility.servicePointCategory ? `${t.servicePointCategory}: ${facility.servicePointCategory}` : '',
+                    facility.serviceLocationName ? `${t.serviceLocationName}: ${facility.serviceLocationName}` : '',
+                    facility.phoneDisplay ? `${t.phone}: ${facility.phoneDisplay}` : '',
+                    facility.extensionDisplay ? `${t.extension}: ${facility.extensionDisplay}` : '',
+                    facility.serviceHours ? `${t.serviceHours}: ${facility.serviceHours}` : '',
+                    facility.isTwentyFourHourService ? t.twentyFourHourService : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
               {facility.note && <small>{facility.note}</small>}
               {facility.type === 'designated_smoking_area' && facility.photoUrl && (
                 <a href={facility.photoUrl} target="_blank" rel="noreferrer">{t.photo}</a>

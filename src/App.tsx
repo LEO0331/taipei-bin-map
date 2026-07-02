@@ -3,6 +3,7 @@ import { DrinkingFountainFilters } from './components/DrinkingFountainFilters';
 import {
   CommercialEvChargingSwapStationFilters,
   AnnouncedNoSmokingPlaceFilters,
+  CleanNeedleServicePointFilters,
   CommunityRecyclingStationFilters,
   DesignatedSmokingAreaFilters,
   DirectDrinkingFilters,
@@ -26,6 +27,8 @@ import { translations } from './i18n';
 import type {
   ConversionReport,
   AnnouncedNoSmokingPlaceRecordType,
+  CleanNeedleServiceItemCategory,
+  CleanNeedleServicePointCategory,
   CommercialEvServiceType,
   DirectDrinkingPlaceCategory,
   DesignatedSmokingAreaType,
@@ -161,6 +164,15 @@ function App() {
   const [communityRecyclingRoadName, setCommunityRecyclingRoadName] = useState('');
   const [communityRecyclingHasAddress, setCommunityRecyclingHasAddress] = useState(false);
   const [communityRecyclingHasParsedRoadName, setCommunityRecyclingHasParsedRoadName] = useState(false);
+  const [cleanNeedleAreaCode, setCleanNeedleAreaCode] = useState('');
+  const [cleanNeedleServiceItem, setCleanNeedleServiceItem] = useState('');
+  const [cleanNeedleServicePointCategory, setCleanNeedleServicePointCategory] = useState('');
+  const [cleanNeedleServiceItemCategory, setCleanNeedleServiceItemCategory] = useState<CleanNeedleServiceItemCategory | ''>('');
+  const [cleanNeedleServicePointCategoryGroup, setCleanNeedleServicePointCategoryGroup] = useState<CleanNeedleServicePointCategory | ''>('');
+  const [cleanNeedleRoadName, setCleanNeedleRoadName] = useState('');
+  const [cleanNeedleHasPhone, setCleanNeedleHasPhone] = useState(false);
+  const [cleanNeedleHasExtension, setCleanNeedleHasExtension] = useState(false);
+  const [cleanNeedleTwentyFourHour, setCleanNeedleTwentyFourHour] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -183,6 +195,7 @@ function App() {
   const includesDesignatedSmokingAreas = selectedTypes.includes('designated_smoking_area');
   const includesAnnouncedNoSmokingPlaces = selectedTypes.includes('announced_no_smoking_place');
   const includesCommunityRecyclingStations = selectedTypes.includes('community_recycling_station');
+  const includesCleanNeedleServicePoints = selectedTypes.includes('clean_needle_exchange_service_point');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -347,6 +360,22 @@ function App() {
     () => [...new Set(facilities.filter((facility) => facility.type === 'community_recycling_station').map((facility) => facility.roadName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
     [facilities],
   );
+  const cleanNeedleAreaCodes = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'clean_needle_exchange_service_point').map((facility) => facility.areaCode).filter(Boolean) as string[])].sort(),
+    [facilities],
+  );
+  const cleanNeedleServiceItems = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'clean_needle_exchange_service_point').map((facility) => facility.serviceItem).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const cleanNeedleServicePointCategories = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'clean_needle_exchange_service_point').map((facility) => facility.servicePointCategory).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const cleanNeedleRoadNames = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'clean_needle_exchange_service_point').map((facility) => facility.roadName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -429,6 +458,15 @@ function App() {
         communityRecyclingRoadName,
         communityRecyclingHasAddress,
         communityRecyclingHasParsedRoadName,
+        cleanNeedleAreaCode,
+        cleanNeedleServiceItem,
+        cleanNeedleServicePointCategory,
+        cleanNeedleServiceItemCategory,
+        cleanNeedleServicePointCategoryGroup,
+        cleanNeedleRoadName,
+        cleanNeedleHasPhone,
+        cleanNeedleHasExtension,
+        cleanNeedleTwentyFourHour,
       }),
     [
       district,
@@ -510,6 +548,15 @@ function App() {
       communityRecyclingRoadName,
       communityRecyclingHasAddress,
       communityRecyclingHasParsedRoadName,
+      cleanNeedleAreaCode,
+      cleanNeedleServiceItem,
+      cleanNeedleServicePointCategory,
+      cleanNeedleServiceItemCategory,
+      cleanNeedleServicePointCategoryGroup,
+      cleanNeedleRoadName,
+      cleanNeedleHasPhone,
+      cleanNeedleHasExtension,
+      cleanNeedleTwentyFourHour,
     ],
   );
 
@@ -589,6 +636,20 @@ function App() {
       };
     });
   }, [displayedFacilities]);
+  const cleanNeedleDistrictSummaries = useMemo(() => {
+    const stations = displayedFacilities.filter((facility) => facility.type === 'clean_needle_exchange_service_point');
+    return [...new Set(stations.map((facility) => facility.district).filter(Boolean))].map((district) => {
+      const rows = stations.filter((facility) => facility.district === district);
+      return {
+        district,
+        count: rows.length,
+        healthEducationConsultationStationCount: rows.filter((facility) => facility.serviceItemCategory === 'health_education_consultation_station').length,
+        needleReturnBoxCount: rows.filter((facility) => facility.serviceItemCategory === 'needle_return_box').length,
+        automaticServiceMachineCount: rows.filter((facility) => facility.serviceItemCategory === 'automatic_service_machine').length,
+        twentyFourHourServiceCount: rows.filter((facility) => facility.isTwentyFourHourService).length,
+      };
+    });
+  }, [displayedFacilities]);
   const renderableFacilities = displayedFacilities.filter(
     (facility) =>
       Number.isFinite(facility.latitude) &&
@@ -619,6 +680,7 @@ function App() {
   const isDesignatedSmokingAreaOnly = selectedTypes.length === 1 && includesDesignatedSmokingAreas;
   const isAnnouncedNoSmokingPlaceOnly = selectedTypes.length === 1 && includesAnnouncedNoSmokingPlaces;
   const isCommunityRecyclingOnly = selectedTypes.length === 1 && includesCommunityRecyclingStations;
+  const isCleanNeedleOnly = selectedTypes.length === 1 && includesCleanNeedleServicePoints;
   const isSpecializedToiletOnly = isRiversideOnly || isFamilyToiletOnly;
   const listHeading = nearbyFacilities
     ? t.nearestFacilities
@@ -638,6 +700,8 @@ function App() {
                     ? t.announcedNoSmokingPlaceDirectory
                     : isCommunityRecyclingOnly
                       ? t.communityRecyclingStationDirectory
+                      : isCleanNeedleOnly
+                        ? t.cleanNeedleServicePointDirectory
                 : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
     if (!report?.generatedAt) {
@@ -772,6 +836,17 @@ function App() {
       setCommunityRecyclingRoadName('');
       setCommunityRecyclingHasAddress(false);
       setCommunityRecyclingHasParsedRoadName(false);
+    }
+    if (!value.includes('clean_needle_exchange_service_point')) {
+      setCleanNeedleAreaCode('');
+      setCleanNeedleServiceItem('');
+      setCleanNeedleServicePointCategory('');
+      setCleanNeedleServiceItemCategory('');
+      setCleanNeedleServicePointCategoryGroup('');
+      setCleanNeedleRoadName('');
+      setCleanNeedleHasPhone(false);
+      setCleanNeedleHasExtension(false);
+      setCleanNeedleTwentyFourHour(false);
     }
     setNearbyFacilities(null);
   };
@@ -936,6 +1011,8 @@ function App() {
                           ? t.announcedNoSmokingPlaceSearchPlaceholder
                           : isCommunityRecyclingOnly
                             ? t.communityRecyclingStationSearchPlaceholder
+                            : isCleanNeedleOnly
+                              ? t.cleanNeedleSearchPlaceholder
               : isSpecializedToiletOnly
                 ? t.toiletSearchPlaceholder
                 : t.searchPlaceholder}
@@ -1223,6 +1300,39 @@ function App() {
               }}
             />
           )}
+          {hasFocusedTypes && includesCleanNeedleServicePoints && (
+            <CleanNeedleServicePointFilters
+              areaCodes={cleanNeedleAreaCodes}
+              serviceItems={cleanNeedleServiceItems}
+              servicePointCategories={cleanNeedleServicePointCategories}
+              roadNames={cleanNeedleRoadNames}
+              areaCode={cleanNeedleAreaCode}
+              serviceItem={cleanNeedleServiceItem}
+              servicePointCategory={cleanNeedleServicePointCategory}
+              serviceItemCategory={cleanNeedleServiceItemCategory}
+              servicePointCategoryGroup={cleanNeedleServicePointCategoryGroup}
+              roadName={cleanNeedleRoadName}
+              hasPhone={cleanNeedleHasPhone}
+              hasExtension={cleanNeedleHasExtension}
+              twentyFourHour={cleanNeedleTwentyFourHour}
+              t={t}
+              onSelectChange={(name, value) => {
+                if (name === 'areaCode') setCleanNeedleAreaCode(value);
+                if (name === 'serviceItem') setCleanNeedleServiceItem(value);
+                if (name === 'servicePointCategory') setCleanNeedleServicePointCategory(value);
+                if (name === 'serviceItemCategory') setCleanNeedleServiceItemCategory(value as CleanNeedleServiceItemCategory | '');
+                if (name === 'servicePointCategoryGroup') setCleanNeedleServicePointCategoryGroup(value as CleanNeedleServicePointCategory | '');
+                if (name === 'roadName') setCleanNeedleRoadName(value);
+                setNearbyFacilities(null);
+              }}
+              onBooleanChange={(name, value) => {
+                if (name === 'phone') setCleanNeedleHasPhone(value);
+                if (name === 'extension') setCleanNeedleHasExtension(value);
+                if (name === 'twentyFourHour') setCleanNeedleTwentyFourHour(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
           {isSpecializedToiletOnly && (
             <label className="nearby-radius">
               <span>{t.nearbyRadius}</span>
@@ -1340,6 +1450,8 @@ function App() {
                       ? t.viewCommercialEvStationsByNearbyDistrict
                       : isCommunityRecyclingOnly
                         ? t.viewCommunityRecyclingStationsByNearbyDistrict
+                        : isCleanNeedleOnly
+                          ? t.viewCleanNeedleServicePointsByNearbyDistrict
                       : isGasLpgOnly
                         ? t.showNearbyGasLpgStations
                         : isDesignatedSmokingAreaOnly
@@ -1373,6 +1485,8 @@ function App() {
                       ? t.announcedNoSmokingPlaceDistanceUnavailableNotice
                       : includesCommunityRecyclingStations
                         ? t.communityRecyclingStationDistanceUnavailableNotice
+                        : includesCleanNeedleServicePoints
+                          ? t.cleanNeedleDistanceUnavailableNotice
                   : t.lactationRoomDistanceUnavailableNotice
                 : t.unableToGetLocation}
           </p>
@@ -1383,6 +1497,7 @@ function App() {
         {includesCommercialEvStations && <p className="status-message">{t.commercialEvNoCoordinateNotice}</p>}
         {includesAnnouncedNoSmokingPlaces && <p className="status-message">{t.announcedNoSmokingPlaceNotice}</p>}
         {includesCommunityRecyclingStations && <p className="status-message">{t.communityRecyclingStationMapNotice}</p>}
+        {includesCleanNeedleServicePoints && <p className="status-message">{t.cleanNeedleMapNotice}</p>}
         {isLoadingFacilities ? (
           <p className="status-message">{t.loading}</p>
         ) : (
@@ -1397,6 +1512,7 @@ function App() {
                 chargingDistrictSummaries={chargingDistrictSummaries}
                 commercialEvDistrictSummaries={commercialEvDistrictSummaries}
                 communityRecyclingDistrictSummaries={communityRecyclingDistrictSummaries}
+                cleanNeedleDistrictSummaries={cleanNeedleDistrictSummaries}
                 t={t}
                 userLocation={userLocation}
               />

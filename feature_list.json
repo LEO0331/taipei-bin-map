@@ -207,6 +207,14 @@
       "dependencies": ["feat-025"],
       "status": "done",
       "evidence": "npm run convert:facilities generated 11880 facilities, including 3786 announced no-smoking place records. ./init.sh passed 45 unit/converter tests, production build, and 52 desktop/mobile Playwright tests on 2026-06-30."
+    },
+    {
+      "id": "feat-027",
+      "name": "Clean needle service point expansion",
+      "description": "Add Taipei clean needle exchange service points as an address-only public-health service layer with CP950 conversion, service-item/category filters, phone/extension/hour fields, district summaries, cache support, and no medical, crime, risk, or real-time inventory claims.",
+      "dependencies": ["feat-026"],
+      "status": "done",
+      "evidence": "npm run convert:facilities generated 12357 facilities, including 88 clean needle exchange service point records across all 12 districts. ./init.sh passed 49 unit/converter tests, production build, and 56 desktop/mobile Playwright tests on 2026-07-02."
     }
   ]
 }

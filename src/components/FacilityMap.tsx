@@ -61,6 +61,14 @@ type FacilityMapProps = {
     count: number;
     uniqueAddressCount: number;
   }>;
+  cleanNeedleDistrictSummaries: Array<{
+    district: string;
+    count: number;
+    healthEducationConsultationStationCount: number;
+    needleReturnBoxCount: number;
+    automaticServiceMachineCount: number;
+    twentyFourHourServiceCount: number;
+  }>;
 };
 
 const taipeiCenter: [number, number] = [25.0478, 121.5319];
@@ -119,6 +127,7 @@ const markerEmojiByType = {
   designated_smoking_area: '⌖',
   announced_no_smoking_place: '🚭',
   community_recycling_station: '🏘️',
+  clean_needle_exchange_service_point: '🏥',
 } satisfies Record<FacilityType, string>;
 
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {
@@ -172,6 +181,7 @@ export function FacilityMap({
   chargingDistrictSummaries,
   commercialEvDistrictSummaries,
   communityRecyclingDistrictSummaries,
+  cleanNeedleDistrictSummaries,
 }: FacilityMapProps) {
   const renderedFacilities = useChunkedFacilities(facilities);
   const userIcon = useMemo(
@@ -334,6 +344,29 @@ export function FacilityMap({
                   <p>{t.communityRecyclingStationCount}: {summary.count}</p>
                   <p>{t.uniqueAddressCount}: {summary.uniqueAddressCount}</p>
                   <p>{t.notice}: {t.communityRecyclingStationPopupNotice}</p>
+                </div>
+              </Popup>
+            </CircleMarker>
+          );
+        })}
+        {cleanNeedleDistrictSummaries.map((summary) => {
+          const center = districtCentroids[summary.district];
+          if (!center) return null;
+          return (
+            <CircleMarker
+              key={`clean-needle-${summary.district}`}
+              center={center}
+              radius={Math.min(26, 10 + Math.sqrt(summary.count) * 1.8)}
+              pathOptions={{ color: '#7a3458', fillColor: '#f1b8d2', fillOpacity: 0.78, weight: 2 }}
+            >
+              <Popup>
+                <div className="map-popup">
+                  <strong>{t.cleanNeedleServicePointDistrictDistribution}</strong>
+                  <p>{t.district}: {summary.district}</p>
+                  <p>{t.cleanNeedleServicePointCount}: {summary.count}</p>
+                  <p>{t.serviceItem}: {t.healthEducationConsultationStation} {summary.healthEducationConsultationStationCount}、{t.needleReturnBox} {summary.needleReturnBoxCount}、{t.automaticServiceMachine} {summary.automaticServiceMachineCount}</p>
+                  <p>{t.twentyFourHourService}: {summary.twentyFourHourServiceCount}</p>
+                  <p>{t.notice}: {t.cleanNeedlePopupNotice}</p>
                 </div>
               </Popup>
             </CircleMarker>

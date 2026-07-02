@@ -50,6 +50,12 @@ import {
   convertCommunityRecyclingStationRows,
   parseCommunityRecyclingStationAddress,
 } from './convertCommunityRecyclingStations';
+import {
+  classifyCleanNeedleServiceItem,
+  classifyCleanNeedleServicePointCategory,
+  convertCleanNeedleExchangeServicePointRows,
+  parseCleanNeedleServiceHours,
+} from './convertCleanNeedleExchangeServicePoints';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -525,5 +531,49 @@ describe('new facility converters', () => {
     });
     expect(converted.summary.duplicateStationNames).toEqual([{ stationName: '信惠社區資源回收站', count: 2 }]);
     expect(converted.summary.duplicateAddresses).toEqual([{ address: '臺北市信義區松德路89號', count: 2 }]);
+  });
+
+  it('maps clean needle service points as address-only public health records', () => {
+    expect(classifyCleanNeedleServiceItem('針具回收桶')).toBe('needle_return_box');
+    expect(classifyCleanNeedleServicePointCategory('公園/市場/公廁')).toBe('park_market_public_toilet');
+    expect(parseCleanNeedleServiceHours('00：00~23：59')).toMatchObject({
+      isTwentyFourHourService: true,
+      serviceHoursNormalized: '00:00~23:59',
+    });
+
+    const converted = convertCleanNeedleExchangeServicePointRows([
+      {
+        序號: '1',
+        行政區域代碼: '63000020',
+        設置項目: '衛教諮詢站',
+        設置點類別: '藥局',
+        機構代碼: '5901170011',
+        設置地點: '測試藥局',
+        電話: '(02)2720-0000',
+        分機: '123',
+        地址: '台北市信義區松德路89號',
+        服務時間: '09：00~22：00',
+        備註: '',
+      },
+    ]);
+
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'clean_needle_exchange_service_point',
+      district: '信義區',
+      areaCode: '63000020',
+      districtFromAreaCode: '信義區',
+      districtFromAddress: '信義區',
+      serviceItemCategory: 'health_education_consultation_station',
+      servicePointCategoryGroup: 'pharmacy',
+      institutionCode: '5901170011',
+      serviceLocationName: '測試藥局',
+      phoneType: 'taipei_landline',
+      hasExtension: true,
+      address: '臺北市信義區松德路89號',
+      roadName: '松德路',
+      locationPrecision: 'address_only',
+    });
+    expect(converted.summary.twentyFourHourServiceCount).toBe(0);
+    expect(converted.report.validRows).toBe(1);
   });
 });
