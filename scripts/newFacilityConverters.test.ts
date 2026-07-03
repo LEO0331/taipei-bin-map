@@ -62,6 +62,10 @@ import {
   classifyTreeDiameterMeters,
   convertProtectedTreeRows,
 } from './convertProtectedTrees';
+import {
+  classifyPayTaipeiParkingSupportStatus,
+  convertPayTaipeiCardlessParkingLotRows,
+} from './convertPayTaipeiCardlessParkingLots';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -70,6 +74,63 @@ describe('new facility converters', () => {
       acceptsRecycling: 'unknown',
       acceptsFoodWaste: false,
       hasSpecialHours: true,
+    });
+  });
+
+  it('converts pay.taipei parking rows as address-only records without geocoding', () => {
+    expect(classifyPayTaipeiParkingSupportStatus('1')).toBe('supported');
+    expect(classifyPayTaipeiParkingSupportStatus('0')).toBe('not_supported_or_stopped');
+
+    const converted = convertPayTaipeiCardlessParkingLotRows([
+      {
+        seqno: '1',
+        停車場ID: 'P001',
+        營運id: 'OP01',
+        營運單位: '臺北市停管處',
+        對應停車場: '測試停車場',
+        狀態: '1',
+        電話: '02-12345678',
+        郵遞區號: '110',
+        地址: '台北市信義區松仁路1號地下1樓',
+        說明: '無',
+      },
+      {
+        seqno: '2',
+        停車場ID: 'P002',
+        營運id: 'OP02',
+        營運單位: '平台公司',
+        對應停車場: '平台服務',
+        狀態: '0',
+        電話: '02-99999999',
+        郵遞區號: '251',
+        地址: '新北市淡水區中正路1號5樓',
+        說明: '停止服務',
+      },
+    ]);
+
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'pay_taipei_cardless_parking_lot',
+      district: '信義區',
+      address: '臺北市信義區松仁路1號地下1樓',
+      locationPrecision: 'address_only',
+      supportStatusCategory: 'supported',
+      postalCodeType: 'taipei_city',
+      addressLooksLikeBasementOrUnderground: true,
+      payTaipeiParkingGeocodingStatus: 'not_geocoded_address_only',
+      coordinateSource: 'none',
+    });
+    expect(converted.facilities[1]).toMatchObject({
+      supportStatusCategory: 'not_supported_or_stopped',
+      postalCodeType: 'new_taipei_or_other_city',
+      addressLooksLikeOperatorOrPlatformAddress: true,
+      serviceStoppedHint: true,
+      payTaipeiParkingLocationPrecision: 'operator_or_platform_address',
+    });
+    expect(converted.summary).toMatchObject({
+      totalRecords: 2,
+      supportedCount: 1,
+      notSupportedOrStoppedCount: 1,
+      recordsWithServiceStoppedHint: 1,
     });
   });
 

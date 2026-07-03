@@ -1,0 +1,1256 @@
+{
+  "totalRecords": 227,
+  "uniqueParkingLotIdCount": 227,
+  "uniqueOperatorIdCount": 22,
+  "uniqueOperatorNameCount": 23,
+  "uniqueParkingLotNameCount": 199,
+  "uniqueAddressCount": 209,
+  "uniquePhoneNumberCount": 133,
+  "uniquePostalCodeCount": 19,
+  "districtCount": 12,
+  "uniqueRoadNameCount": 143,
+  "supportedCount": 182,
+  "notSupportedOrStoppedCount": 45,
+  "unknownStatusCount": 0,
+  "recordsWithPhone": 227,
+  "recordsWithNote": 183,
+  "recordsWithServiceStoppedHint": 10,
+  "recordsWithTaipeiDistrictFromAddress": 214,
+  "recordsWithOperatorOrPlatformAddress": 20,
+  "recordsWithBasementOrUndergroundAddress": 161,
+  "recordsWithGeocodedCoordinates": 0,
+  "recordsWithJoinedOfficialCoordinates": 0,
+  "byDistrict": [
+    {
+      "districtName": "松山區",
+      "count": 27,
+      "supportedCount": 19,
+      "notSupportedOrStoppedCount": 8,
+      "uniqueOperatorNameCount": 7,
+      "uniqueAddressCount": 24
+    },
+    {
+      "districtName": "信義區",
+      "count": 25,
+      "supportedCount": 21,
+      "notSupportedOrStoppedCount": 4,
+      "uniqueOperatorNameCount": 7,
+      "uniqueAddressCount": 25
+    },
+    {
+      "districtName": "大同區",
+      "count": 23,
+      "supportedCount": 17,
+      "notSupportedOrStoppedCount": 6,
+      "uniqueOperatorNameCount": 8,
+      "uniqueAddressCount": 21
+    },
+    {
+      "districtName": "中山區",
+      "count": 21,
+      "supportedCount": 13,
+      "notSupportedOrStoppedCount": 8,
+      "uniqueOperatorNameCount": 6,
+      "uniqueAddressCount": 17
+    },
+    {
+      "districtName": "萬華區",
+      "count": 20,
+      "supportedCount": 19,
+      "notSupportedOrStoppedCount": 1,
+      "uniqueOperatorNameCount": 9,
+      "uniqueAddressCount": 18
+    },
+    {
+      "districtName": "內湖區",
+      "count": 18,
+      "supportedCount": 17,
+      "notSupportedOrStoppedCount": 1,
+      "uniqueOperatorNameCount": 8,
+      "uniqueAddressCount": 18
+    },
+    {
+      "districtName": "文山區",
+      "count": 18,
+      "supportedCount": 13,
+      "notSupportedOrStoppedCount": 5,
+      "uniqueOperatorNameCount": 10,
+      "uniqueAddressCount": 18
+    },
+    {
+      "districtName": "士林區",
+      "count": 17,
+      "supportedCount": 13,
+      "notSupportedOrStoppedCount": 4,
+      "uniqueOperatorNameCount": 7,
+      "uniqueAddressCount": 16
+    },
+    {
+      "districtName": "大安區",
+      "count": 16,
+      "supportedCount": 13,
+      "notSupportedOrStoppedCount": 3,
+      "uniqueOperatorNameCount": 6,
+      "uniqueAddressCount": 13
+    },
+    {
+      "districtName": "北投區",
+      "count": 14,
+      "supportedCount": 14,
+      "notSupportedOrStoppedCount": 0,
+      "uniqueOperatorNameCount": 7,
+      "uniqueAddressCount": 14
+    },
+    {
+      "districtName": "南港區",
+      "count": 12,
+      "supportedCount": 11,
+      "notSupportedOrStoppedCount": 1,
+      "uniqueOperatorNameCount": 6,
+      "uniqueAddressCount": 12
+    },
+    {
+      "districtName": "中正區",
+      "count": 3,
+      "supportedCount": 2,
+      "notSupportedOrStoppedCount": 1,
+      "uniqueOperatorNameCount": 3,
+      "uniqueAddressCount": 3
+    }
+  ],
+  "byOperator": [
+    {
+      "operatorName": "臺北市停管處",
+      "count": 68,
+      "supportedCount": 46,
+      "notSupportedOrStoppedCount": 22,
+      "districtCount": 11
+    },
+    {
+      "operatorName": "寶盛國際股份有限公司",
+      "count": 33,
+      "supportedCount": 32,
+      "notSupportedOrStoppedCount": 1,
+      "districtCount": 12
+    },
+    {
+      "operatorName": "中興電工機械股份有限公司",
+      "count": 29,
+      "supportedCount": 22,
+      "notSupportedOrStoppedCount": 7,
+      "districtCount": 8
+    },
+    {
+      "operatorName": "正好停股份有限公司",
+      "count": 20,
+      "supportedCount": 16,
+      "notSupportedOrStoppedCount": 4,
+      "districtCount": 6
+    },
+    {
+      "operatorName": "辰淵企業股份有限公司",
+      "count": 11,
+      "supportedCount": 11,
+      "notSupportedOrStoppedCount": 0,
+      "districtCount": 4
+    },
+    {
+      "operatorName": "力揚停車場設備股份有限公司",
+      "count": 10,
+      "supportedCount": 8,
+      "notSupportedOrStoppedCount": 2,
+      "districtCount": 7
+    },
+    {
+      "operatorName": "歐特儀股份有限公司",
+      "count": 8,
+      "supportedCount": 5,
+      "notSupportedOrStoppedCount": 3,
+      "districtCount": 4
+    },
+    {
+      "operatorName": "山發物業股份有限公司",
+      "count": 7,
+      "supportedCount": 6,
+      "notSupportedOrStoppedCount": 1,
+      "districtCount": 2
+    },
+    {
+      "operatorName": "日月亭股份有限公司",
+      "count": 7,
+      "supportedCount": 7,
+      "notSupportedOrStoppedCount": 0,
+      "districtCount": 3
+    },
+    {
+      "operatorName": "大日開發有限公司",
+      "count": 5,
+      "supportedCount": 5,
+      "notSupportedOrStoppedCount": 0,
+      "districtCount": 3
+    },
+    {
+      "operatorName": "威瀧實業有限公司",
+      "count": 4,
+      "supportedCount": 4,
+      "notSupportedOrStoppedCount": 0,
+      "districtCount": 2
+    },
+    {
+      "operatorName": "好停企業有限公司",
+      "count": 4,
+      "supportedCount": 4,
+      "notSupportedOrStoppedCount": 0,
+      "districtCount": 4
+    },
+    {
+      "operatorName": "千斗開發有限公司",
+      "count": 3,
+      "supportedCount": 3,
+      "notSupportedOrStoppedCount": 0,
+      "districtCount": 3
+    },
+    {
+      "operatorName": "安庭公寓大廈管理維護股份有限公司",
+      "count": 3,
+      "supportedCount": 1,
+      "notSupportedOrStoppedCount": 2,
+      "districtCount": 2
+    },
+    {
+      "operatorName": "助安企業有限公司",
+      "count": 3,
+      "supportedCount": 3,
+      "notSupportedOrStoppedCount": 0,
+      "districtCount": 3
+    },
+    {
+      "operatorName": "聯永物業股份有限公司",
+      "count": 3,
+      "supportedCount": 3,
+      "notSupportedOrStoppedCount": 0,
+      "districtCount": 2
+    },
+    {
+      "operatorName": "臺北大眾捷運股份有限公司",
+      "count": 2,
+      "supportedCount": 1,
+      "notSupportedOrStoppedCount": 1,
+      "districtCount": 1
+    },
+    {
+      "operatorName": "偉模科技股份有限公司",
+      "count": 2,
+      "supportedCount": 1,
+      "notSupportedOrStoppedCount": 1,
+      "districtCount": 2
+    },
+    {
+      "operatorName": "臺北市萬華區公所",
+      "count": 1,
+      "supportedCount": 1,
+      "notSupportedOrStoppedCount": 0,
+      "districtCount": 1
+    },
+    {
+      "operatorName": "臺北自來水發展中心",
+      "count": 1,
+      "supportedCount": 1,
+      "notSupportedOrStoppedCount": 0,
+      "districtCount": 1
+    },
+    {
+      "operatorName": "臺北市公共運輸處",
+      "count": 1,
+      "supportedCount": 1,
+      "notSupportedOrStoppedCount": 0,
+      "districtCount": 1
+    },
+    {
+      "operatorName": "易亭停車事業有限公司",
+      "count": 1,
+      "supportedCount": 1,
+      "notSupportedOrStoppedCount": 0,
+      "districtCount": 1
+    },
+    {
+      "operatorName": "國雲公寓大廈管理維護股份有限公司",
+      "count": 1,
+      "supportedCount": 0,
+      "notSupportedOrStoppedCount": 1,
+      "districtCount": 1
+    }
+  ],
+  "bySupportStatus": [
+    {
+      "supportStatus": "supported",
+      "supportStatusCategory": "supported",
+      "labelZh": "支援無卡進出",
+      "labelEn": "Supports cardless entry / exit",
+      "count": 182
+    },
+    {
+      "supportStatus": "not_supported_or_stopped",
+      "supportStatusCategory": "not_supported_or_stopped",
+      "labelZh": "未支援或已停止服務",
+      "labelEn": "Not supported or service stopped",
+      "count": 45
+    }
+  ],
+  "byPostalCode": [
+    {
+      "postalCode": "105",
+      "postalCodeType": "taipei_city",
+      "count": 27
+    },
+    {
+      "postalCode": "110",
+      "postalCodeType": "taipei_city",
+      "count": 25
+    },
+    {
+      "postalCode": "103",
+      "postalCodeType": "taipei_city",
+      "count": 23
+    },
+    {
+      "postalCode": "104",
+      "postalCodeType": "taipei_city",
+      "count": 21
+    },
+    {
+      "postalCode": "108",
+      "postalCodeType": "taipei_city",
+      "count": 20
+    },
+    {
+      "postalCode": "114",
+      "postalCodeType": "taipei_city",
+      "count": 18
+    },
+    {
+      "postalCode": "116",
+      "postalCodeType": "taipei_city",
+      "count": 18
+    },
+    {
+      "postalCode": "111",
+      "postalCodeType": "taipei_city",
+      "count": 17
+    },
+    {
+      "postalCode": "106",
+      "postalCodeType": "taipei_city",
+      "count": 16
+    },
+    {
+      "postalCode": "112",
+      "postalCodeType": "taipei_city",
+      "count": 14
+    },
+    {
+      "postalCode": "115",
+      "postalCodeType": "taipei_city",
+      "count": 12
+    },
+    {
+      "postalCode": "100",
+      "postalCodeType": "taipei_city",
+      "count": 3
+    },
+    {
+      "postalCode": "251",
+      "postalCodeType": "new_taipei_or_other_city",
+      "count": 3
+    },
+    {
+      "postalCode": "236",
+      "postalCodeType": "new_taipei_or_other_city",
+      "count": 3
+    },
+    {
+      "postalCode": "220",
+      "postalCodeType": "new_taipei_or_other_city",
+      "count": 3
+    },
+    {
+      "postalCode": "235",
+      "postalCodeType": "new_taipei_or_other_city",
+      "count": 1
+    },
+    {
+      "postalCode": "231",
+      "postalCodeType": "new_taipei_or_other_city",
+      "count": 1
+    },
+    {
+      "postalCode": "247",
+      "postalCodeType": "new_taipei_or_other_city",
+      "count": 1
+    },
+    {
+      "postalCode": "242",
+      "postalCodeType": "new_taipei_or_other_city",
+      "count": 1
+    }
+  ],
+  "byRoadName": [
+    {
+      "roadName": "臺北市松山區八德路",
+      "count": 6,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大同區承德路",
+      "count": 5,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區忠孝東路",
+      "count": 4,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區市民大道",
+      "count": 4,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區松德路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市士林區承德路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市士林區基河路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大同區重慶北路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市內湖區內湖路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區南京東路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市松山區民權東路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市松山區延壽街",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市松山區健康路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大安區復興南路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市北投區大業路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市文山區木柵路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大安區建國南路高架橋下停車場(忠孝東路-和平東路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市內湖區康樂街",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市內湖區成功路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區大理街",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "新北市板橋區縣民大道",
+      "count": 3,
+      "districtCount": 0
+    },
+    {
+      "roadName": "臺北市文山區興隆路",
+      "count": 3,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大同區歸綏街",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大同區塔城街",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大同區寧夏路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區峨嵋街",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區西園路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區西藏路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市內湖區東湖路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市南港區昆陽街",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市內湖區瑞光路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市松山區民生東路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大安區信義路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大安區建國南路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市文山區景華街",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市文山區景文街",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區中華路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區青年路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區信義路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區松智路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區松壽路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中正區延平南路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市松山區市民大道",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區建國北路高架橋下停車場(八德路-民族東路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大安區忠孝東路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區市民大道公園路至中山北路地下停車場(鄰近市民大道",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大同區西寧北路至塔城街地下停車場(鄰近大同區鄭州路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "新北市淡水區中正路",
+      "count": 2,
+      "districtCount": 0
+    },
+    {
+      "roadName": "臺北市內湖區民權東路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大同區民權西路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市士林區延平北路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "新北市土城區中央路",
+      "count": 2,
+      "districtCount": 0
+    },
+    {
+      "roadName": "臺北市南港區南港路",
+      "count": 2,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市士林區前港街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市北投區大興街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市士林區中正路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市士林區德行東路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市北投區承德路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市士林區葫蘆街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大同區哈密街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區環河南路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大同區延平北路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市南港區興中路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市南港區興東街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市南港區成福路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市南港區南港區經貿二路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大同區長安西路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區中山北路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區中山北路-林森北路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區林森北路-金山北路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區松江路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區中坡北路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區基隆路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區松山路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區建國北路-復興南路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市松山區復興南路-敦化南路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市松山區敦化南路-延吉街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市松山區延吉街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大安區金華街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市文山區仙岩路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區國興路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區松仁路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市文山區秀明路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區松勤路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區莊敬路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大安區嘉興街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區和平西路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中正區思源街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市北投區天母西路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "新北市中和區捷運路",
+      "count": 1,
+      "districtCount": 0
+    },
+    {
+      "roadName": "新北市新店區北宜路",
+      "count": 1,
+      "districtCount": 0
+    },
+    {
+      "roadName": "臺北市北投區七星街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區吳興街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市松山區南京東路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區民族東路與吉林路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大同區民族西路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市文山區福興路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市松山區復興北路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市士林區福國路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市士林區福德路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市內湖區文德路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市南港區研究院路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市南港區經貿一路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "新北市淡水區中正東路",
+      "count": 1,
+      "districtCount": 0
+    },
+    {
+      "roadName": "臺北市北投區中央北路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市北投區光明路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市北投區三合街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市北投區東華街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市北投區石牌路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "新北市蘆洲區三民路",
+      "count": 1,
+      "districtCount": 0
+    },
+    {
+      "roadName": "臺北市北投區致遠二路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區八德路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區建國北路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市松山區市民大道四段（敦化南路至延吉街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市松山區市民大道四段（延吉街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "新北市新莊區中正路",
+      "count": 1,
+      "districtCount": 0
+    },
+    {
+      "roadName": "臺北市松山區市民大道四段（復興南路至敦化南路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市中山區市民大道三段（建國南路至復興南路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "新北市土城區海山路",
+      "count": 1,
+      "districtCount": 0
+    },
+    {
+      "roadName": "臺北市內湖區洲子街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大安區大安路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區信安街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區萬大路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區開封街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市文山區木新路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大同區昌吉街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市南港區重陽里向陽路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區大道路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區福德街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市大安區杭州南路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市內湖區金湖路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市文山區辛亥路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區松平路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區艋舺大道",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市信義區松隆路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市萬華區康定路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市文山區新光路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市士林區文林路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市士林區劍潭路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市士林區中山北路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市文山區久康街",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市北投區磺港路",
+      "count": 1,
+      "districtCount": 1
+    },
+    {
+      "roadName": "臺北市南港區舊莊街",
+      "count": 1,
+      "districtCount": 1
+    }
+  ],
+  "topParkingLotNames": [
+    {
+      "parkingLotName": "朝陽公園地下停車場",
+      "count": 3,
+      "operatorName": "臺北市停管處",
+      "districtName": "大同區"
+    },
+    {
+      "parkingLotName": "景華公園地下停車場",
+      "count": 3,
+      "operatorName": "臺北市停管處",
+      "districtName": "文山區"
+    },
+    {
+      "parkingLotName": "春光公園地下停車場",
+      "count": 3,
+      "operatorName": "臺北市停管處",
+      "districtName": "信義區"
+    },
+    {
+      "parkingLotName": "百齡高中地下停車場",
+      "count": 2,
+      "operatorName": "臺北市停管處",
+      "districtName": "士林區"
+    },
+    {
+      "parkingLotName": "成淵高中地下停車場",
+      "count": 2,
+      "operatorName": "臺北市停管處",
+      "districtName": "大同區"
+    },
+    {
+      "parkingLotName": "大稻埕公園地下停車場",
+      "count": 2,
+      "operatorName": "臺北市停管處",
+      "districtName": "大同區"
+    },
+    {
+      "parkingLotName": "蓬萊國小地下停車場",
+      "count": 2,
+      "operatorName": "臺北市停管處",
+      "districtName": "大同區"
+    },
+    {
+      "parkingLotName": "林森公園地下停車場",
+      "count": 2,
+      "operatorName": "臺北市停管處",
+      "districtName": "中山區"
+    },
+    {
+      "parkingLotName": "民權公園地下停車場",
+      "count": 2,
+      "operatorName": "臺北市停管處",
+      "districtName": "松山區"
+    },
+    {
+      "parkingLotName": "健康國小地下停車場",
+      "count": 2,
+      "operatorName": "臺北市停管處",
+      "districtName": "松山區"
+    },
+    {
+      "parkingLotName": "市民大道建復段停車場",
+      "count": 2,
+      "operatorName": "臺北市停管處",
+      "districtName": "中山區"
+    },
+    {
+      "parkingLotName": "市民大道復敦段停車場",
+      "count": 2,
+      "operatorName": "臺北市停管處",
+      "districtName": "松山區"
+    },
+    {
+      "parkingLotName": "市民大道延吉段停車場",
+      "count": 2,
+      "operatorName": "臺北市停管處",
+      "districtName": "松山區"
+    },
+    {
+      "parkingLotName": "附中公園地下停車場",
+      "count": 2,
+      "operatorName": "臺北市停管處",
+      "districtName": "大安區"
+    },
+    {
+      "parkingLotName": "景美國小地下停車場",
+      "count": 2,
+      "operatorName": "臺北市停管處",
+      "districtName": "文山區"
+    },
+    {
+      "parkingLotName": "嘟嘟房偶戲博物館站",
+      "count": 2,
+      "operatorName": "寶盛國際股份有限公司",
+      "districtName": "松山區"
+    },
+    {
+      "parkingLotName": "嘟嘟房中崙高中站",
+      "count": 2,
+      "operatorName": "寶盛國際股份有限公司",
+      "districtName": "松山區"
+    },
+    {
+      "parkingLotName": "嘟嘟房市民大道-中林站",
+      "count": 2,
+      "operatorName": "寶盛國際股份有限公司",
+      "districtName": "中山區"
+    },
+    {
+      "parkingLotName": "嘟嘟房市民大道-林金站",
+      "count": 2,
+      "operatorName": "寶盛國際股份有限公司",
+      "districtName": "中山區"
+    },
+    {
+      "parkingLotName": "嘟嘟房僑安站",
+      "count": 2,
+      "operatorName": "寶盛國際股份有限公司",
+      "districtName": "大安區"
+    }
+  ],
+  "dataQuality": {
+    "missingSequenceNumberCount": 0,
+    "duplicateSequenceNumberCount": 0,
+    "missingParkingLotIdCount": 0,
+    "duplicateParkingLotIdCount": 0,
+    "missingOperatorIdCount": 0,
+    "missingOperatorNameCount": 0,
+    "missingParkingLotNameCount": 0,
+    "duplicateParkingLotNameCount": 25,
+    "missingStatusCount": 0,
+    "unknownStatusCount": 0,
+    "missingPhoneNumberCount": 0,
+    "missingPostalCodeCount": 0,
+    "unknownPostalCodeTypeCount": 0,
+    "missingAddressCount": 0,
+    "duplicateAddressCount": 16,
+    "unparsedDistrictFromAddressCount": 13,
+    "operatorOrPlatformAddressCount": 20,
+    "duplicateFallbackKeyCount": 1
+  }
+}

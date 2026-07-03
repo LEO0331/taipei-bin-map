@@ -223,6 +223,14 @@
       "dependencies": ["feat-027"],
       "status": "done",
       "evidence": "npm run convert:facilities generated 16231 facilities, including 3874 protected tree records. ./init.sh passed 51 unit/converter tests, production build, and 58 desktop/mobile Playwright tests on 2026-07-02."
+    },
+    {
+      "id": "feat-029",
+      "name": "pay.taipei cardless parking expansion",
+      "description": "Add pay.taipei cardless parking lots as an address-only transportation and parking convenience layer with UTF-8-SIG conversion, support/operator/postal/address-quality filters, district summaries, address-based map links, cache support, and no real-time parking, fee, payment, entrance, navigation, legal, consumer, or endorsement claims.",
+      "dependencies": ["feat-028"],
+      "status": "done",
+      "evidence": "npm run convert:facilities generated 16458 facilities, including 227 pay.taipei cardless parking lot records. npm test passed 53 unit/converter tests, npm run build passed, and npm run test:e2e passed 60 desktop/mobile Playwright tests on 2026-07-03."
     }
   ]
 }

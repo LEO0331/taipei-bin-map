@@ -11,6 +11,10 @@ import type {
   Language,
   ManagingUnitCategory,
   OpeningHoursType,
+  PayTaipeiParkingGeocodingStatus,
+  PayTaipeiParkingLocationPrecision,
+  PayTaipeiParkingPostalCodeType,
+  PayTaipeiParkingSupportStatus,
   ProtectedTreeCoordinateQuality,
   ProtectedTreeLocationTypeCategory,
   RiversideToiletType,
@@ -24,12 +28,144 @@ import {
   getElectricMotorcycleChargingLocationCategoryLabel,
   getManagingUnitCategoryLabel,
   getOpeningHoursTypeLabel,
+  getPayTaipeiParkingGeocodingStatusLabel,
+  getPayTaipeiParkingLocationPrecisionLabel,
+  getPayTaipeiParkingPostalCodeTypeLabel,
+  getPayTaipeiParkingSupportStatusLabel,
   getRiversideToiletTypeLabel,
   getAnnouncedNoSmokingRecordTypeLabel,
   getProtectedTreeLocationTypeLabel,
   getTreeCircumferenceCategoryLabel,
   getTreeDiameterCategoryLabel,
 } from '../utils/facilityUtils';
+
+const payTaipeiParkingStatuses: PayTaipeiParkingSupportStatus[] = ['supported', 'not_supported_or_stopped', 'other', 'unknown'];
+const payTaipeiParkingPostalCodeTypes: PayTaipeiParkingPostalCodeType[] = ['taipei_city', 'new_taipei_or_other_city', 'unknown', 'missing'];
+const payTaipeiParkingLocationPrecisions: PayTaipeiParkingLocationPrecision[] = [
+  'district_address',
+  'geocoded_address_approximate',
+  'official_joined_coordinate',
+  'operator_or_platform_address',
+  'district_only',
+  'missing',
+];
+const payTaipeiParkingGeocodingStatuses: PayTaipeiParkingGeocodingStatus[] = [
+  'not_attempted',
+  'not_geocoded_address_only',
+  'geocoded_approximate',
+  'joined_official_coordinate',
+  'failed',
+  'not_applicable_operator_or_platform_address',
+];
+
+type PayTaipeiParkingFiltersProps = {
+  operators: string[];
+  operatorIds: string[];
+  postalCodes: string[];
+  roadNames: string[];
+  values: {
+    supportStatus: PayTaipeiParkingSupportStatus | '';
+    operator: string;
+    operatorId: string;
+    postalCode: string;
+    postalCodeType: PayTaipeiParkingPostalCodeType | '';
+    roadName: string;
+    hasPhone: boolean;
+    hasNote: boolean;
+    serviceStopped: boolean;
+    basement: boolean;
+    operatorAddress: boolean;
+    locationPrecision: PayTaipeiParkingLocationPrecision | '';
+    geocodingStatus: PayTaipeiParkingGeocodingStatus | '';
+  };
+  language: Language;
+  t: Translation;
+  onChange: (name: 'operator' | 'operatorId' | 'postalCode' | 'roadName', value: string) => void;
+  onStatusChange: (value: PayTaipeiParkingSupportStatus | '') => void;
+  onPostalCodeTypeChange: (value: PayTaipeiParkingPostalCodeType | '') => void;
+  onLocationPrecisionChange: (value: PayTaipeiParkingLocationPrecision | '') => void;
+  onGeocodingStatusChange: (value: PayTaipeiParkingGeocodingStatus | '') => void;
+  onBooleanChange: (name: 'hasPhone' | 'hasNote' | 'serviceStopped' | 'basement' | 'operatorAddress', value: boolean) => void;
+};
+
+export function PayTaipeiParkingFilters(props: PayTaipeiParkingFiltersProps) {
+  return (
+    <fieldset className="toilet-filters">
+      <label>
+        {props.t.supportStatus}
+        <select value={props.values.supportStatus} onChange={(event) => props.onStatusChange(event.target.value as PayTaipeiParkingSupportStatus | '')}>
+          <option value="">{props.t.all}</option>
+          {payTaipeiParkingStatuses.map((value) => <option key={value} value={value}>{getPayTaipeiParkingSupportStatusLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.payTaipeiParkingOperatorName}
+        <select value={props.values.operator} onChange={(event) => props.onChange('operator', event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.operators.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.operatorId}
+        <select value={props.values.operatorId} onChange={(event) => props.onChange('operatorId', event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.operatorIds.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.postalCode}
+        <select value={props.values.postalCode} onChange={(event) => props.onChange('postalCode', event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.postalCodes.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.postalCodeType}
+        <select value={props.values.postalCodeType} onChange={(event) => props.onPostalCodeTypeChange(event.target.value as PayTaipeiParkingPostalCodeType | '')}>
+          <option value="">{props.t.all}</option>
+          {payTaipeiParkingPostalCodeTypes.map((value) => <option key={value} value={value}>{getPayTaipeiParkingPostalCodeTypeLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.roadName}
+        <select value={props.values.roadName} onChange={(event) => props.onChange('roadName', event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {props.roadNames.map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.locationPrecision}
+        <select value={props.values.locationPrecision} onChange={(event) => props.onLocationPrecisionChange(event.target.value as PayTaipeiParkingLocationPrecision | '')}>
+          <option value="">{props.t.all}</option>
+          {payTaipeiParkingLocationPrecisions.map((value) => <option key={value} value={value}>{getPayTaipeiParkingLocationPrecisionLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.geocodingStatus}
+        <select value={props.values.geocodingStatus} onChange={(event) => props.onGeocodingStatusChange(event.target.value as PayTaipeiParkingGeocodingStatus | '')}>
+          <option value="">{props.t.all}</option>
+          {payTaipeiParkingGeocodingStatuses.map((value) => <option key={value} value={value}>{getPayTaipeiParkingGeocodingStatusLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      {[
+        ['hasPhone', props.t.hasPhone, props.values.hasPhone],
+        ['hasNote', props.t.hasNote, props.values.hasNote],
+        ['serviceStopped', props.t.noteMentionsStoppedService, props.values.serviceStopped],
+        ['basement', props.t.basementOrUndergroundAddress, props.values.basement],
+        ['operatorAddress', props.t.operatorOrPlatformAddress, props.values.operatorAddress],
+      ].map(([name, label, checked]) => (
+        <label className="checkbox-filter" key={name as string}>
+          <input
+            type="checkbox"
+            checked={checked as boolean}
+            onChange={(event) => props.onBooleanChange(name as 'hasPhone' | 'hasNote' | 'serviceStopped' | 'basement' | 'operatorAddress', event.target.checked)}
+          />
+          <span>{label as string}</span>
+        </label>
+      ))}
+    </fieldset>
+  );
+}
 
 type TimedCollectionFiltersProps = {
   acceptsGarbage: boolean;

@@ -13,6 +13,7 @@ import {
   getCommunityRecyclingStationLabel,
   isCoordinateOutlier,
   getFuelStationStatusLabel,
+  getPayTaipeiParkingSupportStatusLabel,
   normalizeTaipeiDistrict,
 } from './facilityUtils';
 
@@ -398,6 +399,45 @@ const facilities: Facility[] = [
     managementUnit: '臺北市政府工務局公園路燈工程管理處',
     coordinateQuality: 'valid_wgs84_taipei',
   },
+  {
+    id: 'pay_taipei_cardless_parking_lot-0001',
+    type: 'pay_taipei_cardless_parking_lot',
+    district: '信義區',
+    address: '臺北市信義區松仁路1號地下1樓',
+    longitude: 0,
+    latitude: 0,
+    note: '無',
+    source: 'pay.taipei支援無卡進出停車場清單',
+    sourceAgency: '臺北市政府資訊局',
+    locationPrecision: 'address_only',
+    name: '測試停車場',
+    sourceSequenceNumber: 1,
+    sourceSequenceNumberNormalized: '1',
+    parkingLotId: 'P001',
+    operatorId: 'OP01',
+    operatorName: '臺北市停管處',
+    parkingLotName: '測試停車場',
+    statusRaw: '1',
+    supportStatus: '1',
+    supportStatusCategory: 'supported',
+    supportStatusLabelZh: '支援無卡進出',
+    supportStatusLabelEn: 'Supports cardless entry / exit',
+    phoneNumber: '02-12345678',
+    phone: '02-12345678',
+    postalCode: '110',
+    postalCodeType: 'taipei_city',
+    districtNameFromAddress: '信義區',
+    isTaipeiDistrict: true,
+    roadName: '松仁路',
+    addressLooksLikeBasementOrUnderground: true,
+    addressLooksLikeOperatorOrPlatformAddress: false,
+    hasNote: false,
+    serviceStoppedHint: false,
+    payTaipeiParkingLocationPrecision: 'district_address',
+    payTaipeiParkingGeocodingStatus: 'not_geocoded_address_only',
+    coordinateSource: 'none',
+    googleMapsQuery: '臺北市信義區松仁路1號地下1樓 測試停車場',
+  },
 ];
 
 describe('calculateDistanceMeters', () => {
@@ -612,6 +652,28 @@ describe('filterFacilities', () => {
       inspectionHasPhone: true,
     });
     expect(result.map((item) => item.id)).toEqual(['motorcycle_inspection_station-0001']);
+  });
+
+  it('filters and searches pay.taipei parking records without requiring coordinates', () => {
+    const result = filterFacilities(facilities, {
+      searchTerm: '停管處',
+      district: '信義區',
+      facilityTypes: ['pay_taipei_cardless_parking_lot'],
+      payTaipeiParkingSupportStatus: 'supported',
+      payTaipeiParkingOperator: '臺北市停管處',
+      payTaipeiParkingOperatorId: 'OP01',
+      payTaipeiParkingPostalCode: '110',
+      payTaipeiParkingPostalCodeType: 'taipei_city',
+      payTaipeiParkingRoadName: '松仁路',
+      payTaipeiParkingHasPhone: true,
+      payTaipeiParkingBasement: true,
+      payTaipeiParkingLocationPrecision: 'district_address',
+      payTaipeiParkingGeocodingStatus: 'not_geocoded_address_only',
+    });
+
+    expect(result.map((item) => item.id)).toEqual(['pay_taipei_cardless_parking_lot-0001']);
+    expect(getPayTaipeiParkingSupportStatusLabel(result[0].supportStatusCategory, 'en')).toBe('Supports cardless entry / exit');
+    expect(getFacilityGoogleMapsUrl(result[0])).toContain(encodeURIComponent('臺北市信義區松仁路1號地下1樓 測試停車場'));
   });
 
   it('filters and searches electric motorcycle charging stations without requiring coordinates', () => {

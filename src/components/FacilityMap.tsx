@@ -69,6 +69,13 @@ type FacilityMapProps = {
     automaticServiceMachineCount: number;
     twentyFourHourServiceCount: number;
   }>;
+  payTaipeiParkingDistrictSummaries: Array<{
+    district: string;
+    count: number;
+    supportedCount: number;
+    stoppedCount: number;
+    topOperators: Array<{ operatorName: string; count: number }>;
+  }>;
 };
 
 const taipeiCenter: [number, number] = [25.0478, 121.5319];
@@ -129,6 +136,7 @@ const markerEmojiByType = {
   community_recycling_station: '🏘️',
   clean_needle_exchange_service_point: '🏥',
   protected_tree: '🌳',
+  pay_taipei_cardless_parking_lot: '🅿️',
 } satisfies Record<FacilityType, string>;
 
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {
@@ -183,6 +191,7 @@ export function FacilityMap({
   commercialEvDistrictSummaries,
   communityRecyclingDistrictSummaries,
   cleanNeedleDistrictSummaries,
+  payTaipeiParkingDistrictSummaries,
 }: FacilityMapProps) {
   const renderedFacilities = useChunkedFacilities(facilities);
   const userIcon = useMemo(
@@ -368,6 +377,30 @@ export function FacilityMap({
                   <p>{t.serviceItem}: {t.healthEducationConsultationStation} {summary.healthEducationConsultationStationCount}、{t.needleReturnBox} {summary.needleReturnBoxCount}、{t.automaticServiceMachine} {summary.automaticServiceMachineCount}</p>
                   <p>{t.twentyFourHourService}: {summary.twentyFourHourServiceCount}</p>
                   <p>{t.notice}: {t.cleanNeedlePopupNotice}</p>
+                </div>
+              </Popup>
+            </CircleMarker>
+          );
+        })}
+        {payTaipeiParkingDistrictSummaries.map((summary) => {
+          const center = districtCentroids[summary.district];
+          if (!center) return null;
+          return (
+            <CircleMarker
+              key={`pay-taipei-parking-${summary.district}`}
+              center={center}
+              radius={Math.min(26, 10 + Math.sqrt(summary.count) * 1.8)}
+              pathOptions={{ color: '#51576d', fillColor: '#c9d1f0', fillOpacity: 0.78, weight: 2 }}
+            >
+              <Popup>
+                <div className="map-popup">
+                  <strong>{t.payTaipeiCardlessParkingLots}</strong>
+                  <p>{t.district}: {summary.district}</p>
+                  <p>{t.facilityCount}: {summary.count}</p>
+                  <p>{t.supportedRecordCount}: {summary.supportedCount}</p>
+                  <p>{t.notSupportedOrStoppedRecordCount}: {summary.stoppedCount}</p>
+                  <p>{t.topOperators}: {summary.topOperators.map((item) => `${item.operatorName} ${item.count}`).join('、')}</p>
+                  <p>{t.notice}: {t.payTaipeiParkingPopupNotice}</p>
                 </div>
               </Popup>
             </CircleMarker>

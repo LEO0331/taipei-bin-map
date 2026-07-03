@@ -14,6 +14,10 @@ import type {
   Language,
   ManagingUnitCategory,
   OpeningHoursType,
+  PayTaipeiParkingGeocodingStatus,
+  PayTaipeiParkingLocationPrecision,
+  PayTaipeiParkingPostalCodeType,
+  PayTaipeiParkingSupportStatus,
   ProtectedTreeCoordinateQuality,
   ProtectedTreeLocationTypeCategory,
   RiversideToiletType,
@@ -175,6 +179,19 @@ export function filterFacilities(
     protectedTreeCoordinateQuality,
     protectedTreeHasLocationType = false,
     protectedTreeHasSizeFlags = false,
+    payTaipeiParkingSupportStatus,
+    payTaipeiParkingOperator,
+    payTaipeiParkingOperatorId,
+    payTaipeiParkingPostalCode,
+    payTaipeiParkingPostalCodeType,
+    payTaipeiParkingRoadName,
+    payTaipeiParkingHasPhone = false,
+    payTaipeiParkingHasNote = false,
+    payTaipeiParkingServiceStopped = false,
+    payTaipeiParkingBasement = false,
+    payTaipeiParkingOperatorAddress = false,
+    payTaipeiParkingLocationPrecision,
+    payTaipeiParkingGeocodingStatus,
   }: {
     searchTerm: string;
     district: string;
@@ -273,6 +290,19 @@ export function filterFacilities(
     protectedTreeCoordinateQuality?: ProtectedTreeCoordinateQuality | '';
     protectedTreeHasLocationType?: boolean;
     protectedTreeHasSizeFlags?: boolean;
+    payTaipeiParkingSupportStatus?: PayTaipeiParkingSupportStatus | '';
+    payTaipeiParkingOperator?: string;
+    payTaipeiParkingOperatorId?: string;
+    payTaipeiParkingPostalCode?: string;
+    payTaipeiParkingPostalCodeType?: PayTaipeiParkingPostalCodeType | '';
+    payTaipeiParkingRoadName?: string;
+    payTaipeiParkingHasPhone?: boolean;
+    payTaipeiParkingHasNote?: boolean;
+    payTaipeiParkingServiceStopped?: boolean;
+    payTaipeiParkingBasement?: boolean;
+    payTaipeiParkingOperatorAddress?: boolean;
+    payTaipeiParkingLocationPrecision?: PayTaipeiParkingLocationPrecision | '';
+    payTaipeiParkingGeocodingStatus?: PayTaipeiParkingGeocodingStatus | '';
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -296,6 +326,7 @@ export function filterFacilities(
   const hasCommunityRecyclingFilters = Boolean(communityRecyclingDistrictCode || communityRecyclingRoadName || communityRecyclingHasAddress || communityRecyclingHasParsedRoadName);
   const hasCleanNeedleFilters = Boolean(cleanNeedleAreaCode || cleanNeedleServiceItem || cleanNeedleServicePointCategory || cleanNeedleServiceItemCategory || cleanNeedleServicePointCategoryGroup || cleanNeedleRoadName || cleanNeedleHasPhone || cleanNeedleHasExtension || cleanNeedleTwentyFourHour);
   const hasProtectedTreeFilters = Boolean(protectedTreeSpecies || protectedTreeScientificName || protectedTreeEnglishName || protectedTreeLocationType || protectedTreeManagementUnit || protectedTreeDiameterCategory || protectedTreeCircumferenceCategory || protectedTreeCoordinateQuality || protectedTreeHasLocationType || protectedTreeHasSizeFlags);
+  const hasPayTaipeiParkingFilters = Boolean(payTaipeiParkingSupportStatus || payTaipeiParkingOperator || payTaipeiParkingOperatorId || payTaipeiParkingPostalCode || payTaipeiParkingPostalCodeType || payTaipeiParkingRoadName || payTaipeiParkingHasPhone || payTaipeiParkingHasNote || payTaipeiParkingServiceStopped || payTaipeiParkingBasement || payTaipeiParkingOperatorAddress || payTaipeiParkingLocationPrecision || payTaipeiParkingGeocodingStatus);
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -451,6 +482,22 @@ export function filterFacilities(
         (!protectedTreeHasLocationType || Boolean(facility.locationType)) &&
         (!protectedTreeHasSizeFlags || Boolean(facility.sizeDataQualityFlags?.length)));
     const matchesProtectedTreeScope = !hasProtectedTreeFilters || facility.type === 'protected_tree';
+    const matchesPayTaipeiParking =
+      facility.type !== 'pay_taipei_cardless_parking_lot' ||
+      ((!payTaipeiParkingSupportStatus || facility.supportStatusCategory === payTaipeiParkingSupportStatus) &&
+        (!payTaipeiParkingOperator || facility.operatorName === payTaipeiParkingOperator) &&
+        (!payTaipeiParkingOperatorId || facility.operatorId === payTaipeiParkingOperatorId) &&
+        (!payTaipeiParkingPostalCode || facility.postalCode === payTaipeiParkingPostalCode) &&
+        (!payTaipeiParkingPostalCodeType || facility.postalCodeType === payTaipeiParkingPostalCodeType) &&
+        (!payTaipeiParkingRoadName || facility.roadName === payTaipeiParkingRoadName) &&
+        (!payTaipeiParkingHasPhone || Boolean(facility.phoneNumber || facility.phone)) &&
+        (!payTaipeiParkingHasNote || facility.hasNote === true) &&
+        (!payTaipeiParkingServiceStopped || facility.serviceStoppedHint === true) &&
+        (!payTaipeiParkingBasement || facility.addressLooksLikeBasementOrUnderground === true) &&
+        (!payTaipeiParkingOperatorAddress || facility.addressLooksLikeOperatorOrPlatformAddress === true) &&
+        (!payTaipeiParkingLocationPrecision || facility.payTaipeiParkingLocationPrecision === payTaipeiParkingLocationPrecision) &&
+        (!payTaipeiParkingGeocodingStatus || facility.payTaipeiParkingGeocodingStatus === payTaipeiParkingGeocodingStatus));
+    const matchesPayTaipeiParkingScope = !hasPayTaipeiParkingFilters || facility.type === 'pay_taipei_cardless_parking_lot';
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -541,6 +588,19 @@ export function filterFacilities(
         facility.diameterCategory,
         facility.circumferenceCategory,
         facility.coordinateQuality,
+        facility.parkingLotId,
+        facility.operatorId,
+        facility.operatorName,
+        facility.parkingLotName,
+        facility.statusRaw,
+        facility.supportStatusLabelZh,
+        facility.supportStatusLabelEn,
+        facility.phoneNumber,
+        facility.postalCodeType,
+        facility.districtNameFromAddress,
+        facility.roadName,
+        facility.payTaipeiParkingLocationPrecision,
+        facility.payTaipeiParkingGeocodingStatus,
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
           : '',
@@ -584,6 +644,8 @@ export function filterFacilities(
       matchesCleanNeedleScope &&
       matchesProtectedTree &&
       matchesProtectedTreeScope &&
+      matchesPayTaipeiParking &&
+      matchesPayTaipeiParkingScope &&
       matchesSearch
     );
   });
@@ -662,7 +724,87 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? '受保護樹木' : 'Protected Tree';
   }
 
+  if (type === 'pay_taipei_cardless_parking_lot') {
+    return language === 'zh' ? 'pay.taipei支援無卡進出停車場' : 'pay.taipei Cardless Parking Lot';
+  }
+
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';
+}
+
+export function getPayTaipeiParkingSupportStatusLabel(type: PayTaipeiParkingSupportStatus | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? {
+      supported: '支援無卡進出',
+      not_supported_or_stopped: '未支援或已停止服務',
+      other: '其他狀態',
+      unknown: '未知狀態',
+    }
+    : {
+      supported: 'Supports cardless entry / exit',
+      not_supported_or_stopped: 'Not supported or service stopped',
+      other: 'Other status',
+      unknown: 'Unknown status',
+    };
+  return labels[type ?? 'unknown'];
+}
+
+export function getPayTaipeiParkingPostalCodeTypeLabel(type: PayTaipeiParkingPostalCodeType | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? {
+      taipei_city: '臺北市郵遞區號',
+      new_taipei_or_other_city: '新北或其他縣市郵遞區號',
+      unknown: '未知',
+      missing: '缺漏',
+    }
+    : {
+      taipei_city: 'Taipei City postal code',
+      new_taipei_or_other_city: 'New Taipei or other city postal code',
+      unknown: 'Unknown',
+      missing: 'Missing',
+    };
+  return labels[type ?? 'unknown'];
+}
+
+export function getPayTaipeiParkingLocationPrecisionLabel(type: PayTaipeiParkingLocationPrecision | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? {
+      district_address: '行政區與地址',
+      geocoded_address_approximate: '近似地理編碼地址',
+      official_joined_coordinate: '官方停車資料串接座標',
+      operator_or_platform_address: '營運單位或平台地址',
+      district_only: '僅行政區',
+      missing: '缺漏',
+    }
+    : {
+      district_address: 'District and address',
+      geocoded_address_approximate: 'Approximate geocoded address',
+      official_joined_coordinate: 'Joined official parking coordinate',
+      operator_or_platform_address: 'Operator or platform address',
+      district_only: 'District only',
+      missing: 'Missing',
+    };
+  return labels[type ?? 'missing'];
+}
+
+export function getPayTaipeiParkingGeocodingStatusLabel(type: PayTaipeiParkingGeocodingStatus | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? {
+      not_attempted: '未嘗試',
+      not_geocoded_address_only: '未地理編碼，僅地址',
+      geocoded_approximate: '近似地理編碼',
+      joined_official_coordinate: '官方資料串接座標',
+      failed: '地理編碼失敗',
+      not_applicable_operator_or_platform_address: '營運單位或平台地址不適用',
+    }
+    : {
+      not_attempted: 'Not attempted',
+      not_geocoded_address_only: 'Not geocoded, address only',
+      geocoded_approximate: 'Approximate geocoded',
+      joined_official_coordinate: 'Joined official coordinate',
+      failed: 'Failed',
+      not_applicable_operator_or_platform_address: 'Not applicable: operator or platform address',
+    };
+  return labels[type ?? 'not_attempted'];
 }
 
 export function getProtectedTreeLocationTypeLabel(type: ProtectedTreeLocationTypeCategory | undefined, language: Language) {
@@ -979,7 +1121,7 @@ export function getToiletCategoryLabel(category: string, language: Language) {
 
 export function getFacilityGoogleMapsUrl(facility: Facility) {
   if (facility.locationPrecision === 'address_only') {
-    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(facility.address)}`;
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(facility.googleMapsQuery || facility.address)}`;
   }
   return `https://www.google.com/maps/search/?api=1&query=${facility.latitude},${facility.longitude}`;
 }

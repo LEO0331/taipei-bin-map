@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-02T06:29:43.991Z",
-  "totalValidRows": 16231,
+  "generatedAt": "2026-07-03T02:09:58.387Z",
+  "totalValidRows": 16458,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -2325,6 +2325,349 @@
           "count": 3
         }
       ]
+    },
+    {
+      "sourceFilename": "pay.taipei支援無卡進出停車場清單_20260211 (1).csv",
+      "totalRows": 227,
+      "validRows": 227,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": [],
+      "duplicateSequenceNumbers": [],
+      "duplicateParkingLotIds": [],
+      "duplicateParkingLotNames": [
+        {
+          "parkingLotName": "百齡高中地下停車場",
+          "count": 2
+        },
+        {
+          "parkingLotName": "成淵高中地下停車場",
+          "count": 2
+        },
+        {
+          "parkingLotName": "大稻埕公園地下停車場",
+          "count": 2
+        },
+        {
+          "parkingLotName": "朝陽公園地下停車場",
+          "count": 3
+        },
+        {
+          "parkingLotName": "蓬萊國小地下停車場",
+          "count": 2
+        },
+        {
+          "parkingLotName": "林森公園地下停車場",
+          "count": 2
+        },
+        {
+          "parkingLotName": "民權公園地下停車場",
+          "count": 2
+        },
+        {
+          "parkingLotName": "健康國小地下停車場",
+          "count": 2
+        },
+        {
+          "parkingLotName": "市民大道建復段停車場",
+          "count": 2
+        },
+        {
+          "parkingLotName": "市民大道復敦段停車場",
+          "count": 2
+        },
+        {
+          "parkingLotName": "市民大道延吉段停車場",
+          "count": 2
+        },
+        {
+          "parkingLotName": "附中公園地下停車場",
+          "count": 2
+        },
+        {
+          "parkingLotName": "景華公園地下停車場",
+          "count": 3
+        },
+        {
+          "parkingLotName": "景美國小地下停車場",
+          "count": 2
+        },
+        {
+          "parkingLotName": "春光公園地下停車場",
+          "count": 3
+        },
+        {
+          "parkingLotName": "嘟嘟房偶戲博物館站",
+          "count": 2
+        },
+        {
+          "parkingLotName": "嘟嘟房中崙高中站",
+          "count": 2
+        },
+        {
+          "parkingLotName": "嘟嘟房市民大道-中林站",
+          "count": 2
+        },
+        {
+          "parkingLotName": "嘟嘟房市民大道-林金站",
+          "count": 2
+        },
+        {
+          "parkingLotName": "嘟嘟房僑安站",
+          "count": 2
+        },
+        {
+          "parkingLotName": "嘟嘟房承德公園站",
+          "count": 2
+        },
+        {
+          "parkingLotName": "嘟嘟房市民大道-公中站",
+          "count": 2
+        },
+        {
+          "parkingLotName": "嘟嘟房市民大道-塔城站",
+          "count": 2
+        },
+        {
+          "parkingLotName": "嘟嘟房建南高架站",
+          "count": 2
+        },
+        {
+          "parkingLotName": "新糖廍公園地下停車場",
+          "count": 2
+        }
+      ],
+      "duplicateAddresses": [
+        {
+          "address": "台北市萬華區峨嵋街83號",
+          "count": 2
+        },
+        {
+          "address": "台北市松山區延壽街168號地下",
+          "count": 2
+        },
+        {
+          "address": "台北市大安區建國南路高架橋下停車場(忠孝東路-和平東路)",
+          "count": 3
+        },
+        {
+          "address": "台北市松山區市民大道5段99號b1停車場",
+          "count": 2
+        },
+        {
+          "address": "台北市松山區八德路4段101號b2停車場",
+          "count": 2
+        },
+        {
+          "address": "台北市中山區建國北路高架橋下停車場(八德路-民族東路)",
+          "count": 2
+        },
+        {
+          "address": "台北市中山區市民大道2段(中山北路至林森北路)地下1、2樓停車場",
+          "count": 2
+        },
+        {
+          "address": "台北市中山區市民大道2段(林森北路至金山北路)地下1、2樓停車場",
+          "count": 2
+        },
+        {
+          "address": "台北市大安區忠孝東路四段306號b1-b3停車場",
+          "count": 2
+        },
+        {
+          "address": "台北市士林區基河路150號b1-b2停車場",
+          "count": 2
+        },
+        {
+          "address": "台北市中山區市民大道公園路至中山北路地下停車場(鄰近市民大道一段256號)",
+          "count": 2
+        },
+        {
+          "address": "台北市大同區西寧北路至塔城街地下停車場(鄰近大同區鄭州路139號)",
+          "count": 2
+        },
+        {
+          "address": "新北市淡水區中正路1號",
+          "count": 2
+        },
+        {
+          "address": "新北市板橋區縣民大道1段193號",
+          "count": 3
+        },
+        {
+          "address": "台北市大同區重慶北路二段68號b1",
+          "count": 2
+        },
+        {
+          "address": "台北市萬華區大理街160巷2號b1",
+          "count": 2
+        }
+      ],
+      "duplicateFallbackKeys": [
+        {
+          "key": "8|山發物業股份有限公司|朝陽公園地下停車場|台北市大同區重慶北路二段68號b1",
+          "count": 2
+        }
+      ],
+      "unknownStatuses": [],
+      "unparsedDistrictExamples": [
+        {
+          "rowNumber": 78,
+          "address": "新北市中和區捷運路6號B1層"
+        },
+        {
+          "rowNumber": 79,
+          "address": "新北市新店區北宜路1段2號B2層"
+        },
+        {
+          "rowNumber": 105,
+          "address": "新北市淡水區中正路1號"
+        },
+        {
+          "rowNumber": 135,
+          "address": "新北市淡水區中正東路2段68號"
+        },
+        {
+          "rowNumber": 142,
+          "address": "新北市蘆洲區三民路386號B1"
+        },
+        {
+          "rowNumber": 155,
+          "address": "新北市新莊區中正路758號"
+        },
+        {
+          "rowNumber": 160,
+          "address": "新北市土城區中央路3段105號"
+        },
+        {
+          "rowNumber": 161,
+          "address": "新北市土城區中央路4段51-6號"
+        },
+        {
+          "rowNumber": 162,
+          "address": "新北市土城區海山路39號"
+        },
+        {
+          "rowNumber": 164,
+          "address": "新北市板橋區縣民大道1段193號"
+        },
+        {
+          "rowNumber": 165,
+          "address": "新北市板橋區縣民大道1段193號"
+        },
+        {
+          "rowNumber": 166,
+          "address": "新北市板橋區縣民大道1段193號"
+        },
+        {
+          "rowNumber": 219,
+          "address": "新北市淡水區中正路1號"
+        }
+      ],
+      "operatorOrPlatformAddressExamples": [
+        {
+          "rowNumber": 2,
+          "address": "臺北市信義區松德路300號5樓",
+          "parkingLotName": "電子標籤平臺"
+        },
+        {
+          "rowNumber": 78,
+          "address": "新北市中和區捷運路6號B1層",
+          "parkingLotName": "捷運南勢角站轉乘停車場"
+        },
+        {
+          "rowNumber": 79,
+          "address": "新北市新店區北宜路1段2號B2層",
+          "parkingLotName": "捷運新店站轉乘停車場"
+        },
+        {
+          "rowNumber": 91,
+          "address": "臺北市中山區市民大道2段(中山北路至林森北路)地下1、2樓停車場",
+          "parkingLotName": "嘟嘟房市民大道-中林站"
+        },
+        {
+          "rowNumber": 92,
+          "address": "臺北市中山區市民大道2段(林森北路至金山北路)地下1、2樓停車場",
+          "parkingLotName": "嘟嘟房市民大道-林金站"
+        },
+        {
+          "rowNumber": 105,
+          "address": "新北市淡水區中正路1號",
+          "parkingLotName": "嘟嘟房捷運淡水站"
+        },
+        {
+          "rowNumber": 135,
+          "address": "新北市淡水區中正東路2段68號",
+          "parkingLotName": "捷運紅樹林站"
+        },
+        {
+          "rowNumber": 142,
+          "address": "新北市蘆洲區三民路386號B1",
+          "parkingLotName": "捷運蘆洲站"
+        },
+        {
+          "rowNumber": 155,
+          "address": "新北市新莊區中正路758號",
+          "parkingLotName": "捷運迴龍站轉乘停車場"
+        },
+        {
+          "rowNumber": 160,
+          "address": "新北市土城區中央路3段105號",
+          "parkingLotName": "捷運永寧站轉乘停車場"
+        },
+        {
+          "rowNumber": 161,
+          "address": "新北市土城區中央路4段51-6號",
+          "parkingLotName": "捷運頂埔站轉乘停車場"
+        },
+        {
+          "rowNumber": 162,
+          "address": "新北市土城區海山路39號",
+          "parkingLotName": "捷運海山站轉乘停車場"
+        },
+        {
+          "rowNumber": 164,
+          "address": "新北市板橋區縣民大道1段193號",
+          "parkingLotName": "捷運府中站轉乘停車場"
+        },
+        {
+          "rowNumber": 165,
+          "address": "新北市板橋區縣民大道1段193號",
+          "parkingLotName": "捷運府中2站轉乘停車場"
+        },
+        {
+          "rowNumber": 166,
+          "address": "新北市板橋區縣民大道1段193號",
+          "parkingLotName": "捷運府中3站轉乘停車場"
+        },
+        {
+          "rowNumber": 173,
+          "address": "臺北市萬華區萬大路22號地下1-4樓",
+          "parkingLotName": "莒光社會住宅地下停車場"
+        },
+        {
+          "rowNumber": 174,
+          "address": "臺北市信義區忠孝東路五段666號地下1-3樓",
+          "parkingLotName": "春光公園地下停車場"
+        },
+        {
+          "rowNumber": 175,
+          "address": "臺北市萬華區開封街二段37號地下1-4樓",
+          "parkingLotName": "福星社會住宅地下停車場"
+        },
+        {
+          "rowNumber": 193,
+          "address": "臺北市文山區景華街55賀B1~B2樓",
+          "parkingLotName": "景華公園地下停車場"
+        },
+        {
+          "rowNumber": 219,
+          "address": "新北市淡水區中正路1號",
+          "parkingLotName": "捷運淡水站轉乘停車場"
+        }
+      ],
+      "postalCodeWarnings": []
     }
   ]
 }

@@ -13,6 +13,10 @@ import {
   getFuelStationServiceTypeLabel,
   getFuelStationStatusLabel,
   getOpeningHoursTypeLabel,
+  getPayTaipeiParkingGeocodingStatusLabel,
+  getPayTaipeiParkingLocationPrecisionLabel,
+  getPayTaipeiParkingPostalCodeTypeLabel,
+  getPayTaipeiParkingSupportStatusLabel,
   getProtectedTreeLocationTypeLabel,
   getRiversideToiletTypeLabel,
   getTreeCircumferenceCategoryLabel,
@@ -269,6 +273,22 @@ export function FacilityList({
                     facility.circumferenceAtBreastHeightMeters ? `${t.circumferenceAtBreastHeightMeters}: ${facility.circumferenceAtBreastHeightMeters} m (${getTreeCircumferenceCategoryLabel(facility.circumferenceCategory, language)})` : '',
                     facility.locationTypeCategory ? `${t.locationType}: ${getProtectedTreeLocationTypeLabel(facility.locationTypeCategory, language)}` : '',
                     facility.managementUnit ? `${t.managementUnit}: ${facility.managementUnit}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
+              {facility.type === 'pay_taipei_cardless_parking_lot' && (
+                <small>
+                  {[
+                    facility.parkingLotId ? `${t.parkingLotId}: ${facility.parkingLotId}` : '',
+                    facility.parkingLotName ? `${t.parkingLotName}: ${facility.parkingLotName}` : '',
+                    `${t.supportStatus}: ${getPayTaipeiParkingSupportStatusLabel(facility.supportStatusCategory, language)}`,
+                    facility.operatorName ? `${t.operatorName}: ${facility.operatorName}` : '',
+                    facility.phoneNumber ? `${t.phone}: ${facility.phoneNumber}` : '',
+                    facility.postalCode ? `${t.postalCode}: ${facility.postalCode}` : '',
+                    facility.postalCodeType ? `${t.postalCodeType}: ${getPayTaipeiParkingPostalCodeTypeLabel(facility.postalCodeType, language)}` : '',
+                    facility.roadName ? `${t.roadName}: ${facility.roadName}` : '',
+                    facility.payTaipeiParkingLocationPrecision ? `${t.locationPrecision}: ${getPayTaipeiParkingLocationPrecisionLabel(facility.payTaipeiParkingLocationPrecision, language)}` : '',
+                    facility.payTaipeiParkingGeocodingStatus ? `${t.geocodingStatus}: ${getPayTaipeiParkingGeocodingStatusLabel(facility.payTaipeiParkingGeocodingStatus, language)}` : '',
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}

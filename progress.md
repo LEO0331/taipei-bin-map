@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-07-02 Asia/Taipei
+**Last Updated:** 2026-07-03 Asia/Taipei
 **Active Feature:** None
 
 ## Status
@@ -39,10 +39,13 @@
 - [x] Added 245 motorcycle inspection stations with UTF-8-SIG conversion, district summary bubbles, brand/postal/phone filters, address-based Google Maps links, notices, cache entries, and privacy-minimized default UI.
 - [x] Added 3,874 protected tree records from the UTF-8-SIG `樹籍資料匯出-202603201657.csv` source with exact coordinates.
 - [x] Added protected tree ID/species/scientific-name/English-name/location-type/management-unit/diameter/circumference/coordinate-quality filters, exact markers for narrowed views, list/popup fields, bilingual notices, cache entries, README notes, and tests.
+- [x] Added 227 pay.taipei cardless parking lot records from the UTF-8-SIG `pay.taipei支援無卡進出停車場清單_20260211 (1).csv` source.
+- [x] Added support-status, operator, operator ID, postal code, postal-code type, road, phone/note, stopped-service hint, basement, operator/platform address, location-precision, and geocoding-status filters.
+- [x] Kept pay.taipei parking records address-only because the source has no official coordinates; the app uses district summary bubbles and address-based Google Maps lookup links.
 
 ### What's In Progress
 
-- [x] No active feature work remains for feat-028.
+- [x] No active feature work remains for feat-029.
 
 ### What's Next
 
@@ -67,6 +70,7 @@
 - [ ] Designated smoking area opening hours, on-site usability, legal applicability, health interpretation, and complete legal boundaries are snapshot/public-data references, not real-time guarantees or advice.
 - [ ] Announced no-smoking place points are source-location references, not complete legal boundaries, real-time enforcement status, legal advice, health advice, smoking advice, or on-site signage guarantees.
 - [ ] Protected tree records are source-data lookup points, not real-time tree health, collapse-risk, pruning/transplant permit, land-ownership, cadastral-boundary, maintenance-progress, legal-advice, or tourism-ranking data.
+- [ ] pay.taipei cardless parking records have no official coordinates and do not represent real-time parking availability, real-time operating status, parking fees, payment success, cardless entry or exit success, exact entrance location, navigation advice, legal parking determination, consumer advice, or official endorsement.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -88,6 +92,7 @@
 - **Keep designated smoking areas as lookup data**: The layer shows source fields and nearby distance only; UI copy avoids smoking recommendations, health advice, legal interpretation, and current-availability claims.
 - **Keep announced no-smoking places as lookup data**: The layer complements designated smoking areas but does not claim complete no-smoking boundaries, enforcement status, legal interpretation, health advice, or smoking advice.
 - **Keep protected trees in the shared facility surface**: The app has no standalone dashboard module, so protected trees use the existing map/list/filter/popup workflow.
+- **Keep pay.taipei parking address-only**: The source has addresses but no official coordinates, so no automatic geocoding or exact parking markers were added.
 
 ## Files Modified This Session
 
@@ -198,7 +203,14 @@
 - [x] `npm run test:e2e -- --grep "protected trees"` passed desktop/mobile Playwright coverage for the protected tree flow.
 - [x] `npm run test:e2e` passed 58 desktop/mobile Playwright tests after the protected tree layer.
 - [x] `./init.sh` passed 51 unit/converter tests, production build, and 58 desktop/mobile Playwright tests after the protected tree layer.
+- [x] `npm run data:fetch:pay-taipei-parking` copied the UTF-8-SIG pay.taipei cardless parking source CSV into `data/raw/pay-taipei-cardless-parking-lots/`.
+- [x] `npm run convert:facilities` generated 16,458 facilities, including 227 pay.taipei cardless parking lot records.
+- [x] `npm test` passed 53 unit/converter tests.
+- [x] `npm run build` passed after the pay.taipei parking layer.
+- [x] `npm run test:e2e -- --grep "pay.taipei"` passed desktop/mobile Playwright coverage for the pay.taipei parking flow.
+- [x] `npm run test:e2e` passed 60 desktop/mobile Playwright tests after the pay.taipei parking layer.
+- [x] `./init.sh` passed 53 unit/converter tests, production build, and 60 desktop/mobile Playwright tests after the pay.taipei parking layer.
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The protected tree layer is implemented and full `./init.sh` verification passed in this session.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The pay.taipei cardless parking layer is implemented and full `./init.sh` verification passed in this session.

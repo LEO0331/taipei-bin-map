@@ -12,6 +12,10 @@ import {
   getFuelStationServiceTypeLabel,
   getFuelStationStatusLabel,
   getOpeningHoursTypeLabel,
+  getPayTaipeiParkingGeocodingStatusLabel,
+  getPayTaipeiParkingLocationPrecisionLabel,
+  getPayTaipeiParkingPostalCodeTypeLabel,
+  getPayTaipeiParkingSupportStatusLabel,
   getProtectedTreeLocationTypeLabel,
   getRiversideToiletTypeLabel,
   getTreeCircumferenceCategoryLabel,
@@ -299,6 +303,25 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.coordinateQuality && <p>{t.coordinateQuality}: {facility.coordinateQuality}</p>}
         </>
       )}
+      {facility.type === 'pay_taipei_cardless_parking_lot' && (
+        <>
+          {facility.sourceSequenceNumberNormalized && <p>{t.sourceSequenceNumber}: {facility.sourceSequenceNumberNormalized}</p>}
+          {facility.parkingLotId && <p>{t.parkingLotId}: {facility.parkingLotId}</p>}
+          {facility.operatorId && <p>{t.operatorId}: {facility.operatorId}</p>}
+          {facility.operatorName && <p>{t.operatorName}: {facility.operatorName}</p>}
+          {facility.parkingLotName && <p>{t.parkingLotName}: {facility.parkingLotName}</p>}
+          <p>{t.supportStatus}: {getPayTaipeiParkingSupportStatusLabel(facility.supportStatusCategory, language)}</p>
+          {facility.statusRaw && <p>{t.status}: {facility.statusRaw}</p>}
+          {facility.phoneNumber && <p>{t.phone}: {facility.phoneNumber}</p>}
+          {facility.postalCode && <p>{t.postalCode}: {facility.postalCode}</p>}
+          {facility.postalCodeType && <p>{t.postalCodeType}: {getPayTaipeiParkingPostalCodeTypeLabel(facility.postalCodeType, language)}</p>}
+          {facility.roadName && <p>{t.roadName}: {facility.roadName}</p>}
+          {facility.payTaipeiParkingLocationPrecision && <p>{t.locationPrecision}: {getPayTaipeiParkingLocationPrecisionLabel(facility.payTaipeiParkingLocationPrecision, language)}</p>}
+          {facility.payTaipeiParkingGeocodingStatus && <p>{t.geocodingStatus}: {getPayTaipeiParkingGeocodingStatusLabel(facility.payTaipeiParkingGeocodingStatus, language)}</p>}
+          {facility.addressLooksLikeBasementOrUnderground && <p>{t.basementOrUndergroundAddress}: {t.yes}</p>}
+          {facility.addressLooksLikeOperatorOrPlatformAddress && <p>{t.operatorOrPlatformAddress}: {t.yes}</p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
@@ -313,6 +336,7 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       {facility.type === 'community_recycling_station' && <p>{t.notice}: {t.communityRecyclingStationPopupNotice}</p>}
       {facility.type === 'clean_needle_exchange_service_point' && <p>{t.notice}: {t.cleanNeedlePopupNotice}</p>}
       {facility.type === 'protected_tree' && <p>{t.notice}: {t.protectedTreePopupNotice}</p>}
+      {facility.type === 'pay_taipei_cardless_parking_lot' && <p>{t.notice}: {t.payTaipeiParkingPopupNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

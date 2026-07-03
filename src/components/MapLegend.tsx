@@ -85,6 +85,10 @@ export function MapLegend({ t }: MapLegendProps) {
         {t.protectedTrees}
       </span>
       <span>
+        <i aria-hidden="true">🅿️</i>
+        {t.payTaipeiCardlessParkingLots}
+      </span>
+      <span>
         <i aria-hidden="true">📍</i>
         {t.userLocation}
       </span>

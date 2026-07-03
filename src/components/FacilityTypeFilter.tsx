@@ -27,6 +27,7 @@ export const FACILITY_TYPE_OPTIONS: FacilityType[] = [
   'community_recycling_station',
   'clean_needle_exchange_service_point',
   'protected_tree',
+  'pay_taipei_cardless_parking_lot',
 ];
 
 export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeFilterProps) {
@@ -50,6 +51,7 @@ export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeF
     community_recycling_station: t.communityRecyclingStations,
     clean_needle_exchange_service_point: t.cleanNeedleExchangeServicePoints,
     protected_tree: t.protectedTrees,
+    pay_taipei_cardless_parking_lot: t.payTaipeiCardlessParkingLots,
   } satisfies Record<FacilityType, string>;
 
   const allSelected = selectedTypes.length === FACILITY_TYPE_OPTIONS.length;

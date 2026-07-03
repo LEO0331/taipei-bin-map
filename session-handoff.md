@@ -2,9 +2,9 @@
 
 ## Current Objective
 
-- Goal: Maintain the nineteen-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
-- Current status: feat-028 is implemented and final full baseline verification passed.
-- Branch / commit: Working tree has uncommitted protected tree data, UI, tests, docs, and harness changes.
+- Goal: Maintain the twenty-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
+- Current status: feat-029 is implemented and final full baseline verification passed.
+- Branch / commit: Working tree has uncommitted protected tree and pay.taipei cardless parking data, UI, tests, docs, and harness changes.
 
 ## Completed
 
@@ -37,18 +37,20 @@
 - Tightened the Playwright web server so E2E tests cannot silently reuse an unrelated local app on port 5173.
 - Added 88 clean needle exchange service point records from a CP950 source CSV, with service item/category classification, phone/extension parsing, service-hour parsing, district summary bubbles, focused filters, list/popup details, PWA caching, README notes, and no medical, crime, risk, drug-use inference, or real-time inventory claims.
 - Added 3,874 protected tree records from a UTF-8-SIG source CSV, with tree ID/species/scientific-name/English-name/location-type/management-unit/diameter/circumference/coordinate-quality filters, exact markers for narrowed views, list/popup details, PWA caching, README notes, and no tree-health, hazard/risk, permit, legal, land-ownership, maintenance, or tourism-ranking claims.
+- Added 227 pay.taipei cardless parking lot records from a UTF-8-SIG source CSV, with support-status, operator, operator ID, postal-code, postal-code-type, road, phone/note, stopped-service hint, basement, operator/platform address, location-precision, and geocoding-status filters.
+- Kept pay.taipei parking records address-only because the source has no official coordinates; the app uses district summary bubbles, searchable directory cards, and address-based Google Maps links without real-time parking, fee, payment, entrance, navigation, legal, consumer, or endorsement claims.
 
 ## Verification
 
 | Check | Result |
 |---|---|
-| `npm run convert:facilities` | 16,231 total facilities |
-| Targeted tests | 51 converter/filter tests passed |
-| `npm test` | 51 unit/converter tests passed |
+| `npm run convert:facilities` | 16,458 total facilities |
+| Targeted tests | 53 converter/filter tests passed |
+| `npm test` | 53 unit/converter tests passed |
 | `npm run build` | Passed |
-| `npm run test:e2e -- --grep "protected trees"` | 2 desktop/mobile tests passed |
-| `npm run test:e2e` | 58 desktop/mobile tests passed |
-| `./init.sh` | Passed: 51 unit/converter tests, production build, and 58 desktop/mobile Playwright tests |
+| `npm run test:e2e -- --grep "pay.taipei"` | 2 desktop/mobile tests passed |
+| `npm run test:e2e` | 60 desktop/mobile tests passed |
+| `./init.sh` | Passed: 53 unit/converter tests, production build, and 60 desktop/mobile Playwright tests |
 | Responsive smoke | Covered by mobile/desktop Playwright suite |
 
 ## Deliberate Omissions
@@ -62,6 +64,8 @@
 - No separate no-smoking map or legal-boundary view: the existing shared map/list/search flow covers source point records without implying polygon boundaries.
 - No clean needle charts/dashboard: the app has no dashboard surface, so the layer uses the existing shared list/filter/map surface.
 - No protected tree charts/dashboard: the app has no dashboard surface, so the layer uses the existing shared list/filter/map surface.
+- No pay.taipei parking charts/dashboard: the app has no dashboard surface, so the layer uses the existing shared list/filter/map surface.
+- No pay.taipei parking geocoding or official-coordinate join: the source has no official coordinates, so v1 stays address-only.
 
 ## Risks
 
@@ -80,3 +84,4 @@
 - Announced no-smoking place points are source-location references and not complete legal boundaries, real-time enforcement status, legal advice, health advice, smoking advice, or signage guarantees.
 - Clean needle service point records have no coordinates, so exact nearby sorting is intentionally unavailable; source data is not a real-time service, inventory, medical, public-safety, crime, or drug-use behavior signal.
 - Protected tree records are source-data lookup points, not real-time tree health, collapse-risk, pruning/transplant permit, land-ownership, cadastral-boundary, maintenance-progress, legal-advice, or tourism-ranking data.
+- pay.taipei cardless parking records have no official coordinates and are not real-time parking availability, operating status, parking-fee, payment-success, cardless entry/exit success, entrance-precision, navigation, legal-parking, consumer-advice, or endorsement data.

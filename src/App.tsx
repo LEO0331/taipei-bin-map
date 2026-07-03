@@ -12,6 +12,7 @@ import {
   GasLpgStationFilters,
   LactationRoomFilters,
   MotorcycleInspectionStationFilters,
+  PayTaipeiParkingFilters,
   ProtectedTreeFilters,
   RiversideToiletFilters,
   TimedCollectionFilters,
@@ -42,6 +43,10 @@ import type {
   Language,
   ManagingUnitCategory,
   OpeningHoursType,
+  PayTaipeiParkingGeocodingStatus,
+  PayTaipeiParkingLocationPrecision,
+  PayTaipeiParkingPostalCodeType,
+  PayTaipeiParkingSupportStatus,
   ProtectedTreeCoordinateQuality,
   ProtectedTreeLocationTypeCategory,
   RiversideToiletType,
@@ -188,6 +193,19 @@ function App() {
   const [protectedTreeCoordinateQuality, setProtectedTreeCoordinateQuality] = useState<ProtectedTreeCoordinateQuality | ''>('');
   const [protectedTreeHasLocationType, setProtectedTreeHasLocationType] = useState(false);
   const [protectedTreeHasSizeFlags, setProtectedTreeHasSizeFlags] = useState(false);
+  const [payTaipeiParkingSupportStatus, setPayTaipeiParkingSupportStatus] = useState<PayTaipeiParkingSupportStatus | ''>('');
+  const [payTaipeiParkingOperator, setPayTaipeiParkingOperator] = useState('');
+  const [payTaipeiParkingOperatorId, setPayTaipeiParkingOperatorId] = useState('');
+  const [payTaipeiParkingPostalCode, setPayTaipeiParkingPostalCode] = useState('');
+  const [payTaipeiParkingPostalCodeType, setPayTaipeiParkingPostalCodeType] = useState<PayTaipeiParkingPostalCodeType | ''>('');
+  const [payTaipeiParkingRoadName, setPayTaipeiParkingRoadName] = useState('');
+  const [payTaipeiParkingHasPhone, setPayTaipeiParkingHasPhone] = useState(false);
+  const [payTaipeiParkingHasNote, setPayTaipeiParkingHasNote] = useState(false);
+  const [payTaipeiParkingServiceStopped, setPayTaipeiParkingServiceStopped] = useState(false);
+  const [payTaipeiParkingBasement, setPayTaipeiParkingBasement] = useState(false);
+  const [payTaipeiParkingOperatorAddress, setPayTaipeiParkingOperatorAddress] = useState(false);
+  const [payTaipeiParkingLocationPrecision, setPayTaipeiParkingLocationPrecision] = useState<PayTaipeiParkingLocationPrecision | ''>('');
+  const [payTaipeiParkingGeocodingStatus, setPayTaipeiParkingGeocodingStatus] = useState<PayTaipeiParkingGeocodingStatus | ''>('');
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -212,6 +230,7 @@ function App() {
   const includesCommunityRecyclingStations = selectedTypes.includes('community_recycling_station');
   const includesCleanNeedleServicePoints = selectedTypes.includes('clean_needle_exchange_service_point');
   const includesProtectedTrees = selectedTypes.includes('protected_tree');
+  const includesPayTaipeiParking = selectedTypes.includes('pay_taipei_cardless_parking_lot');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -408,6 +427,22 @@ function App() {
     () => [...new Set(facilities.filter((facility) => facility.type === 'protected_tree').map((facility) => facility.managementUnit).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
     [facilities],
   );
+  const payTaipeiParkingOperators = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'pay_taipei_cardless_parking_lot').map((facility) => facility.operatorName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const payTaipeiParkingOperatorIds = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'pay_taipei_cardless_parking_lot').map((facility) => facility.operatorId).filter(Boolean) as string[])].sort(),
+    [facilities],
+  );
+  const payTaipeiParkingPostalCodes = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'pay_taipei_cardless_parking_lot').map((facility) => facility.postalCode).filter(Boolean) as string[])].sort(),
+    [facilities],
+  );
+  const payTaipeiParkingRoadNames = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'pay_taipei_cardless_parking_lot').map((facility) => facility.roadName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -509,6 +544,19 @@ function App() {
         protectedTreeCoordinateQuality,
         protectedTreeHasLocationType,
         protectedTreeHasSizeFlags,
+        payTaipeiParkingSupportStatus,
+        payTaipeiParkingOperator,
+        payTaipeiParkingOperatorId,
+        payTaipeiParkingPostalCode,
+        payTaipeiParkingPostalCodeType,
+        payTaipeiParkingRoadName,
+        payTaipeiParkingHasPhone,
+        payTaipeiParkingHasNote,
+        payTaipeiParkingServiceStopped,
+        payTaipeiParkingBasement,
+        payTaipeiParkingOperatorAddress,
+        payTaipeiParkingLocationPrecision,
+        payTaipeiParkingGeocodingStatus,
       }),
     [
       district,
@@ -609,6 +657,19 @@ function App() {
       protectedTreeCoordinateQuality,
       protectedTreeHasLocationType,
       protectedTreeHasSizeFlags,
+      payTaipeiParkingSupportStatus,
+      payTaipeiParkingOperator,
+      payTaipeiParkingOperatorId,
+      payTaipeiParkingPostalCode,
+      payTaipeiParkingPostalCodeType,
+      payTaipeiParkingRoadName,
+      payTaipeiParkingHasPhone,
+      payTaipeiParkingHasNote,
+      payTaipeiParkingServiceStopped,
+      payTaipeiParkingBasement,
+      payTaipeiParkingOperatorAddress,
+      payTaipeiParkingLocationPrecision,
+      payTaipeiParkingGeocodingStatus,
     ],
   );
 
@@ -702,6 +763,21 @@ function App() {
       };
     });
   }, [displayedFacilities]);
+  const payTaipeiParkingDistrictSummaries = useMemo(() => {
+    const lots = displayedFacilities.filter((facility) => facility.type === 'pay_taipei_cardless_parking_lot');
+    return [...new Set(lots.map((facility) => facility.district).filter(Boolean))].map((district) => {
+      const rows = lots.filter((facility) => facility.district === district);
+      const operatorCounts = new Map<string, number>();
+      rows.forEach((facility) => facility.operatorName && operatorCounts.set(facility.operatorName, (operatorCounts.get(facility.operatorName) ?? 0) + 1));
+      return {
+        district,
+        count: rows.length,
+        supportedCount: rows.filter((facility) => facility.supportStatusCategory === 'supported').length,
+        stoppedCount: rows.filter((facility) => facility.supportStatusCategory === 'not_supported_or_stopped').length,
+        topOperators: [...operatorCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([operatorName, count]) => ({ operatorName, count })),
+      };
+    });
+  }, [displayedFacilities]);
   const renderableFacilities = displayedFacilities.filter(
     (facility) =>
       Number.isFinite(facility.latitude) &&
@@ -734,6 +810,7 @@ function App() {
   const isCommunityRecyclingOnly = selectedTypes.length === 1 && includesCommunityRecyclingStations;
   const isCleanNeedleOnly = selectedTypes.length === 1 && includesCleanNeedleServicePoints;
   const isProtectedTreeOnly = selectedTypes.length === 1 && includesProtectedTrees;
+  const isPayTaipeiParkingOnly = selectedTypes.length === 1 && includesPayTaipeiParking;
   const isSpecializedToiletOnly = isRiversideOnly || isFamilyToiletOnly;
   const listHeading = nearbyFacilities
     ? t.nearestFacilities
@@ -757,6 +834,8 @@ function App() {
                         ? t.cleanNeedleServicePointDirectory
                         : isProtectedTreeOnly
                           ? t.protectedTreeDirectory
+                          : isPayTaipeiParkingOnly
+                            ? t.payTaipeiParkingDirectory
                 : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
     if (!report?.generatedAt) {
@@ -914,6 +993,21 @@ function App() {
       setProtectedTreeCoordinateQuality('');
       setProtectedTreeHasLocationType(false);
       setProtectedTreeHasSizeFlags(false);
+    }
+    if (!value.includes('pay_taipei_cardless_parking_lot')) {
+      setPayTaipeiParkingSupportStatus('');
+      setPayTaipeiParkingOperator('');
+      setPayTaipeiParkingOperatorId('');
+      setPayTaipeiParkingPostalCode('');
+      setPayTaipeiParkingPostalCodeType('');
+      setPayTaipeiParkingRoadName('');
+      setPayTaipeiParkingHasPhone(false);
+      setPayTaipeiParkingHasNote(false);
+      setPayTaipeiParkingServiceStopped(false);
+      setPayTaipeiParkingBasement(false);
+      setPayTaipeiParkingOperatorAddress(false);
+      setPayTaipeiParkingLocationPrecision('');
+      setPayTaipeiParkingGeocodingStatus('');
     }
     setNearbyFacilities(null);
   };
@@ -1082,6 +1176,8 @@ function App() {
                               ? t.cleanNeedleSearchPlaceholder
                               : isProtectedTreeOnly
                                 ? t.protectedTreeSearchPlaceholder
+                                : isPayTaipeiParkingOnly
+                                  ? t.payTaipeiParkingSearchPlaceholder
               : isSpecializedToiletOnly
                 ? t.toiletSearchPlaceholder
                 : t.searchPlaceholder}
@@ -1440,6 +1536,62 @@ function App() {
               }}
             />
           )}
+          {hasFocusedTypes && includesPayTaipeiParking && (
+            <PayTaipeiParkingFilters
+              operators={payTaipeiParkingOperators}
+              operatorIds={payTaipeiParkingOperatorIds}
+              postalCodes={payTaipeiParkingPostalCodes}
+              roadNames={payTaipeiParkingRoadNames}
+              values={{
+                supportStatus: payTaipeiParkingSupportStatus,
+                operator: payTaipeiParkingOperator,
+                operatorId: payTaipeiParkingOperatorId,
+                postalCode: payTaipeiParkingPostalCode,
+                postalCodeType: payTaipeiParkingPostalCodeType,
+                roadName: payTaipeiParkingRoadName,
+                hasPhone: payTaipeiParkingHasPhone,
+                hasNote: payTaipeiParkingHasNote,
+                serviceStopped: payTaipeiParkingServiceStopped,
+                basement: payTaipeiParkingBasement,
+                operatorAddress: payTaipeiParkingOperatorAddress,
+                locationPrecision: payTaipeiParkingLocationPrecision,
+                geocodingStatus: payTaipeiParkingGeocodingStatus,
+              }}
+              language={language}
+              t={t}
+              onChange={(name, value) => {
+                if (name === 'operator') setPayTaipeiParkingOperator(value);
+                if (name === 'operatorId') setPayTaipeiParkingOperatorId(value);
+                if (name === 'postalCode') setPayTaipeiParkingPostalCode(value);
+                if (name === 'roadName') setPayTaipeiParkingRoadName(value);
+                setNearbyFacilities(null);
+              }}
+              onStatusChange={(value) => {
+                setPayTaipeiParkingSupportStatus(value);
+                setNearbyFacilities(null);
+              }}
+              onPostalCodeTypeChange={(value) => {
+                setPayTaipeiParkingPostalCodeType(value);
+                setNearbyFacilities(null);
+              }}
+              onLocationPrecisionChange={(value) => {
+                setPayTaipeiParkingLocationPrecision(value);
+                setNearbyFacilities(null);
+              }}
+              onGeocodingStatusChange={(value) => {
+                setPayTaipeiParkingGeocodingStatus(value);
+                setNearbyFacilities(null);
+              }}
+              onBooleanChange={(name, value) => {
+                if (name === 'hasPhone') setPayTaipeiParkingHasPhone(value);
+                if (name === 'hasNote') setPayTaipeiParkingHasNote(value);
+                if (name === 'serviceStopped') setPayTaipeiParkingServiceStopped(value);
+                if (name === 'basement') setPayTaipeiParkingBasement(value);
+                if (name === 'operatorAddress') setPayTaipeiParkingOperatorAddress(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
           {isSpecializedToiletOnly && (
             <label className="nearby-radius">
               <span>{t.nearbyRadius}</span>
@@ -1559,6 +1711,8 @@ function App() {
                         ? t.viewCommunityRecyclingStationsByNearbyDistrict
                         : isCleanNeedleOnly
                           ? t.viewCleanNeedleServicePointsByNearbyDistrict
+                          : isPayTaipeiParkingOnly
+                            ? t.viewPayTaipeiParkingByNearbyDistrict
                       : isGasLpgOnly
                         ? t.showNearbyGasLpgStations
                         : isDesignatedSmokingAreaOnly
@@ -1594,6 +1748,8 @@ function App() {
                         ? t.communityRecyclingStationDistanceUnavailableNotice
                         : includesCleanNeedleServicePoints
                           ? t.cleanNeedleDistanceUnavailableNotice
+                          : includesPayTaipeiParking
+                            ? t.payTaipeiParkingDistanceUnavailableNotice
                   : t.lactationRoomDistanceUnavailableNotice
                 : t.unableToGetLocation}
           </p>
@@ -1606,6 +1762,7 @@ function App() {
         {includesCommunityRecyclingStations && <p className="status-message">{t.communityRecyclingStationMapNotice}</p>}
         {includesCleanNeedleServicePoints && <p className="status-message">{t.cleanNeedleMapNotice}</p>}
         {includesProtectedTrees && <p className="status-message">{t.protectedTreeMapNotice}</p>}
+        {includesPayTaipeiParking && <p className="status-message">{t.payTaipeiParkingMapNotice}</p>}
         {isLoadingFacilities ? (
           <p className="status-message">{t.loading}</p>
         ) : (
@@ -1621,6 +1778,7 @@ function App() {
                 commercialEvDistrictSummaries={commercialEvDistrictSummaries}
                 communityRecyclingDistrictSummaries={communityRecyclingDistrictSummaries}
                 cleanNeedleDistrictSummaries={cleanNeedleDistrictSummaries}
+                payTaipeiParkingDistrictSummaries={payTaipeiParkingDistrictSummaries}
                 t={t}
                 userLocation={userLocation}
               />

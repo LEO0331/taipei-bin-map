@@ -69,9 +69,14 @@ const protectedTreeCount = protectedTrees.length.toString();
 const protectedTreeSample =
   protectedTrees.find((facility) => facility.locationTypeCategory === 'park_green_space' && facility.sizeDataQualityFlags?.length) ??
   protectedTrees[0];
+const payTaipeiParkingLots = facilities.filter((facility) => facility.type === 'pay_taipei_cardless_parking_lot');
+const payTaipeiParkingLotCount = payTaipeiParkingLots.length.toString();
+const payTaipeiParkingSample =
+  payTaipeiParkingLots.find((facility) => facility.supportStatusCategory === 'supported' && facility.operatorName === '臺北市停管處') ??
+  payTaipeiParkingLots[0];
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all nineteen local datasets without mounting broad-view facility pins', async ({ page }) => {
+  test('loads all twenty local datasets without mounting broad-view facility pins', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -96,6 +101,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('社區資源回收站');
     await expect(page.getByLabel('地圖圖例')).toContainText('清潔針具服務點');
     await expect(page.getByLabel('地圖圖例')).toContainText('受保護樹木');
+    await expect(page.getByLabel('地圖圖例')).toContainText('pay.taipei支援無卡進出停車場');
     await expect(page.locator('.leaflet-map')).toBeVisible();
     await expect(page.getByText('目前結果較多')).toBeVisible();
     await expect(page.locator('.facility-div-marker')).toHaveCount(0);
@@ -242,6 +248,26 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.facility-list li').first()).not.toContainText('即時');
     await page.getByRole('button', { name: '查看附近行政區電動機車充電站' }).click();
     await expect(page.getByText('電動機車充電站資料未提供經緯度，目前無法計算精確距離。')).toBeVisible();
+  });
+
+  test('shows pay.taipei cardless parking as an address-only directory', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: 'pay.taipei支援無卡進出停車場' }).click();
+    await expect(page.getByText(`${payTaipeiParkingLotCount} 筆資料`)).toBeVisible();
+    await expect(page.getByText('pay.taipei支援無卡進出停車場清單提供地址與郵遞區號')).toBeVisible();
+    await page.getByRole('combobox', { name: '支援狀態', exact: true }).selectOption(payTaipeiParkingSample.supportStatusCategory);
+    await page.getByRole('combobox', { name: '營運單位', exact: true }).selectOption(payTaipeiParkingSample.operatorName);
+    await page.getByRole('combobox', { name: '營運id', exact: true }).selectOption(payTaipeiParkingSample.operatorId);
+    await page.getByRole('combobox', { name: '郵遞區號', exact: true }).selectOption(payTaipeiParkingSample.postalCode);
+    await page.getByLabel('有電話').check();
+    await page.getByPlaceholder('搜尋停車場、營運單位、地址、電話或說明').fill(payTaipeiParkingSample.parkingLotName);
+
+    await expect(page.locator('.facility-list li').first()).toContainText('pay.taipei支援無卡進出停車場');
+    await expect(page.locator('.facility-list li').first()).toContainText(payTaipeiParkingSample.parkingLotName);
+    await expect(page.locator('.facility-list li').first()).not.toContainText('即時車位');
+    await page.getByRole('button', { name: '查看附近行政區無卡進出停車場' }).click();
+    await expect(page.getByText('pay.taipei支援無卡進出停車場清單未提供官方經緯度，目前無法計算精確距離。')).toBeVisible();
   });
 
   test('shows commercial EV charging and swap stations as address-only records', async ({ page }) => {

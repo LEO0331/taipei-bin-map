@@ -19,7 +19,8 @@ export type FacilityType =
   | 'announced_no_smoking_place'
   | 'community_recycling_station'
   | 'clean_needle_exchange_service_point'
-  | 'protected_tree';
+  | 'protected_tree'
+  | 'pay_taipei_cardless_parking_lot';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
@@ -63,6 +64,23 @@ export type ProtectedTreeCoordinateQuality = 'valid_wgs84_taipei' | 'outside_tai
 export type CoordinateSystem = 'wgs84' | 'twd97' | 'unknown';
 export type OpeningHoursType = 'listed_24_hours' | 'fixed_hours' | 'weekday_or_holiday_rule' | 'depends_on_facility_hours' | 'custom_text' | 'missing' | 'unknown';
 export type ManagingUnitCategory = 'taipei_city_government' | 'district_office' | 'central_government' | 'transportation_or_mrt' | 'park_or_public_space' | 'private_operator' | 'cultural_or_sports_facility' | 'other' | 'unknown';
+export type PayTaipeiParkingSupportStatus = 'supported' | 'not_supported_or_stopped' | 'other' | 'unknown';
+export type PayTaipeiParkingPostalCodeType = 'taipei_city' | 'new_taipei_or_other_city' | 'unknown' | 'missing';
+export type PayTaipeiParkingLocationPrecision =
+  | 'district_address'
+  | 'geocoded_address_approximate'
+  | 'official_joined_coordinate'
+  | 'operator_or_platform_address'
+  | 'district_only'
+  | 'missing';
+export type PayTaipeiParkingGeocodingStatus =
+  | 'not_attempted'
+  | 'not_geocoded_address_only'
+  | 'geocoded_approximate'
+  | 'joined_official_coordinate'
+  | 'failed'
+  | 'not_applicable_operator_or_platform_address';
+export type PayTaipeiParkingCoordinateSource = 'none' | 'geocoded' | 'joined_official_parking_dataset';
 
 export type ElectricMotorcycleChargingLocationCategory =
   | 'inspection_station'
@@ -299,6 +317,33 @@ export type Facility = {
   managementUnitNormalized?: string;
   coordinateQuality?: ProtectedTreeCoordinateQuality;
   coordinatePairKey?: string;
+  sourceSequenceNumberNormalized?: string;
+  parkingLotId?: string;
+  parkingLotIdNormalized?: string;
+  operatorId?: string;
+  operatorIdNormalized?: string;
+  operatorNameNormalized?: string;
+  parkingLotName?: string;
+  parkingLotNameNormalized?: string;
+  statusRaw?: string;
+  supportStatus?: string;
+  supportStatusCategory?: PayTaipeiParkingSupportStatus;
+  supportStatusLabelZh?: string;
+  supportStatusLabelEn?: string;
+  phoneNumber?: string;
+  phoneNumberNormalized?: string;
+  postalCodeNormalized?: string;
+  postalCodeType?: PayTaipeiParkingPostalCodeType;
+  districtNameFromAddress?: string;
+  isTaipeiDistrict?: boolean;
+  addressLooksLikeBasementOrUnderground?: boolean;
+  addressLooksLikeOperatorOrPlatformAddress?: boolean;
+  noteNormalized?: string;
+  hasNote?: boolean;
+  serviceStoppedHint?: boolean;
+  payTaipeiParkingLocationPrecision?: PayTaipeiParkingLocationPrecision;
+  payTaipeiParkingGeocodingStatus?: PayTaipeiParkingGeocodingStatus;
+  coordinateSource?: PayTaipeiParkingCoordinateSource;
 };
 
 export type MotorcycleInspectionStationLocation = {
@@ -560,6 +605,56 @@ export type ProtectedTreeSummary = {
   };
 };
 
+export type PayTaipeiCardlessParkingLotSummary = {
+  totalRecords: number;
+  uniqueParkingLotIdCount: number;
+  uniqueOperatorIdCount: number;
+  uniqueOperatorNameCount: number;
+  uniqueParkingLotNameCount: number;
+  uniqueAddressCount: number;
+  uniquePhoneNumberCount: number;
+  uniquePostalCodeCount: number;
+  districtCount: number;
+  uniqueRoadNameCount: number;
+  supportedCount: number;
+  notSupportedOrStoppedCount: number;
+  unknownStatusCount: number;
+  recordsWithPhone: number;
+  recordsWithNote: number;
+  recordsWithServiceStoppedHint: number;
+  recordsWithTaipeiDistrictFromAddress: number;
+  recordsWithOperatorOrPlatformAddress: number;
+  recordsWithBasementOrUndergroundAddress: number;
+  recordsWithGeocodedCoordinates: number;
+  recordsWithJoinedOfficialCoordinates: number;
+  byDistrict: Array<{ districtName: string; count: number; supportedCount: number; notSupportedOrStoppedCount: number; uniqueOperatorNameCount: number; uniqueAddressCount: number }>;
+  byOperator: Array<{ operatorName: string; count: number; supportedCount: number; notSupportedOrStoppedCount: number; districtCount: number }>;
+  bySupportStatus: Array<{ supportStatus: string; supportStatusCategory: PayTaipeiParkingSupportStatus; labelZh: string; labelEn: string; count: number }>;
+  byPostalCode: Array<{ postalCode: string; postalCodeType: PayTaipeiParkingPostalCodeType; count: number }>;
+  byRoadName: Array<{ roadName: string; count: number; districtCount: number }>;
+  topParkingLotNames: Array<{ parkingLotName: string; count: number; operatorName?: string; districtName?: string }>;
+  dataQuality: {
+    missingSequenceNumberCount: number;
+    duplicateSequenceNumberCount: number;
+    missingParkingLotIdCount: number;
+    duplicateParkingLotIdCount: number;
+    missingOperatorIdCount: number;
+    missingOperatorNameCount: number;
+    missingParkingLotNameCount: number;
+    duplicateParkingLotNameCount: number;
+    missingStatusCount: number;
+    unknownStatusCount: number;
+    missingPhoneNumberCount: number;
+    missingPostalCodeCount: number;
+    unknownPostalCodeTypeCount: number;
+    missingAddressCount: number;
+    duplicateAddressCount: number;
+    unparsedDistrictFromAddressCount: number;
+    operatorOrPlatformAddressCount: number;
+    duplicateFallbackKeyCount: number;
+  };
+};
+
 export type RiversideToiletSummary = {
   totalRecords: number;
   validCoordinateCount: number;
@@ -665,6 +760,14 @@ export type ConversionSourceReport = {
   duplicateInstitutionCodes?: Array<{ institutionCode: string; count: number }>;
   duplicateServiceLocationNames?: Array<{ serviceLocationName: string; count: number }>;
   duplicatePhones?: Array<{ phone: string; count: number }>;
+  duplicateSequenceNumbers?: Array<{ sourceSequenceNumber: string; count: number }>;
+  duplicateParkingLotIds?: Array<{ parkingLotId: string; count: number }>;
+  duplicateParkingLotNames?: Array<{ parkingLotName: string; count: number }>;
+  duplicateFallbackKeys?: Array<{ key: string; count: number }>;
+  unknownStatuses?: Array<{ rowNumber: number; value: string }>;
+  unparsedDistrictExamples?: Array<{ rowNumber: number; address?: string }>;
+  operatorOrPlatformAddressExamples?: Array<{ rowNumber: number; address?: string; parkingLotName?: string }>;
+  postalCodeWarnings?: Array<{ rowNumber: number; postalCode?: string; warning: string }>;
 };
 
 export type ConversionReport = {

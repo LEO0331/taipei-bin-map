@@ -26,6 +26,7 @@ const noticeTypes: FacilityType[] = [
   'community_recycling_station',
   'clean_needle_exchange_service_point',
   'protected_tree',
+  'pay_taipei_cardless_parking_lot',
 ];
 
 export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
@@ -106,6 +107,10 @@ export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
     protected_tree: {
       label: t.protectedTrees,
       notice: t.protectedTreeInterpretationNote,
+    },
+    pay_taipei_cardless_parking_lot: {
+      label: t.payTaipeiCardlessParkingLots,
+      notice: t.payTaipeiParkingInterpretationNote,
     },
   } satisfies Record<FacilityType, { label: string; notice: string }>;
 

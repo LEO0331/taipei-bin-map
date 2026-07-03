@@ -20,6 +20,7 @@ import { loadAnnouncedNoSmokingPlaces } from './convertAnnouncedNoSmokingPlaces'
 import { loadCommunityRecyclingStations } from './convertCommunityRecyclingStations';
 import { loadCleanNeedleExchangeServicePoints } from './convertCleanNeedleExchangeServicePoints';
 import { loadProtectedTrees } from './convertProtectedTrees';
+import { loadPayTaipeiCardlessParkingLots } from './convertPayTaipeiCardlessParkingLots';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -166,6 +167,8 @@ const CLEAN_NEEDLE_OUTPUT = resolve(options.outputDir, 'clean-needle-exchange-se
 const CLEAN_NEEDLE_SUMMARY_OUTPUT = resolve(options.outputDir, 'clean-needle-exchange-service-point-summary.json');
 const PROTECTED_TREES_OUTPUT = resolve(options.outputDir, 'protected-trees.json');
 const PROTECTED_TREE_SUMMARY_OUTPUT = resolve(options.outputDir, 'protected-tree-summary.json');
+const PAY_TAIPEI_PARKING_OUTPUT = resolve(options.outputDir, 'pay-taipei-cardless-parking-lots.json');
+const PAY_TAIPEI_PARKING_SUMMARY_OUTPUT = resolve(options.outputDir, 'pay-taipei-cardless-parking-lot-summary.json');
 const PUBLIC_AMENITIES_SUMMARY_OUTPUT = resolve(options.outputDir, 'public-amenities-summary.json');
 const DRINKING_FOUNTAINS_OUTPUT = resolve(options.outputDir, 'drinking-fountains.json');
 const TIMED_COLLECTION_OUTPUT = resolve(options.outputDir, 'timed-collection-points.json');
@@ -442,6 +445,7 @@ const announcedNoSmokingPlaces = loadAnnouncedNoSmokingPlaces();
 const communityRecyclingStations = loadCommunityRecyclingStations();
 const cleanNeedleServicePoints = loadCleanNeedleExchangeServicePoints();
 const protectedTrees = loadProtectedTrees();
+const payTaipeiParkingLots = loadPayTaipeiCardlessParkingLots();
 
 const facilities = [
   ...pedestrian.facilities,
@@ -463,6 +467,7 @@ const facilities = [
   ...communityRecyclingStations.facilities,
   ...cleanNeedleServicePoints.facilities,
   ...protectedTrees.facilities,
+  ...payTaipeiParkingLots.facilities,
 ];
 const report: ConversionReport = {
   generatedAt: new Date().toISOString(),
@@ -487,6 +492,7 @@ const report: ConversionReport = {
     communityRecyclingStations.report,
     cleanNeedleServicePoints.report,
     protectedTrees.report,
+    payTaipeiParkingLots.report,
   ],
 };
 
@@ -546,11 +552,14 @@ writeJson(CLEAN_NEEDLE_OUTPUT, cleanNeedleServicePoints.facilities);
 writeJson(CLEAN_NEEDLE_SUMMARY_OUTPUT, cleanNeedleServicePoints.summary);
 writeJson(PROTECTED_TREES_OUTPUT, protectedTrees.facilities);
 writeJson(PROTECTED_TREE_SUMMARY_OUTPUT, protectedTrees.summary);
+writeJson(PAY_TAIPEI_PARKING_OUTPUT, payTaipeiParkingLots.facilities);
+writeJson(PAY_TAIPEI_PARKING_SUMMARY_OUTPUT, payTaipeiParkingLots.summary);
 writeJson(PUBLIC_AMENITIES_SUMMARY_OUTPUT, {
   totalFacilityRecords: facilities.length,
   communityRecyclingStationCount: communityRecyclingStations.facilities.length,
   cleanNeedleServicePointCount: cleanNeedleServicePoints.facilities.length,
   protectedTreeCount: protectedTrees.facilities.length,
+  payTaipeiCardlessParkingLotCount: payTaipeiParkingLots.facilities.length,
   timedCollectionPointCount: timedCollectionPoints.facilities.length,
   usedClothingRecyclingBoxCount: usedClothingRecyclingBoxes.facilities.length,
 });
@@ -577,4 +586,5 @@ console.log(`Wrote ${announcedNoSmokingPlaces.facilities.length} announced no-sm
 console.log(`Wrote ${communityRecyclingStations.facilities.length} community recycling station records to ${COMMUNITY_RECYCLING_STATIONS_OUTPUT}`);
 console.log(`Wrote ${cleanNeedleServicePoints.facilities.length} clean needle exchange service point records to ${CLEAN_NEEDLE_OUTPUT}`);
 console.log(`Wrote ${protectedTrees.facilities.length} protected tree records to ${PROTECTED_TREES_OUTPUT}`);
+console.log(`Wrote ${payTaipeiParkingLots.facilities.length} pay.taipei cardless parking lot records to ${PAY_TAIPEI_PARKING_OUTPUT}`);
 console.log(`Wrote conversion report to ${REPORT_OUTPUT}`);

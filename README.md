@@ -162,6 +162,16 @@ npm run convert:facilities
 
 The source files do not provide coordinates, so records stay address-only with district summary bubbles and address-based Google Maps links. Service type is derived from the source filename. This layer is distinct from the non-commercial electric motorcycle charging station dataset and does not claim real-time availability, pricing, payment support, membership eligibility, charging speed, or battery inventory.
 
+The pay.taipei cardless parking layer uses the UTF-8-SIG `pay.taipei支援無卡進出停車場清單_20260211 (1).csv` resource:
+
+```bash
+npm run data:fetch:pay-taipei-parking
+npm run data:convert:pay-taipei-parking
+npm run convert:facilities
+```
+
+The converter preserves parking lot ID, operator ID, operator, parking lot name, support status, phone, postal code, address, and note fields. The source has addresses but no official coordinates, so records stay address-only with district summary bubbles and Google Maps lookup links. The app does not claim real-time parking availability, operating status, parking fees, payment success, cardless entry/exit success, exact entrance location, navigation advice, legal parking determination, consumer advice, or official endorsement.
+
 The gas/LPG station layer uses the UTF-8-SIG `臺北市加油站及加氣站分布圖.csv` resource:
 
 ```bash
@@ -310,7 +320,7 @@ More detail: [docs/deployment.en.md](docs/deployment.en.md)
 
 ### Data Notice
 
-Public toilets, riverside toilets, family-friendly toilets, recycling-related facilities, clean needle service points, protected trees, motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, gas/LPG stations, designated smoking areas, and announced no-smoking places remain separate source-specific layers. Equipment counts, award fields, business hours, cleanliness, maintenance, opening status, accepted recyclable items, recycling rules, collection schedules, service availability, clean needle inventory, medical needs, tree health, hazard/risk status, pruning/transplant permits, land ownership, charger availability, fuel/LPG availability, pricing, payment methods, membership requirements, battery inventory, legal boundaries, and public-safety meanings are public-data snapshots rather than real-time guarantees. Verify details with official, operator, venue, managing-unit, service-provider, station, community-management, competent-authority, or on-site notices.
+Public toilets, riverside toilets, family-friendly toilets, recycling-related facilities, clean needle service points, protected trees, motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, pay.taipei cardless parking lots, gas/LPG stations, designated smoking areas, and announced no-smoking places remain separate source-specific layers. Equipment counts, award fields, business hours, cleanliness, maintenance, opening status, accepted recyclable items, recycling rules, collection schedules, service availability, clean needle inventory, medical needs, tree health, hazard/risk status, pruning/transplant permits, land ownership, charger availability, parking availability, parking fees, payment support, entrance precision, fuel/LPG availability, pricing, payment methods, membership requirements, battery inventory, legal boundaries, and public-safety meanings are public-data snapshots rather than real-time guarantees. Verify details with official, operator, venue, managing-unit, service-provider, station, community-management, competent-authority, or on-site notices.
 
 ## 中文
 
@@ -470,6 +480,16 @@ npm run convert:facilities
 
 來源沒有座標，因此以前端清單與行政區彙總呈現，Google Maps 連結使用地址查詢。服務類型由來源檔名判斷。此圖層與非營利的電動機車充電站資料分開處理，且不宣稱即時可用、費率、付款方式、會員資格、充電速度或可換電池庫存。
 
+pay.taipei 無卡進出停車場圖層使用 UTF-8-SIG 的 `pay.taipei支援無卡進出停車場清單_20260211 (1).csv`：
+
+```bash
+npm run data:fetch:pay-taipei-parking
+npm run data:convert:pay-taipei-parking
+npm run convert:facilities
+```
+
+轉換程序保留停車場 ID、營運 id、營運單位、對應停車場、支援狀態、電話、郵遞區號、地址與說明。來源沒有官方經緯度，因此以前端清單與行政區彙總呈現，Google Maps 連結使用地址與停車場名稱查詢。本網站不宣稱即時車位數、即時營業狀態、停車費率保證、支付成功保證、無卡進出成功保證、入口位置精確性、導航建議、停車合法性判定、消費建議或官方背書。
+
 加油站及加氣站圖層使用 UTF-8-SIG 的 `臺北市加油站及加氣站分布圖.csv`：
 
 ```bash
@@ -618,4 +638,4 @@ npm run preview
 
 ### 資料提醒
 
-行人專用清潔箱、狗便袋箱、公廁、飲水設施、限時收受點、直飲臺、舊衣回收箱、社區資源回收站、清潔針具服務點、受保護樹木、機車定檢站、電動機車充電站、營利型電動車充換電站、加油站及加氣站、指定吸菸區與公告禁菸場所是不同設施或站點。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、社區資源回收站營運狀態、目前可回收項目、清潔針具服務狀態、庫存數量、醫療需求、服務可用性、受保護樹木健康或風險、修剪移植許可、土地權屬、回收規定、清運時程、舊衣回收箱可投遞狀態、機車定檢站服務、充換電站可用狀態、油氣供應、費率、付款方式、會員資格、指定吸菸區與公告禁菸場所之現場標示、法規適用與邊界、水質維護資訊請以現場、社區管理單位、服務單位、業者及主管機關公告為準。
+行人專用清潔箱、狗便袋箱、公廁、飲水設施、限時收受點、直飲臺、舊衣回收箱、社區資源回收站、清潔針具服務點、受保護樹木、機車定檢站、電動機車充電站、營利型電動車充換電站、pay.taipei 無卡進出停車場、加油站及加氣站、指定吸菸區與公告禁菸場所是不同設施或站點。收受項目依備註保守判讀，未知不代表不收受。直飲臺狀態、開放時間、收受項目、社區資源回收站營運狀態、目前可回收項目、清潔針具服務狀態、庫存數量、醫療需求、服務可用性、受保護樹木健康或風險、修剪移植許可、土地權屬、回收規定、清運時程、舊衣回收箱可投遞狀態、機車定檢站服務、充換電站可用狀態、即時車位數、停車費率、支付支援、入口位置、油氣供應、費率、付款方式、會員資格、指定吸菸區與公告禁菸場所之現場標示、法規適用與邊界、水質維護資訊請以現場、社區管理單位、服務單位、業者及主管機關公告為準。
