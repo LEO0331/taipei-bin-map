@@ -11,6 +11,8 @@ import type {
   FacilityType,
   FuelStationServiceType,
   FuelStationStatus,
+  GreenSpaceAdopterCategory,
+  GreenSpaceAdoptionTargetCategory,
   Language,
   ManagingUnitCategory,
   OpeningHoursType,
@@ -192,6 +194,15 @@ export function filterFacilities(
     payTaipeiParkingOperatorAddress = false,
     payTaipeiParkingLocationPrecision,
     payTaipeiParkingGeocodingStatus,
+    greenSpaceManagementUnit,
+    greenSpaceDistrictCode,
+    greenSpaceTargetAttribute,
+    greenSpaceTargetCategory,
+    greenSpaceAdopterName,
+    greenSpaceAdopterCategory,
+    greenSpaceRoadName,
+    greenSpaceHasRangeOrBoundary = false,
+    greenSpaceHasIntersection = false,
   }: {
     searchTerm: string;
     district: string;
@@ -303,6 +314,15 @@ export function filterFacilities(
     payTaipeiParkingOperatorAddress?: boolean;
     payTaipeiParkingLocationPrecision?: PayTaipeiParkingLocationPrecision | '';
     payTaipeiParkingGeocodingStatus?: PayTaipeiParkingGeocodingStatus | '';
+    greenSpaceManagementUnit?: string;
+    greenSpaceDistrictCode?: string;
+    greenSpaceTargetAttribute?: string;
+    greenSpaceTargetCategory?: GreenSpaceAdoptionTargetCategory | '';
+    greenSpaceAdopterName?: string;
+    greenSpaceAdopterCategory?: GreenSpaceAdopterCategory | '';
+    greenSpaceRoadName?: string;
+    greenSpaceHasRangeOrBoundary?: boolean;
+    greenSpaceHasIntersection?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -327,6 +347,7 @@ export function filterFacilities(
   const hasCleanNeedleFilters = Boolean(cleanNeedleAreaCode || cleanNeedleServiceItem || cleanNeedleServicePointCategory || cleanNeedleServiceItemCategory || cleanNeedleServicePointCategoryGroup || cleanNeedleRoadName || cleanNeedleHasPhone || cleanNeedleHasExtension || cleanNeedleTwentyFourHour);
   const hasProtectedTreeFilters = Boolean(protectedTreeSpecies || protectedTreeScientificName || protectedTreeEnglishName || protectedTreeLocationType || protectedTreeManagementUnit || protectedTreeDiameterCategory || protectedTreeCircumferenceCategory || protectedTreeCoordinateQuality || protectedTreeHasLocationType || protectedTreeHasSizeFlags);
   const hasPayTaipeiParkingFilters = Boolean(payTaipeiParkingSupportStatus || payTaipeiParkingOperator || payTaipeiParkingOperatorId || payTaipeiParkingPostalCode || payTaipeiParkingPostalCodeType || payTaipeiParkingRoadName || payTaipeiParkingHasPhone || payTaipeiParkingHasNote || payTaipeiParkingServiceStopped || payTaipeiParkingBasement || payTaipeiParkingOperatorAddress || payTaipeiParkingLocationPrecision || payTaipeiParkingGeocodingStatus);
+  const hasGreenSpaceAdoptionFilters = Boolean(greenSpaceManagementUnit || greenSpaceDistrictCode || greenSpaceTargetAttribute || greenSpaceTargetCategory || greenSpaceAdopterName || greenSpaceAdopterCategory || greenSpaceRoadName || greenSpaceHasRangeOrBoundary || greenSpaceHasIntersection);
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -498,6 +519,18 @@ export function filterFacilities(
         (!payTaipeiParkingLocationPrecision || facility.payTaipeiParkingLocationPrecision === payTaipeiParkingLocationPrecision) &&
         (!payTaipeiParkingGeocodingStatus || facility.payTaipeiParkingGeocodingStatus === payTaipeiParkingGeocodingStatus));
     const matchesPayTaipeiParkingScope = !hasPayTaipeiParkingFilters || facility.type === 'pay_taipei_cardless_parking_lot';
+    const matchesGreenSpaceAdoption =
+      facility.type !== 'green_space_adoption_record' ||
+      ((!greenSpaceManagementUnit || facility.managementUnit === greenSpaceManagementUnit) &&
+        (!greenSpaceDistrictCode || facility.districtCode === greenSpaceDistrictCode) &&
+        (!greenSpaceTargetAttribute || facility.adoptionTargetAttribute === greenSpaceTargetAttribute) &&
+        (!greenSpaceTargetCategory || facility.adoptionTargetCategory === greenSpaceTargetCategory) &&
+        (!greenSpaceAdopterName || facility.adopterName === greenSpaceAdopterName) &&
+        (!greenSpaceAdopterCategory || facility.adopterNameCategory === greenSpaceAdopterCategory) &&
+        (!greenSpaceRoadName || facility.roadName === greenSpaceRoadName) &&
+        (!greenSpaceHasRangeOrBoundary || facility.locationTextHasRangeOrBoundary === true) &&
+        (!greenSpaceHasIntersection || facility.locationTextHasIntersection === true));
+    const matchesGreenSpaceAdoptionScope = !hasGreenSpaceAdoptionFilters || facility.type === 'green_space_adoption_record';
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -601,6 +634,12 @@ export function filterFacilities(
         facility.roadName,
         facility.payTaipeiParkingLocationPrecision,
         facility.payTaipeiParkingGeocodingStatus,
+        facility.adoptionTargetName,
+        facility.adoptionTargetAttribute,
+        facility.adoptionLocation,
+        facility.adopterName,
+        facility.adoptionTargetCategory,
+        facility.adopterNameCategory,
         facility.type === 'used_clothing_recycling_box'
           ? '舊衣回收箱 used clothing recycling box'
           : '',
@@ -646,6 +685,8 @@ export function filterFacilities(
       matchesProtectedTreeScope &&
       matchesPayTaipeiParking &&
       matchesPayTaipeiParkingScope &&
+      matchesGreenSpaceAdoption &&
+      matchesGreenSpaceAdoptionScope &&
       matchesSearch
     );
   });
@@ -728,7 +769,25 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
     return language === 'zh' ? 'pay.taipei支援無卡進出停車場' : 'pay.taipei Cardless Parking Lot';
   }
 
+  if (type === 'green_space_adoption_record') {
+    return language === 'zh' ? '行道樹公園綠地廣場認養' : 'Green Space Adoption';
+  }
+
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';
+}
+
+export function getGreenSpaceAdoptionTargetCategoryLabel(type: GreenSpaceAdoptionTargetCategory | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? { street_tree: '行道樹', park: '公園', large_park: '大型公園', green_space: '綠地', green_belt: '綠帶', plaza: '廣場', planter: '植栽/花台', traffic_island: '安全島', roundabout: '圓環', other: '其他', unknown: '未知' }
+    : { street_tree: 'Street tree', park: 'Park', large_park: 'Large park', green_space: 'Green space', green_belt: 'Green belt', plaza: 'Plaza', planter: 'Planter', traffic_island: 'Traffic island', roundabout: 'Roundabout', other: 'Other', unknown: 'Unknown' };
+  return labels[type ?? 'unknown'];
+}
+
+export function getGreenSpaceAdopterCategoryLabel(type: GreenSpaceAdopterCategory | undefined, language: Language) {
+  const labels = language === 'zh'
+    ? { company: '公司', government_unit: '政府機關', community_organization: '社區組織', foundation_or_association: '基金會/協會', school: '學校', private_individual: '個人', other: '其他', unknown: '未知' }
+    : { company: 'Company', government_unit: 'Government unit', community_organization: 'Community organization', foundation_or_association: 'Foundation / association', school: 'School', private_individual: 'Private individual', other: 'Other', unknown: 'Unknown' };
+  return labels[type ?? 'unknown'];
 }
 
 export function getPayTaipeiParkingSupportStatusLabel(type: PayTaipeiParkingSupportStatus | undefined, language: Language) {

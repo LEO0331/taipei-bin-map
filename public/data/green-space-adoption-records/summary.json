@@ -1,0 +1,1161 @@
+{
+  "totalRecords": 385,
+  "districtCount": 12,
+  "managementUnitCount": 7,
+  "uniqueAdoptionTargetCount": 358,
+  "uniqueAdoptionLocationCount": 383,
+  "uniqueAdopterCount": 338,
+  "streetTreeAdoptionRecordCount": 204,
+  "parkGreenSpaceAdoptionRecordCount": 173,
+  "mostCommonTargetCategory": "street_tree",
+  "districtWithMostRecords": "士林區",
+  "managementUnitWithMostRecords": "園工隊",
+  "topAdopterByRecordCount": "南山人壽保險股份有限公司",
+  "byDistrict": [
+    {
+      "district": "士林區",
+      "count": 60,
+      "uniqueAdopterCount": 52
+    },
+    {
+      "district": "北投區",
+      "count": 54,
+      "uniqueAdopterCount": 50
+    },
+    {
+      "district": "信義區",
+      "count": 50,
+      "uniqueAdopterCount": 43
+    },
+    {
+      "district": "中山區",
+      "count": 49,
+      "uniqueAdopterCount": 46
+    },
+    {
+      "district": "大安區",
+      "count": 46,
+      "uniqueAdopterCount": 46
+    },
+    {
+      "district": "松山區",
+      "count": 35,
+      "uniqueAdopterCount": 32
+    },
+    {
+      "district": "南港區",
+      "count": 22,
+      "uniqueAdopterCount": 22
+    },
+    {
+      "district": "中正區",
+      "count": 21,
+      "uniqueAdopterCount": 21
+    },
+    {
+      "district": "內湖區",
+      "count": 17,
+      "uniqueAdopterCount": 17
+    },
+    {
+      "district": "萬華區",
+      "count": 11,
+      "uniqueAdopterCount": 9
+    },
+    {
+      "district": "大同區",
+      "count": 11,
+      "uniqueAdopterCount": 11
+    },
+    {
+      "district": "文山區",
+      "count": 9,
+      "uniqueAdopterCount": 9
+    }
+  ],
+  "byTargetCategory": [
+    {
+      "targetCategory": "street_tree",
+      "count": 204
+    },
+    {
+      "targetCategory": "green_space",
+      "count": 82
+    },
+    {
+      "targetCategory": "park",
+      "count": 59
+    },
+    {
+      "targetCategory": "green_belt",
+      "count": 19
+    },
+    {
+      "targetCategory": "plaza",
+      "count": 12
+    },
+    {
+      "targetCategory": "planter",
+      "count": 4
+    },
+    {
+      "targetCategory": "other",
+      "count": 3
+    },
+    {
+      "targetCategory": "large_park",
+      "count": 1
+    },
+    {
+      "targetCategory": "roundabout",
+      "count": 1
+    }
+  ],
+  "byRawAttribute": [
+    {
+      "attribute": "行道樹",
+      "count": 204
+    },
+    {
+      "attribute": "綠地",
+      "count": 82
+    },
+    {
+      "attribute": "公園",
+      "count": 59
+    },
+    {
+      "attribute": "綠帶",
+      "count": 19
+    },
+    {
+      "attribute": "廣場",
+      "count": 12
+    },
+    {
+      "attribute": "花台",
+      "count": 4
+    },
+    {
+      "attribute": "槽化島",
+      "count": 3
+    },
+    {
+      "attribute": "大型公園",
+      "count": 1
+    },
+    {
+      "attribute": "圓環",
+      "count": 1
+    }
+  ],
+  "byManagementUnit": [
+    {
+      "managementUnit": "園工隊",
+      "count": 317
+    },
+    {
+      "managementUnit": "陽明所",
+      "count": 21
+    },
+    {
+      "managementUnit": "花卉中心",
+      "count": 17
+    },
+    {
+      "managementUnit": "園藝所",
+      "count": 13
+    },
+    {
+      "managementUnit": "南港所",
+      "count": 11
+    },
+    {
+      "managementUnit": "青年所",
+      "count": 3
+    },
+    {
+      "managementUnit": "圓山所",
+      "count": 3
+    }
+  ],
+  "byAdopter": [
+    {
+      "adopterName": "南山人壽保險股份有限公司",
+      "adopterCategory": "company",
+      "count": 6
+    },
+    {
+      "adopterName": "臺北市北區獅子會",
+      "adopterCategory": "other",
+      "count": 4
+    },
+    {
+      "adopterName": "富邦人壽保險股份有限公司",
+      "adopterCategory": "company",
+      "count": 3
+    },
+    {
+      "adopterName": "元利建設企業股份有限公司",
+      "adopterCategory": "company",
+      "count": 3
+    },
+    {
+      "adopterName": "林O辰",
+      "adopterCategory": "private_individual",
+      "count": 3
+    },
+    {
+      "adopterName": "皇翔建設股份有限公司",
+      "adopterCategory": "company",
+      "count": 3
+    },
+    {
+      "adopterName": "忠泰建設股份有限公司",
+      "adopterCategory": "company",
+      "count": 3
+    },
+    {
+      "adopterName": "臺北市政府都市發展局",
+      "adopterCategory": "government_unit",
+      "count": 3
+    },
+    {
+      "adopterName": "中泰賓館股份有限公司",
+      "adopterCategory": "company",
+      "count": 3
+    },
+    {
+      "adopterName": "吸引力生活事業股份有限公司",
+      "adopterCategory": "company",
+      "count": 3
+    },
+    {
+      "adopterName": "新光人壽保險股份有限公司",
+      "adopterCategory": "company",
+      "count": 3
+    },
+    {
+      "adopterName": "福林里辦公處",
+      "adopterCategory": "community_organization",
+      "count": 3
+    },
+    {
+      "adopterName": "臺北市北投區硫磺谷社區發展協會",
+      "adopterCategory": "foundation_or_association",
+      "count": 3
+    },
+    {
+      "adopterName": "英屬維京群島商太古國際汽車股份有限公司台灣分公司",
+      "adopterCategory": "company",
+      "count": 2
+    },
+    {
+      "adopterName": "潤泰創新國際股份有限公司",
+      "adopterCategory": "company",
+      "count": 2
+    },
+    {
+      "adopterName": "中國建築經理股份有限公司",
+      "adopterCategory": "company",
+      "count": 2
+    },
+    {
+      "adopterName": "陳O儂",
+      "adopterCategory": "private_individual",
+      "count": 2
+    },
+    {
+      "adopterName": "西園醫療社團法人西園醫院",
+      "adopterCategory": "foundation_or_association",
+      "count": 2
+    },
+    {
+      "adopterName": "臺北市萬華區華江社區發展協會",
+      "adopterCategory": "foundation_or_association",
+      "count": 2
+    },
+    {
+      "adopterName": "廖O雄",
+      "adopterCategory": "private_individual",
+      "count": 2
+    },
+    {
+      "adopterName": "繽紛室內設計有限公司",
+      "adopterCategory": "company",
+      "count": 2
+    },
+    {
+      "adopterName": "財團法人台北行天宮",
+      "adopterCategory": "foundation_or_association",
+      "count": 2
+    },
+    {
+      "adopterName": "財團法人台北市錫?環境綠化基金會",
+      "adopterCategory": "foundation_or_association",
+      "count": 2
+    },
+    {
+      "adopterName": "碩河開發股份有限公司",
+      "adopterCategory": "company",
+      "count": 2
+    },
+    {
+      "adopterName": "芝山岩惠濟宮管理委員會",
+      "adopterCategory": "community_organization",
+      "count": 2
+    },
+    {
+      "adopterName": "翠山里辦公處",
+      "adopterCategory": "community_organization",
+      "count": 2
+    },
+    {
+      "adopterName": "臨溪里里長",
+      "adopterCategory": "other",
+      "count": 2
+    },
+    {
+      "adopterName": "康福社區發展協會",
+      "adopterCategory": "foundation_or_association",
+      "count": 2
+    },
+    {
+      "adopterName": "湖山社區發展協會",
+      "adopterCategory": "foundation_or_association",
+      "count": 2
+    },
+    {
+      "adopterName": "恆合建設股份有限公司",
+      "adopterCategory": "company",
+      "count": 2
+    },
+    {
+      "adopterName": "忠泰長虹建設股份有限公司及統創建設股份有限公司",
+      "adopterCategory": "company",
+      "count": 1
+    },
+    {
+      "adopterName": "財團法人大安森林公園之友基金會",
+      "adopterCategory": "foundation_or_association",
+      "count": 1
+    },
+    {
+      "adopterName": "富邦公寓大廈管理維護股份有限公司",
+      "adopterCategory": "company",
+      "count": 1
+    },
+    {
+      "adopterName": "中華電信行動通信分公司",
+      "adopterCategory": "company",
+      "count": 1
+    },
+    {
+      "adopterName": "福泰國際旅館管理顧問股份有限公司",
+      "adopterCategory": "company",
+      "count": 1
+    },
+    {
+      "adopterName": "台灣電力公司核能火力發電工程處",
+      "adopterCategory": "government_unit",
+      "count": 1
+    },
+    {
+      "adopterName": "台新國際商業銀行股份有限公司",
+      "adopterCategory": "company",
+      "count": 1
+    },
+    {
+      "adopterName": "中華電信國際電信分公司",
+      "adopterCategory": "company",
+      "count": 1
+    },
+    {
+      "adopterName": "臺北市私立新民國民小學",
+      "adopterCategory": "other",
+      "count": 1
+    },
+    {
+      "adopterName": "財團法人台北市中國基督教靈糧世界佈道台北靈糧堂",
+      "adopterCategory": "foundation_or_association",
+      "count": 1
+    },
+    {
+      "adopterName": "大安區龍泉里辦公處",
+      "adopterCategory": "community_organization",
+      "count": 1
+    },
+    {
+      "adopterName": "國泰棉紙有限公司",
+      "adopterCategory": "company",
+      "count": 1
+    },
+    {
+      "adopterName": "昇陽敦凰大廈管理委員會",
+      "adopterCategory": "community_organization",
+      "count": 1
+    },
+    {
+      "adopterName": "逸仙名邸管理委員會",
+      "adopterCategory": "community_organization",
+      "count": 1
+    },
+    {
+      "adopterName": "福華大飯店股份有限公司",
+      "adopterCategory": "company",
+      "count": 1
+    },
+    {
+      "adopterName": "太平洋崇光百貨股份有限公司",
+      "adopterCategory": "company",
+      "count": 1
+    },
+    {
+      "adopterName": "敦南摩天大廈管理委員會",
+      "adopterCategory": "community_organization",
+      "count": 1
+    },
+    {
+      "adopterName": "帝寶管理委員會",
+      "adopterCategory": "community_organization",
+      "count": 1
+    },
+    {
+      "adopterName": "杏林大樓公寓大廈管理委員會",
+      "adopterCategory": "community_organization",
+      "count": 1
+    },
+    {
+      "adopterName": "1邸管理委員會",
+      "adopterCategory": "community_organization",
+      "count": 1
+    }
+  ],
+  "byAdopterCategory": [
+    {
+      "adopterCategory": "company",
+      "count": 177
+    },
+    {
+      "adopterCategory": "community_organization",
+      "count": 93
+    },
+    {
+      "adopterCategory": "foundation_or_association",
+      "count": 40
+    },
+    {
+      "adopterCategory": "private_individual",
+      "count": 38
+    },
+    {
+      "adopterCategory": "other",
+      "count": 24
+    },
+    {
+      "adopterCategory": "government_unit",
+      "count": 7
+    },
+    {
+      "adopterCategory": "school",
+      "count": 6
+    }
+  ],
+  "byRoadName": [
+    {
+      "roadName": "中山北路",
+      "count": 17
+    },
+    {
+      "roadName": "承德路",
+      "count": 16
+    },
+    {
+      "roadName": "信義路",
+      "count": 15
+    },
+    {
+      "roadName": "敦化南路",
+      "count": 14
+    },
+    {
+      "roadName": "忠孝東路",
+      "count": 10
+    },
+    {
+      "roadName": "仁愛路",
+      "count": 9
+    },
+    {
+      "roadName": "大業路",
+      "count": 8
+    },
+    {
+      "roadName": "民生東路",
+      "count": 7
+    },
+    {
+      "roadName": "松高路",
+      "count": 7
+    },
+    {
+      "roadName": "羅斯福路",
+      "count": 6
+    },
+    {
+      "roadName": "敦化北路",
+      "count": 6
+    },
+    {
+      "roadName": "南京東路",
+      "count": 5
+    },
+    {
+      "roadName": "民權東路",
+      "count": 5
+    },
+    {
+      "roadName": "敬業三路",
+      "count": 5
+    },
+    {
+      "roadName": "重慶北路",
+      "count": 5
+    },
+    {
+      "roadName": "松智路",
+      "count": 5
+    },
+    {
+      "roadName": "松仁路",
+      "count": 5
+    },
+    {
+      "roadName": "和平東路",
+      "count": 4
+    },
+    {
+      "roadName": "辛亥路",
+      "count": 4
+    },
+    {
+      "roadName": "北投區承德路",
+      "count": 4
+    },
+    {
+      "roadName": "金山南路",
+      "count": 3
+    },
+    {
+      "roadName": "建國南路",
+      "count": 3
+    },
+    {
+      "roadName": "富錦街",
+      "count": 3
+    },
+    {
+      "roadName": "市民大道",
+      "count": 3
+    },
+    {
+      "roadName": "林森北路",
+      "count": 3
+    },
+    {
+      "roadName": "建國北路",
+      "count": 3
+    },
+    {
+      "roadName": "明水路",
+      "count": 3
+    },
+    {
+      "roadName": "信義區忠孝東路",
+      "count": 3
+    },
+    {
+      "roadName": "三重路",
+      "count": 3
+    },
+    {
+      "roadName": "重陽路",
+      "count": 3
+    },
+    {
+      "roadName": "瑞光路",
+      "count": 3
+    },
+    {
+      "roadName": "行善路",
+      "count": 3
+    },
+    {
+      "roadName": "臺北市士林區福林路",
+      "count": 3
+    },
+    {
+      "roadName": "基河路",
+      "count": 3
+    },
+    {
+      "roadName": "新生南路",
+      "count": 2
+    },
+    {
+      "roadName": "復興南路",
+      "count": 2
+    },
+    {
+      "roadName": "愛國東路",
+      "count": 2
+    },
+    {
+      "roadName": "光復南路",
+      "count": 2
+    },
+    {
+      "roadName": "安和路",
+      "count": 2
+    },
+    {
+      "roadName": "和平西路",
+      "count": 2
+    },
+    {
+      "roadName": "西園路",
+      "count": 2
+    },
+    {
+      "roadName": "長順街",
+      "count": 2
+    },
+    {
+      "roadName": "撫遠街",
+      "count": 2
+    },
+    {
+      "roadName": "塔悠路",
+      "count": 2
+    },
+    {
+      "roadName": "新中街",
+      "count": 2
+    },
+    {
+      "roadName": "長安東路",
+      "count": 2
+    },
+    {
+      "roadName": "長春路",
+      "count": 2
+    },
+    {
+      "roadName": "中山區松江路",
+      "count": 2
+    },
+    {
+      "roadName": "北安路",
+      "count": 2
+    },
+    {
+      "roadName": "中山區樂群二路",
+      "count": 2
+    },
+    {
+      "roadName": "樂群二路",
+      "count": 2
+    },
+    {
+      "roadName": "松壽路",
+      "count": 2
+    },
+    {
+      "roadName": "松勇路",
+      "count": 2
+    },
+    {
+      "roadName": "木柵公園",
+      "count": 2
+    },
+    {
+      "roadName": "內湖區瑞光路",
+      "count": 2
+    },
+    {
+      "roadName": "臺北市士林區中社路",
+      "count": 2
+    },
+    {
+      "roadName": "天母北路",
+      "count": 2
+    },
+    {
+      "roadName": "北投區育仁路",
+      "count": 2
+    },
+    {
+      "roadName": "石牌路",
+      "count": 2
+    },
+    {
+      "roadName": "自強街",
+      "count": 2
+    },
+    {
+      "roadName": "大度路",
+      "count": 2
+    },
+    {
+      "roadName": "大安區建國南路",
+      "count": 1
+    },
+    {
+      "roadName": "長興街",
+      "count": 1
+    },
+    {
+      "roadName": "基隆路",
+      "count": 1
+    },
+    {
+      "roadName": "大安150公園",
+      "count": 1
+    },
+    {
+      "roadName": "公園內音樂台旁福德宮前方園路",
+      "count": 1
+    },
+    {
+      "roadName": "汀州路",
+      "count": 1
+    },
+    {
+      "roadName": "林森南路",
+      "count": 1
+    },
+    {
+      "roadName": "博愛路",
+      "count": 1
+    },
+    {
+      "roadName": "中山南路",
+      "count": 1
+    },
+    {
+      "roadName": "青年路",
+      "count": 1
+    },
+    {
+      "roadName": "本市萬華區騰雲里行政區域內水源路",
+      "count": 1
+    },
+    {
+      "roadName": "本市萬華區西園路",
+      "count": 1
+    },
+    {
+      "roadName": "環河南路",
+      "count": 1
+    },
+    {
+      "roadName": "萬華區長順街",
+      "count": 1
+    },
+    {
+      "roadName": "中華路",
+      "count": 1
+    },
+    {
+      "roadName": "興安街",
+      "count": 1
+    },
+    {
+      "roadName": "復興北路",
+      "count": 1
+    },
+    {
+      "roadName": "松山區三民路",
+      "count": 1
+    },
+    {
+      "roadName": "松山區八德路",
+      "count": 1
+    },
+    {
+      "roadName": "松山區富錦街",
+      "count": 1
+    },
+    {
+      "roadName": "八德路",
+      "count": 1
+    },
+    {
+      "roadName": "三民路",
+      "count": 1
+    },
+    {
+      "roadName": "龍江路",
+      "count": 1
+    },
+    {
+      "roadName": "新生北路",
+      "count": 1
+    },
+    {
+      "roadName": "中山區北安路",
+      "count": 1
+    },
+    {
+      "roadName": "民權西路",
+      "count": 1
+    },
+    {
+      "roadName": "中山區敬業二路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市中山區敬業三路",
+      "count": 1
+    },
+    {
+      "roadName": "堤頂大道",
+      "count": 1
+    },
+    {
+      "roadName": "臺北車站特定專用區交九用地週邊承德路",
+      "count": 1
+    },
+    {
+      "roadName": "延平北路",
+      "count": 1
+    },
+    {
+      "roadName": "敦煌路",
+      "count": 1
+    },
+    {
+      "roadName": "迪化街",
+      "count": 1
+    },
+    {
+      "roadName": "鄭州路",
+      "count": 1
+    },
+    {
+      "roadName": "哈密街",
+      "count": 1
+    },
+    {
+      "roadName": "松信路",
+      "count": 1
+    },
+    {
+      "roadName": "市府路",
+      "count": 1
+    },
+    {
+      "roadName": "信義區信義路",
+      "count": 1
+    },
+    {
+      "roadName": "信義區松山路",
+      "count": 1
+    },
+    {
+      "roadName": "松廉路",
+      "count": 1
+    },
+    {
+      "roadName": "永吉路",
+      "count": 1
+    },
+    {
+      "roadName": "菸廠路",
+      "count": 1
+    },
+    {
+      "roadName": "大道路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市松勤街",
+      "count": 1
+    },
+    {
+      "roadName": "景隆街",
+      "count": 1
+    },
+    {
+      "roadName": "木柵路",
+      "count": 1
+    },
+    {
+      "roadName": "指南路",
+      "count": 1
+    },
+    {
+      "roadName": "溪州街",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市南港區經貿二路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市南港區研究院路",
+      "count": 1
+    },
+    {
+      "roadName": "南深橋",
+      "count": 1
+    },
+    {
+      "roadName": "松河街",
+      "count": 1
+    },
+    {
+      "roadName": "南港區經貿二路",
+      "count": 1
+    },
+    {
+      "roadName": "成福路",
+      "count": 1
+    },
+    {
+      "roadName": "南港區重陽路",
+      "count": 1
+    },
+    {
+      "roadName": "港東街",
+      "count": 1
+    },
+    {
+      "roadName": "經貿一路",
+      "count": 1
+    },
+    {
+      "roadName": "南港區東明綠地（南港路",
+      "count": 1
+    },
+    {
+      "roadName": "南港路",
+      "count": 1
+    },
+    {
+      "roadName": "成功路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市內湖區基湖路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市內湖區成功路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市內湖區港墘里瑞光路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市內湖區瑞光路",
+      "count": 1
+    },
+    {
+      "roadName": "新富街",
+      "count": 1
+    },
+    {
+      "roadName": "舊宗路",
+      "count": 1
+    },
+    {
+      "roadName": "新湖一路",
+      "count": 1
+    },
+    {
+      "roadName": "金龍路",
+      "count": 1
+    },
+    {
+      "roadName": "士林後港8街",
+      "count": 1
+    },
+    {
+      "roadName": "天和公園",
+      "count": 1
+    },
+    {
+      "roadName": "芝山公園",
+      "count": 1
+    },
+    {
+      "roadName": "前港街",
+      "count": 1
+    },
+    {
+      "roadName": "雨農路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市士林區中山北路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市士林區忠勇街",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市士林區至善路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市士林區故宮路",
+      "count": 1
+    },
+    {
+      "roadName": "原為衛理公園",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市士林區臺北市士林區至善路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市士林區前山公園",
+      "count": 1
+    },
+    {
+      "roadName": "至善路",
+      "count": 1
+    },
+    {
+      "roadName": "天母東路",
+      "count": 1
+    },
+    {
+      "roadName": "至誠路",
+      "count": 1
+    },
+    {
+      "roadName": "士林區臨溪路",
+      "count": 1
+    },
+    {
+      "roadName": "後港街",
+      "count": 1
+    },
+    {
+      "roadName": "雨聲街",
+      "count": 1
+    },
+    {
+      "roadName": "福林路",
+      "count": 1
+    },
+    {
+      "roadName": "中正路",
+      "count": 1
+    },
+    {
+      "roadName": "倫等街",
+      "count": 1
+    },
+    {
+      "roadName": "士林區承德路",
+      "count": 1
+    },
+    {
+      "roadName": "福華公園",
+      "count": 1
+    },
+    {
+      "roadName": "天母西路",
+      "count": 1
+    },
+    {
+      "roadName": "榮華公園",
+      "count": 1
+    },
+    {
+      "roadName": "北投區明德路",
+      "count": 1
+    },
+    {
+      "roadName": "北投區三合街",
+      "count": 1
+    },
+    {
+      "roadName": "開明公園",
+      "count": 1
+    },
+    {
+      "roadName": "北投區公館路",
+      "count": 1
+    },
+    {
+      "roadName": "石牌行義路",
+      "count": 1
+    },
+    {
+      "roadName": "北投區崇仁路",
+      "count": 1
+    },
+    {
+      "roadName": "致遠一路",
+      "count": 1
+    },
+    {
+      "roadName": "北投區溫泉路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市北投區陽明公園",
+      "count": 1
+    },
+    {
+      "roadName": "北投區文林北路",
+      "count": 1
+    },
+    {
+      "roadName": "文承路",
+      "count": 1
+    },
+    {
+      "roadName": "福善路",
+      "count": 1
+    },
+    {
+      "roadName": "北投區聖景路",
+      "count": 1
+    },
+    {
+      "roadName": "北投區行義路",
+      "count": 1
+    },
+    {
+      "roadName": "臺北市北投區大業路",
+      "count": 1
+    },
+    {
+      "roadName": "北投區義理街",
+      "count": 1
+    },
+    {
+      "roadName": "磺港路",
+      "count": 1
+    }
+  ],
+  "dataQuality": {
+    "missingSequenceNumberCount": 0,
+    "missingDistrictCount": 0,
+    "missingDistrictCodeCount": 0,
+    "missingTargetNameCount": 0,
+    "missingAttributeCount": 0,
+    "missingLocationCount": 0,
+    "missingAdopterNameCount": 0,
+    "rangeOrBoundaryTextCount": 71,
+    "intersectionTextCount": 58
+  }
+}

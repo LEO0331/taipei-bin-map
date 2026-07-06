@@ -10,6 +10,7 @@ import {
   ElectricMotorcycleChargingStationFilters,
   FamilyFriendlyToiletFilters,
   GasLpgStationFilters,
+  GreenSpaceAdoptionFilters,
   LactationRoomFilters,
   MotorcycleInspectionStationFilters,
   PayTaipeiParkingFilters,
@@ -40,6 +41,8 @@ import type {
   FacilityType,
   FacilityWithDistance,
   FuelStationStatus,
+  GreenSpaceAdopterCategory,
+  GreenSpaceAdoptionTargetCategory,
   Language,
   ManagingUnitCategory,
   OpeningHoursType,
@@ -206,6 +209,15 @@ function App() {
   const [payTaipeiParkingOperatorAddress, setPayTaipeiParkingOperatorAddress] = useState(false);
   const [payTaipeiParkingLocationPrecision, setPayTaipeiParkingLocationPrecision] = useState<PayTaipeiParkingLocationPrecision | ''>('');
   const [payTaipeiParkingGeocodingStatus, setPayTaipeiParkingGeocodingStatus] = useState<PayTaipeiParkingGeocodingStatus | ''>('');
+  const [greenSpaceManagementUnit, setGreenSpaceManagementUnit] = useState('');
+  const [greenSpaceDistrictCode, setGreenSpaceDistrictCode] = useState('');
+  const [greenSpaceTargetAttribute, setGreenSpaceTargetAttribute] = useState('');
+  const [greenSpaceTargetCategory, setGreenSpaceTargetCategory] = useState<GreenSpaceAdoptionTargetCategory | ''>('');
+  const [greenSpaceAdopterName, setGreenSpaceAdopterName] = useState('');
+  const [greenSpaceAdopterCategory, setGreenSpaceAdopterCategory] = useState<GreenSpaceAdopterCategory | ''>('');
+  const [greenSpaceRoadName, setGreenSpaceRoadName] = useState('');
+  const [greenSpaceHasRangeOrBoundary, setGreenSpaceHasRangeOrBoundary] = useState(false);
+  const [greenSpaceHasIntersection, setGreenSpaceHasIntersection] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -231,6 +243,7 @@ function App() {
   const includesCleanNeedleServicePoints = selectedTypes.includes('clean_needle_exchange_service_point');
   const includesProtectedTrees = selectedTypes.includes('protected_tree');
   const includesPayTaipeiParking = selectedTypes.includes('pay_taipei_cardless_parking_lot');
+  const includesGreenSpaceAdoption = selectedTypes.includes('green_space_adoption_record');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -443,6 +456,26 @@ function App() {
     () => [...new Set(facilities.filter((facility) => facility.type === 'pay_taipei_cardless_parking_lot').map((facility) => facility.roadName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
     [facilities],
   );
+  const greenSpaceManagementUnits = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'green_space_adoption_record').map((facility) => facility.managementUnit).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const greenSpaceDistrictCodes = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'green_space_adoption_record').map((facility) => facility.districtCode).filter(Boolean) as string[])].sort(),
+    [facilities],
+  );
+  const greenSpaceTargetAttributes = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'green_space_adoption_record').map((facility) => facility.adoptionTargetAttribute).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const greenSpaceAdopters = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'green_space_adoption_record').map((facility) => facility.adopterName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
+  const greenSpaceRoadNames = useMemo(
+    () => [...new Set(facilities.filter((facility) => facility.type === 'green_space_adoption_record').map((facility) => facility.roadName).filter(Boolean) as string[])].sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+    [facilities],
+  );
 
   const filteredFacilities = useMemo(
     () =>
@@ -557,6 +590,15 @@ function App() {
         payTaipeiParkingOperatorAddress,
         payTaipeiParkingLocationPrecision,
         payTaipeiParkingGeocodingStatus,
+        greenSpaceManagementUnit,
+        greenSpaceDistrictCode,
+        greenSpaceTargetAttribute,
+        greenSpaceTargetCategory,
+        greenSpaceAdopterName,
+        greenSpaceAdopterCategory,
+        greenSpaceRoadName,
+        greenSpaceHasRangeOrBoundary,
+        greenSpaceHasIntersection,
       }),
     [
       district,
@@ -670,6 +712,15 @@ function App() {
       payTaipeiParkingOperatorAddress,
       payTaipeiParkingLocationPrecision,
       payTaipeiParkingGeocodingStatus,
+      greenSpaceManagementUnit,
+      greenSpaceDistrictCode,
+      greenSpaceTargetAttribute,
+      greenSpaceTargetCategory,
+      greenSpaceAdopterName,
+      greenSpaceAdopterCategory,
+      greenSpaceRoadName,
+      greenSpaceHasRangeOrBoundary,
+      greenSpaceHasIntersection,
     ],
   );
 
@@ -778,6 +829,18 @@ function App() {
       };
     });
   }, [displayedFacilities]);
+  const greenSpaceAdoptionDistrictSummaries = useMemo(() => {
+    const records = displayedFacilities.filter((facility) => facility.type === 'green_space_adoption_record');
+    return [...new Set(records.map((facility) => facility.district).filter(Boolean))].map((district) => {
+      const rows = records.filter((facility) => facility.district === district);
+      return {
+        district,
+        count: rows.length,
+        streetTreeCount: rows.filter((facility) => facility.adoptionTargetCategory === 'street_tree').length,
+        parkGreenSpaceCount: rows.filter((facility) => ['park', 'large_park', 'green_space', 'green_belt', 'plaza'].includes(facility.adoptionTargetCategory ?? '')).length,
+      };
+    });
+  }, [displayedFacilities]);
   const renderableFacilities = displayedFacilities.filter(
     (facility) =>
       Number.isFinite(facility.latitude) &&
@@ -811,6 +874,7 @@ function App() {
   const isCleanNeedleOnly = selectedTypes.length === 1 && includesCleanNeedleServicePoints;
   const isProtectedTreeOnly = selectedTypes.length === 1 && includesProtectedTrees;
   const isPayTaipeiParkingOnly = selectedTypes.length === 1 && includesPayTaipeiParking;
+  const isGreenSpaceAdoptionOnly = selectedTypes.length === 1 && includesGreenSpaceAdoption;
   const isSpecializedToiletOnly = isRiversideOnly || isFamilyToiletOnly;
   const listHeading = nearbyFacilities
     ? t.nearestFacilities
@@ -836,6 +900,8 @@ function App() {
                           ? t.protectedTreeDirectory
                           : isPayTaipeiParkingOnly
                             ? t.payTaipeiParkingDirectory
+                            : isGreenSpaceAdoptionOnly
+                              ? t.greenSpaceAdoptionDirectory
                 : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
     if (!report?.generatedAt) {
@@ -1178,6 +1244,8 @@ function App() {
                                 ? t.protectedTreeSearchPlaceholder
                                 : isPayTaipeiParkingOnly
                                   ? t.payTaipeiParkingSearchPlaceholder
+                                  : isGreenSpaceAdoptionOnly
+                                    ? t.greenSpaceAdoptionSearchPlaceholder
               : isSpecializedToiletOnly
                 ? t.toiletSearchPlaceholder
                 : t.searchPlaceholder}
@@ -1592,6 +1660,43 @@ function App() {
               }}
             />
           )}
+          {hasFocusedTypes && includesGreenSpaceAdoption && (
+            <GreenSpaceAdoptionFilters
+              managementUnits={greenSpaceManagementUnits}
+              districtCodes={greenSpaceDistrictCodes}
+              attributes={greenSpaceTargetAttributes}
+              adopters={greenSpaceAdopters}
+              roadNames={greenSpaceRoadNames}
+              values={{
+                managementUnit: greenSpaceManagementUnit,
+                districtCode: greenSpaceDistrictCode,
+                targetAttribute: greenSpaceTargetAttribute,
+                targetCategory: greenSpaceTargetCategory,
+                adopterName: greenSpaceAdopterName,
+                adopterCategory: greenSpaceAdopterCategory,
+                roadName: greenSpaceRoadName,
+                hasRangeOrBoundary: greenSpaceHasRangeOrBoundary,
+                hasIntersection: greenSpaceHasIntersection,
+              }}
+              language={language}
+              t={t}
+              onSelectChange={(name, value) => {
+                if (name === 'managementUnit') setGreenSpaceManagementUnit(value);
+                if (name === 'districtCode') setGreenSpaceDistrictCode(value);
+                if (name === 'targetAttribute') setGreenSpaceTargetAttribute(value);
+                if (name === 'targetCategory') setGreenSpaceTargetCategory(value as GreenSpaceAdoptionTargetCategory | '');
+                if (name === 'adopterName') setGreenSpaceAdopterName(value);
+                if (name === 'adopterCategory') setGreenSpaceAdopterCategory(value as GreenSpaceAdopterCategory | '');
+                if (name === 'roadName') setGreenSpaceRoadName(value);
+                setNearbyFacilities(null);
+              }}
+              onBooleanChange={(name, value) => {
+                if (name === 'rangeOrBoundary') setGreenSpaceHasRangeOrBoundary(value);
+                if (name === 'intersection') setGreenSpaceHasIntersection(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
           {isSpecializedToiletOnly && (
             <label className="nearby-radius">
               <span>{t.nearbyRadius}</span>
@@ -1713,6 +1818,8 @@ function App() {
                           ? t.viewCleanNeedleServicePointsByNearbyDistrict
                           : isPayTaipeiParkingOnly
                             ? t.viewPayTaipeiParkingByNearbyDistrict
+                            : isGreenSpaceAdoptionOnly
+                              ? t.viewGreenSpaceAdoptionByNearbyDistrict
                       : isGasLpgOnly
                         ? t.showNearbyGasLpgStations
                         : isDesignatedSmokingAreaOnly
@@ -1750,6 +1857,8 @@ function App() {
                           ? t.cleanNeedleDistanceUnavailableNotice
                           : includesPayTaipeiParking
                             ? t.payTaipeiParkingDistanceUnavailableNotice
+                            : includesGreenSpaceAdoption
+                              ? t.greenSpaceAdoptionDistanceUnavailableNotice
                   : t.lactationRoomDistanceUnavailableNotice
                 : t.unableToGetLocation}
           </p>
@@ -1763,6 +1872,7 @@ function App() {
         {includesCleanNeedleServicePoints && <p className="status-message">{t.cleanNeedleMapNotice}</p>}
         {includesProtectedTrees && <p className="status-message">{t.protectedTreeMapNotice}</p>}
         {includesPayTaipeiParking && <p className="status-message">{t.payTaipeiParkingMapNotice}</p>}
+        {includesGreenSpaceAdoption && <p className="status-message">{t.greenSpaceAdoptionMapNotice}</p>}
         {isLoadingFacilities ? (
           <p className="status-message">{t.loading}</p>
         ) : (
@@ -1779,6 +1889,7 @@ function App() {
                 communityRecyclingDistrictSummaries={communityRecyclingDistrictSummaries}
                 cleanNeedleDistrictSummaries={cleanNeedleDistrictSummaries}
                 payTaipeiParkingDistrictSummaries={payTaipeiParkingDistrictSummaries}
+                greenSpaceAdoptionDistrictSummaries={greenSpaceAdoptionDistrictSummaries}
                 t={t}
                 userLocation={userLocation}
               />

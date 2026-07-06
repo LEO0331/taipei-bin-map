@@ -1,9 +1,10 @@
 {
-  "totalFacilityRecords": 16458,
+  "totalFacilityRecords": 16843,
   "communityRecyclingStationCount": 389,
   "cleanNeedleServicePointCount": 88,
   "protectedTreeCount": 3874,
   "payTaipeiCardlessParkingLotCount": 227,
+  "greenSpaceAdoptionRecordCount": 385,
   "timedCollectionPointCount": 30,
   "usedClothingRecyclingBoxCount": 1184
 }

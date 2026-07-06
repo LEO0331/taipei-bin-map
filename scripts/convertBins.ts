@@ -21,6 +21,7 @@ import { loadCommunityRecyclingStations } from './convertCommunityRecyclingStati
 import { loadCleanNeedleExchangeServicePoints } from './convertCleanNeedleExchangeServicePoints';
 import { loadProtectedTrees } from './convertProtectedTrees';
 import { loadPayTaipeiCardlessParkingLots } from './convertPayTaipeiCardlessParkingLots';
+import { loadGreenSpaceAdoptionRecords } from './convertGreenSpaceAdoptionRecords';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -169,6 +170,8 @@ const PROTECTED_TREES_OUTPUT = resolve(options.outputDir, 'protected-trees.json'
 const PROTECTED_TREE_SUMMARY_OUTPUT = resolve(options.outputDir, 'protected-tree-summary.json');
 const PAY_TAIPEI_PARKING_OUTPUT = resolve(options.outputDir, 'pay-taipei-cardless-parking-lots.json');
 const PAY_TAIPEI_PARKING_SUMMARY_OUTPUT = resolve(options.outputDir, 'pay-taipei-cardless-parking-lot-summary.json');
+const GREEN_SPACE_ADOPTION_OUTPUT = resolve(options.outputDir, 'green-space-adoption-records/records.json');
+const GREEN_SPACE_ADOPTION_SUMMARY_OUTPUT = resolve(options.outputDir, 'green-space-adoption-records/summary.json');
 const PUBLIC_AMENITIES_SUMMARY_OUTPUT = resolve(options.outputDir, 'public-amenities-summary.json');
 const DRINKING_FOUNTAINS_OUTPUT = resolve(options.outputDir, 'drinking-fountains.json');
 const TIMED_COLLECTION_OUTPUT = resolve(options.outputDir, 'timed-collection-points.json');
@@ -446,6 +449,7 @@ const communityRecyclingStations = loadCommunityRecyclingStations();
 const cleanNeedleServicePoints = loadCleanNeedleExchangeServicePoints();
 const protectedTrees = loadProtectedTrees();
 const payTaipeiParkingLots = loadPayTaipeiCardlessParkingLots();
+const greenSpaceAdoptionRecords = loadGreenSpaceAdoptionRecords();
 
 const facilities = [
   ...pedestrian.facilities,
@@ -468,6 +472,7 @@ const facilities = [
   ...cleanNeedleServicePoints.facilities,
   ...protectedTrees.facilities,
   ...payTaipeiParkingLots.facilities,
+  ...greenSpaceAdoptionRecords.facilities,
 ];
 const report: ConversionReport = {
   generatedAt: new Date().toISOString(),
@@ -493,6 +498,7 @@ const report: ConversionReport = {
     cleanNeedleServicePoints.report,
     protectedTrees.report,
     payTaipeiParkingLots.report,
+    greenSpaceAdoptionRecords.report,
   ],
 };
 
@@ -554,12 +560,15 @@ writeJson(PROTECTED_TREES_OUTPUT, protectedTrees.facilities);
 writeJson(PROTECTED_TREE_SUMMARY_OUTPUT, protectedTrees.summary);
 writeJson(PAY_TAIPEI_PARKING_OUTPUT, payTaipeiParkingLots.facilities);
 writeJson(PAY_TAIPEI_PARKING_SUMMARY_OUTPUT, payTaipeiParkingLots.summary);
+writeJson(GREEN_SPACE_ADOPTION_OUTPUT, greenSpaceAdoptionRecords.facilities);
+writeJson(GREEN_SPACE_ADOPTION_SUMMARY_OUTPUT, greenSpaceAdoptionRecords.summary);
 writeJson(PUBLIC_AMENITIES_SUMMARY_OUTPUT, {
   totalFacilityRecords: facilities.length,
   communityRecyclingStationCount: communityRecyclingStations.facilities.length,
   cleanNeedleServicePointCount: cleanNeedleServicePoints.facilities.length,
   protectedTreeCount: protectedTrees.facilities.length,
   payTaipeiCardlessParkingLotCount: payTaipeiParkingLots.facilities.length,
+  greenSpaceAdoptionRecordCount: greenSpaceAdoptionRecords.facilities.length,
   timedCollectionPointCount: timedCollectionPoints.facilities.length,
   usedClothingRecyclingBoxCount: usedClothingRecyclingBoxes.facilities.length,
 });
@@ -587,4 +596,5 @@ console.log(`Wrote ${communityRecyclingStations.facilities.length} community rec
 console.log(`Wrote ${cleanNeedleServicePoints.facilities.length} clean needle exchange service point records to ${CLEAN_NEEDLE_OUTPUT}`);
 console.log(`Wrote ${protectedTrees.facilities.length} protected tree records to ${PROTECTED_TREES_OUTPUT}`);
 console.log(`Wrote ${payTaipeiParkingLots.facilities.length} pay.taipei cardless parking lot records to ${PAY_TAIPEI_PARKING_OUTPUT}`);
+console.log(`Wrote ${greenSpaceAdoptionRecords.facilities.length} green-space adoption records to ${GREEN_SPACE_ADOPTION_OUTPUT}`);
 console.log(`Wrote conversion report to ${REPORT_OUTPUT}`);

@@ -172,6 +172,16 @@ npm run convert:facilities
 
 The converter preserves parking lot ID, operator ID, operator, parking lot name, support status, phone, postal code, address, and note fields. The source has addresses but no official coordinates, so records stay address-only with district summary bubbles and Google Maps lookup links. The app does not claim real-time parking availability, operating status, parking fees, payment success, cardless entry/exit success, exact entrance location, navigation advice, legal parking determination, consumer advice, or official endorsement.
 
+The green-space adoption layer uses the Big5/CP950 `臺北市行道樹公園綠地廣場認養人資料.csv` resource:
+
+```bash
+npm run data:fetch:green-space-adoption -- --input /path/to/臺北市行道樹公園綠地廣場認養人資料.csv
+npm run data:convert:green-space-adoption
+npm run convert:facilities
+```
+
+The converter preserves sequence number, management unit, district, district code, adoption target, target attribute, location text, parsed road, and adopter name. The source has location descriptions but no official coordinates, so records stay address-only with district summary bubbles and Google Maps lookup links. The app does not claim land or facility ownership, complete maintenance responsibility, real-time maintenance status, plant health, public safety judgment, facility boundaries, legal advice, official ranking, or official recommendation.
+
 The gas/LPG station layer uses the UTF-8-SIG `臺北市加油站及加氣站分布圖.csv` resource:
 
 ```bash
@@ -265,6 +275,8 @@ public/data/electric-motorcycle-charging-station-locations.json
 public/data/commercial-ev-charging-swap-stations.json
 public/data/commercial-ev-charging-swap-station-summary.json
 public/data/commercial-ev-charging-swap-station-locations.json
+public/data/green-space-adoption-records/records.json
+public/data/green-space-adoption-records/summary.json
 public/data/gas-lpg-stations.json
 public/data/gas-lpg-station-summary.json
 public/data/designated-smoking-areas.json
@@ -320,7 +332,7 @@ More detail: [docs/deployment.en.md](docs/deployment.en.md)
 
 ### Data Notice
 
-Public toilets, riverside toilets, family-friendly toilets, recycling-related facilities, clean needle service points, protected trees, motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, pay.taipei cardless parking lots, gas/LPG stations, designated smoking areas, and announced no-smoking places remain separate source-specific layers. Equipment counts, award fields, business hours, cleanliness, maintenance, opening status, accepted recyclable items, recycling rules, collection schedules, service availability, clean needle inventory, medical needs, tree health, hazard/risk status, pruning/transplant permits, land ownership, charger availability, parking availability, parking fees, payment support, entrance precision, fuel/LPG availability, pricing, payment methods, membership requirements, battery inventory, legal boundaries, and public-safety meanings are public-data snapshots rather than real-time guarantees. Verify details with official, operator, venue, managing-unit, service-provider, station, community-management, competent-authority, or on-site notices.
+Public toilets, riverside toilets, family-friendly toilets, recycling-related facilities, clean needle service points, protected trees, green-space adoption records, motorcycle inspection stations, electric motorcycle charging stations, commercial EV charging/battery-swap stations, pay.taipei cardless parking lots, gas/LPG stations, designated smoking areas, and announced no-smoking places remain separate source-specific layers. Equipment counts, award fields, business hours, cleanliness, maintenance, opening status, accepted recyclable items, recycling rules, collection schedules, service availability, clean needle inventory, medical needs, tree health, plant health, hazard/risk status, pruning/transplant permits, land ownership, facility ownership, maintenance responsibility, charger availability, parking availability, parking fees, payment support, entrance precision, fuel/LPG availability, pricing, payment methods, membership requirements, battery inventory, legal boundaries, and public-safety meanings are public-data snapshots rather than real-time guarantees. Verify details with official, operator, venue, managing-unit, service-provider, station, community-management, competent-authority, or on-site notices.
 
 ## 中文
 

@@ -231,6 +231,14 @@
       "dependencies": ["feat-028"],
       "status": "done",
       "evidence": "npm run convert:facilities generated 16458 facilities, including 227 pay.taipei cardless parking lot records. npm test passed 53 unit/converter tests, npm run build passed, and npm run test:e2e passed 60 desktop/mobile Playwright tests on 2026-07-03."
+    },
+    {
+      "id": "feat-030",
+      "name": "Green-space adoption records expansion",
+      "description": "Add Taipei street tree, park, green space, and plaza adoption records as an address-only public-environment layer with Big5/CP950 conversion, management/district/target/adopter/road filters, district summaries, address-based map links, cache support, and no ownership, real-time maintenance, plant-health, safety, boundary, legal, ranking, or recommendation claims.",
+      "dependencies": ["feat-029"],
+      "status": "done",
+      "evidence": "npm run data:fetch:green-space-adoption copied the source CSV, npm run convert:facilities generated 16843 facilities including 385 green-space adoption records, npm test passed 55 unit/converter tests, npm run build passed, and npm run test:e2e passed 62 desktop/mobile Playwright tests on 2026-07-06."
     }
   ]
 }

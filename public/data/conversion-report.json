@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-03T02:09:58.387Z",
-  "totalValidRows": 16458,
+  "generatedAt": "2026-07-06T08:10:04.457Z",
+  "totalValidRows": 16843,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -2668,6 +2668,15 @@
         }
       ],
       "postalCodeWarnings": []
+    },
+    {
+      "sourceFilename": "臺北市行道樹公園綠地廣場認養人資料.csv",
+      "totalRows": 385,
+      "validRows": 385,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": []
     }
   ]
 }

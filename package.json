@@ -44,6 +44,8 @@
     "data:convert:protected-trees": "tsx scripts/convertProtectedTrees.ts",
     "data:fetch:pay-taipei-parking": "tsx scripts/fetchPayTaipeiCardlessParkingLots.ts",
     "data:convert:pay-taipei-parking": "tsx scripts/convertPayTaipeiCardlessParkingLots.ts",
+    "data:fetch:green-space-adoption": "tsx scripts/fetchGreenSpaceAdoptionRecords.ts",
+    "data:convert:green-space-adoption": "tsx scripts/convertGreenSpaceAdoptionRecords.ts && tsx scripts/buildGreenSpaceAdoptionSummary.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

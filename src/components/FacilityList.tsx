@@ -12,6 +12,8 @@ import {
   getFacilityTypeLabel,
   getFuelStationServiceTypeLabel,
   getFuelStationStatusLabel,
+  getGreenSpaceAdopterCategoryLabel,
+  getGreenSpaceAdoptionTargetCategoryLabel,
   getOpeningHoursTypeLabel,
   getPayTaipeiParkingGeocodingStatusLabel,
   getPayTaipeiParkingLocationPrecisionLabel,
@@ -289,6 +291,20 @@ export function FacilityList({
                     facility.roadName ? `${t.roadName}: ${facility.roadName}` : '',
                     facility.payTaipeiParkingLocationPrecision ? `${t.locationPrecision}: ${getPayTaipeiParkingLocationPrecisionLabel(facility.payTaipeiParkingLocationPrecision, language)}` : '',
                     facility.payTaipeiParkingGeocodingStatus ? `${t.geocodingStatus}: ${getPayTaipeiParkingGeocodingStatusLabel(facility.payTaipeiParkingGeocodingStatus, language)}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </small>
+              )}
+              {facility.type === 'green_space_adoption_record' && (
+                <small>
+                  {[
+                    facility.sourceSequenceNumber ? `${t.sourceSequenceNumber}: ${facility.sourceSequenceNumber}` : '',
+                    facility.managementUnit ? `${t.managementUnit}: ${facility.managementUnit}` : '',
+                    facility.districtCode ? `${t.districtCode}: ${facility.districtCode}` : '',
+                    facility.adoptionTargetAttribute ? `${t.adoptionTargetAttribute}: ${facility.adoptionTargetAttribute}` : '',
+                    facility.adoptionTargetCategory ? `${t.adoptionTargetCategory}: ${getGreenSpaceAdoptionTargetCategoryLabel(facility.adoptionTargetCategory, language)}` : '',
+                    facility.adopterName ? `${t.adopterName}: ${facility.adopterName}` : '',
+                    facility.adopterNameCategory ? `${t.adopterCategory}: ${getGreenSpaceAdopterCategoryLabel(facility.adopterNameCategory, language)}` : '',
+                    facility.roadName ? `${t.roadName}: ${facility.roadName}` : '',
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}

@@ -76,6 +76,12 @@ type FacilityMapProps = {
     stoppedCount: number;
     topOperators: Array<{ operatorName: string; count: number }>;
   }>;
+  greenSpaceAdoptionDistrictSummaries: Array<{
+    district: string;
+    count: number;
+    streetTreeCount: number;
+    parkGreenSpaceCount: number;
+  }>;
 };
 
 const taipeiCenter: [number, number] = [25.0478, 121.5319];
@@ -137,6 +143,7 @@ const markerEmojiByType = {
   clean_needle_exchange_service_point: '🏥',
   protected_tree: '🌳',
   pay_taipei_cardless_parking_lot: '🅿️',
+  green_space_adoption_record: 'GS',
 } satisfies Record<FacilityType, string>;
 
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {
@@ -192,6 +199,7 @@ export function FacilityMap({
   communityRecyclingDistrictSummaries,
   cleanNeedleDistrictSummaries,
   payTaipeiParkingDistrictSummaries,
+  greenSpaceAdoptionDistrictSummaries,
 }: FacilityMapProps) {
   const renderedFacilities = useChunkedFacilities(facilities);
   const userIcon = useMemo(
@@ -401,6 +409,29 @@ export function FacilityMap({
                   <p>{t.notSupportedOrStoppedRecordCount}: {summary.stoppedCount}</p>
                   <p>{t.topOperators}: {summary.topOperators.map((item) => `${item.operatorName} ${item.count}`).join('、')}</p>
                   <p>{t.notice}: {t.payTaipeiParkingPopupNotice}</p>
+                </div>
+              </Popup>
+            </CircleMarker>
+          );
+        })}
+        {greenSpaceAdoptionDistrictSummaries.map((summary) => {
+          const center = districtCentroids[summary.district];
+          if (!center) return null;
+          return (
+            <CircleMarker
+              key={`green-space-adoption-${summary.district}`}
+              center={center}
+              radius={Math.min(28, 10 + Math.sqrt(summary.count) * 1.8)}
+              pathOptions={{ color: '#386641', fillColor: '#b7e4c7', fillOpacity: 0.78, weight: 2 }}
+            >
+              <Popup>
+                <div className="map-popup">
+                  <strong>{t.greenSpaceAdoptionDistrictDistribution}</strong>
+                  <p>{t.district}: {summary.district}</p>
+                  <p>{t.greenSpaceAdoptionRecordCount}: {summary.count}</p>
+                  <p>{t.streetTreeAdoptionRecords}: {summary.streetTreeCount}</p>
+                  <p>{t.parkGreenSpaceAdoptionRecords}: {summary.parkGreenSpaceCount}</p>
+                  <p>{t.notice}: {t.greenSpaceAdoptionPopupNotice}</p>
                 </div>
               </Popup>
             </CircleMarker>

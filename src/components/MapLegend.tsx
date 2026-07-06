@@ -90,6 +90,10 @@ export function MapLegend({ t }: MapLegendProps) {
       </span>
       <span>
         <i aria-hidden="true">📍</i>
+        {t.greenSpaceAdoptionRecords}
+      </span>
+      <span>
+        <i aria-hidden="true">??</i>
         {t.userLocation}
       </span>
     </div>

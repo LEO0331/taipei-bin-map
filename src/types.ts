@@ -20,7 +20,8 @@ export type FacilityType =
   | 'community_recycling_station'
   | 'clean_needle_exchange_service_point'
   | 'protected_tree'
-  | 'pay_taipei_cardless_parking_lot';
+  | 'pay_taipei_cardless_parking_lot'
+  | 'green_space_adoption_record';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
@@ -81,6 +82,27 @@ export type PayTaipeiParkingGeocodingStatus =
   | 'failed'
   | 'not_applicable_operator_or_platform_address';
 export type PayTaipeiParkingCoordinateSource = 'none' | 'geocoded' | 'joined_official_parking_dataset';
+export type GreenSpaceAdoptionTargetCategory =
+  | 'street_tree'
+  | 'park'
+  | 'large_park'
+  | 'green_space'
+  | 'green_belt'
+  | 'plaza'
+  | 'planter'
+  | 'traffic_island'
+  | 'roundabout'
+  | 'other'
+  | 'unknown';
+export type GreenSpaceAdopterCategory =
+  | 'company'
+  | 'government_unit'
+  | 'community_organization'
+  | 'foundation_or_association'
+  | 'school'
+  | 'private_individual'
+  | 'other'
+  | 'unknown';
 
 export type ElectricMotorcycleChargingLocationCategory =
   | 'inspection_station'
@@ -344,6 +366,17 @@ export type Facility = {
   payTaipeiParkingLocationPrecision?: PayTaipeiParkingLocationPrecision;
   payTaipeiParkingGeocodingStatus?: PayTaipeiParkingGeocodingStatus;
   coordinateSource?: PayTaipeiParkingCoordinateSource;
+  adoptionTargetName?: string;
+  adoptionTargetNameNormalized?: string;
+  adoptionTargetAttribute?: string;
+  adoptionTargetCategory?: GreenSpaceAdoptionTargetCategory;
+  adoptionLocation?: string;
+  adoptionLocationNormalized?: string;
+  locationTextHasRangeOrBoundary?: boolean;
+  locationTextHasIntersection?: boolean;
+  adopterName?: string;
+  adopterNameNormalized?: string;
+  adopterNameCategory?: GreenSpaceAdopterCategory;
 };
 
 export type MotorcycleInspectionStationLocation = {
@@ -652,6 +685,39 @@ export type PayTaipeiCardlessParkingLotSummary = {
     unparsedDistrictFromAddressCount: number;
     operatorOrPlatformAddressCount: number;
     duplicateFallbackKeyCount: number;
+  };
+};
+
+export type GreenSpaceAdoptionRecordSummary = {
+  totalRecords: number;
+  districtCount: number;
+  managementUnitCount: number;
+  uniqueAdoptionTargetCount: number;
+  uniqueAdoptionLocationCount: number;
+  uniqueAdopterCount: number;
+  streetTreeAdoptionRecordCount: number;
+  parkGreenSpaceAdoptionRecordCount: number;
+  mostCommonTargetCategory?: GreenSpaceAdoptionTargetCategory;
+  districtWithMostRecords?: string;
+  managementUnitWithMostRecords?: string;
+  topAdopterByRecordCount?: string;
+  byDistrict: Array<{ district: string; count: number; uniqueAdopterCount: number }>;
+  byTargetCategory: Array<{ targetCategory: GreenSpaceAdoptionTargetCategory; count: number }>;
+  byRawAttribute: Array<{ attribute: string; count: number }>;
+  byManagementUnit: Array<{ managementUnit: string; count: number }>;
+  byAdopter: Array<{ adopterName: string; adopterCategory: GreenSpaceAdopterCategory; count: number }>;
+  byAdopterCategory: Array<{ adopterCategory: GreenSpaceAdopterCategory; count: number }>;
+  byRoadName: Array<{ roadName: string; count: number }>;
+  dataQuality: {
+    missingSequenceNumberCount: number;
+    missingDistrictCount: number;
+    missingDistrictCodeCount: number;
+    missingTargetNameCount: number;
+    missingAttributeCount: number;
+    missingLocationCount: number;
+    missingAdopterNameCount: number;
+    rangeOrBoundaryTextCount: number;
+    intersectionTextCount: number;
   };
 };
 

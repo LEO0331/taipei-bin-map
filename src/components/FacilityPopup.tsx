@@ -11,6 +11,8 @@ import {
   getFacilityTypeLabel,
   getFuelStationServiceTypeLabel,
   getFuelStationStatusLabel,
+  getGreenSpaceAdopterCategoryLabel,
+  getGreenSpaceAdoptionTargetCategoryLabel,
   getOpeningHoursTypeLabel,
   getPayTaipeiParkingGeocodingStatusLabel,
   getPayTaipeiParkingLocationPrecisionLabel,
@@ -94,6 +96,9 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       )}
       {facility.type === 'clean_needle_exchange_service_point' && facility.serviceLocationName && (
         <p>{t.serviceLocationName}: {facility.serviceLocationName}</p>
+      )}
+      {facility.type === 'green_space_adoption_record' && facility.adoptionTargetName && (
+        <p>{t.adoptionTargetName}: {facility.adoptionTargetName}</p>
       )}
       <p>
         {t.district}: {facility.district}
@@ -322,6 +327,21 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.addressLooksLikeOperatorOrPlatformAddress && <p>{t.operatorOrPlatformAddress}: {t.yes}</p>}
         </>
       )}
+      {facility.type === 'green_space_adoption_record' && (
+        <>
+          {facility.sourceSequenceNumber && <p>{t.sourceSequenceNumber}: {facility.sourceSequenceNumber}</p>}
+          {facility.managementUnit && <p>{t.managementUnit}: {facility.managementUnit}</p>}
+          {facility.districtCode && <p>{t.districtCode}: {facility.districtCode}</p>}
+          {facility.adoptionTargetAttribute && <p>{t.adoptionTargetAttribute}: {facility.adoptionTargetAttribute}</p>}
+          {facility.adoptionTargetCategory && <p>{t.adoptionTargetCategory}: {getGreenSpaceAdoptionTargetCategoryLabel(facility.adoptionTargetCategory, language)}</p>}
+          {facility.adoptionLocation && <p>{t.adoptionLocation}: {facility.adoptionLocation}</p>}
+          {facility.adopterName && <p>{t.adopterName}: {facility.adopterName}</p>}
+          {facility.adopterNameCategory && <p>{t.adopterCategory}: {getGreenSpaceAdopterCategoryLabel(facility.adopterNameCategory, language)}</p>}
+          {facility.roadName && <p>{t.roadName}: {facility.roadName}</p>}
+          {facility.locationTextHasRangeOrBoundary && <p>{t.hasRangeOrBoundaryText}: {t.yes}</p>}
+          {facility.locationTextHasIntersection && <p>{t.hasIntersectionText}: {t.yes}</p>}
+        </>
+      )}
       {facility.note && <p>{t.notice}: {facility.note}</p>}
       {facility.type === 'timed_collection_point' && <p>{t.notice}: {t.timedCollectionNotice}</p>}
       {facility.type === 'direct_drinking_station' && <p>{t.notice}: {t.directDrinkingNotice}</p>}
@@ -337,6 +357,7 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       {facility.type === 'clean_needle_exchange_service_point' && <p>{t.notice}: {t.cleanNeedlePopupNotice}</p>}
       {facility.type === 'protected_tree' && <p>{t.notice}: {t.protectedTreePopupNotice}</p>}
       {facility.type === 'pay_taipei_cardless_parking_lot' && <p>{t.notice}: {t.payTaipeiParkingPopupNotice}</p>}
+      {facility.type === 'green_space_adoption_record' && <p>{t.notice}: {t.greenSpaceAdoptionPopupNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

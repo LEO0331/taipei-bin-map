@@ -2,13 +2,18 @@
 
 ## Current State
 
-**Last Updated:** 2026-07-03 Asia/Taipei
+**Last Updated:** 2026-07-06 Asia/Taipei
 **Active Feature:** None
 
 ## Status
 
 ### What's Done
 
+- [x] Added 385 green-space adoption records from `臺北市行道樹公園綠地廣場認養人資料.csv`.
+- [x] Added Big5/CP950 raw-data copy, conversion, summary generation, combined facility merge, PWA cache entries, README workflow notes, feature ledger state, and focused tests for the green-space adoption layer.
+- [x] Kept green-space adoption records address-only because the source has no official coordinates; no automatic geocoding or fake exact markers were added.
+- [x] Added management-unit, district-code, target-attribute, target-category, adopter-name, adopter-category, road-name, range/boundary, and intersection filters.
+- [x] Added searchable directory cards/popups, district summary bubbles, notices, and no ownership, real-time maintenance, plant-health, safety, boundary, legal, ranking, or recommendation claims.
 - [x] Added 617 commercial EV charging and battery-swap station records from three Big5/CP950 commercial EV source files.
 - [x] Added service-type classification, operator/city/city-code/address/district filters, address-based Google Maps links, district summary bubbles, notices, legend entry, PWA cache entries, README notes, and tests for the commercial EV layer.
 - [x] Kept commercial EV records address-only because the source files do not include coordinates; no automatic geocoding or fake markers were added.
@@ -71,6 +76,7 @@
 - [ ] Announced no-smoking place points are source-location references, not complete legal boundaries, real-time enforcement status, legal advice, health advice, smoking advice, or on-site signage guarantees.
 - [ ] Protected tree records are source-data lookup points, not real-time tree health, collapse-risk, pruning/transplant permit, land-ownership, cadastral-boundary, maintenance-progress, legal-advice, or tourism-ranking data.
 - [ ] pay.taipei cardless parking records have no official coordinates and do not represent real-time parking availability, real-time operating status, parking fees, payment success, cardless entry or exit success, exact entrance location, navigation advice, legal parking determination, consumer advice, or official endorsement.
+- [ ] Green-space adoption records have no official coordinates and do not represent land or facility ownership, complete maintenance responsibility, real-time maintenance status, plant health, public safety judgment, facility boundaries, legal advice, official ranking, or official recommendation.
 - [ ] `npm audit --audit-level=moderate` previously reported the known Vite/esbuild dev-server advisory with a breaking Vite upgrade path.
 
 ## Decisions Made
@@ -93,9 +99,17 @@
 - **Keep announced no-smoking places as lookup data**: The layer complements designated smoking areas but does not claim complete no-smoking boundaries, enforcement status, legal interpretation, health advice, or smoking advice.
 - **Keep protected trees in the shared facility surface**: The app has no standalone dashboard module, so protected trees use the existing map/list/filter/popup workflow.
 - **Keep pay.taipei parking address-only**: The source has addresses but no official coordinates, so no automatic geocoding or exact parking markers were added.
+- **Keep green-space adoption records address-only**: The source has location descriptions but no official longitude/latitude, so the UI uses district summaries, directory search, and address-based Google Maps lookup links.
 
 ## Files Modified This Session
 
+- `scripts/fetchGreenSpaceAdoptionRecords.ts` - Added local CSV copy and metadata script for the Taipei green-space adoption dataset.
+- `scripts/convertGreenSpaceAdoptionRecords.ts` - Added Big5/CP950 conversion, category classification, parsed-road/range/intersection flags, and address-only facility mapping.
+- `scripts/buildGreenSpaceAdoptionSummary.ts` - Added summary generation for districts, management units, target categories, adopter categories, and road names.
+- `scripts/convertBins.ts` - Merged green-space adoption records into combined static facility output and public amenity totals.
+- `src/types.ts`, `src/utils/facilityUtils.ts`, `src/components/*`, `src/i18n.ts`, `src/App.tsx` - Added the shared facility type, focused filters, labels, district summaries, popup/list fields, and interpretation notices.
+- `public/data/green-space-adoption-records/records.json`, `public/data/green-space-adoption-records/summary.json`, `public/data/facilities.json`, `public/data/conversion-report.json`, `public/data/public-amenities-summary.json` - Regenerated static data with the new layer.
+- `public/service-worker.js`, `README.md`, `package.json`, `tests/e2e/bin-map.spec.js`, `scripts/newFacilityConverters.test.ts`, `src/utils/facilityUtils.test.ts`, `feature_list.json`, `progress.md` - Updated cache, docs, scripts, regression coverage, and harness state.
 - `scripts/fetchDrinkingFountains.ts` - Added Taipei Open Data API fetch with pagination and raw resource index output.
 - `scripts/convertDrinkingFountains.ts` - Added drinking fountain conversion, district normalization, category classification, and coordinate reporting.
 - `scripts/convertBins.ts` - Merged drinking fountains into combined facility conversion.
@@ -132,6 +146,11 @@
 
 ## Evidence of Completion
 
+- [x] `npm run data:fetch:green-space-adoption` copied the Big5/CP950 source CSV into `data/raw/green-space-adoption-records/`.
+- [x] `npm run convert:facilities` generated 16,843 facilities, including 385 green-space adoption records.
+- [x] `npm test` passed 55 unit/converter tests.
+- [x] `npm run build` passed after the green-space adoption layer.
+- [x] `npm run test:e2e` passed 62 desktop/mobile Playwright tests after the green-space adoption E2E flow was added.
 - [x] `npm run fetch:drinking-fountains` fetched 144 raw public drinking fountain records.
 - [x] `npm run convert:facilities` generated 3,400 total facilities: 1,197 pedestrian bins, 510 dog-waste bag boxes, 1,549 public toilets, and 144 public drinking fountain locations.
 - [x] Drinking fountain conversion generated 1,086 total drinking fountain units across all 12 Taipei districts with no invalid or outlier fountain coordinates.
@@ -213,4 +232,4 @@
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The pay.taipei cardless parking layer is implemented and full `./init.sh` verification passed in this session.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The green-space adoption layer is implemented as an address-only public-environment directory; final full E2E status is recorded above.

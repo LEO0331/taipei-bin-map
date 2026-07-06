@@ -676,6 +676,50 @@ describe('filterFacilities', () => {
     expect(getFacilityGoogleMapsUrl(result[0])).toContain(encodeURIComponent('臺北市信義區松仁路1號地下1樓 測試停車場'));
   });
 
+  it('filters and searches green-space adoption records without coordinates', () => {
+    const result = filterFacilities([
+      {
+        id: 'green_space_adoption_record-0001',
+        type: 'green_space_adoption_record',
+        district: '大安區',
+        address: '仁愛路四段169號(11株)',
+        longitude: 0,
+        latitude: 0,
+        note: '',
+        source: '臺北市行道樹公園綠地廣場認養人資料',
+        locationPrecision: 'address_only',
+        coordinateStatus: 'missing',
+        sourceSequenceNumber: 1,
+        managementUnit: '青年所',
+        districtCode: '63000030',
+        adoptionTargetName: '仁愛路四段行道樹',
+        adoptionTargetAttribute: '行道樹',
+        adoptionTargetCategory: 'street_tree',
+        adoptionLocation: '仁愛路四段169號(11株)',
+        adopterName: '富邦公寓大廈管理維護股份有限公司',
+        adopterNameCategory: 'company',
+        roadName: '仁愛路',
+        locationTextHasRangeOrBoundary: false,
+        locationTextHasIntersection: false,
+        googleMapsQuery: '仁愛路四段169號(11株) 仁愛路四段行道樹',
+      },
+    ], {
+      searchTerm: '富邦',
+      district: '大安區',
+      facilityTypes: ['green_space_adoption_record'],
+      greenSpaceManagementUnit: '青年所',
+      greenSpaceDistrictCode: '63000030',
+      greenSpaceTargetAttribute: '行道樹',
+      greenSpaceTargetCategory: 'street_tree',
+      greenSpaceAdopterName: '富邦公寓大廈管理維護股份有限公司',
+      greenSpaceAdopterCategory: 'company',
+      greenSpaceRoadName: '仁愛路',
+    });
+
+    expect(result.map((item) => item.id)).toEqual(['green_space_adoption_record-0001']);
+    expect(getFacilityGoogleMapsUrl(result[0])).toContain(encodeURIComponent('仁愛路四段169號(11株) 仁愛路四段行道樹'));
+  });
+
   it('filters and searches electric motorcycle charging stations without requiring coordinates', () => {
     const result = filterFacilities(facilities, {
       searchTerm: 'R01',

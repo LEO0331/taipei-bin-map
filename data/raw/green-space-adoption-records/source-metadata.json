@@ -1,0 +1,9 @@
+{
+  "resourceName": "臺北市行道樹公園綠地廣場認養人資料",
+  "sourceAgency": "臺北市政府工務局公園路燈工程管理處",
+  "fetchedAt": "2026-07-06T08:09:17.816Z",
+  "filename": "臺北市行道樹公園綠地廣場認養人資料.csv",
+  "fileSize": 39276,
+  "encoding": "Big5/CP950",
+  "notes": "Copied from local uploaded CSV. Source has location text but no official coordinates; no automatic geocoding."
+}

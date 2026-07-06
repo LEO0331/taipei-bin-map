@@ -66,6 +66,11 @@ import {
   classifyPayTaipeiParkingSupportStatus,
   convertPayTaipeiCardlessParkingLotRows,
 } from './convertPayTaipeiCardlessParkingLots';
+import {
+  classifyGreenSpaceAdopter,
+  classifyGreenSpaceAdoptionTarget,
+  convertGreenSpaceAdoptionRows,
+} from './convertGreenSpaceAdoptionRecords';
 
 describe('new facility converters', () => {
   it('parses timed collection notes conservatively', () => {
@@ -131,6 +136,59 @@ describe('new facility converters', () => {
       supportedCount: 1,
       notSupportedOrStoppedCount: 1,
       recordsWithServiceStoppedHint: 1,
+    });
+  });
+
+  it('maps green-space adoption rows as address-only public-environment records', () => {
+    expect(classifyGreenSpaceAdoptionTarget('行道樹')).toBe('street_tree');
+    expect(classifyGreenSpaceAdopter('財團法人大安森林公園之友基金會')).toBe('foundation_or_association');
+
+    const converted = convertGreenSpaceAdoptionRows([
+      {
+        序號: '1',
+        管理單位: '青年所',
+        行政區: '大安區',
+        行政區代碼: '63000030',
+        認養標的名稱: '仁愛路四段行道樹',
+        屬性: '行道樹',
+        認養位置: '仁愛路四段169號(11株)',
+        認養單位名稱: '富邦公寓大廈管理維護股份有限公司',
+      },
+      {
+        序號: '2',
+        管理單位: '青年所',
+        行政區: '大安區',
+        行政區代碼: '63000030',
+        認養標的名稱: '大安森林公園(部分區域)',
+        屬性: '公園',
+        認養位置: '新生南路以東信義路3段以南',
+        認養單位名稱: '財團法人大安森林公園之友基金會',
+      },
+    ]);
+
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'green_space_adoption_record',
+      district: '大安區',
+      districtCode: '63000030',
+      managementUnit: '青年所',
+      adoptionTargetCategory: 'street_tree',
+      adopterNameCategory: 'company',
+      roadName: '仁愛路',
+      locationPrecision: 'address_only',
+      coordinateStatus: 'missing',
+      longitude: 0,
+      latitude: 0,
+    });
+    expect(converted.facilities[1]).toMatchObject({
+      adoptionTargetCategory: 'park',
+      adopterNameCategory: 'foundation_or_association',
+      locationTextHasRangeOrBoundary: true,
+    });
+    expect(converted.summary).toMatchObject({
+      totalRecords: 2,
+      districtCount: 1,
+      streetTreeAdoptionRecordCount: 1,
+      parkGreenSpaceAdoptionRecordCount: 1,
     });
   });
 

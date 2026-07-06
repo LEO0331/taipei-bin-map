@@ -74,9 +74,14 @@ const payTaipeiParkingLotCount = payTaipeiParkingLots.length.toString();
 const payTaipeiParkingSample =
   payTaipeiParkingLots.find((facility) => facility.supportStatusCategory === 'supported' && facility.operatorName === '臺北市停管處') ??
   payTaipeiParkingLots[0];
+const greenSpaceAdoptionRecords = facilities.filter((facility) => facility.type === 'green_space_adoption_record');
+const greenSpaceAdoptionRecordCount = greenSpaceAdoptionRecords.length.toString();
+const greenSpaceAdoptionSample =
+  greenSpaceAdoptionRecords.find((facility) => facility.locationTextHasRangeOrBoundary && facility.roadName) ??
+  greenSpaceAdoptionRecords[0];
 
 test.describe('Taipei public amenities map public flows', () => {
-  test('loads all twenty local datasets without mounting broad-view facility pins', async ({ page }) => {
+  test('loads all twenty-one local datasets without mounting broad-view facility pins', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
@@ -147,6 +152,31 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByRole('button', { name: 'Designated Smoking Areas' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Announced No-Smoking Places' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Community Recycling Stations' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Green Space Adoption Records' })).toBeVisible();
+  });
+
+  test('shows green-space adoption records as an address-only directory', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: 'English' }).click();
+    await page.getByRole('button', { name: 'Green Space Adoption Records' }).click();
+    await expect(page.getByText(`${greenSpaceAdoptionRecordCount} records`)).toBeVisible();
+    await expect(page.getByText('Green-space adoption records do not provide official coordinates')).toBeVisible();
+    await page.getByRole('combobox', { name: 'Management unit', exact: true }).selectOption(greenSpaceAdoptionSample.managementUnit);
+    await page.getByRole('combobox', { name: 'District code', exact: true }).selectOption(greenSpaceAdoptionSample.districtCode);
+    await page.getByRole('combobox', { name: 'Attribute', exact: true }).selectOption(greenSpaceAdoptionSample.adoptionTargetAttribute);
+    await page.getByRole('combobox', { name: 'Target category', exact: true }).selectOption(greenSpaceAdoptionSample.adoptionTargetCategory);
+    await page.getByRole('combobox', { name: 'Adopter name', exact: true }).selectOption(greenSpaceAdoptionSample.adopterName);
+    await page.getByRole('combobox', { name: 'Adopter category', exact: true }).selectOption(greenSpaceAdoptionSample.adopterNameCategory);
+    await page.getByRole('checkbox', { name: 'Has range / boundary text' }).setChecked(Boolean(greenSpaceAdoptionSample.locationTextHasRangeOrBoundary));
+    await page.getByPlaceholder('Search sequence number, management unit, district, district code, target, attribute, location, adopter, or road').fill(greenSpaceAdoptionSample.adopterName);
+
+    await expect(page.locator('.facility-list li').first()).toContainText('Green Space Adoption');
+    await expect(page.locator('.facility-list li').first()).toContainText(greenSpaceAdoptionSample.adoptionTargetName);
+    await expect(page.locator('.facility-list li').first()).toContainText(greenSpaceAdoptionSample.adopterName);
+    await expect(page.locator('.facility-list li').first()).not.toContainText('ownership');
+    await page.getByRole('button', { name: 'View adoption records by nearby district' }).click();
+    await expect(page.getByText('Green-space adoption records do not provide official coordinates, so exact distance cannot currently be calculated')).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {

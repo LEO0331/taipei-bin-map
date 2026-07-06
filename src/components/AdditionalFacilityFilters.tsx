@@ -8,6 +8,8 @@ import type {
   DesignatedSmokingAreaType,
   ElectricMotorcycleChargingLocationCategory,
   FuelStationStatus,
+  GreenSpaceAdopterCategory,
+  GreenSpaceAdoptionTargetCategory,
   Language,
   ManagingUnitCategory,
   OpeningHoursType,
@@ -26,6 +28,8 @@ import {
   getCommercialEvServiceTypeLabel,
   getDesignatedSmokingAreaTypeLabel,
   getElectricMotorcycleChargingLocationCategoryLabel,
+  getGreenSpaceAdopterCategoryLabel,
+  getGreenSpaceAdoptionTargetCategoryLabel,
   getManagingUnitCategoryLabel,
   getOpeningHoursTypeLabel,
   getPayTaipeiParkingGeocodingStatusLabel,
@@ -57,6 +61,76 @@ const payTaipeiParkingGeocodingStatuses: PayTaipeiParkingGeocodingStatus[] = [
   'failed',
   'not_applicable_operator_or_platform_address',
 ];
+
+const greenSpaceTargetCategories: GreenSpaceAdoptionTargetCategory[] = ['street_tree', 'park', 'large_park', 'green_space', 'green_belt', 'plaza', 'planter', 'traffic_island', 'roundabout', 'other', 'unknown'];
+const greenSpaceAdopterCategories: GreenSpaceAdopterCategory[] = ['company', 'government_unit', 'community_organization', 'foundation_or_association', 'school', 'private_individual', 'other', 'unknown'];
+
+type GreenSpaceAdoptionFiltersProps = {
+  managementUnits: string[];
+  districtCodes: string[];
+  attributes: string[];
+  adopters: string[];
+  roadNames: string[];
+  values: {
+    managementUnit: string;
+    districtCode: string;
+    targetAttribute: string;
+    targetCategory: GreenSpaceAdoptionTargetCategory | '';
+    adopterName: string;
+    adopterCategory: GreenSpaceAdopterCategory | '';
+    roadName: string;
+    hasRangeOrBoundary: boolean;
+    hasIntersection: boolean;
+  };
+  language: Language;
+  t: Translation;
+  onSelectChange: (name: 'managementUnit' | 'districtCode' | 'targetAttribute' | 'targetCategory' | 'adopterName' | 'adopterCategory' | 'roadName', value: string) => void;
+  onBooleanChange: (name: 'rangeOrBoundary' | 'intersection', value: boolean) => void;
+};
+
+export function GreenSpaceAdoptionFilters(props: GreenSpaceAdoptionFiltersProps) {
+  return (
+    <fieldset className="toilet-filters">
+      {[
+        ['managementUnit', props.t.managementUnit, props.values.managementUnit, props.managementUnits],
+        ['districtCode', props.t.districtCode, props.values.districtCode, props.districtCodes],
+        ['targetAttribute', props.t.adoptionTargetAttribute, props.values.targetAttribute, props.attributes],
+        ['adopterName', props.t.adopterName, props.values.adopterName, props.adopters],
+        ['roadName', props.t.roadName, props.values.roadName, props.roadNames],
+      ].map(([name, label, value, options]) => (
+        <label key={name as string}>
+          {label as string}
+          <select value={value as string} onChange={(event) => props.onSelectChange(name as 'managementUnit' | 'districtCode' | 'targetAttribute' | 'adopterName' | 'roadName', event.target.value)}>
+            <option value="">{props.t.all}</option>
+            {(options as string[]).map((option) => <option key={option} value={option}>{option}</option>)}
+          </select>
+        </label>
+      ))}
+      <label>
+        {props.t.adoptionTargetCategory}
+        <select value={props.values.targetCategory} onChange={(event) => props.onSelectChange('targetCategory', event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {greenSpaceTargetCategories.map((value) => <option key={value} value={value}>{getGreenSpaceAdoptionTargetCategoryLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label>
+        {props.t.adopterCategory}
+        <select value={props.values.adopterCategory} onChange={(event) => props.onSelectChange('adopterCategory', event.target.value)}>
+          <option value="">{props.t.all}</option>
+          {greenSpaceAdopterCategories.map((value) => <option key={value} value={value}>{getGreenSpaceAdopterCategoryLabel(value, props.language)}</option>)}
+        </select>
+      </label>
+      <label className="checkbox-filter">
+        <input type="checkbox" checked={props.values.hasRangeOrBoundary} onChange={(event) => props.onBooleanChange('rangeOrBoundary', event.target.checked)} />
+        <span>{props.t.hasRangeOrBoundaryText}</span>
+      </label>
+      <label className="checkbox-filter">
+        <input type="checkbox" checked={props.values.hasIntersection} onChange={(event) => props.onBooleanChange('intersection', event.target.checked)} />
+        <span>{props.t.hasIntersectionText}</span>
+      </label>
+    </fieldset>
+  );
+}
 
 type PayTaipeiParkingFiltersProps = {
   operators: string[];
