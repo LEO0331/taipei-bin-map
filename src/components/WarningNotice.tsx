@@ -28,6 +28,7 @@ const noticeTypes: FacilityType[] = [
   'protected_tree',
   'pay_taipei_cardless_parking_lot',
   'green_space_adoption_record',
+  'accessible_public_parking_facility',
 ];
 
 export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
@@ -116,6 +117,10 @@ export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
     green_space_adoption_record: {
       label: t.greenSpaceAdoptionRecords,
       notice: t.greenSpaceAdoptionInterpretationNote,
+    },
+    accessible_public_parking_facility: {
+      label: t.accessiblePublicParkingFacilities,
+      notice: t.accessiblePublicParkingInterpretationNote,
     },
   } satisfies Record<FacilityType, { label: string; notice: string }>;
 

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-06T08:10:04.457Z",
-  "totalValidRows": 16843,
+  "generatedAt": "2026-07-14T01:27:11.739Z",
+  "totalValidRows": 16956,
   "sources": [
     {
       "sourceFilename": "bins.json (fallback; source CSV not found)",
@@ -2677,6 +2677,169 @@
       "coordinateOutlierRows": 0,
       "invalidCoordinateRows": [],
       "missingRequiredFields": []
+    },
+    {
+      "sourceFilename": "accessible-public-parking-facilities.csv",
+      "totalRows": 113,
+      "validRows": 113,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [
+        {
+          "rowNumber": 2,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 4,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 12,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 14,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 21,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 29,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 31,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 32,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 33,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 39,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 42,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 43,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 44,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 51,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 61,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 66,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 67,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 68,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 69,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 70,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 75,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 81,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 83,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 95,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 103,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 107,
+          "reason": "missing_or_non_numeric"
+        },
+        {
+          "rowNumber": 110,
+          "reason": "missing_or_non_numeric"
+        }
+      ],
+      "missingRequiredFields": [],
+      "duplicateSourceIds": [],
+      "duplicateFallbackKeys": [],
+      "invalidNumberValues": [],
+      "unknownAccessibilityValues": [
+        {
+          "rowNumber": 21,
+          "field": "accessibleElevatorRaw",
+          "value": "機械塔無設置"
+        },
+        {
+          "rowNumber": 42,
+          "field": "accessibleElevatorRaw",
+          "value": "機械塔無設置"
+        },
+        {
+          "rowNumber": 43,
+          "field": "accessibleElevatorRaw",
+          "value": "機械塔無設置"
+        },
+        {
+          "rowNumber": 44,
+          "field": "accessibleElevatorRaw",
+          "value": "機械塔無設置"
+        },
+        {
+          "rowNumber": 61,
+          "field": "accessibleElevatorRaw",
+          "value": "機械塔無設置"
+        },
+        {
+          "rowNumber": 66,
+          "field": "accessibleElevatorRaw",
+          "value": "機械塔無設置"
+        },
+        {
+          "rowNumber": 95,
+          "field": "accessibleElevatorRaw",
+          "value": "機械塔無設置"
+        },
+        {
+          "rowNumber": 110,
+          "field": "accessibleElevatorRaw",
+          "value": "機械塔無設置"
+        }
+      ]
     }
   ]
 }

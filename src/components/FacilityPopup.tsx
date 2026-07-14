@@ -100,6 +100,16 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       {facility.type === 'green_space_adoption_record' && facility.adoptionTargetName && (
         <p>{t.adoptionTargetName}: {facility.adoptionTargetName}</p>
       )}
+      {facility.type === 'accessible_public_parking_facility' && (
+        <>
+          {facility.parkingFacilityName && <p>{t.parkingFacilityName}: {facility.parkingFacilityName}</p>}
+          <p>{t.accessibleCarSpaceCount}: {facility.accessibleCarSpaceCount ?? 0}</p>
+          <p>{t.accessibleMotorcycleSpaceCount}: {facility.accessibleMotorcycleSpaceCount ?? 0}</p>
+          <p>{t.accessibleElevator}: {facility.hasAccessibleElevator === true ? t.yes : facility.hasAccessibleElevator === 'unknown' ? t.unknown : t.no}</p>
+          <p>{t.accessibleToilet}: {facility.hasAccessibleToilet === true ? t.yes : facility.hasAccessibleToilet === 'unknown' ? t.unknown : t.no}</p>
+          <p>{t.accessibleStairHandrail}: {facility.hasAccessibleStairHandrail === true ? t.yes : facility.hasAccessibleStairHandrail === 'unknown' ? t.unknown : t.no}</p>
+        </>
+      )}
       <p>
         {t.district}: {facility.district}
       </p>
@@ -358,6 +368,7 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
       {facility.type === 'protected_tree' && <p>{t.notice}: {t.protectedTreePopupNotice}</p>}
       {facility.type === 'pay_taipei_cardless_parking_lot' && <p>{t.notice}: {t.payTaipeiParkingPopupNotice}</p>}
       {facility.type === 'green_space_adoption_record' && <p>{t.notice}: {t.greenSpaceAdoptionPopupNotice}</p>}
+      {facility.type === 'accessible_public_parking_facility' && <p>{t.notice}: {t.accessiblePublicParkingPopupNotice}</p>}
       {facility.isCoordinateOutlier && <p className="outlier-warning">{t.coordinateOutlierWarning}</p>}
       <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
         {t.openGoogleMaps}

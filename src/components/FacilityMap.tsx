@@ -144,6 +144,7 @@ const markerEmojiByType = {
   protected_tree: '🌳',
   pay_taipei_cardless_parking_lot: '🅿️',
   green_space_adoption_record: 'GS',
+  accessible_public_parking_facility: '♿',
 } satisfies Record<FacilityType, string>;
 
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {

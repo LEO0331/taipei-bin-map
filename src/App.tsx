@@ -2,6 +2,7 @@ import { lazy, Suspense, useDeferredValue, useEffect, useMemo, useState } from '
 import { DrinkingFountainFilters } from './components/DrinkingFountainFilters';
 import {
   CommercialEvChargingSwapStationFilters,
+  AccessiblePublicParkingFilters,
   AnnouncedNoSmokingPlaceFilters,
   CleanNeedleServicePointFilters,
   CommunityRecyclingStationFilters,
@@ -26,9 +27,11 @@ import { NearbyButton } from './components/NearbyButton';
 import { PublicToiletFilters } from './components/PublicToiletFilters';
 import { SearchFilters } from './components/SearchFilters';
 import { WarningNotice } from './components/WarningNotice';
+import { AccessiblePublicParkingDashboard } from './components/AccessiblePublicParkingDashboard';
 import { translations } from './i18n';
 import type {
   ConversionReport,
+  AccessiblePublicParkingFacilitySummary,
   AnnouncedNoSmokingPlaceRecordType,
   CleanNeedleServiceItemCategory,
   CleanNeedleServicePointCategory,
@@ -218,6 +221,12 @@ function App() {
   const [greenSpaceRoadName, setGreenSpaceRoadName] = useState('');
   const [greenSpaceHasRangeOrBoundary, setGreenSpaceHasRangeOrBoundary] = useState(false);
   const [greenSpaceHasIntersection, setGreenSpaceHasIntersection] = useState(false);
+  const [accessibleParkingCar, setAccessibleParkingCar] = useState(false);
+  const [accessibleParkingMotorcycle, setAccessibleParkingMotorcycle] = useState(false);
+  const [accessibleParkingElevator, setAccessibleParkingElevator] = useState(false);
+  const [accessibleParkingToilet, setAccessibleParkingToilet] = useState(false);
+  const [accessibleParkingHandrail, setAccessibleParkingHandrail] = useState(false);
+  const [accessibleParkingValidCoordinates, setAccessibleParkingValidCoordinates] = useState(false);
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [nearbyFacilities, setNearbyFacilities] = useState<FacilityWithDistance[] | null>(null);
   const [isLoadingFacilities, setIsLoadingFacilities] = useState(true);
@@ -244,6 +253,7 @@ function App() {
   const includesProtectedTrees = selectedTypes.includes('protected_tree');
   const includesPayTaipeiParking = selectedTypes.includes('pay_taipei_cardless_parking_lot');
   const includesGreenSpaceAdoption = selectedTypes.includes('green_space_adoption_record');
+  const includesAccessiblePublicParking = selectedTypes.includes('accessible_public_parking_facility');
   const hasFocusedTypes = selectedTypes.length < FACILITY_TYPE_OPTIONS.length;
 
   useEffect(() => {
@@ -599,6 +609,12 @@ function App() {
         greenSpaceRoadName,
         greenSpaceHasRangeOrBoundary,
         greenSpaceHasIntersection,
+        accessibleParkingCar,
+        accessibleParkingMotorcycle,
+        accessibleParkingElevator,
+        accessibleParkingToilet,
+        accessibleParkingHandrail,
+        accessibleParkingValidCoordinates,
       }),
     [
       district,
@@ -721,6 +737,12 @@ function App() {
       greenSpaceRoadName,
       greenSpaceHasRangeOrBoundary,
       greenSpaceHasIntersection,
+      accessibleParkingCar,
+      accessibleParkingMotorcycle,
+      accessibleParkingElevator,
+      accessibleParkingToilet,
+      accessibleParkingHandrail,
+      accessibleParkingValidCoordinates,
     ],
   );
 
@@ -841,6 +863,29 @@ function App() {
       };
     });
   }, [displayedFacilities]);
+  const accessiblePublicParkingSummary = useMemo<AccessiblePublicParkingFacilitySummary>(() => {
+    const records = displayedFacilities.filter((facility) => facility.type === 'accessible_public_parking_facility');
+    const districts = [...new Set(records.map((record) => record.district).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'zh-Hant'));
+    return {
+      totalRecords: records.length,
+      validCoordinateCount: records.filter((record) => record.hasValidCoordinates).length,
+      invalidCoordinateCount: records.filter((record) => !record.hasValidCoordinates).length,
+      districtCount: districts.length,
+      totalAccessibleCarSpaceCount: records.reduce((sum, record) => sum + (record.accessibleCarSpaceCount ?? 0), 0),
+      totalAccessibleMotorcycleSpaceCount: records.reduce((sum, record) => sum + (record.accessibleMotorcycleSpaceCount ?? 0), 0),
+      facilitiesWithAccessibleCarSpaces: records.filter((record) => record.hasAccessibleCarSpaces).length,
+      facilitiesWithAccessibleMotorcycleSpaces: records.filter((record) => record.hasAccessibleMotorcycleSpaces).length,
+      facilitiesWithAccessibleElevators: records.filter((record) => record.hasAccessibleElevator === true).length,
+      facilitiesWithAccessibleToilets: records.filter((record) => record.hasAccessibleToilet === true).length,
+      facilitiesWithAccessibleStairHandrails: records.filter((record) => record.hasAccessibleStairHandrail === true).length,
+      byDistrict: districts.map((district) => {
+        const rows = records.filter((record) => record.district === district);
+        return { district, facilityCount: rows.length, accessibleCarSpaceCount: rows.reduce((sum, row) => sum + (row.accessibleCarSpaceCount ?? 0), 0), accessibleMotorcycleSpaceCount: rows.reduce((sum, row) => sum + (row.accessibleMotorcycleSpaceCount ?? 0), 0), elevatorCount: rows.filter((row) => row.hasAccessibleElevator === true).length, toiletCount: rows.filter((row) => row.hasAccessibleToilet === true).length, stairHandrailCount: rows.filter((row) => row.hasAccessibleStairHandrail === true).length };
+      }),
+      byAccessibilityFeatureCount: [...new Set(records.map((record) => record.accessibilityFeatureCount ?? 0))].sort((a, b) => a - b).map((featureCount) => ({ featureCount, facilityCount: records.filter((record) => record.accessibilityFeatureCount === featureCount).length })),
+      dataQuality: { duplicateSourceIdCount: 0, duplicateFallbackKeyCount: 0, invalidNumberCount: 0, unknownAccessibilityValueCount: 0 },
+    };
+  }, [displayedFacilities]);
   const renderableFacilities = displayedFacilities.filter(
     (facility) =>
       Number.isFinite(facility.latitude) &&
@@ -875,6 +920,7 @@ function App() {
   const isProtectedTreeOnly = selectedTypes.length === 1 && includesProtectedTrees;
   const isPayTaipeiParkingOnly = selectedTypes.length === 1 && includesPayTaipeiParking;
   const isGreenSpaceAdoptionOnly = selectedTypes.length === 1 && includesGreenSpaceAdoption;
+  const isAccessiblePublicParkingOnly = selectedTypes.length === 1 && includesAccessiblePublicParking;
   const isSpecializedToiletOnly = isRiversideOnly || isFamilyToiletOnly;
   const listHeading = nearbyFacilities
     ? t.nearestFacilities
@@ -902,7 +948,9 @@ function App() {
                             ? t.payTaipeiParkingDirectory
                             : isGreenSpaceAdoptionOnly
                               ? t.greenSpaceAdoptionDirectory
-                : t.matchingFacilities;
+                              : isAccessiblePublicParkingOnly
+                                ? t.accessiblePublicParkingDirectory
+                              : t.matchingFacilities;
   const formattedGeneratedAt = useMemo(() => {
     if (!report?.generatedAt) {
       return '';
@@ -1075,6 +1123,14 @@ function App() {
       setPayTaipeiParkingLocationPrecision('');
       setPayTaipeiParkingGeocodingStatus('');
     }
+    if (!value.includes('accessible_public_parking_facility')) {
+      setAccessibleParkingCar(false);
+      setAccessibleParkingMotorcycle(false);
+      setAccessibleParkingElevator(false);
+      setAccessibleParkingToilet(false);
+      setAccessibleParkingHandrail(false);
+      setAccessibleParkingValidCoordinates(false);
+    }
     setNearbyFacilities(null);
   };
 
@@ -1246,6 +1302,8 @@ function App() {
                                   ? t.payTaipeiParkingSearchPlaceholder
                                   : isGreenSpaceAdoptionOnly
                                     ? t.greenSpaceAdoptionSearchPlaceholder
+                                    : isAccessiblePublicParkingOnly
+                                      ? t.accessiblePublicParkingSearchPlaceholder
               : isSpecializedToiletOnly
                 ? t.toiletSearchPlaceholder
                 : t.searchPlaceholder}
@@ -1697,6 +1755,21 @@ function App() {
               }}
             />
           )}
+          {hasFocusedTypes && includesAccessiblePublicParking && (
+            <AccessiblePublicParkingFilters
+              values={{ car: accessibleParkingCar, motorcycle: accessibleParkingMotorcycle, elevator: accessibleParkingElevator, toilet: accessibleParkingToilet, handrail: accessibleParkingHandrail, validCoordinates: accessibleParkingValidCoordinates }}
+              t={t}
+              onChange={(name, value) => {
+                if (name === 'car') setAccessibleParkingCar(value);
+                if (name === 'motorcycle') setAccessibleParkingMotorcycle(value);
+                if (name === 'elevator') setAccessibleParkingElevator(value);
+                if (name === 'toilet') setAccessibleParkingToilet(value);
+                if (name === 'handrail') setAccessibleParkingHandrail(value);
+                if (name === 'validCoordinates') setAccessibleParkingValidCoordinates(value);
+                setNearbyFacilities(null);
+              }}
+            />
+          )}
           {isSpecializedToiletOnly && (
             <label className="nearby-radius">
               <span>{t.nearbyRadius}</span>
@@ -1873,6 +1946,10 @@ function App() {
         {includesProtectedTrees && <p className="status-message">{t.protectedTreeMapNotice}</p>}
         {includesPayTaipeiParking && <p className="status-message">{t.payTaipeiParkingMapNotice}</p>}
         {includesGreenSpaceAdoption && <p className="status-message">{t.greenSpaceAdoptionMapNotice}</p>}
+        {includesAccessiblePublicParking && <p className="status-message">{t.accessiblePublicParkingInterpretationNote}</p>}
+        {isAccessiblePublicParkingOnly && (
+          <AccessiblePublicParkingDashboard records={displayedFacilities} summary={accessiblePublicParkingSummary} language={language} t={t} />
+        )}
         {isLoadingFacilities ? (
           <p className="status-message">{t.loading}</p>
         ) : (

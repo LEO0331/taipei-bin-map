@@ -79,6 +79,9 @@ const greenSpaceAdoptionRecordCount = greenSpaceAdoptionRecords.length.toString(
 const greenSpaceAdoptionSample =
   greenSpaceAdoptionRecords.find((facility) => facility.locationTextHasRangeOrBoundary && facility.roadName) ??
   greenSpaceAdoptionRecords[0];
+const accessiblePublicParkingFacilities = facilities.filter((facility) => facility.type === 'accessible_public_parking_facility');
+const accessiblePublicParkingCount = accessiblePublicParkingFacilities.length.toString();
+const accessiblePublicParkingValidCoordinateCount = accessiblePublicParkingFacilities.filter((facility) => facility.hasValidCoordinates).length.toString();
 
 test.describe('Taipei public amenities map public flows', () => {
   test('loads all twenty-one local datasets without mounting broad-view facility pins', async ({ page }) => {
@@ -177,6 +180,22 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.facility-list li').first()).not.toContainText('ownership');
     await page.getByRole('button', { name: 'View adoption records by nearby district' }).click();
     await expect(page.getByText('Green-space adoption records do not provide official coordinates, so exact distance cannot currently be calculated')).toBeVisible();
+  });
+
+  test('shows accessible public parking analysis views and keeps invalid coordinates in the directory', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '公有路外停車場無障礙設施' }).click();
+    await expect(page.getByText(`${accessiblePublicParkingCount} 筆資料`)).toBeVisible();
+    await expect(page.getByRole('button', { name: '概覽' })).toBeVisible();
+    await expect(page.getByRole('button', { name: '行政區分布' })).toBeVisible();
+    await expect(page.getByRole('button', { name: '無障礙設施分析' })).toBeVisible();
+    await expect(page.getByRole('button', { name: '資料品質' })).toBeVisible();
+    await page.getByPlaceholder('搜尋停車場名稱、行政區、地址或服務代碼').fill('百齡高中地下停車場');
+    await expect(page.locator('.facility-list li').first()).toContainText('百齡高中地下停車場');
+    await page.getByPlaceholder('搜尋停車場名稱、行政區、地址或服務代碼').fill('');
+    await page.getByLabel('有有效座標的設施').check();
+    await expect(page.getByText(`${accessiblePublicParkingValidCoordinateCount} 筆資料`)).toBeVisible();
   });
 
   test('filters dog-waste bag boxes without labeling them as garbage bins', async ({ page }) => {

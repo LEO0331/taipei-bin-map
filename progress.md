@@ -2,12 +2,20 @@
 
 ## Current State
 
-**Last Updated:** 2026-07-06 Asia/Taipei
+**Last Updated:** 2026-07-14 Asia/Taipei
 **Active Feature:** None
 
 ## Status
 
 ### What's Done
+
+- [x] Fetched the official Taipei Open Data accessible public off-street parking CSV (113 rows) into `data/raw/accessible-public-parking-facilities/`.
+- [x] Added UTF-8-SIG/Big5/CP950-safe conversion, raw accessibility preservation, non-negative count parsing, TWD97/WGS84 detection, TWD97-to-WGS84 conversion, primary/fallback keys, and conversion-quality reporting.
+- [x] Generated 113 records: 86 valid markers and 27 invalid-coordinate directory records across all 12 districts; merged them into 16,956 combined facilities.
+- [x] Added shared filters, search fields, exact marker safeguards, popup/list fields, bilingual labels/notices, PWA cache entries, and a seven-view module dashboard with overview cards, district/feature charts, directory, quality, and notes views.
+- [x] Added converter regression coverage for counts, accessibility normalization, and TWD97 coordinates.
+- [x] Verification: `npm.cmd test` passed 56 tests; `npm.cmd run build` passed; alternate-port desktop Playwright suite passed 32 tests including the new accessible-parking flow.
+- [x] Browser smoke fetched the app shell and `/data/accessible-public-parking-facilities/records.json` successfully; the standard `npm run test:e2e` port 5173 check remains unavailable because an unrelated WSL relay owns that strict port.
 
 - [x] Added 385 green-space adoption records from `臺北市行道樹公園綠地廣場認養人資料.csv`.
 - [x] Added Big5/CP950 raw-data copy, conversion, summary generation, combined facility merge, PWA cache entries, README workflow notes, feature ledger state, and focused tests for the green-space adoption layer.

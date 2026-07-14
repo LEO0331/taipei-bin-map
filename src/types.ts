@@ -21,7 +21,8 @@ export type FacilityType =
   | 'clean_needle_exchange_service_point'
   | 'protected_tree'
   | 'pay_taipei_cardless_parking_lot'
-  | 'green_space_adoption_record';
+  | 'green_space_adoption_record'
+  | 'accessible_public_parking_facility';
 
 export type LocationPrecision = 'exact' | 'district_centroid' | 'address_only' | 'missing';
 export type CoordinateStatus = 'valid' | 'missing' | 'outlier' | 'unparsed';
@@ -377,6 +378,25 @@ export type Facility = {
   adopterName?: string;
   adopterNameNormalized?: string;
   adopterNameCategory?: GreenSpaceAdopterCategory;
+  accessiblePublicParkingSourceId?: string;
+  districtName?: string;
+  parkingFacilityName?: string;
+  parkingFacilityNameNormalized?: string;
+  accessibleCarSpaceCountRaw?: string;
+  accessibleMotorcycleSpaceCountRaw?: string;
+  accessibleCarSpaceCount?: number;
+  accessibleMotorcycleSpaceCount?: number;
+  hasAccessibleCarSpaces?: boolean;
+  hasAccessibleMotorcycleSpaces?: boolean;
+  accessibleElevatorRaw?: string;
+  accessibleToiletRaw?: string;
+  accessibleStairHandrailRaw?: string;
+  hasAccessibleElevator?: boolean | 'unknown';
+  hasAccessibleToilet?: boolean | 'unknown';
+  hasAccessibleStairHandrail?: boolean | 'unknown';
+  accessibilityFeatureCount?: number;
+  queryServiceCode?: string;
+  hasValidCoordinates?: boolean;
 };
 
 export type MotorcycleInspectionStationLocation = {
@@ -834,10 +854,43 @@ export type ConversionSourceReport = {
   unparsedDistrictExamples?: Array<{ rowNumber: number; address?: string }>;
   operatorOrPlatformAddressExamples?: Array<{ rowNumber: number; address?: string; parkingLotName?: string }>;
   postalCodeWarnings?: Array<{ rowNumber: number; postalCode?: string; warning: string }>;
+  duplicateSourceIds?: Array<{ sourceId: string; count: number }>;
+  invalidNumberValues?: Array<{ rowNumber: number; field: string; value: string }>;
+  unknownAccessibilityValues?: Array<{ rowNumber: number; field: string; value: string }>;
 };
 
 export type ConversionReport = {
   generatedAt: string;
   totalValidRows: number;
   sources: ConversionSourceReport[];
+};
+
+export type AccessiblePublicParkingFacilitySummary = {
+  totalRecords: number;
+  validCoordinateCount: number;
+  invalidCoordinateCount: number;
+  districtCount: number;
+  totalAccessibleCarSpaceCount: number;
+  totalAccessibleMotorcycleSpaceCount: number;
+  facilitiesWithAccessibleCarSpaces: number;
+  facilitiesWithAccessibleMotorcycleSpaces: number;
+  facilitiesWithAccessibleElevators: number;
+  facilitiesWithAccessibleToilets: number;
+  facilitiesWithAccessibleStairHandrails: number;
+  byDistrict: Array<{
+    district: string;
+    facilityCount: number;
+    accessibleCarSpaceCount: number;
+    accessibleMotorcycleSpaceCount: number;
+    elevatorCount: number;
+    toiletCount: number;
+    stairHandrailCount: number;
+  }>;
+  byAccessibilityFeatureCount: Array<{ featureCount: number; facilityCount: number }>;
+  dataQuality: {
+    duplicateSourceIdCount: number;
+    duplicateFallbackKeyCount: number;
+    invalidNumberCount: number;
+    unknownAccessibilityValueCount: number;
+  };
 };

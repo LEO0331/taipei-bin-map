@@ -1,0 +1,11 @@
+{
+  "sourceUrl": "https://data.taipei/dataset/detail?id=08f9bc00-b1e9-4f6e-9199-0da74d8ad930",
+  "resourceId": "936e3be6-e029-4bdf-9199-a8b8fb482df6",
+  "resourceName": "公有路外停車場無障礙設施設置情形",
+  "sourceAgency": "交通局停管處",
+  "fetchedAt": "2026-07-14T01:27:09.610Z",
+  "filename": "accessible-public-parking-facilities.csv",
+  "fileSize": 14072,
+  "encoding": "UTF-8",
+  "notes": "TMPX/TMPY are detected and converted as TWD97/TM2 when they fall in the EPSG:3826 range."
+}

@@ -943,6 +943,33 @@ export function CommunityRecyclingStationFilters(props: CommunityRecyclingStatio
   );
 }
 
+type AccessiblePublicParkingFiltersProps = {
+  values: { car: boolean; motorcycle: boolean; elevator: boolean; toilet: boolean; handrail: boolean; validCoordinates: boolean };
+  t: Translation;
+  onChange: (name: keyof AccessiblePublicParkingFiltersProps['values'], value: boolean) => void;
+};
+
+export function AccessiblePublicParkingFilters({ values, t, onChange }: AccessiblePublicParkingFiltersProps) {
+  const options: Array<[keyof AccessiblePublicParkingFiltersProps['values'], string]> = [
+    ['car', t.accessibleCarSpaceCount],
+    ['motorcycle', t.accessibleMotorcycleSpaceCount],
+    ['elevator', t.accessibleElevator],
+    ['toilet', t.accessibleToilet],
+    ['handrail', t.accessibleStairHandrail],
+    ['validCoordinates', t.facilitiesWithValidCoordinates],
+  ];
+  return (
+    <fieldset className="toilet-filters">
+      {options.map(([name, label]) => (
+        <label className="checkbox-filter" key={name}>
+          <input type="checkbox" checked={values[name]} onChange={(event) => onChange(name, event.target.checked)} />
+          <span>{label}</span>
+        </label>
+      ))}
+    </fieldset>
+  );
+}
+
 type CleanNeedleServicePointFiltersProps = {
   areaCodes: string[];
   serviceItems: string[];

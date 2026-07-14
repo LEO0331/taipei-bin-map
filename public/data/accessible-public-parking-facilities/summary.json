@@ -1,0 +1,139 @@
+{
+  "totalRecords": 113,
+  "validCoordinateCount": 86,
+  "invalidCoordinateCount": 27,
+  "districtCount": 12,
+  "totalAccessibleCarSpaceCount": 870,
+  "totalAccessibleMotorcycleSpaceCount": 236,
+  "facilitiesWithAccessibleCarSpaces": 113,
+  "facilitiesWithAccessibleMotorcycleSpaces": 55,
+  "facilitiesWithAccessibleElevators": 83,
+  "facilitiesWithAccessibleToilets": 112,
+  "facilitiesWithAccessibleStairHandrails": 113,
+  "byDistrict": [
+    {
+      "district": "士林區",
+      "facilityCount": 9,
+      "accessibleCarSpaceCount": 54,
+      "accessibleMotorcycleSpaceCount": 15,
+      "elevatorCount": 7,
+      "toiletCount": 9,
+      "stairHandrailCount": 9
+    },
+    {
+      "district": "大同區",
+      "facilityCount": 12,
+      "accessibleCarSpaceCount": 72,
+      "accessibleMotorcycleSpaceCount": 19,
+      "elevatorCount": 8,
+      "toiletCount": 12,
+      "stairHandrailCount": 12
+    },
+    {
+      "district": "大安區",
+      "facilityCount": 7,
+      "accessibleCarSpaceCount": 74,
+      "accessibleMotorcycleSpaceCount": 18,
+      "elevatorCount": 7,
+      "toiletCount": 7,
+      "stairHandrailCount": 7
+    },
+    {
+      "district": "中山區",
+      "facilityCount": 10,
+      "accessibleCarSpaceCount": 78,
+      "accessibleMotorcycleSpaceCount": 5,
+      "elevatorCount": 6,
+      "toiletCount": 10,
+      "stairHandrailCount": 10
+    },
+    {
+      "district": "中正區",
+      "facilityCount": 1,
+      "accessibleCarSpaceCount": 9,
+      "accessibleMotorcycleSpaceCount": 0,
+      "elevatorCount": 0,
+      "toiletCount": 1,
+      "stairHandrailCount": 1
+    },
+    {
+      "district": "內湖區",
+      "facilityCount": 11,
+      "accessibleCarSpaceCount": 53,
+      "accessibleMotorcycleSpaceCount": 11,
+      "elevatorCount": 7,
+      "toiletCount": 11,
+      "stairHandrailCount": 11
+    },
+    {
+      "district": "文山區",
+      "facilityCount": 8,
+      "accessibleCarSpaceCount": 58,
+      "accessibleMotorcycleSpaceCount": 26,
+      "elevatorCount": 7,
+      "toiletCount": 8,
+      "stairHandrailCount": 8
+    },
+    {
+      "district": "北投區",
+      "facilityCount": 6,
+      "accessibleCarSpaceCount": 33,
+      "accessibleMotorcycleSpaceCount": 11,
+      "elevatorCount": 5,
+      "toiletCount": 6,
+      "stairHandrailCount": 6
+    },
+    {
+      "district": "松山區",
+      "facilityCount": 15,
+      "accessibleCarSpaceCount": 94,
+      "accessibleMotorcycleSpaceCount": 23,
+      "elevatorCount": 9,
+      "toiletCount": 15,
+      "stairHandrailCount": 15
+    },
+    {
+      "district": "信義區",
+      "facilityCount": 15,
+      "accessibleCarSpaceCount": 141,
+      "accessibleMotorcycleSpaceCount": 50,
+      "elevatorCount": 13,
+      "toiletCount": 15,
+      "stairHandrailCount": 15
+    },
+    {
+      "district": "南港區",
+      "facilityCount": 7,
+      "accessibleCarSpaceCount": 59,
+      "accessibleMotorcycleSpaceCount": 20,
+      "elevatorCount": 6,
+      "toiletCount": 7,
+      "stairHandrailCount": 7
+    },
+    {
+      "district": "萬華區",
+      "facilityCount": 12,
+      "accessibleCarSpaceCount": 145,
+      "accessibleMotorcycleSpaceCount": 38,
+      "elevatorCount": 8,
+      "toiletCount": 11,
+      "stairHandrailCount": 12
+    }
+  ],
+  "byAccessibilityFeatureCount": [
+    {
+      "featureCount": 2,
+      "facilityCount": 31
+    },
+    {
+      "featureCount": 3,
+      "facilityCount": 82
+    }
+  ],
+  "dataQuality": {
+    "duplicateSourceIdCount": 0,
+    "duplicateFallbackKeyCount": 0,
+    "invalidNumberCount": 0,
+    "unknownAccessibilityValueCount": 8
+  }
+}

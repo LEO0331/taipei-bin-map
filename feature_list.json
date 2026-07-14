@@ -239,6 +239,14 @@
       "dependencies": ["feat-029"],
       "status": "done",
       "evidence": "npm run data:fetch:green-space-adoption copied the source CSV, npm run convert:facilities generated 16843 facilities including 385 green-space adoption records, npm test passed 55 unit/converter tests, npm run build passed, and npm run test:e2e passed 62 desktop/mobile Playwright tests on 2026-07-06."
+    },
+    {
+      "id": "feat-031",
+      "name": "Accessible public off-street parking facility expansion",
+      "description": "Add Taipei public off-street parking accessibility facilities with mixed-encoding CSV conversion, raw accessibility values, dynamic space and feature summaries, coordinate-system detection, TWD97 conversion, quality reporting, shared map/list filters, and dedicated overview, district, feature, directory, quality, and notes views without real-time availability or accessibility-guarantee claims.",
+      "dependencies": ["feat-030"],
+      "status": "done",
+      "evidence": "Fetched the official 113-row CSV, generated 113 records with 86 valid TWD97-converted coordinates and 27 directory-only records, npm test passed, npm run build passed, and npm run convert:facilities generated 16956 combined facilities on 2026-07-14."
     }
   ]
 }

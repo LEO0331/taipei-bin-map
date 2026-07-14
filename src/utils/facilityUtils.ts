@@ -203,6 +203,12 @@ export function filterFacilities(
     greenSpaceRoadName,
     greenSpaceHasRangeOrBoundary = false,
     greenSpaceHasIntersection = false,
+    accessibleParkingCar = false,
+    accessibleParkingMotorcycle = false,
+    accessibleParkingElevator = false,
+    accessibleParkingToilet = false,
+    accessibleParkingHandrail = false,
+    accessibleParkingValidCoordinates = false,
   }: {
     searchTerm: string;
     district: string;
@@ -323,6 +329,12 @@ export function filterFacilities(
     greenSpaceRoadName?: string;
     greenSpaceHasRangeOrBoundary?: boolean;
     greenSpaceHasIntersection?: boolean;
+    accessibleParkingCar?: boolean;
+    accessibleParkingMotorcycle?: boolean;
+    accessibleParkingElevator?: boolean;
+    accessibleParkingToilet?: boolean;
+    accessibleParkingHandrail?: boolean;
+    accessibleParkingValidCoordinates?: boolean;
   },
 ) {
   const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
@@ -348,6 +360,7 @@ export function filterFacilities(
   const hasProtectedTreeFilters = Boolean(protectedTreeSpecies || protectedTreeScientificName || protectedTreeEnglishName || protectedTreeLocationType || protectedTreeManagementUnit || protectedTreeDiameterCategory || protectedTreeCircumferenceCategory || protectedTreeCoordinateQuality || protectedTreeHasLocationType || protectedTreeHasSizeFlags);
   const hasPayTaipeiParkingFilters = Boolean(payTaipeiParkingSupportStatus || payTaipeiParkingOperator || payTaipeiParkingOperatorId || payTaipeiParkingPostalCode || payTaipeiParkingPostalCodeType || payTaipeiParkingRoadName || payTaipeiParkingHasPhone || payTaipeiParkingHasNote || payTaipeiParkingServiceStopped || payTaipeiParkingBasement || payTaipeiParkingOperatorAddress || payTaipeiParkingLocationPrecision || payTaipeiParkingGeocodingStatus);
   const hasGreenSpaceAdoptionFilters = Boolean(greenSpaceManagementUnit || greenSpaceDistrictCode || greenSpaceTargetAttribute || greenSpaceTargetCategory || greenSpaceAdopterName || greenSpaceAdopterCategory || greenSpaceRoadName || greenSpaceHasRangeOrBoundary || greenSpaceHasIntersection);
+  const hasAccessibleParkingFilters = Boolean(accessibleParkingCar || accessibleParkingMotorcycle || accessibleParkingElevator || accessibleParkingToilet || accessibleParkingHandrail || accessibleParkingValidCoordinates);
 
   return facilities.filter((facility) => {
     const matchesDistrict = !district || facility.district === district;
@@ -531,6 +544,15 @@ export function filterFacilities(
         (!greenSpaceHasRangeOrBoundary || facility.locationTextHasRangeOrBoundary === true) &&
         (!greenSpaceHasIntersection || facility.locationTextHasIntersection === true));
     const matchesGreenSpaceAdoptionScope = !hasGreenSpaceAdoptionFilters || facility.type === 'green_space_adoption_record';
+    const matchesAccessibleParking =
+      facility.type !== 'accessible_public_parking_facility' ||
+      ((!accessibleParkingCar || facility.hasAccessibleCarSpaces === true) &&
+        (!accessibleParkingMotorcycle || facility.hasAccessibleMotorcycleSpaces === true) &&
+        (!accessibleParkingElevator || facility.hasAccessibleElevator === true) &&
+        (!accessibleParkingToilet || facility.hasAccessibleToilet === true) &&
+        (!accessibleParkingHandrail || facility.hasAccessibleStairHandrail === true) &&
+        (!accessibleParkingValidCoordinates || facility.hasValidCoordinates === true));
+    const matchesAccessibleParkingScope = !hasAccessibleParkingFilters || facility.type === 'accessible_public_parking_facility';
     const matchesSearch =
       !normalizedSearch ||
       [
@@ -638,6 +660,12 @@ export function filterFacilities(
         facility.adoptionTargetAttribute,
         facility.adoptionLocation,
         facility.adopterName,
+        facility.parkingFacilityName,
+        facility.queryServiceCode,
+        facility.accessiblePublicParkingSourceId,
+        facility.accessibleElevatorRaw,
+        facility.accessibleToiletRaw,
+        facility.accessibleStairHandrailRaw,
         facility.adoptionTargetCategory,
         facility.adopterNameCategory,
         facility.type === 'used_clothing_recycling_box'
@@ -687,6 +715,8 @@ export function filterFacilities(
       matchesPayTaipeiParkingScope &&
       matchesGreenSpaceAdoption &&
       matchesGreenSpaceAdoptionScope &&
+      matchesAccessibleParking &&
+      matchesAccessibleParkingScope &&
       matchesSearch
     );
   });
@@ -771,6 +801,10 @@ export function getFacilityTypeLabel(type: FacilityType, language: Language) {
 
   if (type === 'green_space_adoption_record') {
     return language === 'zh' ? '行道樹公園綠地廣場認養' : 'Green Space Adoption';
+  }
+
+  if (type === 'accessible_public_parking_facility') {
+    return language === 'zh' ? '公有路外停車場無障礙設施' : 'Accessible Public Off-Street Parking Facility';
   }
 
   return language === 'zh' ? '哺集乳室' : 'Lactation Room';

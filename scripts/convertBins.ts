@@ -22,6 +22,7 @@ import { loadCleanNeedleExchangeServicePoints } from './convertCleanNeedleExchan
 import { loadProtectedTrees } from './convertProtectedTrees';
 import { loadPayTaipeiCardlessParkingLots } from './convertPayTaipeiCardlessParkingLots';
 import { loadGreenSpaceAdoptionRecords } from './convertGreenSpaceAdoptionRecords';
+import { loadAccessiblePublicParkingFacilities } from './convertAccessiblePublicParkingFacilities';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -172,6 +173,8 @@ const PAY_TAIPEI_PARKING_OUTPUT = resolve(options.outputDir, 'pay-taipei-cardles
 const PAY_TAIPEI_PARKING_SUMMARY_OUTPUT = resolve(options.outputDir, 'pay-taipei-cardless-parking-lot-summary.json');
 const GREEN_SPACE_ADOPTION_OUTPUT = resolve(options.outputDir, 'green-space-adoption-records/records.json');
 const GREEN_SPACE_ADOPTION_SUMMARY_OUTPUT = resolve(options.outputDir, 'green-space-adoption-records/summary.json');
+const ACCESSIBLE_PUBLIC_PARKING_OUTPUT = resolve(options.outputDir, 'accessible-public-parking-facilities/records.json');
+const ACCESSIBLE_PUBLIC_PARKING_SUMMARY_OUTPUT = resolve(options.outputDir, 'accessible-public-parking-facilities/summary.json');
 const PUBLIC_AMENITIES_SUMMARY_OUTPUT = resolve(options.outputDir, 'public-amenities-summary.json');
 const DRINKING_FOUNTAINS_OUTPUT = resolve(options.outputDir, 'drinking-fountains.json');
 const TIMED_COLLECTION_OUTPUT = resolve(options.outputDir, 'timed-collection-points.json');
@@ -450,6 +453,7 @@ const cleanNeedleServicePoints = loadCleanNeedleExchangeServicePoints();
 const protectedTrees = loadProtectedTrees();
 const payTaipeiParkingLots = loadPayTaipeiCardlessParkingLots();
 const greenSpaceAdoptionRecords = loadGreenSpaceAdoptionRecords();
+const accessiblePublicParkingFacilities = loadAccessiblePublicParkingFacilities();
 
 const facilities = [
   ...pedestrian.facilities,
@@ -473,6 +477,7 @@ const facilities = [
   ...protectedTrees.facilities,
   ...payTaipeiParkingLots.facilities,
   ...greenSpaceAdoptionRecords.facilities,
+  ...accessiblePublicParkingFacilities.facilities,
 ];
 const report: ConversionReport = {
   generatedAt: new Date().toISOString(),
@@ -499,6 +504,7 @@ const report: ConversionReport = {
     protectedTrees.report,
     payTaipeiParkingLots.report,
     greenSpaceAdoptionRecords.report,
+    accessiblePublicParkingFacilities.report,
   ],
 };
 
@@ -562,6 +568,8 @@ writeJson(PAY_TAIPEI_PARKING_OUTPUT, payTaipeiParkingLots.facilities);
 writeJson(PAY_TAIPEI_PARKING_SUMMARY_OUTPUT, payTaipeiParkingLots.summary);
 writeJson(GREEN_SPACE_ADOPTION_OUTPUT, greenSpaceAdoptionRecords.facilities);
 writeJson(GREEN_SPACE_ADOPTION_SUMMARY_OUTPUT, greenSpaceAdoptionRecords.summary);
+writeJson(ACCESSIBLE_PUBLIC_PARKING_OUTPUT, accessiblePublicParkingFacilities.facilities);
+writeJson(ACCESSIBLE_PUBLIC_PARKING_SUMMARY_OUTPUT, accessiblePublicParkingFacilities.summary);
 writeJson(PUBLIC_AMENITIES_SUMMARY_OUTPUT, {
   totalFacilityRecords: facilities.length,
   communityRecyclingStationCount: communityRecyclingStations.facilities.length,
@@ -569,6 +577,7 @@ writeJson(PUBLIC_AMENITIES_SUMMARY_OUTPUT, {
   protectedTreeCount: protectedTrees.facilities.length,
   payTaipeiCardlessParkingLotCount: payTaipeiParkingLots.facilities.length,
   greenSpaceAdoptionRecordCount: greenSpaceAdoptionRecords.facilities.length,
+  accessiblePublicParkingFacilityCount: accessiblePublicParkingFacilities.facilities.length,
   timedCollectionPointCount: timedCollectionPoints.facilities.length,
   usedClothingRecyclingBoxCount: usedClothingRecyclingBoxes.facilities.length,
 });

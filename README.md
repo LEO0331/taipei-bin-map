@@ -182,6 +182,16 @@ npm run convert:facilities
 
 The converter preserves sequence number, management unit, district, district code, adoption target, target attribute, location text, parsed road, and adopter name. The source has location descriptions but no official coordinates, so records stay address-only with district summary bubbles and Google Maps lookup links. The app does not claim land or facility ownership, complete maintenance responsibility, real-time maintenance status, plant health, public safety judgment, facility boundaries, legal advice, official ranking, or official recommendation.
 
+The accessible public off-street parking facility layer uses the Taipei Open Data dataset `08f9bc00-b1e9-4f6e-9199-0da74d8ad930`:
+
+```bash
+npm run data:fetch:accessible-public-parking
+npm run data:convert:accessible-public-parking
+npm run convert:facilities
+```
+
+The converter supports UTF-8-SIG, Big5, and CP950, keeps raw accessibility values, parses non-negative space counts, reports duplicate keys, invalid numbers, unknown accessibility values, and invalid coordinates, and writes `public/data/accessible-public-parking-facilities/records.json` plus `summary.json`. The source's observed `TMPX`/`TMPY` values are TWD97/TM2 and are converted to WGS84 at build time. Records without valid coordinates remain searchable in the directory but are not rendered as markers. The module includes overview, map, district, feature, directory, data-quality, and notes views with charts and filters. It does not claim real-time vacancies, current elevator/toilet operation, parking fees, operating hours, complete accessibility certification, or guaranteed accessible-route guidance.
+
 The gas/LPG station layer uses the UTF-8-SIG `臺北市加油站及加氣站分布圖.csv` resource:
 
 ```bash

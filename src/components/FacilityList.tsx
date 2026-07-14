@@ -308,6 +308,11 @@ export function FacilityList({
                   ].filter(Boolean).join(' · ')}
                 </small>
               )}
+              {facility.type === 'accessible_public_parking_facility' && (
+                <small>
+                  {[facility.parkingFacilityName ? `${t.parkingFacilityName}: ${facility.parkingFacilityName}` : '', `${t.accessibleCarSpaceCount}: ${facility.accessibleCarSpaceCount ?? 0}`, `${t.accessibleMotorcycleSpaceCount}: ${facility.accessibleMotorcycleSpaceCount ?? 0}`, `${t.accessibleFeatures}: ${facility.accessibilityFeatureCount ?? 0}`].filter(Boolean).join(' · ')}
+                </small>
+              )}
               {facility.note && <small>{facility.note}</small>}
               {facility.type === 'designated_smoking_area' && facility.photoUrl && (
                 <a href={facility.photoUrl} target="_blank" rel="noreferrer">{t.photo}</a>

@@ -71,8 +71,36 @@ import {
   classifyGreenSpaceAdoptionTarget,
   convertGreenSpaceAdoptionRows,
 } from './convertGreenSpaceAdoptionRecords';
+import {
+  convertAccessiblePublicParkingRows,
+  normalizeAccessibilityValue,
+  parseNonNegativeInteger,
+} from './convertAccessiblePublicParkingFacilities';
 
 describe('new facility converters', () => {
+  it('converts accessible public parking records and detects TWD97 coordinates', () => {
+    expect(parseNonNegativeInteger('12')).toMatchObject({ value: 12, valid: true });
+    expect(parseNonNegativeInteger('-1').valid).toBe(false);
+    expect(normalizeAccessibilityValue('v')).toBe(true);
+    expect(normalizeAccessibilityValue('X')).toBe(false);
+    expect(normalizeAccessibilityValue('機械塔無設置')).toBe('unknown');
+
+    const converted = convertAccessiblePublicParkingRows([{
+      編號: '1', 行政區: '大安區', 停車場名稱: '測試停車場', 地址: '臺北市大安區測試路1號',
+      身心障礙汽車格位統計數值: '4', 身心障礙機車格位統計數值: '2', 無障礙電梯: 'v', 無障礙廁所: 'Y', 無障礙樓梯扶手: '1',
+      TMPX: '304224.082', TMPY: '2769427.701', QUERYSERVICECODE: 'TPGOS_CA_ADDR',
+    }]);
+    expect(converted.facilities[0]).toMatchObject({
+      type: 'accessible_public_parking_facility',
+      sourceId: '1',
+      accessibleCarSpaceCount: 4,
+      accessibleMotorcycleSpaceCount: 2,
+      accessibilityFeatureCount: 3,
+      coordinateSystem: 'twd97',
+      hasValidCoordinates: true,
+    });
+    expect(converted.report.invalidCoordinateRows).toHaveLength(0);
+  });
   it('parses timed collection notes conservatively', () => {
     expect(parseTimedCollectionCapabilities('不含廚餘，開放時間06：00~22：00')).toMatchObject({
       acceptsGarbage: 'unknown',
