@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T01:27:11.739Z",
+  "generatedAt": "2026-07-16T06:43:01.628Z",
   "totalValidRows": 16956,
   "sources": [
     {
@@ -2840,6 +2840,18 @@
           "value": "機械塔無設置"
         }
       ]
+    },
+    {
+      "sourceFilename": "臺北市巨大廢棄物清運.csv",
+      "totalRows": 65,
+      "validRows": 65,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": [],
+      "duplicateRows": [],
+      "malformedPhones": [],
+      "emptyServiceAreas": []
     }
   ]
 }

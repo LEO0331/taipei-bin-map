@@ -240,4 +240,12 @@
 
 ## Notes for Next Session
 
-Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The green-space adoption layer is implemented as an address-only public-environment directory; final full E2E status is recorded above.
+Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The bulky-waste module is a dedicated directory route (`#/bulky-waste-collection-booking`), deliberately separate from map facilities because the source has no coordinates or full service-location addresses.
+
+## Bulky Waste Collection Booking — 2026-07-16
+
+- Added `scripts/convertBulkyWasteCollectionBookings.ts`, using actual CP950/Big5 headers with tolerant header matching, source-field preservation, clear-delimiter village splitting, deduplication, and data-quality reporting for duplicate rows, missing districts, malformed phone values, and empty service areas.
+- Generated `public/data/bulky-waste-collection-booking/records.json` and `summary.json` from the official Taipei Open Data CSV; the current source produced 65 records.
+- Added a bilingual, directory-only module with overview, district, team, village, directory, and notes views; filters update metrics and rows, and the directory supports sorting, pagination, clickable phone links, copying, and filtered CSV download.
+- Added the hash route, navigation entry, PWA cache entries, README documentation, converter tests, and conversion-report quality source.
+- Verification: `npm.cmd run data:convert:bulky-waste-collection-booking`, `npm.cmd run convert:facilities`, `npm.cmd test` (57 tests), and `npm.cmd run build` passed. Full Playwright regression was blocked because port 5173 was already in use by an existing local server.

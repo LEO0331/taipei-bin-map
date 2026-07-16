@@ -76,8 +76,22 @@ import {
   normalizeAccessibilityValue,
   parseNonNegativeInteger,
 } from './convertAccessiblePublicParkingFacilities';
+import { convertBulkyWasteCollectionBookingRows, splitServiceVillages } from './convertBulkyWasteCollectionBookings';
 
 describe('new facility converters', () => {
+  it('preserves bulky-waste booking source fields while deduplicating clear duplicate rows', () => {
+    expect(splitServiceVillages('甲里、乙里')).toEqual(['甲里', '乙里']);
+    expect(splitServiceVillages('未分隔服務區')).toEqual(['未分隔服務區']);
+    const converted = convertBulkyWasteCollectionBookingRows([
+      { 行政區: '南港區', '地址-行政區域代碼': '63000090', 分隊: '玉成分隊', 市話: '(02)27881921', 各分隊收運轄區里: '聯成里、合成里', 預約時間: '早上06:00至下午04:30' },
+      { 行政區: '南港區', '地址-行政區域代碼': '63000090', 分隊: '玉成分隊', 市話: '(02)27881921', 各分隊收運轄區里: '聯成里、合成里', 預約時間: '不同來源時間' },
+      { 行政區: '', '地址-行政區域代碼': 'x', 分隊: '測試分隊', 市話: 'invalid', 各分隊收運轄區里: '', 預約時間: '' },
+    ]);
+    expect(converted.records).toHaveLength(2);
+    expect(converted.records[0]).toMatchObject({ districtCode: '63000090', serviceVillagesRaw: '聯成里、合成里', bookingHoursRaw: '早上06:00至下午04:30' });
+    expect(converted.summary.dataQuality).toMatchObject({ duplicateRows: [{ rowNumber: 3, key: expect.any(String) }], missingDistricts: [4], emptyServiceAreas: [4] });
+    expect(converted.summary.dataQuality.malformedPhones).toHaveLength(1);
+  });
   it('converts accessible public parking records and detects TWD97 coordinates', () => {
     expect(parseNonNegativeInteger('12')).toMatchObject({ value: 12, valid: true });
     expect(parseNonNegativeInteger('-1').valid).toBe(false);

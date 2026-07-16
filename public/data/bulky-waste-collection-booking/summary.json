@@ -1,0 +1,14 @@
+{
+  "totalRecords": 65,
+  "districtCount": 12,
+  "collectionTeamCount": 65,
+  "villageCount": 454,
+  "recordsWithPhone": 65,
+  "recordsWithBookingHours": 65,
+  "dataQuality": {
+    "duplicateRows": [],
+    "missingDistricts": [],
+    "malformedPhones": [],
+    "emptyServiceAreas": []
+  }
+}

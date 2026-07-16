@@ -23,6 +23,7 @@ import { loadProtectedTrees } from './convertProtectedTrees';
 import { loadPayTaipeiCardlessParkingLots } from './convertPayTaipeiCardlessParkingLots';
 import { loadGreenSpaceAdoptionRecords } from './convertGreenSpaceAdoptionRecords';
 import { loadAccessiblePublicParkingFacilities } from './convertAccessiblePublicParkingFacilities';
+import { loadBulkyWasteCollectionBookings } from './convertBulkyWasteCollectionBookings';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -454,6 +455,7 @@ const protectedTrees = loadProtectedTrees();
 const payTaipeiParkingLots = loadPayTaipeiCardlessParkingLots();
 const greenSpaceAdoptionRecords = loadGreenSpaceAdoptionRecords();
 const accessiblePublicParkingFacilities = loadAccessiblePublicParkingFacilities();
+const bulkyWasteCollectionBookings = loadBulkyWasteCollectionBookings();
 
 const facilities = [
   ...pedestrian.facilities,
@@ -505,6 +507,15 @@ const report: ConversionReport = {
     payTaipeiParkingLots.report,
     greenSpaceAdoptionRecords.report,
     accessiblePublicParkingFacilities.report,
+    {
+      sourceFilename: '臺北市巨大廢棄物清運.csv', totalRows: bulkyWasteCollectionBookings.records.length + bulkyWasteCollectionBookings.summary.dataQuality.duplicateRows.length,
+      validRows: bulkyWasteCollectionBookings.records.length, droppedRows: bulkyWasteCollectionBookings.summary.dataQuality.duplicateRows.length,
+      coordinateOutlierRows: 0, invalidCoordinateRows: [],
+      missingRequiredFields: bulkyWasteCollectionBookings.summary.dataQuality.missingDistricts.map((rowNumber) => ({ rowNumber, fields: ['行政區'] })),
+      duplicateRows: bulkyWasteCollectionBookings.summary.dataQuality.duplicateRows,
+      malformedPhones: bulkyWasteCollectionBookings.summary.dataQuality.malformedPhones,
+      emptyServiceAreas: bulkyWasteCollectionBookings.summary.dataQuality.emptyServiceAreas,
+    },
   ],
 };
 

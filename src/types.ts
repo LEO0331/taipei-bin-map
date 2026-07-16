@@ -1,5 +1,16 @@
 export type Language = 'zh' | 'en';
 
+export interface BulkyWasteCollectionBookingRecord {
+  id: string;
+  districtName: string;
+  districtCode: string;
+  collectionTeam: string;
+  phone: string;
+  serviceVillagesRaw: string;
+  serviceVillages: string[];
+  bookingHoursRaw: string;
+}
+
 export type FacilityType =
   | 'pedestrian_bin'
   | 'dog_waste_bag_box'
@@ -857,6 +868,9 @@ export type ConversionSourceReport = {
   duplicateSourceIds?: Array<{ sourceId: string; count: number }>;
   invalidNumberValues?: Array<{ rowNumber: number; field: string; value: string }>;
   unknownAccessibilityValues?: Array<{ rowNumber: number; field: string; value: string }>;
+  duplicateRows?: Array<{ rowNumber: number; key: string }>;
+  malformedPhones?: Array<{ rowNumber: number; value: string }>;
+  emptyServiceAreas?: number[];
 };
 
 export type ConversionReport = {

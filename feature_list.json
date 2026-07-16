@@ -247,6 +247,14 @@
       "dependencies": ["feat-030"],
       "status": "done",
       "evidence": "Fetched the official 113-row CSV, generated 113 records with 86 valid TWD97-converted coordinates and 27 directory-only records, npm test passed, npm run build passed, and npm run convert:facilities generated 16956 combined facilities on 2026-07-14."
+    },
+    {
+      "id": "feat-032",
+      "name": "Bulky waste collection booking directory",
+      "description": "Add a customer-facing, bilingual, directory-only booking lookup for Taipei bulky-waste collection teams with CP950/Big5 conversion, dynamic filters, sorting, pagination, phone actions, CSV export, data-quality reporting, cache support, and no map markers or real-time booking claims.",
+      "dependencies": ["feat-031"],
+      "status": "done",
+      "evidence": "Downloaded the official CSV, generated 65 deduplicated booking records, and verified unit tests and production build on 2026-07-16."
     }
   ]
 }

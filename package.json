@@ -48,6 +48,7 @@
     "data:convert:green-space-adoption": "tsx scripts/convertGreenSpaceAdoptionRecords.ts && tsx scripts/buildGreenSpaceAdoptionSummary.ts",
     "data:fetch:accessible-public-parking": "tsx scripts/fetchAccessiblePublicParkingFacilities.ts",
     "data:convert:accessible-public-parking": "tsx scripts/convertAccessiblePublicParkingFacilities.ts && tsx scripts/buildAccessiblePublicParkingFacilitySummary.ts",
+    "data:convert:bulky-waste-collection-booking": "tsx scripts/convertBulkyWasteCollectionBookings.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

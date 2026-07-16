@@ -28,6 +28,7 @@ import { PublicToiletFilters } from './components/PublicToiletFilters';
 import { SearchFilters } from './components/SearchFilters';
 import { WarningNotice } from './components/WarningNotice';
 import { AccessiblePublicParkingDashboard } from './components/AccessiblePublicParkingDashboard';
+import { BulkyWasteCollectionBookingDashboard } from './components/BulkyWasteCollectionBookingDashboard';
 import { translations } from './i18n';
 import type {
   ConversionReport,
@@ -95,6 +96,7 @@ const getInitialLanguage = (): Language => {
 };
 
 function App() {
+  const [isBulkyWasteRoute, setIsBulkyWasteRoute] = useState(() => window.location.hash === '#/bulky-waste-collection-booking');
   const [facilities, setFacilities] = useState<Facility[]>([]);
   const [report, setReport] = useState<ConversionReport | null>(null);
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
@@ -260,6 +262,12 @@ function App() {
     document.documentElement.lang = language === 'zh' ? 'zh-Hant' : 'en';
     window.localStorage.setItem('language', language);
   }, [language]);
+
+  useEffect(() => {
+    const syncRoute = () => setIsBulkyWasteRoute(window.location.hash === '#/bulky-waste-collection-booking');
+    window.addEventListener('hashchange', syncRoute);
+    return () => window.removeEventListener('hashchange', syncRoute);
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -1257,9 +1265,10 @@ function App() {
           <h1>{t.appTitle}</h1>
         </div>
         <LanguageToggle language={language} onChange={handleLanguageChange} />
+        <a className="module-route-link" href={isBulkyWasteRoute ? '#/' : '#/bulky-waste-collection-booking'}>{isBulkyWasteRoute ? (language === 'zh' ? '返回設施地圖' : 'Back to amenities map') : t.bulkyWasteCollectionBooking}</a>
       </header>
 
-      <main>
+      {isBulkyWasteRoute ? <main><BulkyWasteCollectionBookingDashboard language={language} /></main> : <main>
         <section className="controls-panel" aria-label={t.searchPlaceholder}>
           <div className="metrics-strip" aria-label={t.sourceStatus}>
             <div>
@@ -1981,7 +1990,7 @@ function App() {
             />
           </div>
         )}
-      </main>
+      </main>}
 
       <footer>
         <span>{t.footer}</span>

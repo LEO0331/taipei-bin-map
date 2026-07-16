@@ -1,0 +1,1189 @@
+[
+  {
+    "id": "bulky-waste-2-63000090",
+    "districtName": "南港區",
+    "districtCode": "63000090",
+    "collectionTeam": "玉成分隊",
+    "phone": "(02)27881921",
+    "serviceVillagesRaw": "聯成里、合成里、新光里、成福里、萬福里、鴻福里、百福里、仁福里",
+    "serviceVillages": [
+      "聯成里",
+      "合成里",
+      "新光里",
+      "成福里",
+      "萬福里",
+      "鴻福里",
+      "百福里",
+      "仁福里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-3-63000090",
+    "districtName": "南港區",
+    "districtCode": "63000090",
+    "collectionTeam": "南港分隊",
+    "phone": "(02)27837522",
+    "serviceVillagesRaw": "南港里、玉成里、西新里、東新里、東明里、三重里、重陽里",
+    "serviceVillages": [
+      "南港里",
+      "玉成里",
+      "西新里",
+      "東新里",
+      "東明里",
+      "三重里",
+      "重陽里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-4-63000090",
+    "districtName": "南港區",
+    "districtCode": "63000090",
+    "collectionTeam": "舊莊分隊",
+    "phone": "(02)27825421",
+    "serviceVillagesRaw": "舊莊里、新富里、九如里、中南里、中研里",
+    "serviceVillages": [
+      "舊莊里",
+      "新富里",
+      "九如里",
+      "中南里",
+      "中研里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-5-63000020",
+    "districtName": "信義區",
+    "districtCode": "63000020",
+    "collectionTeam": "三張犁分隊",
+    "phone": "(02)27493261",
+    "serviceVillagesRaw": "西村里、正和里、興隆里、中興里、新仁里、興雅里、敦厚里、廣居里、安康里",
+    "serviceVillages": [
+      "西村里",
+      "正和里",
+      "興隆里",
+      "中興里",
+      "新仁里",
+      "興雅里",
+      "敦厚里",
+      "廣居里",
+      "安康里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-6-63000020",
+    "districtName": "信義區",
+    "districtCode": "63000020",
+    "collectionTeam": "五分埔分隊",
+    "phone": "(02)27534330",
+    "serviceVillagesRaw": "六藝里、五常里、永吉里、四育里、永春里、雅祥里、五全里、長春里、四維里、富台里",
+    "serviceVillages": [
+      "六藝里",
+      "五常里",
+      "永吉里",
+      "四育里",
+      "永春里",
+      "雅祥里",
+      "五全里",
+      "長春里",
+      "四維里",
+      "富台里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-7-63000020",
+    "districtName": "信義區",
+    "districtCode": "63000020",
+    "collectionTeam": "六張犁分隊",
+    "phone": "(02)27200326",
+    "serviceVillagesRaw": "景聯里、雙和里、景勤里、嘉興里、黎平里、黎安里、黎順里、黎忠里",
+    "serviceVillages": [
+      "景聯里",
+      "雙和里",
+      "景勤里",
+      "嘉興里",
+      "黎平里",
+      "黎安里",
+      "黎順里",
+      "黎忠里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-8-63000020",
+    "districtName": "信義區",
+    "districtCode": "63000020",
+    "collectionTeam": "吳興分隊",
+    "phone": "(02)27209037",
+    "serviceVillagesRaw": "景新里、三張里、六合里、惠安里、三犁里、泰和里",
+    "serviceVillages": [
+      "景新里",
+      "三張里",
+      "六合里",
+      "惠安里",
+      "三犁里",
+      "泰和里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-9-63000020",
+    "districtName": "信義區",
+    "districtCode": "63000020",
+    "collectionTeam": "福德分隊",
+    "phone": "(02)27276061",
+    "serviceVillagesRaw": "國業里、松友里、中坡里、大仁里、松隆里、松光里、中行里、大道里",
+    "serviceVillages": [
+      "國業里",
+      "松友里",
+      "中坡里",
+      "大仁里",
+      "松隆里",
+      "松光里",
+      "中行里",
+      "大道里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-10-63000030",
+    "districtName": "大安區",
+    "districtCode": "63000030",
+    "collectionTeam": "台大分隊",
+    "phone": "(02)23633215",
+    "serviceVillagesRaw": "學府里、大學里、龍淵里、古風里、龍門里",
+    "serviceVillages": [
+      "學府里",
+      "大學里",
+      "龍淵里",
+      "古風里",
+      "龍門里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-11-63000030",
+    "districtName": "大安區",
+    "districtCode": "63000030",
+    "collectionTeam": "瑞安分隊",
+    "phone": "(02)23634850",
+    "serviceVillagesRaw": "仁慈里、德安里、龍陣里、新龍里、龍雲里、住安里、龍生里、龍圖里",
+    "serviceVillages": [
+      "仁慈里",
+      "德安里",
+      "龍陣里",
+      "新龍里",
+      "龍雲里",
+      "住安里",
+      "龍生里",
+      "龍圖里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-12-63000030",
+    "districtName": "大安區",
+    "districtCode": "63000030",
+    "collectionTeam": "和平分隊",
+    "phone": "(02)23625869",
+    "serviceVillagesRaw": "錦泰里、錦華里、龍安里、龍坡里、龍泉里、福住里、永康里、古莊里、錦安里、光明里",
+    "serviceVillages": [
+      "錦泰里",
+      "錦華里",
+      "龍安里",
+      "龍坡里",
+      "龍泉里",
+      "福住里",
+      "永康里",
+      "古莊里",
+      "錦安里",
+      "光明里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-13-63000030",
+    "districtName": "大安區",
+    "districtCode": "63000030",
+    "collectionTeam": "臥龍分隊",
+    "phone": "(02)23785530",
+    "serviceVillagesRaw": "群英里、群賢里、黎孝里、黎和里、黎元里、芳和里、虎嘯里、臥龍里",
+    "serviceVillages": [
+      "群英里",
+      "群賢里",
+      "黎孝里",
+      "黎和里",
+      "黎元里",
+      "芳和里",
+      "虎嘯里",
+      "臥龍里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-14-63000030",
+    "districtName": "大安區",
+    "districtCode": "63000030",
+    "collectionTeam": "安和分隊",
+    "phone": "(02)27374644",
+    "serviceVillagesRaw": "通化里、通安里、敦煌里、敦安里、法治里、義安里、全安里、光信里、臨江里",
+    "serviceVillages": [
+      "通化里",
+      "通安里",
+      "敦煌里",
+      "敦安里",
+      "法治里",
+      "義安里",
+      "全安里",
+      "光信里",
+      "臨江里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-15-63000030",
+    "districtName": "大安區",
+    "districtCode": "63000030",
+    "collectionTeam": "新生分隊",
+    "phone": "(02)27529383",
+    "serviceVillagesRaw": "誠安里、昌隆里、民輝里、民炤里、和安里、義村里",
+    "serviceVillages": [
+      "誠安里",
+      "昌隆里",
+      "民輝里",
+      "民炤里",
+      "和安里",
+      "義村里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-16-63000030",
+    "districtName": "大安區",
+    "districtCode": "63000030",
+    "collectionTeam": "敦化分隊",
+    "phone": "(02)27786724",
+    "serviceVillagesRaw": "光武里、仁愛里、建倫里、建安里、車層里、正聲里、華聲里",
+    "serviceVillages": [
+      "光武里",
+      "仁愛里",
+      "建倫里",
+      "建安里",
+      "車層里",
+      "正聲里",
+      "華聲里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-17-63000050",
+    "districtName": "中正區",
+    "districtCode": "63000050",
+    "collectionTeam": "忠孝分隊",
+    "phone": "(02)23914913",
+    "serviceVillagesRaw": "文北里、幸福里、梅花里、幸市里",
+    "serviceVillages": [
+      "文北里",
+      "幸福里",
+      "梅花里",
+      "幸市里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-18-63000050",
+    "districtName": "中正區",
+    "districtCode": "63000050",
+    "collectionTeam": "仁愛分隊",
+    "phone": "(02)23911057",
+    "serviceVillagesRaw": "三愛里、文祥里、東門里",
+    "serviceVillages": [
+      "三愛里",
+      "文祥里",
+      "東門里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-19-63000050",
+    "districtName": "中正區",
+    "districtCode": "63000050",
+    "collectionTeam": "博愛分隊",
+    "phone": "(02)23311499",
+    "serviceVillagesRaw": "光復里、建國里、黎明里",
+    "serviceVillages": [
+      "光復里",
+      "建國里",
+      "黎明里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-20-63000050",
+    "districtName": "中正區",
+    "districtCode": "63000050",
+    "collectionTeam": "泉州分隊",
+    "phone": "(02)23014509",
+    "serviceVillagesRaw": "永功里、永昌里、忠勤里、南門里、廈安里、愛國里、龍光里、龍興里",
+    "serviceVillages": [
+      "永功里",
+      "永昌里",
+      "忠勤里",
+      "南門里",
+      "廈安里",
+      "愛國里",
+      "龍光里",
+      "龍興里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-21-63000050",
+    "districtName": "中正區",
+    "districtCode": "63000050",
+    "collectionTeam": "南昌分隊",
+    "phone": "(02)23011231",
+    "serviceVillagesRaw": "板溪里、南福里、頂東里、新營里、網溪里、螢雪里、螢埔里、龍福里",
+    "serviceVillages": [
+      "板溪里",
+      "南福里",
+      "頂東里",
+      "新營里",
+      "網溪里",
+      "螢雪里",
+      "螢埔里",
+      "龍福里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-22-63000050",
+    "districtName": "中正區",
+    "districtCode": "63000050",
+    "collectionTeam": "公館分隊",
+    "phone": "(02)23688346",
+    "serviceVillagesRaw": "文盛里、水源里、林興里、和堤里、富水里",
+    "serviceVillages": [
+      "文盛里",
+      "水源里",
+      "林興里",
+      "和堤里",
+      "富水里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-23-63000070",
+    "districtName": "萬華區",
+    "districtCode": "63000070",
+    "collectionTeam": "武昌分隊",
+    "phone": "(02)23705446",
+    "serviceVillagesRaw": "福星里、萬壽里",
+    "serviceVillages": [
+      "福星里",
+      "萬壽里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-24-63000070",
+    "districtName": "萬華區",
+    "districtCode": "63000070",
+    "collectionTeam": "漢中分隊",
+    "phone": "(02)23146086",
+    "serviceVillagesRaw": "西門里、菜園里、新起里、(仁德里、福音里、青山里、富民里)桂林路以北地區",
+    "serviceVillages": [
+      "西門里",
+      "菜園里",
+      "新起里",
+      "(仁德里",
+      "福音里",
+      "青山里",
+      "富民里)桂林路以北地區"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-25-63000070",
+    "districtName": "萬華區",
+    "districtCode": "63000070",
+    "collectionTeam": "昆明分隊",
+    "phone": "(02)23362574",
+    "serviceVillagesRaw": "柳鄉里、富福里、(仁德里、福音里、青山里、富民里)桂林路以南地區",
+    "serviceVillages": [
+      "柳鄉里",
+      "富福里",
+      "(仁德里",
+      "福音里",
+      "青山里",
+      "富民里)桂林路以南地區"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-26-63000070",
+    "districtName": "萬華區",
+    "districtCode": "63000070",
+    "collectionTeam": "大理分隊",
+    "phone": "(02)23068781",
+    "serviceVillagesRaw": "華江里、糖?里、雙園里、頂碩里、和德里、和平里、綠堤里",
+    "serviceVillages": [
+      "華江里",
+      "糖?里",
+      "雙園里",
+      "頂碩里",
+      "和德里",
+      "和平里",
+      "綠堤里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-27-63000070",
+    "districtName": "萬華區",
+    "districtCode": "63000070",
+    "collectionTeam": "東園分隊",
+    "phone": "(02)23378057",
+    "serviceVillagesRaw": "忠德里、孝德里、銘德里、保德里、全德里、榮德里、錦德里、日善里、華中里",
+    "serviceVillages": [
+      "忠德里",
+      "孝德里",
+      "銘德里",
+      "保德里",
+      "全德里",
+      "榮德里",
+      "錦德里",
+      "日善里",
+      "華中里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-28-63000070",
+    "districtName": "萬華區",
+    "districtCode": "63000070",
+    "collectionTeam": "青年分隊",
+    "phone": "(02)23887540",
+    "serviceVillagesRaw": "新安里、新忠里、新和里、壽德里、興德里、日祥里、忠貞里、凌霄里、騰雲里",
+    "serviceVillages": [
+      "新安里",
+      "新忠里",
+      "新和里",
+      "壽德里",
+      "興德里",
+      "日祥里",
+      "忠貞里",
+      "凌霄里",
+      "騰雲里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-29-63000060",
+    "districtName": "大同區",
+    "districtCode": "63000060",
+    "collectionTeam": "大龍分隊",
+    "phone": "(02)25860781",
+    "serviceVillagesRaw": "蓬萊里、揚雅里、斯文里、至聖里、重慶里、保安里、隆和里",
+    "serviceVillages": [
+      "蓬萊里",
+      "揚雅里",
+      "斯文里",
+      "至聖里",
+      "重慶里",
+      "保安里",
+      "隆和里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-30-63000060",
+    "districtName": "大同區",
+    "districtCode": "63000060",
+    "collectionTeam": "延平分隊",
+    "phone": "(02)25521952",
+    "serviceVillagesRaw": "玉泉里、朝陽里、大有里、延平里、南芳里、永樂里、建功里",
+    "serviceVillages": [
+      "玉泉里",
+      "朝陽里",
+      "大有里",
+      "延平里",
+      "南芳里",
+      "永樂里",
+      "建功里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-31-63000060",
+    "districtName": "大同區",
+    "districtCode": "63000060",
+    "collectionTeam": "建成分隊",
+    "phone": "(02)25535107",
+    "serviceVillagesRaw": "星明里、建明里、建泰里、民權里、雙連里、光能里、建功里",
+    "serviceVillages": [
+      "星明里",
+      "建明里",
+      "建泰里",
+      "民權里",
+      "雙連里",
+      "光能里",
+      "建功里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-32-63000060",
+    "districtName": "大同區",
+    "districtCode": "63000060",
+    "collectionTeam": "蘭州分隊",
+    "phone": "(02)25928991",
+    "serviceVillagesRaw": "景星里、國順里、大有里、鄰江里、老師里、隆和里",
+    "serviceVillages": [
+      "景星里",
+      "國順里",
+      "大有里",
+      "鄰江里",
+      "老師里",
+      "隆和里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-33-63000040",
+    "districtName": "中山區",
+    "districtCode": "63000040",
+    "collectionTeam": "大直分隊",
+    "phone": "(02)25338564",
+    "serviceVillagesRaw": "劍潭里、大佳里、成功里、永安里、金泰里、北安里、大直里",
+    "serviceVillages": [
+      "劍潭里",
+      "大佳里",
+      "成功里",
+      "永安里",
+      "金泰里",
+      "北安里",
+      "大直里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-34-63000040",
+    "districtName": "中山區",
+    "districtCode": "63000040",
+    "collectionTeam": "圓山分隊",
+    "phone": "(02)25936222",
+    "serviceVillagesRaw": "集英里、聚葉里、恆安里、晴光里、圓山里",
+    "serviceVillages": [
+      "集英里",
+      "聚葉里",
+      "恆安里",
+      "晴光里",
+      "圓山里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-35-63000040",
+    "districtName": "中山區",
+    "districtCode": "63000040",
+    "collectionTeam": "中山分隊",
+    "phone": "(02)25110958",
+    "serviceVillagesRaw": "中山里、正守里、正義里、正得里、民安里、康樂里、聚盛里",
+    "serviceVillages": [
+      "中山里",
+      "正守里",
+      "正義里",
+      "正得里",
+      "民安里",
+      "康樂里",
+      "聚盛里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-36-63000040",
+    "districtName": "中山區",
+    "districtCode": "63000040",
+    "collectionTeam": "長安分隊",
+    "phone": "(02)27775545",
+    "serviceVillagesRaw": "興亞里、朱園里、力行里、朱崙里、埤頭里",
+    "serviceVillages": [
+      "興亞里",
+      "朱園里",
+      "力行里",
+      "朱崙里",
+      "埤頭里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-37-63000040",
+    "districtName": "中山區",
+    "districtCode": "63000040",
+    "collectionTeam": "南京分隊",
+    "phone": "(02)27132687",
+    "serviceVillagesRaw": "中原里、中吉里、中央里、朱馥里、龍洲里、復華里",
+    "serviceVillages": [
+      "中原里",
+      "中吉里",
+      "中央里",
+      "朱馥里",
+      "龍洲里",
+      "復華里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-38-63000040",
+    "districtName": "中山區",
+    "districtCode": "63000040",
+    "collectionTeam": "民一分隊",
+    "phone": "(02)25098870",
+    "serviceVillagesRaw": "新庄里、新喜里、新福里、新生里、松江里、中庄里",
+    "serviceVillages": [
+      "新庄里",
+      "新喜里",
+      "新福里",
+      "新生里",
+      "松江里",
+      "中庄里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-39-63000040",
+    "districtName": "中山區",
+    "districtCode": "63000040",
+    "collectionTeam": "民二分隊",
+    "phone": "(02)25093774",
+    "serviceVillagesRaw": "行孝里、行政里、下埤里、江山里、江寧里、行仁里",
+    "serviceVillages": [
+      "行孝里",
+      "行政里",
+      "下埤里",
+      "江山里",
+      "江寧里",
+      "行仁里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-40-63000010",
+    "districtName": "松山區",
+    "districtCode": "63000010",
+    "collectionTeam": "松山分隊",
+    "phone": "(02)27678552",
+    "serviceVillagesRaw": "慈祐里、安平里、鵬程里、自強里、吉祥里、新聚里、復盛里",
+    "serviceVillages": [
+      "慈祐里",
+      "安平里",
+      "鵬程里",
+      "自強里",
+      "吉祥里",
+      "新聚里",
+      "復盛里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-41-63000010",
+    "districtName": "松山區",
+    "districtCode": "63000010",
+    "collectionTeam": "中崙分隊",
+    "phone": "(02)25473033",
+    "serviceVillagesRaw": "吉仁里、美仁里、中崙里、中正里、復勢里、復建里、復源里、松基里、敦化里、福成里",
+    "serviceVillages": [
+      "吉仁里",
+      "美仁里",
+      "中崙里",
+      "中正里",
+      "復勢里",
+      "復建里",
+      "復源里",
+      "松基里",
+      "敦化里",
+      "福成里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-42-63000010",
+    "districtName": "松山區",
+    "districtCode": "63000010",
+    "collectionTeam": "東社分隊",
+    "phone": "(02)25140138",
+    "serviceVillagesRaw": "民有里、民福里、東勢里、東光里、東昌里、中華里、龍田里、精忠里",
+    "serviceVillages": [
+      "民有里",
+      "民福里",
+      "東勢里",
+      "東光里",
+      "東昌里",
+      "中華里",
+      "龍田里",
+      "精忠里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-43-63000010",
+    "districtName": "松山區",
+    "districtCode": "63000010",
+    "collectionTeam": "塔悠分隊",
+    "phone": "(02)27671927",
+    "serviceVillagesRaw": "三民里、新益里、富錦里、新東里、富泰里、介壽里、莊敬里、東榮里",
+    "serviceVillages": [
+      "三民里",
+      "新益里",
+      "富錦里",
+      "新東里",
+      "富泰里",
+      "介壽里",
+      "莊敬里",
+      "東榮里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-44-63000100",
+    "districtName": "內湖區",
+    "districtCode": "63000100",
+    "collectionTeam": "文德分隊",
+    "phone": "(02)27915524",
+    "serviceVillagesRaw": "石潭里、行善里、湖元里、湖興里、紫陽里、週美里、瑞光里、瑞陽里、寶湖里",
+    "serviceVillages": [
+      "石潭里",
+      "行善里",
+      "湖元里",
+      "湖興里",
+      "紫陽里",
+      "週美里",
+      "瑞光里",
+      "瑞陽里",
+      "寶湖里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-45-63000100",
+    "districtName": "內湖區",
+    "districtCode": "63000100",
+    "collectionTeam": "內湖分隊",
+    "phone": "(02)27905422",
+    "serviceVillagesRaw": "大湖里、內湖里、秀湖里、金瑞里、金龍里、清白里、湖濱里、紫星里、紫雲里、碧山里",
+    "serviceVillages": [
+      "大湖里",
+      "內湖里",
+      "秀湖里",
+      "金瑞里",
+      "金龍里",
+      "清白里",
+      "湖濱里",
+      "紫星里",
+      "紫雲里",
+      "碧山里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-46-63000100",
+    "districtName": "內湖區",
+    "districtCode": "63000100",
+    "collectionTeam": "東湖分隊",
+    "phone": "(02)26343097",
+    "serviceVillagesRaw": "五分里、內溝里、安泰里、安湖里、明湖里、東湖里、金湖里、南湖里、康寧里、葫洲里、樂康里、蘆洲里",
+    "serviceVillages": [
+      "五分里",
+      "內溝里",
+      "安泰里",
+      "安湖里",
+      "明湖里",
+      "東湖里",
+      "金湖里",
+      "南湖里",
+      "康寧里",
+      "葫洲里",
+      "樂康里",
+      "蘆洲里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-47-63000100",
+    "districtName": "內湖區",
+    "districtCode": "63000100",
+    "collectionTeam": "西湖分隊",
+    "phone": "(02)27992215",
+    "serviceVillagesRaw": "西安里、西康里、西湖里、港都里、港富里、港華里、港墘里、麗山里",
+    "serviceVillages": [
+      "西安里",
+      "西康里",
+      "西湖里",
+      "港都里",
+      "港富里",
+      "港華里",
+      "港墘里",
+      "麗山里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-48-63000100",
+    "districtName": "內湖區",
+    "districtCode": "63000100",
+    "collectionTeam": "科技分隊",
+    "phone": "(02)27911240",
+    "serviceVillagesRaw": "西康里、西湖里、港墘里、湖元里",
+    "serviceVillages": [
+      "西康里",
+      "西湖里",
+      "港墘里",
+      "湖元里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-49-63000110",
+    "districtName": "士林區",
+    "districtCode": "63000110",
+    "collectionTeam": "天母分隊",
+    "phone": "(02)28742048",
+    "serviceVillagesRaw": "天玉里、三玉里、東山里、芝山里、天母里、天福里、天壽里、天祿里、天山里、天和里",
+    "serviceVillages": [
+      "天玉里",
+      "三玉里",
+      "東山里",
+      "芝山里",
+      "天母里",
+      "天福里",
+      "天壽里",
+      "天祿里",
+      "天山里",
+      "天和里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-50-63000110",
+    "districtName": "士林區",
+    "districtCode": "63000110",
+    "collectionTeam": "後港分隊",
+    "phone": "(02)28813921",
+    "serviceVillagesRaw": "名勝里、承德里、福華里、百齡里、福中里、前港里、後港里",
+    "serviceVillages": [
+      "名勝里",
+      "承德里",
+      "福華里",
+      "百齡里",
+      "福中里",
+      "前港里",
+      "後港里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-51-63000110",
+    "districtName": "士林區",
+    "districtCode": "63000110",
+    "collectionTeam": "社子分隊社子班",
+    "phone": "(02)28136658",
+    "serviceVillagesRaw": "社子里、社園里、社新里、永倫里、福安里、富州里",
+    "serviceVillages": [
+      "社子里",
+      "社園里",
+      "社新里",
+      "永倫里",
+      "福安里",
+      "富州里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-52-63000110",
+    "districtName": "士林區",
+    "districtCode": "63000110",
+    "collectionTeam": "社子分隊葫蘆班",
+    "phone": "(02)28150984",
+    "serviceVillagesRaw": "葫東里、福順里、葫蘆里、富光里",
+    "serviceVillages": [
+      "葫東里",
+      "福順里",
+      "葫蘆里",
+      "富光里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-53-63000110",
+    "districtName": "士林區",
+    "districtCode": "63000110",
+    "collectionTeam": "文林分隊文內班",
+    "phone": "(02)28369617",
+    "serviceVillagesRaw": "仁勇里、義信里、福德里、福佳里",
+    "serviceVillages": [
+      "仁勇里",
+      "義信里",
+      "福德里",
+      "福佳里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-54-63000110",
+    "districtName": "士林區",
+    "districtCode": "63000110",
+    "collectionTeam": "文林分隊文外班",
+    "phone": "(02)28839927",
+    "serviceVillagesRaw": "福林里、福志里、舊佳里、臨溪里、溪山里、翠山里",
+    "serviceVillages": [
+      "福林里",
+      "福志里",
+      "舊佳里",
+      "臨溪里",
+      "溪山里",
+      "翠山里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-55-63000110",
+    "districtName": "士林區",
+    "districtCode": "63000110",
+    "collectionTeam": "蘭雅分隊",
+    "phone": "(02)28311586",
+    "serviceVillagesRaw": "蘭雅里、蘭興里、德華里、德行里、名山里、聖山里、岩山里、 芝山里、忠誠里",
+    "serviceVillages": [
+      "蘭雅里",
+      "蘭興里",
+      "德華里",
+      "德行里",
+      "名山里",
+      "聖山里",
+      "岩山里",
+      "芝山里",
+      "忠誠里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-56-63000110",
+    "districtName": "士林區",
+    "districtCode": "63000110",
+    "collectionTeam": "草山分隊",
+    "phone": "(02)28626334",
+    "serviceVillagesRaw": "公館里、永福里、平等里、菁山里、新安里、陽明里",
+    "serviceVillages": [
+      "公館里",
+      "永福里",
+      "平等里",
+      "菁山里",
+      "新安里",
+      "陽明里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-57-63000120",
+    "districtName": "北投區",
+    "districtCode": "63000120",
+    "collectionTeam": "石牌分隊",
+    "phone": "(02)28235650",
+    "serviceVillagesRaw": "立賢里、尊賢里、吉利里、立農里、東華里、永明里、永欣里、振華里、裕民里、榮華里、石牌里、文林里、建民里、福興里、榮光里、吉慶里、八仙里",
+    "serviceVillages": [
+      "立賢里",
+      "尊賢里",
+      "吉利里",
+      "立農里",
+      "東華里",
+      "永明里",
+      "永欣里",
+      "振華里",
+      "裕民里",
+      "榮華里",
+      "石牌里",
+      "文林里",
+      "建民里",
+      "福興里",
+      "榮光里",
+      "吉慶里",
+      "八仙里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-58-63000120",
+    "districtName": "北投區",
+    "districtCode": "63000120",
+    "collectionTeam": "光明分隊",
+    "phone": "(02)28967500",
+    "serviceVillagesRaw": "中央里、長安里、大同里、溫泉里、林泉里、中心里、中庸里、開明里、中和里、智仁里、秀山里、文化里、豐年里、稻香里、大屯里、八仙里、奇岩里、清江里",
+    "serviceVillages": [
+      "中央里",
+      "長安里",
+      "大同里",
+      "溫泉里",
+      "林泉里",
+      "中心里",
+      "中庸里",
+      "開明里",
+      "中和里",
+      "智仁里",
+      "秀山里",
+      "文化里",
+      "豐年里",
+      "稻香里",
+      "大屯里",
+      "八仙里",
+      "奇岩里",
+      "清江里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-59-63000120",
+    "districtName": "北投區",
+    "districtCode": "63000120",
+    "collectionTeam": "陽明分隊(一班)",
+    "phone": "(02)28617757",
+    "serviceVillagesRaw": "湖山里、湖田里",
+    "serviceVillages": [
+      "湖山里",
+      "湖田里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-60-63000120",
+    "districtName": "北投區",
+    "districtCode": "63000120",
+    "collectionTeam": "陽明分隊(二班)",
+    "phone": "(02)28950230",
+    "serviceVillagesRaw": "永和里、永欣里、林泉里、中心里、泉源里",
+    "serviceVillages": [
+      "永和里",
+      "永欣里",
+      "林泉里",
+      "中心里",
+      "泉源里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-61-63000120",
+    "districtName": "北投區",
+    "districtCode": "63000120",
+    "collectionTeam": "關渡分隊",
+    "phone": "(02)28950256",
+    "serviceVillagesRaw": "關渡里、一德里、桃源里、八仙里、洲美里",
+    "serviceVillages": [
+      "關渡里",
+      "一德里",
+      "桃源里",
+      "八仙里",
+      "洲美里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-62-63000080",
+    "districtName": "文山區",
+    "districtCode": "63000080",
+    "collectionTeam": "景美分隊",
+    "phone": "(02)29305836",
+    "serviceVillagesRaw": "景行里、景東里、景美里、景慶里、景仁里、景華里、萬有里、萬祥里、萬隆里、萬年里、萬和里、萬盛里",
+    "serviceVillages": [
+      "景行里",
+      "景東里",
+      "景美里",
+      "景慶里",
+      "景仁里",
+      "景華里",
+      "萬有里",
+      "萬祥里",
+      "萬隆里",
+      "萬年里",
+      "萬和里",
+      "萬盛里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-63-63000080",
+    "districtName": "文山區",
+    "districtCode": "63000080",
+    "collectionTeam": "興隆分隊",
+    "phone": "(02)89315653",
+    "serviceVillagesRaw": "興豐里、興光里、興家里、興得里、興業里、興安里、興福里、興旺里、興泰里、興昌里、興邦里",
+    "serviceVillages": [
+      "興豐里",
+      "興光里",
+      "興家里",
+      "興得里",
+      "興業里",
+      "興安里",
+      "興福里",
+      "興旺里",
+      "興泰里",
+      "興昌里",
+      "興邦里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-64-63000080",
+    "districtName": "文山區",
+    "districtCode": "63000080",
+    "collectionTeam": "復興分隊",
+    "phone": "(02)29377951",
+    "serviceVillagesRaw": "試院里、華興里、明義里、明興里、順興里、忠順里、樟林里、樟新里、樟腳里、樟文里、樟樹里",
+    "serviceVillages": [
+      "試院里",
+      "華興里",
+      "明義里",
+      "明興里",
+      "順興里",
+      "忠順里",
+      "樟林里",
+      "樟新里",
+      "樟腳里",
+      "樟文里",
+      "樟樹里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-65-63000080",
+    "districtName": "文山區",
+    "districtCode": "63000080",
+    "collectionTeam": "木柵分隊",
+    "phone": "(02)22340528",
+    "serviceVillagesRaw": "木柵里、木新里、萬興里、指南里、老泉里、政大里",
+    "serviceVillages": [
+      "木柵里",
+      "木新里",
+      "萬興里",
+      "指南里",
+      "老泉里",
+      "政大里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  },
+  {
+    "id": "bulky-waste-66-63000080",
+    "districtName": "文山區",
+    "districtCode": "63000080",
+    "collectionTeam": "博嘉分隊",
+    "phone": "(02)22397182",
+    "serviceVillagesRaw": "博嘉里、萬芳里、萬美里",
+    "serviceVillages": [
+      "博嘉里",
+      "萬芳里",
+      "萬美里"
+    ],
+    "bookingHoursRaw": "早上06:00至下午04:30"
+  }
+]

@@ -192,6 +192,14 @@ npm run convert:facilities
 
 The converter supports UTF-8-SIG, Big5, and CP950, keeps raw accessibility values, parses non-negative space counts, reports duplicate keys, invalid numbers, unknown accessibility values, and invalid coordinates, and writes `public/data/accessible-public-parking-facilities/records.json` plus `summary.json`. The source's observed `TMPX`/`TMPY` values are TWD97/TM2 and are converted to WGS84 at build time. Records without valid coordinates remain searchable in the directory but are not rendered as markers. The module includes overview, map, district, feature, directory, data-quality, and notes views with charts and filters. It does not claim real-time vacancies, current elevator/toilet operation, parking fees, operating hours, complete accessibility certification, or guaranteed accessible-route guidance.
 
+The bulky-waste collection booking module uses the Taipei Open Data dataset `d47fe546-e26e-4079-9eca-73c2d45a8575`:
+
+```bash
+npm run data:convert:bulky-waste-collection-booking
+```
+
+It reads the CP950/Big5 source fields for district, district code, collection team, phone, service villages, and booking hours into `public/data/bulky-waste-collection-booking/`. It is a directory-only module: the source has no coordinates or complete service-location addresses, so it creates no map markers, geocoding, routes, or service-area boundaries. Booking hours and service villages are source text only; they do not represent real-time acceptance, same-day collection, confirmed collection dates, free service, accepted item types, or urgent-collection guarantees.
+
 The gas/LPG station layer uses the UTF-8-SIG `臺北市加油站及加氣站分布圖.csv` resource:
 
 ```bash
