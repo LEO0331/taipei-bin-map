@@ -11,6 +11,20 @@ export interface BulkyWasteCollectionBookingRecord {
   bookingHoursRaw: string;
 }
 
+export interface UnusedMedicineCollectionStationRecord {
+  id: string;
+  sourceSequenceNumber: string;
+  stationCategory: string;
+  stationName: string;
+  districtName: string;
+  address: string;
+  phone: string;
+  extension: string;
+  fullPhone: string;
+  hasPhone: boolean;
+  googleMapsQuery: string;
+}
+
 export type FacilityType =
   | 'pedestrian_bin'
   | 'dog_waste_bag_box'
@@ -871,6 +885,8 @@ export type ConversionSourceReport = {
   duplicateRows?: Array<{ rowNumber: number; key: string }>;
   malformedPhones?: Array<{ rowNumber: number; value: string }>;
   emptyServiceAreas?: number[];
+  unknownCategories?: Array<{ rowNumber: number; value: string }>;
+  unresolvedDistricts?: number[];
 };
 
 export type ConversionReport = {

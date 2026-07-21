@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T06:43:01.628Z",
+  "generatedAt": "2026-07-21T06:43:53.845Z",
   "totalValidRows": 16956,
   "sources": [
     {
@@ -2852,6 +2852,18 @@
       "duplicateRows": [],
       "malformedPhones": [],
       "emptyServiceAreas": []
+    },
+    {
+      "sourceFilename": "臺北市居家用藥安全檢查暨廢棄藥物檢收站名單.csv",
+      "totalRows": 378,
+      "validRows": 378,
+      "droppedRows": 0,
+      "coordinateOutlierRows": 0,
+      "invalidCoordinateRows": [],
+      "missingRequiredFields": [],
+      "malformedPhones": [],
+      "unknownCategories": [],
+      "unresolvedDistricts": []
     }
   ]
 }

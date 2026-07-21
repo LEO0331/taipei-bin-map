@@ -76,9 +76,22 @@ import {
   normalizeAccessibilityValue,
   parseNonNegativeInteger,
 } from './convertAccessiblePublicParkingFacilities';
+import { convertUnusedMedicineCollectionStationRows } from './convertUnusedMedicineCollectionStations';
 import { convertBulkyWasteCollectionBookingRows, splitServiceVillages } from './convertBulkyWasteCollectionBookings';
 
 describe('new facility converters', () => {
+  it('preserves unused-medicine phone extensions while reporting invalid source rows', () => {
+    const converted = convertUnusedMedicineCollectionStationRows([
+      { 序號: '001', 類別: '藥局', 檢收站名稱: '測試藥局', 地址: '臺北市大安區測試路1號', 電話: '(02)12345678', 分機: '123' },
+      { 序號: '', 類別: '藥局', 檢收站名稱: '測試藥局', 地址: '臺北市大安區測試路1號', 電話: '(02)12345678', 分機: '123' },
+      { 序號: '003', 類別: '未知', 檢收站名稱: '', 地址: '', 電話: 'bad', 分機: '' },
+    ]);
+    expect(converted.records).toHaveLength(2);
+    expect(converted.records[0]).toMatchObject({ sourceSequenceNumber: '001', phone: '(02)12345678', extension: '123', fullPhone: '(02)12345678#123', districtName: '大安區' });
+    expect(converted.summary.dataQuality).toMatchObject({ duplicateRows: [3], missingNames: [4], missingAddresses: [4], unresolvedDistricts: [4] });
+    expect(converted.summary.dataQuality.malformedPhones).toHaveLength(1);
+    expect(converted.summary.dataQuality.unknownCategories).toEqual([{ rowNumber: 4, value: '未知' }]);
+  });
   it('preserves bulky-waste booking source fields while deduplicating clear duplicate rows', () => {
     expect(splitServiceVillages('甲里、乙里')).toEqual(['甲里', '乙里']);
     expect(splitServiceVillages('未分隔服務區')).toEqual(['未分隔服務區']);

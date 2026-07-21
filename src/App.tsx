@@ -29,6 +29,7 @@ import { SearchFilters } from './components/SearchFilters';
 import { WarningNotice } from './components/WarningNotice';
 import { AccessiblePublicParkingDashboard } from './components/AccessiblePublicParkingDashboard';
 import { BulkyWasteCollectionBookingDashboard } from './components/BulkyWasteCollectionBookingDashboard';
+import { UnusedMedicineCollectionStationsDashboard } from './components/UnusedMedicineCollectionStationsDashboard';
 import { translations } from './i18n';
 import type {
   ConversionReport,
@@ -89,6 +90,12 @@ type UserLocation = {
 };
 
 type ErrorKey = 'load' | 'location' | 'distance' | '';
+type DirectoryRoute = 'bulky-waste-collection-booking' | 'unused-medicine-collection-stations' | '';
+
+const getDirectoryRoute = (): DirectoryRoute => {
+  const route = window.location.hash.replace(/^#\//, '');
+  return route === 'bulky-waste-collection-booking' || route === 'unused-medicine-collection-stations' ? route : '';
+};
 
 const getInitialLanguage = (): Language => {
   const stored = window.localStorage.getItem('language');
@@ -96,7 +103,7 @@ const getInitialLanguage = (): Language => {
 };
 
 function App() {
-  const [isBulkyWasteRoute, setIsBulkyWasteRoute] = useState(() => window.location.hash === '#/bulky-waste-collection-booking');
+  const [directoryRoute, setDirectoryRoute] = useState<DirectoryRoute>(getDirectoryRoute);
   const [facilities, setFacilities] = useState<Facility[]>([]);
   const [report, setReport] = useState<ConversionReport | null>(null);
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
@@ -264,7 +271,7 @@ function App() {
   }, [language]);
 
   useEffect(() => {
-    const syncRoute = () => setIsBulkyWasteRoute(window.location.hash === '#/bulky-waste-collection-booking');
+    const syncRoute = () => setDirectoryRoute(getDirectoryRoute());
     window.addEventListener('hashchange', syncRoute);
     return () => window.removeEventListener('hashchange', syncRoute);
   }, []);
@@ -1265,10 +1272,10 @@ function App() {
           <h1>{t.appTitle}</h1>
         </div>
         <LanguageToggle language={language} onChange={handleLanguageChange} />
-        <a className="module-route-link" href={isBulkyWasteRoute ? '#/' : '#/bulky-waste-collection-booking'}>{isBulkyWasteRoute ? (language === 'zh' ? '返回設施地圖' : 'Back to amenities map') : t.bulkyWasteCollectionBooking}</a>
+        <nav className="module-route-links" aria-label={language === 'zh' ? '服務目錄' : 'Service directories'}><a className="module-route-link" href="#/bulky-waste-collection-booking">{t.bulkyWasteCollectionBooking}</a><a className="module-route-link" href="#/unused-medicine-collection-stations">{t.unusedMedicineCollectionStations}</a>{directoryRoute && <a className="module-route-link" href="#/">{language === 'zh' ? '返回設施地圖' : 'Back to amenities map'}</a>}</nav>
       </header>
 
-      {isBulkyWasteRoute ? <main><BulkyWasteCollectionBookingDashboard language={language} /></main> : <main>
+      {directoryRoute === 'bulky-waste-collection-booking' ? <main><BulkyWasteCollectionBookingDashboard language={language} /></main> : directoryRoute === 'unused-medicine-collection-stations' ? <main><UnusedMedicineCollectionStationsDashboard language={language} /></main> : <main>
         <section className="controls-panel" aria-label={t.searchPlaceholder}>
           <div className="metrics-strip" aria-label={t.sourceStatus}>
             <div>

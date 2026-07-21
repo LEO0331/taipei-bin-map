@@ -255,6 +255,14 @@
       "dependencies": ["feat-031"],
       "status": "done",
       "evidence": "Downloaded the official CSV, generated 65 deduplicated booking records, and verified unit tests and production build on 2026-07-16."
+    },
+    {
+      "id": "feat-033",
+      "name": "Unused medicine collection-stations directory",
+      "description": "Add a static, address-only unused-medicine collection-station directory with filtering, charts, phone and address actions, CSV export, data-quality reporting, cache support, and no medical or real-time service claims.",
+      "dependencies": ["feat-032"],
+      "status": "done",
+      "evidence": "Official CP950 CSV was downloaded and mapped from its six source fields; static conversion, unit tests, and production build were run on 2026-07-21."
     }
   ]
 }

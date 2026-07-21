@@ -1,0 +1,20 @@
+{
+  "totalRecords": 378,
+  "uniqueStationNames": 378,
+  "districtCount": 12,
+  "categoryCount": 2,
+  "recordsWithPhone": 378,
+  "recordsWithAddress": 378,
+  "topDistrict": {
+    "district": "大安區",
+    "count": 46
+  },
+  "dataQuality": {
+    "duplicateRows": [],
+    "missingNames": [],
+    "missingAddresses": [],
+    "malformedPhones": [],
+    "unknownCategories": [],
+    "unresolvedDistricts": []
+  }
+}

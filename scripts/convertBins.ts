@@ -24,6 +24,7 @@ import { loadPayTaipeiCardlessParkingLots } from './convertPayTaipeiCardlessPark
 import { loadGreenSpaceAdoptionRecords } from './convertGreenSpaceAdoptionRecords';
 import { loadAccessiblePublicParkingFacilities } from './convertAccessiblePublicParkingFacilities';
 import { loadBulkyWasteCollectionBookings } from './convertBulkyWasteCollectionBookings';
+import { loadUnusedMedicineCollectionStations } from './convertUnusedMedicineCollectionStations';
 
 type PedestrianCsvRow = {
   行政區?: string;
@@ -456,6 +457,7 @@ const payTaipeiParkingLots = loadPayTaipeiCardlessParkingLots();
 const greenSpaceAdoptionRecords = loadGreenSpaceAdoptionRecords();
 const accessiblePublicParkingFacilities = loadAccessiblePublicParkingFacilities();
 const bulkyWasteCollectionBookings = loadBulkyWasteCollectionBookings();
+const unusedMedicineCollectionStations = loadUnusedMedicineCollectionStations();
 
 const facilities = [
   ...pedestrian.facilities,
@@ -515,6 +517,15 @@ const report: ConversionReport = {
       duplicateRows: bulkyWasteCollectionBookings.summary.dataQuality.duplicateRows,
       malformedPhones: bulkyWasteCollectionBookings.summary.dataQuality.malformedPhones,
       emptyServiceAreas: bulkyWasteCollectionBookings.summary.dataQuality.emptyServiceAreas,
+    },
+    {
+      sourceFilename: '臺北市居家用藥安全檢查暨廢棄藥物檢收站名單.csv', totalRows: unusedMedicineCollectionStations.records.length + unusedMedicineCollectionStations.summary.dataQuality.duplicateRows.length,
+      validRows: unusedMedicineCollectionStations.records.length, droppedRows: unusedMedicineCollectionStations.summary.dataQuality.duplicateRows.length,
+      coordinateOutlierRows: 0, invalidCoordinateRows: [],
+      missingRequiredFields: [...unusedMedicineCollectionStations.summary.dataQuality.missingNames.map((rowNumber) => ({ rowNumber, fields: ['檢收站名稱'] })), ...unusedMedicineCollectionStations.summary.dataQuality.missingAddresses.map((rowNumber) => ({ rowNumber, fields: ['地址'] }))],
+      malformedPhones: unusedMedicineCollectionStations.summary.dataQuality.malformedPhones,
+      unknownCategories: unusedMedicineCollectionStations.summary.dataQuality.unknownCategories,
+      unresolvedDistricts: unusedMedicineCollectionStations.summary.dataQuality.unresolvedDistricts,
     },
   ],
 };

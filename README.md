@@ -200,6 +200,14 @@ npm run data:convert:bulky-waste-collection-booking
 
 It reads the CP950/Big5 source fields for district, district code, collection team, phone, service villages, and booking hours into `public/data/bulky-waste-collection-booking/`. It is a directory-only module: the source has no coordinates or complete service-location addresses, so it creates no map markers, geocoding, routes, or service-area boundaries. Booking hours and service villages are source text only; they do not represent real-time acceptance, same-day collection, confirmed collection dates, free service, accepted item types, or urgent-collection guarantees.
 
+The unused-medicine collection-stations module uses Taipei Open Data dataset `42f7dc80-ed79-4802-9a3e-7acefe33efa5`:
+
+```bash
+npm run data:convert:unused-medicine-collection-stations
+```
+
+It writes static records to `public/data/unused-medicine-collection-stations/`. Source addresses are used only for optional external map-search links; the app does not geocode them or create exact markers. The directory is informational and does not claim current acceptance, operating status, pharmacist availability, accepted items, fees, home visits, disposal outcomes, or medical advice.
+
 The gas/LPG station layer uses the UTF-8-SIG `臺北市加油站及加氣站分布圖.csv` resource:
 
 ```bash

@@ -242,6 +242,25 @@
 
 Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The bulky-waste module is a dedicated directory route (`#/bulky-waste-collection-booking`), deliberately separate from map facilities because the source has no coordinates or full service-location addresses.
 
+## Unused Medicine Collection Stations — 2026-07-21
+
+- Added a CP950 static converter, address-only customer directory route (`#/unused-medicine-collection-stations`), local records/summary cache, filters, charts, sorting, pagination, phone/address copy actions, external map search links, and filtered CSV export.
+- The converter preserves the six official source fields, derives district only when the address contains a Taipei district, and reports duplicate rows, missing names/addresses, malformed phones, unknown categories, and unresolved districts in `conversion-report.json`.
+- The module does not create markers or geocode addresses and its disclaimer avoids operating-status, acceptance, pharmacist, home-visit, fee, disposal-outcome, and medical-advice claims.
+- Verification: `npm.cmd run data:convert:unused-medicine-collection-stations` generated 378 records across 12 districts and 2 source categories; `npm.cmd run convert:facilities`, `npm.cmd test` (57 tests), and `npm.cmd run build` passed.
+
+## Code Review Follow-up — 2026-07-21
+
+- Fixed the unused-medicine mobile dial links so extensions are not concatenated into the base phone number; extensions remain display/copy text only.
+- Made the overview's top-district card derive from the active filters, added explicit source-category validation, and added converter plus route-level browser regression coverage.
+- Verification: `npm.cmd test` passed 58 tests and `npm.cmd run build` passed. The focused Playwright command could not start because port 5173 is occupied by an existing local server.
+
+## Cleanup Pass — 2026-07-21
+
+- Removed duplicate directory-route state in `src/App.tsx` in favor of one validated route value.
+- Reworked the unused-medicine converter into readable, single-purpose conversion steps while retaining its data contract and generated output.
+- Behavior lock and verification: static conversions succeeded; `npm.cmd test` passed 58 tests; `npm.cmd run build` and `git diff --check` passed.
+
 ## Bulky Waste Collection Booking — 2026-07-16
 
 - Added `scripts/convertBulkyWasteCollectionBookings.ts`, using actual CP950/Big5 headers with tolerant header matching, source-field preservation, clear-delimiter village splitting, deduplication, and data-quality reporting for duplicate rows, missing districts, malformed phone values, and empty service areas.
