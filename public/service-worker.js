@@ -1,4 +1,4 @@
-const CACHE_NAME = 'taipei-public-amenities-map-v25';
+const CACHE_NAME = 'taipei-public-amenities-map-v26';
 const APP_SHELL = [
   '/index.html',
   '/manifest.webmanifest',
@@ -52,6 +52,8 @@ const APP_SHELL = [
   '/data/bulky-waste-collection-booking/summary.json',
   '/data/unused-medicine-collection-stations/records.json',
   '/data/unused-medicine-collection-stations/summary.json',
+  '/data/industrial-waste-reuse-operators/records.json',
+  '/data/industrial-waste-reuse-operators/summary.json',
   '/data/public-amenities-summary.json',
   '/data/conversion-report.json',
 ];

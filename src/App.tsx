@@ -30,6 +30,7 @@ import { WarningNotice } from './components/WarningNotice';
 import { AccessiblePublicParkingDashboard } from './components/AccessiblePublicParkingDashboard';
 import { BulkyWasteCollectionBookingDashboard } from './components/BulkyWasteCollectionBookingDashboard';
 import { UnusedMedicineCollectionStationsDashboard } from './components/UnusedMedicineCollectionStationsDashboard';
+import { IndustrialWasteReuseOperatorsDashboard } from './components/IndustrialWasteReuseOperatorsDashboard';
 import { translations } from './i18n';
 import type {
   ConversionReport,
@@ -90,11 +91,11 @@ type UserLocation = {
 };
 
 type ErrorKey = 'load' | 'location' | 'distance' | '';
-type DirectoryRoute = 'bulky-waste-collection-booking' | 'unused-medicine-collection-stations' | '';
+type DirectoryRoute = 'bulky-waste-collection-booking' | 'unused-medicine-collection-stations' | 'industrial-waste-reuse-operators' | '';
 
 const getDirectoryRoute = (): DirectoryRoute => {
   const route = window.location.hash.replace(/^#\//, '');
-  return route === 'bulky-waste-collection-booking' || route === 'unused-medicine-collection-stations' ? route : '';
+  return route === 'bulky-waste-collection-booking' || route === 'unused-medicine-collection-stations' || route === 'industrial-waste-reuse-operators' ? route : '';
 };
 
 const getInitialLanguage = (): Language => {
@@ -1272,10 +1273,10 @@ function App() {
           <h1>{t.appTitle}</h1>
         </div>
         <LanguageToggle language={language} onChange={handleLanguageChange} />
-        <nav className="module-route-links" aria-label={language === 'zh' ? '服務目錄' : 'Service directories'}><a className="module-route-link" href="#/bulky-waste-collection-booking">{t.bulkyWasteCollectionBooking}</a><a className="module-route-link" href="#/unused-medicine-collection-stations">{t.unusedMedicineCollectionStations}</a>{directoryRoute && <a className="module-route-link" href="#/">{language === 'zh' ? '返回設施地圖' : 'Back to amenities map'}</a>}</nav>
+        <nav className="module-route-links" aria-label={language === 'zh' ? '服務目錄' : 'Service directories'}><a className="module-route-link" href="#/bulky-waste-collection-booking">{t.bulkyWasteCollectionBooking}</a><a className="module-route-link" href="#/unused-medicine-collection-stations">{t.unusedMedicineCollectionStations}</a><a className="module-route-link" href="#/industrial-waste-reuse-operators">{t.industrialWasteReuseOperators}</a>{directoryRoute && <a className="module-route-link" href="#/">{language === 'zh' ? '返回設施地圖' : 'Back to amenities map'}</a>}</nav>
       </header>
 
-      {directoryRoute === 'bulky-waste-collection-booking' ? <main><BulkyWasteCollectionBookingDashboard language={language} /></main> : directoryRoute === 'unused-medicine-collection-stations' ? <main><UnusedMedicineCollectionStationsDashboard language={language} /></main> : <main>
+      {directoryRoute === 'bulky-waste-collection-booking' ? <main><BulkyWasteCollectionBookingDashboard language={language} /></main> : directoryRoute === 'unused-medicine-collection-stations' ? <main><UnusedMedicineCollectionStationsDashboard language={language} /></main> : directoryRoute === 'industrial-waste-reuse-operators' ? <main><IndustrialWasteReuseOperatorsDashboard language={language} /></main> : <main>
         <section className="controls-panel" aria-label={t.searchPlaceholder}>
           <div className="metrics-strip" aria-label={t.sourceStatus}>
             <div>

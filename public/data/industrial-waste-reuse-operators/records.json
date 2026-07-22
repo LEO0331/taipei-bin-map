@@ -1,0 +1,3942 @@
+[
+  {
+    "id": "A42A0596-(R-1106)燃煤飛灰-2025-10-23",
+    "sourceSequenceNumber": "1",
+    "controlNumber": "A42A0596",
+    "operatorName": "和昌國際工業股份有限公司-內湖廠",
+    "phone": "02-87928766",
+    "address": "(114)臺北市內湖區安康路一一一號",
+    "districtName": "內湖區",
+    "reusableWasteRaw": "(R-1106)燃煤飛灰",
+    "reusableWasteCategories": [
+      "(R-1106)燃煤飛灰"
+    ],
+    "wasteSourceRaw": "事業以煤為單一燃料之鍋爐或混燒百分之五(重量比)以下廢棄物衍生燃料或生質燃料之燃煤發電鍋爐產生之飛灰或底灰。但依相關法規認定為有害事業廢棄物者，不適用之。(經濟部)",
+    "wasteSourceCategories": [
+      "事業以煤為單一燃料之鍋爐或混燒百分之五(重量比)以下廢棄物衍生燃料或生質燃料之燃煤發電鍋爐產生之飛灰或底灰。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(經濟部)"
+    ],
+    "reusePurposeRaw": "混凝土攙和物",
+    "reusePurposeCategories": [
+      "混凝土攙和物"
+    ],
+    "maximumMonthlyReuseRaw": "2150",
+    "maximumMonthlyReuseTonnes": 2150,
+    "verificationPassedDateRaw": "2020-10-23",
+    "verificationPassedDate": "2020-10-23",
+    "verificationExpiryDateRaw": "2025-10-23",
+    "verificationExpiryDate": "2025-10-23",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(114)臺北市內湖區安康路一一一號"
+  },
+  {
+    "id": "A4405804-(R-0503)營建混合物-2026-08-30",
+    "sourceSequenceNumber": "2",
+    "controlNumber": "A4405804",
+    "operatorName": "德展砂石有限公司-德展土石方及營建混合物處理場",
+    "phone": "02-28203123",
+    "address": "(112)臺北市北投區承德路七段三九三巷九一號",
+    "districtName": "北投區",
+    "reusableWasteRaw": "(R-0503)營建混合物",
+    "reusableWasteCategories": [
+      "(R-0503)營建混合物"
+    ],
+    "wasteSourceRaw": "工程施工建造、建築拆除、裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))",
+    "wasteSourceCategories": [
+      "工程施工建造",
+      "建築拆除",
+      "裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))"
+    ],
+    "reusePurposeRaw": "工程填地及道路工程級配料",
+    "reusePurposeCategories": [
+      "工程填地及道路工程級配料"
+    ],
+    "maximumMonthlyReuseRaw": "5202",
+    "maximumMonthlyReuseTonnes": 5202,
+    "verificationPassedDateRaw": "2021-08-30",
+    "verificationPassedDate": "2021-08-30",
+    "verificationExpiryDateRaw": "2026-08-30",
+    "verificationExpiryDate": "2026-08-30",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(112)臺北市北投區承德路七段三九三巷九一號"
+  },
+  {
+    "id": "A43A1044-(R-0503)營建混合物-2026-10-06",
+    "sourceSequenceNumber": "3",
+    "controlNumber": "A43A1044",
+    "operatorName": "江浚實業有限公司-江浚營建混合物分類處理場",
+    "phone": "02-28109147",
+    "address": "(111)臺北市士林區延平北路七段一號",
+    "districtName": "士林區",
+    "reusableWasteRaw": "(R-0503)營建混合物",
+    "reusableWasteCategories": [
+      "(R-0503)營建混合物"
+    ],
+    "wasteSourceRaw": "工程施工建造、建築拆除、裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))",
+    "wasteSourceCategories": [
+      "工程施工建造",
+      "建築拆除",
+      "裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))"
+    ],
+    "reusePurposeRaw": "工程填地及道路工程級配料",
+    "reusePurposeCategories": [
+      "工程填地及道路工程級配料"
+    ],
+    "maximumMonthlyReuseRaw": "4050",
+    "maximumMonthlyReuseTonnes": 4050,
+    "verificationPassedDateRaw": "2021-10-06",
+    "verificationPassedDate": "2021-10-06",
+    "verificationExpiryDateRaw": "2026-10-06",
+    "verificationExpiryDate": "2026-10-06",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(111)臺北市士林區延平北路七段一號"
+  },
+  {
+    "id": "A4095077-(R-1301)廢鐵-2026-12-13",
+    "sourceSequenceNumber": "4",
+    "controlNumber": "A4095077",
+    "operatorName": "建和行",
+    "phone": "02-89351157",
+    "address": "(116)臺北市文山區羅斯福路五段二○一號一樓",
+    "districtName": "文山區",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鐵製品原料",
+    "reusePurposeCategories": [
+      "鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "256.5",
+    "maximumMonthlyReuseTonnes": 256.5,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(116)臺北市文山區羅斯福路五段二○一號一樓"
+  },
+  {
+    "id": "row-(R-0601)廢紙-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0601)廢紙",
+    "reusableWasteCategories": [
+      "(R-0601)廢紙"
+    ],
+    "wasteSourceRaw": "事業產生之廢紙。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢紙。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "漿紙原料",
+    "reusePurposeCategories": [
+      "漿紙原料"
+    ],
+    "maximumMonthlyReuseRaw": "34.2",
+    "maximumMonthlyReuseTonnes": 34.2,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品原料",
+    "reusePurposeCategories": [
+      "塑膠製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "17.1",
+    "maximumMonthlyReuseTonnes": 17.1,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠粒原料",
+    "reusePurposeCategories": [
+      "塑膠粒原料"
+    ],
+    "maximumMonthlyReuseRaw": "17.1",
+    "maximumMonthlyReuseTonnes": 17.1,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品",
+    "reusePurposeCategories": [
+      "塑膠製品"
+    ],
+    "maximumMonthlyReuseRaw": "17.1",
+    "maximumMonthlyReuseTonnes": 17.1,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1302)廢銅-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "銅製品原料",
+    "reusePurposeCategories": [
+      "銅製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "17.1",
+    "maximumMonthlyReuseTonnes": 17.1,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1304)廢鋁-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1304)廢鋁",
+    "reusableWasteCategories": [
+      "(R-1304)廢鋁"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "51.3",
+    "maximumMonthlyReuseTonnes": 51.3,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鑄鐵原料",
+    "reusePurposeCategories": [
+      "鑄鐵原料"
+    ],
+    "maximumMonthlyReuseRaw": "256.5",
+    "maximumMonthlyReuseTonnes": 256.5,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1303)廢鋅-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1303)廢鋅",
+    "reusableWasteCategories": [
+      "(R-1303)廢鋅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋅製品原料",
+    "reusePurposeCategories": [
+      "鋅製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "17.1",
+    "maximumMonthlyReuseTonnes": 17.1,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1303)廢鋅-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1303)廢鋅",
+    "reusableWasteCategories": [
+      "(R-1303)廢鋅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "17.1",
+    "maximumMonthlyReuseTonnes": 17.1,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "煉鋼原料",
+    "reusePurposeCategories": [
+      "煉鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "256.5",
+    "maximumMonthlyReuseTonnes": 256.5,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1305)廢錫-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1305)廢錫",
+    "reusableWasteCategories": [
+      "(R-1305)廢錫"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "17.1",
+    "maximumMonthlyReuseTonnes": 17.1,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1304)廢鋁-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1304)廢鋁",
+    "reusableWasteCategories": [
+      "(R-1304)廢鋁"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋁製品原料",
+    "reusePurposeCategories": [
+      "鋁製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "51.3",
+    "maximumMonthlyReuseTonnes": 51.3,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1302)廢銅-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "17.1",
+    "maximumMonthlyReuseTonnes": 17.1,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鑄鋼原料",
+    "reusePurposeCategories": [
+      "鑄鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "256.5",
+    "maximumMonthlyReuseTonnes": 256.5,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1305)廢錫-2026-12-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1305)廢錫",
+    "reusableWasteCategories": [
+      "(R-1305)廢錫"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "錫製品原料",
+    "reusePurposeCategories": [
+      "錫製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "17.1",
+    "maximumMonthlyReuseTonnes": 17.1,
+    "verificationPassedDateRaw": "2021-12-13",
+    "verificationPassedDate": "2021-12-13",
+    "verificationExpiryDateRaw": "2026-12-13",
+    "verificationExpiryDate": "2026-12-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "A43B5558-(R-1303)廢鋅-2026-12-20",
+    "sourceSequenceNumber": "5",
+    "controlNumber": "A43B5558",
+    "operatorName": "仝興行",
+    "phone": "02-28858509",
+    "address": "(111)臺北市士林區承德路四段一二巷七四號二樓",
+    "districtName": "士林區",
+    "reusableWasteRaw": "(R-1303)廢鋅",
+    "reusableWasteCategories": [
+      "(R-1303)廢鋅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋅製品原料",
+    "reusePurposeCategories": [
+      "鋅製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "9.9",
+    "maximumMonthlyReuseTonnes": 9.9,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(111)臺北市士林區承德路四段一二巷七四號二樓"
+  },
+  {
+    "id": "row-(R-0601)廢紙-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0601)廢紙",
+    "reusableWasteCategories": [
+      "(R-0601)廢紙"
+    ],
+    "wasteSourceRaw": "事業產生之廢紙。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢紙。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "漿紙原料",
+    "reusePurposeCategories": [
+      "漿紙原料"
+    ],
+    "maximumMonthlyReuseRaw": "99",
+    "maximumMonthlyReuseTonnes": 99,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠粒原料",
+    "reusePurposeCategories": [
+      "塑膠粒原料"
+    ],
+    "maximumMonthlyReuseRaw": "9.9",
+    "maximumMonthlyReuseTonnes": 9.9,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "煉鋼原料",
+    "reusePurposeCategories": [
+      "煉鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "99",
+    "maximumMonthlyReuseTonnes": 99,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1304)廢鋁-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1304)廢鋁",
+    "reusableWasteCategories": [
+      "(R-1304)廢鋁"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "9.9",
+    "maximumMonthlyReuseTonnes": 9.9,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鐵製品原料",
+    "reusePurposeCategories": [
+      "鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "99",
+    "maximumMonthlyReuseTonnes": 99,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品",
+    "reusePurposeCategories": [
+      "塑膠製品"
+    ],
+    "maximumMonthlyReuseRaw": "9.9",
+    "maximumMonthlyReuseTonnes": 9.9,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鑄鋼原料",
+    "reusePurposeCategories": [
+      "鑄鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "99",
+    "maximumMonthlyReuseTonnes": 99,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品原料",
+    "reusePurposeCategories": [
+      "塑膠製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "9.9",
+    "maximumMonthlyReuseTonnes": 9.9,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1304)廢鋁-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1304)廢鋁",
+    "reusableWasteCategories": [
+      "(R-1304)廢鋁"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋁製品原料",
+    "reusePurposeCategories": [
+      "鋁製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "9.9",
+    "maximumMonthlyReuseTonnes": 9.9,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1302)廢銅-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "9.9",
+    "maximumMonthlyReuseTonnes": 9.9,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鑄鐵原料",
+    "reusePurposeCategories": [
+      "鑄鐵原料"
+    ],
+    "maximumMonthlyReuseRaw": "99",
+    "maximumMonthlyReuseTonnes": 99,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1302)廢銅-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "銅製品原料",
+    "reusePurposeCategories": [
+      "銅製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "9.9",
+    "maximumMonthlyReuseTonnes": 9.9,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1303)廢鋅-2026-12-20",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1303)廢鋅",
+    "reusableWasteCategories": [
+      "(R-1303)廢鋅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "9.9",
+    "maximumMonthlyReuseTonnes": 9.9,
+    "verificationPassedDateRaw": "2021-12-20",
+    "verificationPassedDate": "2021-12-20",
+    "verificationExpiryDateRaw": "2026-12-20",
+    "verificationExpiryDate": "2026-12-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "A4405822-(R-0503)營建混合物-2027-01-24",
+    "sourceSequenceNumber": "6",
+    "controlNumber": "A4405822",
+    "operatorName": "亞太土石資源有限公司-亞太營建工程賸餘土石方及營建混合物資源處理場",
+    "phone": "02-28959856",
+    "address": "(112)臺北市北投區大度路二九號",
+    "districtName": "北投區",
+    "reusableWasteRaw": "(R-0503)營建混合物",
+    "reusableWasteCategories": [
+      "(R-0503)營建混合物"
+    ],
+    "wasteSourceRaw": "工程施工建造、建築拆除、裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))",
+    "wasteSourceCategories": [
+      "工程施工建造",
+      "建築拆除",
+      "裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))"
+    ],
+    "reusePurposeRaw": "工程填地及道路工程級配料",
+    "reusePurposeCategories": [
+      "工程填地及道路工程級配料"
+    ],
+    "maximumMonthlyReuseRaw": "16800",
+    "maximumMonthlyReuseTonnes": 16800,
+    "verificationPassedDateRaw": "2022-01-24",
+    "verificationPassedDate": "2022-01-24",
+    "verificationExpiryDateRaw": "2027-01-24",
+    "verificationExpiryDate": "2027-01-24",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(112)臺北市北投區大度路二九號"
+  },
+  {
+    "id": "A40A6732-(R-0105)廢酒糟、酒粕、酒精醪-2027-07-04",
+    "sourceSequenceNumber": "7",
+    "controlNumber": "A40A6732",
+    "operatorName": "順羿股份有限公司",
+    "phone": "09-87075750",
+    "address": "(116)臺北市文山區辛亥路四段一六六巷五之四號五樓",
+    "districtName": "文山區",
+    "reusableWasteRaw": "(R-0105)廢酒糟、酒粕、酒精醪",
+    "reusableWasteCategories": [
+      "(R-0105)廢酒糟",
+      "酒粕",
+      "酒精醪"
+    ],
+    "wasteSourceRaw": "公告可直接再利用；食品及飲料製造業在酒類釀造配製製程產生之廢酒糟、酒粕或酒精醪。但依相關法規認定為有害事業廢棄物者，不適用之。(經濟部)",
+    "wasteSourceCategories": [
+      "公告可直接再利用",
+      "食品及飲料製造業在酒類釀造配製製程產生之廢酒糟",
+      "酒粕或酒精醪。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(經濟部)"
+    ],
+    "reusePurposeRaw": "飼料原料",
+    "reusePurposeCategories": [
+      "飼料原料"
+    ],
+    "maximumMonthlyReuseRaw": "3000",
+    "maximumMonthlyReuseTonnes": 3000,
+    "verificationPassedDateRaw": "2022-07-04",
+    "verificationPassedDate": "2022-07-04",
+    "verificationExpiryDateRaw": "2027-07-04",
+    "verificationExpiryDate": "2027-07-04",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(116)臺北市文山區辛亥路四段一六六巷五之四號五樓"
+  },
+  {
+    "id": "row-(R-0105)廢酒糟、酒粕、酒精醪-2027-07-04",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0105)廢酒糟、酒粕、酒精醪",
+    "reusableWasteCategories": [
+      "(R-0105)廢酒糟",
+      "酒粕",
+      "酒精醪"
+    ],
+    "wasteSourceRaw": "公告可直接再利用；食品及飲料製造業在酒類釀造配製製程產生之廢酒糟、酒粕或酒精醪。但依相關法規認定為有害事業廢棄物者，不適用之。(經濟部)",
+    "wasteSourceCategories": [
+      "公告可直接再利用",
+      "食品及飲料製造業在酒類釀造配製製程產生之廢酒糟",
+      "酒粕或酒精醪。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(經濟部)"
+    ],
+    "reusePurposeRaw": "飼料",
+    "reusePurposeCategories": [
+      "飼料"
+    ],
+    "maximumMonthlyReuseRaw": "5000",
+    "maximumMonthlyReuseTonnes": 5000,
+    "verificationPassedDateRaw": "2022-07-04",
+    "verificationPassedDate": "2022-07-04",
+    "verificationExpiryDateRaw": "2027-07-04",
+    "verificationExpiryDate": "2027-07-04",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0105)廢酒糟、酒粕、酒精醪-2027-07-04",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0105)廢酒糟、酒粕、酒精醪",
+    "reusableWasteCategories": [
+      "(R-0105)廢酒糟",
+      "酒粕",
+      "酒精醪"
+    ],
+    "wasteSourceRaw": "公告可直接再利用；食品及飲料製造業在酒類釀造配製製程產生之廢酒糟、酒粕或酒精醪。但依相關法規認定為有害事業廢棄物者，不適用之。(經濟部)",
+    "wasteSourceCategories": [
+      "公告可直接再利用",
+      "食品及飲料製造業在酒類釀造配製製程產生之廢酒糟",
+      "酒粕或酒精醪。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(經濟部)"
+    ],
+    "reusePurposeRaw": "有機質肥料原料",
+    "reusePurposeCategories": [
+      "有機質肥料原料"
+    ],
+    "maximumMonthlyReuseRaw": "1200",
+    "maximumMonthlyReuseTonnes": 1200,
+    "verificationPassedDateRaw": "2022-07-04",
+    "verificationPassedDate": "2022-07-04",
+    "verificationExpiryDateRaw": "2027-07-04",
+    "verificationExpiryDate": "2027-07-04",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0105)廢酒糟、酒粕、酒精醪-2027-07-04",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0105)廢酒糟、酒粕、酒精醪",
+    "reusableWasteCategories": [
+      "(R-0105)廢酒糟",
+      "酒粕",
+      "酒精醪"
+    ],
+    "wasteSourceRaw": "公告可直接再利用；食品及飲料製造業在酒類釀造配製製程產生之廢酒糟、酒粕或酒精醪。但依相關法規認定為有害事業廢棄物者，不適用之。(經濟部)",
+    "wasteSourceCategories": [
+      "公告可直接再利用",
+      "食品及飲料製造業在酒類釀造配製製程產生之廢酒糟",
+      "酒粕或酒精醪。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(經濟部)"
+    ],
+    "reusePurposeRaw": "有機質栽培介質原料",
+    "reusePurposeCategories": [
+      "有機質栽培介質原料"
+    ],
+    "maximumMonthlyReuseRaw": "300",
+    "maximumMonthlyReuseTonnes": 300,
+    "verificationPassedDateRaw": "2022-07-04",
+    "verificationPassedDate": "2022-07-04",
+    "verificationExpiryDateRaw": "2027-07-04",
+    "verificationExpiryDate": "2027-07-04",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0105)廢酒糟、酒粕、酒精醪-2027-07-04",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0105)廢酒糟、酒粕、酒精醪",
+    "reusableWasteCategories": [
+      "(R-0105)廢酒糟",
+      "酒粕",
+      "酒精醪"
+    ],
+    "wasteSourceRaw": "公告可直接再利用；食品及飲料製造業在酒類釀造配製製程產生之廢酒糟、酒粕或酒精醪。但依相關法規認定為有害事業廢棄物者，不適用之。(經濟部)",
+    "wasteSourceCategories": [
+      "公告可直接再利用",
+      "食品及飲料製造業在酒類釀造配製製程產生之廢酒糟",
+      "酒粕或酒精醪。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(經濟部)"
+    ],
+    "reusePurposeRaw": "生質能原料",
+    "reusePurposeCategories": [
+      "生質能原料"
+    ],
+    "maximumMonthlyReuseRaw": "500",
+    "maximumMonthlyReuseTonnes": 500,
+    "verificationPassedDateRaw": "2022-07-04",
+    "verificationPassedDate": "2022-07-04",
+    "verificationExpiryDateRaw": "2027-07-04",
+    "verificationExpiryDate": "2027-07-04",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "A45B6734-(R-1301)廢鐵-2027-08-18",
+    "sourceSequenceNumber": "8",
+    "controlNumber": "A45B6734",
+    "operatorName": "榮盛五金鐵材有限公司",
+    "phone": "02-23775198",
+    "address": "(110)臺北市信義區嘉興街一五一號一樓",
+    "districtName": "信義區",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鑄鐵原料",
+    "reusePurposeCategories": [
+      "鑄鐵原料"
+    ],
+    "maximumMonthlyReuseRaw": "434.7",
+    "maximumMonthlyReuseTonnes": 434.7,
+    "verificationPassedDateRaw": "2022-08-18",
+    "verificationPassedDate": "2022-08-18",
+    "verificationExpiryDateRaw": "2027-08-18",
+    "verificationExpiryDate": "2027-08-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(110)臺北市信義區嘉興街一五一號一樓"
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2027-08-18",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠粒原料",
+    "reusePurposeCategories": [
+      "塑膠粒原料"
+    ],
+    "maximumMonthlyReuseRaw": "24.15",
+    "maximumMonthlyReuseTonnes": 24.15,
+    "verificationPassedDateRaw": "2022-08-18",
+    "verificationPassedDate": "2022-08-18",
+    "verificationExpiryDateRaw": "2027-08-18",
+    "verificationExpiryDate": "2027-08-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1302)廢銅-2027-08-18",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "銅製品原料",
+    "reusePurposeCategories": [
+      "銅製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "48.3",
+    "maximumMonthlyReuseTonnes": 48.3,
+    "verificationPassedDateRaw": "2022-08-18",
+    "verificationPassedDate": "2022-08-18",
+    "verificationExpiryDateRaw": "2027-08-18",
+    "verificationExpiryDate": "2027-08-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0601)廢紙-2027-08-18",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0601)廢紙",
+    "reusableWasteCategories": [
+      "(R-0601)廢紙"
+    ],
+    "wasteSourceRaw": "事業產生之廢紙。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢紙。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "漿紙原料",
+    "reusePurposeCategories": [
+      "漿紙原料"
+    ],
+    "maximumMonthlyReuseRaw": "24.15",
+    "maximumMonthlyReuseTonnes": 24.15,
+    "verificationPassedDateRaw": "2022-08-18",
+    "verificationPassedDate": "2022-08-18",
+    "verificationExpiryDateRaw": "2027-08-18",
+    "verificationExpiryDate": "2027-08-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1304)廢鋁-2027-08-18",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1304)廢鋁",
+    "reusableWasteCategories": [
+      "(R-1304)廢鋁"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋁製品原料",
+    "reusePurposeCategories": [
+      "鋁製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "48.3",
+    "maximumMonthlyReuseTonnes": 48.3,
+    "verificationPassedDateRaw": "2022-08-18",
+    "verificationPassedDate": "2022-08-18",
+    "verificationExpiryDateRaw": "2027-08-18",
+    "verificationExpiryDate": "2027-08-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2027-08-18",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品",
+    "reusePurposeCategories": [
+      "塑膠製品"
+    ],
+    "maximumMonthlyReuseRaw": "24.15",
+    "maximumMonthlyReuseTonnes": 24.15,
+    "verificationPassedDateRaw": "2022-08-18",
+    "verificationPassedDate": "2022-08-18",
+    "verificationExpiryDateRaw": "2027-08-18",
+    "verificationExpiryDate": "2027-08-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2027-08-18",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品原料",
+    "reusePurposeCategories": [
+      "塑膠製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "24.15",
+    "maximumMonthlyReuseTonnes": 24.15,
+    "verificationPassedDateRaw": "2022-08-18",
+    "verificationPassedDate": "2022-08-18",
+    "verificationExpiryDateRaw": "2027-08-18",
+    "verificationExpiryDate": "2027-08-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2027-08-18",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鑄鋼原料",
+    "reusePurposeCategories": [
+      "鑄鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "434.7",
+    "maximumMonthlyReuseTonnes": 434.7,
+    "verificationPassedDateRaw": "2022-08-18",
+    "verificationPassedDate": "2022-08-18",
+    "verificationExpiryDateRaw": "2027-08-18",
+    "verificationExpiryDate": "2027-08-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2027-08-18",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鐵製品原料",
+    "reusePurposeCategories": [
+      "鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "434.7",
+    "maximumMonthlyReuseTonnes": 434.7,
+    "verificationPassedDateRaw": "2022-08-18",
+    "verificationPassedDate": "2022-08-18",
+    "verificationExpiryDateRaw": "2027-08-18",
+    "verificationExpiryDate": "2027-08-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2027-08-18",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "煉鋼原料",
+    "reusePurposeCategories": [
+      "煉鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "434.7",
+    "maximumMonthlyReuseTonnes": 434.7,
+    "verificationPassedDateRaw": "2022-08-18",
+    "verificationPassedDate": "2022-08-18",
+    "verificationExpiryDateRaw": "2027-08-18",
+    "verificationExpiryDate": "2027-08-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1302)廢銅-2027-08-18",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "48.3",
+    "maximumMonthlyReuseTonnes": 48.3,
+    "verificationPassedDateRaw": "2022-08-18",
+    "verificationPassedDate": "2022-08-18",
+    "verificationExpiryDateRaw": "2027-08-18",
+    "verificationExpiryDate": "2027-08-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1304)廢鋁-2027-08-18",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1304)廢鋁",
+    "reusableWasteCategories": [
+      "(R-1304)廢鋁"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "48.3",
+    "maximumMonthlyReuseTonnes": 48.3,
+    "verificationPassedDateRaw": "2022-08-18",
+    "verificationPassedDate": "2022-08-18",
+    "verificationExpiryDateRaw": "2027-08-18",
+    "verificationExpiryDate": "2027-08-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "A36C0982-(R-1301)廢鐵-2027-12-08",
+    "sourceSequenceNumber": "9",
+    "controlNumber": "A36C0982",
+    "operatorName": "大專環保科技有限公司",
+    "phone": "02-23062339",
+    "address": "(100)臺北市中正區西藏路一一○號",
+    "districtName": "中正區",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鐵製品原料",
+    "reusePurposeCategories": [
+      "鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "10.8",
+    "maximumMonthlyReuseTonnes": 10.8,
+    "verificationPassedDateRaw": "2022-12-08",
+    "verificationPassedDate": "2022-12-08",
+    "verificationExpiryDateRaw": "2027-12-08",
+    "verificationExpiryDate": "2027-12-08",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(100)臺北市中正區西藏路一一○號"
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2027-12-08",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品",
+    "reusePurposeCategories": [
+      "塑膠製品"
+    ],
+    "maximumMonthlyReuseRaw": "5.4",
+    "maximumMonthlyReuseTonnes": 5.4,
+    "verificationPassedDateRaw": "2022-12-08",
+    "verificationPassedDate": "2022-12-08",
+    "verificationExpiryDateRaw": "2027-12-08",
+    "verificationExpiryDate": "2027-12-08",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2027-12-08",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鑄鐵原料",
+    "reusePurposeCategories": [
+      "鑄鐵原料"
+    ],
+    "maximumMonthlyReuseRaw": "10.8",
+    "maximumMonthlyReuseTonnes": 10.8,
+    "verificationPassedDateRaw": "2022-12-08",
+    "verificationPassedDate": "2022-12-08",
+    "verificationExpiryDateRaw": "2027-12-08",
+    "verificationExpiryDate": "2027-12-08",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0601)廢紙-2027-12-08",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0601)廢紙",
+    "reusableWasteCategories": [
+      "(R-0601)廢紙"
+    ],
+    "wasteSourceRaw": "事業產生之廢紙。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢紙。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "漿紙原料",
+    "reusePurposeCategories": [
+      "漿紙原料"
+    ],
+    "maximumMonthlyReuseRaw": "108",
+    "maximumMonthlyReuseTonnes": 108,
+    "verificationPassedDateRaw": "2022-12-08",
+    "verificationPassedDate": "2022-12-08",
+    "verificationExpiryDateRaw": "2027-12-08",
+    "verificationExpiryDate": "2027-12-08",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1302)廢銅-2027-12-08",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "銅製品原料",
+    "reusePurposeCategories": [
+      "銅製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5.4",
+    "maximumMonthlyReuseTonnes": 5.4,
+    "verificationPassedDateRaw": "2022-12-08",
+    "verificationPassedDate": "2022-12-08",
+    "verificationExpiryDateRaw": "2027-12-08",
+    "verificationExpiryDate": "2027-12-08",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2027-12-08",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "煉鋼原料",
+    "reusePurposeCategories": [
+      "煉鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "10.8",
+    "maximumMonthlyReuseTonnes": 10.8,
+    "verificationPassedDateRaw": "2022-12-08",
+    "verificationPassedDate": "2022-12-08",
+    "verificationExpiryDateRaw": "2027-12-08",
+    "verificationExpiryDate": "2027-12-08",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2027-12-08",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠粒原料",
+    "reusePurposeCategories": [
+      "塑膠粒原料"
+    ],
+    "maximumMonthlyReuseRaw": "5.4",
+    "maximumMonthlyReuseTonnes": 5.4,
+    "verificationPassedDateRaw": "2022-12-08",
+    "verificationPassedDate": "2022-12-08",
+    "verificationExpiryDateRaw": "2027-12-08",
+    "verificationExpiryDate": "2027-12-08",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2027-12-08",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鑄鋼原料",
+    "reusePurposeCategories": [
+      "鑄鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "10.8",
+    "maximumMonthlyReuseTonnes": 10.8,
+    "verificationPassedDateRaw": "2022-12-08",
+    "verificationPassedDate": "2022-12-08",
+    "verificationExpiryDateRaw": "2027-12-08",
+    "verificationExpiryDate": "2027-12-08",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2027-12-08",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品原料",
+    "reusePurposeCategories": [
+      "塑膠製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5.4",
+    "maximumMonthlyReuseTonnes": 5.4,
+    "verificationPassedDateRaw": "2022-12-08",
+    "verificationPassedDate": "2022-12-08",
+    "verificationExpiryDateRaw": "2027-12-08",
+    "verificationExpiryDate": "2027-12-08",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1302)廢銅-2027-12-08",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5.4",
+    "maximumMonthlyReuseTonnes": 5.4,
+    "verificationPassedDateRaw": "2022-12-08",
+    "verificationPassedDate": "2022-12-08",
+    "verificationExpiryDateRaw": "2027-12-08",
+    "verificationExpiryDate": "2027-12-08",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "A39C0046-(R-1301)廢鐵-2028-02-09",
+    "sourceSequenceNumber": "10",
+    "controlNumber": "A39C0046",
+    "operatorName": "新勝光機械有限公司",
+    "phone": "02-25018600",
+    "address": "(104)臺北市中山區復興北路四七六號三樓",
+    "districtName": "中山區",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "煉鋼原料",
+    "reusePurposeCategories": [
+      "煉鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "400",
+    "maximumMonthlyReuseTonnes": 400,
+    "verificationPassedDateRaw": "2023-02-09",
+    "verificationPassedDate": "2023-02-09",
+    "verificationExpiryDateRaw": "2028-02-09",
+    "verificationExpiryDate": "2028-02-09",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(104)臺北市中山區復興北路四七六號三樓"
+  },
+  {
+    "id": "A4004950-(R-0503)營建混合物-2028-02-13",
+    "sourceSequenceNumber": "11",
+    "controlNumber": "A4004950",
+    "operatorName": "好名企業有限公司-好名賸餘土石方及營建混合物資源處理場",
+    "phone": "02-22396171",
+    "address": "(116)臺北市文山區木柵路五段五八號",
+    "districtName": "文山區",
+    "reusableWasteRaw": "(R-0503)營建混合物",
+    "reusableWasteCategories": [
+      "(R-0503)營建混合物"
+    ],
+    "wasteSourceRaw": "工程施工建造、建築拆除、裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))",
+    "wasteSourceCategories": [
+      "工程施工建造",
+      "建築拆除",
+      "裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))"
+    ],
+    "reusePurposeRaw": "工程填地及道路工程級配料",
+    "reusePurposeCategories": [
+      "工程填地及道路工程級配料"
+    ],
+    "maximumMonthlyReuseRaw": "14583",
+    "maximumMonthlyReuseTonnes": 14583,
+    "verificationPassedDateRaw": "2023-02-13",
+    "verificationPassedDate": "2023-02-13",
+    "verificationExpiryDateRaw": "2028-02-13",
+    "verificationExpiryDate": "2028-02-13",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(116)臺北市文山區木柵路五段五八號"
+  },
+  {
+    "id": "A4300126-(R-1106)燃煤飛灰-2028-12-12",
+    "sourceSequenceNumber": "12",
+    "controlNumber": "A4300126",
+    "operatorName": "力泰建設企業股份有限公司",
+    "phone": "02-28103001",
+    "address": "(111)臺北市士林區延平北路七段七號",
+    "districtName": "士林區",
+    "reusableWasteRaw": "(R-1106)燃煤飛灰",
+    "reusableWasteCategories": [
+      "(R-1106)燃煤飛灰"
+    ],
+    "wasteSourceRaw": "事業以煤為單一燃料之鍋爐、混燒百分之五(重量比)以下廢棄物衍生燃料或生質燃料之燃煤發電鍋爐或混燒百分之十（重量比）以下木質顆粒（符合固態生質燃料－燃料規範與等級－第2部：分級木質顆粒之燃料規範）之燃煤電廠發電鍋爐產生之飛灰或底灰(經濟部)",
+    "wasteSourceCategories": [
+      "事業以煤為單一燃料之鍋爐",
+      "混燒百分之五(重量比)以下廢棄物衍生燃料或生質燃料之燃煤發電鍋爐或混燒百分之十（重量比）以下木質顆粒（符合固態生質燃料－燃料規範與等級－第2部：分級木質顆粒之燃料規範）之燃煤電廠發電鍋爐產生之飛灰或底灰(經濟部)"
+    ],
+    "reusePurposeRaw": "混凝土攙和物",
+    "reusePurposeCategories": [
+      "混凝土攙和物"
+    ],
+    "maximumMonthlyReuseRaw": "4000",
+    "maximumMonthlyReuseTonnes": 4000,
+    "verificationPassedDateRaw": "2023-12-12",
+    "verificationPassedDate": "2023-12-12",
+    "verificationExpiryDateRaw": "2028-12-12",
+    "verificationExpiryDate": "2028-12-12",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(111)臺北市士林區延平北路七段七號"
+  },
+  {
+    "id": "A3405533-(R-0503)營建混合物-2029-02-21",
+    "sourceSequenceNumber": "13",
+    "controlNumber": "A3405533",
+    "operatorName": "力隆砂石實業有限公司-力隆營建混合物分類場",
+    "phone": "02-25175433",
+    "address": "(105)臺北市松山區濱江街八六二號",
+    "districtName": "松山區",
+    "reusableWasteRaw": "(R-0503)營建混合物",
+    "reusableWasteCategories": [
+      "(R-0503)營建混合物"
+    ],
+    "wasteSourceRaw": "工程施工建造、建築拆除、裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))",
+    "wasteSourceCategories": [
+      "工程施工建造",
+      "建築拆除",
+      "裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))"
+    ],
+    "reusePurposeRaw": "工程填地及道路工程級配料",
+    "reusePurposeCategories": [
+      "工程填地及道路工程級配料"
+    ],
+    "maximumMonthlyReuseRaw": "10800",
+    "maximumMonthlyReuseTonnes": 10800,
+    "verificationPassedDateRaw": "2024-02-21",
+    "verificationPassedDate": "2024-02-21",
+    "verificationExpiryDateRaw": "2029-02-21",
+    "verificationExpiryDate": "2029-02-21",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(105)臺北市松山區濱江街八六二號"
+  },
+  {
+    "id": "A34A1728-(R-1302)廢銅-2029-05-29",
+    "sourceSequenceNumber": "14",
+    "controlNumber": "A34A1728",
+    "operatorName": "元鼎金屬股份有限公司",
+    "phone": "02-27925169",
+    "address": "(105)臺北市松山區新東街一二巷三九號一樓",
+    "districtName": "松山區",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "銅製品原料",
+    "reusePurposeCategories": [
+      "銅製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "180",
+    "maximumMonthlyReuseTonnes": 180,
+    "verificationPassedDateRaw": "2024-05-29",
+    "verificationPassedDate": "2024-05-29",
+    "verificationExpiryDateRaw": "2029-05-29",
+    "verificationExpiryDate": "2029-05-29",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(105)臺北市松山區新東街一二巷三九號一樓"
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2029-05-29",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鐵錠原料",
+    "reusePurposeCategories": [
+      "鐵錠原料"
+    ],
+    "maximumMonthlyReuseRaw": "550",
+    "maximumMonthlyReuseTonnes": 550,
+    "verificationPassedDateRaw": "2024-05-29",
+    "verificationPassedDate": "2024-05-29",
+    "verificationExpiryDateRaw": "2029-05-29",
+    "verificationExpiryDate": "2029-05-29",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2029-05-29",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品原料",
+    "reusePurposeCategories": [
+      "塑膠製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "20",
+    "maximumMonthlyReuseTonnes": 20,
+    "verificationPassedDateRaw": "2024-05-29",
+    "verificationPassedDate": "2024-05-29",
+    "verificationExpiryDateRaw": "2029-05-29",
+    "verificationExpiryDate": "2029-05-29",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1304)廢鋁-2029-05-29",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1304)廢鋁",
+    "reusableWasteCategories": [
+      "(R-1304)廢鋁"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋁製品原料",
+    "reusePurposeCategories": [
+      "鋁製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "650",
+    "maximumMonthlyReuseTonnes": 650,
+    "verificationPassedDateRaw": "2024-05-29",
+    "verificationPassedDate": "2024-05-29",
+    "verificationExpiryDateRaw": "2029-05-29",
+    "verificationExpiryDate": "2029-05-29",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "A42B0177-(R-0701)廢木材-2029-06-13",
+    "sourceSequenceNumber": "15",
+    "controlNumber": "A42B0177",
+    "operatorName": "豐鴻實業股份有限公司",
+    "phone": "02-27929293",
+    "address": "(114)臺北市內湖區安康路二一六號一樓",
+    "districtName": "內湖區",
+    "reusableWasteRaw": "(R-0701)廢木材",
+    "reusableWasteCategories": [
+      "(R-0701)廢木材"
+    ],
+    "wasteSourceRaw": "公告可直接再利用；事業產生之廢木材（板、屑、木質電桿、木質橫擔或枕木）。但依相關法規認定為有害事業廢棄物者，不適用之。(交通部逕依經濟部,財政部逕依經濟部,國科會逕依經濟部,經濟部,環境部逕依經濟部)",
+    "wasteSourceCategories": [
+      "公告可直接再利用",
+      "事業產生之廢木材（板",
+      "屑",
+      "木質電桿",
+      "木質橫擔或枕木）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(交通部逕依經濟部",
+      "財政部逕依經濟部",
+      "國科會逕依經濟部",
+      "經濟部",
+      "環境部逕依經濟部)"
+    ],
+    "reusePurposeRaw": "燃料原料",
+    "reusePurposeCategories": [
+      "燃料原料"
+    ],
+    "maximumMonthlyReuseRaw": "1200",
+    "maximumMonthlyReuseTonnes": 1200,
+    "verificationPassedDateRaw": "2024-06-13",
+    "verificationPassedDate": "2024-06-13",
+    "verificationExpiryDateRaw": "2029-06-13",
+    "verificationExpiryDate": "2029-06-13",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(114)臺北市內湖區安康路二一六號一樓"
+  },
+  {
+    "id": "A42A2443-(R-0503)營建混合物-2029-07-09",
+    "sourceSequenceNumber": "16",
+    "controlNumber": "A42A2443",
+    "operatorName": "展嘉資源處理有限公司-同怡混合物分類處理場",
+    "phone": "02-27940157",
+    "address": "(114)臺北市內湖區潭美街五三三號",
+    "districtName": "內湖區",
+    "reusableWasteRaw": "(R-0503)營建混合物",
+    "reusableWasteCategories": [
+      "(R-0503)營建混合物"
+    ],
+    "wasteSourceRaw": "工程施工建造、建築拆除、裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))",
+    "wasteSourceCategories": [
+      "工程施工建造",
+      "建築拆除",
+      "裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))"
+    ],
+    "reusePurposeRaw": "工程填地及道路工程級配料",
+    "reusePurposeCategories": [
+      "工程填地及道路工程級配料"
+    ],
+    "maximumMonthlyReuseRaw": "6525",
+    "maximumMonthlyReuseTonnes": 6525,
+    "verificationPassedDateRaw": "2024-07-09",
+    "verificationPassedDate": "2024-07-09",
+    "verificationExpiryDateRaw": "2029-07-09",
+    "verificationExpiryDate": "2029-07-09",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(114)臺北市內湖區潭美街五三三號"
+  },
+  {
+    "id": "A44A0992-(R-0503)營建混合物-2029-07-10",
+    "sourceSequenceNumber": "17",
+    "controlNumber": "A44A0992",
+    "operatorName": "忠全工程有限公司-忠全營建混合物資源分類處理場",
+    "phone": "02-28967696",
+    "address": "(112)臺北市北投區立德路一二○巷二二之一號",
+    "districtName": "北投區",
+    "reusableWasteRaw": "(R-0503)營建混合物",
+    "reusableWasteCategories": [
+      "(R-0503)營建混合物"
+    ],
+    "wasteSourceRaw": "工程施工建造、建築拆除、裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))",
+    "wasteSourceCategories": [
+      "工程施工建造",
+      "建築拆除",
+      "裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))"
+    ],
+    "reusePurposeRaw": "工程填地及道路工程級配料",
+    "reusePurposeCategories": [
+      "工程填地及道路工程級配料"
+    ],
+    "maximumMonthlyReuseRaw": "4500",
+    "maximumMonthlyReuseTonnes": 4500,
+    "verificationPassedDateRaw": "2024-07-10",
+    "verificationPassedDate": "2024-07-10",
+    "verificationExpiryDateRaw": "2029-07-10",
+    "verificationExpiryDate": "2029-07-10",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(112)臺北市北投區立德路一二○巷二二之一號"
+  },
+  {
+    "id": "A34B8761-(R-1106)燃煤飛灰-2029-07-22",
+    "sourceSequenceNumber": "18",
+    "controlNumber": "A34B8761",
+    "operatorName": "有財環保有限公司",
+    "phone": "0913-810996",
+    "address": "(105)臺北市松山區敦化南路一段七號五樓",
+    "districtName": "松山區",
+    "reusableWasteRaw": "(R-1106)燃煤飛灰",
+    "reusableWasteCategories": [
+      "(R-1106)燃煤飛灰"
+    ],
+    "wasteSourceRaw": "事業以煤為單一燃料之鍋爐、混燒百分之五(重量比)以下廢棄物衍生燃料或生質燃料之燃煤發電鍋爐或混燒百分之十（重量比）以下木質顆粒（符合固態生質燃料－燃料規範與等級－第2部：分級木質顆粒之燃料規範）之燃煤電廠發電鍋爐產生之飛灰或底灰(經濟部)",
+    "wasteSourceCategories": [
+      "事業以煤為單一燃料之鍋爐",
+      "混燒百分之五(重量比)以下廢棄物衍生燃料或生質燃料之燃煤發電鍋爐或混燒百分之十（重量比）以下木質顆粒（符合固態生質燃料－燃料規範與等級－第2部：分級木質顆粒之燃料規範）之燃煤電廠發電鍋爐產生之飛灰或底灰(經濟部)"
+    ],
+    "reusePurposeRaw": "混凝土攙和物",
+    "reusePurposeCategories": [
+      "混凝土攙和物"
+    ],
+    "maximumMonthlyReuseRaw": "20000",
+    "maximumMonthlyReuseTonnes": 20000,
+    "verificationPassedDateRaw": "2024-07-22",
+    "verificationPassedDate": "2024-07-22",
+    "verificationExpiryDateRaw": "2029-07-22",
+    "verificationExpiryDate": "2029-07-22",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(105)臺北市松山區敦化南路一段七號五樓"
+  },
+  {
+    "id": "A44A2601-(R-0503)營建混合物-2029-07-31",
+    "sourceSequenceNumber": "19",
+    "controlNumber": "A44A2601",
+    "operatorName": "磬鴻有限公司-磬鴻營建混合物資源分類處理場",
+    "phone": "02-28930701",
+    "address": "(112)臺北市北投區承德路七段四○一巷六二○弄八號",
+    "districtName": "北投區",
+    "reusableWasteRaw": "(R-0503)營建混合物",
+    "reusableWasteCategories": [
+      "(R-0503)營建混合物"
+    ],
+    "wasteSourceRaw": "工程施工建造、建築拆除、裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))",
+    "wasteSourceCategories": [
+      "工程施工建造",
+      "建築拆除",
+      "裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))"
+    ],
+    "reusePurposeRaw": "因分類作業所附帶產生之金屬屑、玻璃碎片、塑膠類、木屑",
+    "reusePurposeCategories": [
+      "因分類作業所附帶產生之金屬屑",
+      "玻璃碎片",
+      "塑膠類",
+      "木屑"
+    ],
+    "maximumMonthlyReuseRaw": "19200",
+    "maximumMonthlyReuseTonnes": 19200,
+    "verificationPassedDateRaw": "2024-07-31",
+    "verificationPassedDate": "2024-07-31",
+    "verificationExpiryDateRaw": "2029-07-31",
+    "verificationExpiryDate": "2029-07-31",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(112)臺北市北投區承德路七段四○一巷六二○弄八號"
+  },
+  {
+    "id": "A44A0853-(R-0503)營建混合物-2029-09-18",
+    "sourceSequenceNumber": "20",
+    "controlNumber": "A44A0853",
+    "operatorName": "浤欣有限公司-浤欣賸餘土石方及營建混合物處理場",
+    "phone": "02-28233535",
+    "address": "(112)臺北市北投區立賢路一一一號",
+    "districtName": "北投區",
+    "reusableWasteRaw": "(R-0503)營建混合物",
+    "reusableWasteCategories": [
+      "(R-0503)營建混合物"
+    ],
+    "wasteSourceRaw": "工程施工建造、建築拆除、裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))",
+    "wasteSourceCategories": [
+      "工程施工建造",
+      "建築拆除",
+      "裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))"
+    ],
+    "reusePurposeRaw": "營建工程材料",
+    "reusePurposeCategories": [
+      "營建工程材料"
+    ],
+    "maximumMonthlyReuseRaw": "5200",
+    "maximumMonthlyReuseTonnes": 5200,
+    "verificationPassedDateRaw": "2024-09-18",
+    "verificationPassedDate": "2024-09-18",
+    "verificationExpiryDateRaw": "2029-09-18",
+    "verificationExpiryDate": "2029-09-18",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(112)臺北市北投區立賢路一一一號"
+  },
+  {
+    "id": "A3405622-(R-1302)廢銅-2029-10-24",
+    "sourceSequenceNumber": "21",
+    "controlNumber": "A3405622",
+    "operatorName": "昂霖環保工程有限公司",
+    "phone": "02-27636659",
+    "address": "(105)臺北市松山區八德路四段六二六號六樓",
+    "districtName": "松山區",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "銅製品原料",
+    "reusePurposeCategories": [
+      "銅製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "31.2",
+    "maximumMonthlyReuseTonnes": 31.2,
+    "verificationPassedDateRaw": "2024-10-24",
+    "verificationPassedDate": "2024-10-24",
+    "verificationExpiryDateRaw": "2029-10-24",
+    "verificationExpiryDate": "2029-10-24",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(105)臺北市松山區八德路四段六二六號六樓"
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2029-10-24",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鑄鐵原料",
+    "reusePurposeCategories": [
+      "鑄鐵原料"
+    ],
+    "maximumMonthlyReuseRaw": "150",
+    "maximumMonthlyReuseTonnes": 150,
+    "verificationPassedDateRaw": "2024-10-24",
+    "verificationPassedDate": "2024-10-24",
+    "verificationExpiryDateRaw": "2029-10-24",
+    "verificationExpiryDate": "2029-10-24",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0601)廢紙-2029-10-24",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0601)廢紙",
+    "reusableWasteCategories": [
+      "(R-0601)廢紙"
+    ],
+    "wasteSourceRaw": "事業產生之廢紙。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢紙。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "漿紙原料",
+    "reusePurposeCategories": [
+      "漿紙原料"
+    ],
+    "maximumMonthlyReuseRaw": "40",
+    "maximumMonthlyReuseTonnes": 40,
+    "verificationPassedDateRaw": "2024-10-24",
+    "verificationPassedDate": "2024-10-24",
+    "verificationExpiryDateRaw": "2029-10-24",
+    "verificationExpiryDate": "2029-10-24",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1304)廢鋁-2029-10-24",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1304)廢鋁",
+    "reusableWasteCategories": [
+      "(R-1304)廢鋁"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋁製品原料",
+    "reusePurposeCategories": [
+      "鋁製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "20.8",
+    "maximumMonthlyReuseTonnes": 20.8,
+    "verificationPassedDateRaw": "2024-10-24",
+    "verificationPassedDate": "2024-10-24",
+    "verificationExpiryDateRaw": "2029-10-24",
+    "verificationExpiryDate": "2029-10-24",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1303)廢鋅-2029-10-24",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1303)廢鋅",
+    "reusableWasteCategories": [
+      "(R-1303)廢鋅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋅製品原料",
+    "reusePurposeCategories": [
+      "鋅製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "18.2",
+    "maximumMonthlyReuseTonnes": 18.2,
+    "verificationPassedDateRaw": "2024-10-24",
+    "verificationPassedDate": "2024-10-24",
+    "verificationExpiryDateRaw": "2029-10-24",
+    "verificationExpiryDate": "2029-10-24",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2029-10-24",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品原料",
+    "reusePurposeCategories": [
+      "塑膠製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "1.5",
+    "maximumMonthlyReuseTonnes": 1.5,
+    "verificationPassedDateRaw": "2024-10-24",
+    "verificationPassedDate": "2024-10-24",
+    "verificationExpiryDateRaw": "2029-10-24",
+    "verificationExpiryDate": "2029-10-24",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1305)廢錫-2029-10-24",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1305)廢錫",
+    "reusableWasteCategories": [
+      "(R-1305)廢錫"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "錫製品原料",
+    "reusePurposeCategories": [
+      "錫製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "36.4",
+    "maximumMonthlyReuseTonnes": 36.4,
+    "verificationPassedDateRaw": "2024-10-24",
+    "verificationPassedDate": "2024-10-24",
+    "verificationExpiryDateRaw": "2029-10-24",
+    "verificationExpiryDate": "2029-10-24",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "A43C1771-(R-0601)廢紙-2029-11-13",
+    "sourceSequenceNumber": "22",
+    "controlNumber": "A43C1771",
+    "operatorName": "永秀興業有限公司",
+    "phone": "02-88112808",
+    "address": "(111)臺北市士林區重慶北路四段二四八號一樓",
+    "districtName": "士林區",
+    "reusableWasteRaw": "(R-0601)廢紙",
+    "reusableWasteCategories": [
+      "(R-0601)廢紙"
+    ],
+    "wasteSourceRaw": "事業產生之廢紙。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢紙。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "漿紙原料",
+    "reusePurposeCategories": [
+      "漿紙原料"
+    ],
+    "maximumMonthlyReuseRaw": "16.74",
+    "maximumMonthlyReuseTonnes": 16.74,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(111)臺北市士林區重慶北路四段二四八號一樓"
+  },
+  {
+    "id": "row-(R-1303)廢鋅-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1303)廢鋅",
+    "reusableWasteCategories": [
+      "(R-1303)廢鋅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋅製品原料",
+    "reusePurposeCategories": [
+      "鋅製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5.58",
+    "maximumMonthlyReuseTonnes": 5.58,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品原料",
+    "reusePurposeCategories": [
+      "塑膠製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "78.12",
+    "maximumMonthlyReuseTonnes": 78.12,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鐵製品原料",
+    "reusePurposeCategories": [
+      "鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "16.74",
+    "maximumMonthlyReuseTonnes": 16.74,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品",
+    "reusePurposeCategories": [
+      "塑膠製品"
+    ],
+    "maximumMonthlyReuseRaw": "78.12",
+    "maximumMonthlyReuseTonnes": 78.12,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠粒原料",
+    "reusePurposeCategories": [
+      "塑膠粒原料"
+    ],
+    "maximumMonthlyReuseRaw": "78.12",
+    "maximumMonthlyReuseTonnes": 78.12,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1303)廢鋅-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1303)廢鋅",
+    "reusableWasteCategories": [
+      "(R-1303)廢鋅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5.58",
+    "maximumMonthlyReuseTonnes": 5.58,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "煉鋼原料",
+    "reusePurposeCategories": [
+      "煉鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "16.74",
+    "maximumMonthlyReuseTonnes": 16.74,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鑄鐵原料",
+    "reusePurposeCategories": [
+      "鑄鐵原料"
+    ],
+    "maximumMonthlyReuseRaw": "16.74",
+    "maximumMonthlyReuseTonnes": 16.74,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1305)廢錫-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1305)廢錫",
+    "reusableWasteCategories": [
+      "(R-1305)廢錫"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5.58",
+    "maximumMonthlyReuseTonnes": 5.58,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1305)廢錫-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1305)廢錫",
+    "reusableWasteCategories": [
+      "(R-1305)廢錫"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "錫製品原料",
+    "reusePurposeCategories": [
+      "錫製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5.58",
+    "maximumMonthlyReuseTonnes": 5.58,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1302)廢銅-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "銅製品原料",
+    "reusePurposeCategories": [
+      "銅製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5.58",
+    "maximumMonthlyReuseTonnes": 5.58,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1302)廢銅-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5.58",
+    "maximumMonthlyReuseTonnes": 5.58,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鑄鋼原料",
+    "reusePurposeCategories": [
+      "鑄鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "16.74",
+    "maximumMonthlyReuseTonnes": 16.74,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1304)廢鋁-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1304)廢鋁",
+    "reusableWasteCategories": [
+      "(R-1304)廢鋁"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋁製品原料",
+    "reusePurposeCategories": [
+      "鋁製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5.58",
+    "maximumMonthlyReuseTonnes": 5.58,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1304)廢鋁-2029-11-13",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1304)廢鋁",
+    "reusableWasteCategories": [
+      "(R-1304)廢鋁"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋼鐵製品原料",
+    "reusePurposeCategories": [
+      "鋼鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5.58",
+    "maximumMonthlyReuseTonnes": 5.58,
+    "verificationPassedDateRaw": "2024-11-13",
+    "verificationPassedDate": "2024-11-13",
+    "verificationExpiryDateRaw": "2029-11-13",
+    "verificationExpiryDate": "2029-11-13",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "A39A1654-(R-1301)廢鐵-2029-11-18",
+    "sourceSequenceNumber": "23",
+    "controlNumber": "A39A1654",
+    "operatorName": "守威企業有限公司",
+    "phone": "02-25013955",
+    "address": "(104)臺北市中山區吉林路四三三巷十五號一樓",
+    "districtName": "中山區",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "煉鋼原料",
+    "reusePurposeCategories": [
+      "煉鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "690",
+    "maximumMonthlyReuseTonnes": 690,
+    "verificationPassedDateRaw": "2024-11-18",
+    "verificationPassedDate": "2024-11-18",
+    "verificationExpiryDateRaw": "2029-11-18",
+    "verificationExpiryDate": "2029-11-18",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(104)臺北市中山區吉林路四三三巷十五號一樓"
+  },
+  {
+    "id": "A44C2457-(R-0104)禽畜糞-2029-12-09",
+    "sourceSequenceNumber": "24",
+    "controlNumber": "A44C2457",
+    "operatorName": "立展農業科技股份有限公司-立展農業科技快速發酵堆肥場",
+    "phone": "02-28929090",
+    "address": "(112)臺北市北投區大業路五二七巷二九號",
+    "districtName": "北投區",
+    "reusableWasteRaw": "(R-0104)禽畜糞",
+    "reusableWasteCategories": [
+      "(R-0104)禽畜糞"
+    ],
+    "wasteSourceRaw": "飼養家禽、畜所產生之禽畜糞、墊料或經固液分離後之糞渣。但由直轄市、縣(市)動物防疫主管機關或動物防疫人員依動物傳染病防治條例相關規定所為之命令、指導或指示處理者 ， 不適用之。(農業部)",
+    "wasteSourceCategories": [
+      "飼養家禽",
+      "畜所產生之禽畜糞",
+      "墊料或經固液分離後之糞渣。但由直轄市",
+      "縣(市)動物防疫主管機關或動物防疫人員依動物傳染病防治條例相關規定所為之命令",
+      "指導或指示處理者",
+      "不適用之。(農業部)"
+    ],
+    "reusePurposeRaw": "有機質肥料之原料",
+    "reusePurposeCategories": [
+      "有機質肥料之原料"
+    ],
+    "maximumMonthlyReuseRaw": "180",
+    "maximumMonthlyReuseTonnes": 180,
+    "verificationPassedDateRaw": "2024-12-09",
+    "verificationPassedDate": "2024-12-09",
+    "verificationExpiryDateRaw": "2029-12-09",
+    "verificationExpiryDate": "2029-12-09",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(112)臺北市北投區大業路五二七巷二九號"
+  },
+  {
+    "id": "row-(R-0114)果菜殘渣-2029-12-09",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0114)果菜殘渣",
+    "reusableWasteCategories": [
+      "(R-0114)果菜殘渣"
+    ],
+    "wasteSourceRaw": "果菜批發市場所產生之果菜殘渣(農業部)",
+    "wasteSourceCategories": [
+      "果菜批發市場所產生之果菜殘渣(農業部)"
+    ],
+    "reusePurposeRaw": "有機質肥料之原料",
+    "reusePurposeCategories": [
+      "有機質肥料之原料"
+    ],
+    "maximumMonthlyReuseRaw": "50",
+    "maximumMonthlyReuseTonnes": 50,
+    "verificationPassedDateRaw": "2024-12-09",
+    "verificationPassedDate": "2024-12-09",
+    "verificationExpiryDateRaw": "2029-12-09",
+    "verificationExpiryDate": "2029-12-09",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-2401)菇類培植廢棄包-2029-12-09",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-2401)菇類培植廢棄包",
+    "reusableWasteCategories": [
+      "(R-2401)菇類培植廢棄包"
+    ],
+    "wasteSourceRaw": "菇類培植廢棄包，含菇類培植廢棄包之塑膠包裝(農業部)",
+    "wasteSourceCategories": [
+      "菇類培植廢棄包",
+      "含菇類培植廢棄包之塑膠包裝(農業部)"
+    ],
+    "reusePurposeRaw": "有機質肥料之原料",
+    "reusePurposeCategories": [
+      "有機質肥料之原料"
+    ],
+    "maximumMonthlyReuseRaw": "80",
+    "maximumMonthlyReuseTonnes": 80,
+    "verificationPassedDateRaw": "2024-12-09",
+    "verificationPassedDate": "2024-12-09",
+    "verificationExpiryDateRaw": "2029-12-09",
+    "verificationExpiryDate": "2029-12-09",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "A45B4570-(R-0201)廢塑膠-2029-12-24",
+    "sourceSequenceNumber": "25",
+    "controlNumber": "A45B4570",
+    "operatorName": "舶鈞股份有限公司",
+    "phone": "02-27487657",
+    "address": "(110)臺北市信義區基隆路一段一四三號一○樓之二",
+    "districtName": "信義區",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠粒原料",
+    "reusePurposeCategories": [
+      "塑膠粒原料"
+    ],
+    "maximumMonthlyReuseRaw": "30",
+    "maximumMonthlyReuseTonnes": 30,
+    "verificationPassedDateRaw": "2024-12-24",
+    "verificationPassedDate": "2024-12-24",
+    "verificationExpiryDateRaw": "2029-12-24",
+    "verificationExpiryDate": "2029-12-24",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(110)臺北市信義區基隆路一段一四三號一○樓之二"
+  },
+  {
+    "id": "A34A0849-(R-0503)營建混合物-2030-01-13",
+    "sourceSequenceNumber": "26",
+    "controlNumber": "A34A0849",
+    "operatorName": "金茂榮環境工程有限公司-金茂榮營建混合物分類處理場",
+    "phone": "02-27658686",
+    "address": "(105)臺北市松山區撫遠街四三五號",
+    "districtName": "松山區",
+    "reusableWasteRaw": "(R-0503)營建混合物",
+    "reusableWasteCategories": [
+      "(R-0503)營建混合物"
+    ],
+    "wasteSourceRaw": "工程施工建造、建築拆除、裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))",
+    "wasteSourceCategories": [
+      "工程施工建造",
+      "建築拆除",
+      "裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))"
+    ],
+    "reusePurposeRaw": "工程填地及道路工程級配料",
+    "reusePurposeCategories": [
+      "工程填地及道路工程級配料"
+    ],
+    "maximumMonthlyReuseRaw": "17280",
+    "maximumMonthlyReuseTonnes": 17280,
+    "verificationPassedDateRaw": "2025-01-13",
+    "verificationPassedDate": "2025-01-13",
+    "verificationExpiryDateRaw": "2030-01-13",
+    "verificationExpiryDate": "2030-01-13",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(105)臺北市松山區撫遠街四三五號"
+  },
+  {
+    "id": "A45A5383-(R-1301)廢鐵-2030-01-17",
+    "sourceSequenceNumber": "27",
+    "controlNumber": "A45A5383",
+    "operatorName": "台灣豐田通商股份有限公司",
+    "phone": "02-87226143",
+    "address": "(110)臺北市信義區松仁路一○一號五樓",
+    "districtName": "信義區",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "煉鋼原料",
+    "reusePurposeCategories": [
+      "煉鋼原料"
+    ],
+    "maximumMonthlyReuseRaw": "1488",
+    "maximumMonthlyReuseTonnes": 1488,
+    "verificationPassedDateRaw": "2025-01-17",
+    "verificationPassedDate": "2025-01-17",
+    "verificationExpiryDateRaw": "2030-01-17",
+    "verificationExpiryDate": "2030-01-17",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(110)臺北市信義區松仁路一○一號五樓"
+  },
+  {
+    "id": "A38C3461-(R-1106)燃煤飛灰-2030-01-20",
+    "sourceSequenceNumber": "28",
+    "controlNumber": "A38C3461",
+    "operatorName": "達信運輸股份有限公司",
+    "phone": "02-27017093",
+    "address": "(103)臺北市大同區承德路一段三五號八樓之一",
+    "districtName": "大同區",
+    "reusableWasteRaw": "(R-1106)燃煤飛灰",
+    "reusableWasteCategories": [
+      "(R-1106)燃煤飛灰"
+    ],
+    "wasteSourceRaw": "事業以煤為單一燃料之鍋爐、混燒百分之五(重量比)以下廢棄物衍生燃料或生質燃料之燃煤發電鍋爐或混燒百分之十（重量比）以下木質顆粒（符合固態生質燃料－燃料規範與等級－第2部：分級木質顆粒之燃料規範）之燃煤電廠發電鍋爐產生之飛灰或底灰(經濟部)",
+    "wasteSourceCategories": [
+      "事業以煤為單一燃料之鍋爐",
+      "混燒百分之五(重量比)以下廢棄物衍生燃料或生質燃料之燃煤發電鍋爐或混燒百分之十（重量比）以下木質顆粒（符合固態生質燃料－燃料規範與等級－第2部：分級木質顆粒之燃料規範）之燃煤電廠發電鍋爐產生之飛灰或底灰(經濟部)"
+    ],
+    "reusePurposeRaw": "混凝土攙和物",
+    "reusePurposeCategories": [
+      "混凝土攙和物"
+    ],
+    "maximumMonthlyReuseRaw": "10000",
+    "maximumMonthlyReuseTonnes": 10000,
+    "verificationPassedDateRaw": "2025-01-20",
+    "verificationPassedDate": "2025-01-20",
+    "verificationExpiryDateRaw": "2030-01-20",
+    "verificationExpiryDate": "2030-01-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(103)臺北市大同區承德路一段三五號八樓之一"
+  },
+  {
+    "id": "A37B1671-(R-1106)燃煤飛灰-2030-01-20",
+    "sourceSequenceNumber": "29",
+    "controlNumber": "A37B1671",
+    "operatorName": "勝義環保股份有限公司",
+    "phone": "02-23146155",
+    "address": "(108)臺北市萬華區漢中街一三五號九樓",
+    "districtName": "萬華區",
+    "reusableWasteRaw": "(R-1106)燃煤飛灰",
+    "reusableWasteCategories": [
+      "(R-1106)燃煤飛灰"
+    ],
+    "wasteSourceRaw": "事業以煤為單一燃料之鍋爐、混燒百分之五(重量比)以下廢棄物衍生燃料或生質燃料之燃煤發電鍋爐或混燒百分之十（重量比）以下木質顆粒（符合固態生質燃料－燃料規範與等級－第2部：分級木質顆粒之燃料規範）之燃煤電廠發電鍋爐產生之飛灰或底灰(經濟部)",
+    "wasteSourceCategories": [
+      "事業以煤為單一燃料之鍋爐",
+      "混燒百分之五(重量比)以下廢棄物衍生燃料或生質燃料之燃煤發電鍋爐或混燒百分之十（重量比）以下木質顆粒（符合固態生質燃料－燃料規範與等級－第2部：分級木質顆粒之燃料規範）之燃煤電廠發電鍋爐產生之飛灰或底灰(經濟部)"
+    ],
+    "reusePurposeRaw": "控制性低強度回填材料原料",
+    "reusePurposeCategories": [
+      "控制性低強度回填材料原料"
+    ],
+    "maximumMonthlyReuseRaw": "10000",
+    "maximumMonthlyReuseTonnes": 10000,
+    "verificationPassedDateRaw": "2025-01-20",
+    "verificationPassedDate": "2025-01-20",
+    "verificationExpiryDateRaw": "2030-01-20",
+    "verificationExpiryDate": "2030-01-20",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(108)臺北市萬華區漢中街一三五號九樓"
+  },
+  {
+    "id": "A39W4010-(R-1304)廢鋁-2030-02-07",
+    "sourceSequenceNumber": "30",
+    "controlNumber": "A39W4010",
+    "operatorName": "雨助水電衛生材料有限公司",
+    "phone": "02-25182991",
+    "address": "(104)臺北市中山區農安街二二七巷三弄一八號一樓",
+    "districtName": "中山區",
+    "reusableWasteRaw": "(R-1304)廢鋁",
+    "reusableWasteCategories": [
+      "(R-1304)廢鋁"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鋁製品原料",
+    "reusePurposeCategories": [
+      "鋁製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5",
+    "maximumMonthlyReuseTonnes": 5,
+    "verificationPassedDateRaw": "2025-02-07",
+    "verificationPassedDate": "2025-02-07",
+    "verificationExpiryDateRaw": "2030-02-07",
+    "verificationExpiryDate": "2030-02-07",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(104)臺北市中山區農安街二二七巷三弄一八號一樓"
+  },
+  {
+    "id": "row-(R-0201)廢塑膠-2030-02-07",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-0201)廢塑膠",
+    "reusableWasteCategories": [
+      "(R-0201)廢塑膠"
+    ],
+    "wasteSourceRaw": "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器、輸液導管、廢針筒、廢藥水桶）者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢塑膠。但依相關法規認定為有害事業廢棄物或醫療用廢塑膠（點滴輸注液容器",
+      "輸液導管",
+      "廢針筒",
+      "廢藥水桶）者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "塑膠製品原料",
+    "reusePurposeCategories": [
+      "塑膠製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "60",
+    "maximumMonthlyReuseTonnes": 60,
+    "verificationPassedDateRaw": "2025-02-07",
+    "verificationPassedDate": "2025-02-07",
+    "verificationExpiryDateRaw": "2030-02-07",
+    "verificationExpiryDate": "2030-02-07",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1301)廢鐵-2030-02-07",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1301)廢鐵",
+    "reusableWasteCategories": [
+      "(R-1301)廢鐵"
+    ],
+    "wasteSourceRaw": "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生之廢鐵。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "鐵製品原料",
+    "reusePurposeCategories": [
+      "鐵製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "30",
+    "maximumMonthlyReuseTonnes": 30,
+    "verificationPassedDateRaw": "2025-02-07",
+    "verificationPassedDate": "2025-02-07",
+    "verificationExpiryDateRaw": "2030-02-07",
+    "verificationExpiryDate": "2030-02-07",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "row-(R-1302)廢銅-2030-02-07",
+    "sourceSequenceNumber": "",
+    "controlNumber": "",
+    "operatorName": "",
+    "phone": "",
+    "address": "",
+    "districtName": "",
+    "reusableWasteRaw": "(R-1302)廢銅",
+    "reusableWasteCategories": [
+      "(R-1302)廢銅"
+    ],
+    "wasteSourceRaw": "事業產生具金屬或合金型態之廢單一金屬（銅、鋅、鋁、錫）。但依相關法規認定為有害事業廢棄物者，不適用之。(共通性)",
+    "wasteSourceCategories": [
+      "事業產生具金屬或合金型態之廢單一金屬（銅",
+      "鋅",
+      "鋁",
+      "錫）。但依相關法規認定為有害事業廢棄物者",
+      "不適用之。(共通性)"
+    ],
+    "reusePurposeRaw": "銅製品原料",
+    "reusePurposeCategories": [
+      "銅製品原料"
+    ],
+    "maximumMonthlyReuseRaw": "5",
+    "maximumMonthlyReuseTonnes": 5,
+    "verificationPassedDateRaw": "2025-02-07",
+    "verificationPassedDate": "2025-02-07",
+    "verificationExpiryDateRaw": "2030-02-07",
+    "verificationExpiryDate": "2030-02-07",
+    "wholesaleRetailRaw": "是",
+    "wholesaleRetailCategory": "是",
+    "hasPhone": false,
+    "hasAddress": false,
+    "googleMapsQuery": ""
+  },
+  {
+    "id": "A42B2034-(R-0503)營建混合物-2030-03-10",
+    "sourceSequenceNumber": "31",
+    "controlNumber": "A42B2034",
+    "operatorName": "昶竣有限公司-昶竣營建混合物分類處理場",
+    "phone": "02-27910223",
+    "address": "(114)臺北市內湖區安美街二三九號",
+    "districtName": "內湖區",
+    "reusableWasteRaw": "(R-0503)營建混合物",
+    "reusableWasteCategories": [
+      "(R-0503)營建混合物"
+    ],
+    "wasteSourceRaw": "工程施工建造、建築拆除、裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))",
+    "wasteSourceCategories": [
+      "工程施工建造",
+      "建築拆除",
+      "裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))"
+    ],
+    "reusePurposeRaw": "營建工程材料",
+    "reusePurposeCategories": [
+      "營建工程材料"
+    ],
+    "maximumMonthlyReuseRaw": "10000",
+    "maximumMonthlyReuseTonnes": 10000,
+    "verificationPassedDateRaw": "2025-03-10",
+    "verificationPassedDate": "2025-03-10",
+    "verificationExpiryDateRaw": "2030-03-10",
+    "verificationExpiryDate": "2030-03-10",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(114)臺北市內湖區安美街二三九號"
+  },
+  {
+    "id": "A4202830-(R-0503)營建混合物-2030-03-26",
+    "sourceSequenceNumber": "32",
+    "controlNumber": "A4202830",
+    "operatorName": "宗營環保工程有限公司-宗營營建混合物分類處理場",
+    "phone": "02-87923200",
+    "address": "(114)臺北市內湖區安康路四六號對面",
+    "districtName": "內湖區",
+    "reusableWasteRaw": "(R-0503)營建混合物",
+    "reusableWasteCategories": [
+      "(R-0503)營建混合物"
+    ],
+    "wasteSourceRaw": "工程施工建造、建築拆除、裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))",
+    "wasteSourceCategories": [
+      "工程施工建造",
+      "建築拆除",
+      "裝修工程及整地刨除所產生之事業廢棄物 (內政部(營造業))"
+    ],
+    "reusePurposeRaw": "工程填地及道路工程級配料",
+    "reusePurposeCategories": [
+      "工程填地及道路工程級配料"
+    ],
+    "maximumMonthlyReuseRaw": "10416",
+    "maximumMonthlyReuseTonnes": 10416,
+    "verificationPassedDateRaw": "2025-03-26",
+    "verificationPassedDate": "2025-03-26",
+    "verificationExpiryDateRaw": "2030-03-26",
+    "verificationExpiryDate": "2030-03-26",
+    "wholesaleRetailRaw": "否",
+    "wholesaleRetailCategory": "否",
+    "hasPhone": true,
+    "hasAddress": true,
+    "googleMapsQuery": "(114)臺北市內湖區安康路四六號對面"
+  }
+]

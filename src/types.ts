@@ -25,6 +25,8 @@ export interface UnusedMedicineCollectionStationRecord {
   googleMapsQuery: string;
 }
 
+export interface IndustrialWasteReuseOperatorRecord { id:string; sourceSequenceNumber:string; controlNumber:string; operatorName:string; phone:string; address:string; districtName:string; reusableWasteRaw:string; reusableWasteCategories:string[]; wasteSourceRaw:string; wasteSourceCategories:string[]; reusePurposeRaw:string; reusePurposeCategories:string[]; maximumMonthlyReuseRaw:string; maximumMonthlyReuseTonnes:number|null; verificationPassedDateRaw:string; verificationPassedDate:string|null; verificationExpiryDateRaw:string; verificationExpiryDate:string|null; wholesaleRetailRaw:string; wholesaleRetailCategory:string; hasPhone:boolean; hasAddress:boolean; googleMapsQuery:string; }
+
 export type FacilityType =
   | 'pedestrian_bin'
   | 'dog_waste_bag_box'

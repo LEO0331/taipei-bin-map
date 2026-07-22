@@ -50,6 +50,7 @@
     "data:convert:accessible-public-parking": "tsx scripts/convertAccessiblePublicParkingFacilities.ts && tsx scripts/buildAccessiblePublicParkingFacilitySummary.ts",
     "data:convert:bulky-waste-collection-booking": "tsx scripts/convertBulkyWasteCollectionBookings.ts",
     "data:convert:unused-medicine-collection-stations": "tsx scripts/convertUnusedMedicineCollectionStations.ts",
+    "data:convert:industrial-waste-reuse-operators": "tsx scripts/convertIndustrialWasteReuseOperators.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },
