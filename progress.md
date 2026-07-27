@@ -240,6 +240,13 @@
 
 ## Notes for Next Session
 
+## Public School Sports Venue Search — 2026-07-27
+
+- Added the official UTF-8 Education Department CSV snapshot for Taipei municipal school campus-opening times and a static converter that preserves all seven official fields as strings.
+- Added a directory-first route at `#/public-school-sports-venues`, with sport/district/day/time/booking/text filters, source-text details, conservative derived schedule labels, CSV export, district/sport/booking/data-quality views, and PWA caching.
+- No location, phone, booking URL, price, availability, facility quality, or pickleball compatibility is inferred. The current source schedule text contains no explicit sport names, so all schools correctly remain `Sport not specified` rather than being assigned sports from campus access alone.
+- Verification: `npm.cmd run data:convert:public-school-sports-venues` wrote 224 records; `npm.cmd test` passed 61 tests; `npm.cmd run build` passed; the new desktop and mobile Playwright checks passed. Full Playwright run on isolated port 5174 had 67 passing tests and one unrelated existing desktop CARTO tile-image load timeout.
+
 Start with `AGENTS.md`, then inspect `feature_list.json` and `progress.md`. The bulky-waste module is a dedicated directory route (`#/bulky-waste-collection-booking`), deliberately separate from map facilities because the source has no coordinates or full service-location addresses.
 
 ## Unused Medicine Collection Stations — 2026-07-21

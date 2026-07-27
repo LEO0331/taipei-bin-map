@@ -84,6 +84,15 @@ const accessiblePublicParkingCount = accessiblePublicParkingFacilities.length.to
 const accessiblePublicParkingValidCoordinateCount = accessiblePublicParkingFacilities.filter((facility) => facility.hasValidCoordinates).length.toString();
 
 test.describe('Taipei public amenities map public flows', () => {
+  test('loads the public school sports venue directory without claiming booking availability', async ({ page }) => {
+    await page.goto('/#/public-school-sports-venues');
+
+    await expect(page.getByRole('button', { name: '尋找運動場地' })).toBeVisible();
+    await expect(page.getByText('運動標籤僅在來源文字明確出現時顯示；本資料的校園開放資訊不代表可預約、目前有空檔或具備特定球場。')).toBeVisible();
+    await page.getByRole('button', { name: '學校' }).click();
+    await expect(page.locator('.directory-table-wrap tbody tr')).toHaveCount(10);
+    await expect(page.getByText('請向學校確認預約方式與實際場地。').first()).toBeVisible();
+  });
   test('loads all twenty-one local datasets without mounting broad-view facility pins', async ({ page }) => {
     await page.goto('/');
 

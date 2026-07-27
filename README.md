@@ -208,6 +208,14 @@ npm run data:convert:unused-medicine-collection-stations
 
 It writes static records to `public/data/unused-medicine-collection-stations/`. Source addresses are used only for optional external map-search links; the app does not geocode them or create exact markers. The directory is informational and does not claim current acceptance, operating status, pharmacist availability, accepted items, fees, home visits, disposal outcomes, or medical advice.
 
+The Public School Sports Venue Search uses Taipei Open Data dataset `82c0badd-efbe-4e96-8153-885494c72cd1`:
+
+```bash
+npm run data:convert:public-school-sports-venues
+```
+
+It preserves the Education Department CSV's school, district, postal-code, agency-code, city-code, and full campus-opening text in `public/data/public-school-sports-venues/`. The module is directory-first: the source has no authoritative addresses, coordinates, phone numbers, or booking links, so none are fabricated. Sports are only keyword-detected when explicitly present in source text; campus opening does not establish a sports facility, reservability, current availability, or pickleball suitability.
+
 The gas/LPG station layer uses the UTF-8-SIG `臺北市加油站及加氣站分布圖.csv` resource:
 
 ```bash

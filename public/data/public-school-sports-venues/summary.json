@@ -1,0 +1,17 @@
+{
+  "totalRecords": 224,
+  "districtCount": 12,
+  "withSports": 1,
+  "parseableSchedules": 194,
+  "bookingStatusCounts": {
+    "official_booking_link": 0,
+    "booking_information_in_source": 0,
+    "contact_school": 207,
+    "unknown": 17
+  },
+  "dataQuality": {
+    "duplicateRows": [],
+    "missingSchoolNames": [],
+    "duplicateAgencyCodes": []
+  }
+}

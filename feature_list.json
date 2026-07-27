@@ -263,6 +263,14 @@
       "dependencies": ["feat-032"],
       "status": "done",
       "evidence": "Official CP950 CSV was downloaded and mapped from its six source fields; static conversion, unit tests, and production build were run on 2026-07-21."
+    },
+    {
+      "id": "feat-034",
+      "name": "Public school sports venue search",
+      "description": "Add a static, directory-first bilingual search for Taipei municipal school campus-opening records with conservative sport detection, opening-schedule extraction, booking-status safeguards, filtering, exports, data-quality reporting, cache support, and no inferred locations, facilities, availability, or bookings.",
+      "dependencies": ["feat-033"],
+      "status": "done",
+      "evidence": "Official Education Department CSV generated 224 static records. npm test passed 61 tests; npm run build passed; the dedicated Playwright flow passed on desktop and mobile on 2026-07-27. The full suite had 67 passing tests and one pre-existing external CARTO tile-loading failure in the isolated test server."
     }
   ]
 }

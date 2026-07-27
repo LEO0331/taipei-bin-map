@@ -1,6 +1,6 @@
 const { defineConfig, devices } = require('@playwright/test');
 
-const port = 5173;
+const port = Number(process.env.PLAYWRIGHT_PORT || 5173);
 
 module.exports = defineConfig({
   testDir: './tests/e2e',

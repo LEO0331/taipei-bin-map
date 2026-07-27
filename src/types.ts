@@ -27,6 +27,16 @@ export interface UnusedMedicineCollectionStationRecord {
 
 export interface IndustrialWasteReuseOperatorRecord { id:string; sourceSequenceNumber:string; controlNumber:string; operatorName:string; phone:string; address:string; districtName:string; reusableWasteRaw:string; reusableWasteCategories:string[]; wasteSourceRaw:string; wasteSourceCategories:string[]; reusePurposeRaw:string; reusePurposeCategories:string[]; maximumMonthlyReuseRaw:string; maximumMonthlyReuseTonnes:number|null; verificationPassedDateRaw:string; verificationPassedDate:string|null; verificationExpiryDateRaw:string; verificationExpiryDate:string|null; wholesaleRetailRaw:string; wholesaleRetailCategory:string; hasPhone:boolean; hasAddress:boolean; googleMapsQuery:string; }
 
+export type SportType = 'badminton' | 'basketball' | 'pickleball' | 'volleyball' | 'tennis' | 'table_tennis' | 'track' | 'football' | 'other';
+export type BookingStatus = 'official_booking_link' | 'booking_information_in_source' | 'contact_school' | 'unknown';
+export interface ParsedOpeningSchedule { days: string[]; startTime: string | null; endTime: string | null; appliesDuringSchoolTerm: boolean | null; appliesDuringVacation: boolean | null; parseConfidence: 'high' | 'medium' | 'low'; }
+export interface PublicSchoolSportsVenueRecord {
+  id: string; sourceSequenceNumber: string; schoolName: string; districtName: string; postalCode: string; agencyCode: string; cityCode: string;
+  campusOpeningRaw: string; campusOpeningText: string; detectedSports: SportType[]; detectedFacilityLabels: string[];
+  bookingStatus: BookingStatus; bookingUrl: string | null; bookingPhone: string; bookingNote: string;
+  address: string; longitude: number | null; latitude: number | null; hasAuthoritativeLocation: boolean; parsedSchedules: ParsedOpeningSchedule[];
+}
+
 export type FacilityType =
   | 'pedestrian_bin'
   | 'dog_waste_bag_box'
