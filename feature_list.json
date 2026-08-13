@@ -279,6 +279,14 @@
       "dependencies": ["feat-034"],
       "status": "done",
       "evidence": "Official CP950/Big5 CSV generated 494 static records (491 valid official coordinates) across 12 districts. The task-first UI groups ten views under Explore, Browse, Compare, and Data & help; browsing filters are now progressively disclosed. npm test passed 64 tests, npm run build passed, and focused desktop/mobile Playwright regression passed on 2026-08-13."
+    },
+    {
+      "id": "feat-036",
+      "name": "Map-first information hierarchy",
+      "description": "Prioritize the shared public-amenities map, move facility types into a map-layer control, and progressively disclose source-use notices without changing filtering behavior.",
+      "dependencies": ["feat-035"],
+      "status": "done",
+      "evidence": "The map now renders before search controls; the 22 facility types are in a floating, collapsible map-layer panel; the long use notice is collapsed by default and follows results. npm test passed 64 tests, npm run build passed, and focused desktop/mobile Playwright regression passed on 2026-08-13."
     }
   ]
 }

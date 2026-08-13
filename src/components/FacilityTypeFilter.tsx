@@ -5,6 +5,7 @@ type FacilityTypeFilterProps = {
   selectedTypes: FacilityType[];
   t: Translation;
   onChange: (types: FacilityType[]) => void;
+  variant?: 'panel' | 'map-layer';
 };
 
 export const FACILITY_TYPE_OPTIONS: FacilityType[] = [
@@ -32,7 +33,7 @@ export const FACILITY_TYPE_OPTIONS: FacilityType[] = [
   'accessible_public_parking_facility',
 ];
 
-export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeFilterProps) {
+export function FacilityTypeFilter({ selectedTypes, t, onChange, variant = 'panel' }: FacilityTypeFilterProps) {
   const labelByType = {
     pedestrian_bin: t.pedestrianBins,
     dog_waste_bag_box: t.dogWasteBagBoxes,
@@ -73,8 +74,8 @@ export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeF
     onChange(nextTypes.length > 0 ? nextTypes : selectedTypes);
   };
 
-  return (
-    <fieldset className="facility-type-filter">
+  const controls = (
+    <fieldset>
       <legend>{t.facilityType}</legend>
       <div role="group" aria-label={t.facilityType}>
         {FACILITY_TYPE_OPTIONS.map((type) => (
@@ -91,4 +92,10 @@ export function FacilityTypeFilter({ selectedTypes, t, onChange }: FacilityTypeF
       </div>
     </fieldset>
   );
+
+  if (variant === 'map-layer') {
+    return <details className="facility-type-filter facility-type-layer" open><summary><span>{t.facilityType}</span><strong>{selectedTypes.length} / {FACILITY_TYPE_OPTIONS.length}</strong></summary>{controls}</details>;
+  }
+
+  return <div className="facility-type-filter">{controls}</div>;
 }

@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-07-14 Asia/Taipei
+**Last Updated:** 2026-08-13 Asia/Taipei
 **Active Feature:** None
 
 ## Status
@@ -239,6 +239,13 @@
 - [x] `./init.sh` passed 53 unit/converter tests, production build, and 60 desktop/mobile Playwright tests after the pay.taipei parking layer.
 
 ## Notes for Next Session
+
+## Map-first information hierarchy — 2026-08-13
+
+- Moved the shared public-amenities map before the search and filter controls, so the map is the first task surface after the site header.
+- Replaced the page-level facility-type grid with a floating map-layer control. It preserves all 22 type filters, shows the selected count, and can be collapsed without covering the page layout.
+- Changed the source-use notice to an accessible `<details>` disclosure after results. The complete source-specific reminders remain available without displacing the map.
+- Verification: `npm.cmd test` passed 64 tests; `npm.cmd run build` passed; focused main-map Playwright regression passed on desktop and mobile; browser smoke reviewed desktop and mobile map-layer placement.
 
 ## Cooling dashboard information hierarchy — 2026-08-13
 

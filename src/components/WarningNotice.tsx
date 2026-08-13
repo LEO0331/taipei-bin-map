@@ -125,16 +125,16 @@ export function WarningNotice({ selectedTypes, t }: WarningNoticeProps) {
   } satisfies Record<FacilityType, { label: string; notice: string }>;
 
   return (
-    <section className="warning-notice" aria-label={t.warningLabel}>
-      <div aria-hidden="true">!</div>
-      <p>
+    <details className="warning-notice" aria-label={t.warningLabel}>
+      <summary><span aria-hidden="true">!</span><strong>{t.warningLabel}</strong><small>{activeTypes.length} {t.facilityType}</small></summary>
+      <div className="warning-notice-content">
         {activeTypes.map((type) => (
           <span key={type}>
             <strong>{noticeByType[type].label}</strong>
             {noticeByType[type].notice}
           </span>
         ))}
-      </p>
-    </section>
+      </div>
+    </details>
   );
 }

@@ -109,6 +109,12 @@ test.describe('Taipei public amenities map public flows', () => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
+    await expect(page.locator('.map-primary')).toBeVisible();
+    await expect(page.locator('.map-primary').evaluate((map) => map.compareDocumentPosition(document.querySelector('.controls-panel')) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
+    await expect(page.locator('.map-layer-control')).toContainText('設施類型');
+    await expect(page.locator('.warning-notice-content')).not.toBeVisible();
+    await page.locator('.warning-notice summary').click();
+    await expect(page.locator('.warning-notice-content')).toBeVisible();
     await expect(page.locator('.metrics-strip strong').first()).toHaveText(totalFacilityCount);
     await expect(page.getByText('資料更新:')).toBeVisible();
     await expect(page.getByLabel('使用提醒')).toContainText('公廁實際開放情況');

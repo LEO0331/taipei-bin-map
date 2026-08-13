@@ -1281,6 +1281,32 @@ function App() {
       </header>
 
       {directoryRoute === 'bulky-waste-collection-booking' ? <main><BulkyWasteCollectionBookingDashboard language={language} /></main> : directoryRoute === 'unused-medicine-collection-stations' ? <main><UnusedMedicineCollectionStationsDashboard language={language} /></main> : directoryRoute === 'industrial-waste-reuse-operators' ? <main><IndustrialWasteReuseOperatorsDashboard language={language} /></main> : directoryRoute === 'public-school-sports-venues' ? <main><PublicSchoolSportsVenuesDashboard language={language} /></main> : directoryRoute === 'cooling-comfort-spots' ? <main><Suspense fallback={<p>{language === 'zh' ? '載入涼適點模組中…' : 'Loading cooling spots…'}</p>}><CoolingComfortSpotsDashboard language={language} /></Suspense></main> : <main>
+        {isLoadingFacilities ? (
+          <p className="status-message">{t.loading}</p>
+        ) : (
+          <section className="map-primary" aria-label={t.mapLoading}>
+            <Suspense fallback={<section className="map-panel map-loading">{t.mapLoading}</section>}>
+              <FacilityMap
+                facilities={deferredMapFacilities}
+                language={language}
+                markerLimitExceeded={markerLimitExceeded}
+                lactationDistrictSummaries={lactationDistrictSummaries}
+                inspectionDistrictSummaries={inspectionDistrictSummaries}
+                chargingDistrictSummaries={chargingDistrictSummaries}
+                commercialEvDistrictSummaries={commercialEvDistrictSummaries}
+                communityRecyclingDistrictSummaries={communityRecyclingDistrictSummaries}
+                cleanNeedleDistrictSummaries={cleanNeedleDistrictSummaries}
+                payTaipeiParkingDistrictSummaries={payTaipeiParkingDistrictSummaries}
+                greenSpaceAdoptionDistrictSummaries={greenSpaceAdoptionDistrictSummaries}
+                t={t}
+                userLocation={userLocation}
+              />
+            </Suspense>
+            <aside className="map-layer-control" aria-label={t.facilityType}>
+              <FacilityTypeFilter selectedTypes={selectedTypes} t={t} onChange={handleTypeChange} variant="map-layer" />
+            </aside>
+          </section>
+        )}
         <section className="controls-panel" aria-label={t.searchPlaceholder}>
           <div className="metrics-strip" aria-label={t.sourceStatus}>
             <div>
@@ -1333,7 +1359,6 @@ function App() {
             onDistrictChange={handleDistrictChange}
             onSearchChange={handleSearchChange}
           />
-          <FacilityTypeFilter selectedTypes={selectedTypes} t={t} onChange={handleTypeChange} />
           {hasFocusedTypes && includesPublicToilets && (
             <PublicToiletFilters
               categories={toiletCategories}
@@ -1930,8 +1955,6 @@ function App() {
           />
         </section>
 
-        <WarningNotice selectedTypes={selectedTypes} t={t} />
-
         {error && (
           <p className="status-message error">
             {error === 'load'
@@ -1971,27 +1994,8 @@ function App() {
         {isAccessiblePublicParkingOnly && (
           <AccessiblePublicParkingDashboard records={displayedFacilities} summary={accessiblePublicParkingSummary} language={language} t={t} />
         )}
-        {isLoadingFacilities ? (
-          <p className="status-message">{t.loading}</p>
-        ) : (
+        {!isLoadingFacilities && (
           <div className="workspace">
-            <Suspense fallback={<section className="map-panel map-loading">{t.mapLoading}</section>}>
-              <FacilityMap
-                facilities={deferredMapFacilities}
-                language={language}
-                markerLimitExceeded={markerLimitExceeded}
-                lactationDistrictSummaries={lactationDistrictSummaries}
-                inspectionDistrictSummaries={inspectionDistrictSummaries}
-                chargingDistrictSummaries={chargingDistrictSummaries}
-                commercialEvDistrictSummaries={commercialEvDistrictSummaries}
-                communityRecyclingDistrictSummaries={communityRecyclingDistrictSummaries}
-                cleanNeedleDistrictSummaries={cleanNeedleDistrictSummaries}
-                payTaipeiParkingDistrictSummaries={payTaipeiParkingDistrictSummaries}
-                greenSpaceAdoptionDistrictSummaries={greenSpaceAdoptionDistrictSummaries}
-                t={t}
-                userLocation={userLocation}
-              />
-            </Suspense>
             <FacilityList
               facilities={listFacilities}
               heading={listHeading}
@@ -2002,6 +2006,7 @@ function App() {
             />
           </div>
         )}
+        <WarningNotice selectedTypes={selectedTypes} t={t} />
       </main>}
 
       <footer>

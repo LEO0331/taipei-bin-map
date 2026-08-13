@@ -245,6 +245,48 @@ main {
   font-weight: 900;
 }
 
+.facility-type-layer {
+  width: min(18rem, calc(100vw - 3rem));
+  max-height: min(26rem, calc(100% - 2rem));
+  overflow: auto;
+  padding: 0.35rem;
+  border: 1px solid rgba(20, 33, 29, 0.22);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 247, 0.96);
+  box-shadow: var(--shadow);
+}
+
+.facility-type-layer summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  cursor: pointer;
+  padding: 0.35rem 0.45rem;
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.facility-type-layer summary strong {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.facility-type-layer fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.facility-type-layer fieldset legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .facility-type-filter div {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -391,18 +433,22 @@ a:focus-visible {
 }
 
 .warning-notice {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.75rem;
-  align-items: center;
-  margin: 0.85rem 0 1rem;
-  padding: 0.78rem;
+  margin: 1rem 0 0;
+  padding: 0.7rem 0.8rem;
   border: 1px solid rgba(184, 93, 23, 0.24);
   border-radius: var(--radius);
   background: linear-gradient(135deg, rgba(255, 241, 217, 0.96), rgba(255, 250, 240, 0.86));
 }
 
-.warning-notice div {
+.warning-notice summary {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  color: #75380f;
+}
+
+.warning-notice summary > span {
   display: grid;
   place-items: center;
   width: 2.2rem;
@@ -413,17 +459,23 @@ a:focus-visible {
   font-weight: 950;
 }
 
-.warning-notice p {
+.warning-notice summary small {
+  margin-left: auto;
+  color: #755d46;
+  font-weight: 750;
+}
+
+.warning-notice-content {
   display: grid;
   gap: 0.16rem;
-  margin: 0;
+  margin: 0.75rem 0 0;
 }
 
 .warning-notice strong {
   color: #75380f;
 }
 
-.warning-notice p > span {
+.warning-notice-content > span {
   display: grid;
   gap: 0.12rem;
   color: #5b422c;
@@ -450,6 +502,19 @@ a:focus-visible {
   gap: 1rem;
   align-items: start;
   animation: lift-in 420ms ease both;
+}
+
+.map-primary {
+  position: relative;
+  margin-bottom: 1rem;
+  animation: lift-in 420ms ease both;
+}
+
+.map-layer-control {
+  position: absolute;
+  z-index: 700;
+  top: 0.85rem;
+  right: 0.85rem;
 }
 
 .map-panel {
@@ -1062,6 +1127,8 @@ footer {
   .cooling-subtabs { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 0.55rem; }
   .cooling-subtabs button { white-space: nowrap; }
   .cooling-filter-disclosure { padding: 0.75rem; }
+  .map-layer-control { top: 0.6rem; right: 0.6rem; }
+  .facility-type-layer { width: min(15rem, calc(100vw - 2.2rem)); max-height: 17rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
