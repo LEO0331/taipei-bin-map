@@ -240,6 +240,13 @@
 
 ## Notes for Next Session
 
+## Taipei Cooling & Comfort Spots — 2026-08-13
+
+- Started a separate, map-first static module at `#/cooling-comfort-spots` using the official Environmental Protection Department CP950/Big5 CSV, preserving fields for environment, coordinates, contacts, opening hours, amenities, highlights, and notes.
+- The module deliberately treats location and amenity values as a reference snapshot: no current-opening, equipment-working, accessibility, emergency-shelter, crowding, or heat-safety claims are made.
+- Added conservative amenity normalization, raw-text opening-hour preservation, customer comfort-need matching, local-only nearby radius filtering, CSV export, grid clustering for broad map results, and source-quality reporting. The source yielded 494 records, 491 mappable coordinates, and all 12 Taipei districts.
+- Verification: `npm.cmd test` passed 64 unit/converter tests; `npm.cmd run build` passed with the cooling map kept in a lazy-loaded chunk; focused Playwright passed desktop and mobile on isolated ports 5175 and 5176.
+
 ## Public School Sports Venue Search — 2026-07-27
 
 - Added the official UTF-8 Education Department CSV snapshot for Taipei municipal school campus-opening times and a static converter that preserves all seven official fields as strings.

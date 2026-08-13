@@ -37,6 +37,18 @@ export interface PublicSchoolSportsVenueRecord {
   address: string; longitude: number | null; latitude: number | null; hasAuthoritativeLocation: boolean; parsedSchedules: ParsedOpeningSchedule[];
 }
 
+export type FacilityEnvironment = 'indoor' | 'outdoor' | 'mixed' | 'unknown';
+export type AmenityAvailability = 'yes' | 'no' | 'conditional' | 'unknown';
+export interface ParsedOpeningHours { raw: string; schedules: Array<{ days: number[]; start: string; end: string }>; parseConfidence: 'high' | 'medium' | 'low'; }
+export interface CoolingComfortSpotRecord {
+  id: string; sourceSequenceNumber: string; environmentRaw: string; environment: FacilityEnvironment; name: string; districtName: string; address: string;
+  longitudeRaw: string; latitudeRaw: string; longitude: number | null; latitude: number | null; hasValidCoordinates: boolean;
+  phoneRaw: string; phone: string; extension: string; mobileRaw: string; mobile: string; otherContact: string; openingHoursRaw: string;
+  fanRaw: string; fanAvailability: AmenityAvailability; airConditioningRaw: string; airConditioningAvailability: AmenityAvailability; toiletRaw: string; toiletAvailability: AmenityAvailability;
+  seatingRaw: string; seatingAvailability: AmenityAvailability; drinkingWaterRaw: string; drinkingWaterAvailability: AmenityAvailability; accessibleSeatingRaw: string; accessibleSeatingAvailability: AmenityAvailability;
+  highlights: string; note: string; hasCoolingEquipment: boolean; hasCoreRestAmenities: boolean; amenityTags: string[]; parsedOpeningHours: ParsedOpeningHours;
+}
+
 export type FacilityType =
   | 'pedestrian_bin'
   | 'dog_waste_bag_box'

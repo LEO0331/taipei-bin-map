@@ -85,6 +85,9 @@ const SINGLE_LAYER_MARKER_LIMIT = 500;
 const FacilityMap = lazy(() =>
   import('./components/FacilityMap').then((module) => ({ default: module.FacilityMap })),
 );
+const CoolingComfortSpotsDashboard = lazy(() =>
+  import('./components/CoolingComfortSpotsDashboard').then((module) => ({ default: module.CoolingComfortSpotsDashboard })),
+);
 
 type UserLocation = {
   latitude: number;
@@ -92,11 +95,11 @@ type UserLocation = {
 };
 
 type ErrorKey = 'load' | 'location' | 'distance' | '';
-type DirectoryRoute = 'bulky-waste-collection-booking' | 'unused-medicine-collection-stations' | 'industrial-waste-reuse-operators' | 'public-school-sports-venues' | '';
+type DirectoryRoute = 'bulky-waste-collection-booking' | 'unused-medicine-collection-stations' | 'industrial-waste-reuse-operators' | 'public-school-sports-venues' | 'cooling-comfort-spots' | '';
 
 const getDirectoryRoute = (): DirectoryRoute => {
   const route = window.location.hash.replace(/^#\//, '');
-  return route === 'bulky-waste-collection-booking' || route === 'unused-medicine-collection-stations' || route === 'industrial-waste-reuse-operators' || route === 'public-school-sports-venues' ? route : '';
+  return route === 'bulky-waste-collection-booking' || route === 'unused-medicine-collection-stations' || route === 'industrial-waste-reuse-operators' || route === 'public-school-sports-venues' || route === 'cooling-comfort-spots' ? route : '';
 };
 
 const getInitialLanguage = (): Language => {
@@ -1274,10 +1277,10 @@ function App() {
           <h1>{t.appTitle}</h1>
         </div>
         <LanguageToggle language={language} onChange={handleLanguageChange} />
-        <nav className="module-route-links" aria-label={language === 'zh' ? '服務目錄' : 'Service directories'}><a className="module-route-link" href="#/bulky-waste-collection-booking">{t.bulkyWasteCollectionBooking}</a><a className="module-route-link" href="#/unused-medicine-collection-stations">{t.unusedMedicineCollectionStations}</a><a className="module-route-link" href="#/industrial-waste-reuse-operators">{t.industrialWasteReuseOperators}</a><a className="module-route-link" href="#/public-school-sports-venues">{language === 'zh' ? '公立學校運動場地搜尋' : 'Public School Sports Venue Search'}</a>{directoryRoute && <a className="module-route-link" href="#/">{language === 'zh' ? '返回設施地圖' : 'Back to amenities map'}</a>}</nav>
+        <nav className="module-route-links" aria-label={language === 'zh' ? '服務目錄' : 'Service directories'}><a className="module-route-link" href="#/bulky-waste-collection-booking">{t.bulkyWasteCollectionBooking}</a><a className="module-route-link" href="#/unused-medicine-collection-stations">{t.unusedMedicineCollectionStations}</a><a className="module-route-link" href="#/industrial-waste-reuse-operators">{t.industrialWasteReuseOperators}</a><a className="module-route-link" href="#/public-school-sports-venues">{language === 'zh' ? '公立學校運動場地搜尋' : 'Public School Sports Venue Search'}</a><a className="module-route-link" href="#/cooling-comfort-spots">{language === 'zh' ? '臺北市涼適點' : 'Taipei Cooling & Comfort Spots'}</a>{directoryRoute && <a className="module-route-link" href="#/">{language === 'zh' ? '返回設施地圖' : 'Back to amenities map'}</a>}</nav>
       </header>
 
-      {directoryRoute === 'bulky-waste-collection-booking' ? <main><BulkyWasteCollectionBookingDashboard language={language} /></main> : directoryRoute === 'unused-medicine-collection-stations' ? <main><UnusedMedicineCollectionStationsDashboard language={language} /></main> : directoryRoute === 'industrial-waste-reuse-operators' ? <main><IndustrialWasteReuseOperatorsDashboard language={language} /></main> : directoryRoute === 'public-school-sports-venues' ? <main><PublicSchoolSportsVenuesDashboard language={language} /></main> : <main>
+      {directoryRoute === 'bulky-waste-collection-booking' ? <main><BulkyWasteCollectionBookingDashboard language={language} /></main> : directoryRoute === 'unused-medicine-collection-stations' ? <main><UnusedMedicineCollectionStationsDashboard language={language} /></main> : directoryRoute === 'industrial-waste-reuse-operators' ? <main><IndustrialWasteReuseOperatorsDashboard language={language} /></main> : directoryRoute === 'public-school-sports-venues' ? <main><PublicSchoolSportsVenuesDashboard language={language} /></main> : directoryRoute === 'cooling-comfort-spots' ? <main><Suspense fallback={<p>{language === 'zh' ? '載入涼適點模組中…' : 'Loading cooling spots…'}</p>}><CoolingComfortSpotsDashboard language={language} /></Suspense></main> : <main>
         <section className="controls-panel" aria-label={t.searchPlaceholder}>
           <div className="metrics-strip" aria-label={t.sourceStatus}>
             <div>

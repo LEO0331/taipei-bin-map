@@ -208,6 +208,14 @@ npm run data:convert:unused-medicine-collection-stations
 
 It writes static records to `public/data/unused-medicine-collection-stations/`. Source addresses are used only for optional external map-search links; the app does not geocode them or create exact markers. The directory is informational and does not claim current acceptance, operating status, pharmacist availability, accepted items, fees, home visits, disposal outcomes, or medical advice.
 
+The Taipei Cooling & Comfort Spots module uses the Environmental Protection Department's Taipei Open Data dataset `a98a3e0e-a36f-43fa-82f8-b09a3011a47a`:
+
+```bash
+npm run data:convert:cooling-comfort-spots
+```
+
+It converts the local CP950/Big5 snapshot into `public/data/cooling-comfort-spots/`, preserving the source fields for environment, contact, opening hours, amenities and coordinates. Amenity values are normalized conservatively; the map uses only validated official coordinates. The module is a reference tool, not a guarantee of current opening, operational cooling equipment, available seating, usable drinking water, toilets, accessibility, or emergency shelter status.
+
 The Public School Sports Venue Search uses Taipei Open Data dataset `82c0badd-efbe-4e96-8153-885494c72cd1`:
 
 ```bash

@@ -84,6 +84,15 @@ const accessiblePublicParkingCount = accessiblePublicParkingFacilities.length.to
 const accessiblePublicParkingValidCoordinateCount = accessiblePublicParkingFacilities.filter((facility) => facility.hasValidCoordinates).length.toString();
 
 test.describe('Taipei public amenities map public flows', () => {
+  test('loads cooling spots from local data and keeps amenity matches distinct from a quality score', async ({ page }) => {
+    await page.goto('/#/cooling-comfort-spots');
+    await expect(page.getByRole('button', { name: '尋找附近涼適點' })).toBeVisible();
+    await expect(page.getByText('舒適需求')).toBeVisible();
+    await page.getByRole('button', { name: '冷氣' }).click();
+    await expect(page.getByText('已依需求符合度排序；每筆結果顯示符合 1 項需求中的數量，並非品質或安全評分。')).toBeVisible();
+    await page.getByRole('button', { name: '設施目錄' }).click();
+    await expect(page.locator('.directory-table-wrap tbody tr')).toHaveCount(12);
+  });
   test('loads the public school sports venue directory without claiming booking availability', async ({ page }) => {
     await page.goto('/#/public-school-sports-venues');
 

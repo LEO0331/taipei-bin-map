@@ -1,0 +1,10 @@
+{
+  "datasetId": "a98a3e0e-a36f-43fa-82f8-b09a3011a47a",
+  "datasetName": "臺北市涼適點",
+  "resourceId": "ae7e5986-859d-4294-b289-7c1b2e7c23f1",
+  "resourceUrl": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=ae7e5986-859d-4294-b289-7c1b2e7c23f1",
+  "sourceUpdatedAt": "2026-04-08T16:03:56+08:00",
+  "metadataUpdatedAt": "2026-04-08T16:04:09+08:00",
+  "ingestedAt": "2026-08-13T00:00:00+08:00",
+  "encoding": "CP950 / Big5"
+}

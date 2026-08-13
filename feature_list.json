@@ -271,6 +271,14 @@
       "dependencies": ["feat-033"],
       "status": "done",
       "evidence": "Official Education Department CSV generated 224 static records. npm test passed 61 tests; npm run build passed; the dedicated Playwright flow passed on desktop and mobile on 2026-07-27. The full suite had 67 passing tests and one pre-existing external CARTO tile-loading failure in the isolated test server."
+    },
+    {
+      "id": "feat-035",
+      "name": "Taipei cooling and comfort spot discovery",
+      "description": "Add a static, bilingual map-first cooling-spot directory with preserved source fields, validated official coordinates, amenity filters, comfort-need matching, nearby-radius search, data-quality reporting, local caching, and no current-availability or heat-safety claims.",
+      "dependencies": ["feat-034"],
+      "status": "done",
+      "evidence": "Official CP950/Big5 CSV generated 494 static records (491 valid official coordinates) across 12 districts. Converter tests and focused desktop/mobile Playwright regression passed on 2026-08-13."
     }
   ]
 }

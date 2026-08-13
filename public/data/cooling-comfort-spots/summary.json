@@ -1,0 +1,81 @@
+{
+  "totalRecords": 494,
+  "districtCount": 12,
+  "validCoordinateCount": 491,
+  "byEnvironment": {
+    "indoor": 225,
+    "outdoor": 269,
+    "mixed": 0,
+    "unknown": 0
+  },
+  "amenities": {
+    "airConditioningAvailability": 202,
+    "fanAvailability": 147,
+    "toiletAvailability": 319,
+    "seatingAvailability": 410,
+    "drinkingWaterAvailability": 271,
+    "accessibleSeatingAvailability": 66
+  },
+  "dataQuality": {
+    "exactDuplicateRows": [],
+    "missingNames": [],
+    "missingDistricts": [],
+    "missingAddresses": [],
+    "missingCoordinates": [
+      85,
+      445
+    ],
+    "outOfRangeCoordinates": [
+      444
+    ],
+    "reversedCoordinateCandidates": [],
+    "malformedPhones": [
+      {
+        "rowNumber": 346,
+        "value": "(02)228234141"
+      },
+      {
+        "rowNumber": 367,
+        "value": "(02)2577-5931"
+      }
+    ],
+    "unknownAmenityValues": [
+      {
+        "rowNumber": 301,
+        "field": "電風扇",
+        "value": "Y\n(部分區域)"
+      },
+      {
+        "rowNumber": 301,
+        "field": "冷氣",
+        "value": "Y\n(部分區域)"
+      },
+      {
+        "rowNumber": 301,
+        "field": "座位",
+        "value": "Y\n(部分區域)"
+      },
+      {
+        "rowNumber": 344,
+        "field": "無障礙座位",
+        "value": ""
+      },
+      {
+        "rowNumber": 420,
+        "field": "電風扇",
+        "value": ""
+      },
+      {
+        "rowNumber": 420,
+        "field": "無障礙座位",
+        "value": ""
+      },
+      {
+        "rowNumber": 454,
+        "field": "電風扇",
+        "value": "Y\n(部分區域)"
+      }
+    ],
+    "duplicateSourceIds": []
+  }
+}
