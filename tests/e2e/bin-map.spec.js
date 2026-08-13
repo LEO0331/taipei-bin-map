@@ -90,8 +90,11 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByText('舒適需求')).toBeVisible();
     await page.getByRole('button', { name: '冷氣' }).click();
     await expect(page.getByText('已依需求符合度排序；每筆結果顯示符合 1 項需求中的數量，並非品質或安全評分。')).toBeVisible();
+    await page.getByRole('button', { name: '瀏覽' }).click();
+    await expect(page.getByText('調整結果（494 筆）')).toBeVisible();
     await page.getByRole('button', { name: '設施目錄' }).click();
     await expect(page.locator('.directory-table-wrap tbody tr')).toHaveCount(12);
+    await expect(page.getByText('舒適需求')).not.toBeVisible();
   });
   test('loads the public school sports venue directory without claiming booking availability', async ({ page }) => {
     await page.goto('/#/public-school-sports-venues');

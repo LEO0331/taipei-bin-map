@@ -278,7 +278,7 @@
       "description": "Add a static, bilingual map-first cooling-spot directory with preserved source fields, validated official coordinates, amenity filters, comfort-need matching, nearby-radius search, data-quality reporting, local caching, and no current-availability or heat-safety claims.",
       "dependencies": ["feat-034"],
       "status": "done",
-      "evidence": "Official CP950/Big5 CSV generated 494 static records (491 valid official coordinates) across 12 districts. Converter tests and focused desktop/mobile Playwright regression passed on 2026-08-13."
+      "evidence": "Official CP950/Big5 CSV generated 494 static records (491 valid official coordinates) across 12 districts. The task-first UI groups ten views under Explore, Browse, Compare, and Data & help; browsing filters are now progressively disclosed. npm test passed 64 tests, npm run build passed, and focused desktop/mobile Playwright regression passed on 2026-08-13."
     }
   ]
 }

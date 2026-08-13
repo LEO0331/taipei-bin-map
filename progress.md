@@ -240,6 +240,12 @@
 
 ## Notes for Next Session
 
+## Cooling dashboard information hierarchy — 2026-08-13
+
+- Reframed the cooling-spot navigation around four user goals: explore, browse, compare, and data/help. Secondary options appear only within their relevant goal.
+- The search view retains its direct filters and comfort-need controls. Map and directory views now place those controls in a collapsed results-refinement panel; comparison and data pages avoid exposing irrelevant controls and show a clear-filter action when a prior filter still affects the numbers.
+- Verification: `npm.cmd test` passed 64 tests; `npm.cmd run build` passed; focused cooling-spot Playwright coverage passed on desktop and mobile; browser smoke review confirmed desktop and 393 px mobile hierarchy.
+
 ## Taipei Cooling & Comfort Spots — 2026-08-13
 
 - Started a separate, map-first static module at `#/cooling-comfort-spots` using the official Environmental Protection Department CP950/Big5 CSV, preserving fields for environment, coordinates, contacts, opening hours, amenities, highlights, and notes.
