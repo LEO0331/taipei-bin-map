@@ -86,7 +86,7 @@ const accessiblePublicParkingValidCoordinateCount = accessiblePublicParkingFacil
 test.describe('Taipei public amenities map public flows', () => {
   test('loads cooling spots from local data and keeps amenity matches distinct from a quality score', async ({ page }) => {
     await page.goto('/#/cooling-comfort-spots');
-    await expect(page.getByRole('button', { name: '尋找附近涼適點' })).toBeVisible();
+    await expect(page.getByRole('button', { name: '探索' })).toBeVisible();
     await expect(page.getByText('舒適需求')).toBeVisible();
     await page.getByRole('button', { name: '冷氣' }).click();
     await expect(page.getByText('已依需求符合度排序；每筆結果顯示符合 1 項需求中的數量，並非品質或安全評分。')).toBeVisible();

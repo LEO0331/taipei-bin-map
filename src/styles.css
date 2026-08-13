@@ -1038,12 +1038,24 @@ footer {
 }
 
 .cooling-map .leaflet-container { height: min(62vh, 620px); border-radius: 0.75rem; }
+.cooling-section-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.35rem; margin-bottom: 0.55rem; }
+.cooling-section-tabs button { min-height: 2.7rem; border: 1px solid #cbd5e1; border-radius: 0.65rem; background: #f8fafc; font-weight: 700; color: #334155; }
+.cooling-section-tabs button.active { background: #0f766e; border-color: #0f766e; color: #fff; }
+.cooling-subtabs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1rem; padding: 0.4rem 0; border-bottom: 1px solid #dbe3ea; }
+.cooling-subtabs button { border: 0; border-radius: 999px; background: transparent; padding: 0.45rem 0.72rem; color: #475569; font-weight: 650; }
+.cooling-subtabs button.active { background: #dff5f0; color: #0f5f58; }
 .cooling-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem; margin-top: 1rem; }
 .cooling-cards article { padding: 1rem; border: 1px solid var(--border-color, #d7dde5); border-radius: 0.75rem; background: var(--surface-color, #fff); }
 .cooling-cards h3 { margin: 0 0 0.45rem; }
 .cooling-cards p { margin: 0.35rem 0; }
 .quick-filter-row { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.55rem; }
 .quick-filter-row button.active { background: #0f766e; color: #fff; }
+
+@media (max-width: 520px) {
+  .cooling-section-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cooling-subtabs { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 0.55rem; }
+  .cooling-subtabs button { white-space: nowrap; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,
