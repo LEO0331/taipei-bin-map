@@ -286,7 +286,7 @@
       "description": "Prioritize the shared public-amenities map, move facility types into a map-layer control, and progressively disclose source-use notices without changing filtering behavior.",
       "dependencies": ["feat-035"],
       "status": "done",
-      "evidence": "The map now renders before search controls; the 22 facility types are in a floating, collapsible map-layer panel; the long use notice is collapsed by default and follows results. npm test passed 64 tests, npm run build passed, and focused desktop/mobile Playwright regression passed on 2026-08-13."
+      "evidence": "The map now renders before search controls; the 22 facility types are in a dedicated adjacent map-layer panel (stacked below the map on narrow screens); map data limitations and the long use notice are collapsed by default. npm test passed 64 tests, npm run build passed, and focused desktop/mobile Playwright regression passed on 2026-08-13."
     }
   ]
 }

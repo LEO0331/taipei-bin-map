@@ -925,6 +925,19 @@ function App() {
     () => (nearbyFacilities ? displayedFacilities : displayedFacilities.slice(0, INITIAL_LIST_LIMIT)),
     [displayedFacilities, nearbyFacilities],
   );
+  const mapDataNotices = [
+    includesLactationRooms ? t.lactationRoomNoCoordinateNotice : '',
+    includesInspectionStations ? t.inspectionStationNoCoordinateNotice : '',
+    includesChargingStations ? t.chargingStationNoCoordinateNotice : '',
+    includesCommercialEvStations ? t.commercialEvNoCoordinateNotice : '',
+    includesAnnouncedNoSmokingPlaces ? t.announcedNoSmokingPlaceNotice : '',
+    includesCommunityRecyclingStations ? t.communityRecyclingStationMapNotice : '',
+    includesCleanNeedleServicePoints ? t.cleanNeedleMapNotice : '',
+    includesProtectedTrees ? t.protectedTreeMapNotice : '',
+    includesPayTaipeiParking ? t.payTaipeiParkingMapNotice : '',
+    includesGreenSpaceAdoption ? t.greenSpaceAdoptionMapNotice : '',
+    includesAccessiblePublicParking ? t.accessiblePublicParkingInterpretationNote : '',
+  ].filter(Boolean);
   const isListLimited = !nearbyFacilities && displayedFacilities.length > listFacilities.length;
   const isLactationOnly = selectedTypes.length === 1 && includesLactationRooms;
   const isRiversideOnly = selectedTypes.length === 1 && includesRiversideToilets;
@@ -1980,17 +1993,7 @@ function App() {
                 : t.unableToGetLocation}
           </p>
         )}
-        {includesLactationRooms && <p className="status-message">{t.lactationRoomNoCoordinateNotice}</p>}
-        {includesInspectionStations && <p className="status-message">{t.inspectionStationNoCoordinateNotice}</p>}
-        {includesChargingStations && <p className="status-message">{t.chargingStationNoCoordinateNotice}</p>}
-        {includesCommercialEvStations && <p className="status-message">{t.commercialEvNoCoordinateNotice}</p>}
-        {includesAnnouncedNoSmokingPlaces && <p className="status-message">{t.announcedNoSmokingPlaceNotice}</p>}
-        {includesCommunityRecyclingStations && <p className="status-message">{t.communityRecyclingStationMapNotice}</p>}
-        {includesCleanNeedleServicePoints && <p className="status-message">{t.cleanNeedleMapNotice}</p>}
-        {includesProtectedTrees && <p className="status-message">{t.protectedTreeMapNotice}</p>}
-        {includesPayTaipeiParking && <p className="status-message">{t.payTaipeiParkingMapNotice}</p>}
-        {includesGreenSpaceAdoption && <p className="status-message">{t.greenSpaceAdoptionMapNotice}</p>}
-        {includesAccessiblePublicParking && <p className="status-message">{t.accessiblePublicParkingInterpretationNote}</p>}
+        {mapDataNotices.length > 0 && <details className="map-data-notices" aria-label={language === 'zh' ? '資料限制' : 'Data limitations'}><summary><strong>{language === 'zh' ? '資料限制' : 'Data limitations'}</strong><small>{mapDataNotices.length} {language === 'zh' ? '則提醒' : 'notes'}</small></summary><div>{mapDataNotices.map((notice) => <p key={notice}>{notice}</p>)}</div></details>}
         {isAccessiblePublicParkingOnly && (
           <AccessiblePublicParkingDashboard records={displayedFacilities} summary={accessiblePublicParkingSummary} language={language} t={t} />
         )}

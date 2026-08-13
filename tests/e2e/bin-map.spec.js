@@ -112,6 +112,9 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.map-primary')).toBeVisible();
     await expect(page.locator('.map-primary').evaluate((map) => map.compareDocumentPosition(document.querySelector('.controls-panel')) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
     await expect(page.locator('.map-layer-control')).toContainText('設施類型');
+    await expect(page.locator('.map-data-notices div')).not.toBeVisible();
+    await page.locator('.map-data-notices summary').click();
+    await expect(page.locator('.map-data-notices div')).toBeVisible();
     await expect(page.locator('.warning-notice-content')).not.toBeVisible();
     await page.locator('.warning-notice summary').click();
     await expect(page.locator('.warning-notice-content')).toBeVisible();
