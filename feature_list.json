@@ -287,6 +287,14 @@
       "dependencies": ["feat-035"],
       "status": "done",
       "evidence": "The map now renders before search controls; the 22 facility types are in a dedicated adjacent map-layer panel (stacked below the map on narrow screens); map data limitations and the long use notice are collapsed by default. npm test passed 64 tests, npm run build passed, and focused desktop/mobile Playwright regression passed on 2026-08-13."
+    },
+    {
+      "id": "feat-037",
+      "name": "Low-carbon sustainable community certification directory",
+      "description": "Add a static bilingual administrative-certification registry for Taipei Low-Carbon Sustainable Homeland village records without geographic inference or carbon-performance claims.",
+      "dependencies": ["feat-036"],
+      "status": "done",
+      "evidence": "Official CSV snapshot generated 375 records. Actual source levels are silver, bronze, and registered; records retain the six source fields, raw date text, and conservatively parsed Gregorian dates. Production build passed on 2026-08-14."
     }
   ]
 }

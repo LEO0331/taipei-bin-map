@@ -27,6 +27,7 @@
 | `#/bulky-waste-collection-booking` | 巨大廢棄物清運預約 | 預約時間與電話不表示即時受理。 |
 | `#/unused-medicine-collection-stations` | 廢棄藥品檢收站 | 目錄資訊不構成醫療建議或即時收受保證。 |
 | `#/industrial-waste-reuse-operators` | 事業廢棄物再利用者 | 登錄紀錄不代表可現場交付或有即時處理量。 |
+| `#/low-carbon-sustainable-communities` | 低碳永續家園認證 | 行政認證紀錄不代表目前碳排放、碳中和或環境品質。 |
 
 ## 資料使用原則
 
@@ -59,6 +60,7 @@ npm run data:convert:public-school-sports-venues
 npm run data:convert:bulky-waste-collection-booking
 npm run data:convert:unused-medicine-collection-stations
 npm run data:convert:industrial-waste-reuse-operators
+npm run data:convert:low-carbon-sustainable-communities
 ```
 
 部分資料集需要先執行擷取指令，將官方來源複製或取得為本機快照；完整指令請見 `package.json`。轉換後請查看 `public/data/conversion-report.json` 與各模組摘要，了解來源專屬的品質檢查結果。

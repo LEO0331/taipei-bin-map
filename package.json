@@ -53,6 +53,8 @@
     "data:convert:industrial-waste-reuse-operators": "tsx scripts/convertIndustrialWasteReuseOperators.ts",
     "data:convert:public-school-sports-venues": "tsx scripts/convertPublicSchoolSportsVenues.ts",
     "data:convert:cooling-comfort-spots": "tsx scripts/convertCoolingComfortSpots.ts",
+    "data:fetch:low-carbon-sustainable-communities": "tsx scripts/fetchLowCarbonSustainableCommunities.ts",
+    "data:convert:low-carbon-sustainable-communities": "tsx scripts/convertLowCarbonSustainableCommunities.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

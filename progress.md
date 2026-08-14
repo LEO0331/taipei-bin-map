@@ -240,6 +240,12 @@
 
 ## Notes for Next Session
 
+## Low-Carbon Sustainable Community Certification — 2026-08-14
+
+- Added `#/low-carbon-sustainable-communities`, a static bilingual administrative certification registry for the official `低碳永續家園評等認證名單` CSV snapshot.
+- Preserved all six official fields and raw values. Actual current-level values are 銀級, 銅級, and 報名成功; they are normalized only for labels, filters, and distributions.
+- Added local data conversion, district/village/level/date filtering, overview, level and district distributions, achievement-year distribution, directory, CSV export, data-quality summary, PWA caching, and explicit non-emissions/non-ranking interpretation note. No geographic markers or geocoding were added because the source has no official coordinates.
+
 ## Map-first information hierarchy — 2026-08-13
 
 - Moved the shared public-amenities map before the search and filter controls, so the map is the first task surface after the site header.
