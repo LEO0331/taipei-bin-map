@@ -295,6 +295,14 @@
       "dependencies": ["feat-036"],
       "status": "done",
       "evidence": "Official CSV snapshot generated 375 records. Actual source levels are silver, bronze, and registered; records retain the six source fields, raw date text, and conservatively parsed Gregorian dates. Production build passed on 2026-08-14."
+    },
+    {
+      "id": "feat-038",
+      "name": "Taipei swimming pool finder",
+      "description": "Add a static bilingual swimming-pool discovery module using official coordinates, local nearby sorting, filters, directory, export, and non-real-time safety boundaries.",
+      "dependencies": ["feat-037"],
+      "status": "done",
+      "evidence": "Official CSV snapshot generated 84 pool records with valid official coordinates. The source contains only eight venue/contact/location fields and no structured lifeguard field; production build passed on 2026-08-14."
     }
   ]
 }

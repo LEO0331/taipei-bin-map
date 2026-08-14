@@ -55,6 +55,8 @@
     "data:convert:cooling-comfort-spots": "tsx scripts/convertCoolingComfortSpots.ts",
     "data:fetch:low-carbon-sustainable-communities": "tsx scripts/fetchLowCarbonSustainableCommunities.ts",
     "data:convert:low-carbon-sustainable-communities": "tsx scripts/convertLowCarbonSustainableCommunities.ts",
+    "data:fetch:swimming-pools": "tsx scripts/fetchSwimmingPools.ts",
+    "data:convert:swimming-pools": "tsx scripts/convertSwimmingPools.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

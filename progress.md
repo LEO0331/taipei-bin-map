@@ -240,6 +240,12 @@
 
 ## Notes for Next Session
 
+## Taipei Swimming Pool Finder — 2026-08-14
+
+- Added `#/swimming-pools` with local records from the official public/private swimming-pool CSV, validated official coordinates, district and operator filters, explicit nearby sorting, map, directory, contact links, and filtered CSV export.
+- The current official CSV has 84 rows and exactly eight fields; it does not expose structured lifeguard data despite the dataset title. The module makes no real-time opening, staffing, water-quality, availability, price, or safety claims.
+- Freshness metadata is preserved separately: resource update 2023-03-22, coverage end 2024-09-19, metadata update 2025-03-18.
+
 ## Low-Carbon Sustainable Community Certification — 2026-08-14
 
 - Added `#/low-carbon-sustainable-communities`, a static bilingual administrative certification registry for the official `低碳永續家園評等認證名單` CSV snapshot.
