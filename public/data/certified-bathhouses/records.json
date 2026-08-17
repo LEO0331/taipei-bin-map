@@ -1,0 +1,1028 @@
+[
+  {
+    "id": "bathhouse-1",
+    "category": "浴室業",
+    "name": "中國青年救國團臺北市中山運動中心",
+    "address": "臺北市中山區中山北路2段44巷2號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20271231",
+    "certificationValidUntil": "2027-12-31",
+    "districtName": "中山區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "中國青年救國團臺北市中山運動中心",
+      "營業場所地址": "臺北市中山區中山北路2段44巷2號",
+      "評核結果": "優",
+      "認證有效日期": "20271231"
+    }
+  },
+  {
+    "id": "bathhouse-2",
+    "category": "浴室業",
+    "name": "咖啡櫻有限公司",
+    "address": "臺北市北投區洲美街271號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20271231",
+    "certificationValidUntil": "2027-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "咖啡櫻有限公司",
+      "營業場所地址": "臺北市北投區洲美街271號",
+      "評核結果": "優",
+      "認證有效日期": "20271231"
+    }
+  },
+  {
+    "id": "bathhouse-3",
+    "category": "浴室業",
+    "name": "駿斯運動事業股份有限公司松山國小分公司",
+    "address": "臺北市松山區八德路4段746號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20271231",
+    "certificationValidUntil": "2027-12-31",
+    "districtName": "松山區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "駿斯運動事業股份有限公司松山國小分公司",
+      "營業場所地址": "臺北市松山區八德路4段746號",
+      "評核結果": "優",
+      "認證有效日期": "20271231"
+    }
+  },
+  {
+    "id": "bathhouse-4",
+    "category": "浴室業",
+    "name": "全越運動事業股份有限公司信義運動中心",
+    "address": "臺北市信義區松勤街100號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20271231",
+    "certificationValidUntil": "2027-12-31",
+    "districtName": "信義區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "全越運動事業股份有限公司信義運動中心",
+      "營業場所地址": "臺北市信義區松勤街100號 ",
+      "評核結果": "優",
+      "認證有效日期": "20271231"
+    }
+  },
+  {
+    "id": "bathhouse-5",
+    "category": "浴室業",
+    "name": "樂霏翔有限公司",
+    "address": "臺北市南港區舊莊街1段290巷32號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20271231",
+    "certificationValidUntil": "2027-12-31",
+    "districtName": "南港區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "樂霏翔有限公司",
+      "營業場所地址": "臺北市南港區舊莊街1段290巷32號",
+      "評核結果": "優",
+      "認證有效日期": "20271231"
+    }
+  },
+  {
+    "id": "bathhouse-6",
+    "category": "浴室業",
+    "name": "開泰豐國際股份有限公司(台北文華東方酒店)",
+    "address": "臺北市松山區敦化北路158號",
+    "certificationResult": "特優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "松山區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "開泰豐國際股份有限公司(台北文華東方酒店)",
+      "營業場所地址": "臺北市松山區敦化北路158號",
+      "評核結果": "特優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-7",
+    "category": "浴室業",
+    "name": "香港商世界健身事業有限公司忠孝分公司",
+    "address": "臺北市大安區忠孝東路4段201號3樓",
+    "certificationResult": "特優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "大安區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "香港商世界健身事業有限公司忠孝分公司",
+      "營業場所地址": "臺北市大安區忠孝東路4段201號3樓",
+      "評核結果": "特優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-8",
+    "category": "浴室業",
+    "name": "公務人力發展學院福華國際文教會館",
+    "address": "臺北市大安區新生南路3段30號B1樓",
+    "certificationResult": "特優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "大安區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "公務人力發展學院福華國際文教會館",
+      "營業場所地址": "臺北市大安區新生南路3段30號B1樓",
+      "評核結果": "特優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-9",
+    "category": "浴室業",
+    "name": "匯陽百貨事業股份有限公司松山運動中心分公司",
+    "address": "臺北市松山區敦化北路1號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "松山區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "匯陽百貨事業股份有限公司松山運動中心分公司",
+      "營業場所地址": "臺北市松山區敦化北路1號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-10",
+    "category": "浴室業",
+    "name": "京庚健康世界股份有限公司民生分公司",
+    "address": "臺北市松山區民生東路3段156號B1樓",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "松山區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "京庚健康世界股份有限公司民生分公司",
+      "營業場所地址": "臺北市松山區民生東路3段156號B1樓",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-11",
+    "category": "浴室業",
+    "name": "溫莎興業有限公司(喜都三溫暖)",
+    "address": "臺北市松山區南京東路5段38號B1樓",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "松山區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "溫莎興業有限公司(喜都三溫暖)",
+      "營業場所地址": "臺北市松山區南京東路5段38號B1樓",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-12",
+    "category": "浴室業",
+    "name": "香港商世界健身事業有限公司台北松仁分公司",
+    "address": "臺北市信義區松仁路277號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "信義區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "香港商世界健身事業有限公司台北松仁分公司",
+      "營業場所地址": "臺北市信義區松仁路277號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-13",
+    "category": "浴室業",
+    "name": "時代國際飯店股份有限公司",
+    "address": "臺北市信義區忠孝東路5段10號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "信義區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "時代國際飯店股份有限公司",
+      "營業場所地址": "臺北市信義區忠孝東路5段10號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-14",
+    "category": "浴室業",
+    "name": "臺北市大安運動中心",
+    "address": "臺北市大安區辛亥路3段55號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "大安區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "臺北市大安運動中心",
+      "營業場所地址": "臺北市大安區辛亥路3段55號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-15",
+    "category": "浴室業",
+    "name": "香格里拉台北遠東國際大飯店",
+    "address": "臺北市大安區敦化南路2段201號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "大安區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "香格里拉台北遠東國際大飯店",
+      "營業場所地址": "臺北市大安區敦化南路2段201號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-16",
+    "category": "浴室業",
+    "name": "大倉久和大飯店",
+    "address": "臺北市中山區南京東路1段9號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "中山區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "大倉久和大飯店",
+      "營業場所地址": "臺北市中山區南京東路1段9號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-17",
+    "category": "浴室業",
+    "name": "香港商世界健身事業有限公司台北長春分公司",
+    "address": "臺北市中山區長春路90號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "中山區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "香港商世界健身事業有限公司台北長春分公司",
+      "營業場所地址": "臺北市中山區長春路90號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-18",
+    "category": "浴室業",
+    "name": "美麗信酒店股份有限公司",
+    "address": "臺北市中山區市民大道3段83號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "中山區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "美麗信酒店股份有限公司",
+      "營業場所地址": "臺北市中山區市民大道3段83號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-19",
+    "category": "浴室業",
+    "name": "全越運動事業股份有限公司",
+    "address": "臺北市中山區建國北路3段39號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "中山區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "全越運動事業股份有限公司",
+      "營業場所地址": "臺北市中山區建國北路3段39號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-20",
+    "category": "浴室業",
+    "name": "香港商世界健身事業有限公司公館分公司",
+    "address": "臺北市中正區羅斯福路4段68號2樓",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "中正區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "香港商世界健身事業有限公司公館分公司",
+      "營業場所地址": "臺北市中正區羅斯福路4段68號2樓",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-21",
+    "category": "浴室業",
+    "name": "舞動陽光股份有限公司中正營業所",
+    "address": "臺北市中正區信義路1段1號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "中正區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "舞動陽光股份有限公司中正營業所",
+      "營業場所地址": "臺北市中正區信義路1段1號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-22",
+    "category": "浴室業",
+    "name": "寒舍餐旅管理顧問股份有限公司",
+    "address": "臺北市中正區忠孝東路1段12號17樓",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "中正區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "寒舍餐旅管理顧問股份有限公司",
+      "營業場所地址": "臺北市中正區忠孝東路1段12號17樓",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-23",
+    "category": "浴室業",
+    "name": "天龍興業股份有限公司",
+    "address": "臺北市大同區重慶北路1段73號9樓",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "大同區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "天龍興業股份有限公司",
+      "營業場所地址": "臺北市大同區重慶北路1段73號9樓",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-24",
+    "category": "浴室業",
+    "name": "舞動陽光股份有限公司大同分公司",
+    "address": "臺北市大同區大龍街51號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "大同區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "舞動陽光股份有限公司大同分公司",
+      "營業場所地址": "臺北市大同區大龍街51號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-25",
+    "category": "浴室業",
+    "name": "臺北市政府環境保護局內湖垃圾焚化廠",
+    "address": "臺北市內湖區安康路228巷20號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "內湖區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "臺北市政府環境保護局內湖垃圾焚化廠",
+      "營業場所地址": "臺北市內湖區安康路228巷20號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-26",
+    "category": "浴室業",
+    "name": "香港商世界健身事業有限公司內湖民權分公司",
+    "address": "臺北市內湖區民權東路6段180巷6號B2樓",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "內湖區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "香港商世界健身事業有限公司內湖民權分公司",
+      "營業場所地址": "臺北市內湖區民權東路6段180巷6號B2樓",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-27",
+    "category": "浴室業",
+    "name": "Oovi無比親子同樂館",
+    "address": "臺北市內湖區成功路5段420巷28號1樓(水療池區)",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "內湖區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "Oovi無比親子同樂館",
+      "營業場所地址": "臺北市內湖區成功路5段420巷28號1樓(水療池區)",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-28",
+    "category": "浴室業",
+    "name": "中國青年救國團臺北市內湖運動中心",
+    "address": "臺北市內湖區洲子街12號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "內湖區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "中國青年救國團臺北市內湖運動中心",
+      "營業場所地址": "臺北市內湖區洲子街12號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-29",
+    "category": "浴室業",
+    "name": "水貝比企業有限公司",
+    "address": "臺北市內湖區文德路155號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "內湖區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "水貝比企業有限公司",
+      "營業場所地址": "臺北市內湖區文德路155號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-30",
+    "category": "浴室業",
+    "name": "香港商世界健身事業有限公司內湖港墘分公司",
+    "address": "臺北市內湖區港墘里港墘路221巷33號2-4樓",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "內湖區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "香港商世界健身事業有限公司內湖港墘分公司",
+      "營業場所地址": "臺北市內湖區港墘里港墘路221巷33號2-4樓",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-31",
+    "category": "浴室業",
+    "name": "臺北市士林運動中心",
+    "address": "臺北市士林區士商路1號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "士林區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "臺北市士林運動中心",
+      "營業場所地址": "臺北市士林區士商路1號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-32",
+    "category": "浴室業",
+    "name": "天母國際聯誼會",
+    "address": "臺北市士林區中山北路6段88號B1、B2",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "士林區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "天母國際聯誼會",
+      "營業場所地址": "臺北市士林區中山北路6段88號B1、B2",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-33",
+    "category": "浴室業",
+    "name": "香港商世界健身事業有限公司天母德行分公司",
+    "address": "臺北市士林區德行東路331巷35號B1-2樓",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "士林區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "香港商世界健身事業有限公司天母德行分公司",
+      "營業場所地址": "臺北市士林區德行東路331巷35號B1-2樓",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-34",
+    "category": "浴室業",
+    "name": "馬槽花藝商行",
+    "address": "臺北市士林區竹子湖路251巷20號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "士林區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "馬槽花藝商行",
+      "營業場所地址": "臺北市士林區竹子湖路251巷20號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-35",
+    "category": "浴室業",
+    "name": "東皇企業股份有限公司",
+    "address": "臺北市北投區溫泉路108號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "東皇企業股份有限公司",
+      "營業場所地址": "臺北市北投區溫泉路108號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-36",
+    "category": "浴室業",
+    "name": "展昭國際企業股份有限公司國立臺北護理健康大學水療中心",
+    "address": "臺北市北投區明德路365號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "展昭國際企業股份有限公司國立臺北護理健康大學水療中心",
+      "營業場所地址": "臺北市北投區明德路365號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-37",
+    "category": "浴室業",
+    "name": "山之林溫泉餐館",
+    "address": "臺北市北投區行義路402巷15號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "山之林溫泉餐館",
+      "營業場所地址": "臺北市北投區行義路402巷15號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-38",
+    "category": "浴室業",
+    "name": "皇池溫泉大飯店股份有限公司(皇池2館)",
+    "address": "臺北市北投區紗帽路40之6號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "皇池溫泉大飯店股份有限公司(皇池2館)",
+      "營業場所地址": "臺北市北投區紗帽路40之6號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-39",
+    "category": "浴室業",
+    "name": "鳳凰閣旅社",
+    "address": "臺北市北投區溫泉路106之1號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "鳳凰閣旅社",
+      "營業場所地址": "臺北市北投區溫泉路106之1號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-40",
+    "category": "浴室業",
+    "name": "水都溫泉館股份有限公司",
+    "address": "臺北市北投區光明路283號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "水都溫泉館股份有限公司",
+      "營業場所地址": "臺北市北投區光明路283號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-41",
+    "category": "浴室業",
+    "name": "天玥國際股份有限公司",
+    "address": "臺北市北投區中山路3號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "天玥國際股份有限公司",
+      "營業場所地址": "臺北市北投區中山路3號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-42",
+    "category": "浴室業",
+    "name": "北投麗禧溫泉酒店股份有限公司",
+    "address": "臺北市北投區幽雅路30號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "北投麗禧溫泉酒店股份有限公司",
+      "營業場所地址": "臺北市北投區幽雅路30號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-43",
+    "category": "浴室業",
+    "name": "麗之湯別館",
+    "address": "臺北市北投區溫泉路銀光巷4之2號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "麗之湯別館",
+      "營業場所地址": "臺北市北投區溫泉路銀光巷4之2號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-44",
+    "category": "浴室業",
+    "name": "漾館溫泉商旅",
+    "address": "臺北市北投區溫泉路63號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "漾館溫泉商旅",
+      "營業場所地址": "臺北市北投區溫泉路63號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-45",
+    "category": "浴室業",
+    "name": "彩色人生興業股份有限公司(三二行館)",
+    "address": "臺北市北投區中山路32號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "彩色人生興業股份有限公司(三二行館)",
+      "營業場所地址": "臺北市北投區中山路32號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-46",
+    "category": "浴室業",
+    "name": "嘉賓閣溫泉會館",
+    "address": "臺北市北投區光明路230號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "嘉賓閣溫泉會館",
+      "營業場所地址": "臺北市北投區光明路230號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-47",
+    "category": "浴室業",
+    "name": "日勝生加賀屋國際溫泉飯店股份有限公司",
+    "address": "臺北市北投區光明路236號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "日勝生加賀屋國際溫泉飯店股份有限公司",
+      "營業場所地址": "臺北市北投區光明路236號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-48",
+    "category": "浴室業",
+    "name": "第一閣旅社",
+    "address": "臺北市北投區泉源路17號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "第一閣旅社",
+      "營業場所地址": "臺北市北投區泉源路17號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-49",
+    "category": "浴室業",
+    "name": "美樂莊旅社",
+    "address": "臺北市北投區中和街20巷6號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "美樂莊旅社",
+      "營業場所地址": "臺北市北投區中和街20巷6號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-50",
+    "category": "浴室業",
+    "name": "臺北市北投運動中心",
+    "address": "臺北市北投區石牌路1段39巷100號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "臺北市北投運動中心",
+      "營業場所地址": "臺北市北投區石牌路1段39巷100號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-51",
+    "category": "浴室業",
+    "name": "大地國際酒店股份有限公司",
+    "address": "臺北市北投區奇岩路1號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "大地國際酒店股份有限公司",
+      "營業場所地址": "臺北市北投區奇岩路1號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-52",
+    "category": "浴室業",
+    "name": "泉都飯店股份有限公司",
+    "address": "臺北市北投區光明路220號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20281231",
+    "certificationValidUntil": "2028-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "泉都飯店股份有限公司",
+      "營業場所地址": "臺北市北投區光明路220號",
+      "評核結果": "優",
+      "認證有效日期": "20281231"
+    }
+  },
+  {
+    "id": "bathhouse-53",
+    "category": "浴室業",
+    "name": "國際大旅館",
+    "address": "臺北市北投區湖山路1段7號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20271231",
+    "certificationValidUntil": "2027-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "國際大旅館",
+      "營業場所地址": "臺北市北投區湖山路1段7號",
+      "評核結果": "優",
+      "認證有效日期": "20271231"
+    }
+  },
+  {
+    "id": "bathhouse-54",
+    "category": "浴室業",
+    "name": "皇池溫泉大飯店股份有限公司(皇池1館)",
+    "address": "臺北市北投區紗帽路42之2號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20271231",
+    "certificationValidUntil": "2027-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "皇池溫泉大飯店股份有限公司(皇池1館)",
+      "營業場所地址": "臺北市北投區紗帽路42之2號",
+      "評核結果": "優",
+      "認證有效日期": "20271231"
+    }
+  },
+  {
+    "id": "bathhouse-55",
+    "category": "浴室業",
+    "name": "禾園溫泉餐廳",
+    "address": "臺北市北投區行義路300巷1號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20271231",
+    "certificationValidUntil": "2027-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "禾園溫泉餐廳",
+      "營業場所地址": "臺北市北投區行義路300巷1號",
+      "評核結果": "優",
+      "認證有效日期": "20271231"
+    }
+  },
+  {
+    "id": "bathhouse-56",
+    "category": "浴室業",
+    "name": "川湯會館營業處",
+    "address": "臺北市北投區行義路300巷10號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20271231",
+    "certificationValidUntil": "2027-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "川湯會館營業處",
+      "營業場所地址": "臺北市北投區行義路300巷10號",
+      "評核結果": "優",
+      "認證有效日期": "20271231"
+    }
+  },
+  {
+    "id": "bathhouse-57",
+    "category": "浴室業",
+    "name": "櫻崗溫泉會?有限公司",
+    "address": "臺北市北投區行義路300巷3號",
+    "certificationResult": "優",
+    "certificationValidUntilRaw": "20271231",
+    "certificationValidUntil": "2027-12-31",
+    "districtName": "北投區",
+    "certificationStatus": "valid",
+    "sourceFields": {
+      "報名類別": "浴室業",
+      "業者名稱": "櫻崗溫泉會?有限公司",
+      "營業場所地址": "臺北市北投區行義路300巷3號",
+      "評核結果": "優",
+      "認證有效日期": "20271231"
+    }
+  }
+]

@@ -57,6 +57,8 @@
     "data:convert:low-carbon-sustainable-communities": "tsx scripts/convertLowCarbonSustainableCommunities.ts",
     "data:fetch:swimming-pools": "tsx scripts/fetchSwimmingPools.ts",
     "data:convert:swimming-pools": "tsx scripts/convertSwimmingPools.ts",
+    "data:fetch:certified-bathhouses": "tsx scripts/fetchCertifiedBathhouses.ts",
+    "data:convert:certified-bathhouses": "tsx scripts/convertCertifiedBathhouses.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },

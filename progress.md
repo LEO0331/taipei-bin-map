@@ -240,6 +240,12 @@
 
 ## Notes for Next Session
 
+## Certified Bathhouses — 2026-08-17
+
+- Added `#/certified-bathhouses`, an address-directory module for the official Taipei hygiene self-management certification record for bathhouse businesses.
+- Preserved the five actual source fields, derived Taipei districts without changing source addresses, calculated validity only for unambiguous YYYYMMDD dates, and added result/district/validity/text filters, result distribution, CSV export, and safe Google Maps address lookup.
+- The source has no official coordinates or phone numbers. No runtime geocoding, fabricated markers, or nearby-distance claims were added; current certification, opening, safety, and service status remain subject to agency and establishment confirmation.
+
 ## Taipei Swimming Pool Finder — 2026-08-14
 
 - Added `#/swimming-pools` with local records from the official public/private swimming-pool CSV, validated official coordinates, district and operator filters, explicit nearby sorting, map, directory, contact links, and filtered CSV export.

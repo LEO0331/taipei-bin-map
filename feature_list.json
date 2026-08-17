@@ -303,6 +303,14 @@
       "dependencies": ["feat-037"],
       "status": "done",
       "evidence": "Official CSV snapshot generated 84 pool records with valid official coordinates. The source contains only eight venue/contact/location fields and no structured lifeguard field; production build passed on 2026-08-14."
+    },
+    {
+      "id": "feat-039",
+      "name": "Certified bathhouse directory",
+      "description": "Add a static bilingual Taipei hygiene-certified bathhouse directory with certification-date filters, district search, source attribution, and no fabricated coordinates.",
+      "dependencies": ["feat-038"],
+      "status": "done",
+      "evidence": "Official CP950 CSV generated 57 certification records. The five-field source has no official coordinates or phone numbers, so the module uses address-based external map lookup without exact markers or nearby-distance claims. npm test and npm run build passed on 2026-08-17."
     }
   ]
 }
