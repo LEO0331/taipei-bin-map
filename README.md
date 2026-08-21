@@ -28,6 +28,7 @@ Dedicated directory or discovery routes provide additional source-specific exper
 | `#/unused-medicine-collection-stations` | Unused Medicine Collection Stations | Directory information is not medical advice or a current-acceptance guarantee. |
 | `#/industrial-waste-reuse-operators` | Industrial Waste Reuse Operators | Registration records do not indicate public walk-in acceptance or current capacity. |
 | `#/certified-bathhouses` | Certified Bathhouses | Certification records are not real-time opening, safety, or exact-location information. |
+| `#/recycling-analytics` | Recycling Analytics | District recycling volume is not a recycling rate, efficiency, or environmental-performance score. |
 | `#/low-carbon-sustainable-communities` | Low-Carbon Sustainable Community Certification | Administrative certification records are not current emissions, carbon-neutrality, or environmental-quality measurements. |
 
 ## Data principles
@@ -62,6 +63,7 @@ npm run data:convert:bulky-waste-collection-booking
 npm run data:convert:unused-medicine-collection-stations
 npm run data:convert:industrial-waste-reuse-operators
 npm run data:convert:certified-bathhouses
+npm run data:convert:recycling-analytics
 npm run data:convert:low-carbon-sustainable-communities
 ```
 

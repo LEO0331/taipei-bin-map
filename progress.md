@@ -240,6 +240,12 @@
 
 ## Notes for Next Session
 
+## District Recycling Analytics — 2026-08-21
+
+- Added `#/recycling-analytics` for official Taipei district-cleaning-team monthly recycling volumes. It includes selected-period KPIs, district ranking, monthly trend, matching-period YoY, and district/year/month filters.
+- Converted ROC years to Gregorian years, uses official administrative district codes, and retains the non-district `其他` rows in local data while excluding them from the 12-district comparison.
+- The module explicitly labels the values as recycling volume, not recycling rate, efficiency, or environmental performance; it has no fabricated facility markers or unsupported choropleth geometry.
+
 ## Certified Bathhouses — 2026-08-17
 
 - Added `#/certified-bathhouses`, an address-directory module for the official Taipei hygiene self-management certification record for bathhouse businesses.

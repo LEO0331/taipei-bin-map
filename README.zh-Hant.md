@@ -28,6 +28,7 @@
 | `#/unused-medicine-collection-stations` | 廢棄藥品檢收站 | 目錄資訊不構成醫療建議或即時收受保證。 |
 | `#/industrial-waste-reuse-operators` | 事業廢棄物再利用者 | 登錄紀錄不代表可現場交付或有即時處理量。 |
 | `#/certified-bathhouses` | 衛生認證浴室 | 認證紀錄不代表即時營業、安全或精確位置資訊。 |
+| `#/recycling-analytics` | 資源回收統計 | 行政區回收量不代表回收率、效率或環保表現。 |
 | `#/low-carbon-sustainable-communities` | 低碳永續家園認證 | 行政認證紀錄不代表目前碳排放、碳中和或環境品質。 |
 
 ## 資料使用原則
@@ -62,6 +63,7 @@ npm run data:convert:bulky-waste-collection-booking
 npm run data:convert:unused-medicine-collection-stations
 npm run data:convert:industrial-waste-reuse-operators
 npm run data:convert:certified-bathhouses
+npm run data:convert:recycling-analytics
 npm run data:convert:low-carbon-sustainable-communities
 ```
 

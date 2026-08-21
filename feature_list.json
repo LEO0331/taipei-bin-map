@@ -311,6 +311,14 @@
       "dependencies": ["feat-038"],
       "status": "done",
       "evidence": "Official CP950 CSV generated 57 certification records. The five-field source has no official coordinates or phone numbers, so the module uses address-based external map lookup without exact markers or nearby-distance claims. npm test and npm run build passed on 2026-08-17."
+    },
+    {
+      "id": "feat-040",
+      "name": "District recycling analytics",
+      "description": "Add static bilingual district-level recycling-volume analysis with selected-period KPIs, rankings, monthly trends, year-over-year comparison, and careful volume interpretation.",
+      "dependencies": ["feat-039"],
+      "status": "done",
+      "evidence": "Official CP950 CSV generated 702 monthly records spanning 2022–2026. The module maps official district codes, separates the non-district 其他 row from the 12-district ranking, and compares only matching available months. npm test and npm run build passed on 2026-08-21."
     }
   ]
 }

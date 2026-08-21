@@ -59,6 +59,8 @@
     "data:convert:swimming-pools": "tsx scripts/convertSwimmingPools.ts",
     "data:fetch:certified-bathhouses": "tsx scripts/fetchCertifiedBathhouses.ts",
     "data:convert:certified-bathhouses": "tsx scripts/convertCertifiedBathhouses.ts",
+    "data:fetch:recycling-analytics": "tsx scripts/fetchRecyclingAnalytics.ts",
+    "data:convert:recycling-analytics": "tsx scripts/convertRecyclingAnalytics.ts",
     "convert:bins": "tsx scripts/convertBins.ts",
     "convert:facilities": "tsx scripts/convertBins.ts"
   },
