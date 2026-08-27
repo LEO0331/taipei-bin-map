@@ -15,6 +15,7 @@ import {
 } from '../utils/facilityUtils';
 import { FacilityPopup } from './FacilityPopup';
 import { MapLegend } from './MapLegend';
+import { useBasemapPreference } from './BasemapPreference';
 
 type UserLocation = {
   latitude: number;
@@ -203,6 +204,7 @@ export function FacilityMap({
   greenSpaceAdoptionDistrictSummaries,
 }: FacilityMapProps) {
   const renderedFacilities = useChunkedFacilities(facilities);
+  const basemap = useBasemapPreference(language);
   const userIcon = useMemo(
     () =>
       L.divIcon({
@@ -232,10 +234,11 @@ export function FacilityMap({
 
   return (
     <section className="map-panel" aria-label={t.appTitle}>
+      {basemap.control}
       <MapContainer center={taipeiCenter} zoom={13} scrollWheelZoom preferCanvas className="leaflet-map">
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution={basemap.attribution}
+          url={basemap.tileUrl}
         />
         <MapController facilities={facilities} userLocation={userLocation} />
         {userLocation && (

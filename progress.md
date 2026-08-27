@@ -240,6 +240,12 @@
 
 ## Notes for Next Session
 
+## Optional English basemap labels — 2026-08-27
+
+- Added a persisted map-label preference to the shared Leaflet map. `Local names` uses the default OpenStreetMap tiles; `English` uses Wikimedia's international `osm-intl` tiles with English requested.
+- The selector explicitly states that it changes only basemap labels. Official source names, addresses, districts, and records remain in their original language to preserve source fidelity.
+- Verification: `npm run build` passed.
+
 ## Default filter-state and cooling tab polish — 2026-08-27
 
 - Changed the shared map's initial facility-type state to empty, so first load starts without selected facility markers or district summary bubbles.
