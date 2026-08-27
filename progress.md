@@ -240,6 +240,13 @@
 
 ## Notes for Next Session
 
+## Cross-module UX and data repair — 2026-08-27
+
+- Unified the service-navigation alignment around the app title, centered the service links, and made the back-to-map link the final navigation option for routed modules.
+- Replaced the key-gated basemap URL with OpenStreetMap tiles, enabled deselecting all facility types, localized unused-medicine data-quality labels, formatted industrial reuse tonnes to two decimal places, and added bounded record cards for swimming pools.
+- Re-fetched the low-carbon source as raw bytes and decoded CP950 during conversion; the regenerated records now retain source fields, district/village data, certification levels, and achievement dates. Cooling-spot names also remove the visible leading replacement marker.
+- Verification: `npm run build` and `npm test` (64 tests) passed.
+
 ## District Recycling Analytics — 2026-08-21
 
 - Added `#/recycling-analytics` for official Taipei district-cleaning-team monthly recycling volumes. It includes selected-period KPIs, district ranking, monthly trend, matching-period YoY, and district/year/month filters.

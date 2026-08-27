@@ -6,9 +6,9 @@ const directory = join(process.cwd(), 'data', 'raw', 'low-carbon-sustainable-com
 
 const response = await fetch(url);
 if (!response.ok) throw new Error(`Official CSV request failed: ${response.status}`);
-const source = await response.text();
+const source = Buffer.from(await response.arrayBuffer());
 await mkdir(directory, { recursive: true });
-await writeFile(join(directory, 'source.csv'), source, 'utf8');
+await writeFile(join(directory, 'source.csv'), source);
 await writeFile(join(directory, 'source-metadata.json'), JSON.stringify({
   dataset: '臺北市低碳永續家園計畫本市認證執行情形',
   resource: '低碳永續家園評等認證名單',

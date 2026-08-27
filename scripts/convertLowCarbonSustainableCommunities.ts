@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import Papa from 'papaparse';
+import iconv from 'iconv-lite';
 
 type Row = Record<string, string>;
 type Level = 'silver' | 'bronze' | 'registered' | 'other' | 'unknown';
@@ -17,7 +18,7 @@ const parseDate = (raw: string) => {
   return null;
 };
 
-const source = await readFile(rawPath, 'utf8');
+const source = iconv.decode(await readFile(rawPath), 'cp950');
 const parsed = Papa.parse<Row>(source, { header: true, skipEmptyLines: true });
 const seen = new Set<string>(); const exactDuplicates: string[] = [];
 const records = parsed.data.map((row, index) => {

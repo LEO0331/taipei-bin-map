@@ -71,7 +71,7 @@ export function FacilityTypeFilter({ selectedTypes, t, onChange, variant = 'pane
       ? selectedTypes.filter((item) => item !== type)
       : [...selectedTypes, type];
 
-    onChange(nextTypes.length > 0 ? nextTypes : selectedTypes);
+    onChange(nextTypes);
   };
 
   const controls = (
