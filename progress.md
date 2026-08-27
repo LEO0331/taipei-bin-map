@@ -240,6 +240,12 @@
 
 ## Notes for Next Session
 
+## Default filter-state and cooling tab polish — 2026-08-27
+
+- Changed the shared map's initial facility-type state to empty, so first load starts without selected facility markers or district summary bubbles.
+- Matched the cooling primary and comfort-need buttons to the shared compact pill-tab format used by the swimming-pool module.
+- Verification: `npm run build` and `npm test` passed (64 tests).
+
 ## Interaction and localization polish — 2026-08-27
 
 - Converted shared facility-type selection to single-select: selecting a different type replaces the prior type; selecting the active type clears it. Empty selection keeps the shared map free of district-summary markers.

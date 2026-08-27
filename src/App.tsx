@@ -117,7 +117,7 @@ function App() {
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
   const [searchTerm, setSearchTerm] = useState('');
   const [district, setDistrict] = useState('');
-  const [selectedTypes, setSelectedTypes] = useState<FacilityType[]>(FACILITY_TYPE_OPTIONS);
+  const [selectedTypes, setSelectedTypes] = useState<FacilityType[]>([]);
   const [toiletCategory, setToiletCategory] = useState('');
   const [requiresAccessibleToilet, setRequiresAccessibleToilet] = useState(false);
   const [requiresParentChildToilet, setRequiresParentChildToilet] = useState(false);
