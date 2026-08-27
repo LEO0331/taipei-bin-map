@@ -59,19 +59,8 @@ export function FacilityTypeFilter({ selectedTypes, t, onChange, variant = 'pane
     accessible_public_parking_facility: t.accessiblePublicParkingFacilities,
   } satisfies Record<FacilityType, string>;
 
-  const allSelected = selectedTypes.length === FACILITY_TYPE_OPTIONS.length;
-
   const toggleType = (type: FacilityType) => {
-    if (allSelected) {
-      onChange([type]);
-      return;
-    }
-
-    const nextTypes = selectedTypes.includes(type)
-      ? selectedTypes.filter((item) => item !== type)
-      : [...selectedTypes, type];
-
-    onChange(nextTypes);
+    onChange(selectedTypes.includes(type) ? [] : [type]);
   };
 
   const controls = (

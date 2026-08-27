@@ -240,6 +240,13 @@
 
 ## Notes for Next Session
 
+## Interaction and localization polish — 2026-08-27
+
+- Converted shared facility-type selection to single-select: selecting a different type replaces the prior type; selecting the active type clears it. Empty selection keeps the shared map free of district-summary markers.
+- Localized the public-school and industrial-waste Data Quality labels, translated public-school campus-opening weekday/weekend labels, and brought cooling primary tabs in line with the shared compact tab style.
+- Added contextual module subtitles to the common app header for bulky waste, unused medicine, industrial reuse, public-school sports, and cooling locations.
+- Verification: `npm run build` and `npm test` passed (64 tests).
+
 ## Final navigation and data cleanup — 2026-08-27
 
 - Removed the low-carbon sustainable community certification route, navigation entry, source snapshot, generated JSON, converter/fetch scripts, package commands, README entries, and PWA cache entries at the user's request.

@@ -1159,9 +1159,9 @@ footer {
 }
 
 .cooling-map .leaflet-container { height: min(62vh, 620px); border-radius: 0.75rem; }
-.cooling-section-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.35rem; margin-bottom: 0.55rem; }
-.cooling-section-tabs button { min-height: 2.7rem; border: 1px solid #cbd5e1; border-radius: 0.65rem; background: #f8fafc; font-weight: 700; color: #334155; }
-.cooling-section-tabs button.active { background: #0f766e; border-color: #0f766e; color: #fff; }
+.cooling-section-tabs { display: flex; gap: 0.45rem; overflow-x: auto; padding-bottom: 0.2rem; margin-bottom: 0.55rem; }
+.cooling-section-tabs button { flex: 0 0 auto; min-height: 2.3rem; padding: 0.4rem 0.75rem; border: 1px solid var(--line); border-radius: 999px; background: var(--paper-strong); color: var(--muted); font-weight: 800; }
+.cooling-section-tabs button.active { background: var(--green); border-color: var(--green); color: #fff; }
 .cooling-subtabs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1rem; padding: 0.4rem 0; border-bottom: 1px solid #dbe3ea; }
 .cooling-subtabs button { border: 0; border-radius: 999px; background: transparent; padding: 0.45rem 0.72rem; color: #475569; font-weight: 650; }
 .cooling-subtabs button.active { background: #dff5f0; color: #0f5f58; }
