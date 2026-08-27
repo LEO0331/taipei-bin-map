@@ -1333,7 +1333,7 @@ function App() {
             </Suspense>
             <aside className="map-layer-control" aria-label={t.facilityType}>
               <FacilityTypeFilter selectedTypes={selectedTypes} t={t} onChange={handleTypeChange} variant="map-layer" />
-              {markerLimitExceeded && selectedTypes.length > 0 && <p className="map-marker-limit map-marker-limit-panel">{t.mapMarkerLimitNotice}</p>}
+              {markerLimitExceeded && selectedTypes.length > 0 && <p className="facility-type-notice">{t.mapMarkerLimitNotice}</p>}
             </aside>
           </section>
         )}

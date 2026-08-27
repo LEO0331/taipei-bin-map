@@ -541,10 +541,20 @@ a:focus-visible {
   min-width: 0;
 }
 
-.map-marker-limit-panel {
-  position: static;
+.facility-type-notice {
+  width: 100%;
   margin: 0.65rem 0 0;
+  padding: 0.55rem 0.65rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper-strong);
+  color: var(--muted);
   font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .map-panel {
