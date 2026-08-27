@@ -1,4 +1,4 @@
-const CACHE_NAME = 'taipei-public-amenities-map-v32';
+const CACHE_NAME = 'taipei-public-amenities-map-v33';
 const APP_SHELL = [
   '/index.html',
   '/manifest.webmanifest',
@@ -103,7 +103,12 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  if (url.pathname.startsWith('/assets/') || url.pathname.startsWith('/icons/') || url.pathname === '/manifest.webmanifest') {
+  if (url.pathname.startsWith('/assets/')) {
+    event.respondWith(networkFirst(event.request));
+    return;
+  }
+
+  if (url.pathname.startsWith('/icons/') || url.pathname === '/manifest.webmanifest') {
     event.respondWith(cacheFirst(event.request));
     return;
   }

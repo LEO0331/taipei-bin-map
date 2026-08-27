@@ -240,6 +240,12 @@
 
 ## Notes for Next Session
 
+## Blank-page recovery — 2026-08-27
+
+- Changed service-worker handling so hashed JavaScript/CSS assets use network-first retrieval, preventing a newly deployed page shell from combining with an obsolete cached bundle.
+- Reload once when a new service-worker controller takes over, and added an application error boundary with a customer-facing refresh recovery state instead of a blank page.
+- Verification: `npm run build` and `npm test` passed (64 tests).
+
 ## Optional English basemap labels — 2026-08-27
 
 - Added a persisted map-label preference to the shared Leaflet map. `Local names` uses the default OpenStreetMap tiles; `English` uses Wikimedia's international `osm-intl` tiles with English requested.

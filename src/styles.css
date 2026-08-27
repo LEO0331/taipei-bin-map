@@ -245,6 +245,18 @@ main {
   font-weight: 900;
 }
 
+.app-recovery {
+  display: grid;
+  place-content: center;
+  min-height: 70svh;
+  gap: 0.8rem;
+  text-align: center;
+}
+
+.app-recovery h1 { margin: 0; }
+.app-recovery p { max-width: 38rem; margin: 0; color: var(--muted); }
+.app-recovery button { justify-self: center; min-height: 2.5rem; padding: 0.4rem 0.9rem; border: 0; border-radius: 0.5rem; background: var(--green); color: #fff; font: inherit; font-weight: 800; }
+
 .facility-type-layer {
   width: min(24rem, calc(100vw - 3rem));
   max-height: min(26rem, calc(100% - 2rem));
