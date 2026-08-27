@@ -88,7 +88,6 @@ const FacilityMap = lazy(() =>
 const CoolingComfortSpotsDashboard = lazy(() =>
   import('./components/CoolingComfortSpotsDashboard').then((module) => ({ default: module.CoolingComfortSpotsDashboard })),
 );
-const LowCarbonSustainableCommunitiesDashboard = lazy(() => import('./components/LowCarbonSustainableCommunitiesDashboard').then((module) => ({ default: module.LowCarbonSustainableCommunitiesDashboard })));
 const SwimmingPoolsDashboard = lazy(() => import('./components/SwimmingPoolsDashboard').then((module) => ({ default: module.SwimmingPoolsDashboard })));
 const CertifiedBathhousesDashboard = lazy(() => import('./components/CertifiedBathhousesDashboard').then((module) => ({ default: module.CertifiedBathhousesDashboard })));
 const RecyclingAnalyticsDashboard = lazy(() => import('./components/RecyclingAnalyticsDashboard').then((module) => ({ default: module.RecyclingAnalyticsDashboard })));
@@ -99,11 +98,11 @@ type UserLocation = {
 };
 
 type ErrorKey = 'load' | 'location' | 'distance' | '';
-type DirectoryRoute = 'bulky-waste-collection-booking' | 'unused-medicine-collection-stations' | 'industrial-waste-reuse-operators' | 'public-school-sports-venues' | 'cooling-comfort-spots' | 'low-carbon-sustainable-communities' | 'swimming-pools' | 'certified-bathhouses' | 'recycling-analytics' | '';
+type DirectoryRoute = 'bulky-waste-collection-booking' | 'unused-medicine-collection-stations' | 'industrial-waste-reuse-operators' | 'public-school-sports-venues' | 'cooling-comfort-spots' | 'swimming-pools' | 'certified-bathhouses' | 'recycling-analytics' | '';
 
 const getDirectoryRoute = (): DirectoryRoute => {
   const route = window.location.hash.replace(/^#\//, '');
-  return route === 'bulky-waste-collection-booking' || route === 'unused-medicine-collection-stations' || route === 'industrial-waste-reuse-operators' || route === 'public-school-sports-venues' || route === 'cooling-comfort-spots' || route === 'low-carbon-sustainable-communities' || route === 'swimming-pools' || route === 'certified-bathhouses' || route === 'recycling-analytics' ? route : '';
+  return route === 'bulky-waste-collection-booking' || route === 'unused-medicine-collection-stations' || route === 'industrial-waste-reuse-operators' || route === 'public-school-sports-venues' || route === 'cooling-comfort-spots' || route === 'swimming-pools' || route === 'certified-bathhouses' || route === 'recycling-analytics' ? route : '';
 };
 
 const getInitialLanguage = (): Language => {
@@ -1286,7 +1285,7 @@ function App() {
     );
   };
 
-  const universalNavigation = <nav className="module-route-links" aria-label={language === 'zh' ? '服務目錄' : 'Service directories'}><a className="module-route-link" href="#/bulky-waste-collection-booking">{t.bulkyWasteCollectionBooking}</a><a className="module-route-link" href="#/unused-medicine-collection-stations">{t.unusedMedicineCollectionStations}</a><a className="module-route-link" href="#/industrial-waste-reuse-operators">{t.industrialWasteReuseOperators}</a><a className="module-route-link" href="#/public-school-sports-venues">{language === 'zh' ? '公立學校運動場地搜尋' : 'Public School Sports Venue Search'}</a><a className="module-route-link" href="#/cooling-comfort-spots">{language === 'zh' ? '臺北市涼適點' : 'Taipei Cooling & Comfort Spots'}</a><a className="module-route-link" href="#/low-carbon-sustainable-communities">{language === 'zh' ? '低碳永續家園認證' : 'Low-Carbon Certification'}</a><a className="module-route-link" href="#/swimming-pools">{language === 'zh' ? '臺北市游泳池查詢' : 'Taipei Swimming Pool Finder'}</a><a className="module-route-link" href="#/certified-bathhouses">{language === 'zh' ? '衛生認證浴室' : 'Certified Bathhouses'}</a><a className="module-route-link" href="#/recycling-analytics">{language === 'zh' ? '資源回收統計' : 'Recycling Analytics'}</a>{directoryRoute && <a className="module-route-link module-route-link-back" href="#/">{language === 'zh' ? '返回設施地圖' : 'Back to amenities map'}</a>}</nav>;
+  const universalNavigation = <nav className="module-route-links" aria-label={language === 'zh' ? '服務目錄' : 'Service directories'}><a className="module-route-link" href="#/bulky-waste-collection-booking">{t.bulkyWasteCollectionBooking}</a><a className="module-route-link" href="#/unused-medicine-collection-stations">{t.unusedMedicineCollectionStations}</a><a className="module-route-link" href="#/industrial-waste-reuse-operators">{t.industrialWasteReuseOperators}</a><a className="module-route-link" href="#/public-school-sports-venues">{language === 'zh' ? '公立學校運動場地搜尋' : 'Public School Sports Venue Search'}</a><a className="module-route-link" href="#/cooling-comfort-spots">{language === 'zh' ? '臺北市涼適點' : 'Taipei Cooling & Comfort Spots'}</a><a className="module-route-link" href="#/swimming-pools">{language === 'zh' ? '臺北市游泳池查詢' : 'Taipei Swimming Pool Finder'}</a><a className="module-route-link" href="#/certified-bathhouses">{language === 'zh' ? '衛生認證浴室' : 'Certified Bathhouses'}</a><a className="module-route-link" href="#/recycling-analytics">{language === 'zh' ? '資源回收統計' : 'Recycling Analytics'}</a>{directoryRoute && <a className="module-route-link module-route-link-back" href="#/">{language === 'zh' ? '返回設施地圖' : 'Back to amenities map'}</a>}</nav>;
 
   if (directoryRoute === 'recycling-analytics') {
     return <div className="app-shell"><header className="app-header"><div><p>{language === 'zh' ? '垃圾清運、回收與環境資料' : 'Waste, recycling & environmental data'}</p><h1>{t.appTitle}</h1></div><LanguageToggle language={language} onChange={handleLanguageChange} />{universalNavigation}</header><main><Suspense fallback={<p>Loading recycling analytics…</p>}><RecyclingAnalyticsDashboard language={language}/></Suspense></main></div>;
@@ -1306,11 +1305,10 @@ function App() {
           <h1>{t.appTitle}</h1>
         </div>
         <LanguageToggle language={language} onChange={handleLanguageChange} />
-        <nav className="module-route-links" aria-label={language === 'zh' ? '服務目錄' : 'Service directories'}><a className="module-route-link" href="#/bulky-waste-collection-booking">{t.bulkyWasteCollectionBooking}</a><a className="module-route-link" href="#/unused-medicine-collection-stations">{t.unusedMedicineCollectionStations}</a><a className="module-route-link" href="#/industrial-waste-reuse-operators">{t.industrialWasteReuseOperators}</a><a className="module-route-link" href="#/public-school-sports-venues">{language === 'zh' ? '公立學校運動場地搜尋' : 'Public School Sports Venue Search'}</a><a className="module-route-link" href="#/cooling-comfort-spots">{language === 'zh' ? '臺北市涼適點' : 'Taipei Cooling & Comfort Spots'}</a><a className="module-route-link" href="#/low-carbon-sustainable-communities">{language === 'zh' ? '低碳永續家園認證' : 'Low-Carbon Certification'}</a>{directoryRoute && <a className="module-route-link" href="#/">{language === 'zh' ? '返回設施地圖' : 'Back to amenities map'}</a>}</nav>
-        <nav className="module-route-links module-route-links-secondary" aria-label={language === 'zh' ? '更多服務目錄' : 'More service directories'}><a className="module-route-link" href="#/swimming-pools">{language === 'zh' ? '臺北市游泳池查詢' : 'Taipei Swimming Pool Finder'}</a><a className="module-route-link" href="#/certified-bathhouses">{language === 'zh' ? '衛生認證浴室' : 'Certified Bathhouses'}</a><a className="module-route-link" href="#/recycling-analytics">{language === 'zh' ? '資源回收統計' : 'Recycling Analytics'}</a>{directoryRoute && <a className="module-route-link module-route-link-back" href="#/">{language === 'zh' ? '返回設施地圖' : 'Back to amenities map'}</a>}</nav>
+        {universalNavigation}
       </header>
 
-      {directoryRoute === 'bulky-waste-collection-booking' ? <main><BulkyWasteCollectionBookingDashboard language={language} /></main> : directoryRoute === 'unused-medicine-collection-stations' ? <main><UnusedMedicineCollectionStationsDashboard language={language} /></main> : directoryRoute === 'industrial-waste-reuse-operators' ? <main><IndustrialWasteReuseOperatorsDashboard language={language} /></main> : directoryRoute === 'public-school-sports-venues' ? <main><PublicSchoolSportsVenuesDashboard language={language} /></main> : directoryRoute === 'cooling-comfort-spots' ? <main><Suspense fallback={<p>{language === 'zh' ? '載入涼適點模組中…' : 'Loading cooling spots…'}</p>}><CoolingComfortSpotsDashboard language={language} /></Suspense></main> : directoryRoute === 'low-carbon-sustainable-communities' ? <main><Suspense fallback={<p>{language === 'zh' ? '載入認證資料中…' : 'Loading certification data…'}</p>}><LowCarbonSustainableCommunitiesDashboard language={language} /></Suspense></main> : <main>
+      {directoryRoute === 'bulky-waste-collection-booking' ? <main><BulkyWasteCollectionBookingDashboard language={language} /></main> : directoryRoute === 'unused-medicine-collection-stations' ? <main><UnusedMedicineCollectionStationsDashboard language={language} /></main> : directoryRoute === 'industrial-waste-reuse-operators' ? <main><IndustrialWasteReuseOperatorsDashboard language={language} /></main> : directoryRoute === 'public-school-sports-venues' ? <main><PublicSchoolSportsVenuesDashboard language={language} /></main> : directoryRoute === 'cooling-comfort-spots' ? <main><Suspense fallback={<p>{language === 'zh' ? '載入涼適點模組中…' : 'Loading cooling spots…'}</p>}><CoolingComfortSpotsDashboard language={language} /></Suspense></main> : <main>
         {isLoadingFacilities ? (
           <p className="status-message">{t.loading}</p>
         ) : (
@@ -1320,14 +1318,14 @@ function App() {
                 facilities={deferredMapFacilities}
                 language={language}
                 markerLimitExceeded={markerLimitExceeded}
-                lactationDistrictSummaries={lactationDistrictSummaries}
-                inspectionDistrictSummaries={inspectionDistrictSummaries}
-                chargingDistrictSummaries={chargingDistrictSummaries}
-                commercialEvDistrictSummaries={commercialEvDistrictSummaries}
-                communityRecyclingDistrictSummaries={communityRecyclingDistrictSummaries}
-                cleanNeedleDistrictSummaries={cleanNeedleDistrictSummaries}
-                payTaipeiParkingDistrictSummaries={payTaipeiParkingDistrictSummaries}
-                greenSpaceAdoptionDistrictSummaries={greenSpaceAdoptionDistrictSummaries}
+                lactationDistrictSummaries={selectedTypes.length ? lactationDistrictSummaries : []}
+                inspectionDistrictSummaries={selectedTypes.length ? inspectionDistrictSummaries : []}
+                chargingDistrictSummaries={selectedTypes.length ? chargingDistrictSummaries : []}
+                commercialEvDistrictSummaries={selectedTypes.length ? commercialEvDistrictSummaries : []}
+                communityRecyclingDistrictSummaries={selectedTypes.length ? communityRecyclingDistrictSummaries : []}
+                cleanNeedleDistrictSummaries={selectedTypes.length ? cleanNeedleDistrictSummaries : []}
+                payTaipeiParkingDistrictSummaries={selectedTypes.length ? payTaipeiParkingDistrictSummaries : []}
+                greenSpaceAdoptionDistrictSummaries={selectedTypes.length ? greenSpaceAdoptionDistrictSummaries : []}
                 t={t}
                 userLocation={userLocation}
               />

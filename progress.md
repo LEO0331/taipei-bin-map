@@ -240,6 +240,13 @@
 
 ## Notes for Next Session
 
+## Final navigation and data cleanup — 2026-08-27
+
+- Removed the low-carbon sustainable community certification route, navigation entry, source snapshot, generated JSON, converter/fetch scripts, package commands, README entries, and PWA cache entries at the user's request.
+- Changed the service navigation to one centered, horizontally scrollable row; it includes all retained modules and places the back-to-map link last for routed modules.
+- An empty facility-type selection now suppresses all district summary markers on the shared map while preserving the established utility behavior used by detailed filters and tests.
+- Verification: `npm run build` and `npm test` passed (64 tests).
+
 ## Cross-module UX and data repair — 2026-08-27
 
 - Unified the service-navigation alignment around the app title, centered the service links, and made the back-to-map link the final navigation option for routed modules.

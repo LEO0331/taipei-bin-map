@@ -58,8 +58,6 @@ const APP_SHELL = [
   '/data/public-school-sports-venues/summary.json',
   '/data/cooling-comfort-spots/records.json',
   '/data/cooling-comfort-spots/summary.json',
-  '/data/low-carbon-sustainable-communities/records.json',
-  '/data/low-carbon-sustainable-communities/summary.json',
   '/data/public-private-swimming-pools/records.json',
   '/data/public-private-swimming-pools/summary.json',
   '/data/certified-bathhouses/records.json',

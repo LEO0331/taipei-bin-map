@@ -29,7 +29,6 @@ Dedicated directory or discovery routes provide additional source-specific exper
 | `#/industrial-waste-reuse-operators` | Industrial Waste Reuse Operators | Registration records do not indicate public walk-in acceptance or current capacity. |
 | `#/certified-bathhouses` | Certified Bathhouses | Certification records are not real-time opening, safety, or exact-location information. |
 | `#/recycling-analytics` | Recycling Analytics | District recycling volume is not a recycling rate, efficiency, or environmental-performance score. |
-| `#/low-carbon-sustainable-communities` | Low-Carbon Sustainable Community Certification | Administrative certification records are not current emissions, carbon-neutrality, or environmental-quality measurements. |
 
 ## Data principles
 
@@ -64,7 +63,6 @@ npm run data:convert:unused-medicine-collection-stations
 npm run data:convert:industrial-waste-reuse-operators
 npm run data:convert:certified-bathhouses
 npm run data:convert:recycling-analytics
-npm run data:convert:low-carbon-sustainable-communities
 ```
 
 Some datasets have separate fetch scripts that copy or retrieve an official source snapshot before conversion. See `package.json` for the complete command list. After conversion, inspect `public/data/conversion-report.json` and each module summary for source-specific quality results.

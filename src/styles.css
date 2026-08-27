@@ -1015,9 +1015,10 @@ a:focus-visible {
 }
 
 .module-route-link { color: var(--green-dark); font-weight: 700; font-size: .86rem; }
-.module-route-links { display: flex; flex-wrap: wrap; gap: .65rem; justify-content: center; grid-column: 1 / -1; }
-.module-route-links-secondary { margin-top: -0.35rem; }
+.module-route-links { display: flex; flex-wrap: nowrap; gap: .65rem; justify-content: center; grid-column: 1 / -1; overflow-x: auto; padding: .1rem .25rem .35rem; scrollbar-width: thin; }
+.module-route-links-secondary { display: none; }
 .module-route-link-back { order: 99; }
+.module-route-link[href="#/low-carbon-sustainable-communities"] { display: none; }
 .module-route-links:has(+ .module-route-links-secondary) a[href="#/"] { display: none; }
 .app-header > .module-route-link { grid-column: 1 / -1; justify-self: center; }
 .bulky-dashboard { display: grid; gap: 1rem; }
