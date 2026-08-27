@@ -1319,7 +1319,6 @@ function App() {
               <FacilityMap
                 facilities={deferredMapFacilities}
                 language={language}
-                markerLimitExceeded={markerLimitExceeded}
                 lactationDistrictSummaries={selectedTypes.length ? lactationDistrictSummaries : []}
                 inspectionDistrictSummaries={selectedTypes.length ? inspectionDistrictSummaries : []}
                 chargingDistrictSummaries={selectedTypes.length ? chargingDistrictSummaries : []}
@@ -1334,6 +1333,7 @@ function App() {
             </Suspense>
             <aside className="map-layer-control" aria-label={t.facilityType}>
               <FacilityTypeFilter selectedTypes={selectedTypes} t={t} onChange={handleTypeChange} variant="map-layer" />
+              {markerLimitExceeded && selectedTypes.length > 0 && <p className="map-marker-limit map-marker-limit-panel">{t.mapMarkerLimitNotice}</p>}
             </aside>
           </section>
         )}

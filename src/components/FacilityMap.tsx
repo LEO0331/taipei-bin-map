@@ -15,7 +15,6 @@ import {
 } from '../utils/facilityUtils';
 import { FacilityPopup } from './FacilityPopup';
 import { MapLegend } from './MapLegend';
-import { useBasemapPreference } from './BasemapPreference';
 
 type UserLocation = {
   latitude: number;
@@ -25,7 +24,6 @@ type UserLocation = {
 type FacilityMapProps = {
   facilities: FacilityWithDistance[];
   language: Language;
-  markerLimitExceeded: boolean;
   userLocation: UserLocation | null;
   t: Translation;
   lactationDistrictSummaries: Array<{
@@ -191,7 +189,6 @@ function useChunkedFacilities(facilities: FacilityWithDistance[]) {
 export function FacilityMap({
   facilities,
   language,
-  markerLimitExceeded,
   userLocation,
   t,
   lactationDistrictSummaries,
@@ -204,7 +201,6 @@ export function FacilityMap({
   greenSpaceAdoptionDistrictSummaries,
 }: FacilityMapProps) {
   const renderedFacilities = useChunkedFacilities(facilities);
-  const basemap = useBasemapPreference(language);
   const userIcon = useMemo(
     () =>
       L.divIcon({
@@ -234,11 +230,10 @@ export function FacilityMap({
 
   return (
     <section className="map-panel" aria-label={t.appTitle}>
-      {basemap.control}
       <MapContainer center={taipeiCenter} zoom={13} scrollWheelZoom preferCanvas className="leaflet-map">
         <TileLayer
-          attribution={basemap.attribution}
-          url={basemap.tileUrl}
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <MapController facilities={facilities} userLocation={userLocation} />
         {userLocation && (
@@ -442,7 +437,6 @@ export function FacilityMap({
           );
         })}
       </MapContainer>
-      {markerLimitExceeded && <p className="map-marker-limit">{t.mapMarkerLimitNotice}</p>}
       <MapLegend t={t} />
     </section>
   );
