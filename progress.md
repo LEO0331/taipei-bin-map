@@ -240,6 +240,12 @@
 
 ## Notes for Next Session
 
+## Regression test refresh — 2026-08-27
+
+- Updated the main-map Playwright baseline from the obsolete all-types-selected/CARTO assumptions to the current empty-selection/OpenStreetMap behavior.
+- Added isolated desktop/mobile coverage for initial empty selection, replacement of the active facility type, and clearing an active type; removed obsolete assertions that expected selected-type notices under an empty selection.
+- Verification: focused Playwright regression passed 8/8; `npm test` passed 64 unit/converter tests.
+
 ## Blank-page recovery — 2026-08-27
 
 - Changed service-worker handling so hashed JavaScript/CSS assets use network-first retrieval, preventing a newly deployed page shell from combining with an obsolete cached bundle.

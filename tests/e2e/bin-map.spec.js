@@ -105,23 +105,17 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.directory-table-wrap tbody tr')).toHaveCount(10);
     await expect(page.getByText('請向學校確認預約方式與實際場地。').first()).toBeVisible();
   });
-  test('loads all twenty-one local datasets without mounting broad-view facility pins', async ({ page }) => {
+  test('starts with no facility type selected and no map warning', async ({ page }) => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: '台北市公共便利設施地圖' })).toBeVisible();
     await expect(page.locator('.map-primary')).toBeVisible();
     await expect(page.locator('.map-primary').evaluate((map) => map.compareDocumentPosition(document.querySelector('.controls-panel')) & Node.DOCUMENT_POSITION_FOLLOWING)).toBeTruthy();
     await expect(page.locator('.map-layer-control')).toContainText('設施類型');
-    await expect(page.locator('.map-data-notices div')).not.toBeVisible();
-    await page.locator('.map-data-notices summary').click();
-    await expect(page.locator('.map-data-notices div')).toBeVisible();
+    await expect(page.locator('.facility-type-layer strong')).toHaveText('0 / 22');
     await expect(page.locator('.warning-notice-content')).not.toBeVisible();
-    await page.locator('.warning-notice summary').click();
-    await expect(page.locator('.warning-notice-content')).toBeVisible();
     await expect(page.locator('.metrics-strip strong').first()).toHaveText(totalFacilityCount);
     await expect(page.getByText('資料更新:')).toBeVisible();
-    await expect(page.getByLabel('使用提醒')).toContainText('公廁實際開放情況');
-    await expect(page.getByLabel('使用提醒')).toContainText('公共場所飲水機實際開放時間');
     await expect(page.getByLabel('地圖圖例')).toContainText('公廁');
     await expect(page.getByLabel('地圖圖例')).toContainText('公共場所飲水機');
     await expect(page.getByLabel('地圖圖例')).toContainText('限時收受點');
@@ -141,15 +135,38 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.getByLabel('地圖圖例')).toContainText('受保護樹木');
     await expect(page.getByLabel('地圖圖例')).toContainText('pay.taipei支援無卡進出停車場');
     await expect(page.locator('.leaflet-map')).toBeVisible();
-    await expect(page.getByText('目前結果較多')).toBeVisible();
+    await expect(page.locator('.facility-type-notice')).not.toBeVisible();
     await expect(page.locator('.facility-div-marker')).toHaveCount(0);
     await expect(page.locator('.facility-list li')).toHaveCount(80);
   });
 
-  test('uses the deployed base-map tile provider', async ({ page }) => {
+  test('uses the standard OpenStreetMap base-map tile provider', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page.locator('img.leaflet-tile').first()).toHaveAttribute('src', /basemaps\.cartocdn\.com/);
+    await expect(page.locator('img.leaflet-tile').first()).toHaveAttribute('src', /tile\.openstreetmap\.org/);
+  });
+
+  test('replaces the active facility type when another type is selected', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '行人專用清潔箱' }).click();
+    await expect(page.locator('.facility-type-layer strong')).toHaveText('1 / 22');
+    await expect(page.getByRole('button', { name: '行人專用清潔箱' })).toHaveAttribute('aria-pressed', 'true');
+
+    await page.getByRole('button', { name: '公廁' }).click();
+    await expect(page.locator('.facility-type-layer strong')).toHaveText('1 / 22');
+    await expect(page.getByRole('button', { name: '行人專用清潔箱' })).toHaveAttribute('aria-pressed', 'false');
+    await expect(page.getByRole('button', { name: '公廁' })).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  test('clears the facility type when the active type is selected again', async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: '公廁' }).click();
+    await page.getByRole('button', { name: '公廁' }).click();
+
+    await expect(page.locator('.facility-type-layer strong')).toHaveText('0 / 22');
+    await expect(page.locator('.facility-type-notice')).not.toBeVisible();
   });
 
   test('restores markers for a narrowed single facility type', async ({ page }) => {
