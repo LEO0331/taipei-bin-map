@@ -240,6 +240,12 @@
 
 ## Notes for Next Session
 
+## New dashboard module test coverage — 2026-08-28
+
+- Added seven generated-data contract tests for swimming pools, certified bathhouses, and recycling analytics: coordinate bounds, string preservation, certification date/status shapes, ROC-to-Gregorian conversion, non-district recycling rows, and numeric import ranges.
+- Added three route-level smoke flows, exercised on desktop and mobile, for swimming-pool district filtering, bathhouse certification-result filtering, and recycling period selection.
+- Verification: `npm test` passed 71 tests; focused Playwright smoke run passed 6 tests across desktop and mobile.
+
 ## Regression test refresh — 2026-08-27
 
 - Updated the main-map Playwright baseline from the obsolete all-types-selected/CARTO assumptions to the current empty-selection/OpenStreetMap behavior.
