@@ -14,6 +14,26 @@ The app is static and PWA-ready. It requires no backend, account, database, Goog
 - Local JSON datasets, a conversion-quality report, and offline-friendly service-worker caching.
 - Accessible, responsive cards, directories, tables, CSV exports, keyboard controls, and mobile layouts.
 
+## Architecture
+
+```mermaid
+flowchart LR
+  O["Taipei Open Data<br/>official CSV / JSON snapshots"] --> R["data/raw/<br/>source snapshots"]
+  R --> C["scripts/<br/>encoding-safe converters & validators"]
+  C --> P["public/data/<br/>static JSON + summaries"]
+
+  P --> A["Vite + React application<br/>src/App.tsx"]
+  A --> M["Shared amenities map<br/>filters, list, Leaflet"]
+  A --> D["Dedicated discovery & directory modules<br/>cooling, schools, pools, recycling analytics, etc."]
+  M --> B["Browser"]
+  D --> B
+
+  S["public/service-worker.js<br/>PWA cache strategy"] --> B
+  P --> S
+```
+
+The browser only reads generated local JSON at runtime. Data acquisition, decoding, validation, and normalization occur before deployment; the app does not call the Taipei Open Data API while a visitor is using it.
+
 ## Data modules
 
 The main public-amenities map includes pedestrian bins, dog-waste bag boxes, public, riverside, and family-friendly toilets, drinking facilities, recycling services, lactation rooms, motorcycle inspection, electric-vehicle services, gas/LPG stations, smoking and no-smoking records, clean-needle service points, protected trees, parking, green-space adoption, and accessible public parking.
