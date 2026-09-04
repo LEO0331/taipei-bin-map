@@ -22,3 +22,11 @@ test('recycling analytics switches the selected period without a page reload', a
   await page.getByLabel('月份').selectOption('1');
   await expect(page.getByText('選取期間回收量（噸）')).toBeVisible();
 });
+
+test('industrial reuse directory omits the empty capacity tab and shows identifiable records', async ({ page }) => {
+  await page.goto('/#/industrial-waste-reuse-operators');
+  await expect(page.getByRole('button', { name: '核准再利用量' })).toHaveCount(0);
+  await page.getByRole('button', { name: '機構目錄' }).click();
+  await expect(page.locator('.directory-table-wrap tbody tr').first().locator('td').nth(0)).not.toHaveText('—');
+  await expect(page.locator('.directory-table-wrap tbody tr').first().locator('td').nth(1)).not.toHaveText('—');
+});

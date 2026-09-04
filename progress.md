@@ -240,6 +240,13 @@
 
 ## Notes for Next Session
 
+## Industrial reuse directory cleanup — 2026-09-04
+
+- Removed the empty `核准再利用量 / Approved Reuse Capacity` view from the industrial-waste reuse dashboard.
+- The converter now records rows missing both an operator name and control number in Data Quality but excludes them from customer-facing records and the directory. Current generated output contains 32 identifiable records.
+- Added a converter RED/GREEN regression test and desktop/mobile E2E coverage for the removed tab and identifiable directory rows.
+- Verification: `npm test` passed 72 tests; focused Playwright passed 2/2; `npm run build` passed.
+
 ## New dashboard module test coverage — 2026-08-28
 
 - Added seven generated-data contract tests for swimming pools, certified bathhouses, and recycling analytics: coordinate bounds, string preservation, certification date/status shapes, ROC-to-Gregorian conversion, non-district recycling rows, and numeric import ranges.

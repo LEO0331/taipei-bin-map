@@ -1,6 +1,6 @@
 {
-  "totalRecords": 113,
-  "uniqueOperators": 33,
+  "totalRecords": 32,
+  "uniqueOperators": 32,
   "quality": {
     "duplicateRows": [],
     "missingOperatorNames": [
