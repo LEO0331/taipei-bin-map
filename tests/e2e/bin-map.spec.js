@@ -96,6 +96,17 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.directory-table-wrap tbody tr')).toHaveCount(12);
     await expect(page.getByText('舒適需求')).not.toBeVisible();
   });
+
+  test('shows cooling district summaries before drawing individual map locations', async ({ page }) => {
+    await page.goto('/#/cooling-comfort-spots');
+    await page.getByRole('button', { name: '瀏覽' }).click();
+
+    await expect(page.getByLabel('行政區涼適點摘要')).toBeVisible();
+    await expect(page.locator('.cooling-map .leaflet-interactive')).toHaveCount(0);
+    await page.getByRole('button', { name: /大安區 · \d+ 個涼適點/ }).click();
+    await expect(page.getByLabel('行政區涼適點摘要')).toHaveCount(0);
+    await expect(page.locator('.cooling-map .leaflet-interactive').first()).toBeVisible();
+  });
   test('loads the public school sports venue directory without claiming booking availability', async ({ page }) => {
     await page.goto('/#/public-school-sports-venues');
 
