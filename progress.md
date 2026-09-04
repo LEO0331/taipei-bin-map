@@ -240,6 +240,14 @@
 
 ## Notes for Next Session
 
+## Public school sports navigation cleanup — 2026-09-04
+
+- Removed the user-facing `運動與設施 / Sports and Facilities` summary view while retaining the sport filter for direct search.
+- Localized `duplicateAgencyCodes` as `重複機關代碼` in Chinese Data Quality output.
+- Increased shared bulky-filter column and row gaps so filters and the CSV action remain visually separated across the dashboard modules.
+- Added desktop/mobile E2E coverage for the removed tab and localized quality label.
+- Verification: focused Playwright passed 2/2; `npm test` passed 72 tests; `npm run build` passed.
+
 ## Industrial reuse directory cleanup — 2026-09-04
 
 - Removed the empty `核准再利用量 / Approved Reuse Capacity` view from the industrial-waste reuse dashboard.

@@ -105,6 +105,15 @@ test.describe('Taipei public amenities map public flows', () => {
     await expect(page.locator('.directory-table-wrap tbody tr')).toHaveCount(10);
     await expect(page.getByText('請向學校確認預約方式與實際場地。').first()).toBeVisible();
   });
+
+  test('hides the sports summary tab and localizes school data-quality labels', async ({ page }) => {
+    await page.goto('/#/public-school-sports-venues');
+
+    await expect(page.getByRole('button', { name: '運動與設施' })).toHaveCount(0);
+    await page.getByRole('button', { name: '資料品質' }).click();
+    await expect(page.getByText('重複機關代碼')).toBeVisible();
+    await expect(page.getByText('duplicateAgencyCodes')).toHaveCount(0);
+  });
   test('starts with no facility type selected and no map warning', async ({ page }) => {
     await page.goto('/');
 
