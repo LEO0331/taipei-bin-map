@@ -726,7 +726,7 @@ a:focus-visible {
 .map-legend {
   position: absolute;
   right: 0.75rem;
-  bottom: 1.75rem;
+  top: 0.75rem;
   z-index: 500;
   display: grid;
   gap: 0.34rem;
@@ -734,13 +734,33 @@ a:focus-visible {
   padding: 0.62rem 0.72rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(255, 250, 240, 0.94);
+  background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 12px 24px rgba(20, 33, 29, 0.16);
   font-size: 0.78rem;
 }
 
-.map-legend strong {
-  font-size: 0.76rem;
+.map-legend summary {
+  cursor: pointer;
+  font-weight: 850;
+  padding: 0.25rem;
+  min-height: 1.75rem;
+}
+
+.map-legend summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.map-legend-items {
+  display: grid;
+  gap: 0.5rem;
+  max-height: min(16rem, 35vh);
+  overflow-y: auto;
+  padding-top: 0.5rem;
+}
+
+.map-legend i {
+  font-style: normal;
 }
 
 .map-legend span {

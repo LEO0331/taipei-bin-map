@@ -1,6 +1,14 @@
 {
   "features": [
     {
+      "id": "feat-042",
+      "name": "Compact contextual map legend",
+      "description": "Collapsible top-right legend with selected facility symbols and confirmed user location only; desktop opens initially and mobile starts collapsed.",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "Shared marker symbols replace the duplicated full-type list. Five component tests and six desktop/mobile browser cases cover empty state, selection replacement, location visibility, language changes and keyboard disclosure. Verified 102 unit/component tests, 108 full desktop/mobile E2E tests, TypeScript/production build and diff check. Desktop/mobile screenshots inspected; remote tile availability is not guaranteed."
+    },
+    {
       "id": "feat-041",
       "name": "Public bin allocation decision support MVP",
       "description": "One bounded MVP: audited policy snapshots, geospatial validation, deterministic greedy coverage, bilingual scenarios and evidence exports.",

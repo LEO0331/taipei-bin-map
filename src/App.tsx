@@ -1321,6 +1321,7 @@ function App() {
           <section className="map-primary" aria-label={t.mapLoading}>
             <Suspense fallback={<section className="map-panel map-loading">{t.mapLoading}</section>}>
               <FacilityMap
+                selectedTypes={selectedTypes}
                 facilities={deferredMapFacilities}
                 language={language}
                 lactationDistrictSummaries={selectedTypes.length ? lactationDistrictSummaries : []}

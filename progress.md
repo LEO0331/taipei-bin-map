@@ -5,6 +5,13 @@
 **Last Updated:** 2026-10-15 Asia/Taipei
 **Active Feature:** None
 
+## 2026-10-15 — Contextual map legend
+
+- Replaced the fixed full-height legend with a native keyboard-accessible disclosure in the top-right corner. Only selected facility types and a confirmed user-location marker are explained; an empty map has no legend. Desktop opens initially, mobile starts collapsed; manual toggling is retained during selection and language changes.
+- Changed `MapLegend.tsx`, `FacilityMap.tsx`, `App.tsx`, scoped legend styles and service-worker cache v35. Reused one marker-symbol definition instead of maintaining duplicate symbol lists. No filtering, data or marker-placement logic changed; no dependencies added.
+- Added `MapLegend.test.tsx` (5 cases), `map-legend.spec.js` (3 flows on both devices), and updated the obsolete all-types-on-empty-map E2E expectation. The new browser cases failed against the previous implementation before changes.
+- Verification: 102 unit/component tests, TypeScript/production build and all 108 desktop/mobile E2E cases passed (`PLAYWRIGHT_PORT=5205`, two workers). `git diff --check` passed. No standalone lint script is configured. Desktop/mobile screenshots confirm compact placement and disclosure behavior; remote OSM tiles were unavailable during capture, so tile availability is not claimed. Existing mobile header wrapping is outside this legend-only change.
+
 ## Status
 
 ### What's Done
