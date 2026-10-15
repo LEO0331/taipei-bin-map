@@ -7,6 +7,8 @@
 
 ## 2026-10-15 — Bin policy v1.1 implementation and verification
 
+- PR handoff: implementation commits pushed to origin/codex/bin-policy-v1-1. Connected GitHub create-PR call returned HTTP403 Resource not accessible by integration; **no PR created**, no merge/deployment. Complete draft description and manual compare link are saved in docs/bin-policy-v1.1-pr.md. Repository permissions must be resolved by its maintainer; no credential bypass attempted.
+
 - Dedicated `codex/bin-policy-v1-1` branch, reviewable staged commits; no main merge or production deployment. Existing `analysis.json` and `src/lib/binPolicyDecision.ts` are byte-for-byte unchanged from the main baseline.
 - Reconciliation preserves all 2,008 input rows and versioned JSON/CSV/summary. 576 confirmed / 42 probable relationships; 535 historical-only, 22 current-only, 13 possible location changes, 23 ambiguous groups, 130 different-scope rows and two invalid records remain distinct. Zero in the specific unresolved category does not resolve the remaining 725 non-confirmed/non-probable relationships. Tourist file rows describe named places with notes totalling 940 處, not verified physical-bin counts. Separate 806-group/1,612-bin announcement is not combined.
 - Added four-source read-only monitor, safe official portal JSON metadata parser, stable Issue fingerprint, weekly/manual workflow and actual retained monitor report: HTTP 200 for all four, unchanged hashes/counts. Review-only publication checks hashes/identity/schema/coordinates/completeness, blocks filename and same-hash metadata bypasses, preserves archive provenance and regenerates associated reports before drafting a PR. Approval examples/tests are explicitly test-only, not real source approval.
