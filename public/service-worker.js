@@ -1,4 +1,4 @@
-const CACHE_NAME = 'taipei-public-amenities-map-v34';
+const CACHE_NAME = 'taipei-public-amenities-map-v35';
 const APP_SHELL = [
   '/index.html',
   '/manifest.webmanifest',

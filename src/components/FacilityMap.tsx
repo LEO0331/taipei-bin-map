@@ -14,7 +14,7 @@ import {
   getElectricMotorcycleChargingLocationCategoryLabel,
 } from '../utils/facilityUtils';
 import { FacilityPopup } from './FacilityPopup';
-import { MapLegend } from './MapLegend';
+import { MapLegend, markerEmojiByType } from './MapLegend';
 
 type UserLocation = {
   latitude: number;
@@ -22,6 +22,7 @@ type UserLocation = {
 };
 
 type FacilityMapProps = {
+  selectedTypes: FacilityType[];
   facilities: FacilityWithDistance[];
   language: Language;
   userLocation: UserLocation | null;
@@ -121,31 +122,6 @@ function MapController({
   return null;
 }
 
-const markerEmojiByType = {
-  pedestrian_bin: '🗑️',
-  dog_waste_bag_box: '🐾',
-  public_toilet: '🚻',
-  riverside_toilet: '🌊',
-  family_friendly_toilet: '🚼',
-  drinking_fountain: '🚰',
-  timed_collection_point: '♻️',
-  direct_drinking_station: '🚰',
-  used_clothing_recycling_box: '👕',
-  lactation_room: '🍼',
-  motorcycle_inspection_station: '🏍️',
-  electric_motorcycle_charging_station: '🔌',
-  commercial_ev_charging_swap_station: '🔋',
-  gas_lpg_station: '⛽',
-  designated_smoking_area: '⌖',
-  announced_no_smoking_place: '🚭',
-  community_recycling_station: '🏘️',
-  clean_needle_exchange_service_point: '🏥',
-  protected_tree: '🌳',
-  pay_taipei_cardless_parking_lot: '🅿️',
-  green_space_adoption_record: 'GS',
-  accessible_public_parking_facility: '♿',
-} satisfies Record<FacilityType, string>;
-
 function useChunkedFacilities(facilities: FacilityWithDistance[]) {
   const [renderedFacilities, setRenderedFacilities] = useState(() =>
     facilities.slice(0, INITIAL_MARKER_BATCH_SIZE),
@@ -187,6 +163,7 @@ function useChunkedFacilities(facilities: FacilityWithDistance[]) {
 }
 
 export function FacilityMap({
+  selectedTypes,
   facilities,
   language,
   userLocation,
@@ -437,7 +414,7 @@ export function FacilityMap({
           );
         })}
       </MapContainer>
-      <MapLegend t={t} />
+      <MapLegend t={t} language={language} selectedTypes={selectedTypes} hasUserLocation={Boolean(userLocation)} />
     </section>
   );
 }
