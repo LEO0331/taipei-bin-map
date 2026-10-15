@@ -1,0 +1,33 @@
+import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { normalizeCurrentBusStops, normalizeBusIdentifier, convertCurrentBusStops } from './convertCurrentBusStops';
+import { fetchTdxPages, decodeTaipeiBusPayload } from './fetchCurrentBusStops';
+import { compareBusStops } from './compareBusStopSources';
+import { buildDecisionImpact } from './buildBinPolicyImpactReport';
+import type { PolicyPoint } from '../src/lib/binPolicyDecision';
+
+const row = (id: unknown, lon: unknown = '121.52', lat: unknown = '25.03') => ({ id, name: '站位', address: '測試址', lon, lat, bearing: 'N', version: 1 });
+const payload = (rows: unknown[]) => ({ EssentialInfo: { CoordinateSystem: 'WGS84', UpdateTime: '2026/10/15 13:03:04' }, BusInfo: rows });
+const point = (id: string, longitude = 121.52): PolicyPoint => ({ id, sourceRecord: id, sourceId: 'bus', name: '站位', district: '中正區', latitude: 25.03, longitude, precision: 'WGS84' });
+describe('current authoritative bus source', () => {
+  it('normalizes numeric source identifiers without fabricating missing identifiers', () => { expect(normalizeBusIdentifier(12)).toBe('12'); expect(normalizeBusIdentifier(' 0012 ')).toBe('0012'); expect(normalizeBusIdentifier(null)).toBeNull(); });
+  it('retains original source records and uses polygon district matching', () => { const result = normalizeCurrentBusStops(payload([row(12)]), () => '中正區'); expect(result.references[0].district).toBe('中正區'); expect(result.evidence[0].raw).toEqual(row(12)); });
+  it('rejects an undeclared or incompatible coordinate system', () => { expect(() => normalizeCurrentBusStops({ ...payload([]), EssentialInfo: { CoordinateSystem: 'TWD97' } }, () => '中正區')).toThrow(); });
+  it('excludes missing and reversed coordinates', () => { const result = normalizeCurrentBusStops(payload([row(1, '', null), row(2, 25, 121)]), () => '中正區'); expect(result.quality.invalidCoordinates).toBe(2); });
+  it('excludes points outside an unambiguous Taipei district', () => { expect(normalizeCurrentBusStops(payload([row(1)]), () => null).references).toHaveLength(0); });
+  it('collapses equal coordinates deterministically while retaining distinct platform evidence', () => { const a = normalizeCurrentBusStops(payload([row(2), row(1)]), () => '中正區'); const b = normalizeCurrentBusStops(payload([row(1), row(2)]), () => '中正區'); expect(a.references).toEqual(b.references); expect(a.quality.duplicateCoordinates).toBe(1); });
+  it('excludes conflicting identities instead of selecting an arbitrary coordinate', () => { expect(normalizeCurrentBusStops(payload([row(1), row(1,121.53)]), () => '中正區').quality.conflictingIdentifiers).toBe(2); });
+  it('does not accept route-specific Stop rows as physical StopLocation rows', () => { expect(() => normalizeCurrentBusStops([{ StopUID: 'TPE1' }], () => '中正區')).toThrow(); });
+  it('rejects truncated gzip payloads', () => { expect(() => decodeTaipeiBusPayload(Buffer.from([31,139,0]))).toThrow(); });
+  it('collects every TDX page with an explicit resource unit', async () => { const offsets: number[] = []; const rows = await fetchTdxPages('Station', 'test-token', async url => { const skip = Number(new URL(url).searchParams.get('$skip')); offsets.push(skip); return new Response(JSON.stringify(skip ? [] : [{ StationUID: 'TPE1' },{ StationUID: 'TPE2' }])); }, 2); expect(rows).toHaveLength(2); expect(offsets).toEqual([0,2]); });
+  it('fails closed when a TDX server repeats a full page', async () => { await expect(fetchTdxPages('Stop','test',async () => new Response(JSON.stringify([{ StopUID:'TPE1' }])),1)).rejects.toThrow('Repeated'); });
+  it('rejects Station responses when Stop identity was requested', async () => { await expect(fetchTdxPages('Stop','test',async () => new Response(JSON.stringify([{StationUID:'TPE1'}])))).rejects.toThrow('identity schema'); });
+  it('fails an unauthorized TDX request without emitting credentials', async () => { await expect(fetchTdxPages('Station','private-token',async () => new Response('Unauthorized',{status:401}))).rejects.toThrow('TDX Station HTTP 401'); });
+  it('retains an unknown source publication timestamp rather than using retrieval time', () => { const result=normalizeCurrentBusStops({EssentialInfo:{CoordinateSystem:'WGS84'},BusInfo:[row(1)]},()=> '中正區');expect(result.sourceUpdatedAt).toBeNull(); });
+  it('does not match old and new references by name alone', () => { expect(compareBusStops([point('old')],[point('new',121.55)]).matches).toHaveLength(0); });
+  it('reports nearby coordinates only as possible matches', () => { expect(compareBusStops([point('old')],[point('new',121.52001)]).matches[0].classification).toBe('possible_spatial_match'); });
+  it('does not force an ambiguous one-to-many spatial relationship', () => {const result=compareBusStops([point('old')],[point('new1'),point('new2',121.52001)]);expect(result.matches).toHaveLength(0);expect(result.ambiguous).toHaveLength(1);});
+  it('produces the same source comparison independently of row order', () => {const old=[point('a'),point('b',121.6)],next=[point('x'),point('y',121.6)];expect(compareBusStops(old,next)).toEqual(compareBusStops([...old].reverse(),[...next].reverse()));});
+  it('reproduces proposed reference points from the frozen official source', () => {const published=JSON.parse(readFileSync('public/data/bin-policy/bus-proposed.json','utf8'));const normalized=convertCurrentBusStops(`data/raw/bin-policy/bus-current/${published.versionId}`,'data/raw/bin-policy/v1-14c24bcdbade/districts.zip');expect(normalized.references).toEqual(published.references);expect(normalized.quality).toEqual(published.quality);});
+  it('runs old and proposed sources with identical bins and model parameters', () => { const parameters = { district:'中正區',radius:100,count:1,separation:0,unitCost:null,budget:null }; const result = buildDecisionImpact([], [point('old')],[point('new',121.53)],parameters); expect(result.old.parameters).toEqual(result.proposed.parameters); expect(result.methodology).toBe('greedy-equal-reference-coverage-v1'); expect(result.interpretation).toBe('data_version_sensitivity_not_policy_effect'); });
+});

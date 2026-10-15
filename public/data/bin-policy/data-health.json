@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "v1-14c24bcdbade",
+  "generatedAt": "2026-10-15T06:53:30.457Z",
+  "published_at": null,
+  "last_checked_at": "2026-10-15T06:53:27.733Z",
+  "reconciliation_status": "unresolved",
+  "sources": [
+    {
+      "source_id": "bins",
+      "name": "臺北市行人專用清潔箱",
+      "resource_id": "267d550f-c6ec-46e0-b8af-fd5a464eb098",
+      "sha256": "ff3cf5528c057958f89871aa5300fc633b02d0f7b37131ab29d5ddc2f8e2370d",
+      "source_updated_at": "2026-09-30T15:55:35+08:00",
+      "retrieved_at": "2026-10-15T06:53:28.171Z",
+      "validated_at": "2026-10-15T06:53:30.457Z",
+      "last_checked_at": "2026-10-15T06:53:27.733Z",
+      "last_detected_change_at": null,
+      "validation_status": "valid",
+      "stale": false,
+      "known_limitations": [
+        "Main resource only; separate 130-location resource is not merged. Operational status unverified.",
+        "Publication event is not recorded; published_at is unknown."
+      ]
+    },
+    {
+      "source_id": "bus",
+      "name": "台北市公車站位-shp97",
+      "resource_id": "dfd68d8e-d3b9-44df-b614-8850c103239f",
+      "sha256": "353511da19a0b8d522555a7c2e1e45772c044812b565a3872a2d2aea377c4dc4",
+      "source_updated_at": "2021-04-11T19:47:33+08:00",
+      "retrieved_at": "2026-10-15T06:53:28.498Z",
+      "validated_at": "2026-10-15T06:53:30.457Z",
+      "last_checked_at": "2026-10-15T06:53:27.733Z",
+      "last_detected_change_at": null,
+      "validation_status": "warning",
+      "stale": true,
+      "known_limitations": [
+        "Dated reference geometry; not current passenger demand or installation permission. Geographic coordinates retained without second projection.",
+        "Publication event is not recorded; published_at is unknown.",
+        "Source publication date is unknown or more than 365 days old; this threshold is a warning, not proof of inaccuracy."
+      ]
+    },
+    {
+      "source_id": "districts",
+      "name": "臺北市區界圖_20220915",
+      "resource_id": "d8b7eb29-136f-49fc-b14b-3489d3656122",
+      "sha256": "77bcc347b503b8ff8a43f7e1afaaedb18877a6222282587b145adaba69afd2d9",
+      "source_updated_at": "2024-09-16T15:17:18+08:00",
+      "retrieved_at": "2026-10-15T06:53:28.858Z",
+      "validated_at": "2026-10-15T06:53:30.457Z",
+      "last_checked_at": "2026-10-15T06:53:27.733Z",
+      "last_detected_change_at": null,
+      "validation_status": "warning",
+      "stale": true,
+      "known_limitations": [
+        "Exact polygon containment only; ambiguous or outside points excluded. Boundary dataset dates differ from bus and bin snapshots.",
+        "Publication event is not recorded; published_at is unknown.",
+        "Source publication date is unknown or more than 365 days old; this threshold is a warning, not proof of inaccuracy."
+      ]
+    }
+  ]
+}

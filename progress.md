@@ -5,6 +5,24 @@
 **Last Updated:** 2026-10-15 Asia/Taipei
 **Active Feature:** None
 
+## 2026-10-15 — Bin policy v1.1 implementation and verification
+
+- PR handoff: implementation commits pushed to origin/codex/bin-policy-v1-1. Connected GitHub create-PR call returned HTTP403 Resource not accessible by integration; **no PR created**, no merge/deployment. Complete draft description and manual compare link are saved in docs/bin-policy-v1.1-pr.md. Repository permissions must be resolved by its maintainer; no credential bypass attempted.
+
+- Dedicated `codex/bin-policy-v1-1` branch, reviewable staged commits; no main merge or production deployment. Existing `analysis.json` and `src/lib/binPolicyDecision.ts` are byte-for-byte unchanged from the main baseline.
+- Reconciliation preserves all 2,008 input rows and versioned JSON/CSV/summary. 576 confirmed / 42 probable relationships; 535 historical-only, 22 current-only, 13 possible location changes, 23 ambiguous groups, 130 different-scope rows and two invalid records remain distinct. Zero in the specific unresolved category does not resolve the remaining 725 non-confirmed/non-probable relationships. Tourist file rows describe named places with notes totalling 940 處, not verified physical-bin counts. Separate 806-group/1,612-bin announcement is not combined.
+- Added four-source read-only monitor, safe official portal JSON metadata parser, stable Issue fingerprint, weekly/manual workflow and actual retained monitor report: HTTP 200 for all four, unchanged hashes/counts. Review-only publication checks hashes/identity/schema/coordinates/completeness, blocks filename and same-hash metadata bypasses, preserves archive provenance and regenerates associated reports before drafting a PR. Approval examples/tests are explicitly test-only, not real source approval.
+- Newer official bus feed frozen: 5,374 raw / 3,453 accepted Taipei coordinates; 1,916 outside/ambiguous and five duplicate-coordinate exclusions retained. Audited 2021 default remains unchanged. Fixed 中正區/300m/5/50m-separation sensitivity gives old baseline135/223 +52 versus proposed129/218 +53; these are different populations, not intervention effects. TDX endpoints returned401 without credentials; optional adapter is tested only.
+- Added small bilingual health/reconciliation/source-comparison panels, lazy audit loading, source-version association guards, explicit unknown dates, separate successful-retrieval events and offline/tile-failure notices. No paid provider/key, dependencies or unrelated dashboard behavior changes. Shared/public policy maps remain standard OSM; stable production-preview browser diagnostics loaded tiles and five candidates.
+- Final evidence: npm ci succeeded; **186 unit/component/GIS/governance tests**, **122 full desktop/mobile E2E cases**, **two production-preview offline cases**, TypeScript/build and `git diff --check` passed. Independent review findings were fixed and regression-tested. Workflow YAML manually inspected; local YAML/actionlint parser unavailable; GitHub jobs, Issue/PR permissions and protected environment were not dispatched/configured by this task. A pre-existing high dependency advisory remains out of scope.
+- Architecture, commands, report locations, verification details, decision table and v1.2 boundaries: `docs/bin-policy-v1.1-audit.md`, governance, reconciliation and bus-migration guides. Run `npm run dev` and visit `#/bin-policy`; use alternate PLAYWRIGHT_PORT if5173 is occupied. Screenshots are generated under ignored test-results; no public deployment preview is claimed.
+
+## 2026-10-15 — Bin policy v1.1 baseline
+
+- Clean `origin/main` `cfa0fb1` includes PR #11 and #13; created `codex/bin-policy-v1-1` without modifying main. Reviewed source manifests, GIS importer, allocation model, PWA and route tests. No existing workflow directory.
+- Baseline: npm ci successful (one existing high advisory); 102 unit/component tests, TypeScript/build and 108 desktop/mobile E2E tests passed, port 5206 / two workers. No standalone lint command configured.
+- Implementation plan and backward-compatible sidecar contract boundary: `docs/bin-policy-v1.1-audit.md`. Current default and allocation methodology remain unchanged pending reviewed migration.
+
 ## 2026-10-15 — Contextual map legend
 
 - Replaced the fixed full-height legend with a native keyboard-accessible disclosure in the top-right corner. Only selected facility types and a confirmed user-location marker are explained; an empty map has no legend. Desktop opens initially, mobile starts collapsed; manual toggling is retained during selection and language changes.

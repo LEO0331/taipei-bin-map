@@ -7,6 +7,14 @@
     "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
+    "data:reconcile:bins": "tsx scripts/reconcileBinSources.ts",
+    "data:monitor:bin-policy": "tsx scripts/monitorBinPolicySources.ts",
+    "data:prepare:bin-policy": "tsx scripts/prepareBinPolicyPublication.ts",
+    "data:health:bin-policy": "tsx scripts/buildBinPolicyHealth.ts",
+    "data:fetch:bus-current": "tsx scripts/fetchCurrentBusStops.ts",
+    "data:convert:bus-current": "tsx scripts/convertCurrentBusStops.ts",
+    "data:compare:bus-policy": "tsx scripts/buildBinPolicyImpactReport.ts",
+    "test:policy-preview": "playwright test --config=tests/preview/playwright.config.cjs",
     "data:fetch:bin-policy": "tsx scripts/fetchBinPolicySources.ts",
     "data:convert:bin-policy": "tsx scripts/convertBinPolicySources.ts",
     "dev": "vite",

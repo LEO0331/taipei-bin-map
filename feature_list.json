@@ -1,6 +1,14 @@
 {
   "features": [
     {
+      "id": "feat-043",
+      "name": "Bin policy v1.1 data governance and bus modernization",
+      "description": "One bounded upgrade: reproducible reconciliation, non-publishing source monitoring, reviewed publication, authoritative bus-source comparison and bilingual data health while preserving the v1 allocation method.",
+      "dependencies": ["feat-041"],
+      "status": "done",
+      "evidence": "Stages 0–5 on codex/bin-policy-v1-1: reproducible conservative reconciliation of 1197/681/130 source rows; four-source read-only portal/hash/schema monitoring; exact-hash reviewed publication with legacy manifest/metadata guards; frozen newer official bus comparison and same-method sensitivity, retaining 2021 default; bilingual health/reconciliation panels and offline/tile-failure handling. npm ci, 186 unit/component/GIS/governance tests, build, 122 desktop/mobile E2E cases and two production-preview offline cases passed. Actual four-source HTTP200 monitoring unchanged; TDX401 without credentials. GitHub-hosted workflows/permissions not exercised locally. No source adoption, main merge or production deployment. See docs/bin-policy-v1.1-audit.md."
+    },
+    {
       "id": "feat-042",
       "name": "Compact contextual map legend",
       "description": "Collapsible top-right legend with selected facility symbols and confirmed user location only; desktop opens initially and mobile starts collapsed.",

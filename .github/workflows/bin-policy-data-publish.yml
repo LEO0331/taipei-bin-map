@@ -1,0 +1,80 @@
+name: Prepare reviewed bin policy data PR
+on:
+  workflow_dispatch:
+    inputs:
+      approval_file:
+        description: 'Committed reviewed approval JSON path (see governance document)'
+        required: true
+        type: string
+      raw_directory:
+        description: 'Optional committed approved raw snapshot directory; empty downloads exact approved hashes'
+        required: false
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: bin-policy-data-publication
+  cancel-in-progress: false
+jobs:
+  prepare-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: bin-policy-data-review
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Verify approval is committed and prepare isolated review bundle
+        env:
+          APPROVAL_FILE: ${{ inputs.approval_file }}
+          RAW_DIRECTORY: ${{ inputs.raw_directory }}
+        run: |
+          git ls-files --error-unmatch -- "$APPROVAL_FILE"
+          if [ -n "$RAW_DIRECTORY" ]; then
+            git ls-files --error-unmatch -- "$RAW_DIRECTORY/sources.json"
+            npx tsx scripts/prepareBinPolicyPublication.ts "$APPROVAL_FILE" test-results/publication-review "$RAW_DIRECTORY"
+          else
+            npx tsx scripts/prepareBinPolicyPublication.ts "$APPROVAL_FILE" test-results/publication-review
+          fi
+      - name: Stage only reviewed files on a new non-deployment branch
+        run: |
+          git switch -c "codex/bin-policy-data-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          npx tsx scripts/stageBinPolicyPublication.ts test-results/publication-review
+          npx tsx scripts/reconcileBinSources.ts
+          npx tsx scripts/buildBinPolicyImpactReport.ts
+          npx tsx scripts/buildBinPolicyHealth.ts
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e -- --workers=2
+      - run: git diff --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bin-policy-publication-review
+          path: test-results/publication-review
+          if-no-files-found: warn
+      - name: Push review branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- public/data/bin-policy data/raw/bin-policy data/reports/bin-policy
+          git diff --cached --quiet && exit 0
+          git commit -m 'Require review before revised source data reaches deployment' -m 'Validated exact approved hashes and produced data-version sensitivity evidence.' -m 'Constraint: Main is never a push target; independent human review is required.' -m 'Tested: Unit tests, production build and Chromium desktop/mobile regression suite'
+          git push origin "HEAD:refs/heads/codex/bin-policy-data-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = `codex/bin-policy-data-${context.runId}-${process.env.GITHUB_RUN_ATTEMPT}`;
+            const fs = require('fs');
+            const approval = JSON.parse(fs.readFileSync('test-results/publication-review/approval.json','utf8'));
+            const pr = await github.rest.pulls.create({...context.repo,base:'main',head:branch,draft:true,title:'Review approved bin policy source revision',body:`Exact source hashes and declared reviews: ${approval.review_url}.\n\nThe branch includes source-change and sensitivity reports. Data-version differences are not intervention effects. Please independently review source scope, geometry, metadata, reconciliation, dashboard behavior and all relevant scenario parameters before merging. This workflow does not merge or approve its own PR.`});
+            await core.summary.addLink('Draft publication review PR',pr.data.html_url).write();

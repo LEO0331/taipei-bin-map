@@ -763,6 +763,16 @@ a:focus-visible {
   font-style: normal;
 }
 
+.policy-governance details { margin-block: 0.8rem; }
+.policy-governance summary { cursor: pointer; font-weight: 750; }
+.policy-governance code { overflow-wrap: anywhere; }
+.policy-health-dates { display: grid; grid-template-columns: minmax(8rem, 1fr) minmax(0, 2fr); gap: 0.5rem 1rem; }
+.policy-health-dates dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .policy-health-dates { grid-template-columns: 1fr; gap: 0.3rem; }
+  .policy-health-dates dd { margin-bottom: 0.5rem; }
+}
+
 .map-legend span {
   display: inline-flex;
   align-items: center;

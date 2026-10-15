@@ -4,12 +4,20 @@ import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import Papa from 'papaparse';
 import iconv from 'iconv-lite';
+import { policySources } from './binPolicySources';
+import { assertArchiveMetadata } from './binPolicyManifest';
 import { unzip, parseDbf, parseShp, normalizeXY, inPolygon, archiveFileTimestamps } from './binPolicyGis';
 import { distance, validPoint, type PolicyPoint } from '../src/lib/binPolicyDecision';
 
 export function buildPolicySnapshot(directory: string) {
-  type SourceInput = { id: string; filename: string; sha256: string; [key: string]: unknown };
-  const sources = (JSON.parse(readFileSync(join(directory, 'sources.json'), 'utf8')) as SourceInput[]).map(source => ({...source,archiveFileTimestamps:source.filename.endsWith('.zip')?archiveFileTimestamps(readFileSync(join(directory, source.filename))):null}));
+  type SourceInput = { id: string; filename: string; sha256: string; resourceId: string; resourceUpdatedAt: string | null; fetchedAt: string; httpLastModified?: string | null; [key: string]: unknown };
+  const manifest = JSON.parse(readFileSync(join(directory, 'sources.json'), 'utf8')) as SourceInput[];
+  if (!Array.isArray(manifest) || manifest.length !== policySources.length || new Set(manifest.map(source => source?.id)).size !== policySources.length) throw new Error('Unexpected policy source manifest');
+  for (const expected of policySources) {
+    const source = manifest.find(item => item?.id === expected.id);
+    if (!source || source.filename !== expected.filename || source.resourceId !== expected.resourceId || !/^[a-f0-9]{64}$/.test(source.sha256)) throw new Error(`Source manifest identity or filename mismatch: ${expected.id}`);
+  }
+  const sources = manifest.map(source => ({...source,archiveFileTimestamps:source.filename.endsWith('.zip')?archiveFileTimestamps(readFileSync(join(directory, source.filename))):null}));
   for (const source of sources) if (createHash('sha256').update(readFileSync(join(directory, source.filename))).digest('hex') !== source.sha256) throw new Error(`Source hash mismatch: ${source.id}`);
   const districts = unzip(readFileSync(join(directory, 'districts.zip')));
   const dbf = Object.entries(districts).find(([key]) => key.endsWith('.dbf'))?.[1];
@@ -78,12 +86,27 @@ export function buildPolicySnapshot(directory: string) {
   return { schemaVersion: 1, snapshotId, generatedAt: new Date().toISOString(), sources, bins, references, quality: { binSourceRows: binCsv.data.length, validBins: bins.length, referenceSourceRows: busRows.length, validReferences: references.length, duplicateBins, duplicateReferences, nearDuplicateReferences, excluded, binEvidence, referenceEvidence, transformations: [...transformations], boundaryPrj: Object.entries(districts).find(([key]) => key.endsWith('.prj'))?.[1].toString('utf8') ?? null, busPrjPresent: Object.keys(bus).some(key => key.endsWith('.prj')), previousBinSnapshot: { records: previous.length, metadata: JSON.parse(readFileSync(resolve('public/data/bins.metadata.json'), 'utf8')), sourceRowDifference: binCsv.data.length - previous.length } } };
 }
 
+export function writePolicySnapshot(directory: string, output?: string) {
+  const snapshot = buildPolicySnapshot(resolve(directory));
+  const publishedPath = resolve('public/data/bin-policy/analysis.json');
+  const previous = JSON.parse(readFileSync(publishedPath, 'utf8'));
+  if (!output && snapshot.snapshotId !== previous.snapshotId) throw new Error('New source revisions require an approved publication review bundle; production snapshot retained');
+  if (!output) assertArchiveMetadata(previous.sources, snapshot.sources);
+  const target = output ? resolve(output) : publishedPath;
+  const publicRoot = resolve('public');
+  if (output && (target.toLowerCase() === publicRoot.toLowerCase() || target.toLowerCase().startsWith(`${publicRoot.toLowerCase()}/`) || target.toLowerCase().startsWith(`${publicRoot.toLowerCase()}\\`))) throw new Error('Explicit converter output must not target production public data');
+  const parent = resolve(target, '..');
+  mkdirSync(parent, { recursive: true });
+  const temporary = `${target}.${process.pid}-${createHash('sha256').update(String(Math.random())).digest('hex').slice(0,8)}.tmp`;
+  writeFileSync(temporary, JSON.stringify(snapshot));
+  renameSync(temporary, target);
+  return snapshot;
+}
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   const directory = process.argv[2];
   if (!directory) throw new Error('Supply a versioned raw snapshot directory');
-  const snapshot = buildPolicySnapshot(resolve(directory));
-  mkdirSync(resolve('public/data/bin-policy'), { recursive: true });
-  writeFileSync(resolve('public/data/bin-policy/analysis.json.tmp'), JSON.stringify(snapshot));
-  renameSync(resolve('public/data/bin-policy/analysis.json.tmp'), resolve('public/data/bin-policy/analysis.json'));
+  const outputAt = process.argv.indexOf('--output');
+  if (outputAt >= 0 && !process.argv[outputAt + 1]) throw new Error('Supply --output <review-file.json>');
+  const snapshot = writePolicySnapshot(directory, outputAt >= 0 ? process.argv[outputAt + 1] : undefined);
   console.log(snapshot.snapshotId, snapshot.bins.length, snapshot.references.length);
 }

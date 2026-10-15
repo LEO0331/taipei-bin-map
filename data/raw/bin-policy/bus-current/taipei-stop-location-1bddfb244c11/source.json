@@ -1,0 +1,23 @@
+{
+  "id": "taipei-stop-location",
+  "datasetId": "ce7d3d2b-096f-4f2d-b7cf-cdd6a529f35c",
+  "datasetUrl": "https://data.taipei/dataset/detail?id=ce7d3d2b-096f-4f2d-b7cf-cdd6a529f35c",
+  "downloadUrl": "https://tcgbusfs.blob.core.windows.net/blobbus/GetStopLocation.gz",
+  "provider": "臺北市公共運輸處",
+  "unit": "StopLocation physical directional platform; exact coordinates collapsed for equal-location coverage",
+  "license": "Government Data Open License 1.0 (dataset public/free)",
+  "licenseUrl": "https://data.gov.tw/license",
+  "metadataUpdatedAt": "2025-11-24T16:35:04+08:00",
+  "metadataVerifiedAt": "2026-10-15",
+  "updateFrequency": "Descriptor CSV: daily; dataset page: irregular; actual source UpdateTime retained",
+  "documentationUrl": "https://pto.gov.taipei/News_Content.aspx?n=A1DF07A86105B6BB&s=55E8ADD164E4F579",
+  "versionId": "taipei-stop-location-1bddfb244c11",
+  "sha256": "1bddfb244c11c4a7e072d11929065f8b04403d3d51cb46281c6532eed84349ff",
+  "retrieved_at": "2026-10-15T06:21:33.287Z",
+  "source_updated_at": "2026/10/15 13:03:04",
+  "sourceTimestampTimezone": "Source Taipei local time; no offset in payload",
+  "httpLastModified": "Thu, 15 Oct 2026 06:03:10 GMT",
+  "etag": "0x8DF2A81FDF2A483",
+  "sourceRows": 5374,
+  "approvalStatus": "review_required"
+}
