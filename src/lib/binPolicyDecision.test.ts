@@ -1,0 +1,25 @@
+import { describe, expect, it } from 'vitest';
+import { allocateBins, distance, validPoint, type PolicyParameters, type PolicyPoint } from './binPolicyDecision';
+import { validatePolicySnapshot } from './binPolicyData';
+const p = (id: string, longitude = 121.5, latitude = 25): PolicyPoint => ({ id, longitude, latitude, name: id, district: '大安區', sourceId: 'bus', sourceRecord: id, precision: 'official' });
+const params: PolicyParameters = { district: '', radius: 200, count: 3, separation: 0, unitCost: null, budget: null };
+describe('bin allocation coverage', () => {
+  it('calculates Haversine distance in metres', () => { expect(distance(p('a'), p('b', 121.501))).toBeCloseTo(100.78, 0); });
+  it('includes a reference exactly on the radius boundary', () => { const a=p('a'), b=p('b',121.501); expect(allocateBins([a],[b],{...params,radius:distance(a,b)}).baselineCovered).toBe(1); });
+  it('rejects missing and out-of-range coordinates', () => { expect(validPoint({ latitude: null, longitude: 121.5 })).toBe(false); expect(validPoint(p('a',0))).toBe(false); });
+  it('excludes invalid spatial inputs from the denominator', () => { expect(allocateBins([], [p('a'),p('bad',0)],params).referenceCount).toBe(1); });
+  it('uses stable IDs to break equal-gain ties independent of input order', () => { expect(allocateBins([], [p('z',121.6),p('a')],{...params,count:1}).selected[0].point.id).toBe('a'); });
+  it('counts overlapping reference coverage once', () => { const result=allocateBins([],[p('a'),p('b',121.501),p('c',121.502)],params); expect(result.incrementalCoverage).toBe(3); expect(result.selected.reduce((n,c)=>n+c.incrementalCoverage,0)).toBe(3); });
+  it('respects maximum candidate count', () => { expect(allocateBins([],[p('a'),p('b',121.6)],{...params,count:1}).selected).toHaveLength(1); });
+  it('limits selected candidates by the illustrative budget', () => { expect(allocateBins([],[p('a'),p('b',121.6)],{...params,unitCost:100,budget:100}).selected).toHaveLength(1); });
+  it('selects no candidates when budget is zero', () => { expect(allocateBins([],[p('a')],{...params,unitCost:100,budget:0}).selected).toHaveLength(0); });
+  it('keeps baseline fixed when the scenario bin count changes', () => { const result=allocateBins([p('existing')],[p('a'),p('b',121.6)],params); expect(result.baselineCovered).toBe(1);expect(result.postCovered).toBe(2); });
+  it('returns no suggestion for zero references', () => { expect(allocateBins([],[],params).selected).toHaveLength(0); });
+  it('returns no suggestion when all references are covered', () => { expect(allocateBins([p('bin')],[p('a')],params).selected).toHaveLength(0); });
+  it('returns baseline only for scenario A with zero additions', () => { expect(allocateBins([],[p('a')],{...params,count:0}).postCovered).toBe(0); });
+  it('reports duplicate-coordinate candidate exclusion', () => { expect(allocateBins([],[p('a'),p('b')],params).exclusions[0].reason).toBe('duplicate_candidate_coordinate'); });
+  it('excludes candidates violating minimum distance from listed bins', () => { expect(allocateBins([p('bin')],[p('a',121.503)],{...params,separation:500}).candidateCount).toBe(0); });
+  it('includes bins across district borders in baseline coverage', () => { expect(allocateBins([{...p('bin'),district:'信義區'}],[p('a')],{...params,district:'大安區'}).baselineCovered).toBe(1); });
+  it('rejects invalid numeric assumptions', () => { expect(()=>allocateBins([],[],{...params,radius:NaN})).toThrow(); });
+  it('rejects malformed snapshot input', () => { expect(()=>validatePolicySnapshot({})).toThrow(); });
+});

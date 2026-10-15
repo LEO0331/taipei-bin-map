@@ -42,6 +42,7 @@ flowchart LR
 
 | 路由 | 模組 | 使用界線 |
 | --- | --- | --- |
+| `#/bin-policy` | 清潔箱配置決策支援 | 以歷史公車參考點做直線覆蓋貪婪篩選；候選點須現勘，不是核可設置位置。 |
 | `#/cooling-comfort-spots` | 臺北市涼適點 | 設施、開放時間與設備是來源快照，不代表即時可用或緊急避難所。 |
 | `#/public-school-sports-venues` | 公立學校運動場地搜尋 | 校園開放不表示可預約、存在特定運動場地或目前有空檔。 |
 | `#/bulky-waste-collection-booking` | 巨大廢棄物清運預約 | 預約時間與電話不表示即時受理。 |
@@ -83,6 +84,7 @@ npm run data:convert:unused-medicine-collection-stations
 npm run data:convert:industrial-waste-reuse-operators
 npm run data:convert:certified-bathhouses
 npm run data:convert:recycling-analytics
+npm run data:convert:bin-policy -- data/raw/bin-policy/v1-14c24bcdbade
 ```
 
 部分資料集需要先執行擷取指令，將官方來源複製或取得為本機快照；完整指令請見 `package.json`。轉換後請查看 `public/data/conversion-report.json` 與各模組摘要，了解來源專屬的品質檢查結果。
@@ -115,6 +117,9 @@ $env:PLAYWRIGHT_PORT='5175'; npm run test:e2e
 詳細內容請見[部署指南](docs/deployment.zh-Hant.md)。
 
 ## 延伸文件
+
+- [清潔箱配置決策支援 MVP 與更新程序](docs/bin-policy-mvp.zh-Hant.md)
+- [政策模組來源稽核與演算法方法](docs/bin-policy-methodology.md)
 
 - [決策應用與營運建議](docs/dashboard-decision-making.zh-Hant.md)
 - [系統設計](docs/system-design.zh-Hant.md)

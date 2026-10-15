@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Last Updated:** 2026-08-13 Asia/Taipei
+**Last Updated:** 2026-10-15 Asia/Taipei
 **Active Feature:** None
 
 ## Status
@@ -239,6 +239,17 @@
 - [x] `./init.sh` passed 53 unit/converter tests, production build, and 60 desktop/mobile Playwright tests after the pay.taipei parking layer.
 
 ## Notes for Next Session
+
+## Public bin allocation decision support MVP — 2026-10-15
+
+- Feature `feat-041`, branch `codex/bin-policy-mvp`; original workspace clean. Added isolated `#/bin-policy` lazy route and policy-specific map, leaving shared discovery behavior and older source snapshots intact.
+- Phase 0: read repository architecture and source metadata; npm ci, baseline 72 tests and build passed. Baseline full E2E had 18 obsolete failures expecting collapsed data-limit text to be visible; updated nine test flows to open the disclosure first. No corresponding product behavior was changed.
+- Phase 1: official refreshed main bin CSV has 681 source rows / 679 valid unique coordinates, versus original 1197-record local snapshot. Official bus archive has 3407 features / 3395 accepted references, 11 duplicate-coordinate candidates and one outside/ambiguous district exclusion. Added official district polygons for exact point containment; five near-duplicate reference pairs within 5m are reported without merging. Original CSV/ZIP, hashes, retrieval/resource dates, raw input evidence, archive timestamps and CRS discrepancy are retained separately. No Metro OD flows, petition locations or IoT sensors integrated.
+- Phase 2: pure `greedy-equal-reference-coverage-v1`, Haversine inclusive-radius coverage, stable-ID ties, no double-counting, budget/count/separation limits, cross-boundary baseline bins, baseline and alternate-radius scenario comparisons; unit/GIS regression coverage.
+- Phase 3: bilingual scenario controls, map toggles, ordered numbered field-review candidates and input evidence, baseline uncovered-reference list, JSON/CSV exports with source/method IDs, print briefing, historical-data notice, loading/error/retry/empty states.
+- Phase 4: 97 unit/GIS tests passed; full E2E 102/102 passed on desktop/mobile; final focused policy flow 16/16 passed, including exports and no policy GIS request in ordinary discovery. Production TypeScript/Vite build passed. Screenshots captured via Playwright in test-results; desktop scenarios and mobile geometry reviewed. External map tiles were not fully loaded at capture; point layers and briefing/list were functional.
+- Reproduce: `npm ci`, `npm run data:convert:bin-policy -- data/raw/bin-policy/v1-14c24bcdbade`, `npm test`, `npm run build`, `npm run test:e2e -- --workers=2`, then open `#/bin-policy` in dev/preview.
+- Remaining limits: bus geometry dated 2021, no bus .prj (actual geographic values retained), straight-line/equal-reference proxy only, field/jurisdiction/collection validation required. No new npm dependencies. Initial npm ci reported a pre-existing high advisory; dependency remediation is outside this policy feature.
 
 ## Public school sports navigation cleanup — 2026-09-04
 

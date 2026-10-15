@@ -1,0 +1,15 @@
+import { useEffect, useState } from 'react';
+import L from 'leaflet';
+import { CircleMarker, MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
+import type { PolicyPoint, CandidateEvidence } from '../lib/binPolicyDecision';
+import type { Language } from '../types';
+const candidateIcon = (index: number) => L.divIcon({ className: 'policy-candidate-pin', html: `<span>${index + 1}</span>`, iconSize: [28,28], iconAnchor: [14,14] });
+function Viewport({ references }: { references: PolicyPoint[] }) {
+  const map = useMap();
+  useEffect(() => { if (references.length) map.fitBounds(L.latLngBounds(references.map(p => [p.latitude,p.longitude])).pad(.08),{maxZoom:15,animate:false}); },[map,references]);
+  return null;
+}
+export function BinPolicyMap({ bins, references, candidates, language }: { bins: PolicyPoint[]; references: PolicyPoint[]; candidates: CandidateEvidence[]; language: Language }) {
+  const zh=language==='zh'; const [showBins,setShowBins]=useState(true);const[showRefs,setShowRefs]=useState(false);
+  return <section className="policy-map-section"><div className="policy-map-controls"><label><input type="checkbox" checked={showBins} onChange={e=>setShowBins(e.target.checked)}/>{zh?'既有清潔箱（綠色方位點）':'Listed bins (green points)'}</label><label><input type="checkbox" checked={showRefs} onChange={e=>setShowRefs(e.target.checked)}/>{zh?'公車參考點（灰色點）':'Bus references (grey points)'}</label><span>{zh?'編號方塊：建議現勘參考點':'Numbered squares: field review candidates'}</span></div><MapContainer center={[25.05,121.54]} zoom={12} preferCanvas className="policy-leaflet-map"><TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"/><Viewport references={references}/>{showBins&&bins.map(p=><CircleMarker key={p.id} center={[p.latitude,p.longitude]} radius={3} pathOptions={{color:'#08756d',weight:1,fillOpacity:.75}}><Popup><strong>{zh?'既有清潔箱來源紀錄':'Listed bin record'}</strong><p>{p.name}</p><p>{p.id} · {p.district}</p></Popup></CircleMarker>)}{showRefs&&references.map(p=><CircleMarker key={p.id} center={[p.latitude,p.longitude]} radius={2} pathOptions={{color:'#6b7280',weight:1,fillOpacity:.5}}><Popup><strong>{p.name}</strong><p>{p.sourceRecord} · {p.district}</p><p>{zh?'官方公車站位快照；非乘客流量。':'Official bus location snapshot; not passenger volume.'}</p></Popup></CircleMarker>)}{candidates.map((c,i)=><Marker key={c.point.id} position={[c.point.latitude,c.point.longitude]} icon={candidateIcon(i)}><Popup><strong>{zh?'建議現勘參考點':'Field Review Candidate'} {i+1}</strong><p>{c.point.name} · {c.point.sourceRecord}</p><p>{zh?'新增覆蓋參考點':'Newly covered references'}: {c.incrementalCoverage}</p><p>{zh?'須確認人行空間、權管、清運與現場狀態。':'Verify pedestrian clearance, jurisdiction, collection and on-site conditions.'}</p></Popup></Marker>)}</MapContainer></section>;
+}

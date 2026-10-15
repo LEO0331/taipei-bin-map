@@ -42,6 +42,7 @@ Dedicated directory or discovery routes provide additional source-specific exper
 
 | Route | Module | Important boundary |
 | --- | --- | --- |
+| `#/bin-policy` | Public Bin Allocation Decision Support | Greedy straight-line screening of dated bus reference locations; candidates require field review and are not approved installation sites. |
 | `#/cooling-comfort-spots` | Taipei Cooling & Comfort Spots | Source-listed amenities and hours are not real-time availability or emergency-shelter status. |
 | `#/public-school-sports-venues` | Public School Sports Venue Search | Campus opening is not proof of booking, a specific sport, or a free time slot. |
 | `#/bulky-waste-collection-booking` | Bulky Waste Collection Booking | Booking hours and phone information do not show real-time acceptance. |
@@ -83,6 +84,7 @@ npm run data:convert:unused-medicine-collection-stations
 npm run data:convert:industrial-waste-reuse-operators
 npm run data:convert:certified-bathhouses
 npm run data:convert:recycling-analytics
+npm run data:convert:bin-policy -- data/raw/bin-policy/v1-14c24bcdbade
 ```
 
 Some datasets have separate fetch scripts that copy or retrieve an official source snapshot before conversion. See `package.json` for the complete command list. After conversion, inspect `public/data/conversion-report.json` and each module summary for source-specific quality results.
@@ -115,6 +117,9 @@ The app can be deployed to Vercel, Netlify, or GitHub Pages as a static Vite sit
 See [deployment guide](docs/deployment.en.md).
 
 ## Documentation
+
+- [Bin policy methodology, source audit and refresh process](docs/bin-policy-methodology.md)
+- [Bin policy MVP guide (Traditional Chinese)](docs/bin-policy-mvp.zh-Hant.md)
 
 - [Decision-making and operating advice (Traditional Chinese)](docs/dashboard-decision-making.zh-Hant.md)
 - [System design](docs/system-design.en.md)

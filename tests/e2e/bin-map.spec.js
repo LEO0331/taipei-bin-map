@@ -231,6 +231,7 @@ test.describe('Taipei public amenities map public flows', () => {
     await page.getByRole('button', { name: 'English' }).click();
     await page.getByRole('button', { name: 'Green Space Adoption Records' }).click();
     await expect(page.getByText(`${greenSpaceAdoptionRecordCount} records`)).toBeVisible();
+    await page.locator('.map-data-notices summary').click();
     await expect(page.getByText('Green-space adoption records do not provide official coordinates')).toBeVisible();
     await page.getByRole('combobox', { name: 'Management unit', exact: true }).selectOption(greenSpaceAdoptionSample.managementUnit);
     await page.getByRole('combobox', { name: 'District code', exact: true }).selectOption(greenSpaceAdoptionSample.districtCode);
@@ -326,6 +327,7 @@ test.describe('Taipei public amenities map public flows', () => {
 
     await page.getByRole('button', { name: '機車定檢站' }).click();
     await expect(page.getByText(`${inspectionStationCount} 筆資料`)).toBeVisible();
+    await page.locator('.map-data-notices summary').click();
     await expect(page.getByText('機車定檢站資料未提供經緯度')).toBeVisible();
     await page.getByLabel('廠牌').selectOption('山葉');
     await page.getByLabel('有電話').check();
@@ -351,6 +353,7 @@ test.describe('Taipei public amenities map public flows', () => {
 
     await page.getByRole('button', { name: '電動機車充電站' }).click();
     await expect(page.getByText(`${chargingStationCount} 筆資料`)).toBeVisible();
+    await page.locator('.map-data-notices summary').click();
     await expect(page.getByText('電動機車充電站資料未提供經緯度')).toBeVisible();
     await page.getByLabel('地點分類').selectOption('service_factory');
     await page.getByLabel('縣市').selectOption('臺北市');
@@ -371,6 +374,7 @@ test.describe('Taipei public amenities map public flows', () => {
 
     await page.getByRole('button', { name: 'pay.taipei支援無卡進出停車場' }).click();
     await expect(page.getByText(`${payTaipeiParkingLotCount} 筆資料`)).toBeVisible();
+    await page.locator('.map-data-notices summary').click();
     await expect(page.getByText('pay.taipei支援無卡進出停車場清單提供地址與郵遞區號')).toBeVisible();
     await page.getByRole('combobox', { name: '支援狀態', exact: true }).selectOption(payTaipeiParkingSample.supportStatusCategory);
     await page.getByRole('combobox', { name: '營運單位', exact: true }).selectOption(payTaipeiParkingSample.operatorName);
@@ -391,6 +395,7 @@ test.describe('Taipei public amenities map public flows', () => {
 
     await page.getByRole('button', { name: '營利型電動車充換電站' }).click();
     await expect(page.getByText(`${commercialEvStationCount} 筆資料`)).toBeVisible();
+    await page.locator('.map-data-notices summary').click();
     await expect(page.getByText('營利型電動車充換電站資料未提供經緯度')).toBeVisible();
     await page.getByLabel('服務類型').selectOption(commercialEvSample.serviceType);
     await page.getByLabel('業者').selectOption(commercialEvSample.operatorName);
@@ -482,6 +487,7 @@ test.describe('Taipei public amenities map public flows', () => {
 
     await page.getByRole('button', { name: '社區資源回收站' }).click();
     await expect(page.getByText(`${communityRecyclingStationCount} 筆資料`)).toBeVisible();
+    await page.locator('.map-data-notices summary').click();
     await expect(page.getByText('社區資源回收站資料未提供官方經緯度')).toBeVisible();
     await page.getByLabel('行政區域代碼').selectOption(communityRecyclingSample.districtCode);
     await page.getByRole('combobox', { name: '道路名稱', exact: true }).selectOption(communityRecyclingSample.roadName);
@@ -502,6 +508,7 @@ test.describe('Taipei public amenities map public flows', () => {
 
     await page.getByRole('button', { name: '清潔針具佈點名單' }).click();
     await expect(page.getByText(`${cleanNeedleServicePointCount} 筆資料`)).toBeVisible();
+    await page.locator('.map-data-notices summary').click();
     await expect(page.getByText('清潔針具佈點名單提供地址但未提供官方經緯度')).toBeVisible();
     await page.getByLabel('行政區域代碼').selectOption(cleanNeedleSample.areaCode);
     await page.getByRole('combobox', { name: /^設置項目(?!類別)/ }).selectOption(cleanNeedleSample.serviceItem);
@@ -524,6 +531,7 @@ test.describe('Taipei public amenities map public flows', () => {
 
     await page.getByRole('button', { name: '受保護樹木' }).click();
     await expect(page.getByText(`${protectedTreeCount} 筆資料`)).toBeVisible();
+    await page.locator('.map-data-notices summary').click();
     await expect(page.getByText('受保護樹木地圖使用來源資料中的緯度與經度')).toBeVisible();
     await page.getByLabel('樹種名稱').selectOption(protectedTreeSample.speciesNameZh);
     await page.getByLabel('樹種學名').selectOption(protectedTreeSample.scientificName);
@@ -612,6 +620,7 @@ test.describe('Taipei public amenities map public flows', () => {
 
     await page.getByRole('button', { name: '哺集乳室' }).click();
     await expect(page.getByText(`${lactationRoomCount} 筆資料`)).toBeVisible();
+    await page.locator('.map-data-notices summary').click();
     await expect(page.getByText('哺集乳室資料未提供經緯度')).toBeVisible();
     await page.getByLabel('有位置指引').check();
 
