@@ -42,7 +42,14 @@ npm run test:e2e -- --workers=2
 npm run dev
 ```
 
-重新擷取：`npm run data:fetch:bin-policy`。資料先到 staging，通過 hash、欄位、SHP/DBF 對齊、座標與區界檢查後才發布。失敗時保留上一份有效快照；相同 hash 不覆寫舊擷取時間。若來源內容改變，須先重新查核 `scripts/binPolicySources.ts` 的日期、欄位與說明，再執行 `npm run data:fetch:bin-policy -- --accept-source-revision`。請勿同時執行多個更新程序。服務人員應以畫面顯示的來源日期判斷是否需重新確認，不能把成功建置視為即時資料。
+v1.1 起，更新改為監測與發布分離。`npm run data:monitor:bin-policy -- test-results/bin-policy-monitor` 只檢查，不修改正式資料。`--accept-source-revision` 已不能單獨授權新版本；必須先審查精確雜湊、資源身分、日期、欄位、座標、完整性及決策影響，再以 approval JSON 準備隔離審查包及草稿 PR。程式不會自動合併或發布到主分支。原版本仍可由版本化原檔重建，來源失敗保留既有快照。完整流程見[資料治理指南](bin-policy-data-governance.zh-Hant.md)。
+
+## v1.1 新增證據
+
+- 「資料健康狀態」分開列出來源更新、擷取、驗證、發布及監測時間；未知不冒充即時。
+- 「清潔箱資料對帳」保留 1,197 舊紀錄、681 原始列／679 去重位置、另份 130 列地點及 806 組／1,612 座公告的不同單位。對不上不代表撤除，附檔備註還包含多個「處」。見[對帳與主管機關待確認問題](bin-policy-bin-reconciliation.zh-Hant.md)。
+- 「公車來源版本與敏感度比較」展示較新官方站位快照的品質與同參數比較；2021 來源仍為預設，新版待獨立審查，不混用母體。見[公車來源遷移證據](bin-policy-bus-stop-migration.md)。
+- 既有 A/B/C、候選理由及匯出不變。較大的稽核檔僅在展開時載入；底圖失效不會阻擋清單與匯出。曾在正式預覽成功快取的分析可離線回復，畫面會明示無法確認目前來源狀態；未提供離線底圖下載。
 
 政策 JSON 僅在開啟政策頁時載入，不由一般設施地圖預先載入；PWA 對政策資料採網路優先，離線可回退至曾載入的快取。來源日期與歷史資料提醒始終可見。原始檔與既有共用地圖資料分離。
 

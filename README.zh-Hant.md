@@ -10,7 +10,7 @@
 
 - 預設繁體中文介面，可切換英文；語言偏好只保存在瀏覽器本機。
 - 關鍵字、行政區與來源專屬條件篩選；地址查詢連結；授權後的附近排序。
-- Leaflet 地圖與 CARTO 底圖；大範圍結果採清單優先，避免地圖失去操作性。
+- Leaflet 地圖與標準 OpenStreetMap 底圖；大範圍結果採清單優先，避免地圖失去操作性。
 - 本機 JSON 資料、轉換品質報告與 service worker 離線快取。
 - 響應式卡片、目錄、表格、CSV 匯出、鍵盤操作與行動版介面。
 
@@ -53,6 +53,16 @@ flowchart LR
 
 ## 資料使用原則
 
+### 清潔箱政策 v1.1：資料治理，不是自動換版
+
+政策頁新增資料健康日期、逐筆清潔箱對帳，以及較新官方公車來源與同參數敏感度比較。預設仍保留經稽核的 2021 年參考點，採用新版本須另外明確審查。每週監測只產生報告與去重提醒；獨立發布流程要求已審查的精確雜湊，僅準備非部署分支與草稿 PR，不會自動合併或寫入主分支。
+
+舊地圖 1,197 筆、目前 681 原始列／679 有效去重位置、附檔 130 列命名地點，以及公告 806 組／1,612 座並非同一計數單位。未對應不等於已撤除，附檔也不直接加入主清單。請先閱讀[逐筆對帳與未解釋差異](docs/bin-policy-bin-reconciliation.zh-Hant.md)。
+
+治理架構：官方來源 → 只讀監測／版本化原始檔 → 對帳及版本敏感度 → 精確雜湊審查 → 隔離驗證包 → 草稿 PR → 人工審查。前端持續使用已發布的已知良好快照與原有貪婪 A/B/C 模型。
+
+詳細操作見[資料治理及發布程序](docs/bin-policy-data-governance.zh-Hant.md)、[公車來源遷移證據](docs/bin-policy-bus-stop-migration.md)與[v1.1 稽核紀錄](docs/bin-policy-v1.1-audit.md)。
+
 - 前端只讀取本機靜態 JSON，不會在使用者瀏覽時呼叫臺北市開放資料 API。
 - 轉換時會盡可能保留來源原值；衍生分類會依來源與規則標示。
 - 精確地圖標記只使用通過驗證的官方座標。無座標、地址型或座標異常紀錄仍會保留於目錄中，不會自動地理編碼。
@@ -85,6 +95,10 @@ npm run data:convert:industrial-waste-reuse-operators
 npm run data:convert:certified-bathhouses
 npm run data:convert:recycling-analytics
 npm run data:convert:bin-policy -- data/raw/bin-policy/v1-14c24bcdbade
+npm run data:reconcile:bins
+npm run data:monitor:bin-policy -- test-results/bin-policy-monitor
+npm run data:health:bin-policy -- test-results/bin-policy-monitor/report.json
+npm run data:compare:bus-policy
 ```
 
 部分資料集需要先執行擷取指令，將官方來源複製或取得為本機快照；完整指令請見 `package.json`。轉換後請查看 `public/data/conversion-report.json` 與各模組摘要，了解來源專屬的品質檢查結果。
@@ -95,6 +109,7 @@ npm run data:convert:bin-policy -- data/raw/bin-policy/v1-14c24bcdbade
 npm test
 npm run build
 npm run test:e2e
+npm run test:policy-preview # 先執行 npm run build，驗證已快取資料的離線回復
 ./init.sh
 ```
 

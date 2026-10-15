@@ -10,7 +10,7 @@ The app is static and PWA-ready. It requires no backend, account, database, Goog
 
 - Traditional Chinese by default, with an English interface toggle stored locally in the browser.
 - Search, district filters, source-specific filters, address lookup links, and browser-permission-based nearby sorting.
-- Leaflet maps with CARTO base tiles and a list-first policy for broad result sets.
+- Leaflet maps with standard OpenStreetMap base tiles and a list-first policy for broad result sets.
 - Local JSON datasets, a conversion-quality report, and offline-friendly service-worker caching.
 - Accessible, responsive cards, directories, tables, CSV exports, keyboard controls, and mobile layouts.
 
@@ -53,6 +53,28 @@ Dedicated directory or discovery routes provide additional source-specific exper
 
 ## Data principles
 
+### Bin policy v1.1: governance, not an automatic data migration
+
+The policy route now includes distinct Data Health dates, conservative record-level bin reconciliation, and a newer official bus-source comparison. The audited 2021 references remain the default pending independent adoption review. Scheduled monitoring produces reports and deduplicated alerts only; a separate exact-hash, reviewed publication workflow stages a draft PR, never merges or pushes datasets into main.
+
+The historical 1,197 map records, 681 current raw rows / 679 valid unique coordinates, 130 supplemental named-place rows, and the separate government claim of 806 groups / 1,612 bins use different definitions. Unmatched records are not presumed removals. Read the [bin reconciliation audit](docs/bin-policy-bin-reconciliation.zh-Hant.md) before comparing totals.
+
+```mermaid
+flowchart LR
+  Sources[Official sources] --> Monitor[Weekly read-only monitor]
+  Monitor --> Evidence[Artifacts and deduplicated review issue]
+  Sources --> Raw[Versioned raw inputs and hashes]
+  Raw --> Reconcile[Reconciliation and source-version sensitivity]
+  Reconcile --> Review[Reviewed exact-hash approval]
+  Review --> Bundle[Validated isolated review bundle]
+  Bundle --> PR[Non-deployment branch and draft PR]
+  PR --> Human[Independent human review before merge]
+  Published[Retained known-good static snapshot] --> UI[Unchanged greedy A/B/C model]
+  Reconcile --> UI
+```
+
+See [governance and publication instructions](docs/bin-policy-data-governance.zh-Hant.md), [bus migration evidence](docs/bin-policy-bus-stop-migration.md), and [v1.1 audit](docs/bin-policy-v1.1-audit.md). Production data and policy method remain unchanged by monitoring.
+
 - The browser loads static local JSON; it never depends on the Taipei Open Data API at runtime.
 - Raw source values are retained during conversion whenever possible. Derived classifications are labelled and source-specific.
 - Exact map markers require validated official coordinates. Address-only or invalid-coordinate records remain usable in directories and are not automatically geocoded.
@@ -85,6 +107,10 @@ npm run data:convert:industrial-waste-reuse-operators
 npm run data:convert:certified-bathhouses
 npm run data:convert:recycling-analytics
 npm run data:convert:bin-policy -- data/raw/bin-policy/v1-14c24bcdbade
+npm run data:reconcile:bins
+npm run data:monitor:bin-policy -- test-results/bin-policy-monitor
+npm run data:health:bin-policy -- test-results/bin-policy-monitor/report.json
+npm run data:compare:bus-policy
 ```
 
 Some datasets have separate fetch scripts that copy or retrieve an official source snapshot before conversion. See `package.json` for the complete command list. After conversion, inspect `public/data/conversion-report.json` and each module summary for source-specific quality results.
@@ -95,6 +121,7 @@ Some datasets have separate fetch scripts that copy or retrieve an official sour
 npm test
 npm run build
 npm run test:e2e
+npm run test:policy-preview # run npm run build first; tests cached-data offline fallback
 ./init.sh
 ```
 
