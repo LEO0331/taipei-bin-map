@@ -1,6 +1,14 @@
 {
   "features": [
     {
+      "id": "feat-043",
+      "name": "Bin policy v1.1 data governance and bus modernization",
+      "description": "One bounded upgrade: reproducible reconciliation, non-publishing source monitoring, reviewed publication, authoritative bus-source comparison and bilingual data health while preserving the v1 allocation method.",
+      "dependencies": ["feat-041"],
+      "status": "in_progress",
+      "evidence": "Baseline origin/main cfa0fb1: npm ci, 102 unit/component tests, build and 108 desktop/mobile E2E cases passed. Stage 0 audit and contracts recorded in docs/bin-policy-v1.1-audit.md."
+    },
+    {
       "id": "feat-042",
       "name": "Compact contextual map legend",
       "description": "Collapsible top-right legend with selected facility symbols and confirmed user location only; desktop opens initially and mobile starts collapsed.",

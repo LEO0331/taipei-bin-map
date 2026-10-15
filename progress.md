@@ -3,7 +3,13 @@
 ## Current State
 
 **Last Updated:** 2026-10-15 Asia/Taipei
-**Active Feature:** None
+**Active Feature:** feat-043 — Bin policy v1.1 governance
+
+## 2026-10-15 — Bin policy v1.1 baseline
+
+- Clean `origin/main` `cfa0fb1` includes PR #11 and #13; created `codex/bin-policy-v1-1` without modifying main. Reviewed source manifests, GIS importer, allocation model, PWA and route tests. No existing workflow directory.
+- Baseline: npm ci successful (one existing high advisory); 102 unit/component tests, TypeScript/build and 108 desktop/mobile E2E tests passed, port 5206 / two workers. No standalone lint command configured.
+- Implementation plan and backward-compatible sidecar contract boundary: `docs/bin-policy-v1.1-audit.md`. Current default and allocation methodology remain unchanged pending reviewed migration.
 
 ## 2026-10-15 — Contextual map legend
 
