@@ -1,6 +1,14 @@
 {
   "features": [
     {
+      "id": "feat-041",
+      "name": "Public bin allocation decision support MVP",
+      "description": "One bounded MVP: audited policy snapshots, geospatial validation, deterministic greedy coverage, bilingual scenarios and evidence exports.",
+      "dependencies": ["feat-040"],
+      "status": "done",
+      "evidence": "Phases 0–4 complete on codex/bin-policy-mvp: audited/versioned official bin CSV, bus SHP and district polygons; 679 valid unique bins and 3395 accepted bus references; pure greedy equal-weight coverage with count/budget/separation and A/B/C scenarios; lazy bilingual policy map, evidence list, JSON/CSV/print briefing. 97 unit/GIS tests, 102 full desktop/mobile E2E tests and production build passed. Bus CRS discrepancy and dated geometry documented; Metro/petitions/IoT not integrated."
+    },
+    {
       "id": "feat-001",
       "name": "Static app foundation",
       "description": "Vite React TypeScript app with Leaflet map, mobile-first layout, and local static deployment structure.",

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'taipei-public-amenities-map-v33';
+const CACHE_NAME = 'taipei-public-amenities-map-v34';
 const APP_SHELL = [
   '/index.html',
   '/manifest.webmanifest',
@@ -95,6 +95,11 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (url.origin !== self.location.origin || url.pathname === '/service-worker.js') {
+    return;
+  }
+
+  if (url.pathname.includes('/data/bin-policy/')) {
+    event.respondWith(networkFirst(event.request));
     return;
   }
 
