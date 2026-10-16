@@ -3,7 +3,14 @@
 ## Current State
 
 **Last Updated:** 2026-10-15 Asia/Taipei
-**Active Feature:** None
+**Active Feature:** feat-044 — Policy-balanced decision support v1.2
+
+## 2026-10-15 — Bin policy v1.2 baseline
+
+- Main `1a048dd` contains merged v1.1 PR #14. Clean dedicated `codex/bin-policy-v1-2`; no other repositories in scope.
+- Startup verification: npm ci successful with zero vulnerabilities; 186 tests, TypeScript/build and 122 desktop/mobile E2E cases passed, port5214/two workers.
+- Preserve approved analysis, 2021 bus baseline and original algorithm unchanged. New policy input snapshots are research/review-required, not automatically approved by acquisition. Weights are explicit scenario assumptions; missing categories remain unavailable.
+- Architecture, source audit and phased implementation plan: `docs/bin-policy-v1.2-audit.md`. Historical 2022-stopped procedure is not a current siting standard.
 
 ## 2026-10-15 — Bin policy v1.1 implementation and verification
 

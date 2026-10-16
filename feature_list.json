@@ -1,6 +1,14 @@
 {
   "features": [
     {
+      "id": "feat-044",
+      "name": "Bin policy v1.2 category-balanced policy priority support",
+      "description": "One bounded upgrade: source-backed research references, versioned editable weights, independent category-balanced allocation and explainable sensitivity while preserving Mode A and v1.1 governance.",
+      "dependencies": ["feat-043"],
+      "status": "in_progress",
+      "evidence": "Baseline origin/main 1a048dd: npm ci (zero vulnerabilities), 186 tests, TypeScript/build and 122 desktop/mobile E2E cases passed. Audit, architecture and source/legal boundaries recorded in docs/bin-policy-v1.2-audit.md."
+    },
+    {
       "id": "feat-043",
       "name": "Bin policy v1.1 data governance and bus modernization",
       "description": "One bounded upgrade: reproducible reconciliation, non-publishing source monitoring, reviewed publication, authoritative bus-source comparison and bilingual data health while preserving the v1 allocation method.",
