@@ -1,5 +1,7 @@
 # Public bin allocation decision support MVP
 
+Scope: this document describes the original MVP / current **Mode A**, not the whole current policy route. Mode B adds separate category-balanced research inputs, including 73 MRT station references (not OD passenger-flow weights). See the [v1.2 methodology](bin-policy-v1.2-methodology.md). Historical source audits and results below retain their original dates.
+
 This is a public-data screening prototype for policy analysts responding to [Policy Issue #2](https://puma.taipei/hackathon#issues). It identifies public bus reference locations that lack a nearby **listed** pedestrian bin and produces a reproducible field-review shortlist. It does not determine lawful installation suitability, walking access, demand, equity, operational status, or bin fullness.
 
 ## Implementation plan and architecture

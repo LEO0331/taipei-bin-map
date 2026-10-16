@@ -25,8 +25,10 @@ flowchart LR
   P --> A["Vite + React application<br/>src/App.tsx"]
   A --> M["Shared amenities map<br/>filters, list, Leaflet"]
   A --> D["Dedicated discovery & directory modules<br/>cooling, schools, pools, recycling analytics, etc."]
+  A --> Q["Lazy bin-policy dashboard<br/>retained Mode A + research Mode B"]
   M --> B["Browser"]
   D --> B
+  Q --> B
 
   S["public/service-worker.js<br/>PWA cache strategy"] --> B
   P --> S
@@ -78,7 +80,7 @@ flowchart LR
   Review --> Bundle[Validated isolated review bundle]
   Bundle --> PR[Non-deployment branch and draft PR]
   PR --> Human[Independent human review before merge]
-  Published[Retained known-good static snapshot] --> UI[Unchanged greedy A/B/C model]
+  Published[Retained known-good static snapshot] --> UI[Mode A unchanged greedy A/B/C model]
   Reconcile --> UI
 ```
 
@@ -140,9 +142,9 @@ npm run test:policy-preview # run npm run build first; tests cached-data offline
 ./init.sh
 ```
 
-Playwright starts its own Vite server. To avoid a locally occupied default port, choose another port:
-
 `init.sh` is a Bash convenience wrapper for unit tests, build and E2E, not an additional independent check. In PowerShell, run the three npm commands directly.
+
+Playwright starts its own Vite server. To avoid a locally occupied default port, choose another port:
 
 ```powershell
 $env:PLAYWRIGHT_PORT='5175'; npm run test:e2e

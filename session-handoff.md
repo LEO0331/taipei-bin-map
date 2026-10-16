@@ -6,7 +6,7 @@ Last reviewed: **2026-10-16 Asia/Taipei**. This file describes current repositor
 
 - Static bilingual amenities app: 22 shared facility types, eight dedicated discovery/directory/analytics routes and `#/bin-policy`.
 - v1.1 [PR #14](https://github.com/LEO0331/taipei-bin-map/pull/14) is merged; v1.2 [PR #15](https://github.com/LEO0331/taipei-bin-map/pull/15) is also merged (GitHub metadata verified during this documentation audit).
-- PR #15 head: `01d07aa`; merge commit: `1280011b086f498404abf138c29f64041963e14c`. This workspace remains on `codex/bin-policy-v1-2`; no branch reset/checkout was performed. This documentation audit adds local, uncommitted updates.
+- PR #15 head: `01d07aa`; merge commit: `1280011b086f498404abf138c29f64041963e14c`. This workspace remains on `codex/bin-policy-v1-2`; no branch reset/checkout was performed. During this audit, an external `79d42e2` documentation commit appeared and was preserved. The user subsequently requested committing and pushing the remaining documentation corrections on this branch; that follow-up is not a merge into main.
 - Earlier integration HTTP403 failures describe the agent's attempted PR creation, not the current PR state. No live hosting deployment or hosted workflow success was verified in this audit.
 
 ## Current policy behavior
@@ -32,7 +32,7 @@ The last implementation verification (2026-10-16, recorded in [v1.2 audit](docs/
 | Retained source reproduction / Git raw hashes | Passed |
 | Node citywide benchmark | About 0.71 seconds; not physical-phone latency |
 
-These are dated results, not fresh test runs from this docs-only audit. Earlier loading/download timeouts remain disclosed; the CSV case passed ten isolated repetitions and the final full run. No assertion that flakiness is permanently eliminated.
+The documentation audit freshly reran `npm test` (308 passed / 23 files) and `npm run build` (passed). The initial sandbox run failed to access Vitest temporary transform files; the approved run outside that sandbox passed without code changes. E2E/offline counts above remain dated implementation evidence, not new browser runs. Earlier loading/download timeouts remain disclosed; the CSV case passed ten isolated repetitions and the final full run. No assertion that flakiness is permanently eliminated.
 
 The retained research monitor dated 2026-10-16 intentionally reports failure/exit 1: five unchanged HTTP200 resources and blocked tourism HTTP403. This is not a passing source check. Workflow execution/Issue/PR permissions and human source approvals were not exercised by local verification.
 

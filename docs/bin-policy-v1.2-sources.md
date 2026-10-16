@@ -41,7 +41,7 @@ npx vitest run scripts/policyPrioritySources.test.ts scripts/policyPriorityMarke
 
 擷取先放入程序獨立 staging 目錄；成功後才更名為內容定址版本。失敗不覆蓋原版本。轉換驗證每份原始檔 SHA256、資源識別、投影、行政區與原始版本，產出獨立的 `public/data/bin-policy/priority-references.json` 及 `priority-source-inventory.json`。`approvalStatus: review_required` 不會因 ETL 或測試成功變成正式核准。
 
-旅遊 API 後續可用時，分頁器須取完整 `Total`，不同頁總數變動、重複 ID、提前空頁或超過安全上限都拒絕，不接受部分景點母體。目前 API 處於受阻狀態；分頁、座標與分類 adapter 的合成測試僅證明驗證行為，不表示官方 API 這次取得成功。
+目前 adapter 假設總筆數欄位為 `Total`，但尚未取得實際 API 回應驗證；恢復授權存取後須先核對真實欄位、座標與分類，再確認完整分頁，不同頁總數變動、重複 ID、提前空頁或超過安全上限都拒絕，不接受部分景點母體。目前 API 處於受阻狀態；分頁、座標與分類 adapter 的合成測試僅證明驗證行為，不表示官方 API 這次取得成功。
 
 研究原始版本中的市場資料夾另有四來源 manifest；版本中的全來源 manifest 是治理稽核的主入口。監測只報告變更或取得失敗；未經明確審查不得覆寫 `analysis.json` 或把資料視為政府已核准的選址資料。
 

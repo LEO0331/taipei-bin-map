@@ -25,8 +25,10 @@ flowchart LR
   P --> A["Vite + React 應用程式<br/>src/App.tsx"]
   A --> M["共用公共設施地圖<br/>篩選、清單、Leaflet"]
   A --> D["獨立探索與目錄模組<br/>涼適點、學校、游泳池、回收統計等"]
+  A --> Q["延遲載入清潔箱政策頁<br/>保留模式 A 與研究模式 B"]
   M --> B["瀏覽器"]
   D --> B
+  Q --> B
 
   S["public/service-worker.js<br/>PWA 快取策略"] --> B
   P --> S
@@ -68,7 +70,7 @@ flowchart LR
 
 舊地圖 1,197 筆、目前 681 原始列／679 有效去重位置、附檔 130 列命名地點，以及公告 806 組／1,612 座並非同一計數單位。未對應不等於已撤除，附檔也不直接加入主清單。請先閱讀[逐筆對帳與未解釋差異](docs/bin-policy-bin-reconciliation.zh-Hant.md)。
 
-治理架構：官方來源 → 只讀監測／版本化原始檔 → 對帳及版本敏感度 → 精確雜湊審查 → 隔離驗證包 → 草稿 PR → 人工審查。前端持續使用已發布的已知良好快照與原有貪婪 A/B/C 模型。
+治理架構：官方來源 → 只讀監測／版本化原始檔 → 對帳及版本敏感度 → 精確雜湊審查 → 隔離驗證包 → 草稿 PR → 人工審查。模式 A 持續使用已發布的已知良好快照與原有貪婪 A/B/C 模型；模式 B 另載入待審查研究快照。
 
 詳細操作見[資料治理及發布程序](docs/bin-policy-data-governance.zh-Hant.md)、[公車來源遷移證據](docs/bin-policy-bus-stop-migration.md)與[v1.1 稽核紀錄](docs/bin-policy-v1.1-audit.md)。
 
@@ -128,9 +130,9 @@ npm run test:policy-preview # 先執行 npm run build，驗證已快取資料的
 ./init.sh
 ```
 
-Playwright 會啟動自己的 Vite 伺服器。若預設連接埠被本機程序占用，可改用其他連接埠：
-
 `init.sh` 是依序執行單元測試、建置及 E2E 的 Bash 包裝，不是另一組獨立驗證。PowerShell 可直接執行上述三個 npm 指令。
+
+Playwright 會啟動自己的 Vite 伺服器。若預設連接埠被本機程序占用，可改用其他連接埠：
 
 ```powershell
 $env:PLAYWRIGHT_PORT='5175'; npm run test:e2e

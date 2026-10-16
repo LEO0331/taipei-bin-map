@@ -1,5 +1,7 @@
 # PR handoff
 
+Historical draft retained for traceability. **v1.1 is now merged in [PR #14](https://github.com/LEO0331/taipei-bin-map/pull/14)** (verified 2026-10-16). The failed agent integration attempt below predates the maintainer's PR; do not create a duplicate from the old compare link. Verification/advisory statements below are dated v1.1 evidence, not current results.
+
 PR creation through the connected GitHub integration returned HTTP 403 (`Resource not accessible by integration`). No PR has been created by this task. The feature branch is pushed and ready for independent review.
 
 [Create PR from codex/bin-policy-v1-1](https://github.com/LEO0331/taipei-bin-map/compare/main...codex/bin-policy-v1-1?expand=1)

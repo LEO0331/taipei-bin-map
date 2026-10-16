@@ -58,7 +58,7 @@ All comparisons reuse the same prepared references, N_k, source versions, radius
 
 The interface and JSON preserve every selected candidate's per-category raw gains, denominator, weight and score, full scenario rankings, omission counts and missing/sparse categories. A dash means not selected, not stable rank. No unexplained score/100 or unsupported “robust” label is generated.
 
-On the frozen citywide 300m / ten-anchor scenario, equal and proposed weights each cover 125 additional raw entities, while `bus-1210` moves from rank seven to rank three. These are allocation-priority differences, not evidence of reduced litter or costs. Score magnitudes differ with weight scale; do not call the higher magnitude greater policy effectiveness. Full outputs and timing are in `reports/bin-policy-v1.2/performance.json`.
+On the frozen citywide 300m / ten-anchor scenario, equal and proposed weights each cover 125 additional raw entities, while `bus-1210` moves from rank seven to rank three. These are allocation-priority differences, not evidence of reduced litter or costs. Score magnitudes differ with weight scale; do not call the higher magnitude greater policy effectiveness. Full outputs are in [example-analysis.json](../reports/bin-policy-v1.2/example-analysis.json) and [example-analysis.csv](../reports/bin-policy-v1.2/example-analysis.csv); [performance.json](../reports/bin-policy-v1.2/performance.json) records benchmark timing/environment, not the full allocation output.
 
 ## Provenance, exports and governance
 
