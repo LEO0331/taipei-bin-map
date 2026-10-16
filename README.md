@@ -45,6 +45,7 @@ Dedicated directory or discovery routes provide additional source-specific exper
 | `#/bin-policy` | Public Bin Allocation Decision Support | Mode A retains equal transport coverage; Mode B studies category-balanced policy priorities with explicit weights, missing-data warnings and sensitivity. Neither approves installation sites. |
 | `#/cooling-comfort-spots` | Taipei Cooling & Comfort Spots | Source-listed amenities and hours are not real-time availability or emergency-shelter status. |
 | `#/public-school-sports-venues` | Public School Sports Venue Search | Campus opening is not proof of booking, a specific sport, or a free time slot. |
+| `#/swimming-pools` | Taipei Swimming Pool Finder | Official coordinates and contact details do not establish current opening, lifeguard staffing, or safe swimming conditions. |
 | `#/bulky-waste-collection-booking` | Bulky Waste Collection Booking | Booking hours and phone information do not show real-time acceptance. |
 | `#/unused-medicine-collection-stations` | Unused Medicine Collection Stations | Directory information is not medical advice or a current-acceptance guarantee. |
 | `#/industrial-waste-reuse-operators` | Industrial Waste Reuse Operators | Registration records do not indicate public walk-in acceptance or current capacity. |
@@ -91,6 +92,8 @@ See [governance and publication instructions](docs/bin-policy-data-governance.zh
 
 ## Install and run
 
+Use Node.js `^20.19.0 || >=22.12.0` as declared in `package.json`; Node 22 is used by the source-monitor workflow. Use `npm ci` for a reproducible install from the lockfile.
+
 ```bash
 npm install
 npm run dev
@@ -125,6 +128,8 @@ npm run benchmark:policy-priority
 
 Some datasets have separate fetch scripts that copy or retrieve an official source snapshot before conversion. See `package.json` for the complete command list. After conversion, inspect `public/data/conversion-report.json` and each module summary for source-specific quality results.
 
+Conversion is a data-changing maintenance operation, not a deployment prerequisite. Do not refresh or adopt policy inputs without the documented review process. The research monitor may exit with failure when an upstream source is blocked; that does not authorize replacing the retained snapshot.
+
 ## Verify
 
 ```bash
@@ -136,6 +141,8 @@ npm run test:policy-preview # run npm run build first; tests cached-data offline
 ```
 
 Playwright starts its own Vite server. To avoid a locally occupied default port, choose another port:
+
+`init.sh` is a Bash convenience wrapper for unit tests, build and E2E, not an additional independent check. In PowerShell, run the three npm commands directly.
 
 ```powershell
 $env:PLAYWRIGHT_PORT='5175'; npm run test:e2e
@@ -155,6 +162,8 @@ See [deployment guide](docs/deployment.en.md).
 
 ## Documentation
 
+- [Current handoff and verification status](session-handoff.md)
+- [Policy v1.2 methodology](docs/bin-policy-v1.2-methodology.md), [sources](docs/bin-policy-v1.2-sources.md), and [governance](docs/bin-policy-v1.2-governance.md)
 - [Bin policy methodology, source audit and refresh process](docs/bin-policy-methodology.md)
 - [Bin policy MVP guide (Traditional Chinese)](docs/bin-policy-mvp.zh-Hant.md)
 

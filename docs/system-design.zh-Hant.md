@@ -1,58 +1,53 @@
-# 系統設計 Deep Dive
+# 系統設計
 
-## 產品目標
+[English](system-design.en.md) | [繁體中文](system-design.zh-Hant.md)
 
-台北市公共便利設施地圖是公開、mobile-first 的靜態 web app，用來查找台北市公廁、行人專用清潔箱與狗便袋箱。架構刻意保持單純：沒有後端、帳號、admin 頁、資料庫或付費地圖 API。
+2026-10-16 依目前程式與保留快照核對。以下筆數不是即時營運數。
 
-## 架構
+## 產品與架構
+
+Vite + React + TypeScript 靜態網站，包含 22 種設施的共用地圖、八個獨立探索／目錄／統計路由，以及 `#/bin-policy`。沒有後端、登入、資料庫或付費地圖 API。介面雙語，來源地址與行政區保留中文；選配英文底圖已移除，各地圖使用標準 OpenStreetMap 圖磚。
 
 ```mermaid
-flowchart TD
-  BinCSV["清潔箱 CSV 或 fallback JSON"] --> Convert["scripts/convertBins.ts"]
-  DogCSV["狗便袋箱 CSV 或 fallback JSON"] --> Convert
-  ToiletCSV["公廁 CSV 或 fallback JSON"] --> Convert
-  Convert --> Facilities["public/data/facilities.json"]
-  Convert --> Pedestrian["public/data/pedestrian-bins.json"]
-  Convert --> Dog["public/data/dog-waste-bag-boxes.json"]
-  Convert --> Toilets["public/data/public-toilets.json"]
-  Convert --> Report["public/data/conversion-report.json"]
-  Facilities --> App["React App"]
-  Report --> App
-  App --> Leaflet["React Leaflet Map"]
-  Leaflet --> OSM["OpenStreetMap Tiles"]
-  App --> PWA["Manifest + Service Worker"]
+flowchart LR
+  Official[官方來源檔案] --> Raw[版本化原始快照]
+  Raw --> ETL[編碼、欄位與空間驗證]
+  ETL --> Static[public/data JSON 與摘要]
+  Static --> App[React hash 路由外殼]
+  App --> Shared[共用地圖與目錄]
+  App --> Modules[來源專屬儀表板]
+  App --> Policy[延遲載入政策頁]
+  Policy --> A[模式 A 保留交通覆蓋]
+  Policy --> B[延遲載入模式 B 政策優先研究]
+  A --> Export[證據與匯出]
+  B --> Export
+  SW[Service worker] --> App
 ```
 
-## 資料模型
+資料擷取與轉換在部署前完成；前端只請求同站靜態 JSON，不呼叫臺北市開放資料 API。底圖與外部地圖連結仍使用第三方服務，不能把靜態資料誤解為整張地圖完全不需網路。
 
-前端使用通用 `Facility` record，`type` 可為 `pedestrian_bin`、`dog_waste_bag_box` 或 `public_toilet`。公廁額外保留名稱、類別、管理單位、座數、評等等級數量、無障礙廁座數與親子廁座數。
+## 資料與渲染邊界
 
-轉換腳本會 trim CSV 欄名，清潔箱與狗便袋箱使用 Big5/CP950 解碼，公廁使用 UTF-8-SIG。超出台北市寬鬆 bounding box 的座標會保留並加上 `isCoordinateOutlier: true`；無效數字座標列會刪除並記錄在 `invalidCoordinateRows`。
+- `src/types.ts` 定義共用 `Facility` 及來源專屬型別，不再只有清潔箱、狗便袋箱與公廁三種類型。
+- `scripts/convertBins.ts` 整合主設施資料；專屬腳本處理 UTF-8／Big5／CP950 與品質紀錄。保留的 `conversion-report.json` 於 2026-07-21 生成，含 16,956 筆有效紀錄，不是政策箱位母體或現況營運數。
+- `src/App.tsx` 協調路由、語言、篩選與定位。設施類型預設不選，最多選一種，再次點擊可取消；未選時不繪製設施點與行政區摘要泡泡。
+- `src/utils/facilityUtils.ts` 提供篩選、距離及標籤工具。定位須授權，專案不保存精確位置；附近查詢最多列出十筆。
+- `FacilityMap.tsx` 延遲載入；單一類型且有效座標不超過 500 筆，或附近結果，才分批顯示精確標記。一般清單呈現前 80 筆，符合數仍依完整篩選集合計算。
+- 地址型圖層使用明示的行政區摘要，不假造精確位置。圖例可展開／收合；大量結果提示位於相鄰設施類型面板下方。
+- 獨立模組有自己的限制。涼適點目前須啟用篩選或定位才繪製個別點，最多 80 筆；程式未計算網格叢集，殘留的叢集提示與實際行為不符，應另案修正介面文案／行為。
 
-## Runtime Flow
+各模組使用界線見 [README 路由表](../README.zh-Hant.md#資料模組)。
 
-1. Vite 以靜態資源方式提供 React app。
-2. `App.tsx` 讀取 `/data/facilities.json` 與 `/data/conversion-report.json`。
-3. 搜尋、行政區、設施類型、公廁類別與公廁設備篩選都在瀏覽器記憶體內完成。
-4. 附近設施功能透過瀏覽器 geolocation 取得位置，用 Haversine 公式計算距離，並從目前篩選集合中列出最近 10 筆。
-5. 地圖元件使用 lazy-loaded chunk。
-6. 大量未篩選結果不會直接渲染數千個 markers；使用者需透過篩選或附近功能縮小範圍後顯示 markers。
-7. Service worker 快取靜態資源與本機 JSON，支援重複造訪。
+## 政策分析與治理
 
-## 主要邊界
+模式 A 保留 `analysis.json` 與 `src/lib/binPolicyDecision.ts`，使用 679 個有效去重箱位、3,395 個公車參考位置；內部 A/B/C 情境不可與模式 A／B 選擇混淆。
 
-- `scripts/convertBins.ts`：來源解碼、設施資料標準化、fallback 處理與轉換報告。
-- `src/utils/facilityUtils.ts`：篩選、距離、標籤、Google Maps 連結與座標範圍。
-- `src/App.tsx`：狀態協調、資料載入、篩選與 geolocation 協調。
-- `src/components/`：控制列、地圖、popup、圖例、提醒與列表 UI。
-- `tests/e2e/`：瀏覽器層級的使用者流程測試。
+模式 B 另載入 `priority-references.json`：42 處攤販集中場、47 處市場、73 處捷運參考位置、3,395 處公車參考位置，共 3,557 個實體。觀光受阻、商圈幾何缺漏。`policyBalancedCoverage.ts` 搭配 `policyPriorityWeights.ts` 計算固定類別母體的加權新增覆蓋，不推論需求、步行可達或設置核准。匯出分別保留來源、方法與權重版本。
 
-## 驗證策略
+只讀監測不會自動採用新輸入；研究審查包與核准資料發布分開。原始封存檔透過限定範圍的 `.gitattributes` 保留位元組。詳見 [v1.2 方法](bin-policy-v1.2-methodology.zh-Hant.md)與[治理](bin-policy-v1.2-governance.md)。
 
-- Unit tests 覆蓋純工具函式。
-- Playwright e2e 覆蓋三種設施類型、語言保存、公廁篩選、搜尋、定位成功、定位失敗與 marker cap 行為。
-- `./init.sh` 是 agent 與 release check 的基準指令。
+## 快取與驗證
 
-## 擴充備註
+`public/service-worker.js` 對導覽、`/assets/` 與 `/data/bin-policy/` 使用 network-first，其他 `/data/`、圖示及 manifest 使用 cache-first。政策資料使用後才快取，不隨一般地圖預先下載；網路失敗可回復已快取輸入，但 HTTP 錯誤回應不會默默改成舊資料。外部圖磚不由此 worker 快取；只在 production 註冊。
 
-目前合併資料為 3,256 筆。為避免手機地圖過度擁擠，大量結果會限制 marker 渲染，且不新增 clustering dependency。若產品需要在低 zoom 顯示所有 markers，下一步再加入 marker clustering。
+Vitest 涵蓋工具、轉換、元件、GIS 與治理；Playwright 涵蓋桌機／手機流程。建置後可用 `npm run test:policy-preview` 驗證 production service-worker／離線行為。歷史驗證見[目前交接](../session-handoff.md)，不等於已驗證線上部署或 GitHub 工作流程。

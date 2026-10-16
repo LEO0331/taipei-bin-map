@@ -1,43 +1,42 @@
-# Vercel Deployment Guide
+# Static Deployment Guide
 
-## Recommended Path
+[English](deployment.en.md) | [繁體中文](deployment.zh-Hant.md)
 
-Deploy this project as a Vite static frontend on Vercel.
+Reviewed 2026-10-16. A merged PR is not evidence of a successful hosting deployment.
 
-1. Push the repository to GitHub.
-2. In Vercel, choose **Add New Project**.
-3. Import the GitHub repository.
-4. Use these project settings:
-   - Framework Preset: `Vite`
-   - Root Directory: `./`
-   - Install Command: `npm ci`
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-   - Environment Variables: none
-5. Deploy the preview.
-6. Open the preview URL on desktop and phone.
-7. Run Lighthouse against the Vercel preview URL before promoting to production.
+## Vercel setup
 
-## Pre-Publish Checks
+Import the GitHub repository with root `./`, framework `Vite`, install `npm ci`, build `npm run build`, output `dist`. No app environment variables, API keys or backend are required. Use a Node version supported by `package.json` (`^20.19.0 || >=22.12.0`). Check the actual hosting deployment and intended commit before promoting.
+
+## Release checks
 
 ```bash
 npm ci
-npm run convert:facilities
-./init.sh
+npm test
+npm run build
+npm run test:e2e -- --workers=2
+npm run test:policy-preview
+git diff --check
 ```
 
-The app has no API keys and no backend. It loads `public/data/facilities.json`, `public/data/pedestrian-bins.json`, `public/data/dog-waste-bag-boxes.json`, `public/data/public-toilets.json`, and `public/data/conversion-report.json` as static assets.
+`test:policy-preview` requires the production build and starts its own preview server. E2E starts its own strict-port Vite server; if 5173 is occupied, set `PLAYWRIGHT_PORT` (PowerShell: `$env:PLAYWRIGHT_PORT='5175'`). `bash ./init.sh` wraps tests, build and E2E; it does not include the separate preview checks.
 
-## Production URL Metadata
+Do not regenerate datasets merely to deploy. Data conversion changes retained outputs/dates; use the source-specific converter and review procedure only for an intentional refresh. Policy adoption requires separate approval. Never treat a failed source monitor as permission to publish replacement data.
 
-After the final Vercel production URL is known, add:
+## Hosting paths and metadata
 
-- canonical URL
-- `og:url`
-- optional sitemap using the real production URL
+Hash routes such as `/#/bin-policy` need no server-side route handlers. However, runtime paths and service-worker registration are root-absolute. Vercel/Netlify root hosting is straightforward; a GitHub Pages project subpath needs an explicit base/path/service-worker audit before support can be claimed. Setting Vite's base alone does not fix all root-absolute fetches.
 
-Do not hard-code a guessed Vercel URL before the project has its final domain.
+Configure canonical URL, `og:url` and any sitemap only for the verified production domain; they are not currently present in `index.html`.
 
-## Offline Behavior
+## Cache, offline and blank-page diagnosis
 
-The service worker caches the app shell, PWA icons, and local facility JSON. OpenStreetMap tiles are external network resources and may be incomplete offline.
+The production-only worker uses network-first for navigation, hashed assets and policy JSON, and cache-first for ordinary datasets, icons and manifest. Policy files are cached after a successful visit to the relevant mode, not precached with the main map. External OpenStreetMap tiles are not worker-cached and may be unavailable offline. A first visit offline cannot be promised to work.
+
+When ordinary cached data or the precache set changes, review the worker cache version. Activation removes older named caches; controller changes trigger at most one automatic reload per browser session. Verify an existing-browser-session upgrade as well as a clean load; preview offline tests do not prove every cross-deployment update path.
+
+For a blank page, inspect the browser console and asset/data HTTP responses before guessing a tile failure. Check the deployed commit, HTML/chunk compatibility, root paths and worker registration/cache state. An empty map with a visible UI is different from an application render failure. Clearing site data is a diagnostic step that removes local preferences/offline data, not the permanent fix.
+
+## Operational limits
+
+Smoke-test all intended routes, both languages and narrow layouts on the actual preview URL. Check policy source/method/weight versions and date disclosures. Source monitoring may legitimately fail (the retained tourism check returned HTTP403); local test success does not establish cloud workflow permissions, source recovery or site suitability. See [current handoff](../session-handoff.md) and [governance](bin-policy-v1.2-governance.md).
