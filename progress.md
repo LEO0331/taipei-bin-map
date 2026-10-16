@@ -7,6 +7,8 @@
 
 ## 2026-10-16 — Bin policy v1.2 completed implementation
 
+- PR handoff: six implementation/evidence commits pushed to origin/codex/bin-policy-v1-2; connected GitHub create-PR returned HTTP403 Resource not accessible by integration. **No PR was created**, and no main merge or source adoption occurred. Full draft description, screenshots and compare link are saved in docs/bin-policy-v1.2-pr.md for the maintainer; no credential/permission bypass attempted.
+
 - Separate original transport Mode A and review-required category-balanced Mode B at the existing route. Original `analysis.json` and `src/lib/binPolicyDecision.ts` are unchanged. No newer bus adoption, production merge, government operational workflow or other repository changes.
 - Frozen research snapshot contains3,557entities:42officialvendorconcentrations,47markets,73MRTcentres and retained3,395busreferences. Tourism API/Swagger HTTP403 and235commercial context-only rows are explicit missing categories, not zero demand. Full source rows, hashes, dates, aliases and exclusions are retained; no unsupported geocoding or fabricated centroids.
 - Central `policy-priority-weights-v1` defaults4/4/3/3/2/1, bounded0–10 editing/reset, independent `policy-balanced-coverage-v1` fixed-category-denominator scoring, global canonical rules, indexed exact spatial checks, deterministic relative ties, budget/count limits and11equal/default/active/±25%scenarios. SparseN<5 and missing categories are warnings, not confidence/demand estimates.
