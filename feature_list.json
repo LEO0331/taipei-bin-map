@@ -1,4 +1,11 @@
 {
+  "documentationReview": {
+    "reviewedAt": "2026-10-16 Asia/Taipei",
+    "scope": "Documentation-only consistency audit; historical feature evidence below is dated milestone evidence, not a fresh test run or a guarantee that a feature remains exposed.",
+    "currentDelivery": "v1.1 PR #14 and v1.2 PR #15 are merged, verified via GitHub metadata; v1.2 merge commit 1280011b086f498404abf138c29f64041963e14c. Earlier no-merge statements describe the original agent handoff, not current delivery. Deployment/hosted workflow outcomes were not verified.",
+    "retiredFeatures": ["feat-037: low-carbon certification route/data removed at user request; retained entry documents historical implementation only."],
+    "remainingFollowUp": "Cooling map UI retains grid-cluster copy although current implementation shows at most 80 individual filtered points; documented, not changed in this docs-only task."
+  },
   "features": [
     {
       "id": "feat-044",

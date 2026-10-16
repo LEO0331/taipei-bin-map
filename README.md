@@ -25,8 +25,10 @@ flowchart LR
   P --> A["Vite + React application<br/>src/App.tsx"]
   A --> M["Shared amenities map<br/>filters, list, Leaflet"]
   A --> D["Dedicated discovery & directory modules<br/>cooling, schools, pools, recycling analytics, etc."]
+  A --> Q["Lazy bin-policy dashboard<br/>retained Mode A + research Mode B"]
   M --> B["Browser"]
   D --> B
+  Q --> B
 
   S["public/service-worker.js<br/>PWA cache strategy"] --> B
   P --> S
@@ -45,6 +47,7 @@ Dedicated directory or discovery routes provide additional source-specific exper
 | `#/bin-policy` | Public Bin Allocation Decision Support | Mode A retains equal transport coverage; Mode B studies category-balanced policy priorities with explicit weights, missing-data warnings and sensitivity. Neither approves installation sites. |
 | `#/cooling-comfort-spots` | Taipei Cooling & Comfort Spots | Source-listed amenities and hours are not real-time availability or emergency-shelter status. |
 | `#/public-school-sports-venues` | Public School Sports Venue Search | Campus opening is not proof of booking, a specific sport, or a free time slot. |
+| `#/swimming-pools` | Taipei Swimming Pool Finder | Official coordinates and contact details do not establish current opening, lifeguard staffing, or safe swimming conditions. |
 | `#/bulky-waste-collection-booking` | Bulky Waste Collection Booking | Booking hours and phone information do not show real-time acceptance. |
 | `#/unused-medicine-collection-stations` | Unused Medicine Collection Stations | Directory information is not medical advice or a current-acceptance guarantee. |
 | `#/industrial-waste-reuse-operators` | Industrial Waste Reuse Operators | Registration records do not indicate public walk-in acceptance or current capacity. |
@@ -77,7 +80,7 @@ flowchart LR
   Review --> Bundle[Validated isolated review bundle]
   Bundle --> PR[Non-deployment branch and draft PR]
   PR --> Human[Independent human review before merge]
-  Published[Retained known-good static snapshot] --> UI[Unchanged greedy A/B/C model]
+  Published[Retained known-good static snapshot] --> UI[Mode A unchanged greedy A/B/C model]
   Reconcile --> UI
 ```
 
@@ -90,6 +93,8 @@ See [governance and publication instructions](docs/bin-policy-data-governance.zh
 - Browser location is used only after permission for the current client-side session; it is not persisted by the app.
 
 ## Install and run
+
+Use Node.js `^20.19.0 || >=22.12.0` as declared in `package.json`; Node 22 is used by the source-monitor workflow. Use `npm ci` for a reproducible install from the lockfile.
 
 ```bash
 npm install
@@ -125,6 +130,8 @@ npm run benchmark:policy-priority
 
 Some datasets have separate fetch scripts that copy or retrieve an official source snapshot before conversion. See `package.json` for the complete command list. After conversion, inspect `public/data/conversion-report.json` and each module summary for source-specific quality results.
 
+Conversion is a data-changing maintenance operation, not a deployment prerequisite. Do not refresh or adopt policy inputs without the documented review process. The research monitor may exit with failure when an upstream source is blocked; that does not authorize replacing the retained snapshot.
+
 ## Verify
 
 ```bash
@@ -134,6 +141,8 @@ npm run test:e2e
 npm run test:policy-preview # run npm run build first; tests cached-data offline fallback
 ./init.sh
 ```
+
+`init.sh` is a Bash convenience wrapper for unit tests, build and E2E, not an additional independent check. In PowerShell, run the three npm commands directly.
 
 Playwright starts its own Vite server. To avoid a locally occupied default port, choose another port:
 
@@ -155,6 +164,8 @@ See [deployment guide](docs/deployment.en.md).
 
 ## Documentation
 
+- [Current handoff and verification status](session-handoff.md)
+- [Policy v1.2 methodology](docs/bin-policy-v1.2-methodology.md), [sources](docs/bin-policy-v1.2-sources.md), and [governance](docs/bin-policy-v1.2-governance.md)
 - [Bin policy methodology, source audit and refresh process](docs/bin-policy-methodology.md)
 - [Bin policy MVP guide (Traditional Chinese)](docs/bin-policy-mvp.zh-Hant.md)
 

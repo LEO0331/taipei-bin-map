@@ -25,8 +25,10 @@ flowchart LR
   P --> A["Vite + React 應用程式<br/>src/App.tsx"]
   A --> M["共用公共設施地圖<br/>篩選、清單、Leaflet"]
   A --> D["獨立探索與目錄模組<br/>涼適點、學校、游泳池、回收統計等"]
+  A --> Q["延遲載入清潔箱政策頁<br/>保留模式 A 與研究模式 B"]
   M --> B["瀏覽器"]
   D --> B
+  Q --> B
 
   S["public/service-worker.js<br/>PWA 快取策略"] --> B
   P --> S
@@ -45,6 +47,7 @@ flowchart LR
 | `#/bin-policy` | 清潔箱配置決策支援 | 模式 A 保留交通等權覆蓋；模式 B 分析類別平衡政策優先、明示權重、缺漏與敏感度；兩者皆不核准設置位置。 |
 | `#/cooling-comfort-spots` | 臺北市涼適點 | 設施、開放時間與設備是來源快照，不代表即時可用或緊急避難所。 |
 | `#/public-school-sports-venues` | 公立學校運動場地搜尋 | 校園開放不表示可預約、存在特定運動場地或目前有空檔。 |
+| `#/swimming-pools` | 臺北市游泳池查詢 | 官方座標與聯絡資料不代表即時開放、救生員配置或游泳安全狀態。 |
 | `#/bulky-waste-collection-booking` | 巨大廢棄物清運預約 | 預約時間與電話不表示即時受理。 |
 | `#/unused-medicine-collection-stations` | 廢棄藥品檢收站 | 目錄資訊不構成醫療建議或即時收受保證。 |
 | `#/industrial-waste-reuse-operators` | 事業廢棄物再利用者 | 登錄紀錄不代表可現場交付或有即時處理量。 |
@@ -67,7 +70,7 @@ flowchart LR
 
 舊地圖 1,197 筆、目前 681 原始列／679 有效去重位置、附檔 130 列命名地點，以及公告 806 組／1,612 座並非同一計數單位。未對應不等於已撤除，附檔也不直接加入主清單。請先閱讀[逐筆對帳與未解釋差異](docs/bin-policy-bin-reconciliation.zh-Hant.md)。
 
-治理架構：官方來源 → 只讀監測／版本化原始檔 → 對帳及版本敏感度 → 精確雜湊審查 → 隔離驗證包 → 草稿 PR → 人工審查。前端持續使用已發布的已知良好快照與原有貪婪 A/B/C 模型。
+治理架構：官方來源 → 只讀監測／版本化原始檔 → 對帳及版本敏感度 → 精確雜湊審查 → 隔離驗證包 → 草稿 PR → 人工審查。模式 A 持續使用已發布的已知良好快照與原有貪婪 A/B/C 模型；模式 B 另載入待審查研究快照。
 
 詳細操作見[資料治理及發布程序](docs/bin-policy-data-governance.zh-Hant.md)、[公車來源遷移證據](docs/bin-policy-bus-stop-migration.md)與[v1.1 稽核紀錄](docs/bin-policy-v1.1-audit.md)。
 
@@ -78,6 +81,8 @@ flowchart LR
 - 只有在使用者授權後，瀏覽器才會於本次工作階段計算附近距離；專案不會保存精確位置。
 
 ## 安裝與啟動
+
+Node.js 需求依 `package.json` 為 `^20.19.0 || >=22.12.0`；來源監測工作流程使用 Node 22。需要依鎖定版本重現安裝時，請使用 `npm ci`。
 
 ```bash
 npm install
@@ -113,6 +118,8 @@ npm run benchmark:policy-priority
 
 部分資料集需要先執行擷取指令，將官方來源複製或取得為本機快照；完整指令請見 `package.json`。轉換後請查看 `public/data/conversion-report.json` 與各模組摘要，了解來源專屬的品質檢查結果。
 
+資料轉換屬於會改動資料的維護操作，不是部署前的必要步驟。政策資料更新／採用必須遵守審查程序；研究監測遇到來源阻擋而回傳失敗，不代表可直接替換保留快照。
+
 ## 驗證
 
 ```bash
@@ -122,6 +129,8 @@ npm run test:e2e
 npm run test:policy-preview # 先執行 npm run build，驗證已快取資料的離線回復
 ./init.sh
 ```
+
+`init.sh` 是依序執行單元測試、建置及 E2E 的 Bash 包裝，不是另一組獨立驗證。PowerShell 可直接執行上述三個 npm 指令。
 
 Playwright 會啟動自己的 Vite 伺服器。若預設連接埠被本機程序占用，可改用其他連接埠：
 
@@ -143,6 +152,8 @@ $env:PLAYWRIGHT_PORT='5175'; npm run test:e2e
 
 ## 延伸文件
 
+- [目前交接與驗證狀態](session-handoff.md)
+- [政策 v1.2 方法](docs/bin-policy-v1.2-methodology.zh-Hant.md)、[來源](docs/bin-policy-v1.2-sources.md)及[治理](docs/bin-policy-v1.2-governance.md)
 - [清潔箱配置決策支援 MVP 與更新程序](docs/bin-policy-mvp.zh-Hant.md)
 - [政策模組來源稽核與演算法方法](docs/bin-policy-methodology.md)
 

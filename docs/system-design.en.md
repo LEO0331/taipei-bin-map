@@ -1,58 +1,53 @@
-# System Design Deep Dive
+# System Design
 
-## Product Goal
+[English](system-design.en.md) | [繁體中文](system-design.zh-Hant.md)
 
-Taipei Public Amenities Map is a public, mobile-first static web app for finding public toilets, pedestrian garbage bins, and dog-waste bag boxes in Taipei. It has no backend, accounts, admin surface, database, or paid map API.
+Reviewed against the repository on 2026-10-16. Counts describe retained snapshots, not live facility availability.
 
-## Architecture
+## Product and architecture
+
+Static Vite + React + TypeScript, with a shared 22-type amenities map, eight dedicated discovery/directory/analytics routes, and `#/bin-policy`. No backend, authentication, database or paid map API. UI labels are bilingual; source addresses and district names remain Chinese. The optional English basemap preference was removed; maps use standard OpenStreetMap tiles.
 
 ```mermaid
-flowchart TD
-  BinCSV["Pedestrian bin CSV or fallback JSON"] --> Convert["scripts/convertBins.ts"]
-  DogCSV["Dog-waste bag box CSV or fallback JSON"] --> Convert
-  ToiletCSV["Public toilet CSV or fallback JSON"] --> Convert
-  Convert --> Facilities["public/data/facilities.json"]
-  Convert --> Pedestrian["public/data/pedestrian-bins.json"]
-  Convert --> Dog["public/data/dog-waste-bag-boxes.json"]
-  Convert --> Toilets["public/data/public-toilets.json"]
-  Convert --> Report["public/data/conversion-report.json"]
-  Facilities --> App["React App"]
-  Report --> App
-  App --> Leaflet["React Leaflet Map"]
-  Leaflet --> OSM["OpenStreetMap Tiles"]
-  App --> PWA["Manifest + Service Worker"]
+flowchart LR
+  Official[Official source files] --> Raw[Versioned raw snapshots]
+  Raw --> ETL[Encoding, schema and GIS validation]
+  ETL --> Static[public/data JSON and summaries]
+  Static --> App[React hash-route shell]
+  App --> Shared[Shared map and directory]
+  App --> Modules[Source-specific dashboards]
+  App --> Policy[Lazy policy dashboard]
+  Policy --> A[Mode A retained transport coverage]
+  Policy --> B[Lazy Mode B policy-priority research]
+  A --> Export[Evidence and exports]
+  B --> Export
+  SW[Service worker] --> App
 ```
 
-## Data Model
+Acquisition/conversion occurs before deployment. Runtime data requests are same-origin static JSON, not Taipei Open Data calls. Basemap tiles and external map links still involve third-party services.
 
-The frontend uses one generic `Facility` record with `type: 'pedestrian_bin' | 'dog_waste_bag_box' | 'public_toilet'`. Public toilets add optional fields for name, category, manager, total seats, grade counts, accessible seats, and parent-child seats.
+## Data and rendering boundaries
 
-The converter trims CSV headers, decodes Big5/CP950 for the bin datasets, and reads UTF-8-SIG for public toilets. It preserves broad Taipei coordinate outliers with `isCoordinateOutlier: true`; invalid numeric coordinates are dropped and listed in `invalidCoordinateRows`.
+- `src/types.ts` defines the shared `Facility` and source-specific contracts. Dedicated datasets are not forced into a bin-only schema.
+- `scripts/convertBins.ts` composes shared data; dedicated converters decode UTF-8/Big5/CP950 and retain quality evidence. The retained `conversion-report.json` records 16,956 valid rows, generated 2026-07-21; this is not the policy inventory or a live count.
+- `src/App.tsx` orchestrates routes, language, filters and location. Facility type starts empty, supports one selection, and allows deselection. Empty selection draws no facility markers or district summary bubbles.
+- `src/utils/facilityUtils.ts` handles shared filtering, distance and labels. Browser geolocation requires permission, is not persisted by the app, and nearby lookup returns up to ten records.
+- `FacilityMap.tsx` is lazy-loaded. Single-type results with at most 500 valid coordinates, or nearby results, show exact markers in batches. Ordinary lists mount the first 80 records; counts describe the full matching set.
+- Address-only layers use explicitly labelled district summaries, not fabricated exact points. The contextual legend collapses; the result-limit notice sits below the adjacent facility-type panel.
+- Dedicated modules have their own limits. Cooling currently draws individual points only after a filter/location is active, capped at 80. It does not compute grid clusters despite residual UI copy saying otherwise; correcting that copy/behavior remains an implementation follow-up.
 
-## Runtime Flow
+See the [README route table](../README.md#data-modules) for module-specific boundaries.
 
-1. Vite serves the React app as static assets.
-2. `App.tsx` fetches `/data/facilities.json` and `/data/conversion-report.json`.
-3. Search, district, facility type, public toilet category, and public toilet accessibility filters run in memory.
-4. Nearby lookup asks for browser geolocation, calculates Haversine distances locally, and shows the nearest 10 facilities from the active filter set.
-5. The map is lazy-loaded as a separate chunk.
-6. Large unfiltered result sets do not render thousands of markers; users narrow via filters or nearby lookup before markers appear.
-7. The service worker caches static assets and local JSON for repeat visits.
+## Policy analysis and governance
 
-## Main Boundaries
+Mode A retains `public/data/bin-policy/analysis.json` and `src/lib/binPolicyDecision.ts`: 679 valid unique bin positions and 3,395 bus reference positions. Its internal A/B/C scenarios are distinct from the Mode A/B selector.
 
-- `scripts/convertBins.ts`: source decoding, facility normalization, fallback handling, and conversion reporting.
-- `src/utils/facilityUtils.ts`: filtering, distance, labels, map links, and coordinate bounds.
-- `src/App.tsx`: state orchestration, data loading, filters, geolocation coordination.
-- `src/components/`: reusable controls, map, popup, legend, notice, and list UI.
-- `tests/e2e/`: browser-level user-flow coverage.
+Mode B separately loads `priority-references.json`: 42 vendor concentrations, 47 markets, 73 MRT references and 3,395 bus references (3,557 entities). Tourism is blocked and commercial geometry unavailable. `policyBalancedCoverage.ts` with `policyPriorityWeights.ts` computes fixed-category-denominator weighted gain, not demand, walking access or siting approval. Source, method and weight versions remain separate in exports.
 
-## Verification Strategy
+Read-only monitoring does not adopt inputs. Research review bundles and approved-data publication are separate. Scoped `.gitattributes` rules preserve raw archive bytes. See [v1.2 methodology](bin-policy-v1.2-methodology.md) and [governance](bin-policy-v1.2-governance.md).
 
-- Unit tests cover pure utility behavior.
-- Playwright e2e tests cover all three facility types, language persistence, toilet filters, search, geolocation success, geolocation denial, and marker-cap behavior.
-- `./init.sh` is the baseline command for agents and release checks.
+## Caching and verification
 
-## Scaling Notes
+`public/service-worker.js` uses network-first for navigation, `/assets/` and `/data/bin-policy/`; ordinary `/data/`, icons and manifest use cache-first. Policy datasets are cached after use, not precached with the ordinary map. Network failure can fall back to cached input; HTTP error responses are not silently replaced by stale data. External tiles are not cached by this worker. Registration is production-only.
 
-The combined dataset is 3,256 records. Marker rendering is capped for large result sets to avoid mobile map clutter without adding a clustering dependency. Marker clustering remains the next upgrade if the product needs all markers visible at low zoom.
+Vitest covers utilities, converters, components, GIS and governance; Playwright covers desktop/mobile flows. After building, `npm run test:policy-preview` checks production service-worker/offline behavior. See [current handoff](../session-handoff.md) for dated verification, not claims of live deployment or cloud workflow success.

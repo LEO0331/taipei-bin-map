@@ -5,6 +5,18 @@
 **Last Updated:** 2026-10-16 Asia/Taipei
 **Active Feature:** None
 
+## 2026-10-16 — Documentation consistency audit
+
+- Audited all 29 tracked Markdown documents against route/components, package scripts, static summaries, service-worker behavior and current GitHub PR metadata. Documentation/harness records only; no application logic, datasets or dependencies changed.
+- Updated both READMEs (missing swimming route, runtime/verification guidance), bilingual system design/tradeoffs/deployment, current session handoff, consultant decision-making report and policy version-scope/provenance notes. Replaced outdated three-type/3,256-record/CARTO/current-vulnerability handoff claims with current retained-state descriptions. Clarified root-hosting vs GitHub Pages subpath support, actual network/cache policies and offline limits.
+- GitHub metadata confirms v1.1 PR #14 and v1.2 PR #15 are merged; v1.2 head `01d07aa`, merge `1280011b086f498404abf138c29f64041963e14c`. Earlier create-PR HTTP403 records remain historical evidence, not a current missing-PR claim. No hosting deployment, cloud workflow execution or operational source approval verified here.
+- Corrected research-monitor date to 2026-10-16, benchmark vs example-output references and unverified Travel `Total` schema assumption. Preserved generated source reports, actual HTTP403 failures, historical dates/test counts and raw bytes.
+- Recorded one implementation follow-up without changing behavior: cooling UI claims grid clusters but code currently draws up to 80 filtered individual points; general docs now describe actual behavior. Marked retired low-carbon feature as historical in the ledger.
+- Final documentation checks: 29 Markdown files, 116 local link targets and 192 documented npm-run occurrences; no missing targets/scripts or UTF-8 replacement characters. Feature ledger JSON parsed successfully; all 23 changed files since the v1.2 head are Markdown/ledger only. `git diff --check` passed. Fresh functional checks: 308 tests / 23 files passed and TypeScript/production build passed. The first sandbox run could not access Vitest transform-temp files; approved unsandboxed execution passed without implementation changes. Browser E2E/preview were not rerun for these documentation-only changes; prior 142/4 results remain dated evidence.
+- An external `79d42e2` documentation commit appeared during the audit; preserved it and continued on the same branch without reset or checkout. The user subsequently authorized committing and pushing the remaining documentation corrections to `codex/bin-policy-v1-2`; this does not merge those follow-up changes into main.
+
+Historical-log note: all subsequent sections preserve the state at their original milestone. The undated legacy Status/What's Done/Next sections are historical, not the current handoff; use [session-handoff.md](session-handoff.md) for current state. Later entries can supersede earlier basemap, feature, dependency, test-count and PR statements.
+
 ## 2026-10-16 — Bin policy v1.2 completed implementation
 
 - PR handoff: six implementation/evidence commits pushed to origin/codex/bin-policy-v1-2; connected GitHub create-PR returned HTTP403 Resource not accessible by integration. **No PR was created**, and no main merge or source adoption occurred. Full draft description, screenshots and compare link are saved in docs/bin-policy-v1.2-pr.md for the maintainer; no credential/permission bypass attempted.

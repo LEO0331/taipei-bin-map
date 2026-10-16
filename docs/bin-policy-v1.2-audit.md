@@ -1,5 +1,7 @@
 # Bin Policy v1.2 — audit and implementation plan
 
+Delivery status checked 2026-10-16: [PR #15](https://github.com/LEO0331/taipei-bin-map/pull/15) is merged, merge commit `1280011b086f498404abf138c29f64041963e14c`, head `01d07aa`. This record retains the pre-merge implementation/test evidence; merging feature code does not change research inputs into approved operational data. Actual hosting deployment and hosted workflow outcomes were not verified in the documentation audit.
+
 ## Baseline and boundaries
 
 - Clean `origin/main` `1a048dd` contains PR #11 (MVP) and #14 (governance). Dedicated feature branch: `codex/bin-policy-v1-2`.

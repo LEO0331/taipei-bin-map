@@ -1,23 +1,23 @@
 # AGENTS.md
 
-Lightweight harness for coding agents working on the Taipei pedestrian garbage bin map.
+Lightweight harness for coding agents working on the Taipei Public Amenities Map and its dedicated dashboards.
 
 ## Project Snapshot
 
 - Static Vite + React + TypeScript app.
 - No backend, login, admin page, database, or API keys.
-- Bin data is generated from the Big5/CP950 CSV into `public/data/bins.json`.
+- The shared map has 22 facility types; generated data lives in `public/data/`. Dedicated discovery, analytics and bin-policy dashboards use separate static datasets.
 - Main app code lives in `src/`; reusable components live in `src/components/`.
-- Core utility behavior is covered in `src/utils/binUtils.test.ts`.
+- Core utility tests live in `src/utils/facilityUtils.test.ts`; component, policy/GIS and governance tests also live under `src/` and `scripts/`. Browser flows live in `tests/e2e/`.
 
 ## Startup Workflow
 
 Before editing:
 
-1. Confirm `pwd` is `~/Documents/taipei-bin-map`.
+1. Confirm the working directory is the repository root (this workspace: `D:\Practice\taipei-bin-map`), not a fixed home-directory path.
 2. Read this file, `README.md`, `feature_list.json`, and `progress.md`.
-3. Run `npm install` if `node_modules/` is missing.
-4. Run `./init.sh` to establish the current baseline.
+3. Use a supported Node version from `package.json`; run `npm ci` if dependencies are missing or the lockfile changed.
+4. Run `bash ./init.sh`, or `npm test`, `npm run build`, and `npm run test:e2e` sequentially in PowerShell, to establish the baseline. For documentation-only work, verify links/commands and record any functional checks not rerun.
 5. Review recent work with `git status --short` and `git log --oneline -5` when commits exist.
 
 If baseline verification fails, fix or clearly record that failure before adding new scope.
@@ -29,7 +29,8 @@ If baseline verification fails, fix or clearly record that failure before adding
 - Do not add server-side services, accounts, CMS, or paid map APIs unless explicitly requested.
 - Preserve Traditional Chinese as the default language and keep English as an optional UI language.
 - Keep address and district data in Chinese; translate labels, messages, warnings, and controls.
-- Regenerate `public/data/bins.json` with `npm run convert:bins` after changing conversion logic or source data.
+- Regenerate affected datasets with their documented converter after changing conversion logic or source data. `npm run convert:facilities` rebuilds the shared map; policy inputs have separate versioned conversion and review procedures.
+- Preserve Mode A's approved policy baseline independently of Mode B research inputs. See `docs/bin-policy-v1.2-governance.md`; a successful fetch is not source adoption.
 - Keep changes scoped to one active feature from `feature_list.json`.
 - Update `progress.md` and `feature_list.json` before ending a session.
 

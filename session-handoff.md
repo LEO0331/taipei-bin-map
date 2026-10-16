@@ -1,87 +1,48 @@
 # Session Handoff
 
-## Current Objective
+Last reviewed: **2026-10-16 Asia/Taipei**. This file describes current repository status; [progress.md](progress.md) preserves dated historical milestones.
 
-- Goal: Maintain the twenty-layer `台北市公共便利設施地圖` / `Taipei Public Amenities Map`.
-- Current status: feat-029 is implemented and final full baseline verification passed.
-- Branch / commit: Working tree has uncommitted protected tree and pay.taipei cardless parking data, UI, tests, docs, and harness changes.
+## Current state
 
-## Completed
+- Static bilingual amenities app: 22 shared facility types, eight dedicated discovery/directory/analytics routes and `#/bin-policy`.
+- v1.1 [PR #14](https://github.com/LEO0331/taipei-bin-map/pull/14) is merged; v1.2 [PR #15](https://github.com/LEO0331/taipei-bin-map/pull/15) is also merged (GitHub metadata verified during this documentation audit).
+- PR #15 head: `01d07aa`; merge commit: `1280011b086f498404abf138c29f64041963e14c`. This workspace remains on `codex/bin-policy-v1-2`; no branch reset/checkout was performed. During this audit, an external `79d42e2` documentation commit appeared and was preserved. The user subsequently requested committing and pushing the remaining documentation corrections on this branch; that follow-up is not a merge into main.
+- Earlier integration HTTP403 failures describe the agent's attempted PR creation, not the current PR state. No live hosting deployment or hosted workflow success was verified in this audit.
 
-- Added `timed_collection_point` and `direct_drinking_station` facility types.
-- Added Big5/CP950 local fetch/copy scripts and converters with raw metadata.
-- Generated 30 timed collection points and 733 direct drinking stations.
-- Preserved 38 outside-Taipei direct station records and marked Taipei membership.
-- Added search, focused filters, nearby support, map markers, legend, lists, popups, notices, service-worker cache, and README documentation.
-- Kept conservative note parsing: unknown accepted items remain `unknown`.
-- Kept the existing static JSON, Vite, React, Leaflet, and PWA architecture.
-- Added 1,184 approved used-clothing recycling boxes from 48 organizations and 367 villages.
-- Added village, organization, and phone filters plus search, nearby, marker, legend, list, popup, notice, cache, README, and local CSV scripts.
-- Broad map views are list-first: they do not mount individual facility markers. Nearby results and narrowed single-facility views with at most 500 valid coordinates retain exact markers.
-- Replaced the deployed OpenStreetMap tile host with CARTO's no-key light basemap after OpenStreetMap tiles rendered as a gray empty map in production.
-- Static data is cache-first through the versioned service worker for faster repeat visits.
-- Added 483 lactation rooms from two Big5/CP950 resources, with normalized deduplication and legal-required-list cross-reference.
-- Added lactation directory filters, district summary bubbles, address-based Google Maps links, bilingual notices, summary JSON, and an optional verified-coordinate cache.
-- Added 334 riverside toilets and 393 family-friendly toilets with valid coordinates, filters, nearby lookup, map/list/popup details, summary JSON, and PWA caching.
-- Soft-matched all current family-friendly toilet records to general public-toilet records without merging the specialized layer.
-- Added 245 motorcycle inspection stations with district summaries, brand/postal/phone filters, address-based map links, summary JSON, and PWA caching.
-- Preserved `responsiblePersonName` in JSON while keeping it out of default cards/popups.
-- Added 398 electric motorcycle charging stations with district summaries, category/city/district-code/address filters, address-based map links, summary JSON, and PWA caching.
-- Added 617 commercial EV charging and battery-swap stations with service/operator/city/city-code/address/district filters, district summaries, address-based map links, summary JSON, and PWA caching.
-- Kept commercial EV stations as address-only records because the source files do not provide coordinates.
-- Added 75 gas/LPG stations with UTF-8-SIG conversion, TWD97-to-WGS84 conversion, exact markers, supplier/service/hour/status filters, nearby lookup, summary JSON, and PWA caching.
-- Added 202 designated smoking areas with UTF-8-SIG conversion, exact WGS84 markers, type/opening-hour/photo/relative-location/management filters, nearby lookup, summary JSON, notices, and PWA caching.
-- Kept designated smoking area copy limited to public-data lookup; no real-time availability, legal interpretation, health advice, smoking advice, or complete legal-boundary claim is made.
-- Added 3,786 announced no-smoking place records from one UTF-8-SIG coordinate resource and two Big5/CP950 no-coordinate resources.
-- Added no-smoking record type/year/source/coordinate filters, marker/legend/list/popup details, summary JSON, PWA caching, README notes, and no legal-boundary/enforcement/health/smoking-advice claims.
-- Tightened the Playwright web server so E2E tests cannot silently reuse an unrelated local app on port 5173.
-- Added 88 clean needle exchange service point records from a CP950 source CSV, with service item/category classification, phone/extension parsing, service-hour parsing, district summary bubbles, focused filters, list/popup details, PWA caching, README notes, and no medical, crime, risk, drug-use inference, or real-time inventory claims.
-- Added 3,874 protected tree records from a UTF-8-SIG source CSV, with tree ID/species/scientific-name/English-name/location-type/management-unit/diameter/circumference/coordinate-quality filters, exact markers for narrowed views, list/popup details, PWA caching, README notes, and no tree-health, hazard/risk, permit, legal, land-ownership, maintenance, or tourism-ranking claims.
-- Added 227 pay.taipei cardless parking lot records from a UTF-8-SIG source CSV, with support-status, operator, operator ID, postal-code, postal-code-type, road, phone/note, stopped-service hint, basement, operator/platform address, location-precision, and geocoding-status filters.
-- Kept pay.taipei parking records address-only because the source has no official coordinates; the app uses district summary bubbles, searchable directory cards, and address-based Google Maps links without real-time parking, fee, payment, entrance, navigation, legal, consumer, or endorsement claims.
+## Current policy behavior
 
-## Verification
+- Mode A retains the approved `v1-14c24bcdbade` inputs: 679 valid unique bin positions / 3,395 retained 2021 bus references and original greedy A/B/C scenarios.
+- Mode B is independent, lazy and research/review-required: `priority-v1-113edf6ed5e09ada`, 3,557 entities (42 vendor / 47 market / 73 MRT / 3,395 bus); 3,468 transport anchors.
+- Method `policy-balanced-coverage-v1`; weights `policy-priority-weights-v1`, defaults 4/4/3/3/2/1 for tourism/vendor/market/commercial/MRT/bus, editable 0–10. Gain uses fixed category populations, not measured demand.
+- Tourism acquisition is blocked (HTTP403); 235 commercial rows are context only, not spatial references. Missing categories are unavailable, without weight redistribution.
+- Newer bus data is a comparison, not adopted. Monitoring and review bundles do not change approved sources or grant installation permission.
+- Source, raw validation and analysis-validation dates are separate. Scoped Git attributes preserve raw archive hashes across operating systems.
 
-| Check | Result |
-|---|---|
-| `npm run convert:facilities` | 16,458 total facilities |
-| Targeted tests | 53 converter/filter tests passed |
-| `npm test` | 53 unit/converter tests passed |
-| `npm run build` | Passed |
-| `npm run test:e2e -- --grep "pay.taipei"` | 2 desktop/mobile tests passed |
-| `npm run test:e2e` | 60 desktop/mobile tests passed |
-| `./init.sh` | Passed: 53 unit/converter tests, production build, and 60 desktop/mobile Playwright tests |
-| Responsive smoke | Covered by mobile/desktop Playwright suite |
+## Verification evidence
 
-## Deliberate Omissions
+The last implementation verification (2026-10-16, recorded in [v1.2 audit](docs/bin-policy-v1.2-audit.md)) passed:
 
-- No dashboard charts: the app has no chart dashboard surface.
-- No extra nearby shortcut buttons: the existing nearby action already respects selected layers.
-- No frontend Taipei Open Data calls: all runtime data remains static local JSON.
-- No automatic geocoding: coordinate-free layers remain address-only unless manually verified coordinates are supplied.
-- No separate map per facility category: one shared map keeps search, filtering, nearby lookup, and links consistent.
-- No dedicated smoking-area dashboard/directory page: the existing shared list, filter, map, popup, and nearby surfaces cover the layer without adding a new page system.
-- No separate no-smoking map or legal-boundary view: the existing shared map/list/search flow covers source point records without implying polygon boundaries.
-- No clean needle charts/dashboard: the app has no dashboard surface, so the layer uses the existing shared list/filter/map surface.
-- No protected tree charts/dashboard: the app has no dashboard surface, so the layer uses the existing shared list/filter/map surface.
-- No pay.taipei parking charts/dashboard: the app has no dashboard surface, so the layer uses the existing shared list/filter/map surface.
-- No pay.taipei parking geocoding or official-coordinate join: the source has no official coordinates, so v1 stays address-only.
+| Check | Recorded result |
+| --- | --- |
+| `npm ci` | Zero reported vulnerabilities at that run |
+| `npm test` | 308 tests / 23 files |
+| `npm run build` | TypeScript and production build passed |
+| Full Playwright, two workers | 142 desktop/mobile cases |
+| Production-preview offline suite | 4 cases, Mode A/B on both profiles |
+| Retained source reproduction / Git raw hashes | Passed |
+| Node citywide benchmark | About 0.71 seconds; not physical-phone latency |
 
-## Risks
+The documentation audit freshly reran `npm test` (308 passed / 23 files) and `npm run build` (passed). The initial sandbox run failed to access Vitest temporary transform files; the approved run outside that sandbox passed without code changes. E2E/offline counts above remain dated implementation evidence, not new browser runs. Earlier loading/download timeouts remain disclosed; the CSV case passed ten isolated repetitions and the final full run. No assertion that flakiness is permanently eliminated.
 
-- Source datasets are snapshots, not real-time availability or water-quality guarantees.
-- Used-clothing data has 29 coordinate outliers; the app lists them but does not render their markers.
-- Timed collection accepted-item flags are based only on explicit note text.
-- Existing Vite/esbuild moderate development-server advisory remains pending a breaking toolchain upgrade.
-- Lactation-room source files have no coordinates, so exact nearby sorting is intentionally unavailable for those records.
-- New toilet datasets are snapshots and do not guarantee cleanliness, maintenance, opening status, or equipment availability.
-- Motorcycle inspection station records have no coordinates, so exact nearby sorting is intentionally unavailable until verified coordinates are added.
-- Electric motorcycle charging station records have no coordinates, so exact nearby sorting is intentionally unavailable until verified coordinates are added.
-- Commercial EV charging and battery-swap station records have no coordinates, so exact nearby sorting is intentionally unavailable until verified coordinates are added.
-- Commercial EV availability, fees, payment methods, membership rules, equipment specs, and battery inventory are not real-time guarantees.
-- Gas/LPG station business hours, fuel/LPG supply, pricing, self-service availability, and operating status are not real-time guarantees.
-- Designated smoking area opening hours, on-site usability, legal applicability, health interpretation, and complete legal boundaries are not real-time guarantees or advice.
-- Announced no-smoking place points are source-location references and not complete legal boundaries, real-time enforcement status, legal advice, health advice, smoking advice, or signage guarantees.
-- Clean needle service point records have no coordinates, so exact nearby sorting is intentionally unavailable; source data is not a real-time service, inventory, medical, public-safety, crime, or drug-use behavior signal.
-- Protected tree records are source-data lookup points, not real-time tree health, collapse-risk, pruning/transplant permit, land-ownership, cadastral-boundary, maintenance-progress, legal-advice, or tourism-ranking data.
-- pay.taipei cardless parking records have no official coordinates and are not real-time parking availability, operating status, parking-fee, payment-success, cardless entry/exit success, entrance-precision, navigation, legal-parking, consumer-advice, or endorsement data.
+The retained research monitor dated 2026-10-16 intentionally reports failure/exit 1: five unchanged HTTP200 resources and blocked tourism HTTP403. This is not a passing source check. Workflow execution/Issue/PR permissions and human source approvals were not exercised by local verification.
+
+## Documentation-audit follow-ups
+
+- General design, tradeoffs, deployment, READMEs and policy version scopes now reflect v1.2. Historical reports retain their original dates/counts.
+- Cooling has residual UI copy claiming grid clusters, but current code draws at most 80 individual points only after filtering/location. Documentation now describes actual behavior; fix the UI copy or implement the intended strategy in a separate behavior-tested change.
+- Cache-update testing between two different deployments, physical-device performance, live source recovery and actual hosting smoke remain separate verification gaps.
+- Do not add missing-source geometry, auto-adopt bus updates, interpret reference coverage as people/litter reduction, or enforce the stopped 2022 procedure as current siting law.
+
+## Restart
+
+Read [README](README.md), [feature ledger](feature_list.json), [v1.2 methodology](docs/bin-policy-v1.2-methodology.md) and [governance](docs/bin-policy-v1.2-governance.md). Use the repository root, a supported Node version and the lockfile. `bash ./init.sh` runs unit tests/build/E2E; PowerShell may run the npm commands directly. Build before `npm run test:policy-preview`; choose `PLAYWRIGHT_PORT` if 5173 is occupied. Data conversion is intentional maintenance, not a required deployment step.

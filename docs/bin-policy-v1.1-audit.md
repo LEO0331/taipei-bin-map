@@ -1,5 +1,7 @@
 # Bin Policy v1.1 — audit and implementation record
 
+Historical milestone record (2026-10-15). v1.1 subsequently merged in [PR #14](https://github.com/LEO0331/taipei-bin-map/pull/14); v1.2 merged in [PR #15](https://github.com/LEO0331/taipei-bin-map/pull/15), verified 2026-10-16. Future-work statements and dependency/test findings below describe the v1.1 milestone, not today's status. See the [v1.2 audit](bin-policy-v1.2-audit.md) for implemented research weights and current limitations.
+
 ## Baseline (2026-10-15)
 
 - Started from clean `origin/main` `cfa0fb1`, which includes MVP PR #11 (`e06dc6b`) and contextual legend PR #13. Dedicated branch: `codex/bin-policy-v1-1`.

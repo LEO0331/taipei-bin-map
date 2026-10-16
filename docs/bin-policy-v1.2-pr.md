@@ -1,5 +1,7 @@
 # v1.2 PR handoff
 
+**Subsequent status (verified 2026-10-16): [PR #15](https://github.com/LEO0331/taipei-bin-map/pull/15) is merged**, head `01d07aa`, merge commit `1280011b086f498404abf138c29f64041963e14c`. The integration failure and draft text below are historical handoff evidence. Do not create a duplicate PR; no hosting deployment or operational source approval is implied by the merge.
+
 The feature branch is pushed and ready for independent review. The connected GitHub integration returned HTTP403 (`Resource not accessible by integration`) when creating a draft. No PR has been created by this task; no main merge or production approval occurred.
 
 [Create draft PR from codex/bin-policy-v1-2](https://github.com/LEO0331/taipei-bin-map/compare/main...codex/bin-policy-v1-2?expand=1)
@@ -10,7 +12,7 @@ Suggested title: **Bin Policy v1.2: category-balanced policy priorities and expl
 
 ## v1.2 — policy alignment and explainable category-balanced coverage
 
-Built from merged v1.1 PR #14. Six scoped implementation commits; no auto-merge, production approval or v1.3 operations. Original `analysis.json` and `greedy-equal-reference-coverage-v1` code are unchanged.
+Built from merged v1.1 PR #14 through staged implementation/evidence commits; no automatic merge, production approval or v1.3 operations. Original `analysis.json` and `greedy-equal-reference-coverage-v1` code are unchanged.
 
 ### Old and new capabilities
 - Mode A retains approved bins / historical 2021 bus coverage, its A/B/C scenarios and existing exports.
