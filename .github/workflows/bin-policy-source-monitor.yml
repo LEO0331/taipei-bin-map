@@ -9,6 +9,76 @@ concurrency:
   group: bin-policy-source-monitor
   cancel-in-progress: false
 jobs:
+  priority-research-monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Check frozen v1.2 research sources without publication
+        id: priority-check
+        continue-on-error: true
+        shell: bash
+        run: |
+          RAW=$(node -e 'const fs=require("fs");const s=JSON.parse(fs.readFileSync("public/data/bin-policy/priority-references.json"));process.stdout.write("data/raw/bin-policy-priority/"+s.snapshotId)')
+          npx tsx scripts/monitorPolicyPrioritySources.ts "$RAW" public/data/bin-policy/priority-references.json test-results/policy-priority-monitor
+      - name: Retain research review summary
+        if: always()
+        shell: bash
+        run: |
+          if [ -f test-results/policy-priority-monitor/summary.md ]; then
+            cat test-results/policy-priority-monitor/summary.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'Research monitor setup/validation failed; inspect logs. Approved v1.1 snapshot retained.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: policy-priority-monitor
+          path: test-results/policy-priority-monitor
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Mark research source-check failure
+        if: steps.priority-check.outcome == 'failure'
+        run: exit 1
+  priority-research-alert:
+    needs: priority-research-monitor
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: read
+      issues: write
+    steps:
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: policy-priority-monitor
+          path: priority-monitor
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            if (!fs.existsSync('priority-monitor/report.json')) {
+              core.warning('No research monitor report; inspect setup/validation logs. Approved data unchanged.');
+              return;
+            }
+            const report = JSON.parse(fs.readFileSync('priority-monitor/report.json', 'utf8'));
+            if (!report.alert_key) return;
+            const marker = '<!-- policy-priority-research-monitor -->';
+            const fingerprint = `<!-- alert-key:${report.alert_key} -->`;
+            try {
+              const issues = await github.paginate(github.rest.issues.listForRepo, {...context.repo, state:'open', per_page:100, creator:'github-actions[bot]'});
+              const prior = issues.find(issue => !issue.pull_request && issue.body?.includes(marker));
+              if (prior?.body?.includes(fingerprint)) { core.notice('Repeated research-source alert; no duplicate issue/comment.'); return; }
+              const body = `${marker}\n${fingerprint}\n${fs.readFileSync('priority-monitor/summary.md','utf8')}\nFull report: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}. No approved snapshot was replaced.`;
+              if (prior) await github.rest.issues.update({...context.repo, issue_number:prior.number, body});
+              else await github.rest.issues.create({...context.repo, title:'Policy priority research sources require technical review', body});
+            } catch (error) { core.warning(`Research notification unavailable: ${error.message}; retained workflow artifact is the fallback.`); }
   monitor:
     runs-on: ubuntu-latest
     timeout-minutes: 12

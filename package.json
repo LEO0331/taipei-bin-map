@@ -7,6 +7,12 @@
     "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
+    "data:fetch:policy-priority": "tsx scripts/fetchPolicyPrioritySources.ts",
+    "data:convert:policy-priority": "tsx scripts/convertPolicyPrioritySources.ts",
+    "data:monitor:policy-priority": "tsx scripts/monitorPolicyPrioritySources.ts",
+    "data:prepare:policy-priority-review": "tsx scripts/preparePolicyPriorityReview.ts",
+    "benchmark:policy-priority": "tsx scripts/benchmarkPolicyPriority.ts",
+    "data:example:policy-priority": "tsx scripts/buildPolicyPriorityExample.ts",
     "data:reconcile:bins": "tsx scripts/reconcileBinSources.ts",
     "data:monitor:bin-policy": "tsx scripts/monitorBinPolicySources.ts",
     "data:prepare:bin-policy": "tsx scripts/prepareBinPolicyPublication.ts",

@@ -1,0 +1,124 @@
+{
+  "generatedAt": "2026-10-16T00:50:46.116Z",
+  "snapshotId": "priority-v1-113edf6ed5e09ada",
+  "baseSnapshotId": "v1-14c24bcdbade",
+  "referenceSnapshotSha256": "ed3d3ca35c2e7075422a16e909465b738157408031968dddee366230516487d0",
+  "inputValidatedAt": "2026-10-16T00:22:41.668Z",
+  "weightConfiguration": "policy-priority-weights-v1",
+  "documentedWeights": {
+    "tourism": 4,
+    "night_market": 4,
+    "traditional_market": 3,
+    "commercial": 3,
+    "mrt": 2,
+    "bus": 1
+  },
+  "busSourceVersion": "353511da19a0b8d522555a7c2e1e45772c044812b565a3872a2d2aea377c4dc4",
+  "methodology": "policy-balanced-coverage-v1",
+  "parameters": {
+    "district": "",
+    "radius": 300,
+    "count": 10,
+    "separation": 0,
+    "unitCost": null,
+    "budget": null
+  },
+  "environment": {
+    "node": "v24.14.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "cpu": "13th Gen Intel(R) Core(TM) i5-13500"
+  },
+  "measurementLimitations": [
+    "Node wall-clock measurement on this machine, not representative mobile CPU benchmarking.",
+    "Mobile viewport E2E verifies responsiveness and flow separately; it does not establish handheld compute latency.",
+    "15-second regression budget is an engineering guard, not a user-experience service-level promise.",
+    "One measured run includes JIT effects and machine load; exact timings are not deterministic."
+  ],
+  "runs": [
+    {
+      "name": "small-fixture-test-only",
+      "references": 1,
+      "candidates": 1,
+      "selected": 1,
+      "sensitivityScenarios": 5,
+      "milliseconds": {
+        "spatialPreparation": 0.37649999999999295,
+        "allocation": 0.32630000000000337,
+        "sensitivityReusingNeighbours": 0.42960000000002196,
+        "total": 1.1324000000000183
+      },
+      "regressionBudgetMs": 15000,
+      "withinRegressionBudget": true,
+      "equalVsProposed": [
+        {
+          "id": "equal",
+          "score": 1,
+          "rawGain": 1,
+          "topCandidateIds": [
+            "fixture-a"
+          ]
+        },
+        {
+          "id": "proposed",
+          "score": 1,
+          "rawGain": 1,
+          "topCandidateIds": [
+            "fixture-a"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "citywide-official-sources",
+      "references": 3557,
+      "candidates": 3468,
+      "selected": 10,
+      "sensitivityScenarios": 11,
+      "milliseconds": {
+        "spatialPreparation": 422.68460000000005,
+        "allocation": 36.89199999999994,
+        "sensitivityReusingNeighbours": 252.37419999999997,
+        "total": 711.9508
+      },
+      "regressionBudgetMs": 15000,
+      "withinRegressionBudget": true,
+      "equalVsProposed": [
+        {
+          "id": "equal",
+          "score": 0.6747225154232819,
+          "rawGain": 125,
+          "topCandidateIds": [
+            "bus-1833",
+            "bus-6651",
+            "bus-1000548",
+            "bus-1000126",
+            "bus-200005000",
+            "bus-200005035",
+            "bus-1210",
+            "bus-1632",
+            "bus-1837",
+            "bus-6681"
+          ]
+        },
+        {
+          "id": "proposed",
+          "score": 2.1961240226889682,
+          "rawGain": 125,
+          "topCandidateIds": [
+            "bus-1833",
+            "bus-6651",
+            "bus-1210",
+            "bus-1000548",
+            "bus-1000126",
+            "bus-200005000",
+            "bus-1632",
+            "bus-1837",
+            "bus-200005035",
+            "bus-6681"
+          ]
+        }
+      ]
+    }
+  ]
+}

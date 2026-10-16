@@ -42,7 +42,7 @@ flowchart LR
 
 | 路由 | 模組 | 使用界線 |
 | --- | --- | --- |
-| `#/bin-policy` | 清潔箱配置決策支援 | 以歷史公車參考點做直線覆蓋貪婪篩選；候選點須現勘，不是核可設置位置。 |
+| `#/bin-policy` | 清潔箱配置決策支援 | 模式 A 保留交通等權覆蓋；模式 B 分析類別平衡政策優先、明示權重、缺漏與敏感度；兩者皆不核准設置位置。 |
 | `#/cooling-comfort-spots` | 臺北市涼適點 | 設施、開放時間與設備是來源快照，不代表即時可用或緊急避難所。 |
 | `#/public-school-sports-venues` | 公立學校運動場地搜尋 | 校園開放不表示可預約、存在特定運動場地或目前有空檔。 |
 | `#/bulky-waste-collection-booking` | 巨大廢棄物清運預約 | 預約時間與電話不表示即時受理。 |
@@ -52,6 +52,14 @@ flowchart LR
 | `#/recycling-analytics` | 資源回收統計 | 行政區回收量不代表回收率、效率或環保表現。 |
 
 ## 資料使用原則
+
+### 清潔箱政策 v1.2：獨立的政策優先研究模式
+
+在既有政策頁選擇「分析模式 → B. 政策優先配置（研究情境）」。模式 A、核准箱位／2021 公車基線及原匯出不變；模式 B 只在選取後載入待審查研究資料。觀光／攤販／市場／商圈／捷運／公車預設權重為 **4／4／3／3／2／1**，可於 0–10 內調整並重設。計分為 `Σ（權重 × 類別新增覆蓋 ÷ 該類固定有效母體）`，避免公車密度壓過其他類別；不是實測需求、人數或政策成效。
+
+實際納入 42 處官方攤販集中場、47 處市場、73 處捷運站參考位置及原有 3,395 處公車參考點。觀光 API 受 HTTP403 阻擋；235 筆商圈／公會資料沒有可辯護的商圈幾何，只保留背景。缺漏不是零需求，也不把權重轉給其他類別。候選位置是交通參考錨點，不是人行道核准設置點；2022 年停止適用的歷史程序不作現行法規。
+
+同來源、半徑與預算下，可比較類別等優先、文件預設、目前自訂權重，以及預設各類別單獨 ±25% 敏感度。JSON／CSV 分開保存方法、權重及來源版本。詳見[方法說明](docs/bin-policy-v1.2-methodology.zh-Hant.md)、[來源稽核](docs/bin-policy-v1.2-sources.md)、[治理](docs/bin-policy-v1.2-governance.md)及[實作證據](docs/bin-policy-v1.2-audit.md)。
 
 ### 清潔箱政策 v1.1：資料治理，不是自動換版
 
@@ -99,6 +107,8 @@ npm run data:reconcile:bins
 npm run data:monitor:bin-policy -- test-results/bin-policy-monitor
 npm run data:health:bin-policy -- test-results/bin-policy-monitor/report.json
 npm run data:compare:bus-policy
+npm run data:convert:policy-priority -- data/raw/bin-policy-priority/priority-v1-113edf6ed5e09ada data/raw/bin-policy/v1-14c24bcdbade/districts.zip
+npm run benchmark:policy-priority
 ```
 
 部分資料集需要先執行擷取指令，將官方來源複製或取得為本機快照；完整指令請見 `package.json`。轉換後請查看 `public/data/conversion-report.json` 與各模組摘要，了解來源專屬的品質檢查結果。

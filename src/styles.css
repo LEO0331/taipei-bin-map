@@ -768,6 +768,25 @@ a:focus-visible {
 .policy-governance code { overflow-wrap: anywhere; }
 .policy-health-dates { display: grid; grid-template-columns: minmax(8rem, 1fr) minmax(0, 2fr); gap: 0.5rem 1rem; }
 .policy-health-dates dd { margin: 0; overflow-wrap: anywhere; }
+.priority-mode-switch { margin-bottom: 1rem; }
+.priority-mode-switch label { display: grid; gap: 0.45rem; font-weight: 750; }
+.priority-mode-switch select { width: 100%; max-width: 36rem; }
+.priority-weight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: 0.8rem; margin-block: 1rem; }
+.priority-weight-grid label { display: grid; align-content: start; gap: 0.4rem; }
+.priority-weight-grid input { width: 100%; min-width: 0; }
+.priority-weight-grid input, .priority-mode-switch select { min-height: 2.75rem; padding: 0.55rem 0.7rem; border: 1px solid var(--line); border-radius: 8px; background: white; color: var(--ink); font: inherit; }
+.priority-reset { min-height: 2.75rem; padding: 0.55rem 0.9rem; border: 1px solid var(--line); border-radius: 999px; background: white; color: var(--muted); font: inherit; font-weight: 750; cursor: pointer; }
+.priority-reset:hover { color: var(--accent); }
+.priority-reset:focus-visible, .priority-weight-grid input:focus-visible, .priority-mode-switch select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.priority-weight-grid small { color: var(--muted); }
+.priority-parameters { margin-top: 1rem; }
+.priority-dashboard code { overflow-wrap: anywhere; }
+.priority-dashboard details { margin-block: 0.8rem; }
+.priority-dashboard summary { cursor: pointer; font-weight: 750; }
+.priority-table-scroll { max-width: 100%; overflow-x: auto; margin-block: 1rem; }
+.priority-table-scroll table { width: 100%; border-collapse: collapse; }
+.priority-table-scroll th, .priority-table-scroll td { padding: 0.65rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.priority-table-scroll:focus-visible { outline: 2px solid var(--accent); }
 @media (max-width: 600px) {
   .policy-health-dates { grid-template-columns: 1fr; gap: 0.3rem; }
   .policy-health-dates dd { margin-bottom: 0.5rem; }

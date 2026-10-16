@@ -1,0 +1,4 @@
+# Versioned policy source archives are evidence: preserve original byte hashes on every OS.
+data/raw/bin-policy-priority/** -text
+data/raw/bin-policy/** -text
+data/raw/bin-policy-reconciliation/** -text

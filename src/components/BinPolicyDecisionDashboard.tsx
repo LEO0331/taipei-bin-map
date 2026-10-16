@@ -1,10 +1,27 @@
-import { useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import type { Language } from '../types';
 import { allocateBins, METHOD, type PolicyParameters } from '../lib/binPolicyDecision';
 import { validatePolicySnapshot, type PolicySnapshot } from '../lib/binPolicyData';
 import { BinPolicyMap } from './BinPolicyMap';
 import { BinPolicyGovernancePanels } from './BinPolicyGovernancePanels';
 import { BinPolicySourceComparisonPanel } from './BinPolicySourceComparisonPanel';
+
+const PriorityDashboard = lazy(() => import('./PolicyPriorityDashboard').then(module => ({ default: module.PolicyPriorityDashboard })));
+
+export function BinPolicyDecisionDashboard({ language }: { language: Language }) {
+  const [mode, setMode] = useState<'transport' | 'priority'>('transport');
+  const zh = language === 'zh';
+  return <>
+    <section className="policy-panel bin-policy priority-mode-switch">
+      <label>{zh ? '分析模式' : 'Analysis mode'}<select aria-label={zh ? '分析模式' : 'Analysis mode'} value={mode} onChange={event => setMode(event.target.value as 'transport' | 'priority')}>
+        <option value="transport">{zh ? 'A. 原有交通參考覆蓋' : 'A. Existing transport reference coverage'}</option>
+        <option value="priority">{zh ? 'B. 政策優先配置（研究情境）' : 'B. Policy priority allocation (research)'}</option>
+      </select></label>
+      <p>{zh ? '兩個模式採不同計分單位與獨立情境；切換後請重新確認條件，不能把模式間分數當成同一指標。模式 A 保留原始方法，模式 B 使用待審查研究來源。' : 'Modes use different score units and independent scenarios. Review assumptions after switching; scores are not comparable across modes. Mode A retains the original method; Mode B uses review-required research sources.'}</p>
+    </section>
+    {mode === 'transport' ? <LegacyBinPolicyDecisionDashboard language={language}/> : <Suspense fallback={<p role="status">{zh ? '載入政策優先模式…' : 'Loading policy-priority mode…'}</p>}><PriorityDashboard language={language}/></Suspense>}
+  </>;
+}
 
 const initial: PolicyParameters = { district: '中正區', radius: 300, count: 5, separation: 0, unitCost: null, budget: null };
 const number = (value: number) => value.toLocaleString(undefined,{maximumFractionDigits:1});
@@ -13,7 +30,7 @@ const optionalNumber = (value: string) => value === '' ? null : Number(value);
 function download(value: string, filename: string, type: string) {
   const url=URL.createObjectURL(new Blob([value],{type}));const a=document.createElement('a');a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
-export function BinPolicyDecisionDashboard({language}:{language:Language}) {
+function LegacyBinPolicyDecisionDashboard({language}:{language:Language}) {
   const zh=language==='zh';const t=(cn:string,en:string)=>zh?cn:en;
   const [data,setData]=useState<PolicySnapshot|null>(null);const[error,setError]=useState(false);const[retry,setRetry]=useState(0);
   const[draft,setDraft]=useState<PolicyParameters>(initial);const[compareRadius,setCompareRadius]=useState(500);
