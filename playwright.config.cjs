@@ -10,7 +10,7 @@ module.exports = defineConfig({
   retries: process.env.CI ? 2 : 0,
   use: {
     baseURL: `http://127.0.0.1:${port}`,
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
   },
   webServer: {
     command: `npm run dev -- --host 127.0.0.1 --port ${port} --strictPort`,

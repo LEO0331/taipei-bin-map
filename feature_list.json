@@ -5,8 +5,8 @@
       "name": "Bin policy v1.2 category-balanced policy priority support",
       "description": "One bounded upgrade: source-backed research references, versioned editable weights, independent category-balanced allocation and explainable sensitivity while preserving Mode A and v1.1 governance.",
       "dependencies": ["feat-043"],
-      "status": "in_progress",
-      "evidence": "Baseline origin/main 1a048dd: npm ci (zero vulnerabilities), 186 tests, TypeScript/build and 122 desktop/mobile E2E cases passed. Audit, architecture and source/legal boundaries recorded in docs/bin-policy-v1.2-audit.md."
+      "status": "done",
+      "evidence": "Phases 0–5 on codex/bin-policy-v1-2: frozen review-required references (42 vendor, 47 market, 73 MRT, retained3395bus), explicit blocked tourism/commercial geometry; central4/4/3/3/2/1 weights; independent fixed-denominator policy-balanced engine, contribution and sensitivity evidence; lazy bilingual modes and JSON/CSV; research monitoring/review bundles. npm ci zero vulnerabilities; 308 tests, build,142desktop/mobile E2E and4production-preview offline cases passed. Original analysis/transport engine unchanged. Committed raw-byte SHA checks and independent provenance/eligibility fixes verified. Tourism HTTP403 remains an actual failure; GitHub-hosted workflow/PR permissions and field suitability are not locally verified. See docs/bin-policy-v1.2-audit.md."
     },
     {
       "id": "feat-043",

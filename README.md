@@ -42,7 +42,7 @@ Dedicated directory or discovery routes provide additional source-specific exper
 
 | Route | Module | Important boundary |
 | --- | --- | --- |
-| `#/bin-policy` | Public Bin Allocation Decision Support | Greedy straight-line screening of dated bus reference locations; candidates require field review and are not approved installation sites. |
+| `#/bin-policy` | Public Bin Allocation Decision Support | Mode A retains equal transport coverage; Mode B studies category-balanced policy priorities with explicit weights, missing-data warnings and sensitivity. Neither approves installation sites. |
 | `#/cooling-comfort-spots` | Taipei Cooling & Comfort Spots | Source-listed amenities and hours are not real-time availability or emergency-shelter status. |
 | `#/public-school-sports-venues` | Public School Sports Venue Search | Campus opening is not proof of booking, a specific sport, or a free time slot. |
 | `#/bulky-waste-collection-booking` | Bulky Waste Collection Booking | Booking hours and phone information do not show real-time acceptance. |
@@ -52,6 +52,14 @@ Dedicated directory or discovery routes provide additional source-specific exper
 | `#/recycling-analytics` | Recycling Analytics | District recycling volume is not a recycling rate, efficiency, or environmental-performance score. |
 
 ## Data principles
+
+### Bin policy v1.2: separate policy-priority research mode
+
+Select **Analysis mode → B. Policy priority allocation (research)** in the existing policy route. Mode A, its approved bins/2021 bus baseline and exports are unchanged. Mode B loads a separate review-required snapshot only after selection; default weights are tourism/vendor/market/commercial/MRT/bus = **4/4/3/3/2/1**, editable within 0–10 and resettable. Its score is `Σ(weight × newly covered category entities / fixed eligible category population)`, not a raw sum dominated by bus density, measured demand or policy effectiveness.
+
+Actually integrated: 42 official vendor-concentration locations, 47 market references, 73 MRT station references and 3,395 retained bus references. Tourism acquisition was blocked by HTTP403; 235 commercial-directory rows lack defensible district geometry and remain context only. Missing categories are not zero demand and their weights are not redistributed. Candidate anchors are transport references, not approved sidewalk locations. The historical bin procedure stopped in 2022 is not applied as current law.
+
+The dashboard compares equal category priorities, documented policy defaults, active edits and default-weight ±25% sensitivity using identical inputs. JSON and CSV retain method, weight and source versions separately. See the [methodology](docs/bin-policy-v1.2-methodology.md), [source audit](docs/bin-policy-v1.2-sources.md), [governance](docs/bin-policy-v1.2-governance.md), and [implementation evidence](docs/bin-policy-v1.2-audit.md).
 
 ### Bin policy v1.1: governance, not an automatic data migration
 
@@ -111,6 +119,8 @@ npm run data:reconcile:bins
 npm run data:monitor:bin-policy -- test-results/bin-policy-monitor
 npm run data:health:bin-policy -- test-results/bin-policy-monitor/report.json
 npm run data:compare:bus-policy
+npm run data:convert:policy-priority -- data/raw/bin-policy-priority/priority-v1-113edf6ed5e09ada data/raw/bin-policy/v1-14c24bcdbade/districts.zip
+npm run benchmark:policy-priority
 ```
 
 Some datasets have separate fetch scripts that copy or retrieve an official source snapshot before conversion. See `package.json` for the complete command list. After conversion, inspect `public/data/conversion-report.json` and each module summary for source-specific quality results.

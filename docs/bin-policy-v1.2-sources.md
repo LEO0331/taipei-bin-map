@@ -50,3 +50,5 @@ npx vitest run scripts/policyPrioritySources.test.ts scripts/policyPriorityMarke
 缺少觀光與商圈幾何時，這兩類別必須顯示不可用，不將權重轉給公車／捷運。47 個市場或 73 個車站數不是使用人數；42 個攤販參考點也不是夜間人流調查。小樣本與地理涵蓋不完整會使排序敏感，應看類別分母、各類增量及 ±25% 權重敏感度，再規劃現勘。
 
 正式使用前需確認 API 存取、商圈公共空間與範圍、跨資料來源實體別名、公共通行權、無障礙與維護條件。這些未知不得轉成精確設置主張。
+
+原始資料以 `.gitattributes` 的 `-text` 保留原位元組，不讓 Git 換行轉換破壞 SHA256；已核對 Git 內六個來源物件皆與 manifest 相符。來源的 `validatedAt` 表示封存檢查事件；`analysisValidatedAt` 另記實際完成研究快照空間／契約驗證的時間，納入實體也保留該次驗證時間。區界 ZIP 必須與核准基線雜湊一致，並列入衍生來源沿革。

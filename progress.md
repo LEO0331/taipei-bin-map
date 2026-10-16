@@ -2,8 +2,20 @@
 
 ## Current State
 
-**Last Updated:** 2026-10-15 Asia/Taipei
-**Active Feature:** feat-044 — Policy-balanced decision support v1.2
+**Last Updated:** 2026-10-16 Asia/Taipei
+**Active Feature:** None
+
+## 2026-10-16 — Bin policy v1.2 completed implementation
+
+- Separate original transport Mode A and review-required category-balanced Mode B at the existing route. Original `analysis.json` and `src/lib/binPolicyDecision.ts` are unchanged. No newer bus adoption, production merge, government operational workflow or other repository changes.
+- Frozen research snapshot contains3,557entities:42officialvendorconcentrations,47markets,73MRTcentres and retained3,395busreferences. Tourism API/Swagger HTTP403 and235commercial context-only rows are explicit missing categories, not zero demand. Full source rows, hashes, dates, aliases and exclusions are retained; no unsupported geocoding or fabricated centroids.
+- Central `policy-priority-weights-v1` defaults4/4/3/3/2/1, bounded0–10 editing/reset, independent `policy-balanced-coverage-v1` fixed-category-denominator scoring, global canonical rules, indexed exact spatial checks, deterministic relative ties, budget/count limits and11equal/default/active/±25%scenarios. SparseN<5 and missing categories are warnings, not confidence/demand estimates.
+- UI explains applied weights, baseline/post/raw/weighted gains, candidate category contributions, source precision, ranking omissions and field checks. Mode B/data load only after selection. JSON/CSV preserve source/method/weight versions, quality and uncertainty; actual example reports and screenshots are committed for independent review.
+- Reused v1.1 governance helpers in separate research monitoring/artifacts/deduplicated alerts and nonproduction exact-hash technical review bundles. Actual monitoring: fiveHTTP200 unchanged resources, tourism403; reported failure/exit1 intentionally, never silently approved. Cloud workflow execution and permissions remain unverified locally.
+- Independent review fixes: district geometry hash/provenance binding; blocked/context-only source-category and availability guards. Added type validation and tiny-weight scaling tests. Actual analysis validation event is separate from raw archival checks. Git newline normalization was corrected only for policy raw archives, restoring originally recorded CSV bytes; committed Git objects now match source manifests without changing approved values/hashes/dates.
+- Final verification: npm ci with0reportedvulnerabilities; **308tests/23files**, TypeScript/build, **142desktop/mobile E2E**, **4production-preview offline cases**, deterministic reference regeneration and diffcheck passed. No new dependencies. A prior loading/download timeout is documented; originalCSVcase passed10isolatedrepetitions and finalfullsuite passed. First-failure traces retained; no test retries/sleeps added. Vitest workers bounded4 to reduce fixture contention without losing isolation.
+- Performance: actual citywide3,557refs/3,468anchors/11sensitivities around0.7–0.8sec Node on this machine, not real-phone latency. Desktop/mobile profiles passed4×CPU-throttled citywide10anchor flow under15secguard. Equal/default bothgain125rawentities;bus-1210 changesrank7→3, not measured policy effectiveness.
+- Documentation/architecture/reproduction/limits: docs/bin-policy-v1.2-audit.md and bilingual methodology; sample JSON/CSV and timing in reports/bin-policy-v1.2; screenshots in docs/images. Branch and PR are prepared for independent review only; do not auto-merge.
 
 ## 2026-10-15 — Bin policy v1.2 baseline
 
