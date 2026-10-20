@@ -5,3 +5,10 @@ playwright-report/
 test-results/
 .DS_Store
 *.log
+
+# Large official shade source bytes are hash-locked and reproducibly reacquired.
+data/raw/shade-equity/*.csv
+data/raw/shade-equity/*.json
+!data/raw/shade-equity/sources.json
+!data/raw/shade-equity/*-catalogue.json
+!data/raw/shade-equity/*-audit.json

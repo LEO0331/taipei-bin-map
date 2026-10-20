@@ -1,0 +1,81 @@
+{
+  "datasetId": "693705fa-4604-4207-bd50-8a9ce9fcfbc6",
+  "title": "臺北市人行道固定設施物_樹穴",
+  "provider": "臺北市政府工務局新建工程處",
+  "publicationDate": "2020-10-26",
+  "metadataUpdatedAt": "2026-09-22 19:08:18",
+  "coverageStart": "2020-10-26",
+  "coverageEnd": null,
+  "coverageSpatial": "",
+  "fieldDescription": "type(資料類型)、properties(屬性資料)、ObjectID(編號)、NAME(名稱)、Town_N(行政區)、X_3826(TWD97X座標)、Y_3826(TWD97Y座標)、geometry(幾何資訊)、type(幾何位置種類)、coordinates(幾何位置座標)",
+  "resources": [
+    {
+      "rid": "3e2b359b-8dae-46e4-a747-5912d8743d0e",
+      "url": "/api/dataset/693705fa-4604-4207-bd50-8a9ce9fcfbc6/resource/3e2b359b-8dae-46e4-a747-5912d8743d0e/download",
+      "url_type": "upload",
+      "position": 0,
+      "name": "臺北市人行道固定設施物有關樹穴等相關圖資，本項資料所採用座標系統為TWD97。",
+      "description": "",
+      "encoding": "UTF-8",
+      "file_name": "TP_TREE.json",
+      "mimetype": "application/json",
+      "size": 27304373,
+      "meta_url": "",
+      "amount": 0,
+      "field_desc": [
+        {
+          "name": "type",
+          "desc": "資料類型"
+        },
+        {
+          "name": "properties",
+          "desc": "屬性資料"
+        },
+        {
+          "name": "ObjectID",
+          "desc": "編號"
+        },
+        {
+          "name": "NAME",
+          "desc": "名稱"
+        },
+        {
+          "name": "Town_N",
+          "desc": "行政區"
+        },
+        {
+          "name": "X_3826",
+          "desc": "TWD97X座標"
+        },
+        {
+          "name": "Y_3826",
+          "desc": "TWD97Y座標"
+        },
+        {
+          "name": "geometry",
+          "desc": "幾何資訊"
+        },
+        {
+          "name": "type",
+          "desc": "幾何位置種類"
+        },
+        {
+          "name": "coordinates",
+          "desc": "幾何位置座標"
+        }
+      ],
+      "notes": "",
+      "file_format_tid": "afb20478-f915-4ffa-a8e8-f78738b2e732",
+      "file_format": "JSON",
+      "request_method": "",
+      "request_parameters": [],
+      "extras": {
+        "qc_level": ""
+      },
+      "resource_type": "",
+      "has_datastore": false,
+      "download_count": 469,
+      "last_modified": "2026-01-14 10:42:07"
+    }
+  ]
+}

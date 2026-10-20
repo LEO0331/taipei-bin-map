@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-10-20T06:13:35.916Z",
+  "scope": "Offline Node.js conversion on this development machine; not browser or phone latency",
+  "node": "v24.14.0",
+  "platform": "win32",
+  "cpu": "13th Gen Intel(R) Core(TM) i5-13500",
+  "timings": [
+    {
+      "toleranceM": 2,
+      "elapsedMs": 15463.2912,
+      "replay": false
+    },
+    {
+      "toleranceM": 2,
+      "elapsedMs": 16144.874800000001,
+      "replay": true
+    },
+    {
+      "toleranceM": 0,
+      "elapsedMs": 1998.9227999999966,
+      "replay": false
+    },
+    {
+      "toleranceM": 5,
+      "elapsedMs": 2053.036,
+      "replay": false
+    }
+  ]
+}

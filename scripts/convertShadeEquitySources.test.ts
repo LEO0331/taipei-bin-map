@@ -1,0 +1,22 @@
+import { describe, expect, it } from 'vitest';
+import { createHash } from 'node:crypto';
+import { decodeShadeTreeCsv, validateShadeSourceBytes, normalizeShadeGeometry, normalizeShadeTrees, classifyShadePit, projectToWgs } from './convertShadeEquitySources';
+const header='TreeID,Dist,Region,RegionRemark,TreeType,Diameter,TreeHeight,SurveyDate,TWD97X,TWD97Y,UpdDate';
+const csv=(rows:string[])=>Buffer.from([header,...rows].join('\n'));
+const row=(id='t1',x=303000)=>`${id},中正區,測試路,北側,榕樹,20,5,2022-01-01,${x},2770000,2026-10-19`;
+describe('shade source contracts',()=>{
+  it('rejects changed bytes before conversion',()=>expect(()=>validateShadeSourceBytes(Buffer.from('changed'),'0'.repeat(64))).toThrow(/hash/i));
+  it('accepts the exact frozen source hash',()=>{const bytes=csv([row()]);expect(validateShadeSourceBytes(bytes,createHash('sha256').update(bytes).digest('hex'))).toBeUndefined();});
+  it('rejects a catalogue-only Update header in place of actual UpdDate',()=>expect(()=>decodeShadeTreeCsv(Buffer.from(header.replace('UpdDate','Update')))).toThrow(/schema/i));
+  it('excludes repeated tree IDs rather than adding two tree observations',()=>expect(normalizeShadeTrees(decodeShadeTreeCsv(csv([row(),row()])),()=> '中正區').trees).toHaveLength(0));
+  it('deduplicates identical coordinates across distinct tree IDs',()=>expect(normalizeShadeTrees(decodeShadeTreeCsv(csv([row('t1'),row('t2')])),()=> '中正區').trees).toHaveLength(1));
+  it('excludes trees outside verified Taipei districts',()=>expect(normalizeShadeTrees(decodeShadeTreeCsv(csv([row()])),()=>null).trees).toHaveLength(0));
+  it('audits missing survey dates without inventing a date',()=>expect(normalizeShadeTrees(decodeShadeTreeCsv(csv([row().replace('2022-01-01','')])),()=> '中正區').quality.missingSurveyDates).toBe(1));
+  it('does not classify flowerbeds as tree pits',()=>expect(classifyShadePit({Name:'花圃'})).toBe('planter'));
+  it('accepts only the audited case-sensitive Name schema',()=>expect(classifyShadePit({NAME:'樹穴'})).toBe('unknown'));
+  it('rejects a missing CRS declaration',()=>expect(()=>normalizeShadeGeometry({type:'FeatureCollection',features:[]})).toThrow(/CRS/));
+  it('rejects malformed UTF-8 instead of replacing corrupted source bytes',()=>expect(()=>decodeShadeTreeCsv(Buffer.from([0xff,0xfe]))).toThrow());
+  it('excludes a reversed or out-of-bounds projected coordinate pair',()=>expect(normalizeShadeTrees(decodeShadeTreeCsv(csv([row('t1',2770000)])),()=> '中正區').quality.invalidCoordinates).toBe(1));
+  it('preserves EPSG:3826 central-meridian longitude during conversion',()=>expect(projectToWgs([250000,2765774.17]).longitude).toBeCloseTo(121,8));
+  it('audits nonpositive tree measurements without inferring canopy',()=>expect(normalizeShadeTrees(decodeShadeTreeCsv(csv([row().replace(',20,5,',',0,0,')])),()=> '中正區').quality.invalidMeasurements).toBe(1));
+});

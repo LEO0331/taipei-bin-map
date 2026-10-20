@@ -1,48 +1,52 @@
 # Session Handoff
 
-Last reviewed: **2026-10-16 Asia/Taipei**. This file describes current repository status; [progress.md](progress.md) preserves dated historical milestones.
+Last reviewed: **2026-10-20 Asia/Taipei**. Historical milestones remain in [progress.md](progress.md).
 
-## Current state
+## Current scope and branch
 
-- Static bilingual amenities app: 22 shared facility types, eight dedicated discovery/directory/analytics routes and `#/bin-policy`.
-- v1.1 [PR #14](https://github.com/LEO0331/taipei-bin-map/pull/14) is merged; v1.2 [PR #15](https://github.com/LEO0331/taipei-bin-map/pull/15) is also merged (GitHub metadata verified during this documentation audit).
-- PR #15 head: `01d07aa`; merge commit: `1280011b086f498404abf138c29f64041963e14c`. This workspace remains on `codex/bin-policy-v1-2`; no branch reset/checkout was performed. During this audit, an external `79d42e2` documentation commit appeared and was preserved. The user subsequently requested committing and pushing the remaining documentation corrections on this branch; that follow-up is not a merge into main.
-- Earlier integration HTTP403 failures describe the agent's attempted PR creation, not the current PR state. No live hosting deployment or hosted workflow success was verified in this audit.
+- New bounded feature: `feat-045`, independent `#/shade-equity` evidence-readiness/inventory module.
+- Branch: `codex/shade-equity-v1`, based on preserved `490f649`. Refreshed `origin/main` includes that baseline through merged PR #16 (`af8e29e`).
+- Public Bin Policy Mode A/B methods, approved inputs, research snapshots and review workflows are unchanged. No Portfolio repository, backend, account system, paid API or dependency was added.
+- User requested commit/push and one reviewable PR; no automatic merge or operational source approval. Final delivery/PR status is recorded in [the delivery document](docs/shade-equity-delivery.md).
+- Implementation commit `0d94343` was pushed and remote SHA verified. The GitHub integration returned HTTP403 on draft-PR creation; no PR created by this task. See [the complete draft and manual link](docs/shade-equity-pr.md); no main merge or public deployment is claimed.
 
-## Current policy behavior
+## Actual supported analysis
 
-- Mode A retains the approved `v1-14c24bcdbade` inputs: 679 valid unique bin positions / 3,395 retained 2021 bus references and original greedy A/B/C scenarios.
-- Mode B is independent, lazy and research/review-required: `priority-v1-113edf6ed5e09ada`, 3,557 entities (42 vendor / 47 market / 73 MRT / 3,395 bus); 3,468 transport anchors.
-- Method `policy-balanced-coverage-v1`; weights `policy-priority-weights-v1`, defaults 4/4/3/3/2/1 for tourism/vendor/market/commercial/MRT/bus, editable 0–10. Gain uses fixed category populations, not measured demand.
-- Tourism acquisition is blocked (HTTP403); 235 commercial rows are context only, not spatial references. Missing categories are unavailable, without weight redistribution.
-- Newer bus data is a comparison, not adopted. Monitoring and review bundles do not change approved sources or grant installation permission.
-- Source, raw validation and analysis-validation dates are separate. Scoped Git attributes preserve raw archive hashes across operating systems.
+Roadside-tree observations, official sidewalk geometry, explicit tree pits, park context, historical greening, measured canopy/heat and physical feasibility remain separate.
 
-## Verification evidence
+| Population | Raw | GIS admitted |
+| --- | ---: | ---: |
+| Roadside trees | 90,358 | 89,860 |
+| Sidewalk polygons | 15,053 | 14,896 |
+| Pit/planter polygons | 56,720 | 50,730 tree pits; 5,816 flowerbeds not admitted as pits |
 
-The last implementation verification (2026-10-16, recorded in [v1.2 audit](docs/bin-policy-v1.2-audit.md)) passed:
+At 2 m: trees 45,559 matched / 44,274 unmatched / 27 ambiguous; pits 46,109 / 480 / 4,141. These are possible spatial associations, never canopy/shade or occupancy/vacancy.
 
-| Check | Recorded result |
-| --- | --- |
-| `npm ci` | Zero reported vulnerabilities at that run |
-| `npm test` | 308 tests / 23 files |
-| `npm run build` | TypeScript and production build passed |
-| Full Playwright, two workers | 142 desktop/mobile cases |
-| Production-preview offline suite | 4 cases, Mode A/B on both profiles |
-| Retained source reproduction / Git raw hashes | Passed |
-| Node citywide benchmark | About 0.71 seconds; not physical-phone latency |
+**Actual ranked eligibility is zero.** Official sidewalk length semantics/units and cross-source comparability remain unverified; capacity 5/10 and district balancing do not produce a fabricated shortlist. Non-empty tiers/scenarios are explicitly synthetic tests only. To reopen selection, obtain authoritative export-specific measurement/coverage evidence, validate and review a new snapshot. Do not infer lengths from polygon perimeter or divide a partial population by a complete-city denominator.
 
-The documentation audit freshly reran `npm test` (308 passed / 23 files) and `npm run build` (passed). The initial sandbox run failed to access Vitest temporary transform files; the approved run outside that sandbox passed without code changes. E2E/offline counts above remain dated implementation evidence, not new browser runs. Earlier loading/download timeouts remain disclosed; the CSV case passed ten isolated repetitions and the final full run. No assertion that flakiness is permanently eliminated.
+## Versions and architecture
 
-The retained research monitor dated 2026-10-16 intentionally reports failure/exit 1: five unchanged HTTP200 resources and blocked tourism HTTP403. This is not a passing source check. Workflow execution/Issue/PR permissions and human source approvals were not exercised by local verification.
+- Sources: `shade-source-v1-078b91443dc33e45`.
+- Derived snapshot: `shade-equity-v1-8e4cfb4029d0831d`.
+- Method: `shade-equity-evidence-review-v1`; configuration `1.0.0`.
+- Generation event: `2026-10-20T00:41:41.554Z`, not current-browser-time ranking.
+- The actual district archive is EPSG:3826 projected metres; its `.prj` is asserted and inverse TM normalization precedes geographic district containment.
+- Browser metadata is 13,723 bytes. Twelve district chunks contain the full admitted inventory and load only on selection. Chunk identities, source roles and unavailable states are validated.
+- Source-bound 0/2/5 m offline comparisons are different evidence scopes, not environmental improvements. JSON/CSV preserve inventory separately from selected-subset counts and resist spreadsheet formula injection.
+- New JSON uses network-first, cached after use (service-worker v38); no raw tree/geometry downloads or third-party source APIs in browser scenarios.
 
-## Documentation-audit follow-ups
+## Reproduction and verification
 
-- General design, tradeoffs, deployment, READMEs and policy version scopes now reflect v1.2. Historical reports retain their original dates/counts.
-- Cooling has residual UI copy claiming grid clusters, but current code draws at most 80 individual points only after filtering/location. Documentation now describes actual behavior; fix the UI copy or implement the intended strategy in a separate behavior-tested change.
-- Cache-update testing between two different deployments, physical-device performance, live source recovery and actual hosting smoke remain separate verification gaps.
-- Do not add missing-source geometry, auto-adopt bus updates, interpret reference coverage as people/litter reduction, or enforce the stopped 2022 procedure as current siting law.
+Restore exact originals with `npm run data:fetch:shade-equity -- --restore-frozen`, then `npm run data:audit:shade-equity` and `npm run data:convert:shade-equity`. Use `npm run data:analyze:shade-equity` for actual examples/sensitivity. Five gzip originals preserve 69,874,202 expanded bytes; original hashes/sizes are checked before restoration. Scoped Git attributes prevent newline changes from breaking exact-byte replay.
 
-## Restart
+Two independent full-source builds match SHA256 `6683224b154200e9f321742c8f4c69d72cb0dabd4c805e3e6a8f9c21c097c3c6`. Actual offline conversion is about 15.5–16.1 s on this machine; validated-input alternative joins about 2 s, not physical-phone latency.
 
-Read [README](README.md), [feature ledger](feature_list.json), [v1.2 methodology](docs/bin-policy-v1.2-methodology.md) and [governance](docs/bin-policy-v1.2-governance.md). Use the repository root, a supported Node version and the lockfile. `bash ./init.sh` runs unit tests/build/E2E; PowerShell may run the npm commands directly. Build before `npm run test:policy-preview`; choose `PLAYWRIGHT_PORT` if 5173 is occupied. Data conversion is intentional maintenance, not a required deployment step.
+Latest checks passed: **471 tests / 31 files**, TypeScript/production build, **160 full desktop/mobile E2E cases with one worker**, **2 Shade offline**, **4 unchanged Bin Policy offline** and **2 Shade project-base cases**. A prior two-worker run hit Chromium `ERR_NO_BUFFER_SPACE` while loading an unchanged app module (159 passed); the final single-worker rerun passed. The offline test observes actual activation navigation, not merely the pre-navigation session marker. No new retries, sleeps or relaxed app assertions were added; concurrent-host exhaustion is not claimed permanently eliminated.
+
+The bounded independent review's hole-enclosure containment finding was fixed with RED/GREEN regression. All twelve district chunks and count partitions validate. Metadata CRS was separately corrected from the actual projection file. Actual-snapshot screenshots are linked in the delivery document.
+
+## Remaining boundaries
+
+No measured shade percentage, street-level thermal exposure, cooling benefit, vacant-pit inventory, approved planting site, removal history reconstruction or physical tree survival claim is supported. Source monitoring/adoption, hosted Actions permissions, real hosting deployment and physical-phone testing were not exercised by this implementation. The new module's project-base loader is tested; whole-app GitHub Pages path migration is not claimed.
+
+Read [source audit](docs/shade-equity-source-audit.md), [methodology](docs/shade-equity-methodology.md), [Chinese decision guide](docs/shade-equity-decision-mvp.zh-Hant.md) and [delivery evidence](docs/shade-equity-delivery.md) before extending. Run npm tests/build/E2E (or Bash `init.sh` equivalent), then production preview checks. Do not run unrelated facility refresh or Bin Policy publication as a side effect.

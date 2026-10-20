@@ -2,8 +2,27 @@
 
 ## Current State
 
-**Last Updated:** 2026-10-16 Asia/Taipei
-**Active Feature:** None
+**Last Updated:** 2026-10-20 Asia/Taipei
+**Active Feature:** None — feat-045 implementation complete; analytical ranking remains deliberately gated
+
+## 2026-10-20 — Shade Equity verified inventory-first delivery
+
+- Delivery handoff: implementation commit `0d94343` pushed to origin/codex/shade-equity-v1 and remote SHA verified. Connected GitHub draft-PR creation returned HTTP403 Resource not accessible by integration; no PR created by this task. Complete description and manual compare link retained in docs/shade-equity-pr.md; no credential/permission bypass, main merge or deployment. User-authorized commit/push completed; PR creation requires maintainer permissions.
+- Added one lazy bilingual `#/shade-equity` route and independent source/types/GIS/evidence-tier/scenario/export files. Official sources yielded 90,358 tree rows / 89,860 admitted observations; 15,053 sidewalk features / 14,896 admitted units; 56,720 pit/planter features / 50,730 admitted pits, excluding 5,816 flowerbeds. Parks and historical greening remain context; protected trees never substitute for roadside trees.
+- Actual source identities, hashes, dates, raw fields and exclusions are audited. Five gzip originals preserve 69,874,202 original bytes; exact-hash restoration and same-version publication replay executed successfully. Source/body-bound derived snapshot `shade-equity-v1-8e4cfb4029d0831d`; two full independent builds share SHA256 `6683224b154200e9f321742c8f4c69d72cb0dabd4c805e3e6a8f9c21c097c3c6`. Scoped Git attributes prevent Windows newline conversion from invalidating evidence.
+- Indexed projected-metre joins, holes/topology, exact district provenance, non-additive ambiguous associations and stable side-specific IDs are tested. Independent review's enclosing-hole defect was fixed RED/GREEN; actual `.prj` verification corrected district source metadata to EPSG:3826 with inverse-TM normalization. Counts remain unchanged after both fixes.
+- At2m: trees45,559matched/44,274unmatched/27ambiguous; pits46,109/480/4,141. Same-source0/2/5m comparisons and real5/10/evidence/balanced examples are saved in reports/shade-equity. All real ranking cases have0eligible/0selected: official length semantics/units and comparable coverage are not established. No invented shortlist, canopy, shade, heat, vacancy or planting approval.
+- Browser initially loads13,723bytes of metadata;12district chunks preserve all14,896admitted units without raw full-dataset downloads. Loading/error/retry, source-bound tolerance evidence, compact disclosure cards, selected-scope metrics, CSV formula protection and cached offline inventory are verified. Visual-verdict aligned controls with established styling; real desktop/mobile captures are saved in docs/images.
+- Final checks:471tests/31files, TypeScript/production build,160desktop/mobile E2E(singleworker),2Shadeoffline,4unchangedBinPolicyoffline and2Shadeproject-base cases passed. New source scripts explicitly executed;14browser test/config files passed JavaScript syntax checks. No standalone lint script exists; no lint success claimed. `git diff --check` passed; protected Bin Policy methods/data/workflows are unchanged against origin/main.
+- Verification history is explicit: a two-worker run encountered Chromium ERR_NO_BUFFER_SPACE loading an unchanged app module (159passed); full single-worker rerun passed160. The new offline test's marker-before-reload race was fixed by observing actual activation navigation. No new retries, sleeps or relaxed application assertions; concurrent-host resource exhaustion is not claimed permanently eliminated.
+- Required Chinese decision guide, methodology, source audit, delivery record, README/architecture/deployment and handoff are updated. User authorized commit/push; one reviewable feature PR is prepared, never auto-merged. No live hosting deployment, hosted workflow permissions, actual field measurements or whole-app GitHub Pages migration verified. Source measurement/comparability review is the next analytical prerequisite, not an unfinished code workaround.
+
+## 2026-10-20 — Shade Equity baseline and bounded plan
+
+- Repository root and shared/protected-tree, policy/GIS/governance, hash-routing and deployment contracts audited. Clean starting branch head `490f649`; dedicated `codex/shade-equity-v1`. No Portfolio repository access or edits.
+- Baseline commands executed: npm ci (zero vulnerabilities), 308 Vitest tests, TypeScript/production build and all 142 desktop/mobile Playwright flows passed (`PLAYWRIGHT_PORT=5230`, two workers). These npm checks are the documented PowerShell equivalent of init.sh.
+- Plan: (0) audit official source bytes/identities, units, geometry and eligibility; (1) separate projected GIS validation/indexed joins and compact source-bound snapshot; (2) test-first pure evidence tiers, capacity/balanced scenarios and safe exports; (3) lazy bilingual source/quality/map/list/briefing route; (4) source reproduction, regression/browser/offline/visual checks; (5) required documentation, scoped commits and independent-review PR, never auto-merge.
+- Go/no-go: no segment ranking without validated tree and sidewalk sources; no low-recorded distribution ranking without comparable coverage; absent canopy/heat and common feasibility prerequisites are global limits, never inflated per-segment issues. Pit proximity never proves occupancy/vacancy. Preserve all Bin Policy algorithms, snapshots and review gates.
 
 ## 2026-10-16 — Documentation consistency audit
 

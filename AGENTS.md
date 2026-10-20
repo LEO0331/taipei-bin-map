@@ -31,6 +31,7 @@ If baseline verification fails, fix or clearly record that failure before adding
 - Keep address and district data in Chinese; translate labels, messages, warnings, and controls.
 - Regenerate affected datasets with their documented converter after changing conversion logic or source data. `npm run convert:facilities` rebuilds the shared map; policy inputs have separate versioned conversion and review procedures.
 - Preserve Mode A's approved policy baseline independently of Mode B research inputs. See `docs/bin-policy-v1.2-governance.md`; a successful fetch is not source adoption.
+- Shade Equity uses separate official roadside-tree/sidewalk/pit sources. Restore hash-locked originals with `npm run data:fetch:shade-equity -- --restore-frozen`; never substitute protected trees, park trees or Bin Policy observations. Its unresolved measurement/comparability gate must stay closed unless new authoritative evidence is reviewed; see `docs/shade-equity-methodology.md`.
 - Keep changes scoped to one active feature from `feature_list.json`.
 - Update `progress.md` and `feature_list.json` before ending a session.
 

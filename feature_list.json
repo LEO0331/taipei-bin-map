@@ -8,6 +8,15 @@
   },
   "features": [
     {
+      "id": "feat-045",
+      "name": "Shade Equity evidence-review decision support v1.0",
+      "description": "Independent official-source tree/sidewalk/pit audit, reproducible spatial associations, transparent review tiers and capacity scenarios, bilingual route and provenance-preserving exports. No canopy, vacancy, heat or planting approval inference.",
+      "dependencies": ["feat-044"],
+      "status": "done",
+      "analyticalReadiness": "Inventory and source/association review only; actual ranked shortlists remain blocked pending authoritative length semantics and comparable coverage. Zero eligible candidates is an explicit no-go, not zero environmental need.",
+      "evidence": "2026-10-20 codex/shade-equity-v1: raw/GIS counts 90,358/89,860 trees, 15,053/14,896 sidewalks and 56,720 pit/planter features with 50,730 admitted tree pits; context populations remain separate. Frozen gzip originals, exact-hash restore, source audit, indexed projected joins, district-scoped lazy JSON, bilingual UI, pure tiers/scenarios and safe exports implemented. Measurement gates keep all 14,896 units ineligible; capacities 5/10 select zero. Snapshot shade-equity-v1-8e4cfb4029d0831d; method shade-equity-evidence-review-v1; config 1.0.0. Fresh 471 tests/31 files, build, 160 desktop/mobile E2E (one worker), 2 Shade offline, 4 Bin Policy offline and 2 Shade base-path cases passed. Independent source replay identical; no Bin Policy methods/data/workflows or dependencies changed. See docs/shade-equity-delivery.md for actual evidence, source limitations, environmental flake and PR status."
+    },
+    {
       "id": "feat-044",
       "name": "Bin policy v1.2 category-balanced policy priority support",
       "description": "One bounded upgrade: source-backed research references, versioned editable weights, independent category-balanced allocation and explainable sensitivity while preserving Mode A and v1.1 governance.",

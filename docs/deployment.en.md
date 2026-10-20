@@ -2,7 +2,7 @@
 
 [English](deployment.en.md) | [繁體中文](deployment.zh-Hant.md)
 
-Reviewed 2026-10-16. A merged PR is not evidence of a successful hosting deployment.
+Reviewed 2026-10-20. A merged PR is not evidence of a successful hosting deployment.
 
 ## Vercel setup
 
@@ -16,6 +16,8 @@ npm test
 npm run build
 npm run test:e2e -- --workers=2
 npm run test:policy-preview
+npm run test:shade-preview
+npm run test:shade-base
 git diff --check
 ```
 
@@ -31,7 +33,7 @@ Configure canonical URL, `og:url` and any sitemap only for the verified producti
 
 ## Cache, offline and blank-page diagnosis
 
-The production-only worker uses network-first for navigation, hashed assets and policy JSON, and cache-first for ordinary datasets, icons and manifest. Policy files are cached after a successful visit to the relevant mode, not precached with the main map. External OpenStreetMap tiles are not worker-cached and may be unavailable offline. A first visit offline cannot be promised to work.
+The production-only worker uses network-first for navigation, hashed assets, Bin Policy JSON and Shade Equity JSON, and cache-first for ordinary datasets, icons and manifest. Research files are cached after a successful visit to the relevant mode/scope, not precached with the main map. External OpenStreetMap tiles are not worker-cached and may be unavailable offline. A first visit offline cannot be promised to work. The Shade base-path test covers that module's data loading, not migration of all existing root-absolute paths.
 
 When ordinary cached data or the precache set changes, review the worker cache version. Activation removes older named caches; controller changes trigger at most one automatic reload per browser session. Verify an existing-browser-session upgrade as well as a clean load; preview offline tests do not prove every cross-deployment update path.
 

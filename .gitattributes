@@ -2,3 +2,9 @@
 data/raw/bin-policy-priority/** -text
 data/raw/bin-policy/** -text
 data/raw/bin-policy-reconciliation/** -text
+# Shade snapshot replay compares exact bytes; checkout must not rewrite LF on Windows.
+data/raw/shade-equity/** -text
+public/data/shade-equity/** -text
+reports/shade-equity/** -text
+# Evidence CSV uses RFC-style CRLF intentionally; retain it without whitespace false positives.
+reports/shade-equity/*.csv whitespace=cr-at-eol

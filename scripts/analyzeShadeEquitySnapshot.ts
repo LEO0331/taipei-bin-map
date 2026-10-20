@@ -1,0 +1,31 @@
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
+import { performance } from 'node:perf_hooks';
+import { cpus } from 'node:os';
+import { buildShadeEquitySnapshot } from './buildShadeEquitySnapshot';
+import { sha256 } from './convertShadeEquitySources';
+import { runShadeEquityScenario, compareShadeEquityScenarios } from '../src/lib/shadeEquityScenario';
+import type { ShadeEquityParameters } from '../src/types/shadeEquity';
+
+export function analyzeShadeEquitySnapshot(directory=resolve('data/raw/shade-equity'),output=resolve('reports/shade-equity')){
+  const timings:{toleranceM:number;elapsedMs:number;replay:boolean}[]=[];
+  const firstStart=performance.now(),first=buildShadeEquitySnapshot(directory,2);
+  timings.push({toleranceM:2,elapsedMs:performance.now()-firstStart,replay:false});
+  const build=(toleranceM:number,replay=false)=>{const start=performance.now(),result=buildShadeEquitySnapshot(directory,toleranceM,replay?undefined:first.prepared);timings.push({toleranceM,elapsedMs:performance.now()-start,replay});return result.snapshot;};
+  const baseline=first.snapshot,replay=build(2,true);
+  const firstRunSha256=sha256(JSON.stringify(baseline)),secondRunSha256=sha256(JSON.stringify(replay));
+  if(firstRunSha256!==secondRunSha256)throw new Error('Identical frozen shade inputs did not reproduce identical snapshot bytes');
+  const alternatives=[build(0),baseline,build(5)];
+  const parameters:ShadeEquityParameters={district:'',strategy:'evidence',capacity:5,minLengthM:0,includeAmbiguous:false,toleranceM:2};
+  const scenarios=[{id:'evidence-capacity-5',parameters},{id:'evidence-capacity-10',parameters:{...parameters,capacity:10}},{id:'balanced-capacity-5',parameters:{...parameters,strategy:'balanced' as const}},{id:'balanced-capacity-10',parameters:{...parameters,strategy:'balanced' as const,capacity:10}}].map(({id,parameters:params})=>{const result=runShadeEquityScenario(baseline,params);const exclusionReasons:Record<string,number>={};for(const exclusion of result.excluded)for(const reason of exclusion.reasons)exclusionReasons[reason]=(exclusionReasons[reason]??0)+1;return{id,parameters:params,summary:result.summary,excludedCount:result.excluded.length,exclusionReasons,selectedIds:result.selected.map(candidate=>candidate.segment.id)};});
+  const capacityComparison=compareShadeEquityScenarios(baseline,parameters,{...parameters,capacity:10});
+  const strategyComparison=compareShadeEquityScenarios(baseline,parameters,{...parameters,strategy:'balanced'});
+  const example={schemaVersion:1,snapshotId:baseline.snapshotId,generatedAt:baseline.generatedAt,methodologyVersion:baseline.methodologyVersion,configurationVersion:baseline.configurationVersion,sourceHashes:baseline.sources.map(source=>({id:source.id,sha256:source.sha256})),inventory:baseline.inventory,comparability:baseline.comparability,eligibility:'All audited segments excluded from prioritization because official length measurement definition is unverified. Zero selections do not mean zero trees or tree pits.',scenarios,comparisons:[{kind:'capacity',scope:capacityComparison.scope,identicalSelection:capacityComparison.identicalSelection,retainedIds:capacityComparison.retainedIds,addedIds:capacityComparison.addedIds,removedIds:capacityComparison.removedIds},{kind:'strategy',scope:strategyComparison.scope,identicalSelection:strategyComparison.identicalSelection,retainedIds:strategyComparison.retainedIds,addedIds:strategyComparison.addedIds,removedIds:strategyComparison.removedIds}],reproducibility:{firstRunSha256,secondRunSha256,identical:firstRunSha256===secondRunSha256},limitations:baseline.limitations};
+  const sensitivity={schemaVersion:1,snapshotId:baseline.snapshotId,generatedAt:baseline.generatedAt,methodologyVersion:baseline.methodologyVersion,configurationVersion:baseline.configurationVersion,scope:'different_evidence_scope',reason:'Changing projected proximity tolerance changes accepted relationships, not observed trees, measured shade or physical improvements.',scenarios:alternatives.map(snapshot=>({snapshotId:snapshot.snapshotId,toleranceM:snapshot.associationToleranceM,acceptedTrees:snapshot.inventory.acceptedTrees,acceptedSidewalks:snapshot.inventory.acceptedSidewalks,acceptedPits:snapshot.inventory.acceptedPits,matchedTrees:snapshot.inventory.matchedTrees,unmatchedTrees:snapshot.inventory.unmatchedTrees,ambiguousTrees:snapshot.inventory.ambiguousTrees,matchedPits:snapshot.inventory.matchedPits,unmatchedPits:snapshot.inventory.unmatchedPits,ambiguousPits:snapshot.inventory.ambiguousPits,eligibleCandidates:0,selectedCapacity5:0,selectedCapacity10:0})),sourceHashes:example.sourceHashes,limitations:baseline.limitations};
+  mkdirSync(output,{recursive:true});writeFileSync(join(output,'example-analysis.json'),JSON.stringify(example,null,2)+'\n');writeFileSync(join(output,'tolerance-sensitivity.json'),JSON.stringify(sensitivity,null,2)+'\n');
+  const csv=[['scenario_id','snapshot_id','capacity','strategy','eligible_segments','selected_segments','excluded_segments','official_length_definition_verified'],...scenarios.map(scenario=>[scenario.id,baseline.snapshotId,scenario.parameters.capacity,scenario.parameters.strategy,scenario.summary.eligibleCount,scenario.summary.selectedCount,scenario.excludedCount,false])].map(row=>row.map(value=>`"${String(value).replace(/"/g,'""')}"`).join(',')).join('\r\n');writeFileSync(join(output,'example-analysis.csv'),'\uFEFF'+csv+'\r\n');
+  writeFileSync(join(output,'performance.json'),JSON.stringify({schemaVersion:1,measuredAt:new Date().toISOString(),scope:'Offline Node.js conversion on this development machine; not browser or phone latency',node:process.version,platform:process.platform,cpu:cpus()[0]?.model??'unknown',timings},null,2)+'\n');
+  console.log(JSON.stringify({snapshotId:baseline.snapshotId,reproducible:example.reproducibility,sensitivity:sensitivity.scenarios,scenarios:example.scenarios,timings}));return{example,sensitivity};
+}
+if(import.meta.url===pathToFileURL(process.argv[1]??'').href)analyzeShadeEquitySnapshot(process.argv[2]?resolve(process.argv[2]):undefined,process.argv[3]?resolve(process.argv[3]):undefined);

@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "shade-equity-v1-8e4cfb4029d0831d",
+  "generatedAt": "2026-10-20T00:41:41.554Z",
+  "methodologyVersion": "shade-equity-evidence-review-v1",
+  "configurationVersion": "1.0.0",
+  "sourceHashes": [
+    {
+      "id": "roadside_trees",
+      "sha256": "2fd54772656da39ff0b50fa997a5a25c99d83deb7494ac49962911397e2c3efa"
+    },
+    {
+      "id": "sidewalks",
+      "sha256": "edd23396fc53bf39e2e08a752b2886dce3039edbf813fdada27ac57ae2d11b6c"
+    },
+    {
+      "id": "tree_pits",
+      "sha256": "9ed8de03c1ba61720bc3bc27903128831023f7590a9c38961a8382c7c9d80f03"
+    },
+    {
+      "id": "parks_context",
+      "sha256": "c7f165070ad66f4a23d19c73415fc94eff37be155de78e71db9c2b41964fa321"
+    },
+    {
+      "id": "greening_context",
+      "sha256": "acc67e4f1ca6f1ac822e8d3568654989f05e3d68ad715ba6ac9cf769e6320649"
+    },
+    {
+      "id": "shade_district_boundaries",
+      "sha256": "77bcc347b503b8ff8a43f7e1afaaedb18877a6222282587b145adaba69afd2d9"
+    }
+  ],
+  "inventory": {
+    "rawTreeRows": 90358,
+    "acceptedTrees": 89860,
+    "rawSidewalkFeatures": 15053,
+    "acceptedSidewalks": 14896,
+    "rawPitFeatures": 56720,
+    "acceptedPits": 50730,
+    "matchedTrees": 45559,
+    "unmatchedTrees": 44274,
+    "ambiguousTrees": 27,
+    "matchedPits": 46109,
+    "unmatchedPits": 480,
+    "ambiguousPits": 4141,
+    "eligibleDensityLengthM": null
+  },
+  "comparability": {
+    "eligible": false,
+    "reasons": [
+      "Unverified sidewalk length measurement definition and units",
+      "Incomplete and temporally different official inventory extents",
+      "No segment-scale canopy or heat evidence"
+    ]
+  },
+  "eligibility": "All audited segments excluded from prioritization because official length measurement definition is unverified. Zero selections do not mean zero trees or tree pits.",
+  "scenarios": [
+    {
+      "id": "evidence-capacity-5",
+      "parameters": {
+        "district": "",
+        "strategy": "evidence",
+        "capacity": 5,
+        "minLengthM": 0,
+        "includeAmbiguous": false,
+        "toleranceM": 2
+      },
+      "summary": {
+        "eligibleCount": 0,
+        "selectedCount": 0,
+        "districtsRepresented": 0,
+        "auditedLengthM": 0,
+        "treeObservations": 0,
+        "pitObservations": 0,
+        "ambiguousTreeAssociations": 0,
+        "ambiguousPitAssociations": 0,
+        "independentQuestions": 0
+      },
+      "excludedCount": 14896,
+      "exclusionReasons": {
+        "invalid_measurement_definition": 14896,
+        "ambiguous_association_excluded": 8315
+      },
+      "selectedIds": []
+    },
+    {
+      "id": "evidence-capacity-10",
+      "parameters": {
+        "district": "",
+        "strategy": "evidence",
+        "capacity": 10,
+        "minLengthM": 0,
+        "includeAmbiguous": false,
+        "toleranceM": 2
+      },
+      "summary": {
+        "eligibleCount": 0,
+        "selectedCount": 0,
+        "districtsRepresented": 0,
+        "auditedLengthM": 0,
+        "treeObservations": 0,
+        "pitObservations": 0,
+        "ambiguousTreeAssociations": 0,
+        "ambiguousPitAssociations": 0,
+        "independentQuestions": 0
+      },
+      "excludedCount": 14896,
+      "exclusionReasons": {
+        "invalid_measurement_definition": 14896,
+        "ambiguous_association_excluded": 8315
+      },
+      "selectedIds": []
+    },
+    {
+      "id": "balanced-capacity-5",
+      "parameters": {
+        "district": "",
+        "strategy": "balanced",
+        "capacity": 5,
+        "minLengthM": 0,
+        "includeAmbiguous": false,
+        "toleranceM": 2
+      },
+      "summary": {
+        "eligibleCount": 0,
+        "selectedCount": 0,
+        "districtsRepresented": 0,
+        "auditedLengthM": 0,
+        "treeObservations": 0,
+        "pitObservations": 0,
+        "ambiguousTreeAssociations": 0,
+        "ambiguousPitAssociations": 0,
+        "independentQuestions": 0
+      },
+      "excludedCount": 14896,
+      "exclusionReasons": {
+        "invalid_measurement_definition": 14896,
+        "ambiguous_association_excluded": 8315
+      },
+      "selectedIds": []
+    },
+    {
+      "id": "balanced-capacity-10",
+      "parameters": {
+        "district": "",
+        "strategy": "balanced",
+        "capacity": 10,
+        "minLengthM": 0,
+        "includeAmbiguous": false,
+        "toleranceM": 2
+      },
+      "summary": {
+        "eligibleCount": 0,
+        "selectedCount": 0,
+        "districtsRepresented": 0,
+        "auditedLengthM": 0,
+        "treeObservations": 0,
+        "pitObservations": 0,
+        "ambiguousTreeAssociations": 0,
+        "ambiguousPitAssociations": 0,
+        "independentQuestions": 0
+      },
+      "excludedCount": 14896,
+      "exclusionReasons": {
+        "invalid_measurement_definition": 14896,
+        "ambiguous_association_excluded": 8315
+      },
+      "selectedIds": []
+    }
+  ],
+  "comparisons": [
+    {
+      "kind": "capacity",
+      "scope": "same_evidence_scope",
+      "identicalSelection": true,
+      "retainedIds": [],
+      "addedIds": [],
+      "removedIds": []
+    },
+    {
+      "kind": "strategy",
+      "scope": "same_evidence_scope",
+      "identicalSelection": true,
+      "retainedIds": [],
+      "addedIds": [],
+      "removedIds": []
+    }
+  ],
+  "reproducibility": {
+    "firstRunSha256": "6683224b154200e9f321742c8f4c69d72cb0dabd4c805e3e6a8f9c21c097c3c6",
+    "secondRunSha256": "6683224b154200e9f321742c8f4c69d72cb0dabd4c805e3e6a8f9c21c097c3c6",
+    "identical": true
+  },
+  "limitations": [
+    "Registered roadside trees are not measured canopy, shade coverage, heat exposure or verified physical absence.",
+    "Tree-pit geometry and proximity do not establish vacancy, occupancy or planting feasibility.",
+    "Published sidewalk length definition and units have not been independently verified: all density denominators and segment priorities are unavailable.",
+    "Partial historical sidewalk geometry and different source periods do not establish comparable citywide or district coverage.",
+    "Canopy, pedestrian thermal exposure, survival, underground utilities and planting approvals are unavailable; no environmental risk score is produced."
+  ]
+}
