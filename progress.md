@@ -3,7 +3,17 @@
 ## Current State
 
 **Last Updated:** 2026-10-20 Asia/Taipei
-**Active Feature:** None — feat-045 implementation complete; analytical ranking remains deliberately gated
+**Active Feature:** None — feat-046 monitoring classification fix verified
+
+## 2026-10-20 — Research source-monitor failure classification
+
+- Inspected actual Actions run39209033524/job117918071962 and its Issue18 report: research Travel403 caused deliberate failure; five other sources200unchanged, approved-source monitor succeeded. Latest origin/main612d621 includes merged Shade Equity PR19; isolated codex/research-monitor-warning avoids modifying feature/data baselines.
+- Bounded plan: add regressions first; recognize only the exact audited/excluded Travel endpoint's unchanged HTTP403 as warning; preserve new failures and frozen validation; show workflow warnings and issue/artifact evidence; live-check, test/build, document, commit/push. No source access bypass or automatic source adoption.
+- Initial default4-worker baseline had six unrelated fixture timeouts before implementation; no assertion/timeout changes. Verification uses one worker to reduce host contention. New targeted governance suite established RED then passed29tests after the classification change.
+- Final verification:31targeted governance tests and484fulltests/31files passed with one worker; application/Node TypeScript and production build passed. The exact workflow warning program compiled and emitted its warning against the actual retained report; YAML structure/failure guard manually inspected (local YAML/actionlint unavailable). No standalone lint script exists. `git diff --check` passed. Browser E2E not rerun: this change affects only offline monitoring/workflow classification; frontend build chunks and all published/raw datasets remain unchanged.
+- Live read-only check executed twice: Travel403known_unavailable, five200unchanged sources, overallwarning/exit0, publicationreview_required and no published changes. Alert fingerprint c99d0a8ff16bd9228bd23ed5f90ac7b2d765d9607fa6eb09791e3a39a4031191 remained stable across checks; stale/unknown dates remained visible. Dated report/summary retained in reports/bin-policy/research-monitor-classification-2026-10-20.
+- Added13regressions covering the exact blocked expectation, available-source/new403/503/timeouts, changed URL, frozen hash drift, HTTP200manualreview (including unchanged blocked bytes), readable warnings and deduplication. Independent bounded review found no outstanding high/medium regression. Neither the upstream403 itself nor action-runtime deprecation is claimed fixed.
+- User requested commit/push. Changes stay on codex/research-monitor-warning; merging into main is required for future scheduled runs. The historical failed Actions execution is not rewritten, and no hosted workflow was dispatched by this task.
 
 ## 2026-10-20 — Shade Equity verified inventory-first delivery
 

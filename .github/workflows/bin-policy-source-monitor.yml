@@ -35,6 +35,11 @@ jobs:
           else
             echo 'Research monitor setup/validation failed; inspect logs. Approved v1.1 snapshot retained.' >> "$GITHUB_STEP_SUMMARY"
           fi
+      - name: Surface research-source attention
+        if: steps.priority-check.outcome == 'success'
+        shell: bash
+        run: |
+          node -e 'const fs=require("fs");const r=JSON.parse(fs.readFileSync("test-results/policy-priority-monitor/report.json","utf8"));if(r.state==="warning"||r.state==="change_detected")console.log("::warning::Research sources require attention; see the retained source report. Unavailable sources remain excluded and no data was published.")'
       - uses: actions/upload-artifact@v4
         if: always()
         with:

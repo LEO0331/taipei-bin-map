@@ -2,10 +2,17 @@
 
 Last reviewed: **2026-10-20 Asia/Taipei**. Historical milestones remain in [progress.md](progress.md).
 
-## Current scope and branch
+## Current work — research monitor correction
+
+- `feat-046` verified on `codex/research-monitor-warning`, based on updated main `612d621` (Shade Equity PR #19 has now merged).
+- The exact archived/excluded Travel403 is visible `warning`/`known_unavailable`, not healthy data or a newly broken build. Previously available sources failing403, new503/timeouts and frozen provenance errors still fail. A recovered response requires manual review before use.
+- 484 tests/31files (one worker), TypeScript/build, live read-only checks and diff checks passed. Live report: Travel403, five unchanged200 sources, warning/exit0; no datasets/algorithms/publication gates changed. See [the updated governance contract](docs/bin-policy-v1.2-governance.md) and [actual dated report](reports/bin-policy/research-monitor-classification-2026-10-20/summary.md).
+- User requested commit/push, not automatic merge. This correction must reach main before future scheduled jobs use it; no hosted run was dispatched. Upstream API access remains denied. E2E not rerun for this script/workflow-only change; prior Shade results below remain dated feature evidence.
+
+## Merged Shade Equity product context
 
 - New bounded feature: `feat-045`, independent `#/shade-equity` evidence-readiness/inventory module.
-- Branch: `codex/shade-equity-v1`, based on preserved `490f649`. Refreshed `origin/main` includes that baseline through merged PR #16 (`af8e29e`).
+- Original feature branch: `codex/shade-equity-v1`, based on preserved `490f649`; its delivery notes below describe the implementation handoff before the maintainer merged PR #19.
 - Public Bin Policy Mode A/B methods, approved inputs, research snapshots and review workflows are unchanged. No Portfolio repository, backend, account system, paid API or dependency was added.
 - User requested commit/push and one reviewable PR; no automatic merge or operational source approval. Final delivery/PR status is recorded in [the delivery document](docs/shade-equity-delivery.md).
 - Implementation commit `0d94343` was pushed and remote SHA verified. The GitHub integration returned HTTP403 on draft-PR creation; no PR created by this task. See [the complete draft and manual link](docs/shade-equity-pr.md); no main merge or public deployment is claimed.
