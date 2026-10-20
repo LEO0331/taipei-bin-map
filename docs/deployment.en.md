@@ -41,4 +41,4 @@ For a blank page, inspect the browser console and asset/data HTTP responses befo
 
 ## Operational limits
 
-Smoke-test all intended routes, both languages and narrow layouts on the actual preview URL. Check policy source/method/weight versions and date disclosures. Source monitoring may legitimately fail (the retained tourism check returned HTTP403); local test success does not establish cloud workflow permissions, source recovery or site suitability. See [current handoff](../session-handoff.md) and [governance](bin-policy-v1.2-governance.md).
+Smoke-test all intended routes, both languages and narrow layouts on the actual preview URL. Check policy source/method/weight versions and date disclosures. Source monitoring still fails on new outages or integrity errors; the exact previously audited/excluded Travel403 is a visible research warning, not successful source recovery. Local test success does not establish cloud workflow permissions, source recovery or site suitability. See [current handoff](../session-handoff.md) and [governance](bin-policy-v1.2-governance.md).

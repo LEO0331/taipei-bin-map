@@ -8,6 +8,14 @@
   },
   "features": [
     {
+      "id": "feat-046",
+      "name": "Research-source monitor distinguishes known unavailable inputs from new failures",
+      "description": "Keep the audited, excluded Travel HTTP403 visible as a warning while retaining hard failures for new outages, integrity drift and unexpected statuses; recovery still requires review.",
+      "dependencies": ["feat-044"],
+      "status": "done",
+      "evidence": "Isolated codex/research-monitor-warning from main612d621. Exact frozen/excluded Travel403 is warning with visible annotation/Issue evidence; new outages and integrity failures still fail; HTTP200 recovery requires review. 13 added RED/GREEN regressions, 31 targeted tests and 484 full tests passed serially; TypeScript/build and diff checks passed. Live check: warning/exit0, Travel403, five unchanged200 sources, no publication. Actual report retained under reports/bin-policy/research-monitor-classification-2026-10-20. No datasets, allocation methods, source-adoption gates or browser behavior changed. Hosted workflow result requires merging the fix; prior failed run is historical."
+    },
+    {
       "id": "feat-045",
       "name": "Shade Equity evidence-review decision support v1.0",
       "description": "Independent official-source tree/sidewalk/pit audit, reproducible spatial associations, transparent review tiers and capacity scenarios, bilingual route and provenance-preserving exports. No canopy, vacancy, heat or planting approval inference.",

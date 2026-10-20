@@ -75,6 +75,8 @@ Actually integrated: 42 official vendor-concentration locations, 47 market refer
 
 The dashboard compares equal category priorities, documented policy defaults, active edits and default-weight ±25% sensitivity using identical inputs. JSON and CSV retain method, weight and source versions separately. See the [methodology](docs/bin-policy-v1.2-methodology.md), [source audit](docs/bin-policy-v1.2-sources.md), [governance](docs/bin-policy-v1.2-governance.md), and [implementation evidence](docs/bin-policy-v1.2-audit.md).
 
+Research monitoring distinguishes the exact previously audited/excluded Travel403 (`warning`, with visible Actions/Issue evidence) from new source failures (`failure`). This does not restore API access, admit tourism data, or suppress integrity checks; successful recovery still requires independent review.
+
 ### Bin policy v1.1: governance, not an automatic data migration
 
 The policy route now includes distinct Data Health dates, conservative record-level bin reconciliation, and a newer official bus-source comparison. The audited 2021 references remain the default pending independent adoption review. Scheduled monitoring produces reports and deduplicated alerts only; a separate exact-hash, reviewed publication workflow stages a draft PR, never merges or pushes datasets into main.
