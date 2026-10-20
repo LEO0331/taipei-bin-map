@@ -2,7 +2,7 @@
 
 [English](deployment.en.md) | [繁體中文](deployment.zh-Hant.md)
 
-2026-10-16 核對。PR 已合併不代表託管部署已成功。
+2026-10-20 核對。PR 已合併不代表託管部署已成功。
 
 ## Vercel 設定
 
@@ -16,6 +16,8 @@ npm test
 npm run build
 npm run test:e2e -- --workers=2
 npm run test:policy-preview
+npm run test:shade-preview
+npm run test:shade-base
 git diff --check
 ```
 
@@ -31,7 +33,7 @@ canonical URL、`og:url` 與 sitemap 須使用已確認的正式網域；目前 
 
 ## 快取、離線與空白頁排查
 
-只在 production 註冊的 worker 對導覽、雜湊資產與政策 JSON 使用 network-first；一般資料、圖示及 manifest 使用 cache-first。政策資料在成功開啟對應模式後才快取，不隨首頁預載。外部 OpenStreetMap 圖磚不由 worker 快取，離線可能缺少；不能保證首次離線造訪可用。
+只在 production 註冊的 worker 對導覽、雜湊資產、清潔箱政策與樹蔭研究 JSON 使用 network-first；一般資料、圖示及 manifest 使用 cache-first。研究資料在成功開啟對應模式／範圍後才快取，不隨首頁預載。外部 OpenStreetMap 圖磚不由 worker 快取，離線可能缺少；不能保證首次離線造訪可用。樹蔭子路徑測試只涵蓋新模組資料載入，不表示其他既有根目錄絕對路徑均已遷移。
 
 一般快取資料或預載集合改變時須檢查 worker 快取版本。啟用會移除舊命名快取；controller 改變時每個瀏覽器工作階段最多自動重載一次。除乾淨載入外，也須驗證既有工作階段升版；preview 離線測試不等於涵蓋所有跨部署升版路徑。
 

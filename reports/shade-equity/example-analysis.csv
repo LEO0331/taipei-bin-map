@@ -1,0 +1,5 @@
+﻿"scenario_id","snapshot_id","capacity","strategy","eligible_segments","selected_segments","excluded_segments","official_length_definition_verified"
+"evidence-capacity-5","shade-equity-v1-8e4cfb4029d0831d","5","evidence","0","0","14896","false"
+"evidence-capacity-10","shade-equity-v1-8e4cfb4029d0831d","10","evidence","0","0","14896","false"
+"balanced-capacity-5","shade-equity-v1-8e4cfb4029d0831d","5","balanced","0","0","14896","false"
+"balanced-capacity-10","shade-equity-v1-8e4cfb4029d0831d","10","balanced","0","0","14896","false"

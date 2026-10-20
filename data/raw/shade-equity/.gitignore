@@ -1,0 +1,5 @@
+# Large, exact original payloads are reacquired by the hash-locked source command.
+*.csv
+sidewalks.json
+tree-pits.json
+parks-context.json

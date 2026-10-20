@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "shade-equity-v1-8e4cfb4029d0831d",
+  "generatedAt": "2026-10-20T00:41:41.554Z",
+  "methodologyVersion": "shade-equity-evidence-review-v1",
+  "configurationVersion": "1.0.0",
+  "scope": "different_evidence_scope",
+  "reason": "Changing projected proximity tolerance changes accepted relationships, not observed trees, measured shade or physical improvements.",
+  "scenarios": [
+    {
+      "snapshotId": "shade-equity-v1-7c820cd415d35dfa",
+      "toleranceM": 0,
+      "acceptedTrees": 89860,
+      "acceptedSidewalks": 14896,
+      "acceptedPits": 50730,
+      "matchedTrees": 41830,
+      "unmatchedTrees": 48030,
+      "ambiguousTrees": 0,
+      "matchedPits": 46109,
+      "unmatchedPits": 869,
+      "ambiguousPits": 3752,
+      "eligibleCandidates": 0,
+      "selectedCapacity5": 0,
+      "selectedCapacity10": 0
+    },
+    {
+      "snapshotId": "shade-equity-v1-8e4cfb4029d0831d",
+      "toleranceM": 2,
+      "acceptedTrees": 89860,
+      "acceptedSidewalks": 14896,
+      "acceptedPits": 50730,
+      "matchedTrees": 45559,
+      "unmatchedTrees": 44274,
+      "ambiguousTrees": 27,
+      "matchedPits": 46109,
+      "unmatchedPits": 480,
+      "ambiguousPits": 4141,
+      "eligibleCandidates": 0,
+      "selectedCapacity5": 0,
+      "selectedCapacity10": 0
+    },
+    {
+      "snapshotId": "shade-equity-v1-33b421f7f4e64ae7",
+      "toleranceM": 5,
+      "acceptedTrees": 89860,
+      "acceptedSidewalks": 14896,
+      "acceptedPits": 50730,
+      "matchedTrees": 47744,
+      "unmatchedTrees": 41942,
+      "ambiguousTrees": 174,
+      "matchedPits": 46109,
+      "unmatchedPits": 421,
+      "ambiguousPits": 4200,
+      "eligibleCandidates": 0,
+      "selectedCapacity5": 0,
+      "selectedCapacity10": 0
+    }
+  ],
+  "sourceHashes": [
+    {
+      "id": "roadside_trees",
+      "sha256": "2fd54772656da39ff0b50fa997a5a25c99d83deb7494ac49962911397e2c3efa"
+    },
+    {
+      "id": "sidewalks",
+      "sha256": "edd23396fc53bf39e2e08a752b2886dce3039edbf813fdada27ac57ae2d11b6c"
+    },
+    {
+      "id": "tree_pits",
+      "sha256": "9ed8de03c1ba61720bc3bc27903128831023f7590a9c38961a8382c7c9d80f03"
+    },
+    {
+      "id": "parks_context",
+      "sha256": "c7f165070ad66f4a23d19c73415fc94eff37be155de78e71db9c2b41964fa321"
+    },
+    {
+      "id": "greening_context",
+      "sha256": "acc67e4f1ca6f1ac822e8d3568654989f05e3d68ad715ba6ac9cf769e6320649"
+    },
+    {
+      "id": "shade_district_boundaries",
+      "sha256": "77bcc347b503b8ff8a43f7e1afaaedb18877a6222282587b145adaba69afd2d9"
+    }
+  ],
+  "limitations": [
+    "Registered roadside trees are not measured canopy, shade coverage, heat exposure or verified physical absence.",
+    "Tree-pit geometry and proximity do not establish vacancy, occupancy or planting feasibility.",
+    "Published sidewalk length definition and units have not been independently verified: all density denominators and segment priorities are unavailable.",
+    "Partial historical sidewalk geometry and different source periods do not establish comparable citywide or district coverage.",
+    "Canopy, pedestrian thermal exposure, survival, underground utilities and planting approvals are unavailable; no environmental risk score is produced."
+  ]
+}

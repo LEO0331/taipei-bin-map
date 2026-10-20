@@ -2,11 +2,11 @@
 
 [English](system-design.en.md) | [繁體中文](system-design.zh-Hant.md)
 
-Reviewed against the repository on 2026-10-16. Counts describe retained snapshots, not live facility availability.
+Reviewed against the repository on 2026-10-20. Counts describe retained snapshots, not live facility availability.
 
 ## Product and architecture
 
-Static Vite + React + TypeScript, with a shared 22-type amenities map, eight dedicated discovery/directory/analytics routes, and `#/bin-policy`. No backend, authentication, database or paid map API. UI labels are bilingual; source addresses and district names remain Chinese. The optional English basemap preference was removed; maps use standard OpenStreetMap tiles.
+Static Vite + React + TypeScript, with a shared 22-type amenities map, eight dedicated discovery/directory/analytics routes, `#/bin-policy`, and `#/shade-equity`. No backend, authentication, database or paid map API. UI labels are bilingual; source addresses and district names remain Chinese. The optional English basemap preference was removed; maps use standard OpenStreetMap tiles.
 
 ```mermaid
 flowchart LR
@@ -47,6 +47,14 @@ Mode B separately loads `priority-references.json`: 42 vendor concentrations, 47
 Read-only monitoring does not adopt inputs. Research review bundles and approved-data publication are separate. Scoped `.gitattributes` rules preserve raw archive bytes. See [v1.2 methodology](bin-policy-v1.2-methodology.md) and [governance](bin-policy-v1.2-governance.md).
 
 ## Caching and verification
+
+### Independent Shade Equity evidence review
+
+Added 2026-10-20: the lazy Shade Equity route has separate types, sources, projected GIS processing, evidence-tier engine and exports. Official roadside trees, sidewalks and tree pits remain distinct from park/protected-tree context. Raw originals are losslessly compressed and SHA256-locked; indexed offline joins produce a small metadata/inventory snapshot and twelve on-demand district chunks, not a browser-side spatial cross join. Chunk snapshot/district identities are validated before use.
+
+Actual length measurement and coverage-comparability gates remain closed, so the live-source release is inventory/association review, not an active shade/density priority ranking. No canopy, heat or pit vacancy is synthesized. Read [the methodology](shade-equity-methodology.md) and [delivery evidence](shade-equity-delivery.md). The new data loader respects Vite's base; this does not remove pre-existing root-absolute paths from other modules or establish whole-app GitHub Pages subpath support.
+
+Shade JSON is network-first and cached after use, separately from ordinary-map precaching. Production offline checks are `npm run test:shade-preview`; see the policy preview suite for unchanged Mode A/B checks.
 
 `public/service-worker.js` uses network-first for navigation, `/assets/` and `/data/bin-policy/`; ordinary `/data/`, icons and manifest use cache-first. Policy datasets are cached after use, not precached with the ordinary map. Network failure can fall back to cached input; HTTP error responses are not silently replaced by stale data. External tiles are not cached by this worker. Registration is production-only.
 

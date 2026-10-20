@@ -2,11 +2,11 @@
 
 [English](system-design.en.md) | [繁體中文](system-design.zh-Hant.md)
 
-2026-10-16 依目前程式與保留快照核對。以下筆數不是即時營運數。
+2026-10-20 依目前程式與保留快照核對。以下筆數不是即時營運數。
 
 ## 產品與架構
 
-Vite + React + TypeScript 靜態網站，包含 22 種設施的共用地圖、八個獨立探索／目錄／統計路由，以及 `#/bin-policy`。沒有後端、登入、資料庫或付費地圖 API。介面雙語，來源地址與行政區保留中文；選配英文底圖已移除，各地圖使用標準 OpenStreetMap 圖磚。
+Vite + React + TypeScript 靜態網站，包含 22 種設施的共用地圖、八個獨立探索／目錄／統計路由，以及 `#/bin-policy`、`#/shade-equity`。沒有後端、登入、資料庫或付費地圖 API。介面雙語，來源地址與行政區保留中文；選配英文底圖已移除，各地圖使用標準 OpenStreetMap 圖磚。
 
 ```mermaid
 flowchart LR
@@ -47,6 +47,14 @@ flowchart LR
 只讀監測不會自動採用新輸入；研究審查包與核准資料發布分開。原始封存檔透過限定範圍的 `.gitattributes` 保留位元組。詳見 [v1.2 方法](bin-policy-v1.2-methodology.zh-Hant.md)與[治理](bin-policy-v1.2-governance.md)。
 
 ## 快取與驗證
+
+### 獨立樹蔭證據查核
+
+2026-10-20 新增延遲載入的樹蔭研究路由，使用分離的型別、來源、投影 GIS、證據層級引擎與匯出。行道樹、人行道與樹穴不與園樹／受保護樹木混用；原檔以無損壓縮與 SHA256 保留。離線索引關聯產出小型盤點摘要與十二個按需載入的行政區檔，不在瀏覽器交叉比對全部樹木與多邊形；載入時檢查分區／快照身分。
+
+實際長度定義與涵蓋可比較性門檻仍未通過，這次真實來源功能為盤點／關聯查核，不是已啟用的遮蔭或密度排名；不合成樹冠、熱暴露或空穴。詳見[方法](shade-equity-methodology.md)與[交付證據](shade-equity-delivery.md)。新資料載入器支援 Vite base，不代表其他模組既有的根目錄絕對路徑已改造，或整站已支援 GitHub Pages 子路徑。
+
+樹蔭 JSON 使用後才以 network-first 快取，不加入一般地圖預載。production 離線驗證為 `npm run test:shade-preview`；原模式 A／B 另由政策 preview suite 驗證。
 
 `public/service-worker.js` 對導覽、`/assets/` 與 `/data/bin-policy/` 使用 network-first，其他 `/data/`、圖示及 manifest 使用 cache-first。政策資料使用後才快取，不隨一般地圖預先下載；網路失敗可回復已快取輸入，但 HTTP 錯誤回應不會默默改成舊資料。外部圖磚不由此 worker 快取；只在 production 註冊。
 

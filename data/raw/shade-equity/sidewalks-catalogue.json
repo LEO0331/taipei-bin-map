@@ -1,0 +1,105 @@
+{
+  "datasetId": "715d3a83-8445-4496-b6bf-b0900538b7e7",
+  "title": "臺北市人行道固定設施物_人行道範圍圖",
+  "provider": "臺北市政府工務局新建工程處",
+  "publicationDate": "2020-10-26",
+  "metadataUpdatedAt": "2026-09-22 19:06:50",
+  "coverageStart": "2020-10-26",
+  "coverageEnd": null,
+  "coverageSpatial": "",
+  "fieldDescription": "type(資料類型)、properties(屬性資料)、ID(編號)、Town_N(行政區)、NAME_Road(路名)、PSTART(起點)、PEND(訖點)、SW_DIRECT(人行道方向)、SW_LENG_ItemValue(長度)、SW_WTH_ItemValue(寬度)、Shape_AR_ItemValue(面積)、SWW_WTH(人行道淨寬)、code(類型)、geometry(幾何資訊)、type(幾何位置種類)、coordinates(幾何位置座標)",
+  "resources": [
+    {
+      "rid": "b11d6142-1d71-41d5-a843-7b7cfcea61ef",
+      "url": "/api/dataset/715d3a83-8445-4496-b6bf-b0900538b7e7/resource/b11d6142-1d71-41d5-a843-7b7cfcea61ef/download",
+      "url_type": "upload",
+      "position": 0,
+      "name": "臺北市人行道固定設施施有關人行道範圍相關圖資，本項資料所採用座標系統為TWD97。",
+      "description": "",
+      "encoding": "UTF-8",
+      "file_name": "TP_SIDEWORK.json",
+      "mimetype": "application/json",
+      "size": 24404580,
+      "meta_url": "",
+      "amount": "",
+      "field_desc": [
+        {
+          "name": "type",
+          "desc": "資料類型"
+        },
+        {
+          "name": "properties",
+          "desc": "屬性資料"
+        },
+        {
+          "name": "ID",
+          "desc": "編號"
+        },
+        {
+          "name": "Town_N",
+          "desc": "行政區"
+        },
+        {
+          "name": "NAME_Road",
+          "desc": "路名"
+        },
+        {
+          "name": "PSTART",
+          "desc": "起點"
+        },
+        {
+          "name": "PEND",
+          "desc": "訖點"
+        },
+        {
+          "name": "SW_DIRECT",
+          "desc": "人行道方向"
+        },
+        {
+          "name": "SW_LENG_ItemValue",
+          "desc": "長度"
+        },
+        {
+          "name": "SW_WTH_ItemValue",
+          "desc": "寬度"
+        },
+        {
+          "name": "Shape_AR_ItemValue",
+          "desc": "面積"
+        },
+        {
+          "name": "SWW_WTH",
+          "desc": "人行道淨寬"
+        },
+        {
+          "name": "code",
+          "desc": "類型"
+        },
+        {
+          "name": "geometry",
+          "desc": "幾何資訊"
+        },
+        {
+          "name": "type",
+          "desc": "幾何位置種類"
+        },
+        {
+          "name": "coordinates",
+          "desc": "幾何位置座標"
+        }
+      ],
+      "notes": "",
+      "file_format_tid": "afb20478-f915-4ffa-a8e8-f78738b2e732",
+      "file_format": "JSON",
+      "request_method": "",
+      "request_parameters": [],
+      "extras": {
+        "qc_level": ""
+      },
+      "resource_type": "",
+      "has_datastore": false,
+      "download_count": 1839,
+      "last_modified": "2026-01-14 16:02:36"
+    }
+  ]
+}

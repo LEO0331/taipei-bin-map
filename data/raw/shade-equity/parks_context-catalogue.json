@@ -1,0 +1,145 @@
+{
+  "datasetId": "ea732fb5-4bec-4be7-93f2-8ab91e74a6c6",
+  "title": "臺北市公園基本資料",
+  "provider": "臺北市政府工務局公園路燈工程管理處",
+  "publicationDate": "2015-07-01",
+  "metadataUpdatedAt": "2026-08-26 10:48:29",
+  "coverageStart": null,
+  "coverageEnd": null,
+  "coverageSpatial": "臺北市",
+  "fieldDescription": "pm_regions(行政區)、pm_name(公園名稱)、pm_overview(公園概述)、pm_Longitude(經度)、pm_Latitude(緯度)、pm_unit(管理單位)、pm_const_year(建造年度)、pm_location(公園位置)、pm_area(公園面積)、pm_opening_s(開放時間-開始)、pm_opening_e(開放時間-結束)、pm_libie(里別)、pm_phone(聯絡電話)、pm_sports(體健設施)、pm_recreation(遊樂設施)、pm_service(服務設施)、pm_other(古蹟設施)、pm_transit(交通資訊)、pm_name_eng(公園英文名稱)、pm_ecology(是否為生態公園)、pm_type(類別)",
+  "resources": [
+    {
+      "rid": "302a04cd-8dd7-4052-a014-9a7ee8ec8e58",
+      "url": "https://parks.gov.taipei/parks/api/",
+      "url_type": "",
+      "position": 0,
+      "name": "公園走透透臺北新花漾網站公園基本資料",
+      "description": "",
+      "encoding": "UTF-8",
+      "file_name": "",
+      "mimetype": "",
+      "size": "",
+      "meta_url": "",
+      "amount": "",
+      "field_desc": [
+        {
+          "name": "SeqNo",
+          "desc": ""
+        },
+        {
+          "name": "pm_regions",
+          "desc": ""
+        },
+        {
+          "name": "pm_name",
+          "desc": ""
+        },
+        {
+          "name": "pm_overview",
+          "desc": ""
+        },
+        {
+          "name": "pm_Longitude",
+          "desc": ""
+        },
+        {
+          "name": "pm_Latitude",
+          "desc": ""
+        },
+        {
+          "name": "pm_unit",
+          "desc": ""
+        },
+        {
+          "name": "pm_const_year",
+          "desc": ""
+        },
+        {
+          "name": "pm_location",
+          "desc": ""
+        },
+        {
+          "name": "pm_LandPublicArea",
+          "desc": ""
+        },
+        {
+          "name": "pm_opening_stime",
+          "desc": ""
+        },
+        {
+          "name": "pm_opening_etime",
+          "desc": ""
+        },
+        {
+          "name": "pm_libie",
+          "desc": ""
+        },
+        {
+          "name": "pm_phone",
+          "desc": ""
+        },
+        {
+          "name": "pm_sports",
+          "desc": ""
+        },
+        {
+          "name": "pm_recreation",
+          "desc": ""
+        },
+        {
+          "name": "pm_service",
+          "desc": ""
+        },
+        {
+          "name": "pm_other",
+          "desc": ""
+        },
+        {
+          "name": "pm_transit",
+          "desc": ""
+        },
+        {
+          "name": "pm_name_eng",
+          "desc": ""
+        },
+        {
+          "name": "pm_ecology",
+          "desc": ""
+        },
+        {
+          "name": "pm_type",
+          "desc": ""
+        },
+        {
+          "name": "pm_playtype",
+          "desc": ""
+        },
+        {
+          "name": "pm_playarea",
+          "desc": ""
+        },
+        {
+          "name": "pm_description",
+          "desc": ""
+        },
+        {
+          "name": "pm_playeq",
+          "desc": ""
+        }
+      ],
+      "notes": "檔案更新時間以連結內資料內容更新時間為準",
+      "file_format_tid": "afb20478-f915-4ffa-a8e8-f78738b2e732",
+      "file_format": "JSON",
+      "request_method": "",
+      "request_parameters": [],
+      "extras": {
+        "qc_level": ""
+      },
+      "resource_type": "",
+      "has_datastore": false,
+      "download_count": 442,
+      "last_modified": "2026-08-26 10:44:55"
+    }
+  ]
+}

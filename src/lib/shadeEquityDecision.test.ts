@@ -1,0 +1,88 @@
+import { describe, expect, it } from 'vitest';
+import { classifyShadeEquitySegment, independentShadeQuestions, validateShadeEquitySnapshot } from './shadeEquityDecision';
+import { runShadeEquityScenario, compareShadeEquityScenarios, buildShadeEquitySensitivity } from './shadeEquityScenario';
+import { shadeEquityBriefing, shadeEquityCsv } from './shadeEquityExport';
+import type { ShadeEquityParameters, ShadeEquityQuestion, ShadeEquitySegment, ShadeEquitySnapshot } from '../types/shadeEquity';
+
+const question = (dimension = 'spatial_association', causeId = dimension): ShadeEquityQuestion => ({ dimension, causeId, material: true, reason: causeId });
+const segment = (id = 's1', overrides: Partial<ShadeEquitySegment> = {}): ShadeEquitySegment => ({ id, district: '大安區', road: '信義路', lengthM: 100, widthM: 3, latitude: 25.03, longitude: 121.54, geometryValid: true, sourceVerified: true, measurementVerified: true, treeCount: 2, pitCount: 1, ambiguousTreeCount: 0, ambiguousPitCount: 0, questions: [], confidence: 'high', surveyDate: '2025-01-01', treeSourceId: 'trees', pitSourceId: 'pits', sidewalkSourceId: 'sidewalks', ...overrides });
+const snapshot = (segments: ShadeEquitySegment[] = [segment()]): ShadeEquitySnapshot => ({ schemaVersion: 1, methodologyVersion: 'shade-equity-evidence-review-v1', configurationVersion: '1.0.0', snapshotId: 'fixture-shade', generatedAt: '2026-10-20T00:00:00Z', associationToleranceM: 2, sources: ['trees', 'pits', 'sidewalks'].map(id => ({ id, population: id === 'trees' ? 'roadside_trees' : id === 'pits' ? 'tree_pits' : 'sidewalks', name: id, provider: 'Taipei', datasetId: id, resourceId: id, url: 'https://data.taipei/', sha256: 'a'.repeat(64), suitability: 'verified_analysis' })), segments, limitations: ['Fixture, not real Taipei analysis'], comparability: { eligible: false, reasons: ['Partial coverage'] } });
+const parameters: ShadeEquityParameters = { district: '', strategy: 'evidence', capacity: 5, minLengthM: 0, includeAmbiguous: false };
+const inventorySnapshot = (): ShadeEquitySnapshot => ({ ...snapshot([]), inventory: { rawTreeRows: 12, acceptedTrees: 10, rawSidewalkFeatures: 0, acceptedSidewalks: 0, rawPitFeatures: 5, acceptedPits: 4, matchedTrees: 0, unmatchedTrees: 9, ambiguousTrees: 1, matchedPits: 0, unmatchedPits: 4, ambiguousPits: 0, eligibleDensityLengthM: null }, districtSummary: [{ district: '大安區', sidewalkSegments: 0, treeObservations: 10, pitObservations: 4, matchedTrees: 0, matchedPits: 0, ambiguousTrees: 1, ambiguousPits: 0, eligibleLengthM: null, comparable: false }], spatialQuality: { toleranceM: 2, ambiguousSegmentCountsNonAdditive: true } });
+
+describe('shade evidence interpretation', () => {
+  it('classifies two independent material questions as tier A', () => { expect(classifyShadeEquitySegment(segment('a', { questions: [question(), question('tree_pit_occupancy')] })).tier).toBe('A'); });
+  it('classifies one material question as tier B', () => { expect(classifyShadeEquitySegment(segment('a', { questions: [question()] })).tier).toBe('B'); });
+  it('classifies supported inventory without local questions as tier C', () => { expect(classifyShadeEquitySegment(segment()).tier).toBe('C'); });
+  it('keeps zero registered trees in tier C rather than declaring an environmental gap', () => { expect(classifyShadeEquitySegment(segment('a', { treeCount: 0 })).tier).toBe('C'); });
+  it('classifies invalid geometry as insufficient evidence', () => { expect(classifyShadeEquitySegment(segment('a', { geometryValid: false })).tier).toBe('insufficient'); });
+  it('classifies unverified measurement definitions as insufficient evidence', () => { expect(classifyShadeEquitySegment(segment('a', { measurementVerified: false })).tier).toBe('insufficient'); });
+  it('classifies an impossible recorded width as insufficient measurement evidence', () => { expect(classifyShadeEquitySegment(segment('a', { widthM: -1 })).tier).toBe('insufficient'); });
+  it('classifies unknown district identifiers as insufficient evidence', () => { expect(classifyShadeEquitySegment(segment('a', { district: 'unknown' })).tier).toBe('insufficient'); });
+  it('counts different fields from the same source failure once', () => { expect(independentShadeQuestions([question('tree_inventory_coverage', 'failure'), question('source_freshness', 'failure')])).toHaveLength(1); });
+  it('counts multiple causes in one dimension once', () => { expect(independentShadeQuestions([question('source_freshness', 'a'), question('source_freshness', 'b')])).toHaveLength(1); });
+  it('finds the maximum independently supported dimensions without greedy undercounting', () => { expect(independentShadeQuestions([question('tree_inventory_coverage', 'a'), question('spatial_association', 'a'), question('tree_inventory_coverage', 'b')])).toHaveLength(2); });
+  it('never inflates local priority with globally missing canopy or feasibility evidence', () => { expect(independentShadeQuestions([question('canopy_evidence'), question('field_feasibility')])).toHaveLength(0); });
+  it('does not count explicitly global source failures for every segment', () => { expect(independentShadeQuestions([{ ...question(), scope: 'global' }])).toHaveLength(0); });
+  it('retains unresolved associations as tier B even without material local questions', () => { expect(classifyShadeEquitySegment(segment('a', { ambiguousTreeCount: 1 })).tier).toBe('B'); });
+});
+
+describe('shade snapshot source eligibility', () => {
+  it('rejects duplicate segment identities', () => { expect(() => validateShadeEquitySnapshot(snapshot([segment(), segment()]))).toThrow(); });
+  it('rejects unsupported methodology identifiers', () => { const data = snapshot(); (data as { methodologyVersion: string }).methodologyVersion = 'shade-risk'; expect(() => validateShadeEquitySnapshot(data)).toThrow(); });
+  it('rejects impossible calendar dates instead of assigning misleading freshness priority', () => { const data = snapshot(); data.segments[0].surveyDate = '2026-02-31'; expect(() => validateShadeEquitySnapshot(data)).toThrow(); });
+  it('rejects negative observation counts rather than deriving a negative density', () => { const data = snapshot(); data.segments[0].treeCount = -1; expect(() => validateShadeEquitySnapshot(data)).toThrow(); });
+  it('excludes source-ineligible trees instead of treating missing records as zero', () => { const data = snapshot(); data.sources[0].suitability = 'unavailable'; expect(runShadeEquityScenario(data, parameters).selected).toHaveLength(0); });
+  it('rejects missing source-byte hashes for verified analytical sources', () => { const data = snapshot(); data.sources[0].sha256 = null; expect(() => validateShadeEquitySnapshot(data)).toThrow(); });
+  it('rejects source acceptance counts larger than the archived source population', () => { const data = snapshot(); data.sources[0].rawCount = 1; data.sources[0].acceptedCount = 2; expect(() => validateShadeEquitySnapshot(data)).toThrow(); });
+  it('rejects invalid source dates without replacing them with retrieval time', () => { const data = snapshot(); data.sources[0].sourceUpdatedAt = 'unknown'; expect(() => validateShadeEquitySnapshot(data)).toThrow(); });
+  it('excludes a segment whose pit records lack analytical eligibility', () => { const data = snapshot(); data.sources[1].suitability = 'context_only'; expect(runShadeEquityScenario(data, parameters).excluded[0].reasons).toContain('pit_source_ineligible'); });
+  it('never reuses protected-tree legal records as a roadside-tree baseline', () => { const data = snapshot(); data.sources[0].population = 'protected_trees'; expect(runShadeEquityScenario(data, parameters).selected).toHaveLength(0); });
+  it('never counts a park-tree population as roadside-tree evidence', () => { const data = snapshot(); data.sources[0].population = 'park_context'; expect(runShadeEquityScenario(data, parameters).selected).toHaveLength(0); });
+  it('rejects arbitrary source ids without an audited population role', () => { const data = snapshot(); delete data.sources[0].population; expect(runShadeEquityScenario(data, parameters).selected).toHaveLength(0); });
+  it('rejects malformed optional inventory aggregates before the UI renders them', () => { const data = inventorySnapshot(); data.inventory!.acceptedTrees = NaN; expect(() => validateShadeEquitySnapshot(data)).toThrow(); });
+  it('rejects district aggregates with invalid identifiers', () => { const data = inventorySnapshot(); data.districtSummary![0].district = 'unknown'; expect(() => validateShadeEquitySnapshot(data)).toThrow(); });
+  it('rejects district chunk names containing path traversal', () => { const data = inventorySnapshot(); data.districtChunks = { '大安區': '../outside.json' }; expect(() => validateShadeEquitySnapshot(data)).toThrow(); });
+});
+
+describe('shade capacity scenarios', () => {
+  const many = () => snapshot(Array.from({ length: 12 }, (_, index) => segment(`s${String(index).padStart(2, '0')}`, { district: index < 8 ? '大安區' : '中山區' })));
+  it('returns no candidates for an empty population', () => { expect(runShadeEquityScenario(snapshot([]), parameters).selected).toHaveLength(0); });
+  it('selects five review slots at capacity five', () => { expect(runShadeEquityScenario(many(), parameters).selected).toHaveLength(5); });
+  it('selects ten review slots at capacity ten', () => { expect(runShadeEquityScenario(many(), { ...parameters, capacity: 10 }).selected).toHaveLength(10); });
+  it('treats zero capacity as all eligible documentary reviews', () => { expect(runShadeEquityScenario(many(), { ...parameters, capacity: 0 }).selected).toHaveLength(12); });
+  it('distributes balanced review slots by stable district round robin', () => { expect(runShadeEquityScenario(many(), { ...parameters, strategy: 'balanced', capacity: 4 }).selected.map(row => row.segment.district)).toEqual(['中山區', '大安區', '中山區', '大安區']); });
+  it('preserves within-district evidence ordering in balanced selection', () => { const data = snapshot([segment('first'), segment('urgent', { questions: [question()] })]); expect(runShadeEquityScenario(data, { ...parameters, strategy: 'balanced' }).selected[0].segment.id).toBe('urgent'); });
+  it('sorts the same input identically regardless of source row order', () => { const data = many(); expect(runShadeEquityScenario(data, parameters).selected.map(row => row.segment.id)).toEqual(runShadeEquityScenario({ ...data, segments: [...data.segments].reverse() }, parameters).selected.map(row => row.segment.id)); });
+  it('uses fixed recorded survey dates instead of the browser clock', () => { expect(runShadeEquityScenario(snapshot([segment('new', { surveyDate: '2026-01-01' }), segment('old', { surveyDate: '2020-01-01' })]), parameters).selected[0].segment.id).toBe('old'); });
+  it('excludes ambiguous association populations in strict mode', () => { expect(runShadeEquityScenario(snapshot([segment('a', { ambiguousTreeCount: 1 })]), parameters).selected).toHaveLength(0); });
+  it('includes ambiguities as unresolved questions rather than additive tree counts in permissive mode', () => { const result = runShadeEquityScenario(snapshot([segment('a', { ambiguousTreeCount: 3 })]), { ...parameters, includeAmbiguous: true }); expect(result.summary.treeObservations).toBe(2); });
+  it('excludes segments shorter than the explicitly selected minimum length', () => { expect(runShadeEquityScenario(snapshot(), { ...parameters, minLengthM: 101 }).selected).toHaveLength(0); });
+  it('keeps low-recorded review unavailable for incomparable sources', () => { expect(() => runShadeEquityScenario(snapshot(), { ...parameters, strategy: 'low-recorded' })).toThrow(/comparab/i); });
+  it('orders low-recorded review by audited observations per kilometre only with comparable coverage', () => { const data = snapshot([segment('many', { treeCount: 5 }), segment('low', { treeCount: 1 })]); data.comparability.eligible = true; expect(runShadeEquityScenario(data, { ...parameters, strategy: 'low-recorded' }).selected[0].segment.id).toBe('low'); });
+  it.each([-1, 1.5, NaN, Infinity])('rejects invalid capacity %s', capacity => { expect(() => runShadeEquityScenario(snapshot(), { ...parameters, capacity })).toThrow(); });
+  it('refuses to pretend a new tolerance recomputes frozen spatial associations', () => { expect(() => runShadeEquityScenario(snapshot(), { ...parameters, toleranceM: 5 })).toThrow(/tolerance/i); });
+});
+
+describe('shade strategy comparison and briefing', () => {
+  it('labels strategy comparisons with fixed input population as the same evidence scope', () => { expect(compareShadeEquityScenarios(snapshot(), parameters, { ...parameters, strategy: 'balanced' }).scope).toBe('same_evidence_scope'); });
+  it('keeps equivalent reordered source populations in the same evidence scope', () => { const data = snapshot([segment('a'), segment('b')]); const other = { ...data, segments: [...data.segments].reverse(), sources: [...data.sources].reverse() }; expect(compareShadeEquityScenarios(data, parameters, parameters, other).scope).toBe('same_evidence_scope'); });
+  it('labels a changed fixed matching tolerance as different evidence scope', () => { const data = snapshot(); const other = { ...data, snapshotId: 'tolerance-5', associationToleranceM: 5 }; expect(compareShadeEquityScenarios(data, parameters, parameters, other).reasons).toContain('matching_tolerance_changed'); });
+  it('labels ambiguity eligibility changes as different evidence scope', () => { expect(compareShadeEquityScenarios(snapshot(), parameters, { ...parameters, includeAmbiguous: true }).scope).toBe('different_evidence_scope'); });
+  it('labels minimum-length sensitivity as a different evidence scope', () => { expect(compareShadeEquityScenarios(snapshot(), parameters, { ...parameters, minLengthM: 20 }).scope).toBe('different_evidence_scope'); });
+  it('reports identical selections honestly', () => { expect(compareShadeEquityScenarios(snapshot(), parameters, { ...parameters, strategy: 'balanced' }).identicalSelection).toBe(true); });
+  it('provides capacity five versus ten and evidence versus balanced scenarios', () => { expect(buildShadeEquitySensitivity(snapshot(), parameters).map(row => row.label)).toEqual(expect.arrayContaining(['capacity_5_vs_10', 'evidence_vs_balanced', 'strict_vs_permissive', 'minimum_length'])); });
+  it('retains provenance even in an empty briefing', () => { const data = snapshot([]); expect(shadeEquityBriefing(data, runShadeEquityScenario(data, parameters)).sources[0].sha256).toBe('a'.repeat(64)); });
+  it('retains actual inventory evidence when no review segments satisfy eligibility', () => { const data = inventorySnapshot(); expect(shadeEquityBriefing(data, runShadeEquityScenario(data, parameters)).inventory?.acceptedTrees).toBe(10); });
+  it('retains district inventory evidence separately from selected review counts', () => { const data = inventorySnapshot(); expect(shadeEquityBriefing(data, runShadeEquityScenario(data, parameters)).districtSummary?.[0].treeObservations).toBe(10); });
+  it('retains association-quality caveats for an empty shortlist', () => { const data = inventorySnapshot(); expect(shadeEquityBriefing(data, runShadeEquityScenario(data, parameters)).spatialQuality?.ambiguousSegmentCountsNonAdditive).toBe(true); });
+  it('labels zero review summaries as selected subsets rather than zero citywide inventory', () => { const data = inventorySnapshot(); expect(shadeEquityBriefing(data, runShadeEquityScenario(data, parameters)).summaryScope).toContain('selected eligible review units'); });
+  it('retains actual accepted inventory counts in CSV even without eligible review candidates', () => { const data = inventorySnapshot(); expect(shadeEquityCsv(data, runShadeEquityScenario(data, parameters))).toContain('inventory_summary'); });
+  it('preserves unloaded district-chunk coverage instead of implying all segments were evaluated', () => { const data = inventorySnapshot(); data.segmentCoverage = 'district_chunks_not_loaded'; expect(shadeEquityBriefing(data, runShadeEquityScenario(data, parameters)).segmentCoverage).toBe('district_chunks_not_loaded'); });
+  it('exports a CSV summary when no review candidates exist', () => { const data = snapshot([]); expect(shadeEquityCsv(data, runShadeEquityScenario(data, parameters))).toContain('scenario_summary'); });
+  it('protects spreadsheet formula injection in source names and road labels', () => { const data = snapshot([segment('a', { road: '=IMPORTDATA("unsafe")' })]); data.sources[0].name = '@unsafe'; const csv = shadeEquityCsv(data, runShadeEquityScenario(data, parameters)); expect(csv).toContain("'=IMPORTDATA"); });
+  it('protects spreadsheet formula injection in source rows', () => { const data = snapshot(); data.sources[0].name = '@unsafe'; expect(shadeEquityCsv(data, runShadeEquityScenario(data, parameters))).toContain("'@unsafe"); });
+  it('produces reproducible scenario exports from the same fixed snapshot', () => { const data = snapshot(); expect(shadeEquityCsv(data, runShadeEquityScenario(data, parameters))).toBe(shadeEquityCsv(data, runShadeEquityScenario(data, parameters))); });
+  it('rejects briefings with results from another snapshot', () => { const data = snapshot(); const result = runShadeEquityScenario(data, parameters); result.snapshotId = 'other'; expect(() => shadeEquityBriefing(data, result)).toThrow(); });
+  it('exports recorded tree-pit observations without inferred planting vacancy or cooling metrics', () => { const data = snapshot(); const brief = shadeEquityBriefing(data, runShadeEquityScenario(data, parameters)); expect(brief).not.toHaveProperty('vacantPits'); expect(brief).not.toHaveProperty('coolingCelsius'); });
+});

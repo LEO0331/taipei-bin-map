@@ -1,0 +1,615 @@
+{
+  "datasetId": "7a49d00c-a5ff-4a6b-be9e-aaa6dc1ff7e8",
+  "title": "臺北市行道樹及公園樹木分布圖",
+  "provider": "臺北市政府工務局公園路燈工程管理處",
+  "publicationDate": "2017-08-24",
+  "metadataUpdatedAt": "2026-07-28 10:54:26",
+  "coverageStart": null,
+  "coverageEnd": null,
+  "coverageSpatial": "臺北市",
+  "fieldDescription": "臺北市行道樹分布位置座標(TWD97)\n行道樹：TreeID(編號)、Dist(行政區)、Region(路段位置)、RegionRemark (路段備註)、TreeType(樹種)、Diameter(樹胸徑)、TreeHeight(樹高)、SurveyDate(調查日期)、TWD97X(TWD97 X座標)、TWD97Y(TWD97 Y座標)、Update(更新日期)\n\n樹穴：TreeHoleID(樹穴編碼)、ShapeType(穴形)、Length(周長)、Area(面積)、Region(路段)、Remark(備註)、Update(更新日期)\n\n公園樹木：TreeID(編號)、Dist(行政區)、ParkName(公園名稱)、TreeType(樹種)、Diameter(樹胸徑)、TreeHeight(樹高)、TWD97X(TWD97 X座標)、TWD97Y(TWD97 Y座標)、SurveyDate(調查日期)、UpdDate(更新日期)",
+  "resources": [
+    {
+      "rid": "d7e2563c-9dbe-4eee-91f8-8416d6c1f10e",
+      "url": "https://tppkl.blob.core.windows.net/blobfs/TaipeiParkTree.xml",
+      "url_type": "",
+      "position": 8,
+      "name": "公園樹木資料_XML",
+      "description": "",
+      "encoding": "UTF-8",
+      "file_name": "",
+      "mimetype": "",
+      "size": "",
+      "meta_url": "",
+      "amount": 0,
+      "field_desc": [
+        {
+          "name": "TreeID",
+          "desc": ""
+        },
+        {
+          "name": "Dist",
+          "desc": ""
+        },
+        {
+          "name": "ParkName",
+          "desc": ""
+        },
+        {
+          "name": "TreeType",
+          "desc": ""
+        },
+        {
+          "name": "Diameter",
+          "desc": ""
+        },
+        {
+          "name": "TreeHeight",
+          "desc": ""
+        },
+        {
+          "name": "TWD97X",
+          "desc": ""
+        },
+        {
+          "name": "TWD97Y",
+          "desc": ""
+        },
+        {
+          "name": "SurveyDate",
+          "desc": ""
+        },
+        {
+          "name": "UpdDate",
+          "desc": ""
+        }
+      ],
+      "notes": "檔案更新時間以連結內資料內容更新時間為準",
+      "file_format_tid": "4b6d4f3d-211e-41cc-b03b-2fa7e470365c",
+      "file_format": "XML",
+      "request_method": "",
+      "request_parameters": [],
+      "extras": {
+        "qc_level": ""
+      },
+      "resource_type": "",
+      "has_datastore": false,
+      "download_count": 52,
+      "last_modified": "2026-07-20 11:10:51"
+    },
+    {
+      "rid": "13a867b5-5a91-4ee2-a7c0-2c01efd086d1",
+      "url": "https://tppkl.blob.core.windows.net/blobfs/TaipeiParkTree.json",
+      "url_type": "",
+      "position": 7,
+      "name": "公園樹木資料_JSON",
+      "description": "",
+      "encoding": "UTF-8",
+      "file_name": "",
+      "mimetype": "",
+      "size": "",
+      "meta_url": "",
+      "amount": 0,
+      "field_desc": [
+        {
+          "name": "TreeID",
+          "desc": ""
+        },
+        {
+          "name": "Dist",
+          "desc": ""
+        },
+        {
+          "name": "ParkName",
+          "desc": ""
+        },
+        {
+          "name": "TreeType",
+          "desc": ""
+        },
+        {
+          "name": "Diameter",
+          "desc": ""
+        },
+        {
+          "name": "TreeHeight",
+          "desc": ""
+        },
+        {
+          "name": "TWD97X",
+          "desc": ""
+        },
+        {
+          "name": "TWD97Y",
+          "desc": ""
+        },
+        {
+          "name": "SurveyDate",
+          "desc": ""
+        },
+        {
+          "name": "UpdDate",
+          "desc": ""
+        }
+      ],
+      "notes": "檔案更新時間以連結內資料內容更新時間為準",
+      "file_format_tid": "afb20478-f915-4ffa-a8e8-f78738b2e732",
+      "file_format": "JSON",
+      "request_method": "",
+      "request_parameters": [],
+      "extras": {
+        "qc_level": ""
+      },
+      "resource_type": "",
+      "has_datastore": false,
+      "download_count": 32,
+      "last_modified": "2026-07-20 11:10:39"
+    },
+    {
+      "rid": "b4d3e321-9343-407b-9621-8254f8e26edb",
+      "url": "https://tppkl.blob.core.windows.net/blobfs/TaipeiParkTree.csv",
+      "url_type": "",
+      "position": 6,
+      "name": "公園樹木資料_CSV",
+      "description": "",
+      "encoding": "UTF-8",
+      "file_name": "",
+      "mimetype": "",
+      "size": "",
+      "meta_url": "",
+      "amount": 0,
+      "field_desc": [
+        {
+          "name": "TreeID",
+          "desc": ""
+        },
+        {
+          "name": "Dist",
+          "desc": ""
+        },
+        {
+          "name": "ParkName",
+          "desc": ""
+        },
+        {
+          "name": "TreeType",
+          "desc": ""
+        },
+        {
+          "name": "Diameter",
+          "desc": ""
+        },
+        {
+          "name": "TreeHeight",
+          "desc": ""
+        },
+        {
+          "name": "TWD97X",
+          "desc": ""
+        },
+        {
+          "name": "TWD97Y",
+          "desc": ""
+        },
+        {
+          "name": "SurveyDate",
+          "desc": ""
+        },
+        {
+          "name": "UpdDate",
+          "desc": ""
+        }
+      ],
+      "notes": "檔案更新時間以連結內資料內容更新時間為準",
+      "file_format_tid": "32fe643b-f623-4770-9aae-cb49ccb6dcb8",
+      "file_format": "CSV",
+      "request_method": "",
+      "request_parameters": [],
+      "extras": {
+        "qc_level": ""
+      },
+      "resource_type": "",
+      "has_datastore": false,
+      "download_count": 89,
+      "last_modified": "2026-07-20 11:10:20"
+    },
+    {
+      "rid": "0e96f4b5-8f8c-4935-ae0b-b97b3d031c94",
+      "url": "https://tppkl.blob.core.windows.net/blobfs/TaipeiTree.csv",
+      "url_type": "",
+      "position": 5,
+      "name": "行道樹資料_CSV",
+      "description": "",
+      "encoding": "UTF-8",
+      "file_name": "",
+      "mimetype": "",
+      "size": "",
+      "meta_url": "",
+      "amount": "",
+      "field_desc": [
+        {
+          "name": "TreeID",
+          "desc": ""
+        },
+        {
+          "name": "Dist",
+          "desc": ""
+        },
+        {
+          "name": "Region",
+          "desc": ""
+        },
+        {
+          "name": "RegionRemark",
+          "desc": ""
+        },
+        {
+          "name": "TreeType",
+          "desc": ""
+        },
+        {
+          "name": "Diameter",
+          "desc": ""
+        },
+        {
+          "name": "TreeHeight",
+          "desc": ""
+        },
+        {
+          "name": "SurveyDate",
+          "desc": ""
+        },
+        {
+          "name": "TWD97X",
+          "desc": ""
+        },
+        {
+          "name": "TWD97Y",
+          "desc": ""
+        },
+        {
+          "name": "UpdDate",
+          "desc": ""
+        }
+      ],
+      "notes": "檔案更新時間以連結內資料內容更新時間為準",
+      "file_format_tid": "32fe643b-f623-4770-9aae-cb49ccb6dcb8",
+      "file_format": "CSV",
+      "request_method": "",
+      "request_parameters": [],
+      "extras": {
+        "qc_level": ""
+      },
+      "resource_type": "",
+      "has_datastore": false,
+      "download_count": 528,
+      "last_modified": "2024-04-25 14:08:49"
+    },
+    {
+      "rid": "b941df1c-6151-4097-b14f-513399193d77",
+      "url": "https://tppkl.blob.core.windows.net/blobfs/TaipeiTreeHole.json",
+      "url_type": "",
+      "position": 4,
+      "name": "樹穴資料_JSON",
+      "description": "",
+      "encoding": "utf-8",
+      "file_name": "",
+      "mimetype": "",
+      "size": "",
+      "meta_url": "",
+      "amount": "",
+      "field_desc": [
+        {
+          "name": "TreeHoleID",
+          "desc": "樹穴編碼"
+        },
+        {
+          "name": "ShapeType",
+          "desc": "穴形"
+        },
+        {
+          "name": "Length",
+          "desc": "周長"
+        },
+        {
+          "name": "Area",
+          "desc": "面積"
+        },
+        {
+          "name": "Region",
+          "desc": "路段"
+        },
+        {
+          "name": "Remark",
+          "desc": "備註"
+        },
+        {
+          "name": "TWD97X",
+          "desc": ""
+        },
+        {
+          "name": "TWD97Y",
+          "desc": ""
+        },
+        {
+          "name": "UpdDate",
+          "desc": "更新日期"
+        }
+      ],
+      "notes": "",
+      "file_format_tid": "afb20478-f915-4ffa-a8e8-f78738b2e732",
+      "file_format": "JSON",
+      "request_method": "",
+      "request_parameters": [],
+      "extras": [],
+      "resource_type": "",
+      "has_datastore": false,
+      "download_count": 3139,
+      "last_modified": "2024-04-25 14:08:41"
+    },
+    {
+      "rid": "6e82c7b9-b162-4a8e-b66c-478617d5f6ce",
+      "url": "https://tppkl.blob.core.windows.net/blobfs/TaipeiTreeHole.xml",
+      "url_type": "",
+      "position": 3,
+      "name": "樹穴資料_XML",
+      "description": "",
+      "encoding": "utf-8",
+      "file_name": "",
+      "mimetype": "",
+      "size": "",
+      "meta_url": "",
+      "amount": "",
+      "field_desc": [
+        {
+          "name": "TreeHoleID",
+          "desc": "樹穴編碼"
+        },
+        {
+          "name": "ShapeType",
+          "desc": "穴形"
+        },
+        {
+          "name": "Length",
+          "desc": "周長"
+        },
+        {
+          "name": "Area",
+          "desc": "面積"
+        },
+        {
+          "name": "Region",
+          "desc": "路段"
+        },
+        {
+          "name": "Remark",
+          "desc": "備註"
+        },
+        {
+          "name": "TWD97X",
+          "desc": ""
+        },
+        {
+          "name": "TWD97Y",
+          "desc": ""
+        },
+        {
+          "name": "UpdDate",
+          "desc": "更新日期"
+        }
+      ],
+      "notes": "",
+      "file_format_tid": "4b6d4f3d-211e-41cc-b03b-2fa7e470365c",
+      "file_format": "XML",
+      "request_method": "",
+      "request_parameters": [],
+      "extras": [],
+      "resource_type": "",
+      "has_datastore": false,
+      "download_count": 131,
+      "last_modified": "2024-04-25 14:08:27"
+    },
+    {
+      "rid": "c2007ae6-8b99-4a25-a742-f0517ea396d0",
+      "url": "https://tppkl.blob.core.windows.net/blobfs/TaipeiTreeHole.csv",
+      "url_type": "",
+      "position": 2,
+      "name": "樹穴資料_CSV",
+      "description": "",
+      "encoding": "utf-8",
+      "file_name": "",
+      "mimetype": "",
+      "size": "",
+      "meta_url": "",
+      "amount": "",
+      "field_desc": [
+        {
+          "name": "TreeHoleID",
+          "desc": ""
+        },
+        {
+          "name": "ShapeType",
+          "desc": ""
+        },
+        {
+          "name": "Length",
+          "desc": ""
+        },
+        {
+          "name": "Area",
+          "desc": ""
+        },
+        {
+          "name": "Region",
+          "desc": ""
+        },
+        {
+          "name": "Remark",
+          "desc": ""
+        },
+        {
+          "name": "TWD97X",
+          "desc": ""
+        },
+        {
+          "name": "TWD97Y",
+          "desc": ""
+        },
+        {
+          "name": "UpdDate",
+          "desc": ""
+        }
+      ],
+      "notes": "",
+      "file_format_tid": "32fe643b-f623-4770-9aae-cb49ccb6dcb8",
+      "file_format": "CSV",
+      "request_method": "",
+      "request_parameters": [],
+      "extras": [],
+      "resource_type": "",
+      "has_datastore": false,
+      "download_count": 144,
+      "last_modified": "2024-04-25 14:08:19"
+    },
+    {
+      "rid": "2502597a-455b-4b34-b644-5e13bac3189e",
+      "url": "https://tppkl.blob.core.windows.net/blobfs/TaipeiTree.json",
+      "url_type": "",
+      "position": 1,
+      "name": "行道樹資料_JSON",
+      "description": "",
+      "encoding": "utf-8",
+      "file_name": "",
+      "mimetype": "",
+      "size": "",
+      "meta_url": "",
+      "amount": "",
+      "field_desc": [
+        {
+          "name": "TreeID",
+          "desc": ""
+        },
+        {
+          "name": "Dist",
+          "desc": ""
+        },
+        {
+          "name": "Region",
+          "desc": ""
+        },
+        {
+          "name": "RegionRemark",
+          "desc": ""
+        },
+        {
+          "name": "TreeType",
+          "desc": ""
+        },
+        {
+          "name": "Diameter",
+          "desc": ""
+        },
+        {
+          "name": "TreeHeight",
+          "desc": ""
+        },
+        {
+          "name": "SurveyDate",
+          "desc": ""
+        },
+        {
+          "name": "TWD97X",
+          "desc": ""
+        },
+        {
+          "name": "TWD97Y",
+          "desc": ""
+        },
+        {
+          "name": "UpdDate",
+          "desc": ""
+        }
+      ],
+      "notes": "",
+      "file_format_tid": "afb20478-f915-4ffa-a8e8-f78738b2e732",
+      "file_format": "JSON",
+      "request_method": "",
+      "request_parameters": [],
+      "extras": [],
+      "resource_type": "",
+      "has_datastore": false,
+      "download_count": 14677,
+      "last_modified": "2024-04-25 14:08:10"
+    },
+    {
+      "rid": "febb5c35-4fd5-478e-9a95-494d57c47c86",
+      "url": "https://tppkl.blob.core.windows.net/blobfs/TaipeiTree.xml",
+      "url_type": "",
+      "position": 0,
+      "name": "行道樹資料_XML",
+      "description": "",
+      "encoding": "utf-8",
+      "file_name": "",
+      "mimetype": "",
+      "size": "",
+      "meta_url": "",
+      "amount": "",
+      "field_desc": [
+        {
+          "name": "TreeID",
+          "desc": ""
+        },
+        {
+          "name": "Dist",
+          "desc": ""
+        },
+        {
+          "name": "Region",
+          "desc": ""
+        },
+        {
+          "name": "RegionRemark",
+          "desc": ""
+        },
+        {
+          "name": "TreeType",
+          "desc": ""
+        },
+        {
+          "name": "Diameter",
+          "desc": ""
+        },
+        {
+          "name": "TreeHeight",
+          "desc": ""
+        },
+        {
+          "name": "SurveyDate",
+          "desc": ""
+        },
+        {
+          "name": "TWD97X",
+          "desc": ""
+        },
+        {
+          "name": "TWD97Y",
+          "desc": ""
+        },
+        {
+          "name": "UpdDate",
+          "desc": ""
+        }
+      ],
+      "notes": "",
+      "file_format_tid": "4b6d4f3d-211e-41cc-b03b-2fa7e470365c",
+      "file_format": "XML",
+      "request_method": "",
+      "request_parameters": [],
+      "extras": [],
+      "resource_type": "",
+      "has_datastore": false,
+      "download_count": 124,
+      "last_modified": "2024-04-25 14:08:00"
+    }
+  ]
+}

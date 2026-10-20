@@ -26,9 +26,11 @@ flowchart LR
   A --> M["共用公共設施地圖<br/>篩選、清單、Leaflet"]
   A --> D["獨立探索與目錄模組<br/>涼適點、學校、游泳池、回收統計等"]
   A --> Q["延遲載入清潔箱政策頁<br/>保留模式 A 與研究模式 B"]
+  A --> H["延遲載入樹蔭研究頁<br/>官方盤點與證據門檻"]
   M --> B["瀏覽器"]
   D --> B
   Q --> B
+  H --> B
 
   S["public/service-worker.js<br/>PWA 快取策略"] --> B
   P --> S
@@ -45,6 +47,7 @@ flowchart LR
 | 路由 | 模組 | 使用界線 |
 | --- | --- | --- |
 | `#/bin-policy` | 清潔箱配置決策支援 | 模式 A 保留交通等權覆蓋；模式 B 分析類別平衡政策優先、明示權重、缺漏與敏感度；兩者皆不核准設置位置。 |
+| `#/shade-equity` | 樹蔭公平與都市熱環境決策分析 | 登錄樹木不等於樹冠，樹穴不等於空穴。可查官方盤點與空間證據；量測與可比較性門檻未通過，不產生排名。 |
 | `#/cooling-comfort-spots` | 臺北市涼適點 | 設施、開放時間與設備是來源快照，不代表即時可用或緊急避難所。 |
 | `#/public-school-sports-venues` | 公立學校運動場地搜尋 | 校園開放不表示可預約、存在特定運動場地或目前有空檔。 |
 | `#/swimming-pools` | 臺北市游泳池查詢 | 官方座標與聯絡資料不代表即時開放、救生員配置或游泳安全狀態。 |
@@ -55,6 +58,14 @@ flowchart LR
 | `#/recycling-analytics` | 資源回收統計 | 行政區回收量不代表回收率、效率或環保表現。 |
 
 ## 資料使用原則
+
+### 樹蔭公平 v1.0：具明確停止門檻的盤點查核
+
+獨立 `#/shade-equity` 路由稽核行道樹、人行道多邊形與樹穴設施，不與受保護樹木、園樹背景或清潔箱政策混用母體。2026-10-20 來源快照有 90,358 列行道樹、15,053 個人行道多邊形及 56,720 個樹穴／花圃多邊形；GIS 驗證後保留 89,860 筆樹木觀察、14,896 個人行道單元及 50,730 個樹穴。這些不是完整實體普查、遮蔭率或空穴容量。
+
+人行道長度欄位的量測定義／單位對應，以及跨來源可比較性尚未充分驗證，因此真實可排序候選為 **零**；容量 5／10 及行政區均衡不會產生虛構清單，低登錄樹木密度排序停用。A/B/C 與非空容量配置只在明示的合成測試驗證。前端先載入小型摘要，選行政區才載入明細，不傳原始大型檔案。
+
+詳見[來源稽核](docs/shade-equity-source-audit.md)、[方法](docs/shade-equity-methodology.md)、[決策應用](docs/shade-equity-decision-mvp.zh-Hant.md)及[交付證據](docs/shade-equity-delivery.md)。下載成功不等於分析採用或政府種植核准；不宣稱實測樹冠、街道熱暴露或降溫成效。
 
 ### 清潔箱政策 v1.2：獨立的政策優先研究模式
 
@@ -114,6 +125,11 @@ npm run data:health:bin-policy -- test-results/bin-policy-monitor/report.json
 npm run data:compare:bus-policy
 npm run data:convert:policy-priority -- data/raw/bin-policy-priority/priority-v1-113edf6ed5e09ada data/raw/bin-policy/v1-14c24bcdbade/districts.zip
 npm run benchmark:policy-priority
+
+# 還原雜湊鎖定的壓縮原檔，不以即時新資料替代
+npm run data:fetch:shade-equity -- --restore-frozen
+npm run data:audit:shade-equity
+npm run data:convert:shade-equity
 ```
 
 部分資料集需要先執行擷取指令，將官方來源複製或取得為本機快照；完整指令請見 `package.json`。轉換後請查看 `public/data/conversion-report.json` 與各模組摘要，了解來源專屬的品質檢查結果。
@@ -127,6 +143,7 @@ npm test
 npm run build
 npm run test:e2e
 npm run test:policy-preview # 先執行 npm run build，驗證已快取資料的離線回復
+npm run test:shade-preview # production 樹蔭盤點與離線驗證
 ./init.sh
 ```
 

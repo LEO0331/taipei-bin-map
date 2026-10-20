@@ -26,9 +26,11 @@ flowchart LR
   A --> M["Shared amenities map<br/>filters, list, Leaflet"]
   A --> D["Dedicated discovery & directory modules<br/>cooling, schools, pools, recycling analytics, etc."]
   A --> Q["Lazy bin-policy dashboard<br/>retained Mode A + research Mode B"]
+  A --> H["Lazy shade-equity review<br/>audited inventories + evidence gates"]
   M --> B["Browser"]
   D --> B
   Q --> B
+  H --> B
 
   S["public/service-worker.js<br/>PWA cache strategy"] --> B
   P --> S
@@ -45,6 +47,7 @@ Dedicated directory or discovery routes provide additional source-specific exper
 | Route | Module | Important boundary |
 | --- | --- | --- |
 | `#/bin-policy` | Public Bin Allocation Decision Support | Mode A retains equal transport coverage; Mode B studies category-balanced policy priorities with explicit weights, missing-data warnings and sensitivity. Neither approves installation sites. |
+| `#/shade-equity` | Shade Equity & Urban Heat Preparedness | Registered trees are not canopy; pits are not vacant planting sites. Inventory and spatial review are available; ranking is blocked until measurement/comparability gates pass. |
 | `#/cooling-comfort-spots` | Taipei Cooling & Comfort Spots | Source-listed amenities and hours are not real-time availability or emergency-shelter status. |
 | `#/public-school-sports-venues` | Public School Sports Venue Search | Campus opening is not proof of booking, a specific sport, or a free time slot. |
 | `#/swimming-pools` | Taipei Swimming Pool Finder | Official coordinates and contact details do not establish current opening, lifeguard staffing, or safe swimming conditions. |
@@ -55,6 +58,14 @@ Dedicated directory or discovery routes provide additional source-specific exper
 | `#/recycling-analytics` | Recycling Analytics | District recycling volume is not a recycling rate, efficiency, or environmental-performance score. |
 
 ## Data principles
+
+### Shade Equity v1.0: inventory review with an explicit no-go gate
+
+The independent `#/shade-equity` route audits roadside trees, official sidewalk polygons and tree-pit infrastructure, retaining separate source populations from protected trees, park context and Bin Policy. The 2026-10-20 source snapshot contains 90,358 tree rows, 15,053 sidewalk polygons and 56,720 pit/planter polygons; GIS admission retains 89,860 tree observations, 14,896 sidewalk units and 50,730 tree pits. These are source-backed observations, not complete physical inventories, shade coverage or vacant capacity.
+
+The sidewalk length field's measurement definition/units and cross-source comparability are not adequately verified. Therefore actual eligible priority candidates are **zero**: capacity 5/10 and district balancing return no fabricated shortlist; low-recorded-tree density ranking is disabled. A/B/C tiers and non-empty scenarios are exercised with explicitly synthetic test fixtures only. Metadata loads first, with district details fetched on selection; raw files never go to the browser.
+
+See the [source audit](docs/shade-equity-source-audit.md), [methodology](docs/shade-equity-methodology.md), [Traditional Chinese decision guide](docs/shade-equity-decision-mvp.zh-Hant.md) and [delivery evidence](docs/shade-equity-delivery.md). Source downloads do not grant analytical or municipal planting approval. No measured canopy, street-level heat or cooling-benefit model is claimed.
 
 ### Bin policy v1.2: separate policy-priority research mode
 
@@ -126,6 +137,11 @@ npm run data:health:bin-policy -- test-results/bin-policy-monitor/report.json
 npm run data:compare:bus-policy
 npm run data:convert:policy-priority -- data/raw/bin-policy-priority/priority-v1-113edf6ed5e09ada data/raw/bin-policy/v1-14c24bcdbade/districts.zip
 npm run benchmark:policy-priority
+
+# Restore exact compressed shade-source evidence; do not substitute live bytes
+npm run data:fetch:shade-equity -- --restore-frozen
+npm run data:audit:shade-equity
+npm run data:convert:shade-equity
 ```
 
 Some datasets have separate fetch scripts that copy or retrieve an official source snapshot before conversion. See `package.json` for the complete command list. After conversion, inspect `public/data/conversion-report.json` and each module summary for source-specific quality results.
@@ -139,6 +155,7 @@ npm test
 npm run build
 npm run test:e2e
 npm run test:policy-preview # run npm run build first; tests cached-data offline fallback
+npm run test:shade-preview # production-only shade inventory/offline behavior
 ./init.sh
 ```
 

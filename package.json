@@ -7,6 +7,12 @@
     "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
+    "data:fetch:shade-equity": "tsx scripts/fetchShadeEquitySources.ts",
+    "data:audit:shade-equity": "tsx scripts/auditShadeEquitySources.ts",
+    "data:convert:shade-equity": "tsx scripts/buildShadeEquitySnapshot.ts",
+    "test:shade-preview": "playwright test --config=tests/preview/shade.config.cjs",
+    "test:shade-base": "vite build --base=/taipei-bin-map/ --outDir=test-results/shade-base-build && playwright test --config=tests/base/shade.config.cjs",
+    "data:analyze:shade-equity": "tsx scripts/analyzeShadeEquitySnapshot.ts",
     "data:fetch:policy-priority": "tsx scripts/fetchPolicyPrioritySources.ts",
     "data:convert:policy-priority": "tsx scripts/convertPolicyPrioritySources.ts",
     "data:monitor:policy-priority": "tsx scripts/monitorPolicyPrioritySources.ts",
