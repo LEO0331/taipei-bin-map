@@ -8,6 +8,7 @@ Last reviewed: **2026-10-20 Asia/Taipei**. Historical milestones remain in [prog
 - Branch: `codex/shade-equity-v1`, based on preserved `490f649`. Refreshed `origin/main` includes that baseline through merged PR #16 (`af8e29e`).
 - Public Bin Policy Mode A/B methods, approved inputs, research snapshots and review workflows are unchanged. No Portfolio repository, backend, account system, paid API or dependency was added.
 - User requested commit/push and one reviewable PR; no automatic merge or operational source approval. Final delivery/PR status is recorded in [the delivery document](docs/shade-equity-delivery.md).
+- Implementation commit `0d94343` was pushed and remote SHA verified. The GitHub integration returned HTTP403 on draft-PR creation; no PR created by this task. See [the complete draft and manual link](docs/shade-equity-pr.md); no main merge or public deployment is claimed.
 
 ## Actual supported analysis
 

@@ -1,6 +1,8 @@
 # Shade Equity v1.0 — review handoff
 
-Branch: `codex/shade-equity-v1`. This is a review-only delivery, not a municipal planting plan or source-adoption approval. PR creation status is recorded below after push; do not merge automatically.
+Branch: `codex/shade-equity-v1`. Implementation commit `0d94343` was pushed and its remote SHA verified. This is a review-only delivery, not a municipal planting plan or source-adoption approval; do not merge automatically.
+
+PR handoff status (2026-10-20): the connected GitHub integration returned HTTP403 `Resource not accessible by integration`. **No PR was created by this task.** No permission or credential bypass was attempted. The maintainer can [create the review PR from the pushed branch](https://github.com/LEO0331/taipei-bin-map/compare/main...codex/shade-equity-v1?expand=1), choose draft status, and use the description below. Do not create a duplicate if a maintainer has already opened one.
 
 Suggested title: **Shade Equity v1.0: source-backed inventory review with explicit measurement gates**
 
