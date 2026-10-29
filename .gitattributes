@@ -8,3 +8,7 @@ public/data/shade-equity/** -text
 reports/shade-equity/** -text
 # Evidence CSV uses RFC-style CRLF intentionally; retain it without whitespace false positives.
 reports/shade-equity/*.csv whitespace=cr-at-eol
+# Audit evidence must retain original CSV, HTML and Actions artifact byte hashes.
+reports/audit-issues-22-23-2026-10-29/** -text
+reports/audit-issues-22-23-2026-10-29/bin-revision/bins-current.csv -diff
+reports/audit-issues-22-23-2026-10-29/bin-revision/catalogue.html -diff

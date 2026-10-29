@@ -1,0 +1,35 @@
+{
+  "datasetId": "a835f3ba-7f50-4b0d-91a6-9df128632d1c",
+  "title": "臺北市行人專用清潔箱",
+  "provider": "臺北市政府環境保護局",
+  "metadataChanged": "2026-10-21 15:41:29",
+  "resourceId": "267d550f-c6ec-46e0-b8af-fd5a464eb098",
+  "resourceName": "臺北市行人專用清潔箱",
+  "resourceUpdated": "2026-10-21 15:41:01",
+  "format": "CSV",
+  "encoding": "Big5",
+  "fieldDescription": "行政區、地址、經度、緯度、備註",
+  "resourceFields": [
+    {
+      "name": "行政區",
+      "desc": ""
+    },
+    {
+      "name": "地址",
+      "desc": ""
+    },
+    {
+      "name": "經度",
+      "desc": ""
+    },
+    {
+      "name": "緯度",
+      "desc": ""
+    },
+    {
+      "name": "備註",
+      "desc": ""
+    }
+  ],
+  "license": "4550e68f-6812-4a15-a2e2-f954eee779c5"
+}
