@@ -8,6 +8,14 @@
   },
   "features": [
     {
+      "id": "feat-048",
+      "name": "Compact single-open source evidence accordion",
+      "description": "Replace stretched source-card columns with a single-column disclosure list, retain source/status/date summaries, separate technical identifiers and offer explicit copy/manual-copy feedback without changing source data.",
+      "dependencies": ["feat-045"],
+      "status": "done",
+      "evidence": "Single-column controlled native source disclosures replace equal-height card columns. One source opens at a time; summaries retain source/status/update day, technical IDs/CRS/hash are second-level, full values copy with explicit manual fallback. Added13RED/GREEN component regressions and6desktop/mobile browser cases. Full505tests/33files, TypeScript/build and24relatedE2E passed; keyboard, linkedhiddenpanels, clipboard mocks/failure, no page overflow and independent closed-row heights verified. Visual-verdict94pass. No source/analysis/data/dependency changes; Clipboard API availability still depends on secure context/browser permission. Owner handles PRs and merges."
+    },
+    {
       "id": "feat-047",
       "name": "Evidence review of inventory revision and research alerts (#22 #23)",
       "delivery": "Owner restored codex/audit-issues-22-23 after externally merged PR24; latest instruction is documentation commit/push only. Owner handles PRs and merges. No source-adoption approval is implied.",

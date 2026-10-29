@@ -3,7 +3,16 @@
 ## Current State
 
 **Last Updated:** 2026-10-29 Asia/Taipei
-**Active Feature:** None — feat-047 assessment complete; owner manages PRs and merges
+**Active Feature:** None — feat-048 source disclosure UX verified
+
+## 2026-10-29 — Source evidence disclosure UX
+
+- User approved the single-column/single-open recommendation after observing equal-height blank source cards. Scope is the Shade source component, scoped styles and regressions; no source/analysis/publication changes or new dependencies.
+- Baseline492tests/build passed. Added behavior tests first (8expected failures on old UI), then replaced the multi-column card grid with controlled native details/summary rows. Collapsed rows show source name, suitability and original update day; active body keeps dates, counts, scope and caveats. A second technical disclosure contains full IDs/CRS/hash and copy buttons with failure/manual-copy feedback. No unknown value is fabricated/copied as actual data.
+- New targeted component run passed28tests including existing dashboard/source behavior. Relevant E2E, keyboard, mobile layout and visual-verdict checks follow. Continue owner-managed commit/push only; no PR/issue/merge operations.
+- Final verification:505tests/33files, application/Node TypeScript and production build passed;24relateddesktop/mobile E2E passed (6new source cases plus18existing Shade cases). Added13component regressions, including valid ARIAcontrol targets whilecollapsed. Single-open toggle, Enter/Space keyboard activation, secondarytechnical reset, exactdataset/resource/hash copying, unavailable/deniedclipboard fallback and unknown-count handling verified. Clipboard browser tests mock the API and never alter the real OSclipboard.
+- Visual-verdict inspected actual desktop/mobile captures:94pass, no stretchedneighborcards or page-levelhorizontaloverflow. Scoped styles reuse existing white/teal surfaces and amberlimited-source labels. Changedfiles: ShadeEquitySourceHealth.tsx, itsnewunit tests, existingdashboardtest expectations and scopedstyles; new source E2E file plus documentation/harness. Shared card grids elsewhere are unchanged.
+- Simplification: source provenance is rendered only for the active row; one local copy helper handles allthreeidentifiers, and native summary keyboard semantics avoid a modal/focus trap. Original source dates/metrics/limits remain intact. No conversion/source/analysis/weight/publication changes or dependencies. Remainingrisk: Clipboard API requires browser support/permission/secure context; manualcopy remains available. No standalone lintscript configured; diff checks passed. FullunrelatedE2E notrerun because changes are source-panel scoped.
 
 ## 2026-10-29 — Owner-managed document handoff
 
