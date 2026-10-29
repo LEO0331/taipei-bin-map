@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-29T06:16:23.553Z",
+  "comparison": "Execution-only validatedAt excluded; all recorded findings and decoded row evidence compared exactly",
+  "firstValidatedAt": "2026-10-29T06:10:04.930Z",
+  "secondValidatedAt": "2026-10-29T06:16:23.545Z",
+  "firstFindingsSha256": "5fbf2b5d7249cd78df6fc1664bfd3f22d8e312a8e870293c56fe29bfea555921",
+  "secondFindingsSha256": "5fbf2b5d7249cd78df6fc1664bfd3f22d8e312a8e870293c56fe29bfea555921",
+  "identicalFindings": true,
+  "identicalRowEvidence": true,
+  "productionAndExistingLogicUnchanged": true
+}

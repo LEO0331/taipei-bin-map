@@ -8,6 +8,14 @@
   },
   "features": [
     {
+      "id": "feat-047",
+      "name": "Evidence review of inventory revision and research alerts (#22 #23)",
+      "description": "One bounded technical audit using archived monitor evidence, separately captured official bytes, existing reconciliation and unchanged policy methods; no production adoption or issue closure.",
+      "dependencies": ["feat-046"],
+      "status": "done",
+      "evidence": "2026-10-29 bounded audit on codex/audit-issues-22-23 (main f037677): Oct26artifact digests verified and exact661-row CSV reobtained by SHA. 681/679raw/valid positions become661/657;601supportedpairs(597unchanged4modified),65old-only45new-only,10ambiguousgroups14old13new,invalid1old2new. Same-method13scope coverage/rank comparisons support separatepublicationreview with quality investigation, not adoption. All6researchsources verified; Travel403warning, five200sameSHA, portal identities/dates checked, fingerprintstable; no reproducible monitor defect. 492tests/32files, build,50policyE2E and deterministic frozen replay passed. No protecteddata, scoring, weights, adoptiongates or issueclosure changed. Report docs/issues-22-23-technical-review.md; PRdelivery status in progress.md."
+    },
+    {
       "id": "feat-046",
       "name": "Research-source monitor distinguishes known unavailable inputs from new failures",
       "description": "Keep the audited, excluded Travel HTTP403 visible as a warning while retaining hard failures for new outages, integrity drift and unexpected statuses; recovery still requires review.",

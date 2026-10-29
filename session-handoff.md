@@ -1,8 +1,15 @@
 # Session Handoff
 
-Last reviewed: **2026-10-20 Asia/Taipei**. Historical milestones remain in [progress.md](progress.md).
+Last reviewed: **2026-10-29 Asia/Taipei**. Historical milestones remain in [progress.md](progress.md).
 
-## Current work — research monitor correction
+## Current work — Issues #22/#23 technical audit
+
+- One branch `codex/audit-issues-22-23` from main `f037677`; no automatic publication, issue closure or merge. [Combined review](docs/issues-22-23-technical-review.md) contains the actual findings, evidence links, reproducible commands and Traditional Chinese summary.
+- #23: the exact October26bin bytes were reobtained by SHA; raw681→661 but validunique679→657, with substantial row churn and two newinvalidcoordinates. Same-method fixed-parameter coverage/ranking differences justify a **separate publication review with further investigation**, not immediate adoption or20physical-removal claims.
+- #22: six source checks and five fresh portal checks found no reproducible monitor/dedup bug. Keep Travel403 unavailablewarning, stale dates and missing commercialgeometry; no fabricated data or zero-demand interpretation.
+- 492tests/32files, build,50applicablepolicyE2E and deterministic frozen replay passed. Protected datasets/formulas/weights/gates are unchanged. Supporting reports live under reports/audit-issues-22-23-2026-10-29. DraftPR delivery status is in progress.md; actual adoption remains out of scope.
+
+## Historical work — research monitor correction
 
 - `feat-046` verified on `codex/research-monitor-warning`, based on updated main `612d621` (Shade Equity PR #19 has now merged).
 - The exact archived/excluded Travel403 is visible `warning`/`known_unavailable`, not healthy data or a newly broken build. Previously available sources failing403, new503/timeouts and frozen provenance errors still fail. A recovered response requires manual review before use.

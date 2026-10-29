@@ -2,8 +2,21 @@
 
 ## Current State
 
-**Last Updated:** 2026-10-20 Asia/Taipei
-**Active Feature:** None — feat-046 monitoring classification fix verified
+**Last Updated:** 2026-10-29 Asia/Taipei
+**Active Feature:** None — feat-047 technical assessment complete; Draft PR delivery recorded below
+
+## 2026-10-29 — Issues #22/#23 audit baseline and plan
+
+- Clean initial checkout; latest main f037677 includes Vite8.3.5 and merged monitor correction. One isolated branch codex/audit-issues-22-23. Read both issue bodies/comments and run40279402599 artifacts/jobs; no issue/comment changes or closure.
+- Baseline: npm ci zero vulnerabilities;484tests/31files, TypeScript/build and50applicable desktop/mobile policy/governance E2E passed. No new dependencies.
+- Plan: preserve Oct26monitor artifact bytes/digests; capture official bin revision and catalogue separately; verify exact historical/current SHA binding; reuse existing reconciliation and unchanged fixed-parameter allocation for source-version sensitivity; recheck six research sources and alertfingerprints; add only audit-reproduction glue/tests ifneeded; produce one concise combined report and one DraftPR, no merge/adoption.
+- Artifact receipts show Oct26bins SHA a5dc928c93b99794d31eaf513bc4f82a953937488aece61d004ed0ee5faf91d1. Actual Oct29official61369-byte CSV has the identical SHA; resource267d550f-c6ec-46e0-b8af-fd5a464eb098 remains present, updated2026-10-21, declaredBig5/CSV. This reobtains the exact byte revision, not merely the same row count; dates remain distinct.
+- Results: raw681→661, validunique679→657;601supportedpairs (597unchanged,3coordinateedits+1addressformat=4modified),65old-only45new-only,10ambiguousgroups containing14old/13newrows, invalid1→2. Original reconciliation and all source rows are retained; no inference of20physical removals. New errors include malformed121.513.652 and reversedaxes; no guessed corrections.
+- Same original method with R300/count5/separation0/cost-budgetnull across city+12districts: citybaseline1137→1109, post1224→1199, increment87→90. Threeoffive cityanchorsretained; nine district topfive sequences change. ModeBnotrebased orfalselyapproved. Recommendation separatepublicationreview, contingent on coordinate/identity investigation, not production adoption.
+- Issue22: twoactualchecks returnwarning/exit0, Travel403known_unavailable, otherfive200exacthashes unchanged; allfiveportalresourceIDs/updateDates freshly confirmed. FingerprintmatchesOct26Issue22. Prior17/18closedOct20 explains recurrence; no open-issue dedup defect or codefix warranted. Existingstale, unknownpublication and commercialgeometrywarnings remain; Travel currenthashnull is not byteequality.
+- Reused existing import/GIS, reconciliation, monitor and allocation functions; onlynewexecutable is a bounded frozen-evidence audit reproducer with8RED/GREEN tests and safe temporary/output paths. No fakeapproval, protectedarchive overwrite, productionwrite or interface change. Exact artifact receipts and dated reports kept below reports/audit-issues-22-23-2026-10-29; scoped Git attributes preserve originalbytes.
+- Verification:492tests/32files, TypeScript/build,50applicablepolicy/governance desktop/mobile E2E,55existinggovernance tests, bothliveCLI monitors and repeatedfrozenreplay passed. Findingshash5fbf2b5d7249cd78df6fc1664bfd3f22d8e312a8e870293c56fe29bfea555921 identical after excluding execution-onlyvalidatedAt; rowevidence exact. Link/diffchecks passed; no lintscript exists. Broader unrelated E2E notrerun because no browser/runtime change; no hostedworkflow dispatch.
+- Combined technical report with briefTraditionalChinese summary: docs/issues-22-23-technical-review.md. Required onebranch/oneDraftPR uses exact requestedtitle and references bothissues withoutclosing; noautomaticmerge. Commit/push/PRresult will be recorded after dispatch; source-quality and upstreamaccess limitations remain explicit.
 
 ## 2026-10-20 — Research source-monitor failure classification
 
