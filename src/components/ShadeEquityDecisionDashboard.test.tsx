@@ -102,12 +102,13 @@ describe('shade source health', () => {
   });
   it('keeps missing source counts unknown instead of displaying zero', () => {
     render(<ShadeEquitySourceHealth language="zh" sources={[{ id: 'trees', name: '行道樹', provider: '主管機關', datasetId: 'dataset', resourceId: null, url: 'https://data.taipei/', sha256: null, suitability: 'unavailable' }]}/>);
+    fireEvent.click(screen.getByText('行道樹'));
     expect(screen.getByText('原始／接受筆數').nextElementSibling).toHaveTextContent('未知／未驗證 / 未知／未驗證');
   });
   it('renders the English suitability label without altering the source name', () => {
     const { container } = render(<ShadeEquitySourceHealth language="en" sources={[{ id: 'park', name: '園樹', provider: 'Agency', datasetId: 'dataset', resourceId: null, url: 'https://data.taipei/', sha256: null, suitability: 'context_only' }]}/>);
     fireEvent.click(container.querySelector('summary')!);
     expect(screen.getByText('Context only · Agency')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '園樹' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'View official dataset: 園樹' })).toBeInTheDocument();
   });
 });

@@ -2,7 +2,13 @@
 
 Last reviewed: **2026-10-29 Asia/Taipei**. Historical milestones remain in [progress.md](progress.md).
 
-## Current work — Issues #22/#23 technical audit
+## Current work — source evidence accordion
+
+- `feat-048` implements the approved single-column, single-open source list on the current `codex/audit-issues-22-23` branch. Owner manages all PRs/issues/merges; agent only commits/pushes local work.
+- Summary rows show original source name, suitability and source-update day. Counts/dates/coverage/limitations stay in the active body; full IDs/CRS/SHA live under a second technical disclosure with exact-copy buttons. Unknown values are never copied as real identifiers. Denied/unavailable Clipboard API gives manual-copy guidance.
+- 505unit/component tests/33files, TypeScript/build and24related desktop/mobile E2E passed. Keyboard and linkedhiddenpanels verified; visual-verdict94pass confirms no blank stretched neighbors or page-leveloverflow. RealOSclipboard was not modified in automatedtests. No datasets, scoring or publication gates changed.
+
+## Prior work — Issues #22/#23 technical audit
 
 - One branch `codex/audit-issues-22-23` from main `f037677`; no automatic publication, issue closure or merge. [Combined review](docs/issues-22-23-technical-review.md) contains the actual findings, evidence links, reproducible commands and Traditional Chinese summary.
 - #23: the exact October26bin bytes were reobtained by SHA; raw681→661 but validunique679→657, with substantial row churn and two newinvalidcoordinates. Same-method fixed-parameter coverage/ranking differences justify a **separate publication review with further investigation**, not immediate adoption or20physical-removal claims.

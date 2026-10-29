@@ -1,3 +1,4 @@
+import { useId, useState } from 'react';
 import type { Language } from '../types';
 import type { ShadeEquitySource, ShadeEquitySuitability } from '../types/shadeEquity';
 
@@ -29,8 +30,62 @@ export function shadeEvidenceText(text: string, language: Language): string {
   return notes[text] ?? text;
 }
 
+function CopyableIdentifier({ label, value, language }: { label: string; value: string | null | undefined; language: Language }) {
+  const zh = language === 'zh';
+  const [result, setResult] = useState<'idle' | 'copied' | 'failed'>('idle');
+  const copy = async () => {
+    try {
+      if (!value || !navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(value);
+      setResult('copied');
+    } catch { setResult('failed'); }
+  };
+  return <>
+    <dt>{label}</dt>
+    <dd>
+      <div className="shade-source-copy-field">
+        <code>{value ?? (zh ? '未知／未驗證' : 'Unknown / unverified')}</code>
+        {value && <button type="button" aria-label={zh ? `複製${label}` : `Copy ${label}`} onClick={copy}>{zh ? '複製' : 'Copy'}</button>}
+      </div>
+      {result !== 'idle' && <span className="shade-source-copy-status" role="status">{result === 'copied'
+        ? (zh ? `已複製${label}` : `Copied ${label}`)
+        : (zh ? '無法自動複製，請選取文字手動複製。' : 'Automatic copying is unavailable; select the text and copy it manually.')}</span>}
+    </dd>
+  </>;
+}
+
+function SourceDetails({ source, language, status }: { source: ShadeEquitySource; language: Language; status: string }) {
+  const zh = language === 'zh';
+  const unknown = zh ? '未知／未驗證' : 'Unknown / unverified';
+  const [technicalOpen, setTechnicalOpen] = useState(false);
+  return <>
+    <p className="shade-source-provider">{status} · {source.provider}</p>
+    <a href={source.url} target="_blank" rel="noreferrer" aria-label={zh ? `查看${source.name}官方資料頁` : `View official dataset: ${source.name}`}>{zh ? '查看官方資料頁' : 'View official dataset'}</a>
+    <dl className="shade-source-overview">
+      <dt>{zh ? '原始／接受筆數' : 'Raw / accepted records'}</dt><dd>{source.rawCount ?? unknown} / {source.acceptedCount ?? unknown}</dd>
+      <dt>{zh ? '重複／無效幾何／缺座標' : 'Duplicates / invalid geometry / missing coordinates'}</dt><dd>{source.duplicateCount ?? unknown} / {source.invalidGeometryCount ?? unknown} / {source.missingCoordinateCount ?? unknown}</dd>
+      <dt>{zh ? '來源更新日期' : 'Source updated'}</dt><dd>{source.sourceUpdatedAt ?? unknown}</dd>
+      <dt>{zh ? '擷取日期' : 'Retrieved'}</dt><dd>{source.retrievedAt ?? unknown}</dd>
+      <dt>{zh ? '處理日期' : 'Processed'}</dt><dd>{source.processedAt ?? unknown}</dd>
+      <dt>{zh ? '地理與時間涵蓋' : 'Geographic & temporal coverage'}</dt><dd>{shadeEvidenceText(source.geographicCoverage ?? unknown, language)} · {shadeEvidenceText(source.temporalCoverage ?? unknown, language)}</dd>
+    </dl>
+    {!!source.limitations?.length && <div className="shade-source-limitations"><h4>{zh ? '適用限制' : 'Limitations'}</h4><ul>{source.limitations.map((item, index) => <li key={index}>{shadeEvidenceText(item, language)}</li>)}</ul></div>}
+    <details className="shade-source-technical" open={technicalOpen}>
+      <summary aria-expanded={technicalOpen} onClick={event => { event.preventDefault(); setTechnicalOpen(value => !value); }}>{zh ? '技術資訊' : 'Technical information'}</summary>
+      {technicalOpen && <dl className="shade-source-overview">
+        <CopyableIdentifier label={zh ? '資料集 ID' : 'Dataset ID'} value={source.datasetId} language={language}/>
+        <CopyableIdentifier label={zh ? '資源 ID' : 'Resource ID'} value={source.resourceId} language={language}/>
+        <dt>{zh ? '座標系統與轉換' : 'CRS & transformation'}</dt><dd>{shadeEvidenceText(source.crs ?? unknown, language)} · {shadeEvidenceText(source.transformation ?? unknown, language)}</dd>
+        <CopyableIdentifier label="SHA256" value={source.sha256} language={language}/>
+      </dl>}
+    </details>
+  </>;
+}
+
 export function ShadeEquitySourceHealth({ sources, language }: { sources: ShadeEquitySource[]; language: Language }) {
   const zh = language === 'zh';
+  const [openSourceId, setOpenSourceId] = useState<string | null>(null);
+  const id = useId();
   const status: Record<ShadeEquitySuitability, string> = zh
     ? { verified_analysis: '已驗證可分析', context_only: '僅供背景', limited: '有限可用', unavailable: '無法使用', excluded: '已排除' }
     : { verified_analysis: 'Verified for analysis', context_only: 'Context only', limited: 'Limited', unavailable: 'Unavailable', excluded: 'Excluded' };
@@ -38,22 +93,17 @@ export function ShadeEquitySourceHealth({ sources, language }: { sources: ShadeE
   return <section aria-label={zh ? '官方資料來源' : 'Official data sources'}>
     <h3>{zh ? '官方資料來源與適用性' : 'Official sources & suitability'}</h3>
     <p>{zh ? '來源更新、擷取及處理日期各有不同意義。取得原檔不代表已通過空間分析審查；未知筆數不當作零。' : 'Source update, retrieval and processing dates have distinct meanings. Downloading bytes does not imply spatial approval; unknown counts are not zero.'}</p>
-    <div className="record-card-grid">{sources.map(source => <article className="record-card shade-source-card" key={source.id}><details>
-      <summary>{source.name} · {status[source.suitability]}</summary>
-      <h4><a href={source.url} target="_blank" rel="noreferrer">{source.name}</a></h4>
-      <p>{status[source.suitability]} · {source.provider}</p>
-      <dl>
-        <dt>{zh ? '資料集／資源' : 'Dataset / resource'}</dt><dd>{source.datasetId} / {source.resourceId ?? unknown}</dd>
-        <dt>{zh ? '來源更新日期' : 'Source updated'}</dt><dd>{source.sourceUpdatedAt ?? unknown}</dd>
-        <dt>{zh ? '擷取日期' : 'Retrieved'}</dt><dd>{source.retrievedAt ?? unknown}</dd>
-        <dt>{zh ? '處理日期' : 'Processed'}</dt><dd>{source.processedAt ?? unknown}</dd>
-        <dt>{zh ? '原始／接受筆數' : 'Raw / accepted records'}</dt><dd>{source.rawCount ?? unknown} / {source.acceptedCount ?? unknown}</dd>
-        <dt>{zh ? '重複／無效幾何／缺座標' : 'Duplicates / invalid geometry / missing coordinates'}</dt><dd>{source.duplicateCount ?? unknown} / {source.invalidGeometryCount ?? unknown} / {source.missingCoordinateCount ?? unknown}</dd>
-        <dt>{zh ? '座標系統與轉換' : 'CRS & transformation'}</dt><dd>{shadeEvidenceText(source.crs ?? unknown, language)} · {shadeEvidenceText(source.transformation ?? unknown, language)}</dd>
-        <dt>{zh ? '地理與時間涵蓋' : 'Geographic & temporal coverage'}</dt><dd>{shadeEvidenceText(source.geographicCoverage ?? unknown, language)} · {shadeEvidenceText(source.temporalCoverage ?? unknown, language)}</dd>
-        <dt>SHA256</dt><dd><code>{source.sha256 ?? unknown}</code></dd>
-      </dl>
-      <ul>{source.limitations?.map((item, index) => <li key={index}>{shadeEvidenceText(item, language)}</li>)}</ul></details>
-    </article>)}</div>
+    <div className="shade-source-list">{sources.map((source, index) => {
+      const open = openSourceId === source.id;
+      const headerId = `${id}-source-${index}-header`, panelId = `${id}-source-${index}-panel`;
+      const date = source.sourceUpdatedAt && Number.isFinite(Date.parse(source.sourceUpdatedAt)) ? source.sourceUpdatedAt.slice(0, 10) : null;
+      return <details className="shade-source-card shade-source-accordion" key={source.id} open={open}>
+        <summary className="shade-source-header" id={headerId} aria-expanded={open} aria-controls={panelId} onClick={event => { event.preventDefault(); setOpenSourceId(current => current === source.id ? null : source.id); }}>
+          <span className="shade-source-heading"><span className="shade-source-name">{source.name}</span><span className="shade-source-badge" data-status={source.suitability}>{status[source.suitability]}</span></span>
+          <span className="shade-source-updated">{zh ? '來源更新：' : 'Updated: '}{date ? <time dateTime={source.sourceUpdatedAt!}>{date}</time> : unknown}</span>
+        </summary>
+        <div className="shade-source-body" id={panelId} role="region" aria-labelledby={headerId} hidden={!open}>{open && <SourceDetails source={source} language={language} status={status[source.suitability]}/>}</div>
+      </details>;
+    })}</div>
   </section>;
 }

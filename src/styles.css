@@ -1293,12 +1293,33 @@ footer {
 .shade-controls :is(input, select) { width: 100%; min-width: 0; min-height: 2.5rem; }
 .shade-controls label:has(input[type="checkbox"]) { display: flex; align-items: center; gap: .5rem; }
 .shade-controls input[type="checkbox"] { width: auto; min-height: auto; }
-.shade-source-card { min-width: 0; padding: 1rem; border: 1px solid var(--line); border-radius: .75rem; background: #fff; }
+.shade-source-list { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: .65rem; }
+.shade-source-card { min-width: 0; padding: 0; border: 1px solid var(--line); border-radius: .75rem; background: #fff; overflow: hidden; }
+.shade-source-header { display: grid; grid-template-columns: 1rem minmax(0, 1fr) auto; align-items: center; gap: .65rem; padding: .95rem 1rem; list-style: none; }
+.shade-source-header::-webkit-details-marker { display: none; }
+.shade-source-header::before { content: '›'; display: block; color: var(--muted); font-size: 1.4rem; line-height: 1; }
+.shade-source-accordion[open] > .shade-source-header::before { transform: rotate(90deg); }
+.shade-source-accordion[open] > .shade-source-header { margin-bottom: 0; border-bottom: 1px solid var(--line); }
+.shade-source-header:focus-visible, .shade-source-technical > summary:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; border-radius: .5rem; }
+.shade-source-heading { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .7rem; min-width: 0; }
+.shade-source-name { overflow-wrap: anywhere; }
+.shade-source-badge { padding: .2rem .5rem; border-radius: 999px; background: #eef3f0; color: var(--green-dark); font-size: .78rem; font-weight: 650; white-space: nowrap; }
+.shade-source-badge[data-status="limited"], .shade-source-badge[data-status="unavailable"] { background: var(--amber-soft); color: #80400e; }
+.shade-source-updated { color: var(--muted); font-size: .82rem; font-weight: 400; text-align: right; }
+.shade-source-body { padding: 1rem 1rem 1.1rem 2.65rem; }
+.shade-source-provider { margin: 0 0 .35rem; color: var(--muted); }
 .shade-source-card h4 { margin: 0 0 .5rem; }
-.shade-source-card dl { margin: .75rem 0; }
-.shade-source-card dt { color: var(--muted); font-size: .85rem; }
-.shade-source-card dd { margin: .2rem 0 .6rem; overflow-wrap: anywhere; }
-.shade-source-card code { white-space: normal; word-break: break-all; font-size: .75rem; }
+.shade-source-card .shade-source-overview { display: grid; grid-template-columns: minmax(9rem, 12rem) minmax(0, 1fr); gap: .6rem 1rem; margin: 1rem 0; }
+.shade-source-card dt { color: var(--muted); font-size: .85rem; align-self: start; }
+.shade-source-card dd { margin: 0; min-width: 0; overflow-wrap: anywhere; line-height: 1.6; }
+.shade-source-card code { white-space: normal; word-break: break-all; font-size: .82rem; }
+.shade-source-limitations { padding: .8rem; border-radius: .5rem; background: #f6f9f7; line-height: 1.65; }
+.shade-source-limitations ul { margin: .35rem 0 0; padding-left: 1.25rem; }
+.shade-source-technical { margin-top: 1rem; padding-top: .8rem; border-top: 1px solid var(--line); }
+.shade-source-technical > summary { color: var(--green-dark); padding: .2rem; }
+.shade-source-copy-field { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .65rem; align-items: start; }
+.shade-source-copy-field button { padding: .25rem .65rem; min-height: 2rem; border: 1px solid var(--line-strong); border-radius: .45rem; background: #fff; color: var(--green-dark); font: inherit; font-size: .85rem; cursor: pointer; }
+.shade-source-copy-status { display: block; margin-top: .3rem; color: var(--muted); font-size: .85rem; }
 .shade-table caption { padding: .6rem 0; text-align: left; color: var(--muted); }
 .shade-table :is(td, th) { vertical-align: top; }
 .shade-table ul { padding-left: 1.2rem; }
@@ -1310,6 +1331,11 @@ footer {
 .shade-dashboard details > summary { cursor: pointer; font-weight: 750; }
 .shade-dashboard details[open] > summary { margin-bottom: .8rem; }
 @media (max-width: 600px) {
+  .shade-source-header { grid-template-columns: 1rem minmax(0, 1fr); gap: .45rem .6rem; padding: .85rem; }
+  .shade-source-updated { grid-column: 2; text-align: left; }
+  .shade-source-body { padding: .85rem; }
+  .shade-source-card .shade-source-overview { grid-template-columns: minmax(0, 1fr); gap: .3rem; }
+  .shade-source-overview dt:not(:first-child) { margin-top: .4rem; }
   .shade-controls { grid-template-columns: 1fr; }
   .shade-dashboard .dashboard-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .shade-dashboard .dashboard-cards strong { font-size: 1.25rem; overflow-wrap: anywhere; }
