@@ -128,4 +128,10 @@ The only new executable is this bounded audit reproducer; no production defect/f
 
 The candidate is constructed in a checked temporary directory; approved input reconstruction and reference equality are asserted. Output is confined below `reports/`. Original source/artifact bytes have scoped Git attributes to prevent newline rewriting. No protected data, scoring formula, weights or publication gate is changed. No network check needed a synthetic fallback; missing tourism and unverified physical facility events remain disclosed limitations.
 
-Requested delivery is **one Draft PR**, title `audit: review bin inventory revision and research-source alerts (#22 #23)`, targeting main and referencing—not closing—both issues. Do not merge automatically. Recommendation remains **separate publication review for #23; no monitoring-code change for #22**, with the investigations above as prerequisites.
+## 6. Owner-managed GitHub handoff
+
+Audit commits `f5975da` (captured evidence) and `a0ae8b6` (reproducible assessment) were pushed to `codex/audit-issues-22-23`. During delivery, [PR #24](https://github.com/LEO0331/taipei-bin-map/pull/24) was created and merged outside the agent's actions; the subsequent Draft-creation attempt returned HTTP422 because main already contained the audit commits. The agent did not merge the PR or close either issue. Their remote closure is not source-adoption approval and does not resolve the data-quality/access limitations.
+
+The owner subsequently restored `codex/audit-issues-22-23` and explicitly requested **local document updates, commit and push only**. This follow-up puts the latest review and delivery record on that branch. Creating/updating PRs, issue operations and any further merge are left to the owner; no automatic merge or publication is performed.
+
+The earlier Draft-PR request is superseded for this follow-up. The technical recommendation is unchanged: **separate publication review for #23; no monitoring-code change for #22**, with the coordinate, identity, source-access and coverage investigations above as prerequisites. Production datasets, formulas, weights and approval gates remain untouched.

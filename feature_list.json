@@ -10,6 +10,7 @@
     {
       "id": "feat-047",
       "name": "Evidence review of inventory revision and research alerts (#22 #23)",
+      "delivery": "Owner restored codex/audit-issues-22-23 after externally merged PR24; latest instruction is documentation commit/push only. Owner handles PRs and merges. No source-adoption approval is implied.",
       "description": "One bounded technical audit using archived monitor evidence, separately captured official bytes, existing reconciliation and unchanged policy methods; no production adoption or issue closure.",
       "dependencies": ["feat-046"],
       "status": "done",

@@ -7,7 +7,8 @@ Last reviewed: **2026-10-29 Asia/Taipei**. Historical milestones remain in [prog
 - One branch `codex/audit-issues-22-23` from main `f037677`; no automatic publication, issue closure or merge. [Combined review](docs/issues-22-23-technical-review.md) contains the actual findings, evidence links, reproducible commands and Traditional Chinese summary.
 - #23: the exact October26bin bytes were reobtained by SHA; raw681→661 but validunique679→657, with substantial row churn and two newinvalidcoordinates. Same-method fixed-parameter coverage/ranking differences justify a **separate publication review with further investigation**, not immediate adoption or20physical-removal claims.
 - #22: six source checks and five fresh portal checks found no reproducible monitor/dedup bug. Keep Travel403 unavailablewarning, stale dates and missing commercialgeometry; no fabricated data or zero-demand interpretation.
-- 492tests/32files, build,50applicablepolicyE2E and deterministic frozen replay passed. Protected datasets/formulas/weights/gates are unchanged. Supporting reports live under reports/audit-issues-22-23-2026-10-29. DraftPR delivery status is in progress.md; actual adoption remains out of scope.
+- 492tests/32files, build,50applicablepolicyE2E and deterministic frozen replay passed during the audit. Protected datasets/formulas/weights/gates are unchanged. Supporting reports live under reports/audit-issues-22-23-2026-10-29; these checks were not rerun for the documentation-only handoff.
+- PR24 was created/merged externally during delivery; the agent did not merge it or close issues. The owner restored codex/audit-issues-22-23 and now requests document updates, commit and push only. Do not create/update PRs, operate on issues or merge; the owner handles the rest. The latest report includes this handoff, and data adoption remains out of scope.
 
 ## Historical work — research monitor correction
 

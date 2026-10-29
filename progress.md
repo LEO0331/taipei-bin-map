@@ -3,7 +3,13 @@
 ## Current State
 
 **Last Updated:** 2026-10-29 Asia/Taipei
-**Active Feature:** None — feat-047 technical assessment complete; Draft PR delivery recorded below
+**Active Feature:** None — feat-047 assessment complete; owner manages PRs and merges
+
+## 2026-10-29 — Owner-managed document handoff
+
+- Owner restored codex/audit-issues-22-23 at a0ae8b6 and requested only local document updates, commit and push; no PR creation/update, issue operation or merge is authorized by this follow-up.
+- Latest technical review now records the completed evidence/assessment commits, externally merged PR24, and the restored-branch workflow. The earlier Draft creation failed with422 after the remote merge; the agent did not merge or close issues. Source-adoption approval is still separate from merging audit documentation.
+- Updated docs/issues-22-23-technical-review.md, session-handoff.md and the feature delivery record. Technical findings and all archived data/code remain unchanged. Documentation-only verification: local links, feature JSON and git diff checks; prior492tests/build/50applicable E2E are retained as dated evidence, not rerun results.
 
 ## 2026-10-29 — Issues #22/#23 audit baseline and plan
 
@@ -16,7 +22,7 @@
 - Issue22: twoactualchecks returnwarning/exit0, Travel403known_unavailable, otherfive200exacthashes unchanged; allfiveportalresourceIDs/updateDates freshly confirmed. FingerprintmatchesOct26Issue22. Prior17/18closedOct20 explains recurrence; no open-issue dedup defect or codefix warranted. Existingstale, unknownpublication and commercialgeometrywarnings remain; Travel currenthashnull is not byteequality.
 - Reused existing import/GIS, reconciliation, monitor and allocation functions; onlynewexecutable is a bounded frozen-evidence audit reproducer with8RED/GREEN tests and safe temporary/output paths. No fakeapproval, protectedarchive overwrite, productionwrite or interface change. Exact artifact receipts and dated reports kept below reports/audit-issues-22-23-2026-10-29; scoped Git attributes preserve originalbytes.
 - Verification:492tests/32files, TypeScript/build,50applicablepolicy/governance desktop/mobile E2E,55existinggovernance tests, bothliveCLI monitors and repeatedfrozenreplay passed. Findingshash5fbf2b5d7249cd78df6fc1664bfd3f22d8e312a8e870293c56fe29bfea555921 identical after excluding execution-onlyvalidatedAt; rowevidence exact. Link/diffchecks passed; no lintscript exists. Broader unrelated E2E notrerun because no browser/runtime change; no hostedworkflow dispatch.
-- Combined technical report with briefTraditionalChinese summary: docs/issues-22-23-technical-review.md. Required onebranch/oneDraftPR uses exact requestedtitle and references bothissues withoutclosing; noautomaticmerge. Commit/push/PRresult will be recorded after dispatch; source-quality and upstreamaccess limitations remain explicit.
+- Combined technical report with briefTraditionalChinese summary: docs/issues-22-23-technical-review.md. Original delivery plan requested onebranch/oneDraftPR with exacttitle and non-closing references. PR24 was subsequently created/merged externally, before the agent could create its Draft; current owner-managed commit/push instructions supersede that delivery plan. Source-quality and upstream-access limitations remain explicit.
 
 ## 2026-10-20 — Research source-monitor failure classification
 
