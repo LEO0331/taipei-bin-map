@@ -1,0 +1,42 @@
+{
+  "id": "bins",
+  "filename": "bins-current.csv",
+  "datasetId": "a835f3ba-7f50-4b0d-91a6-9df128632d1c",
+  "resourceId": "267d550f-c6ec-46e0-b8af-fd5a464eb098",
+  "name": "臺北市行人專用清潔箱",
+  "provider": "臺北市政府環境保護局",
+  "resourceUpdatedAt": "2026-10-21T15:41:01+08:00",
+  "metadataUpdatedAt": "2026-10-21T15:41:29+08:00",
+  "encoding": "CP950",
+  "crs": "WGS84 geographic (source longitude/latitude)",
+  "caveat": "Main resource only; separate 130-location resource is not merged. Operational status unverified.",
+  "datasetUrl": "https://data.taipei/dataset/detail?id=a835f3ba-7f50-4b0d-91a6-9df128632d1c",
+  "downloadUrl": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=267d550f-c6ec-46e0-b8af-fd5a464eb098",
+  "license": "Public; Government Data Open License 1.0",
+  "licenseUrl": "https://data.gov.tw/license",
+  "metadataVerifiedAt": "2026-10-29T05:44:25.187Z",
+  "originalFileTimestamp": null,
+  "sha256": "a5dc928c93b99794d31eaf513bc4f82a953937488aece61d004ed0ee5faf91d1",
+  "bytes": 61369,
+  "fetchedAt": "2026-10-29T05:44:25.187Z",
+  "officialMetadata": {
+    "dataset_id": "a835f3ba-7f50-4b0d-91a6-9df128632d1c",
+    "resource_id": "267d550f-c6ec-46e0-b8af-fd5a464eb098",
+    "resource_present": true,
+    "available_resource_ids": [
+      "267d550f-c6ec-46e0-b8af-fd5a464eb098",
+      "2030d728-9597-437d-81a4-cf2a44c7f114"
+    ],
+    "source_updated_at": "2026-10-21T15:41:01+08:00",
+    "metadata_updated_at": "2026-10-21T15:41:29+08:00",
+    "download_url": "/api/dataset/a835f3ba-7f50-4b0d-91a6-9df128632d1c/resource/267d550f-c6ec-46e0-b8af-fd5a464eb098/download",
+    "declared_encoding": "Big5",
+    "declared_format": "CSV"
+  },
+  "httpStatus": 200,
+  "httpLastModified": null,
+  "resolvedUrl": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=267d550f-c6ec-46e0-b8af-fd5a464eb098",
+  "catalogueSha256": "31c9edbfab4ec8542a3a20aa82369b6356699d87c48fbddc5291bd655a4324d5",
+  "approvalStatus": "review_required",
+  "purpose": "Isolated technical audit; not adopted or published"
+}

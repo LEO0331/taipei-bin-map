@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Two actual read-only checks of the existing six-source research monitor; not publication approval or hosted issue delivery.",
+  "researchSnapshotId": "priority-v1-113edf6ed5e09ada",
+  "approvedSnapshotId": "v1-14c24bcdbade",
+  "checks": [
+    {
+      "checkedAt": "2026-10-29T05:41:02.801Z",
+      "state": "warning",
+      "exitCode": 0,
+      "alertKey": "c99d0a8ff16bd9228bd23ed5f90ac7b2d765d9607fa6eb09791e3a39a4031191"
+    },
+    {
+      "checkedAt": "2026-10-29T05:41:33.295Z",
+      "state": "warning",
+      "exitCode": 0,
+      "alertKey": "c99d0a8ff16bd9228bd23ed5f90ac7b2d765d9607fa6eb09791e3a39a4031191"
+    }
+  ],
+  "sameAlertFingerprint": true,
+  "matchesIssue22Fingerprint": true,
+  "interpretation": "The monitored attention state is unchanged from Issue22. Travel remains known_unavailable HTTP403 with no accepted payload/current hash; five HTTP200 sources match their frozen SHA256 exactly. Check times are not publication dates or new spatial-validation events.",
+  "notificationLimit": "No GitHub issue was created, updated, commented on or closed during these checks. Existing open-bot-issue/marker/fingerprint early-return logic was inspected; live notification delivery was not dispatched.",
+  "recommendation": "No monitor or alert-deduplication code change justified; retain source-access and stale-source review limitations."
+}

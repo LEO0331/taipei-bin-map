@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "checked_at": "2026-10-29T05:52:32.229Z",
+  "published_snapshot_id": "v1-14c24bcdbade",
+  "state": "change_detected",
+  "sources": [
+    {
+      "source_id": "bins",
+      "resource_id": "267d550f-c6ec-46e0-b8af-fd5a464eb098",
+      "checked_at": "2026-10-29T05:52:32.229Z",
+      "http_status": 200,
+      "previous_hash": "ff3cf5528c057958f89871aa5300fc633b02d0f7b37131ab29d5ddc2f8e2370d",
+      "current_hash": "a5dc928c93b99794d31eaf513bc4f82a953937488aece61d004ed0ee5faf91d1",
+      "previous_record_count": 681,
+      "current_record_count": 661,
+      "content_changed": true,
+      "metadata_changes": [
+        "provider_source_timestamp_changed",
+        "provider_metadata_timestamp_changed"
+      ],
+      "validation_status": "warning",
+      "anomalies": [
+        "excluded_invalid_or_outside_records"
+      ],
+      "required_actions": [
+        "Review exact hashes, resource identity, source dates, reconciliation and decision impact in a publication PR."
+      ],
+      "source_updated_at": "2026-10-21T15:41:01+08:00",
+      "metadata_status": "verified",
+      "provider_metadata_updated_at": "2026-10-21T15:41:29+08:00",
+      "retrieved_at": "2026-10-29T05:52:32.675Z"
+    },
+    {
+      "source_id": "bus",
+      "resource_id": "dfd68d8e-d3b9-44df-b614-8850c103239f",
+      "checked_at": "2026-10-29T05:52:32.229Z",
+      "http_status": 200,
+      "previous_hash": "353511da19a0b8d522555a7c2e1e45772c044812b565a3872a2d2aea377c4dc4",
+      "current_hash": "353511da19a0b8d522555a7c2e1e45772c044812b565a3872a2d2aea377c4dc4",
+      "previous_record_count": 3407,
+      "current_record_count": 3407,
+      "content_changed": false,
+      "metadata_changes": [],
+      "validation_status": "warning",
+      "anomalies": [
+        "source_older_than_365_days",
+        "excluded_invalid_or_outside_records"
+      ],
+      "required_actions": [],
+      "source_updated_at": "2021-04-11T19:47:33+08:00",
+      "metadata_status": "verified",
+      "provider_metadata_updated_at": "2022-08-29T08:33:20+08:00",
+      "retrieved_at": "2026-10-29T05:52:33.000Z"
+    },
+    {
+      "source_id": "districts",
+      "resource_id": "d8b7eb29-136f-49fc-b14b-3489d3656122",
+      "checked_at": "2026-10-29T05:52:32.229Z",
+      "http_status": 200,
+      "previous_hash": "77bcc347b503b8ff8a43f7e1afaaedb18877a6222282587b145adaba69afd2d9",
+      "current_hash": "77bcc347b503b8ff8a43f7e1afaaedb18877a6222282587b145adaba69afd2d9",
+      "previous_record_count": 12,
+      "current_record_count": 12,
+      "content_changed": false,
+      "metadata_changes": [],
+      "validation_status": "warning",
+      "anomalies": [
+        "source_older_than_365_days"
+      ],
+      "required_actions": [],
+      "source_updated_at": "2024-09-16T15:17:18+08:00",
+      "metadata_status": "verified",
+      "provider_metadata_updated_at": "2025-12-24T08:19:00+08:00",
+      "retrieved_at": "2026-10-29T05:52:33.336Z"
+    },
+    {
+      "source_id": "bins-tourist-commercial",
+      "resource_id": "2030d728-9597-437d-81a4-cf2a44c7f114",
+      "checked_at": "2026-10-29T05:52:32.229Z",
+      "http_status": 200,
+      "previous_hash": "47b1ddfb4f0ab4d5e57afab538f71da3d41d22e59c984bdd9c10b4248223b066",
+      "current_hash": "47b1ddfb4f0ab4d5e57afab538f71da3d41d22e59c984bdd9c10b4248223b066",
+      "previous_record_count": 130,
+      "current_record_count": 130,
+      "content_changed": false,
+      "metadata_changes": [],
+      "validation_status": "warning",
+      "anomalies": [
+        "provider_metadata_baseline_unknown"
+      ],
+      "required_actions": [],
+      "source_updated_at": "2026-08-18T16:27:22+08:00",
+      "metadata_status": "verified",
+      "provider_metadata_updated_at": "2026-10-21T15:41:29+08:00",
+      "retrieved_at": "2026-10-29T05:52:33.650Z"
+    }
+  ],
+  "alert_key": "091f5d9dd73b978df748bd2def39043e994fb9f43f91705594169f16ef26cca5",
+  "limitations": [
+    "Provider resource identity and timestamps are parsed from the official portal SSR JSON. Unavailable or changed page structure becomes a warning, not fabricated metadata.",
+    "HTTP Last-Modified changes are reported separately and never become source publication dates.",
+    "Three approved policy-analysis sources and the separately scoped tourist/commercial reconciliation resource are monitored. Proposed modern bus adapters are excluded until adoption approval.",
+    "Validation warnings do not update published data. Record-count thresholds flag <80% or >150% of the published raw count; coordinate exclusions remain visible."
+  ]
+}
