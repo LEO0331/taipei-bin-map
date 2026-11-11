@@ -3,7 +3,15 @@
 ## Current State
 
 **Last Updated:** 2026-11-11 Asia/Taipei
-**Active Feature:** None — feat-049 implemented; manual accessibility review remains
+**Active Feature:** None — feat-050 verified for human review
+
+## 2026-11-11 — Taipei Travel retirement and Issues #27/#28
+
+- Based on current main `958fdb38cfb8e22e1f4b9987e9e0941ae2e54775`. Baseline lockfile install, 518 unit tests, production build, and 228 browser executions passed after stopping stale local test servers.
+- Mode B now uses proposed `priority-v2-541148442bec70ac`, five weights, and explicit source retirement. Frozen non-Travel bytes, prior research archives, Mode A, bus references, and the separate 130-row supplementary evidence are unchanged. Exact v1/v2 parity across 143 scenario pairs confirmed.
+- #27 live vendor hash matches the November alert. 47 rows both versions, 42→39 eligible entities, seven revised geometry exclusions, and changed rankings. HOLD for quality/provenance; new CSV remains review-only. #28 official hash and isolated replay match October; HOLD for baseline replacement.
+- [Consolidated evidence](docs/issues-27-28-source-review-2026-11.md) records source dates, hash identities, review outputs, and remaining approval gates. The active read-only monitor found one changed source among five HTTP200 responses and made no Travel request.
+- Final verification: 527 unit tests, build, four offline preview tests, and both frozen replays passed. Full E2E passed 229/230; an unrelated Shade Equity browser startup hit Windows `ERR_NO_BUFFER_SPACE` and passed two isolated repeats. Protected-path diff and whitespace checks passed. Human review of the retirement-only PR is pending; no source adoption, automatic issue closure, merge or deployment.
 
 ## 2026-11-11 — Civic Explorer v4.0 Phase 2
 

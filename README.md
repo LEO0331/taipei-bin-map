@@ -75,13 +75,13 @@ See the [source audit](docs/shade-equity-source-audit.md), [methodology](docs/sh
 
 ### Bin policy v1.2: separate policy-priority research mode
 
-Select **Analysis mode → B. Policy priority allocation (research)** in the existing policy route. Mode A, its approved bins/2021 bus baseline and exports are unchanged. Mode B loads a separate review-required snapshot only after selection; default weights are tourism/vendor/market/commercial/MRT/bus = **4/4/3/3/2/1**, editable within 0–10 and resettable. Its score is `Σ(weight × newly covered category entities / fixed eligible category population)`, not a raw sum dominated by bus density, measured demand or policy effectiveness.
+Select **Analysis mode → B. Policy priority allocation (research)** in the existing policy route. Mode A, its approved bins/2021 bus baseline and exports are unchanged. Mode B loads a separate review-required snapshot only after selection; active v2 default weights are vendor/market/commercial/MRT/bus = **4/3/3/2/1**, editable within 0–10 and resettable. Its score is `Σ(weight × newly covered category entities / fixed eligible category population)`, not a raw sum dominated by bus density, measured demand or policy effectiveness.
 
-Actually integrated: 42 official vendor-concentration locations, 47 market references, 73 MRT station references and 3,395 retained bus references. Tourism acquisition was blocked by HTTP403; 235 commercial-directory rows lack defensible district geometry and remain context only. Missing categories are not zero demand and their weights are not redistributed. Candidate anchors are transport references, not approved sidewalk locations. The historical bin procedure stopped in 2022 is not applied as current law.
+Actually integrated: 42 official vendor-concentration locations, 47 market references, 73 MRT station references and 3,395 retained bus references. Taipei Travel and the tourism category are retired from active use without weight redistribution or any zero-demand inference; historical v1 evidence is retained. 235 commercial-directory rows lack defensible district geometry and remain context only. Missing categories are not zero demand and their weights are not redistributed. Candidate anchors are transport references, not approved sidewalk locations. The historical bin procedure stopped in 2022 is not applied as current law.
 
 The dashboard compares equal category priorities, documented policy defaults, active edits and default-weight ±25% sensitivity using identical inputs. JSON and CSV retain method, weight and source versions separately. See the [methodology](docs/bin-policy-v1.2-methodology.md), [source audit](docs/bin-policy-v1.2-sources.md), [governance](docs/bin-policy-v1.2-governance.md), and [implementation evidence](docs/bin-policy-v1.2-audit.md).
 
-Research monitoring distinguishes the exact previously audited/excluded Travel403 (`warning`, with visible Actions/Issue evidence) from new source failures (`failure`). This does not restore API access, admit tourism data, or suppress integrity checks; successful recovery still requires independent review.
+The active monitor checks the five remaining research resources without contacting Taipei Travel. Changed bytes require separate review. See the [November source review](docs/issues-27-28-source-review-2026-11.md) for vendor and bin inventory decisions.
 
 ### Bin policy v1.1: governance, not an automatic data migration
 
@@ -143,7 +143,7 @@ npm run data:reconcile:bins
 npm run data:monitor:bin-policy -- test-results/bin-policy-monitor
 npm run data:health:bin-policy -- test-results/bin-policy-monitor/report.json
 npm run data:compare:bus-policy
-npm run data:convert:policy-priority -- data/raw/bin-policy-priority/priority-v1-113edf6ed5e09ada data/raw/bin-policy/v1-14c24bcdbade/districts.zip
+npm run data:convert:policy-priority -- data/raw/bin-policy-priority/priority-v2-541148442bec70ac data/raw/bin-policy/v1-14c24bcdbade/districts.zip test-results/new-priority-v2-candidate
 npm run benchmark:policy-priority
 
 # Restore exact compressed shade-source evidence; do not substitute live bytes

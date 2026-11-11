@@ -1,8 +1,14 @@
 # Session Handoff
 
-Last reviewed: **2026-10-29 Asia/Taipei**. Historical milestones remain in [progress.md](progress.md).
+Last reviewed: **2026-11-11 Asia/Taipei**. Historical milestones remain in [progress.md](progress.md).
 
-## Current work — source evidence accordion
+## Current work — research-source retirement and Issues #27/#28
+
+- Proposed Mode B v2 retires Taipei Travel and its weight; frozen non-tourism inputs, the approved bin/bus baseline and numerical results are retained.
+- Both changed source payloads were verified and held. The vendor CSV has malformed/out-of-range coordinates and changes candidate rankings. The bin revision still matches the prior audit exactly. No vendor or bin revision is adopted.
+- See the [November review](docs/issues-27-28-source-review-2026-11.md) for hashes, reproduction, and human approval gates.
+
+## Historical work — source evidence accordion
 
 - `feat-048` implements the approved single-column, single-open source list on the current `codex/audit-issues-22-23` branch. Owner manages all PRs/issues/merges; agent only commits/pushes local work.
 - Summary rows show original source name, suitability and source-update day. Counts/dates/coverage/limitations stay in the active body; full IDs/CRS/SHA live under a second technical disclosure with exact-copy buttons. Unknown values are never copied as real identifiers. Denied/unavailable Clipboard API gives manual-copy guidance.

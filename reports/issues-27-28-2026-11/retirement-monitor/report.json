@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "checked_at": "2026-11-11T05:46:10.412Z",
+  "published_snapshot_id": "v1-14c24bcdbade",
+  "state": "change_detected",
+  "sources": [
+    {
+      "source_id": "taipei_mrt_gis",
+      "resource_id": "a63e3278-9d10-4916-9f24-e5a4d78afb31",
+      "checked_at": "2026-11-11T05:46:10.412Z",
+      "http_status": 200,
+      "previous_hash": "7498ac8ed2bd389de6cac2ee6533e240f8f10cb5a282f125483af2f79603d7d8",
+      "current_hash": "7498ac8ed2bd389de6cac2ee6533e240f8f10cb5a282f125483af2f79603d7d8",
+      "previous_record_count": null,
+      "current_record_count": null,
+      "content_changed": false,
+      "metadata_changes": [],
+      "validation_status": "valid",
+      "anomalies": [],
+      "required_actions": [],
+      "source_updated_at": "2026-10-13T09:53:19+08:00",
+      "metadata_status": "unavailable",
+      "availability": "available",
+      "retrieved_at": "2026-11-11T05:46:10.673Z"
+    },
+    {
+      "source_id": "vendor_concentrations",
+      "resource_id": "4874f750-b972-4c42-ad76-986960670c70",
+      "checked_at": "2026-11-11T05:46:10.412Z",
+      "http_status": 200,
+      "previous_hash": "d45216082540afcbb5e059af51ea00aa85d028478dd3f81aaafb18d309545e45",
+      "current_hash": "0e6da1861b242dbf1e4a6e6888d0b862b70c469a49e15ae4b298beb7ca87090c",
+      "previous_record_count": null,
+      "current_record_count": null,
+      "content_changed": true,
+      "metadata_changes": [],
+      "validation_status": "warning",
+      "anomalies": [
+        "changed_content_requires_adapter_schema_and_geometry_review",
+        "source_older_than_365_days"
+      ],
+      "required_actions": [
+        "Retain approved v1.1 baseline; independently review source identity, portal publication dates, adapter schema/geometry, exclusions and decision impact."
+      ],
+      "source_updated_at": "2025-08-26T15:58:47+08:00",
+      "metadata_status": "unavailable",
+      "availability": "available",
+      "retrieved_at": "2026-11-11T05:46:10.853Z"
+    },
+    {
+      "source_id": "traditional_markets",
+      "resource_id": "35acfce1-2c4d-4c70-aa75-601cdab2b3f7",
+      "checked_at": "2026-11-11T05:46:10.412Z",
+      "http_status": 200,
+      "previous_hash": "460f0ab33b3888c9e2fd67ab27b7be29c2653b909df912f8210f473d3565ced5",
+      "current_hash": "460f0ab33b3888c9e2fd67ab27b7be29c2653b909df912f8210f473d3565ced5",
+      "previous_record_count": null,
+      "current_record_count": null,
+      "content_changed": false,
+      "metadata_changes": [],
+      "validation_status": "valid",
+      "anomalies": [],
+      "required_actions": [],
+      "source_updated_at": "2026-09-04T11:01:23+08:00",
+      "metadata_status": "unavailable",
+      "availability": "available",
+      "retrieved_at": "2026-11-11T05:46:10.997Z"
+    },
+    {
+      "source_id": "commercial_introduction",
+      "resource_id": "bdc97a62-4da4-43f9-8c35-c0e6157d3d68",
+      "checked_at": "2026-11-11T05:46:10.412Z",
+      "http_status": 200,
+      "previous_hash": "a06e271e0c84734fb9c37dde4a8a4a2b3f35bf4eb29e419ddc0fdf7a4f582175",
+      "current_hash": "a06e271e0c84734fb9c37dde4a8a4a2b3f35bf4eb29e419ddc0fdf7a4f582175",
+      "previous_record_count": null,
+      "current_record_count": null,
+      "content_changed": false,
+      "metadata_changes": [],
+      "validation_status": "warning",
+      "anomalies": [
+        "source_older_than_365_days"
+      ],
+      "required_actions": [
+        "Retain approved v1.1 baseline; independently review source identity, portal publication dates, adapter schema/geometry, exclusions and decision impact."
+      ],
+      "source_updated_at": "2025-06-17T15:11:51+08:00",
+      "metadata_status": "unavailable",
+      "availability": "available",
+      "retrieved_at": "2026-11-11T05:46:11.147Z"
+    },
+    {
+      "source_id": "commercial_associations",
+      "resource_id": "09a5639c-e5d8-4b07-8aae-25a0425778c2",
+      "checked_at": "2026-11-11T05:46:10.412Z",
+      "http_status": 200,
+      "previous_hash": "afdf944a4f321391da282282c2a8b112cd8717eac95cf1c9475bdc0064067f32",
+      "current_hash": "afdf944a4f321391da282282c2a8b112cd8717eac95cf1c9475bdc0064067f32",
+      "previous_record_count": null,
+      "current_record_count": null,
+      "content_changed": false,
+      "metadata_changes": [],
+      "validation_status": "warning",
+      "anomalies": [
+        "source_older_than_365_days"
+      ],
+      "required_actions": [
+        "Retain approved v1.1 baseline; independently review source identity, portal publication dates, adapter schema/geometry, exclusions and decision impact."
+      ],
+      "source_updated_at": "2025-08-08T11:36:54+08:00",
+      "metadata_status": "unavailable",
+      "availability": "available",
+      "retrieved_at": "2026-11-11T05:46:11.287Z"
+    }
+  ],
+  "alert_key": "a4655bbab8b8d2b7c17168263ed9deea15e0be05e513ca51bfd80493d22bf8cb",
+  "research_snapshot_id": "priority-v2-541148442bec70ac",
+  "source_manifest_sha256": "c781fcba0e2f7cb7882a07c8da99034bb1f65c73d1dfb47fc07e5d78165bff84",
+  "reference_snapshot_sha256": "30679c0bc3ec149198725255058a85ec9224b26652673d5be3bb218fca4f89f2",
+  "methodology_version": "policy-balanced-coverage-v2",
+  "weight_configuration_version": "policy-priority-weights-v2",
+  "publication_status": "review_required",
+  "retired_sources": [
+    "taipei_travel"
+  ],
+  "limitations": [
+    "Research-source checks only; no approved analysis or archives were modified.",
+    "Taipei Travel is intentionally retired from active monitoring; its historical evidence is retained. This does not imply zero tourism demand. Failures from active sources still fail the monitor.",
+    "Source, retrieval and validation dates remain distinct. HTTP headers and check dates are not publication dates.",
+    "Remote portal metadata is not revalidated by this byte monitor; frozen audited resource identity/dates are retained and require separate review on any source revision.",
+    "Blocked or unavailable categories remain unavailable, not zero demand. Changed bytes are not schema-approved.",
+    "Method, weights and source revisions are independent dimensions; successful ETL is not adoption approval."
+  ]
+}

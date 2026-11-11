@@ -8,6 +8,14 @@
   },
   "features": [
     {
+      "id": "feat-050",
+      "name": "Retire Taipei Travel and review policy source changes",
+      "description": "Version the five-category research scope on frozen inputs, technically review the vendor revision, and retain the approved bin baseline.",
+      "dependencies": ["feat-044", "feat-047"],
+      "status": "done",
+      "evidence": "Retirement equivalence across 143 matched scenario pairs. Both verified revisions held; Mode A and historic inputs unchanged. 527 tests, build and four offline previews passed. Full E2E 229/230 with one Windows startup socket failure that passed both isolated reruns. See docs/issues-27-28-source-review-2026-11.md."
+    },
+    {
       "id": "feat-049",
       "name": "Optional Civic Explorer navigation",
       "description": "Reuse the MIT Portfolio Explorer for bilingual navigation to eleven existing routes in four themes, without replacing the map or changing data and analysis.",
