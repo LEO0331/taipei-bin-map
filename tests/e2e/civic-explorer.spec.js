@@ -45,6 +45,28 @@ test.beforeEach(async ({ page }) => {
   await page.route('https://**', (route) => route.abort());
 });
 
+test('places the Explorer entry next to Shade Equity in the service navigation row', async ({ page }, testInfo) => {
+  await page.goto('/#/');
+  const navigation = page.getByRole('navigation', { name: '服務目錄', exact: true });
+  const button = navigation.getByRole('button', { name: '探索公共服務', exact: true });
+  await expect(button).toBeAttached();
+  expect(await button.evaluate((element) => element.previousElementSibling?.getAttribute('href'))).toBe('#/shade-equity');
+  await button.focus();
+  await expect(button).toBeInViewport();
+  const shade = await navigation.locator('a[href="#/shade-equity"]').boundingBox();
+  const explorer = await button.boundingBox();
+  expect(Math.abs(shade.y + shade.height / 2 - explorer.y - explorer.height / 2)).toBeLessThan(2);
+  await page.locator('header').screenshot({ path: testInfo.outputPath('header-inline-explorer.png') });
+});
+
+test('keeps Back to amenities map after the inline Explorer entry', async ({ page }) => {
+  await page.goto('/#/swimming-pools');
+  const navigation = page.getByRole('navigation', { name: '服務目錄', exact: true });
+  const button = navigation.getByRole('button', { name: '探索公共服務', exact: true });
+  await expect(button).toBeAttached();
+  expect(await button.evaluate((element) => element.nextElementSibling?.getAttribute('href'))).toBe('#/');
+});
+
 for (const [hash, label, role, name] of destinations) {
   test(`opens ${label} through its existing native hash link`, async ({ page }) => {
     await page.goto(hash === '#/' ? '/#/swimming-pools' : '/#/');

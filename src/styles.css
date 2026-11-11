@@ -1104,8 +1104,9 @@ a:focus-visible {
 }
 
 .amenities-explorer-trigger {
-  grid-column: 1 / -1;
-  justify-self: center;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: .86rem;
 }
 
 .amenities-explorer-trigger,
@@ -1166,7 +1167,8 @@ a:focus-visible {
 }
 
 .module-route-link { color: var(--green-dark); font-weight: 700; font-size: .86rem; }
-.module-route-links { display: flex; flex-wrap: nowrap; gap: .65rem; justify-content: center; grid-column: 1 / -1; overflow-x: auto; padding: .1rem .25rem .35rem; scrollbar-width: thin; }
+.module-route-links { display: flex; flex-wrap: nowrap; align-items: center; gap: .65rem; justify-content: safe center; grid-column: 1 / -1; overflow-x: auto; padding: .4rem .5rem .5rem; scrollbar-width: thin; }
+.module-route-links > a { flex: 0 0 auto; white-space: nowrap; }
 .module-route-links-secondary { display: none; }
 .module-route-link-back { order: 99; }
 .module-route-link[href="#/low-carbon-sustainable-communities"] { display: none; }
