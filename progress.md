@@ -2,8 +2,16 @@
 
 ## Current State
 
-**Last Updated:** 2026-10-29 Asia/Taipei
-**Active Feature:** None — feat-048 source disclosure UX verified
+**Last Updated:** 2026-11-11 Asia/Taipei
+**Active Feature:** None — feat-049 implemented; manual accessibility review remains
+
+## 2026-11-11 — Civic Explorer v4.0 Phase 2
+
+- Started from `origin/main` at `868c6df` on `codex/civic-explorer-public-amenities-v4`. Verified Portfolio `dc77b28` retained the generic Explorer and MIT notice from the researched `28019b3`. No other repository was modified.
+- Baseline: lockfile install, 505 unit tests, TypeScript/Vite build, and all 166 desktop/mobile E2E executions passed. The optional dialog and 4-theme/11-route adapter are integrated; the original map and directory links remain the default. See [integration evidence](docs/civic-explorer-phase-2.md) for routing, accessibility, asset sizes, and manual follow-up.
+- Existing timing-sensitive checks exceeded their limits during higher-concurrency runs (governance 5s timeouts and a throttled desktop policy E2E at 16,265ms against 15,000ms). No threshold, test, or policy logic was changed to bypass them. `npm test -- --maxWorkers=2` passed all 518 tests and the final build passed. Full `npm run test:e2e -- --workers=2` passed 223/224; the remaining case could not load `/src/main.tsx` because Chromium reported `ERR_NO_BUFFER_SPACE` on localhost. It passed three isolated repetitions on a fresh port, with no test changes. All 58 Explorer cases passed across the full run and rerun.
+- Production preview confirmed that both optional assets load only on open, map identity and bounds stay unchanged, no extra dataset requests or interaction shifts were observed on the settled map, and optional chunk failures leave the map usable. Existing policy/shade production offline tests passed 6/6. Manual NVDA/VoiceOver and Safari/Firefox review remains; no certification is claimed.
+- One small map lifecycle fix cancels an existing scheduled resize on unmount after the rapid Back/Forward test exposed a Leaflet console error. No facility filtering, protected data, scoring, or publication gates changed.
 
 ## 2026-10-29 — Source evidence disclosure UX
 

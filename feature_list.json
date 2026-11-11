@@ -8,6 +8,14 @@
   },
   "features": [
     {
+      "id": "feat-049",
+      "name": "Optional Civic Explorer navigation",
+      "description": "Reuse the MIT Portfolio Explorer for bilingual navigation to eleven existing routes in four themes, without replacing the map or changing data and analysis.",
+      "dependencies": ["feat-048"],
+      "status": "done",
+      "evidence": "518 unit/component tests and production build passed. Full browser run: 223/224, with a Windows localhost ERR_NO_BUFFER_SPACE startup error; the same case passed three isolated repeats. Six existing offline preview tests and Explorer production smoke passed. See docs/civic-explorer-phase-2.md for bundle, accessibility, and manual-review evidence."
+    },
+    {
       "id": "feat-048",
       "name": "Compact single-open source evidence accordion",
       "description": "Replace stretched source-card columns with a single-column disclosure list, retain source/status/date summaries, separate technical identifiers and offer explicit copy/manual-copy feedback without changing source data.",
