@@ -1,0 +1,31 @@
+.amenities-explorer-dialog .civic-explorer {
+  margin: 0;
+  min-width: 0;
+}
+
+.amenities-explorer-dialog .civic-explorer :is(button, select, input, a) {
+  scroll-margin-block: 0.5rem;
+}
+
+.amenities-explorer-dialog .civic-explorer :is(button, select, input) {
+  min-height: 44px;
+}
+
+.amenities-explorer-dialog .civic-explorer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+}
+
+.amenities-explorer-dialog .civic-explorer .amenities-explorer-open-module {
+  padding: 0.3rem 0.85rem;
+  background: var(--green-dark);
+  color: white;
+  border-radius: var(--radius);
+}
+
+.amenities-explorer-dialog .civic-explorer :focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
