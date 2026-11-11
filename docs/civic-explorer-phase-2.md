@@ -2,7 +2,7 @@
 
 ## Scope and sources
 
-The original map remains the default. The header's **Explore Public Services** button opens an optional, bilingual dialog. It starts in the HTML list, with a visual scene available as an alternative. A service title previews details; a separate native link opens the existing module. The Explorer is navigation only: no datasets, source interpretations, research gates, scoring, map filters, or deployment settings changed.
+The original map remains the default. The header's **Explore Public Services** button sits in the service-navigation row, immediately after Shade Equity and before the optional back link. It opens an optional, bilingual dialog. It starts in the HTML list, with a visual scene available as an alternative. A service title previews details; a separate native link opens the existing module. The Explorer is navigation only: no datasets, source interpretations, research gates, scoring, map filters, or deployment settings changed.
 
 - Target `main`: [868c6df](https://github.com/LEO0331/taipei-bin-map/tree/868c6df8f12e519938a154614f179116055c08b6), identical to the researched SHA.
 - Portfolio `main` at review: [dc77b28](https://github.com/LEO0331/portfolio/tree/dc77b28e103c58a2636fd06691c4ac86884ab2a4/src/components/explorer), five commits past the [research baseline](https://github.com/LEO0331/portfolio/tree/28019b32ef7ce30760f360c6d7ce7940f2ae35b6). The generic folder, API, and license were unchanged between those versions.
@@ -39,7 +39,7 @@ Production regressions also passed: `npm run test:policy-preview` (4/4) and `npm
 
 ### Production assets
 
-Sizes below are Vite's decimal kB; gzip sizes are in parentheses.
+Sizes below are the initial Phase 2 measurements in Vite's decimal kB; gzip sizes are in parentheses. The later header-placement follow-up does not change the lazy content.
 
 | Asset | Baseline | With Explorer |
 | --- | ---: | ---: |

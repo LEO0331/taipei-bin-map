@@ -13,6 +13,7 @@
       "description": "Reuse the MIT Portfolio Explorer for bilingual navigation to eleven existing routes in four themes, without replacing the map or changing data and analysis.",
       "dependencies": ["feat-048"],
       "status": "done",
+      "placementFollowUp": "Explorer entry now sits next to Shade Equity in the service-navigation row, before the back link; narrow rows scroll without wrapping or shrinking labels. 518 unit tests, production build and 62 Explorer desktop/mobile E2E passed; header screenshots reviewed.",
       "evidence": "518 unit/component tests and production build passed. Full browser run: 223/224, with a Windows localhost ERR_NO_BUFFER_SPACE startup error; the same case passed three isolated repeats. Six existing offline preview tests and Explorer production smoke passed. See docs/civic-explorer-phase-2.md for bundle, accessibility, and manual-review evidence."
     },
     {
