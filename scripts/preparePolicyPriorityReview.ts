@@ -3,8 +3,8 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { type Snapshot } from './binPolicyGovernance';
 import { containedSourceFile, verifyFrozenPriority } from './monitorPolicyPrioritySources';
-import { POLICY_METHOD } from '../src/lib/policyBalancedCoverage';
-import { DEFAULT_PRIORITY_WEIGHTS, WEIGHT_CONFIGURATION } from '../src/lib/policyPriorityWeights';
+import { priorityMethod } from '../src/lib/policyBalancedCoverage';
+import { defaultPriorityWeights, priorityWeightConfiguration } from '../src/lib/policyPriorityWeights';
 
 /** Technical PR review evidence only: not a government approval record or publication authorization. */
 export interface PriorityReview {
@@ -23,7 +23,8 @@ export async function preparePriorityReview(review: PriorityReview, directory: s
   const frozen = await verifyFrozenPriority(directory, snapshotFile, baseline);
   if (review.baseSnapshotId !== baseline.snapshotId || review.prioritySnapshotId !== frozen.snapshot.snapshotId) throw new Error('Technical review base/source snapshot mismatch');
   if (review.snapshotSha256 !== frozen.snapshotSha256 || review.sourceManifestSha256 !== frozen.manifestSha256) throw new Error('Technical review exact content hash mismatch');
-  if (review.methodologyVersion !== POLICY_METHOD || review.weightConfigurationVersion !== WEIGHT_CONFIGURATION) throw new Error('Technical review method/weight version mismatch');
+  const methodologyVersion = priorityMethod(frozen.snapshot.schemaVersion), weightConfigurationVersion = priorityWeightConfiguration(frozen.snapshot.schemaVersion);
+  if (review.methodologyVersion !== methodologyVersion || review.weightConfigurationVersion !== weightConfigurationVersion) throw new Error('Technical review method/weight version mismatch');
   if (!Array.isArray(review.sourceChecks) || review.sourceChecks.length !== frozen.snapshot.sources.length || new Set(review.sourceChecks.map(item => item.sourceId)).size !== frozen.snapshot.sources.length) throw new Error('Technical review must identify every source exactly once');
   for (const source of frozen.snapshot.sources) {
     const checked = review.sourceChecks.find(item => item.sourceId === source.id);
@@ -39,7 +40,7 @@ export async function preparePriorityReview(review: PriorityReview, directory: s
     await copyFile(containedSourceFile(directory, source.filename), target);
   }
   await writeFile(join(destination, 'technical-review.json'), JSON.stringify(review, null, 2));
-  const report = { schemaVersion: 1, generatedAt: new Date().toISOString(), state: 'review_bundle_only', published: false, approvalStatus: 'review_required', approvedFallbackSnapshotId: baseline.snapshotId, researchSnapshotId: frozen.snapshot.snapshotId, sourceManifestSha256: frozen.manifestSha256, referenceSnapshotSha256: frozen.snapshotSha256, methodologyVersion: POLICY_METHOD, weightConfigurationVersion: WEIGHT_CONFIGURATION, defaultWeights: DEFAULT_PRIORITY_WEIGHTS, interpretation: 'Technical evidence for an independently reviewed PR only; no government sign-off, adoption, installation authorization or approved snapshot replacement.' };
+  const report = { schemaVersion: 1, generatedAt: new Date().toISOString(), state: 'review_bundle_only', published: false, approvalStatus: 'review_required', approvedFallbackSnapshotId: baseline.snapshotId, researchSnapshotId: frozen.snapshot.snapshotId, sourceManifestSha256: frozen.manifestSha256, referenceSnapshotSha256: frozen.snapshotSha256, methodologyVersion, weightConfigurationVersion, defaultWeights: defaultPriorityWeights(frozen.snapshot.schemaVersion), interpretation: 'Technical evidence for an independently reviewed PR only; no government sign-off, adoption, installation authorization or approved snapshot replacement.' };
   await writeFile(join(destination, 'ready.json'), JSON.stringify(report, null, 2));
   return report;
 }

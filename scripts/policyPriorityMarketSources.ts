@@ -7,7 +7,7 @@ import type { PolicyReference, PrioritySource } from '../src/lib/policyPriorityT
 
 export interface MarketSourceEntry extends PrioritySource { filename: string; validatedAt: string; approvalStatus: 'review_required' | 'context_only'; downloadUrl: string }
 const digest = (bytes: Uint8Array | string) => createHash('sha256').update(bytes).digest('hex');
-const definitions = [
+export const marketSourceDefinitions = [
   ['vendor_concentrations', '臺北市臨時攤販集中場', 'c013d9ec-a550-46bd-ac60-45f085930706', '4874f750-b972-4c42-ad76-986960670c70', '2025-08-26T15:58:47+08:00'],
   ['traditional_markets', '臺北市市商場基本資料', '89bebb3a-990d-4070-bd67-631a575f6d4a', '35acfce1-2c4d-4c70-aa75-601cdab2b3f7', '2026-09-04T11:01:23+08:00'],
   ['commercial_introduction', '臺北市商圈介紹', '52da1174-0d77-434b-88c3-e77b008e8624', 'bdc97a62-4da4-43f9-8c35-c0e6157d3d68', '2025-06-17T15:11:51+08:00'],
@@ -15,18 +15,20 @@ const definitions = [
 ] as const;
 
 /** Download original bytes into an immutable, content-addressed review archive, never production. */
-export async function acquireMarketSources(outputDirectory: string) {
-  const results = await Promise.all(definitions.map(async ([id, name, dataset, resourceId, resourceUpdatedAt]) => {
+export async function acquireMarketSources(outputDirectory: string, fetcher: typeof fetch = fetch) {
+  const results = await Promise.all(marketSourceDefinitions.map(async ([id, name, dataset, resourceId]) => {
     const downloadUrl = `https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=${resourceId}`;
-    const response = await fetch(downloadUrl, { signal: AbortSignal.timeout(60_000) });
+    const response = await fetcher(downloadUrl, { signal: AbortSignal.timeout(60_000), redirect: 'error' });
     if (!response.ok) throw new Error(`${id}: HTTP ${response.status}`);
     const bytes = Buffer.from(await response.arrayBuffer());
     if (bytes.length < 100 || bytes.length > 5_000_000) throw new Error(`${id}: unexpected source size`);
+    const fetchedAt = new Date().toISOString();
     const encoding = bytes.toString('utf8').includes('\ufffd') ? 'CP950' : 'UTF-8';
     parseMarketCsv(bytes, { encoding });
-    const source: MarketSourceEntry = { id, name, resourceId, resourceUpdatedAt, downloadUrl,
+    // Fetching bytes does not validate the portal's official publication timestamp.
+    const source: MarketSourceEntry = { id, name, resourceId, resourceUpdatedAt: null, downloadUrl,
       provider: id.startsWith('commercial') ? '臺北市政府產業發展局商業處' : '臺北市政府產業發展局市場處',
-      datasetUrl: `https://data.taipei/dataset/detail?id=${dataset}`, fetchedAt: new Date().toISOString(),
+      datasetUrl: `https://data.taipei/dataset/detail?id=${dataset}`, fetchedAt,
       validatedAt: new Date().toISOString(), sha256: digest(bytes), encoding,
       crs: id.startsWith('commercial') ? 'No verified commercial district geometry' : 'Official longitude/latitude; WGS84-compatible',
       license: '政府資料開放授權條款第1版', licenseUrl: 'https://data.gov.tw/license',
@@ -74,7 +76,7 @@ export async function convertMarketSources(rawDirectory: string, sourceEntries: 
   const references: PolicyReference[] = [], excluded: unknown[] = [], contextualRecords: unknown[] = [];
   if (new Set(sourceEntries.map(s => s.id)).size !== sourceEntries.length) throw new Error('Duplicate market source identity');
   for (const source of sourceEntries) {
-    const expected = definitions.find(d => d[0] === source.id);
+    const expected = marketSourceDefinitions.find(d => d[0] === source.id);
     if (!expected || source.resourceId !== expected[3] || source.filename !== `${source.id}.csv`) throw new Error('Market source registry identity mismatch');
     const bytes = await readFile(join(rawDirectory, source.filename));
     if (digest(bytes) !== source.sha256) throw new Error(`Source hash mismatch: ${source.id}`);

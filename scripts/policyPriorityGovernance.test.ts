@@ -61,7 +61,7 @@ describe('policy priority research governance', () => {
     await expect(verifyFrozenPriority(f.directory, f.snapshotFile, approved)).rejects.toThrow(/date/);
   });
   it('rejects an unsupported reference snapshot schema', async () => {
-    const f = await fixture(); await writeFile(f.snapshotFile, JSON.stringify({ ...f.snapshot, schemaVersion: 2 }));
+    const f = await fixture(); await writeFile(f.snapshotFile, JSON.stringify({ ...f.snapshot, schemaVersion: 3 }));
     await expect(verifyFrozenPriority(f.directory, f.snapshotFile, approved)).rejects.toThrow(/version/);
   });
   it('rejects raw paths that escape the frozen source directory', async () => {
@@ -79,78 +79,52 @@ describe('policy priority research governance', () => {
     expect(second.alert_key).toBe(first.alert_key);
   });
   it('preserves approved production bytes when a monitored source fails', async () => {
-    const f = await fixture(); const before = await readFile('public/data/bin-policy/analysis.json');
+    const f = await fixture(); const before = hash(await readFile('public/data/bin-policy/analysis.json'));
     await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => { throw new Error('offline'); }) as typeof fetch });
-    expect(await readFile('public/data/bin-policy/analysis.json')).toEqual(before);
+    expect(hash(await readFile('public/data/bin-policy/analysis.json'))).toBe(before);
   });
-  it('reports a previously audited blocked Travel 403 as attention rather than a new failure', async () => {
-    const f = await blockedTravelFixture();
-    const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => new Response('forbidden', { status: 403 })) as typeof fetch });
-    expect(report.state).toBe('warning');
+  it('never requests retired Travel even when checking a historical manifest', async () => {
+    const f = await blockedTravelFixture(); let calls = 0;
+    const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => { calls++; return new Response('forbidden', { status: 403 }); }) as typeof fetch });
+    expect({ calls, sources: report.sources, state: report.state, alert: report.alert_key }).toEqual({ calls: 0, sources: [], state: 'unchanged', alert: null });
   });
-  it('does not fail the CLI for the explicitly recognized unavailable research source', async () => {
+  it('documents intentional retirement without creating a new outage entry', async () => {
     const f = await blockedTravelFixture();
-    const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => new Response('forbidden', { status: 403 })) as typeof fetch });
-    expect(priorityMonitorExitCode(report)).toBe(0);
-  });
-  it('retains the known unavailable Travel source as a warning rather than healthy data', async () => {
-    const f = await blockedTravelFixture();
-    const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => new Response('forbidden', { status: 403 })) as typeof fetch });
-    expect(report.sources[0].availability).toBe('known_unavailable');
-    expect(report.sources[0].validation_status).toBe('warning');
+    const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now });
+    expect(priorityMonitorSummary(report)).toContain('Taipei Travel is intentionally retired');
   });
   it('keeps an unexpected 403 from a previously available source as a failure', async () => {
     const f = await fixture();
     const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => new Response('forbidden', { status: 403 })) as typeof fetch });
     expect(priorityMonitorExitCode(report)).toBe(1);
   });
-  it('does not downgrade a new server error from the known blocked Travel endpoint', async () => {
-    const f = await blockedTravelFixture();
-    const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => new Response('server error', { status: 503 })) as typeof fetch });
-    expect(report.state).toBe('failure');
-  });
-  it('does not exempt the Travel endpoint when its frozen acquisition was available', async () => {
-    const f = await blockedTravelFixture(); f.manifest.sources[0].acquisitionStatus = 'available'; f.manifest.sources[0].httpStatus = 200;
-    await writeFile(join(f.directory, 'sources.json'), JSON.stringify(f.manifest));
-    const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => new Response('forbidden', { status: 403 })) as typeof fetch });
-    expect(report.state).toBe('failure');
-  });
-  it('does not downgrade a timeout from the known blocked Travel endpoint', async () => {
-    const f = await blockedTravelFixture();
-    const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => { throw new Error('timeout'); }) as typeof fetch });
-    expect(report.state).toBe('failure');
-  });
-  it('does not exempt a changed Travel resource URL', async () => {
-    const f = await blockedTravelFixture(); f.manifest.sources[0].downloadUrl = 'https://travel.taipei/other';
-    await writeFile(join(f.directory, 'sources.json'), JSON.stringify(f.manifest));
-    const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => new Response('forbidden', { status: 403 })) as typeof fetch });
-    expect(report.state).toBe('failure');
-  });
-  it('requires review when a previously blocked Travel source starts returning data', async () => {
-    const f = await blockedTravelFixture();
-    const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => new Response('{"data":[]}')) as typeof fetch });
-    expect(report.sources[0].availability).toBe('recovery_requires_review');
-    expect(report.publication_status).toBe('review_required');
-  });
-  it('does not treat an HTTP200 copy of a frozen blocked response as healthy data', async () => {
-    const f = await blockedTravelFixture();
-    const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => new Response(f.bytes)) as typeof fetch });
-    expect(report.sources[0].validation_status).toBe('warning');
-  });
-  it('still rejects local frozen hash drift before classifying a known 403', async () => {
+  it('still rejects tampered historical bytes before skipping a retired source', async () => {
     const f = await blockedTravelFixture(); await writeFile(join(f.directory, 'source.json'), 'tampered');
     await expect(monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now })).rejects.toThrow(/hash/);
   });
-  it('keeps repeated known-unavailable alerts deduplicated across check dates', async () => {
-    const f = await blockedTravelFixture(); const fetcher = (async () => new Response('forbidden', { status: 403 })) as typeof fetch;
-    const first = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher });
-    const second = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now: '2026-10-16T12:00:00Z', fetcher });
-    expect(second.alert_key).toBe(first.alert_key);
+  it('leaves changed active vendor bytes unvalidated and leaves the frozen research snapshot untouched', async () => {
+    const snapshotFile = 'public/data/bin-policy/priority-references-v2.json';
+    const before = await readFile(snapshotFile);
+    const snapshot = JSON.parse(before.toString('utf8')) as PrioritySnapshot;
+    const directory = join('data/raw/bin-policy-priority', snapshot.snapshotId);
+    const manifest = JSON.parse(await readFile(join(directory, 'sources.json'), 'utf8')) as PriorityRawManifest;
+    const fetcher = (async (url: string | URL | Request) => {
+      const source = manifest.sources.find(item => item.downloadUrl === String(url));
+      if (!source) throw new Error(`Unexpected network request: ${String(url)}`);
+      const bytes = source.id === 'vendor_concentrations' ? Buffer.from('changed') : await readFile(join(directory, source.filename));
+      return new Response(new Uint8Array(bytes));
+    }) as typeof fetch;
+    const report = await monitorPrioritySources(directory, snapshotFile, { previous: approved, now, fetcher });
+    expect(report.state).toBe('change_detected');
+    expect(report.sources.find(item => item.source_id === 'vendor_concentrations')?.anomalies).toContain('changed_content_requires_adapter_schema_and_geometry_review');
+    expect(hash(await readFile(snapshotFile))).toBe(hash(before));
   });
-  it('keeps known-unavailable warnings visible in the readable summary', async () => {
-    const f = await blockedTravelFixture();
-    const report = await monitorPrioritySources(f.directory, f.snapshotFile, { previous: approved, now, fetcher: (async () => new Response('forbidden', { status: 403 })) as typeof fetch });
-    expect(priorityMonitorSummary(report)).toContain('known_unavailable');
+  it('reports the active research contract independently of the historical one', async () => {
+    const snapshotFile = 'public/data/bin-policy/priority-references-v2.json';
+    const snapshot = JSON.parse(await readFile(snapshotFile, 'utf8')) as PrioritySnapshot;
+    const directory = join('data/raw/bin-policy-priority', snapshot.snapshotId);
+    const report = await monitorPrioritySources(directory, snapshotFile, { previous: approved, now, fetcher: (async () => new Response('offline', { status: 503 })) as typeof fetch });
+    expect([report.methodology_version, report.weight_configuration_version, report.publication_status]).toEqual(['policy-balanced-coverage-v2', 'policy-priority-weights-v2', 'review_required']);
   });
   it('refuses a review bundle without explicit technical-review status', async () => {
     const f = await fixture(); const output = join(f.directory, 'bundle');

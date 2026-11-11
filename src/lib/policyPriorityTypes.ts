@@ -1,8 +1,14 @@
 import type { PolicyParameters, PolicyPoint } from './binPolicyDecision';
 
 export const POLICY_CATEGORIES = ['tourism', 'night_market', 'traditional_market', 'commercial', 'mrt', 'bus'] as const;
+export const ACTIVE_POLICY_CATEGORIES = ['night_market', 'traditional_market', 'commercial', 'mrt', 'bus'] as const;
 export type PriorityCategory = typeof POLICY_CATEGORIES[number];
-export type PriorityWeights = Record<PriorityCategory, number>;
+export type PriorityContract = 1 | 2;
+export type ActivePriorityCategory = typeof ACTIVE_POLICY_CATEGORIES[number];
+type CategoryValues<T> = Record<ActivePriorityCategory, T> & Partial<Record<'tourism', T>>;
+export type PriorityWeights = CategoryValues<number>;
+export const priorityCategories = (version: PriorityContract): readonly PriorityCategory[] =>
+  version === 2 ? ACTIVE_POLICY_CATEGORIES : POLICY_CATEGORIES;
 
 /** Audited spatial-source/category bindings. Context-only directories deliberately have no binding. */
 export function prioritySourceCategory(sourceId: string): PriorityCategory | null {
@@ -26,11 +32,12 @@ export interface PolicyReference extends PolicyPoint {
   status?: 'included'; raw?: Record<string, unknown>;
 }
 export interface PrioritySnapshot {
-  schemaVersion: 1; snapshotId: string; baseSnapshotId: string; busSourceVersion: string;
+  schemaVersion: PriorityContract; snapshotId: string; baseSnapshotId: string; busSourceVersion: string;
+  retiredSources?: readonly ['taipei_travel'];
   approvalStatus: 'review_required'; generatedAt: string; sources: PrioritySource[];
   analysisValidatedAt?: string;
   references: PolicyReference[];
-  categoryStatus: Record<PriorityCategory, { status: 'available' | 'unavailable'; reason: string }>;
+  categoryStatus: CategoryValues<{ status: 'available' | 'unavailable'; reason: string }>;
   quality: { exclusions: unknown[]; [key: string]: unknown };
 }
 export type CandidatePool = 'bus_only' | 'transport';
@@ -42,11 +49,11 @@ export interface PriorityCategoryCoverage {
 export interface PriorityCandidateEvidence {
   point: PolicyReference; nearestBinMeters: number | null; nearbyListedBins: Array<{ id: string; meters: number }>;
   newlyCoveredIds: string[]; incrementalCoverage: number; incrementalScore: number;
-  contributions: Record<PriorityCategory, { newlyCovered: number; denominator: number; weight: number; score: number }>;
+  contributions: CategoryValues<{ newlyCovered: number; denominator: number; weight: number; score: number }>;
   overlapPreviouslySelected: number; requiresFieldReview: true;
 }
 export interface PriorityAllocation {
-  methodology: 'policy-balanced-coverage-v1'; weightConfiguration: 'policy-priority-weights-v1';
+  methodology: 'policy-balanced-coverage-v1' | 'policy-balanced-coverage-v2'; weightConfiguration: 'policy-priority-weights-v1' | 'policy-priority-weights-v2';
   parameters: PolicyParameters; candidatePool: CandidatePool; weights: PriorityWeights;
   categories: PriorityCategoryCoverage[]; referenceCount: number; baselineCovered: number;
   baselineCoveredIds: string[]; baselineUncoveredIds: string[]; postCovered: number;

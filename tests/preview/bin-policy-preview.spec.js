@@ -14,6 +14,7 @@ test('production policy-priority mode remains usable after a cached visit and of
   await page.reload();
   await page.getByLabel('分析模式', { exact: true }).selectOption('priority');
   await expect(page.locator('.priority-dashboard')).toContainText('目前離線');
+  await expect(page.locator('#priority-objective')).toContainText('policy-balanced-coverage-v2');
   const event = page.waitForEvent('download');
   await page.getByRole('button', { name: '匯出政策摘要 JSON', exact: true }).click();
   expect((await event).suggestedFilename()).toBe('bin-policy-priority-briefing.json');

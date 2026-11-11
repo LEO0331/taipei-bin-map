@@ -2,9 +2,17 @@ import { describe, expect, it } from 'vitest';
 import { readFileSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { boundRawPath, normalizeAttractions, normalizeMrt, buildPrioritySnapshot } from './convertPolicyPrioritySources';
-import { fetchAttractionPages } from './fetchPolicyPrioritySources';
-import type { PrioritySourceArchive } from './policyPrioritySources';
+import { boundRawPath, normalizeAttractions, normalizeMrt, buildPrioritySnapshot, writePriorityCandidate } from './convertPolicyPrioritySources';
+import { acquirePolicyPrioritySources } from './fetchPolicyPrioritySources';
+import { stagePolicyPriorityRetirement } from './stagePolicyPriorityRetirement';
+import { hash } from './binPolicyGovernance';
+import { priorityRawSnapshotId, type PriorityRawManifest, type PrioritySourceArchive } from './policyPrioritySources';
+import type { PrioritySnapshot } from '../src/lib/policyPriorityTypes';
+
+const historicalDirectory = 'data/raw/bin-policy-priority/priority-v1-113edf6ed5e09ada';
+const approvedFile = 'public/data/bin-policy/analysis.json';
+const approvedDistricts = 'data/raw/bin-policy/v1-14c24bcdbade/districts.zip';
+const activeFile = 'public/data/bin-policy/priority-references-v2.json';
 
 const source: PrioritySourceArchive = { id: 'test', name: 'Official fixture', provider: 'Taipei', datasetUrl: 'https://data.taipei', resourceId: 'fixture', resourceUpdatedAt: null,
   fetchedAt: '2026-10-15T00:00:00Z', validatedAt: '2026-10-15T00:00:00Z', sha256: 'a'.repeat(64), encoding: 'UTF-8', crs: 'EPSG:3826',
@@ -55,24 +63,24 @@ describe('official policy priority source adapters', () => {
     const row = { id: 1, name: '景點', east_long: 121.52, nlat: 25.05 };
     expect(() => normalizeAttractions([{ Total: 2, data: [row, row] }], [source], () => '中山區')).toThrow('repeated');
   });
-  it('preserves a blocked official API response without accepting it as tourist data', async () => {
-    const fetcher = (async () => new Response('Forbidden', { status: 403 })) as typeof fetch;
-    expect((await fetchAttractionPages(fetcher)).blocked).toBe(true);
-  });
-  it('fetches every attraction page until the declared population is complete', async () => {
-    let calls = 0;
-    const fetcher = (async () => new Response(JSON.stringify({ Total: 2, data: [{ id: ++calls }] }))) as typeof fetch;
-    expect((await fetchAttractionPages(fetcher)).pages).toHaveLength(2);
-  });
-  it('rejects pagination changes instead of mixing two source populations', async () => {
-    let calls = 0;
-    const fetcher = (async () => new Response(JSON.stringify({ Total: ++calls === 1 ? 2 : 3, data: [{ id: calls }] }))) as typeof fetch;
-    await expect(fetchAttractionPages(fetcher)).rejects.toThrow('population changed');
-  });
-  it('marks the entire attraction acquisition blocked when a later page fails', async () => {
-    let calls = 0;
-    const fetcher = (async () => ++calls === 1 ? new Response(JSON.stringify({ Total: 2, data: [{ id: 1 }] })) : new Response('Forbidden', { status: 403 })) as typeof fetch;
-    expect((await fetchAttractionPages(fetcher)).blocked).toBe(true);
+  it('acquires only the five active resources and records retirement without a Travel source entry', async () => {
+    const output = mkdtempSync(join(tmpdir(), 'priority-acquisition-test-'));
+    try {
+      const historical = JSON.parse(readFileSync(join(historicalDirectory, 'sources.json'), 'utf8')) as PriorityRawManifest;
+      const requested: string[] = [];
+      const fetcher = (async (url: string | URL | Request, options?: RequestInit) => {
+        requested.push(String(url));
+        expect(options?.redirect).toBe('error');
+        const source = historical.sources.find(row => row.downloadUrl === String(url));
+        if (!source || source.id === 'taipei_travel') throw new Error(`Unexpected active acquisition: ${String(url)}`);
+        return new Response(new Uint8Array(readFileSync(join(historicalDirectory, source.filename))));
+      }) as typeof fetch;
+      const directory = await acquirePolicyPrioritySources(output, fetcher);
+      const manifest = JSON.parse(readFileSync(join(directory, 'sources.json'), 'utf8')) as PriorityRawManifest;
+      expect(requested).toHaveLength(5);
+      expect(manifest.retiredSources).toEqual(['taipei_travel']);
+      expect(manifest.sources.map(row => row.id)).toEqual(['taipei_mrt_gis', 'vendor_concentrations', 'traditional_markets', 'commercial_introduction', 'commercial_associations']);
+    } finally { rmSync(output, { recursive: true, force: true }); }
   });
   it('rejects source filenames escaping the frozen raw version', () => {
     expect(() => boundRawPath('data/raw', '../secrets')).toThrow('escapes');
@@ -99,5 +107,47 @@ describe('frozen policy research snapshot', () => {
     // Validation is an actual event; all source-backed reference content must otherwise reproduce.
     const stable = (points: typeof result.references) => points.map(point => ({ ...point, latitude: point.latitude.toFixed(9), longitude: point.longitude.toFixed(9), validatedAt: null }));
     expect(stable(result.references)).toEqual(stable(published.references));
+  });
+});
+
+describe('retirement-only v2 research snapshot', () => {
+  it('reuses every nonretired source hash, official date and retrieval history', () => {
+    const historical = JSON.parse(readFileSync(join(historicalDirectory, 'sources.json'), 'utf8')) as PriorityRawManifest;
+    const active = JSON.parse(readFileSync(activeFile, 'utf8')) as PrioritySnapshot;
+    const currentDirectory = join('data/raw/bin-policy-priority', active.snapshotId);
+    const current = JSON.parse(readFileSync(join(currentDirectory, 'sources.json'), 'utf8')) as PriorityRawManifest;
+    expect(current.sources).toEqual(historical.sources.filter(source => source.id !== 'taipei_travel'));
+    expect(current.sources.map(source => hash(readFileSync(join(currentDirectory, source.filename))))).toEqual(current.sources.map(source => source.sha256));
+  });
+  it('preserves the historical Travel archive bytes', () => {
+    expect(hash(readFileSync(join(historicalDirectory, 'travel-page-1.html')))).toBe('841b4d44af64f8c0ea3414887185c97c31da436a981eed5a08d03ff3ed3ad0f1');
+  });
+  it('preserves the approved production Mode A analysis bytes', () => {
+    expect(hash(readFileSync(approvedFile))).toBe('9c5cb3b8890e7395cc15d7c85de11ec2a228d3a4288cff629f250fda99e3f12f');
+  });
+  it('preserves the 130-record supplementary reconciliation bytes', () => {
+    expect(hash(readFileSync('data/raw/bin-policy-reconciliation/tourist-commercial.csv'))).toBe('47b1ddfb4f0ab4d5e57afab538f71da3d41d22e59c984bdd9c10b4248223b066');
+  });
+  it('does not let the research converter overwrite the active sidecar', () => {
+    expect(() => writePriorityCandidate(JSON.parse(readFileSync(activeFile, 'utf8')), 'public/data/bin-policy')).toThrow(/escapes/);
+  });
+  it.each(['schema', 'geometry'] as const)('does not change the active research sidecar when candidate vendor %s fails', async (failure) => {
+    const output = mkdtempSync(join(tmpdir(), 'priority-vendor-candidate-'));
+    const before = hash(readFileSync(activeFile));
+    try {
+      const directory = await stagePolicyPriorityRetirement(output);
+      const manifestFile = join(directory, 'sources.json');
+      const manifest = JSON.parse(readFileSync(manifestFile, 'utf8')) as PriorityRawManifest;
+      const vendor = manifest.sources.find(source => source.id === 'vendor_concentrations')!;
+      const csv = failure === 'schema' ? 'wrong,columns\n1,2\n' : 'seqno,stitle,xbody,xcreatedDate,xstartTime,xendTime,xAddress,GTag_longitude,GTag_latitude\n1,X,Y,2026,,,,0,0\n';
+      writeFileSync(join(directory, vendor.filename), csv);
+      vendor.sha256 = hash(csv);
+      manifest.snapshotId = priorityRawSnapshotId(2, manifest.sources);
+      writeFileSync(manifestFile, JSON.stringify(manifest));
+      const candidate = buildPrioritySnapshot(directory, approvedDistricts, JSON.parse(readFileSync(approvedFile, 'utf8')));
+      if (failure === 'schema') await expect(candidate).rejects.toThrow(/market schema/);
+      else await expect(candidate).resolves.toMatchObject({ approvalStatus: 'review_required', categoryStatus: { night_market: { status: 'unavailable' } } });
+      expect(hash(readFileSync(activeFile))).toBe(before);
+    } finally { rmSync(output, { recursive: true, force: true }); }
   });
 });

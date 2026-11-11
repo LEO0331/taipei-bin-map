@@ -19,13 +19,13 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - name: Check frozen v1.2 research sources without publication
+      - name: Check current frozen research sources without publication
         id: priority-check
         continue-on-error: true
         shell: bash
         run: |
-          RAW=$(node -e 'const fs=require("fs");const s=JSON.parse(fs.readFileSync("public/data/bin-policy/priority-references.json"));process.stdout.write("data/raw/bin-policy-priority/"+s.snapshotId)')
-          npx tsx scripts/monitorPolicyPrioritySources.ts "$RAW" public/data/bin-policy/priority-references.json test-results/policy-priority-monitor
+          RAW=$(node -e 'const fs=require("fs");const s=JSON.parse(fs.readFileSync("public/data/bin-policy/priority-references-v2.json"));process.stdout.write("data/raw/bin-policy-priority/"+s.snapshotId)')
+          npx tsx scripts/monitorPolicyPrioritySources.ts "$RAW" public/data/bin-policy/priority-references-v2.json test-results/policy-priority-monitor
       - name: Retain research review summary
         if: always()
         shell: bash
