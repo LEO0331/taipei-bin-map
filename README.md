@@ -14,6 +14,12 @@ The app is static and PWA-ready. It requires no backend, account, database, Goog
 - Local JSON datasets, a conversion-quality report, and offline-friendly service-worker caching.
 - Accessible, responsive cards, directories, tables, CSV exports, keyboard controls, and mobile layouts.
 
+## Civic Explorer
+
+Choose **Explore Public Services** in the header to browse eleven existing destinations across four themes. The optional Explorer opens in a dialog; the map and service-directory links remain the default experience. Use the HTML **List** or the visual **Scene**, filter by topic, or search with Chinese or English service names. Selecting a service previews it; **Open module** follows its existing hash link.
+
+Press **Escape** or choose **Close Explorer** to return to the same dashboard state, including map filters and zoom. The Explorer does not fetch new datasets or change research methods. See the [integration and verification notes](docs/civic-explorer-phase-2.md) for keyboard behavior, limitations, and MIT attribution to the Portfolio Explorer.
+
 ## Architecture
 
 ```mermaid

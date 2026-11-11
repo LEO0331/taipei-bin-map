@@ -23,6 +23,8 @@ import {
 import { FacilityList } from './components/FacilityList';
 import { FacilityTypeFilter, FACILITY_TYPE_OPTIONS } from './components/FacilityTypeFilter';
 import { LanguageToggle } from './components/LanguageToggle';
+import { AmenitiesExplorerEntry } from './features/civic-explorer/AmenitiesExplorerEntry';
+import { getDirectoryRoute, type DirectoryRoute } from './directoryRoutes';
 import { NearbyButton } from './components/NearbyButton';
 import { PublicToiletFilters } from './components/PublicToiletFilters';
 import { SearchFilters } from './components/SearchFilters';
@@ -100,12 +102,6 @@ type UserLocation = {
 };
 
 type ErrorKey = 'load' | 'location' | 'distance' | '';
-type DirectoryRoute = 'bulky-waste-collection-booking' | 'unused-medicine-collection-stations' | 'industrial-waste-reuse-operators' | 'public-school-sports-venues' | 'cooling-comfort-spots' | 'swimming-pools' | 'certified-bathhouses' | 'recycling-analytics' | 'bin-policy' | 'shade-equity' | '';
-
-const getDirectoryRoute = (): DirectoryRoute => {
-  const route = window.location.hash.replace(/^#\//, '');
-  return route === 'bulky-waste-collection-booking' || route === 'unused-medicine-collection-stations' || route === 'industrial-waste-reuse-operators' || route === 'public-school-sports-venues' || route === 'cooling-comfort-spots' || route === 'swimming-pools' || route === 'certified-bathhouses' || route === 'recycling-analytics' || route === 'bin-policy' || route === 'shade-equity' ? route : '';
-};
 
 const getInitialLanguage = (): Language => {
   const stored = window.localStorage.getItem('language');
@@ -1289,7 +1285,7 @@ function App() {
 
   const moduleSubtitles: Partial<Record<DirectoryRoute, string>> = { 'bulky-waste-collection-booking': language === 'zh' ? '垃圾清運、回收與大型廢棄物服務' : 'Waste collection, recycling & bulky waste services', 'unused-medicine-collection-stations': language === 'zh' ? '回收服務、用藥安全與公共設施' : 'Recycling, medication safety & public facilities', 'industrial-waste-reuse-operators': language === 'zh' ? '環境永續、資源再利用與登記資料' : 'Environmental sustainability, reuse & registry data', 'public-school-sports-venues': language === 'zh' ? '公共設施、運動場地與校園開放資訊' : 'Public facilities, sports venues & campus access', 'cooling-comfort-spots': language === 'zh' ? '公共設施、避暑休憩與涼適場所' : 'Public amenities, comfort & cooling locations' };
   const moduleSubtitle = moduleSubtitles[directoryRoute] ?? t.subtitle;
-  const universalNavigation = <nav className="module-route-links" aria-label={language === 'zh' ? '服務目錄' : 'Service directories'}><a className="module-route-link" href="#/bulky-waste-collection-booking">{t.bulkyWasteCollectionBooking}</a><a className="module-route-link" href="#/unused-medicine-collection-stations">{t.unusedMedicineCollectionStations}</a><a className="module-route-link" href="#/industrial-waste-reuse-operators">{t.industrialWasteReuseOperators}</a><a className="module-route-link" href="#/public-school-sports-venues">{language === 'zh' ? '公立學校運動場地搜尋' : 'Public School Sports Venue Search'}</a><a className="module-route-link" href="#/cooling-comfort-spots">{language === 'zh' ? '臺北市涼適點' : 'Taipei Cooling & Comfort Spots'}</a><a className="module-route-link" href="#/swimming-pools">{language === 'zh' ? '臺北市游泳池查詢' : 'Taipei Swimming Pool Finder'}</a><a className="module-route-link" href="#/certified-bathhouses">{language === 'zh' ? '衛生認證浴室' : 'Certified Bathhouses'}</a><a className="module-route-link" href="#/recycling-analytics">{language === 'zh' ? '資源回收統計' : 'Recycling Analytics'}</a><a className="module-route-link" href="#/bin-policy">{language === 'zh' ? '清潔箱配置決策' : 'Bin Allocation Decision Support'}</a><a className="module-route-link" href="#/shade-equity">{language === 'zh' ? '樹蔭公平決策' : 'Shade Equity Review'}</a>{directoryRoute && <a className="module-route-link module-route-link-back" href="#/">{language === 'zh' ? '返回設施地圖' : 'Back to amenities map'}</a>}</nav>;
+  const universalNavigation = <><AmenitiesExplorerEntry language={language} /><nav className="module-route-links" aria-label={language === 'zh' ? '服務目錄' : 'Service directories'}><a className="module-route-link" href="#/bulky-waste-collection-booking">{t.bulkyWasteCollectionBooking}</a><a className="module-route-link" href="#/unused-medicine-collection-stations">{t.unusedMedicineCollectionStations}</a><a className="module-route-link" href="#/industrial-waste-reuse-operators">{t.industrialWasteReuseOperators}</a><a className="module-route-link" href="#/public-school-sports-venues">{language === 'zh' ? '公立學校運動場地搜尋' : 'Public School Sports Venue Search'}</a><a className="module-route-link" href="#/cooling-comfort-spots">{language === 'zh' ? '臺北市涼適點' : 'Taipei Cooling & Comfort Spots'}</a><a className="module-route-link" href="#/swimming-pools">{language === 'zh' ? '臺北市游泳池查詢' : 'Taipei Swimming Pool Finder'}</a><a className="module-route-link" href="#/certified-bathhouses">{language === 'zh' ? '衛生認證浴室' : 'Certified Bathhouses'}</a><a className="module-route-link" href="#/recycling-analytics">{language === 'zh' ? '資源回收統計' : 'Recycling Analytics'}</a><a className="module-route-link" href="#/bin-policy">{language === 'zh' ? '清潔箱配置決策' : 'Bin Allocation Decision Support'}</a><a className="module-route-link" href="#/shade-equity">{language === 'zh' ? '樹蔭公平決策' : 'Shade Equity Review'}</a>{directoryRoute && <a className="module-route-link module-route-link-back" href="#/">{language === 'zh' ? '返回設施地圖' : 'Back to amenities map'}</a>}</nav></>;
 
   if (directoryRoute === 'shade-equity') {
     return <div className="app-shell"><header className="app-header"><div><p>{language === 'zh' ? '行道樹盤點、人行道證據與現勘整備' : 'Street-tree inventory, sidewalk evidence & field review'}</p><h1>{t.appTitle}</h1></div><LanguageToggle language={language} onChange={handleLanguageChange}/>{universalNavigation}</header><main><Suspense fallback={<p role="status">{language === 'zh' ? '載入樹蔭決策模組中…' : 'Loading shade review module…'}</p>}><ShadeEquityDecisionDashboard language={language}/></Suspense></main></div>;

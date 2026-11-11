@@ -104,7 +104,8 @@ function MapController({
   const map = useMap();
 
   useEffect(() => {
-    setTimeout(() => map.invalidateSize(), 0);
+    const resize = setTimeout(() => map.invalidateSize(), 0);
+    return () => clearTimeout(resize);
   }, [map]);
 
   useEffect(() => {
