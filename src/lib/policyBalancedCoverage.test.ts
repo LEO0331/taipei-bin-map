@@ -2,13 +2,41 @@ import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { allocateBins, distance, type PolicyParameters } from './binPolicyDecision';
 import { allocatePolicyPriority, analyzePolicySensitivity, preparePolicyCoverage, validatePrioritySnapshot } from './policyBalancedCoverage';
-import { DEFAULT_PRIORITY_WEIGHTS, EQUAL_PRIORITY_WEIGHTS, validatePriorityWeights } from './policyPriorityWeights';
+import { ACTIVE_DEFAULT_PRIORITY_WEIGHTS, DEFAULT_PRIORITY_WEIGHTS, EQUAL_PRIORITY_WEIGHTS, validatePriorityWeights } from './policyPriorityWeights';
 import { POLICY_CATEGORIES, type PolicyReference, type PriorityCategory, type PrioritySnapshot, type PriorityWeights } from './policyPriorityTypes';
 
 const reference = (id: string, category: PriorityCategory = 'bus', longitude = 121.5, latitude = 25): PolicyReference => ({ id, name: id, category, canonicalId: id, longitude, latitude, district: '大安區', sourceId: category, sourceRecord: id, precision: 'official source point, not installation site', sourceVersion: 'a'.repeat(64), limitations: ['requires field review'] });
 const parameters: PolicyParameters = { district: '', radius: 100, count: 3, separation: 0, unitCost: null, budget: null };
-const run = (references: PolicyReference[], weights = { ...DEFAULT_PRIORITY_WEIGHTS }, overrides = {}) => allocatePolicyPriority(preparePolicyCoverage([], references, { ...parameters, ...overrides }), weights);
+const run = (references: PolicyReference[], weights: PriorityWeights = { ...DEFAULT_PRIORITY_WEIGHTS }, overrides = {}) => allocatePolicyPriority(preparePolicyCoverage([], references, { ...parameters, ...overrides }), weights);
 const snapshot = (): PrioritySnapshot => ({ schemaVersion: 1, snapshotId: 'priority-v1', baseSnapshotId: 'base-v1', busSourceVersion: 'a'.repeat(64), generatedAt: '2026-10-15T00:00:00Z', approvalStatus: 'review_required', sources: [{ id: 'bus', approvalStatus: 'existing_baseline', name: 'Bus', provider: 'Official', datasetUrl: 'https://data.taipei/', resourceId: 'bus', resourceUpdatedAt: null, fetchedAt: '2026-10-15T00:00:00Z', sha256: 'a'.repeat(64), encoding: 'UTF-8', crs: 'WGS84', license: 'open', licenseUrl: 'https://data.gov.tw/', caveat: 'old snapshot' }], references: [reference('bus')], categoryStatus: Object.fromEntries(POLICY_CATEGORIES.map(category => [category, { status: category === 'bus' ? 'available' : 'unavailable', reason: 'audited' }])) as PrioritySnapshot['categoryStatus'], quality: { exclusions: [] } });
+
+describe('active five-category research contract', () => {
+  it('keeps the non-tourism weights unchanged without redistribution', () => {
+    const { tourism: _, ...remaining } = DEFAULT_PRIORITY_WEIGHTS;
+    expect(validatePriorityWeights(ACTIVE_DEFAULT_PRIORITY_WEIGHTS, 2)).toEqual(remaining);
+  });
+  it('rejects a six-category weight configuration in active research', () => {
+    expect(() => validatePriorityWeights(DEFAULT_PRIORITY_WEIGHTS, 2)).toThrow(/5 finite category/);
+  });
+  it('rejects missing weights in active research', () => {
+    const { commercial: _, ...incomplete } = ACTIVE_DEFAULT_PRIORITY_WEIGHTS;
+    expect(() => validatePriorityWeights(incomplete, 2)).toThrow(/5 finite category/);
+  });
+  it('omits the retired category while retaining unavailable commercial geometry', () => {
+    const prepared = preparePolicyCoverage([], [reference('bus')], parameters, 'transport', 2);
+    const result = allocatePolicyPriority(prepared);
+    expect(result.categories.map(({ category, denominator }) => [category, denominator])).toEqual([
+      ['night_market', 0], ['traditional_market', 0], ['commercial', 0], ['mrt', 0], ['bus', 1],
+    ]);
+  });
+  it('rejects retired tourism references rather than silently dropping supplied points', () => {
+    expect(() => preparePolicyCoverage([], [reference('tour', 'tourism')], parameters, 'transport', 2)).toThrow(/Retired tourism/);
+  });
+  it('rejects a v2 snapshot carrying historical category availability', () => {
+    const input = { ...snapshot(), schemaVersion: 2, snapshotId: 'priority-v2-0123456789abcdef', retiredSources: ['taipei_travel'] };
+    expect(() => validatePrioritySnapshot(input, input.baseSnapshotId)).toThrow(/Invalid v2 research scope/);
+  });
+});
 
 describe('category-balanced policy coverage', () => {
   it('rejects non-text reference names before they can reach React rendering', () => {

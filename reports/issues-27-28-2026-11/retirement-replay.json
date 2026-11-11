@@ -1,0 +1,336 @@
+{
+  "baseSnapshotId": "v1-14c24bcdbade",
+  "baseSha256": "9c5cb3b8890e7395cc15d7c85de11ec2a228d3a4288cff629f250fda99e3f12f",
+  "busSha256": "353511da19a0b8d522555a7c2e1e45772c044812b565a3872a2d2aea377c4dc4",
+  "legacy": {
+    "id": "priority-v1-113edf6ed5e09ada",
+    "sha256": "ed3d3ca35c2e7075422a16e909465b738157408031968dddee366230516487d0"
+  },
+  "active": {
+    "id": "priority-v2-541148442bec70ac",
+    "sha256": "30679c0bc3ec149198725255058a85ec9224b26652673d5be3bb218fca4f89f2"
+  },
+  "parameters": {
+    "radius": 300,
+    "count": 5,
+    "separation": 0,
+    "unitCost": null,
+    "budget": null,
+    "candidatePool": "transport"
+  },
+  "comparison": "All allocations, ranks, coverage IDs, denominators, scores and sensitivity results match after excluding only retired empty tourism fields, version identifiers and validation event time.",
+  "scopes": [
+    {
+      "district": "citywide",
+      "scenarioCount": 11,
+      "referenceCount": 3557,
+      "candidateCount": 3468,
+      "baselineCovered": 1211,
+      "postCovered": 1284,
+      "incrementalCoverage": 73,
+      "incrementalScore": 1.3970246733878509,
+      "denominators": {
+        "night_market": 42,
+        "traditional_market": 47,
+        "commercial": 0,
+        "mrt": 73,
+        "bus": 3395
+      },
+      "selectedCandidateIds": [
+        "bus-1833",
+        "bus-6651",
+        "bus-1210",
+        "bus-1000548",
+        "bus-1000126"
+      ]
+    },
+    {
+      "district": "中山區",
+      "scenarioCount": 11,
+      "referenceCount": 308,
+      "candidateCount": 293,
+      "baselineCovered": 127,
+      "postCovered": 178,
+      "incrementalCoverage": 51,
+      "incrementalScore": 4.160119047619047,
+      "denominators": {
+        "night_market": 8,
+        "traditional_market": 7,
+        "commercial": 0,
+        "mrt": 5,
+        "bus": 288
+      },
+      "selectedCandidateIds": [
+        "bus-1000126",
+        "bus-1210",
+        "bus-1284",
+        "bus-1001085",
+        "bus-1000501"
+      ]
+    },
+    {
+      "district": "中正區",
+      "scenarioCount": 11,
+      "referenceCount": 240,
+      "candidateCount": 230,
+      "baselineCovered": 143,
+      "postCovered": 192,
+      "incrementalCoverage": 49,
+      "incrementalScore": 5.469570787956438,
+      "denominators": {
+        "night_market": 4,
+        "traditional_market": 6,
+        "commercial": 0,
+        "mrt": 7,
+        "bus": 223
+      },
+      "selectedCandidateIds": [
+        "bus-200005000",
+        "bus-1963",
+        "bus-1000276",
+        "bus-6681",
+        "bus-1909"
+      ]
+    },
+    {
+      "district": "信義區",
+      "scenarioCount": 11,
+      "referenceCount": 217,
+      "candidateCount": 213,
+      "baselineCovered": 86,
+      "postCovered": 131,
+      "incrementalCoverage": 45,
+      "incrementalScore": 6.7656033287101245,
+      "denominators": {
+        "night_market": 1,
+        "traditional_market": 3,
+        "commercial": 0,
+        "mrt": 7,
+        "bus": 206
+      },
+      "selectedCandidateIds": [
+        "bus-2034",
+        "bus-15114",
+        "bus-15116",
+        "bus-6015",
+        "bus-1000142"
+      ]
+    },
+    {
+      "district": "內湖區",
+      "scenarioCount": 11,
+      "referenceCount": 328,
+      "candidateCount": 325,
+      "baselineCovered": 194,
+      "postCovered": 240,
+      "incrementalCoverage": 46,
+      "incrementalScore": 0.14465408805031446,
+      "denominators": {
+        "night_market": 2,
+        "traditional_market": 1,
+        "commercial": 0,
+        "mrt": 7,
+        "bus": 318
+      },
+      "selectedCandidateIds": [
+        "bus-50422",
+        "bus-50504",
+        "bus-1000222",
+        "bus-1001286",
+        "bus-5047"
+      ]
+    },
+    {
+      "district": "北投區",
+      "scenarioCount": 11,
+      "referenceCount": 476,
+      "candidateCount": 472,
+      "baselineCovered": 1,
+      "postCovered": 66,
+      "incrementalCoverage": 65,
+      "incrementalScore": 7.791936645068395,
+      "denominators": {
+        "night_market": 3,
+        "traditional_market": 1,
+        "commercial": 0,
+        "mrt": 9,
+        "bus": 463
+      },
+      "selectedCandidateIds": [
+        "bus-399",
+        "bus-1000929",
+        "bus-4050",
+        "bus-459",
+        "bus-60098"
+      ]
+    },
+    {
+      "district": "南港區",
+      "scenarioCount": 11,
+      "referenceCount": 232,
+      "candidateCount": 229,
+      "baselineCovered": 7,
+      "postCovered": 67,
+      "incrementalCoverage": 60,
+      "incrementalScore": 8.441071428571428,
+      "denominators": {
+        "night_market": 1,
+        "traditional_market": 2,
+        "commercial": 0,
+        "mrt": 5,
+        "bus": 224
+      },
+      "selectedCandidateIds": [
+        "bus-1632",
+        "bus-1707",
+        "bus-1000272",
+        "bus-1664",
+        "bus-1000795"
+      ]
+    },
+    {
+      "district": "士林區",
+      "scenarioCount": 11,
+      "referenceCount": 617,
+      "candidateCount": 612,
+      "baselineCovered": 235,
+      "postCovered": 295,
+      "incrementalCoverage": 60,
+      "incrementalScore": 3.4269293924466337,
+      "denominators": {
+        "night_market": 3,
+        "traditional_market": 2,
+        "commercial": 0,
+        "mrt": 3,
+        "bus": 609
+      },
+      "selectedCandidateIds": [
+        "bus-1000275",
+        "bus-36109",
+        "bus-1001099",
+        "bus-964",
+        "bus-617"
+      ]
+    },
+    {
+      "district": "大同區",
+      "scenarioCount": 11,
+      "referenceCount": 144,
+      "candidateCount": 138,
+      "baselineCovered": 85,
+      "postCovered": 127,
+      "incrementalCoverage": 42,
+      "incrementalScore": 2.037878787878788,
+      "denominators": {
+        "night_market": 2,
+        "traditional_market": 4,
+        "commercial": 0,
+        "mrt": 6,
+        "bus": 132
+      },
+      "selectedCandidateIds": [
+        "bus-1000995",
+        "bus-1000692",
+        "bus-1452",
+        "bus-10203",
+        "bus-1000341"
+      ]
+    },
+    {
+      "district": "大安區",
+      "scenarioCount": 11,
+      "referenceCount": 272,
+      "candidateCount": 263,
+      "baselineCovered": 123,
+      "postCovered": 162,
+      "incrementalCoverage": 39,
+      "incrementalScore": 6.318577075098815,
+      "denominators": {
+        "night_market": 4,
+        "traditional_market": 5,
+        "commercial": 0,
+        "mrt": 10,
+        "bus": 253
+      },
+      "selectedCandidateIds": [
+        "bus-6651",
+        "bus-4865",
+        "bus-20296",
+        "bus-2289",
+        "bus-2330"
+      ]
+    },
+    {
+      "district": "文山區",
+      "scenarioCount": 11,
+      "referenceCount": 391,
+      "candidateCount": 385,
+      "baselineCovered": 60,
+      "postCovered": 127,
+      "incrementalCoverage": 67,
+      "incrementalScore": 7.727513227513227,
+      "denominators": {
+        "night_market": 2,
+        "traditional_market": 4,
+        "commercial": 0,
+        "mrt": 7,
+        "bus": 378
+      },
+      "selectedCandidateIds": [
+        "bus-1000548",
+        "bus-2375",
+        "bus-1000855",
+        "bus-1001336",
+        "bus-20342"
+      ]
+    },
+    {
+      "district": "松山區",
+      "scenarioCount": 11,
+      "referenceCount": 166,
+      "candidateCount": 158,
+      "baselineCovered": 121,
+      "postCovered": 144,
+      "incrementalCoverage": 23,
+      "incrementalScore": 0.1513157894736842,
+      "denominators": {
+        "night_market": 4,
+        "traditional_market": 4,
+        "commercial": 0,
+        "mrt": 6,
+        "bus": 152
+      },
+      "selectedCandidateIds": [
+        "bus-1590",
+        "bus-1000237",
+        "bus-1000218",
+        "bus-8605",
+        "bus-1000812"
+      ]
+    },
+    {
+      "district": "萬華區",
+      "scenarioCount": 11,
+      "referenceCount": 166,
+      "candidateCount": 150,
+      "baselineCovered": 29,
+      "postCovered": 91,
+      "incrementalCoverage": 62,
+      "incrementalScore": 7.3355704697986575,
+      "denominators": {
+        "night_market": 8,
+        "traditional_market": 8,
+        "commercial": 0,
+        "mrt": 1,
+        "bus": 149
+      },
+      "selectedCandidateIds": [
+        "bus-1833",
+        "bus-1837",
+        "bus-1810",
+        "bus-4627",
+        "bus-1761"
+      ]
+    }
+  ]
+}

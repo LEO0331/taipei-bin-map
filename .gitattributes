@@ -1,5 +1,8 @@
 # Versioned policy source archives are evidence: preserve original byte hashes on every OS.
 data/raw/bin-policy-priority/** -text
+# New archive copies are byte evidence, including CP950 and source whitespace.
+data/raw/bin-policy-priority/priority-v2-*/**/*.csv -diff
+public/data/bin-policy/priority-*-v2.json -text
 data/raw/bin-policy/** -text
 data/raw/bin-policy-reconciliation/** -text
 # Shade snapshot replay compares exact bytes; checkout must not rewrite LF on Windows.

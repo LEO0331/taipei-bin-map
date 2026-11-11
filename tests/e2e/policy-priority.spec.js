@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
-const snapshot = JSON.parse(readFileSync(new URL('../../public/data/bin-policy/priority-references.json', import.meta.url), 'utf8'));
+const snapshot = JSON.parse(readFileSync(new URL('../../public/data/bin-policy/priority-references-v2.json', import.meta.url), 'utf8'));
 async function openPriority(page) {
   await page.goto('/#/bin-policy');
   await page.getByLabel('分析模式', { exact: true }).selectOption('priority');
@@ -10,9 +10,12 @@ test.beforeEach(async ({ page }) => {
   await page.route('https://tile.openstreetmap.org/**', route => route.abort());
 });
 
-test('does not load priority sources until Mode B is explicitly selected', async ({ page }) => {
+test('loads only the active priority sidecar when Mode B is explicitly selected', async ({ page }) => {
   const requests = [];
-  page.on('request', request => { if (request.url().includes('priority-references.json')) requests.push(request.url()); });
+  page.on('request', request => {
+    const url = new URL(request.url());
+    if (url.pathname.includes('priority-references') || url.hostname === 'travel.taipei') requests.push(url.pathname);
+  });
   await page.goto('/#/bin-policy');
   await expect(page.getByTestId('policy-gain')).toBeVisible();
   expect(requests).toEqual([]);
@@ -20,13 +23,25 @@ test('does not load priority sources until Mode B is explicitly selected', async
   await expect(page.locator('#priority-coverage')).toBeVisible();
   // React StrictMode may start and abort the first development-only effect.
   expect(requests.length).toBeGreaterThan(0);
+  expect([...new Set(requests)]).toEqual(['/data/bin-policy/priority-references-v2.json']);
 });
-test('shows all documented weights and marks missing categories without redistributing them', async ({ page }, testInfo) => {
+test('shows the five unchanged active weights and marks missing categories without redistributing them', async ({ page }, testInfo) => {
   await openPriority(page);
-  await expect(page.getByLabel('權重: 觀光景點', { exact: true })).toHaveValue('4');
-  await expect(page.getByLabel('權重: 夜市／官方攤販集中場', { exact: true })).toHaveValue('4');
-  await expect(page.locator('.priority-weight-grid')).toContainText('不是零需求');
+  const weights = page.locator('.priority-weight-grid');
+  await expect(weights.getByRole('spinbutton')).toHaveCount(5);
+  expect(await weights.getByRole('spinbutton').evaluateAll(inputs => inputs.map(input => input.value))).toEqual(['4', '3', '3', '2', '1']);
+  await expect(page.getByLabel('權重: 官方攤販集中場參考位置', { exact: true })).toHaveValue('4');
+  await expect(weights.getByText('具空間證據的商圈', { exact: false })).toContainText('不是零需求');
   await page.locator('#priority-controls').screenshot({ path: testInfo.outputPath('priority-controls.png') });
+});
+test('explains retirement as intentional in bilingual source health without listing Taipei Travel as a current source', async ({ page }) => {
+  await openPriority(page);
+  const sourceHealth = page.locator('#priority-sources');
+  await sourceHealth.locator(':scope > summary').click();
+  await expect(sourceHealth).toContainText('臺北旅遊網與觀光類別已退出現行研究');
+  await expect(sourceHealth.locator('details > summary').filter({ hasText: /臺北旅遊網|Taipei Travel/ })).toHaveCount(0);
+  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await expect(sourceHealth).toContainText('This does not imply zero tourism demand');
 });
 test('resets edited weights to their documented versioned defaults', async ({ page }) => {
   await openPriority(page);
@@ -48,11 +63,14 @@ test('exports independently versioned method, weights, bus population and catego
   await page.getByRole('button', { name: '匯出政策摘要 JSON', exact: true }).click();
   const file = await event;
   const report = JSON.parse(readFileSync(await file.path(), 'utf8'));
-  expect(report.methodology).toBe('policy-balanced-coverage-v1');
-  expect(report.weightConfiguration).toBe('policy-priority-weights-v1');
+  expect(report.methodology).toBe('policy-balanced-coverage-v2');
+  expect(report.weightConfiguration).toBe('policy-priority-weights-v2');
   expect(report.busSourceVersion).toBe(snapshot.busSourceVersion);
   expect(report.snapshotId).toBe(snapshot.snapshotId);
   expect(report.approvalStatus).toBe('review_required');
+  expect(Object.keys(report.categoryDefinitions)).toEqual(['night_market', 'traditional_market', 'commercial', 'mrt', 'bus']);
+  expect(report.activeWeights).toEqual({ night_market: 4, traditional_market: 3, commercial: 3, mrt: 2, bus: 1 });
+  expect(report.activeScenario.selected[0].contributions).not.toHaveProperty('tourism');
   expect(report.activeScenario.selected[0].contributions).toHaveProperty('bus');
   expect(report.scoreUnit).toContain('not persons, waste volume or policy effectiveness');
 });
@@ -65,6 +83,8 @@ test('exports CSV with raw coverage separate from weighted contribution', async 
   expect(content).toContain('weighted_incremental_score');
   expect(content).toContain(snapshot.busSourceVersion);
   expect(content).toContain('scenario_summary');
+  expect(content).toContain('policy-balanced-coverage-v2');
+  expect(content).not.toContain('"tourism"');
 });
 test('keeps candidate explanation and sensitivity available without external tiles', async ({ page }) => {
   await openPriority(page);
@@ -74,7 +94,7 @@ test('keeps candidate explanation and sensitivity available without external til
   await expect(page.locator('#priority-sensitivity')).toContainText('未入選次數');
 });
 test('returns to the unchanged Mode A after a policy source-version failure', async ({ page }) => {
-  await page.route('**/priority-references.json', route => route.fulfill({ json: { ...snapshot, baseSnapshotId: 'unrelated' } }));
+  await page.route('**/priority-references-v2.json', route => route.fulfill({ json: { ...snapshot, baseSnapshotId: 'unrelated' } }));
   await page.goto('/#/bin-policy');
   await page.getByLabel('分析模式', { exact: true }).selectOption('priority');
   await expect(page.getByRole('alert')).toContainText('政策優先資料無法載入');
@@ -85,6 +105,7 @@ test('keeps English controls and the report usable on narrow viewports', async (
   await openPriority(page);
   await page.getByRole('button', { name: 'English', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Policy Priority Allocation Study', exact: true })).toBeVisible();
+  await expect(page.getByLabel('Weight: Official vendor concentration references', { exact: true })).toHaveValue('4');
   await expect(page.getByLabel('Weight: Bus reference locations', { exact: true })).toHaveValue('1');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

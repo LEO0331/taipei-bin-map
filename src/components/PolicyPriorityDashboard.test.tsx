@@ -6,9 +6,10 @@ vi.mock('./BinPolicyMap', () => ({ BinPolicyMap: () => <div>Map test boundary</d
 vi.mock('./BinPolicyGovernancePanels', () => ({ BinPolicyGovernancePanels: () => null }));
 vi.mock('./BinPolicySourceComparisonPanel', () => ({ BinPolicySourceComparisonPanel: () => null }));
 const base = JSON.parse(readFileSync('public/data/bin-policy/analysis.json', 'utf8'));
-const priority = JSON.parse(readFileSync('public/data/bin-policy/priority-references.json', 'utf8'));
+const priority = JSON.parse(readFileSync('public/data/bin-policy/priority-references-v2.json', 'utf8'));
+const historical = JSON.parse(readFileSync('public/data/bin-policy/priority-references.json', 'utf8'));
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
-function mockData() { vi.stubGlobal('fetch', vi.fn(async (url: string) => ({ ok: true, json: async () => url.endsWith('analysis.json') ? base : priority }))); }
+function mockData(snapshot = priority) { vi.stubGlobal('fetch', vi.fn(async (url: string) => ({ ok: true, json: async () => url.endsWith('analysis.json') ? base : snapshot }))); }
 describe('policy priority dashboard', () => {
   it('keeps edited weights pending until the user runs the scenario', async () => {
     mockData(); render(<PolicyPriorityDashboard language="zh" />);
@@ -31,8 +32,13 @@ describe('policy priority dashboard', () => {
     expect(screen.getByRole('alert')).toHaveTextContent('不會自動修正');
   });
   it('does not substitute recommendations when the source snapshot is incompatible', async () => {
-    vi.stubGlobal('fetch', vi.fn(async (url: string) => ({ ok: true, json: async () => url.endsWith('analysis.json') ? base : { ...priority, baseSnapshotId: 'other' } })));
+    mockData({ ...priority, baseSnapshotId: 'other' });
     render(<PolicyPriorityDashboard language="zh" />);
     expect(await screen.findByRole('alert')).toHaveTextContent('不使用替代資料');
+  });
+  it('rejects the historical six-category snapshot in the current dashboard', async () => {
+    mockData(historical);
+    render(<PolicyPriorityDashboard language="en" />);
+    expect(await screen.findByRole('alert')).toHaveTextContent('Policy-priority data unavailable');
   });
 });

@@ -75,13 +75,13 @@ flowchart LR
 
 ### 清潔箱政策 v1.2：獨立的政策優先研究模式
 
-在既有政策頁選擇「分析模式 → B. 政策優先配置（研究情境）」。模式 A、核准箱位／2021 公車基線及原匯出不變；模式 B 只在選取後載入待審查研究資料。觀光／攤販／市場／商圈／捷運／公車預設權重為 **4／4／3／3／2／1**，可於 0–10 內調整並重設。計分為 `Σ（權重 × 類別新增覆蓋 ÷ 該類固定有效母體）`，避免公車密度壓過其他類別；不是實測需求、人數或政策成效。
+在既有政策頁選擇「分析模式 → B. 政策優先配置（研究情境）」。模式 A、核准箱位／2021 公車基線及原匯出不變；模式 B 只在選取後載入待審查研究資料。現行 v2 攤販／市場／商圈／捷運／公車預設權重為 **4／3／3／2／1**，可於 0–10 內調整並重設。計分為 `Σ（權重 × 類別新增覆蓋 ÷ 該類固定有效母體）`，避免公車密度壓過其他類別；不是實測需求、人數或政策成效。
 
-實際納入 42 處官方攤販集中場、47 處市場、73 處捷運站參考位置及原有 3,395 處公車參考點。觀光 API 受 HTTP403 阻擋；235 筆商圈／公會資料沒有可辯護的商圈幾何，只保留背景。缺漏不是零需求，也不把權重轉給其他類別。候選位置是交通參考錨點，不是人行道核准設置點；2022 年停止適用的歷史程序不作現行法規。
+實際納入 42 處官方攤販集中場、47 處市場、73 處捷運站參考位置及原有 3,395 處公車參考點。臺北旅遊網及觀光類別已退出現行研究，原權重不轉配，亦不代表觀光需求為零；歷史 v1 證據保留。235 筆商圈／公會資料沒有可辯護的商圈幾何，只保留背景。缺漏不是零需求，也不把權重轉給其他類別。候選位置是交通參考錨點，不是人行道核准設置點；2022 年停止適用的歷史程序不作現行法規。
 
 同來源、半徑與預算下，可比較類別等優先、文件預設、目前自訂權重，以及預設各類別單獨 ±25% 敏感度。JSON／CSV 分開保存方法、權重及來源版本。詳見[方法說明](docs/bin-policy-v1.2-methodology.zh-Hant.md)、[來源稽核](docs/bin-policy-v1.2-sources.md)、[治理](docs/bin-policy-v1.2-governance.md)及[實作證據](docs/bin-policy-v1.2-audit.md)。
 
-研究監測將已稽核且明確排除的觀光403列為 `warning`，保留 Actions／Issue 警告；新增來源故障仍為 `failure`。這不是恢復 API 權限或採用觀光資料，雜湊與身分驗證不放寬；來源恢復回應仍須另行審查。
+現行監測僅查核其餘五個研究來源，不連線至臺北旅遊網。原檔變更須另行審查；攤販集中場及清潔箱名冊的採用決策詳見[十一月來源審查](docs/issues-27-28-source-review-2026-11.md)。
 
 ### 清潔箱政策 v1.1：資料治理，不是自動換版
 
@@ -131,7 +131,7 @@ npm run data:reconcile:bins
 npm run data:monitor:bin-policy -- test-results/bin-policy-monitor
 npm run data:health:bin-policy -- test-results/bin-policy-monitor/report.json
 npm run data:compare:bus-policy
-npm run data:convert:policy-priority -- data/raw/bin-policy-priority/priority-v1-113edf6ed5e09ada data/raw/bin-policy/v1-14c24bcdbade/districts.zip
+npm run data:convert:policy-priority -- data/raw/bin-policy-priority/priority-v2-541148442bec70ac data/raw/bin-policy/v1-14c24bcdbade/districts.zip test-results/new-priority-v2-candidate
 npm run benchmark:policy-priority
 
 # 還原雜湊鎖定的壓縮原檔，不以即時新資料替代

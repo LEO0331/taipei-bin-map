@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "issue": "https://github.com/LEO0331/taipei-bin-map/issues/28",
+  "issueStateAtReview": "open",
+  "baseCommit": "958fdb38cfb8e22e1f4b9987e9e0941ae2e54775",
+  "disposition": "HOLD — NOT APPROVED FOR BASELINE REPLACEMENT",
+  "published": false,
+  "officialSource": {
+    "datasetId": "a835f3ba-7f50-4b0d-91a6-9df128632d1c",
+    "resourceId": "267d550f-c6ec-46e0-b8af-fd5a464eb098",
+    "publisher": "臺北市政府環境保護局",
+    "datasetUrl": "https://data.taipei/dataset/detail?id=a835f3ba-7f50-4b0d-91a6-9df128632d1c",
+    "resourceUrl": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=267d550f-c6ec-46e0-b8af-fd5a464eb098",
+    "catalogueFetchedAt": "2026-11-11T05:34:24.3940074Z",
+    "catalogueSha256": "a09749b9b9cd87f8f785adadb5c955cd870d3b475ec0eeaa2fee3db3515a1d94",
+    "catalogueHttpStatus": 200,
+    "resourceUpdatedAt": "2026-10-21T15:41:01+08:00",
+    "metadataUpdatedAt": "2026-10-21T15:41:29+08:00",
+    "resourceFetchedAt": "2026-11-11T05:34:24.7149045Z",
+    "resourceHttpStatus": 200,
+    "contentType": "text/csv; charset=BIG-5",
+    "httpLastModified": null,
+    "bytes": 61369,
+    "sha256": "a5dc928c93b99794d31eaf513bc4f82a953937488aece61d004ed0ee5faf91d1",
+    "matchesNovember9ObservedSha256": true,
+    "matchesOctober29FrozenCapture": true,
+    "exactDuplicateArchiveNotRestaged": "reports/audit-issues-22-23-2026-10-29/bin-revision/bins-current.csv"
+  },
+  "frozenReplay": {
+    "command": "npx --no-install tsx scripts/reviewBinInventoryRevision.ts <isolated-report-directory>/bin-revision",
+    "input": "Temporary copies of the archived bin-revision source.json, bins-current.csv, catalogue.html and sibling historical/approved artifact.zip and report.json; not the live files.",
+    "archive": "reports/audit-issues-22-23-2026-10-29/bin-revision/analysis/review.json",
+    "validatedAt": "2026-11-11T05:35:22.091Z",
+    "findingsSha256ExcludingExecutionOnlyValidatedAt": "5fbf2b5d7249cd78df6fc1664bfd3f22d8e312a8e870293c56fe29bfea555921",
+    "identicalFindings": true,
+    "rowEvidenceSha256": "2d7dd5042747fa9f5fb20a16d40fcb8a64eef44ffea9d3ac34604f91f6cc4f0d",
+    "identicalRowEvidenceBytes": true,
+    "protectedFilesBeforeAfter": 30,
+    "protectedFilesUnchanged": true,
+    "temporaryCopyRemovedAfterComparison": true
+  },
+  "protectedBaseline": {
+    "snapshotId": "v1-14c24bcdbade",
+    "analysisSha256": "9c5cb3b8890e7395cc15d7c85de11ec2a228d3a4288cff629f250fda99e3f12f",
+    "binsCsvSha256": "ff3cf5528c057958f89871aa5300fc633b02d0f7b37131ab29d5ddc2f8e2370d",
+    "busArchiveSha256": "353511da19a0b8d522555a7c2e1e45772c044812b565a3872a2d2aea377c4dc4",
+    "supplementaryBinsResourceId": "2030d728-9597-437d-81a4-cf2a44c7f114",
+    "supplementaryBinsRawRows": 130,
+    "supplementaryBinsCsvSha256": "47b1ddfb4f0ab4d5e57afab538f71da3d41d22e59c984bdd9c10b4248223b066"
+  },
+  "replayedFindings": {
+    "rawRows": { "approved": 681, "revision": 661 },
+    "validUniquePositions": { "approved": 679, "revision": 657 },
+    "supportedPairs": 601,
+    "unmatchedOld": 65,
+    "unmatchedNew": 45,
+    "ambiguousGroups": 10,
+    "ambiguousRows": { "approved": 14, "revision": 13 },
+    "invalidRevisedCoordinates": 2,
+    "citywideReferenceCount": 3395,
+    "citywideBaselineCovered": { "approved": 1137, "revision": 1109 },
+    "citywidePostFiveCovered": { "approved": 1224, "revision": 1199 },
+    "districtTopFiveSequencesChanged": 9,
+    "districtsCompared": 12
+  },
+  "approvalPrerequisites": [
+    "Obtain authoritative correction or explanation for the two malformed coordinates.",
+    "Reconcile or independently verify unmatched and ambiguous identities and clarify whether any records represent physical changes.",
+    "Review the materially changed policy rankings and dependent Mode B baseline binding in a separate publication process."
+  ],
+  "interpretation": "Frozen replay and byte equality establish reproducible source-version sensitivity, not a physical count of removed bins, a measured service effect, or publication approval."
+}
