@@ -1,6 +1,7 @@
 import type { ShadeEquityScenario, ShadeEquitySnapshot } from '../types/shadeEquity';
 import type { buildShadeEquitySensitivity } from './shadeEquityScenario';
 import { validateShadeEquitySnapshot } from './shadeEquityDecision';
+import { serializeCsv } from './serializeCsv';
 
 export const SHADE_FIELD_CHECKLIST = [
   'Verify actual tree and pit occupancy; unmatched geometry does not prove vacancy.',
@@ -56,10 +57,5 @@ export function shadeEquityCsv(snapshot: ShadeEquitySnapshot, result: ShadeEquit
   for (const source of snapshot.sources) detail('source', [source.id, '', source.name, '', '', '', '', '', '', '', '', '', '', source.sourceUpdatedAt, source.suitability, JSON.stringify(source)]);
   for (const exclusion of result.excluded) detail('excluded', [exclusion.id, '', '', '', '', '', '', '', '', '', '', '', '', '', JSON.stringify(exclusion.reasons), '']);
   for (const scenario of comparisons) detail('comparison', [scenario.label, '', '', '', '', '', '', '', '', '', '', '', '', '', scenario.comparison.scope, JSON.stringify({ retainedIds: scenario.comparison.retainedIds, addedIds: scenario.comparison.addedIds, removedIds: scenario.comparison.removedIds, rankChanges: scenario.comparison.rankChanges, reasons: scenario.comparison.reasons })]);
-  const quote = (value: unknown) => {
-    let text = String(value ?? '');
-    if (/^\s*[=+@-]|^[\t\r\n]/.test(text)) text = `'${text}`;
-    return `"${text.replace(/"/g, '""')}"`;
-  };
-  return '\uFEFF' + [headers, ...rows].map(row => row.map(quote).join(',')).join('\r\n');
+  return serializeCsv([headers, ...rows]);
 }

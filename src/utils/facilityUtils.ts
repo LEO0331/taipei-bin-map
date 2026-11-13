@@ -26,6 +26,7 @@ import type {
   TreeCircumferenceCategory,
   TreeDiameterCategory,
 } from '../types';
+import { externalHttpUrl } from './externalHttpUrl';
 
 const EARTH_RADIUS_METERS = 6_371_000;
 
@@ -396,8 +397,8 @@ export function filterFacilities(
         (includeSuspended || facility.directDrinkingStatus !== 'suspended') &&
         (!taipeiCityOnly || facility.isTaipeiCity === true) &&
         (!directDrinkingPlaceCategory || facility.directDrinkingPlaceCategory === directDrinkingPlaceCategory) &&
-        (!requiresMaintenanceUrl || Boolean(facility.maintenanceUrl)) &&
-        (!requiresPhotoUrl || Boolean(facility.photoUrl)));
+        (!requiresMaintenanceUrl || Boolean(externalHttpUrl(facility.maintenanceUrl))) &&
+        (!requiresPhotoUrl || Boolean(externalHttpUrl(facility.photoUrl))));
     const matchesUsedClothing =
       facility.type !== 'used_clothing_recycling_box' ||
       ((!usedClothingVillage || facility.village === usedClothingVillage) &&

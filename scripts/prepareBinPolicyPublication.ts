@@ -1,4 +1,5 @@
 import { mkdtemp, readFile, writeFile, copyFile, mkdir, cp, rm } from 'node:fs/promises';
+import { readBoundedResponse } from './readBoundedResponse';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -29,8 +30,9 @@ export async function preparePublication(approval: SourceApproval, output: strin
         if (!approved || approved.resource_id !== source.resourceId) throw new Error(`Unapproved resource identity: ${source.id}`);
         const response = await (options.fetcher ?? fetch)(source.downloadUrl, { signal: AbortSignal.timeout(60000) });
         if (!response.ok) throw new Error(`${source.id}: HTTP ${response.status}`);
-        const bytes = Buffer.from(await response.arrayBuffer());
-        if (bytes.length < 100 || bytes.length > 20_000_000 || hash(bytes) !== approved.sha256) throw new Error(`${source.id}: approved content hash/size mismatch`);
+        const sizeError = `${source.id}: approved content hash/size mismatch`;
+        const bytes = await readBoundedResponse(response, 20_000_000, sizeError, 100);
+        if (hash(bytes) !== approved.sha256) throw new Error(sizeError);
         await writeFile(join(raw, source.filename), bytes);
         sources.push({ ...source, resourceUpdatedAt: approved.source_updated_at, sha256: approved.sha256, fetchedAt: new Date().toISOString(), httpLastModified: response.headers.get('last-modified') });
       }

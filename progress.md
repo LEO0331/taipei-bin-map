@@ -2,8 +2,13 @@
 
 ## Current State
 
-**Last Updated:** 2026-11-11 Asia/Taipei
-**Active Feature:** None — feat-050 verified for human review
+**Last Updated:** 2026-11-13 Asia/Taipei
+**Active Feature:** None — feat-051 verified locally, owner review pending
+
+## 2026-11-13 — Security hardening
+
+- Scope: minimize public Mode B and browser exports; neutralize spreadsheet formulas in CSV; make the publication workflow artifact-only with read permissions and pin Actions; validate facility links; bound source downloads while streaming. No branch, commit, push, deployment or adoption changes by the assistant.
+- Verification: 574 unit/component tests, production build, 232 desktop/mobile E2E, four production offline checks, both frozen policy replays and YAML/pinning checks passed. Facility conversion was byte-identical; source archives and Mode A remain unchanged. The hosted workflow was not dispatched. Older deployments, downloads and offline copies are not retroactively changed; general cache cleanup and anti-embedding headers are outside this change.
 
 ## 2026-11-11 — Taipei Travel retirement and Issues #27/#28
 

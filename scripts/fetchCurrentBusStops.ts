@@ -1,4 +1,5 @@
 import { gunzipSync } from 'node:zlib';
+import { readBoundedResponse } from './readBoundedResponse';
 import { createHash } from 'node:crypto';
 import { mkdirSync, existsSync, writeFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
@@ -26,7 +27,7 @@ export async function fetchTdxPages(unit: 'Stop' | 'Station', token: string, fet
     url.searchParams.set('$top', String(pageSize)); url.searchParams.set('$skip', String(offset)); url.searchParams.set('$format', 'JSON');
     const response = await fetcher(url.href, { headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(30_000) });
     if (!response.ok) throw new Error(`TDX ${unit} HTTP ${response.status}`);
-    const rows: unknown = await response.json();
+    const rows: unknown = JSON.parse(new TextDecoder().decode(await readBoundedResponse(response, 10_000_000, 'TDX page exceeds acquisition limit')));
     if (!Array.isArray(rows) || rows.length > pageSize) throw new Error('TDX page schema invalid');
     const identityKey = unit === 'Stop' ? 'StopUID' : 'StationUID';
     if(rows.some(row => !row || typeof row !== 'object' || typeof row[identityKey] !== 'string')) throw new Error(`TDX ${unit} identity schema invalid`);
@@ -38,8 +39,7 @@ export async function fetchTdxPages(unit: 'Stop' | 'Station', token: string, fet
 export async function fetchCurrentBusStops(directory = 'data/raw/bin-policy/bus-current') {
   const response = await fetch(currentBusSource.downloadUrl, { signal: AbortSignal.timeout(60_000) });
   if (!response.ok) throw new Error(`Current bus HTTP ${response.status}`);
-  const bytes = Buffer.from(await response.arrayBuffer());
-  if (bytes.length < 100 || bytes.length > 10_000_000) throw new Error('Unexpected current bus source size');
+  const bytes = await readBoundedResponse(response, 10_000_000, 'Unexpected current bus source size', 100);
   const payload = decodeTaipeiBusPayload(bytes) as { BusInfo?: unknown[]; EssentialInfo?: { UpdateTime?: string; CoordinateSystem?: string } };
   if (!Array.isArray(payload.BusInfo) || payload.BusInfo.length < 100 || payload.EssentialInfo?.CoordinateSystem !== 'WGS84') throw new Error('Current bus source schema/truncation failure');
   const sha256 = createHash('sha256').update(bytes).digest('hex'); const versionId = `taipei-stop-location-${sha256.slice(0,12)}`;

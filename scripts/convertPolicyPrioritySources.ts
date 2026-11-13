@@ -10,6 +10,7 @@ import { validatePolicySnapshot, type PolicySnapshot } from '../src/lib/binPolic
 import { validPoint } from '../src/lib/binPolicyDecision';
 import { type PolicyReference, type PrioritySnapshot } from '../src/lib/policyPriorityTypes';
 import { validatePrioritySnapshot } from '../src/lib/policyBalancedCoverage';
+import { publicPrioritySnapshot } from '../src/lib/policyPriorityPublic';
 
 type Locate = (longitude: number, latitude: number) => string | null;
 function coordinate(x: number, y: number) {
@@ -84,7 +85,7 @@ export function normalizeAttractions(pages: unknown[], sources: PrioritySourceAr
   return { references, excluded, sourceRows: count };
 }
 
-export async function buildPrioritySnapshot(directory: string, districtArchive: string, approved: PolicySnapshot): Promise<PrioritySnapshot> {
+export async function buildPrioritySnapshot(directory: string, districtArchive: string, approved: PolicySnapshot, analysisValidatedAt = new Date().toISOString()): Promise<PrioritySnapshot> {
   validatePolicySnapshot(approved);
   const manifest = JSON.parse(readFileSync(join(directory, 'sources.json'), 'utf8')) as PriorityRawManifest;
   if (![1, 2].includes(manifest.schemaVersion) || !Array.isArray(manifest.sources)) throw new Error('Invalid priority manifest');
@@ -117,7 +118,6 @@ export async function buildPrioritySnapshot(directory: string, districtArchive: 
     sourceVersion: bus.sha256, geometryType: 'Point', resourceId: bus.resourceId, sourcePublishedAt: bus.resourceUpdatedAt,
     retrievedAt: bus.fetchedAt, validatedAt: approved.generatedAt, contentHash: bus.sha256, originalRecordId: point.sourceRecord,
     status: 'included', limitations: ['Approved historical bus baseline preserved; not the newer comparison source.', 'Reference position is not a legally approved installation site.'] }));
-  const analysisValidatedAt = new Date().toISOString();
   const references = [...tourism.references, ...markets.references, ...mrt.references, ...busReferences].map(reference => ({ ...reference, validatedAt: analysisValidatedAt }));
   const exclusions = [...tourism.excluded, ...markets.excluded, ...mrt.excluded];
   const categoryStatus = { ...(historical ? { tourism: { status: tourism.references.length ? 'available' as const : 'unavailable' as const, reason: touristBlocked ? 'Official API returned HTTP 403; no tourist population was fabricated. / 官方 API 存取受阻，未虛構景點。' : 'Complete paginated official zh-tw attraction records; point is not an installation location.' } } : {}),
@@ -139,7 +139,7 @@ export function writePriorityCandidate(result: PrioritySnapshot, directory: stri
   const output = boundRawPath('test-results', relative(resolve('test-results'), resolve(directory)));
   mkdirSync(dirname(output), { recursive: true });
   mkdirSync(output); // Refuse existing output; this command cannot overwrite the active sidecar.
-  writeFileSync(join(output, 'priority-references-v2.json'), JSON.stringify(result), { flag: 'wx' });
+  writeFileSync(join(output, 'priority-references-v2.json'), JSON.stringify(publicPrioritySnapshot(result)), { flag: 'wx' });
   writeFileSync(join(output, 'priority-source-inventory-v2.json'), JSON.stringify({ schemaVersion: 2, snapshotId: result.snapshotId, baseSnapshotId: result.baseSnapshotId,
     approvalStatus: result.approvalStatus, retiredSources: result.retiredSources, sources: result.sources, categories: result.categoryStatus, counts: result.quality.includedByCategory }, null, 2), { flag: 'wx' });
 }

@@ -1,4 +1,5 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
+import { readBoundedResponse } from './readBoundedResponse';
 import { resolve } from 'node:path';
 
 const API_URL =
@@ -25,7 +26,7 @@ async function fetchPage(offset: number) {
     throw new Error(`Unable to fetch drinking fountains: HTTP ${response.status}`);
   }
 
-  return (await response.json()) as TaipeiOpenDataResponse;
+  return JSON.parse(new TextDecoder().decode(await readBoundedResponse(response, 20_000_000, 'Drinking fountain page exceeds acquisition limit'))) as TaipeiOpenDataResponse;
 }
 
 function writeJson(path: string, data: unknown) {

@@ -1,4 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises';
+import { readBoundedResponse } from './readBoundedResponse';
 import { isAbsolute, join, relative, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { alertKey, atomicJson, hash, type MonitorReport, type MonitorSource, type Snapshot } from './binPolicyGovernance';
@@ -63,8 +64,7 @@ export async function monitorPrioritySources(directory: string, snapshotFile: st
       const response = await (options.fetcher ?? fetch)(source.downloadUrl, { signal: AbortSignal.timeout(options.timeoutMs ?? 20000), redirect: 'error' });
       entry.http_status = response.status;
       if (!response.ok) throw new Error('http_failure');
-      const bytes = Buffer.from(await response.arrayBuffer());
-      if (!bytes.length || bytes.length > 20_000_000) throw new Error('unexpected_resource_size');
+      const bytes = await readBoundedResponse(response, 20_000_000, 'unexpected_resource_size', 1);
       entry.current_hash = hash(bytes); entry.retrieved_at = options.now ?? new Date().toISOString();
       entry.content_changed = entry.current_hash !== source.sha256;
       // Changed bytes remain unvalidated and never overwrite frozen sources or source dates.

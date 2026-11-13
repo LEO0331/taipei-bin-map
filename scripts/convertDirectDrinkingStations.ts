@@ -5,6 +5,7 @@ import iconv from 'iconv-lite';
 import Papa from 'papaparse';
 import type { ConversionSourceReport, DirectDrinkingPlaceCategory, Facility } from '../src/types';
 import { normalizeTaipeiDistrict } from '../src/utils/facilityUtils';
+import { externalHttpUrl } from '../src/utils/externalHttpUrl';
 
 const SOURCE_NAME = '臺北市所屬直飲臺';
 const DEFAULT_INPUT = '/Users/Leo/Downloads/11505_直飲臺基本資料.csv';
@@ -68,6 +69,8 @@ export function convertDirectDrinkingRows(rows: Row[], sourceFilename = SOURCE_N
     const address = pick(row, ['地址', '場所地址']) ?? '';
     const name = pick(row, ['場所名稱', '名稱']);
     const placeType = pick(row, ['場所類型', '場所別']);
+    const maintenanceUrl = externalHttpUrl(pick(row, ['水質維護資訊網址', '水質及維護資訊網址']));
+    const photoUrl = externalHttpUrl(pick(row, ['照片網址', '直飲台照片網址', '直飲臺照片網址']));
 
     if (invalidCoordinate) {
       invalidCoordinateRows.push({ rowNumber, longitude: longitudeText, latitude: latitudeText });
@@ -95,8 +98,8 @@ export function convertDirectDrinkingRows(rows: Row[], sourceFilename = SOURCE_N
       directDrinkingStatus: normalizeDirectDrinkingStatus(pick(row, ['狀態'])),
       ...(pick(row, ['最近檢驗日期', '最近採樣日期時間']) ? { latestSamplingDate: pick(row, ['最近檢驗日期', '最近採樣日期時間']) } : {}),
       ...(pick(row, ['大腸桿菌群', '大腸桿菌數']) ? { coliformCountRaw: pick(row, ['大腸桿菌群', '大腸桿菌數']) } : {}),
-      ...(pick(row, ['水質維護資訊網址', '水質及維護資訊網址']) ? { maintenanceUrl: pick(row, ['水質維護資訊網址', '水質及維護資訊網址']) } : {}),
-      ...(pick(row, ['照片網址', '直飲台照片網址', '直飲臺照片網址']) ? { photoUrl: pick(row, ['照片網址', '直飲台照片網址', '直飲臺照片網址']) } : {}),
+      ...(maintenanceUrl ? { maintenanceUrl } : {}),
+      ...(photoUrl ? { photoUrl } : {}),
       isTaipeiCity: city === '臺北市' && TAIPEI_DISTRICTS.has(district),
     };
   });

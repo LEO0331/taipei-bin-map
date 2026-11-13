@@ -74,6 +74,15 @@ test('exports independently versioned method, weights, bus population and catego
   expect(report.activeScenario.selected[0].contributions).toHaveProperty('bus');
   expect(report.scoreUnit).toContain('not persons, waste volume or policy effectiveness');
 });
+test('exports commercial context counts without raw source rows', async ({ page }) => {
+  await openPriority(page);
+  const event = page.waitForEvent('download');
+  await page.getByRole('button', { name: '匯出政策摘要 JSON', exact: true }).click();
+  const content = readFileSync(await (await event).path(), 'utf8');
+  const report = JSON.parse(content);
+  expect(report.quality.contextualCounts).toEqual({ commercial_introduction: 65, commercial_associations: 170 });
+  expect(content).not.toMatch(/"(?:raw|contextualRecords|組織代表|聯絡電話)"\s*:/);
+});
 test('exports CSV with raw coverage separate from weighted contribution', async ({ page }) => {
   await openPriority(page);
   const event = page.waitForEvent('download');

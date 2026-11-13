@@ -29,6 +29,18 @@ describe('weighted briefing exports', () => {
   it('describes score units as reference coverage rather than observed policy effectiveness', () => {
     expect(priorityBriefing(snapshot, result, sensitivity, snapshot.generatedAt).scoreUnit).toContain('not persons, waste volume or policy effectiveness');
   });
+  it('keeps only context counts and removes raw rows from exports of cached historical data', () => {
+    const oldPoint = { ...point, raw: { rawContact: 'test-only contact' } };
+    const oldSnapshot = { ...snapshot, quality: {
+      exclusions: [{ id: 'skipped-1', sourceId: 'bus', reason: 'test-only exclusion', raw: oldPoint.raw }],
+      contextualRecords: [{ sourceId: 'commercial_associations', raw: oldPoint.raw }],
+    } };
+    const preparedOld = preparePolicyCoverage([], [oldPoint], prepared.parameters);
+    const briefing = priorityBriefing(oldSnapshot, allocatePolicyPriority(preparedOld), analyzePolicySensitivity(preparedOld), snapshot.generatedAt);
+    expect(briefing.quality.contextualCounts).toEqual({ commercial_introduction: 0, commercial_associations: 1 });
+    expect(briefing.quality.exclusions).toEqual([{ sourceId: 'bus', id: 'skipped-1', reason: 'test-only exclusion' }]);
+    expect(JSON.stringify(briefing)).not.toContain('test-only contact');
+  });
   it('exports consistent CSV columns for summary, category and candidate records', () => {
     const parsed = Papa.parse(priorityCsv(snapshot, result, sensitivity, snapshot.generatedAt), { header: true });
     expect(parsed.errors).toEqual([]);

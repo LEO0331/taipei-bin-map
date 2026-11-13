@@ -3,6 +3,7 @@ import { readFile, mkdtemp, rm, writeFile, cp } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { ReadableStream } from 'node:stream/web';
 import iconv from 'iconv-lite';
 import { monitorSources } from './monitorBinPolicySources';
 import { alertKey, countAnomaly, hash, validateApproval, type Snapshot, type SourceApproval } from './binPolicyGovernance';
@@ -50,6 +51,31 @@ describe('read-only policy source monitoring',()=>{
   it('reports HTTP failure without claiming source validation succeeded',async()=>{
     const report=await monitorSources(snapshot,{fetcher:(async()=>new Response('unavailable',{status:503})) as typeof fetch,now});
     expect(report.sources[0].anomalies).toContain('http_failure');
+  });
+  it('stops an oversized source stream and preserves the size-failure classification', async () => {
+    const baseline = hash(await readFile('public/data/bin-policy/analysis.json'));
+    const chunk = new Uint8Array(1_000_000);
+    const frozen = fetcher();
+    let pulls = 0, cancelled = false;
+    const oversized = new Response(new ReadableStream({
+      pull(controller) {
+        pulls++;
+        controller.enqueue(chunk);
+      },
+      cancel() { cancelled = true; },
+    }, { highWaterMark: 0 }));
+    const report = await monitorSources(snapshot, {
+      now,
+      fetcher: (url, init) => String(url) === policySources[0].downloadUrl
+        ? Promise.resolve(oversized)
+        : frozen(url, init),
+    });
+    expect(report.state).toBe('failure');
+    expect(report.sources[0].anomalies).toContain('unexpected_resource_size');
+    expect(report.sources[0].current_hash).toBeNull();
+    expect(pulls).toBe(21);
+    expect(cancelled).toBe(true);
+    expect(hash(await readFile('public/data/bin-policy/analysis.json'))).toBe(baseline);
   });
   it('passes abort timeouts to requests and reports their cancellation',async()=>{
     const report=await monitorSources(snapshot,{fetcher:(async(_input,init)=>new Promise((_resolve,reject)=>{init?.signal?.addEventListener('abort',()=>reject(new DOMException('timeout','TimeoutError')),{once:true});})) as typeof fetch,timeoutMs:2,now});

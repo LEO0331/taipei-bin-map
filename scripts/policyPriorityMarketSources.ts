@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { readBoundedResponse } from './readBoundedResponse';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import Papa from 'papaparse';
@@ -20,8 +21,7 @@ export async function acquireMarketSources(outputDirectory: string, fetcher: typ
     const downloadUrl = `https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=${resourceId}`;
     const response = await fetcher(downloadUrl, { signal: AbortSignal.timeout(60_000), redirect: 'error' });
     if (!response.ok) throw new Error(`${id}: HTTP ${response.status}`);
-    const bytes = Buffer.from(await response.arrayBuffer());
-    if (bytes.length < 100 || bytes.length > 5_000_000) throw new Error(`${id}: unexpected source size`);
+    const bytes = await readBoundedResponse(response, 5_000_000, `${id}: unexpected source size`, 100);
     const fetchedAt = new Date().toISOString();
     const encoding = bytes.toString('utf8').includes('\ufffd') ? 'CP950' : 'UTF-8';
     parseMarketCsv(bytes, { encoding });

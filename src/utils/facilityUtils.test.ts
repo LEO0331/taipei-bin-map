@@ -583,6 +583,20 @@ describe('filterFacilities', () => {
     expect(result[0].id).toBe('direct_drinking_station_0001');
   });
 
+  it.each([
+    ['maintenanceUrl', 'requiresMaintenanceUrl'],
+    ['photoUrl', 'requiresPhotoUrl'],
+  ] as const)('does not count a non-web %s as available', (field, requirement) => {
+    const station = facilities.find((facility) => facility.type === 'direct_drinking_station')!;
+    const result = filterFacilities([
+      { ...station, id: 'safe', [field]: 'http://example.test/record' },
+      { ...station, id: 'unsupported', [field]: 'mailto:station@example.test' },
+    ], {
+      searchTerm: '', district: '', facilityTypes: ['direct_drinking_station'], [requirement]: true,
+    });
+    expect(result.map((facility) => facility.id)).toEqual(['safe']);
+  });
+
   it('filters and searches used-clothing recycling boxes', () => {
     const result = filterFacilities(facilities, {
       searchTerm: '自閉症',

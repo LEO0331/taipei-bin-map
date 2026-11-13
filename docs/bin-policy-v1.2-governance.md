@@ -20,6 +20,10 @@ Retrieval time, validation time, official publication time and HTTP transport me
 
 ## Frozen checks before research use
 
+Public v1/v2 sidecars and the browser's JSON briefing retain analytical references, source/version evidence, exclusion identifiers and reasons, and commercial context counts. They do not redistribute the original rows (including association representatives or contact details). Frozen source files and historical review reports remain outside the deployed public directory and are unchanged; a new public-sidecar digest reflects the projection, not a source or methodology change. The vendor audit reconstructs and verifies its historical full input from frozen bytes instead of expecting that payload to remain publicly served.
+
+This change is not retroactive erasure: original open-data files, Git history, old deployment URLs, previous downloads and already-cached offline copies may still contain the source fields. The active service worker refreshes policy JSON on a successful online visit; no blanket cache deletion is introduced. A browser running the new bundle minimizes newly exported JSON even when using an older cached snapshot.
+
 `scripts/monitorPolicyPrioritySources.ts` reuses the v1.1 SHA256, report and alert-fingerprint helpers. `verifyFrozenPriority` validates:
 
 1. Research manifest schema and unique source identities.

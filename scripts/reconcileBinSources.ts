@@ -1,9 +1,11 @@
 import { createHash } from 'node:crypto';
+import { readBoundedResponse } from './readBoundedResponse';
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import Papa from 'papaparse';
 import iconv from 'iconv-lite';
+import { csvCellText } from '../src/lib/serializeCsv';
 import { normalizeBinAddress, reconcileBinRecords, reconciliationClasses, type ReconciliationInput, type ReconciliationReport, type ReconciliationSource } from '../src/lib/binPolicyReconciliation';
 
 const sha = (bytes: Buffer | string) => createHash('sha256').update(bytes).digest('hex');
@@ -21,8 +23,7 @@ const metadataPath = join(rawDirectory, 'tourist-commercial.source.json');
 export async function fetchReconciliationSupplement() {
   const response = await fetch(touristResource.downloadUrl, { signal: AbortSignal.timeout(60000) });
   if (!response.ok) throw new Error(`Supplement retrieval HTTP ${response.status}`);
-  const bytes = Buffer.from(await response.arrayBuffer());
-  if (bytes.length < 100 || bytes.length > 1_000_000) throw new Error('Unexpected supplemental payload size');
+  const bytes = await readBoundedResponse(response, 1_000_000, 'Unexpected supplemental payload size', 100);
   // Refuse silent replacement: a changed resource needs a new audited raw revision.
   if (existsSync(supplementalPath) && sha(readFileSync(supplementalPath)) !== sha(bytes)) throw new Error('Supplement content changed: create a reviewed version before replacement');
   mkdirSync(rawDirectory, { recursive: true });
@@ -85,10 +86,9 @@ export function buildBinReconciliation(options: { nearMeters?: number; locationC
 }
 
 export function reconciliationCsv(report: ReconciliationReport): string {
-  const safe = (value: unknown) => { const text = String(value ?? ''); return /^[=+\-@]/.test(text) ? `'${text}` : text; };
   const index = new Map(report.sourceRecords.map(record => [record.id, record]));
   const auditValues = (ids: string[], select: (record: ReconciliationInput) => string) => ids.map(id => { const record = index.get(id); return record ? select(record) : ''; }).join(' | ');
-  return '\uFEFF' + Papa.unparse(report.records.map(row => ({ report_id: report.reportId, classification: row.classification, confidence: row.confidence, historical_ids: row.historicalIds.join('|'), current_ids: row.currentIds.join('|'), historical_addresses: auditValues(row.historicalIds, p => `${p.district} ${p.address}`), current_addresses: auditValues(row.currentIds, p => `${p.district} ${p.address}`), historical_coordinates: auditValues(row.historicalIds, p => `${p.longitude},${p.latitude}`), current_coordinates: auditValues(row.currentIds, p => `${p.longitude},${p.latitude}`), current_sources: auditValues(row.currentIds, p => p.sourceId), distance_meters: row.distanceMeters ?? '', evidence: row.evidence.join('|'), methodology: report.methodology.version, near_meters: report.methodology.nearMeters, location_change_meters: report.methodology.locationChangeMeters })).map(row => Object.fromEntries(Object.entries(row).map(([key, value]) => [key, safe(value)]))));
+  return '\uFEFF' + Papa.unparse(report.records.map(row => ({ report_id: report.reportId, classification: row.classification, confidence: row.confidence, historical_ids: row.historicalIds.join('|'), current_ids: row.currentIds.join('|'), historical_addresses: auditValues(row.historicalIds, p => `${p.district} ${p.address}`), current_addresses: auditValues(row.currentIds, p => `${p.district} ${p.address}`), historical_coordinates: auditValues(row.historicalIds, p => `${p.longitude},${p.latitude}`), current_coordinates: auditValues(row.currentIds, p => `${p.longitude},${p.latitude}`), current_sources: auditValues(row.currentIds, p => p.sourceId), distance_meters: row.distanceMeters ?? '', evidence: row.evidence.join('|'), methodology: report.methodology.version, near_meters: report.methodology.nearMeters, location_change_meters: report.methodology.locationChangeMeters })).map(row => Object.fromEntries(Object.entries(row).map(([key, value]) => [key, csvCellText(value)]))));
 }
 
 export function reconciliationSummary(report: ReconciliationReport): string {

@@ -7,6 +7,8 @@ import { gunzipSync, gzipSync } from 'node:zlib';
 import Papa from 'papaparse';
 import iconv from 'iconv-lite';
 import { validatePolicySnapshot } from '../src/lib/binPolicyData';
+import { buildPrioritySnapshot } from './convertPolicyPrioritySources';
+import { publicPrioritySnapshot } from '../src/lib/policyPriorityPublic';
 import type { PolicyParameters } from '../src/lib/binPolicyDecision';
 import { analyzePolicySensitivity, preparePolicyCoverage, validatePrioritySnapshot } from '../src/lib/policyBalancedCoverage';
 import type { PolicyReference, PriorityAllocation } from '../src/lib/policyPriorityTypes';
@@ -201,7 +203,10 @@ async function runReview() {
   if (districts.length !== 12) throw new Error('Expected all twelve districts');
   const snapshotPath = 'public/data/bin-policy/priority-references-v2.json';
   const snapshotBytes = await readFile(snapshotPath);
-  const snapshot = validatePrioritySnapshot(JSON.parse(snapshotBytes.toString('utf8')), approved.snapshotId, bus.sha256);
+  const published = validatePrioritySnapshot(JSON.parse(snapshotBytes.toString('utf8')), approved.snapshotId, bus.sha256);
+  // Reconstruct the historical review input from exact frozen bytes; public JSON omits raw rows.
+  const snapshot = await buildPrioritySnapshot(join('data/raw/bin-policy-priority', published.snapshotId), districtArchive, approved, published.analysisValidatedAt);
+  if (JSON.stringify(publicPrioritySnapshot(snapshot)) !== JSON.stringify(published)) throw new Error('Public sidecar differs from projected frozen research input');
   const approvedVendor = snapshot.sources.find(entry => entry.id === source.id);
   if (snapshot.schemaVersion !== 2 || approvedVendor?.sha256 !== old.sha256 || snapshot.references.some(reference => reference.category === 'tourism'))
     throw new Error('Vendor audit requires the retained vendor bytes and five-category research snapshot');
@@ -256,7 +261,7 @@ async function runReview() {
     baselineVendor: { source: old, bytes: oldBytes.length }, schema, reconciliation,
     spatial: { before: beforeSpatial, after: afterSpatial, geometryChange },
     analysis: { baseSnapshotId: approved.snapshotId, approvedSha256: sha(approvedBytes), busSourceVersion: bus.sha256, boundarySha256: boundary.sha256,
-      prioritySnapshotId: snapshot.snapshotId, prioritySnapshotSha256: sha(snapshotBytes), methodology: active.before!.methodology,
+      prioritySnapshotId: snapshot.snapshotId, prioritySnapshotSha256: sha(Buffer.from(JSON.stringify(snapshot))), methodology: active.before!.methodology,
       weights: active.before!.categories.map(({ category, weight }) => ({ category, weight })), weightConfiguration: active.before!.weightConfiguration,
       candidatePool: 'transport', comparisons },
     limitations: [

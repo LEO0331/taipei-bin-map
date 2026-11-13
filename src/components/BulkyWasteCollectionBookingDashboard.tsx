@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { serializeCsv } from '../lib/serializeCsv';
 import type { Language } from '../types';
 import type { BulkyWasteCollectionBookingRecord } from '../types';
 
@@ -23,7 +24,7 @@ export function BulkyWasteCollectionBookingDashboard({ language }: { language: L
   const filteredSummary = useMemo(() => ({ districts: new Set(filtered.map(r=>r.districtName).filter(Boolean)).size, teams: new Set(filtered.map(r=>r.collectionTeam).filter(Boolean)).size, villages: new Set(filtered.flatMap(r=>r.serviceVillages)).size, phones: filtered.filter(r=>r.phone).length, hours: filtered.filter(r=>r.bookingHoursRaw).length }), [filtered]);
   const pageSize = 10; const pages = Math.max(1, Math.ceil(filtered.length / pageSize)); const pageRows = filtered.slice((Math.min(page,pages)-1)*pageSize, Math.min(page,pages)*pageSize);
   const labels: Array<[View,string]> = [['overview', zh?'總覽':'Overview'],['districts',zh?'行政區服務':'District Services'],['teams',zh?'清運分隊':'Collection Teams'],['villages',zh?'服務里查詢':'Service Village Lookup'],['directory',zh?'預約清單':'Booking Directory'],['notes',zh?'資料說明':'Data Notes']];
-  const download = () => { const esc=(v:string)=>`"${v.replace(/"/g,'""')}"`; const csv=[[zh?'行政區':'District',zh?'清運分隊':'Collection team',zh?'收運轄區里':'Service villages',zh?'預約電話':'Booking phone',zh?'預約時間':'Booking hours'],...filtered.map(r=>[r.districtName,r.collectionTeam,r.serviceVillagesRaw,r.phone,r.bookingHoursRaw])].map(row=>row.map(esc).join(',')).join('\r\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'})); a.download='taipei-bulky-waste-collection-booking.csv'; a.click(); URL.revokeObjectURL(a.href); };
+  const download = () => { const csv=serializeCsv([[zh?'行政區':'District',zh?'清運分隊':'Collection team',zh?'收運轄區里':'Service villages',zh?'預約電話':'Booking phone',zh?'預約時間':'Booking hours'],...filtered.map(r=>[r.districtName,r.collectionTeam,r.serviceVillagesRaw,r.phone,r.bookingHoursRaw])]); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})); a.download='taipei-bulky-waste-collection-booking.csv'; a.click(); URL.revokeObjectURL(a.href); };
   const copy = async (phone:string) => { if (phone) await navigator.clipboard?.writeText(phone); };
   const resetPage = () => setPage(1);
   if (!records) return <section className="bulky-dashboard"><p>{zh?'載入巨大廢棄物清運預約資料中…':'Loading bulky-waste collection booking data…'}</p></section>;

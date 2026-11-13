@@ -8,6 +8,7 @@ import { stagePolicyPriorityRetirement } from './stagePolicyPriorityRetirement';
 import { hash } from './binPolicyGovernance';
 import { priorityRawSnapshotId, type PriorityRawManifest, type PrioritySourceArchive } from './policyPrioritySources';
 import type { PrioritySnapshot } from '../src/lib/policyPriorityTypes';
+import { publicPrioritySnapshot } from '../src/lib/policyPriorityPublic';
 
 const historicalDirectory = 'data/raw/bin-policy-priority/priority-v1-113edf6ed5e09ada';
 const approvedFile = 'public/data/bin-policy/analysis.json';
@@ -99,18 +100,25 @@ describe('frozen policy research snapshot', () => {
       await expect(buildPrioritySnapshot(join('data/raw/bin-policy-priority', published.snapshotId), changed, approved)).rejects.toThrow(/district|boundary/i);
     } finally { rmSync(directory, { recursive: true, force: true }); }
   });
-  it('reproduces the research snapshot without adopting the newer bus comparison', async () => {
-    const published = JSON.parse(readFileSync('public/data/bin-policy/priority-references.json', 'utf8'));
+  it.each(['priority-references.json', 'priority-references-v2.json'])('reproduces %s without adopting the newer bus comparison', async (filename) => {
+    const published = JSON.parse(readFileSync(join('public/data/bin-policy', filename), 'utf8')) as PrioritySnapshot;
     const approved = JSON.parse(readFileSync('public/data/bin-policy/analysis.json', 'utf8'));
     const result = await buildPrioritySnapshot(join('data/raw/bin-policy-priority', published.snapshotId), 'data/raw/bin-policy/v1-14c24bcdbade/districts.zip', approved);
     expect({ id: result.snapshotId, bus: result.busSourceVersion, counts: result.quality.includedByCategory, status: result.approvalStatus }).toEqual({ id: published.snapshotId, bus: approved.sources.find((s: { id: string }) => s.id === 'bus').sha256, counts: published.quality.includedByCategory, status: 'review_required' });
     // Validation is an actual event; all source-backed reference content must otherwise reproduce.
     const stable = (points: typeof result.references) => points.map(point => ({ ...point, latitude: point.latitude.toFixed(9), longitude: point.longitude.toFixed(9), validatedAt: null }));
-    expect(stable(result.references)).toEqual(stable(published.references));
+    const projection = publicPrioritySnapshot(result);
+    expect(stable(projection.references)).toEqual(stable(published.references));
+    expect(projection.quality).toEqual(published.quality);
   });
 });
 
 describe('retirement-only v2 research snapshot', () => {
+  it.each(['priority-references.json', 'priority-references-v2.json'])('publishes only aggregate commercial context in %s', (filename) => {
+    const published = JSON.parse(readFileSync(join('public/data/bin-policy', filename), 'utf8')) as PrioritySnapshot;
+    expect(published.quality.contextualCounts).toEqual({ commercial_introduction: 65, commercial_associations: 170 });
+    expect(JSON.stringify(published)).not.toMatch(/"raw":|"contextualRecords":|"組織代表":|"聯絡電話":/);
+  });
   it('reuses every nonretired source hash, official date and retrieval history', () => {
     const historical = JSON.parse(readFileSync(join(historicalDirectory, 'sources.json'), 'utf8')) as PriorityRawManifest;
     const active = JSON.parse(readFileSync(activeFile, 'utf8')) as PrioritySnapshot;
