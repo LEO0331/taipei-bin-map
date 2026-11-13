@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { serializeCsv } from '../lib/serializeCsv';
 import type { Language, UnusedMedicineCollectionStationRecord } from '../types';
 
 type View = 'overview' | 'districts' | 'categories' | 'directory' | 'quality' | 'notes';
@@ -26,7 +27,7 @@ export function UnusedMedicineCollectionStationsDashboard({ language }: { langua
   const tabs: Array<[View, string]> = [['overview', zh ? '總覽' : 'Overview'], ['districts', zh ? '行政區分布' : 'District Distribution'], ['categories', zh ? '站點類別' : 'Station Categories'], ['directory', zh ? '檢收站清單' : 'Collection Station Directory'], ['quality', zh ? '資料品質' : 'Data Quality'], ['notes', zh ? '資料說明' : 'Data Notes']];
   const copy = (value: string) => navigator.clipboard?.writeText(value);
   const qualityLabel = (key: string) => ({ duplicateRows: zh ? '重複資料' : 'Duplicate rows', missingNames: zh ? '缺少站名' : 'Missing names', missingAddresses: zh ? '缺少地址' : 'Missing addresses', malformedPhones: zh ? '電話格式異常' : 'Malformed phones', unknownCategories: zh ? '未知類別' : 'Unknown categories', unresolvedDistricts: zh ? '無法判定行政區' : 'Unresolved districts' }[key] ?? key);
-  const download = () => { const escape = (value: string) => `"${value.replace(/"/g, '""')}"`; const csv = [[zh ? '檢收站名稱' : 'Station name', zh ? '類別' : 'Category', zh ? '行政區' : 'District', zh ? '地址' : 'Address', zh ? '電話' : 'Phone', zh ? '分機' : 'Extension'], ...filtered.map((r) => [r.stationName, r.stationCategory, r.districtName, r.address, r.phone, r.extension])].map((row) => row.map(escape).join(',')).join('\r\n'); const anchor = document.createElement('a'); anchor.href = URL.createObjectURL(new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' })); anchor.download = 'unused-medicine-collection-stations.csv'; anchor.click(); URL.revokeObjectURL(anchor.href); };
+  const download = () => { const csv = serializeCsv([[zh ? '檢收站名稱' : 'Station name', zh ? '類別' : 'Category', zh ? '行政區' : 'District', zh ? '地址' : 'Address', zh ? '電話' : 'Phone', zh ? '分機' : 'Extension'], ...filtered.map((r) => [r.stationName, r.stationCategory, r.districtName, r.address, r.phone, r.extension])]); const anchor = document.createElement('a'); anchor.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); anchor.download = 'unused-medicine-collection-stations.csv'; anchor.click(); URL.revokeObjectURL(anchor.href); };
   const chart = (items: string[], count: (item: string) => number) => <div className="dashboard-chart">{items.map((item) => <div className="bar-row" key={item}><span>{item}</span><div><i style={{ width: `${(count(item) / Math.max(filtered.length, 1)) * 100}%` }} /></div><strong>{count(item)}</strong></div>)}</div>;
 
   if (!records) return <section className="bulky-dashboard"><p>{zh ? '載入資料中…' : 'Loading data…'}</p></section>;

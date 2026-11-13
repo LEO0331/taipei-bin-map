@@ -31,7 +31,7 @@ flowchart LR
   A --> H[人工查核來源版本與決策影響]
   H --> P[明確 approval JSON]
   P --> V[隔離下載／版本原檔與完整驗證]
-  V --> B[新分支與草稿 PR]
+  V --> B[審查檔與候選差異]
   B --> R[獨立人工審查]
   R --> D[由維護者決定是否合併部署分支]
 ```
@@ -71,7 +71,7 @@ approval 必須包含明確審查者、日期、本 repository 的議題／PR �
 
 發布準備程式依序驗證核准紀錄、resource ID、精確雜湊、schema、座標、完整性及列數變化，產生隔離審查 bundle。相同模型與相同參數產生來源變更和中正區 300m／5 座／不限預算的決策敏感度報告；這只是基本驗證情境，不能代替所有相關行政區與參數的影響審查，也不是政策實施效果。重大列數異常即使核准布林值為 true 仍阻擋，需另外審查 importer／門檻變更。
 
-通過後，工作流程只在 `codex/bin-policy-data-<run>-<attempt>` 分支放入原始快照、分析、對帳、健康與決策影響報告；執行單元測試、建置及桌面／手機瀏覽器測試，再建立草稿 PR。沒有 auto-merge，沒有 main push。GitHub 若禁止 Actions 建 PR，分支與 artifacts 仍可由維護者手動審查；不假稱 PR 已建立。工作流程建立 PR 的 token 所觸發事件可能不會再次觸發 CI，因此發布流程本身先完成測試，維護者仍應依分支保護確認必要檢查。
+通過後，工作流程在暫時的 runner 工作樹重建原始快照、分析、對帳、健康與決策影響報告；單元測試、建置與瀏覽器測試通過後，才上傳 `bin-policy-publication-review`。GitHub token 僅有 `contents: read`，不保留 checkout 憑證，沒有自動 commit、push 或建立 PR。維護者核對 `base-commit.txt`、核准證據和 `candidate.patch` 後，可在對應基準的本機分支先用 `git apply --check` 檢查再自行套用、審查與更新分支；若基準已變，先重新準備候選，不強行套用。
 
 同一內容雜湊版本的原始目錄若已存在，發布階段會核對其資源 ID、來源日期、編碼與 CRS 等中繼資料；衝突會阻擋，不能只比較內容雜湊後丟棄新的核准來源日期。相同內容重新下載時，重建使用既有封存清單，保留原擷取沿革；中繼資料單獨修訂須另做版本化沿革遷移。本階段會重建新快照對應的清潔箱對帳、公車比較／敏感度與健康側檔，避免新舊報告錯配；正式 JSON 替換採暫存檔後原子 rename。
 
@@ -105,7 +105,7 @@ npm run data:fetch:bin-policy -- --approval <已審查approval.json> --output te
 
 - 保護 main，禁止資料更新機器人直接推送，要求獨立 PR review。
 - 設定 `bin-policy-data-review` required reviewers；限制可使用該環境的來源分支。
-- 如允許自動草稿 PR，啟用 Actions 建立 PR 權限；否則人工由 review 分支開 PR。
+- 發布審查流程不需 Actions 建立 PR 的權限；分支更新與 PR 由維護者管理。
 - 檢查 Issue write 是否開放；未開放時以 artifact 和 workflow failure 通知補足。
 - 確認週期排程在預設分支生效且 repository 活躍，定期檢查長期未執行的排程。
 - 保留舊版原檔與對帳報告；不要把 historical_only 改稱 removed，也不要把資料版本敏感度變化改稱政策改善。

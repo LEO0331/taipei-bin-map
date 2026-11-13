@@ -1,5 +1,6 @@
 import type { Translation } from '../i18n';
 import type { FacilityWithDistance, Language } from '../types';
+import { externalHttpUrl } from '../utils/externalHttpUrl';
 import {
   getAcceptedItemsLabel,
   getAnnouncedNoSmokingRecordTypeLabel,
@@ -33,6 +34,8 @@ type FacilityPopupProps = {
 
 export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
   const showPositiveNumber = (value: number | undefined) => typeof value === 'number' && value > 0;
+  const maintenanceUrl = externalHttpUrl(facility.maintenanceUrl);
+  const photoUrl = externalHttpUrl(facility.photoUrl);
 
   return (
     <div className="map-popup">
@@ -196,8 +199,8 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.installLocation && <p>{t.installLocation}: {facility.installLocation}</p>}
           <p>{t.status}: {getDirectDrinkingStatusLabel(facility.directDrinkingStatus, language)}</p>
           {facility.latestSamplingDate && <p>{t.latestSamplingDate}: {facility.latestSamplingDate}</p>}
-          {facility.maintenanceUrl && <p><a href={facility.maintenanceUrl} target="_blank" rel="noreferrer">{t.waterQualityMaintenanceInfo}</a></p>}
-          {facility.photoUrl && <p><a href={facility.photoUrl} target="_blank" rel="noreferrer">{t.photo}</a></p>}
+          {maintenanceUrl && <p><a href={maintenanceUrl} target="_blank" rel="noreferrer">{t.waterQualityMaintenanceInfo}</a></p>}
+          {photoUrl && <p><a href={photoUrl} target="_blank" rel="noreferrer">{t.photo}</a></p>}
         </>
       )}
       {facility.type === 'used_clothing_recycling_box' && (
@@ -274,7 +277,7 @@ export function FacilityPopup({ facility, language, t }: FacilityPopupProps) {
           {facility.relativeLocation && <p>{t.relativeLocation}: {facility.relativeLocation}</p>}
           {facility.managingUnit && <p>{t.managingUnit}: {facility.managingUnit}</p>}
           {facility.managingUnitPhone && <p>{t.managingUnitPhone}: {facility.managingUnitPhone}</p>}
-          {facility.photoUrl && <p><a href={facility.photoUrl} target="_blank" rel="noreferrer">{t.photo}</a></p>}
+          {photoUrl && <p><a href={photoUrl} target="_blank" rel="noreferrer">{t.photo}</a></p>}
         </>
       )}
       {facility.type === 'announced_no_smoking_place' && (

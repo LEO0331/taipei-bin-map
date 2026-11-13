@@ -8,6 +8,14 @@
   },
   "features": [
     {
+      "id": "feat-051",
+      "name": "Security hardening at data and publication boundaries",
+      "description": "Minimize public research data, protect CSV exports, remove CI publication write access, validate external facility URLs and enforce download byte caps.",
+      "dependencies": ["feat-050"],
+      "status": "done",
+      "evidence": "574 unit/component, 232 desktop/mobile E2E, four offline preview checks and production build passed. Both policy replays and byte-identical facility conversion verified; workflow YAML and least privilege checked locally. No commit, push, deployment, or remote dispatch."
+    },
+    {
       "id": "feat-050",
       "name": "Retire Taipei Travel and review policy source changes",
       "description": "Version the five-category research scope on frozen inputs, technically review the vendor revision, and retain the approved bin baseline.",

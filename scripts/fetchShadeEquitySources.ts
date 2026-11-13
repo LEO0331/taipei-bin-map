@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { readBoundedResponse } from './readBoundedResponse';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve, join, relative, isAbsolute } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -60,7 +61,7 @@ export async function fetchShadeEquitySources(root = 'data/raw/shade-equity', fe
     const datasetUrl = `https://data.taipei/dataset/detail?id=${datasetId}`;
     const metadataResponse = await fetcher(datasetUrl, { signal: AbortSignal.timeout(120_000) });
     if (!metadataResponse.ok) throw new Error(`${id} catalogue HTTP ${metadataResponse.status}`);
-    const catalogueBytes = Buffer.from(await metadataResponse.arrayBuffer());
+    const catalogueBytes = await readBoundedResponse(metadataResponse, 5_000_000, `${id} catalogue exceeds acquisition limit`);
     const metadata = parseShadeCatalogue(catalogueBytes.toString('utf8'));
     if (metadata.pid !== datasetId) throw new Error(`${id} dataset identity changed`);
     const resource = expectedResourceId ? metadata.resources.find((item: any) => item.rid === expectedResourceId) : metadata.resources.find((item: any) => /csv/i.test(item.file_format)) ?? metadata.resources.find((item: any) => /json/i.test(item.file_format));
@@ -70,8 +71,7 @@ export async function fetchShadeEquitySources(root = 'data/raw/shade-equity', fe
     const downloadUrl = resource.url?.startsWith('https://') ? resource.url : `https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=${resource.rid}`;
     if (!/^https:\/\//.test(downloadUrl)) throw new Error(`${id} insecure source URL`);
     const response = await fetcher(downloadUrl, { signal: AbortSignal.timeout(180_000) });
-    const bytes = Buffer.from(await response.arrayBuffer());
-    if (bytes.length > 150_000_000) throw new Error(`${id} source exceeds acquisition limit`);
+    const bytes = await readBoundedResponse(response, 150_000_000, `${id} source exceeds acquisition limit`);
     if (!response.ok) {
       const failureDirectory = join(directory, 'blocked-responses'); await mkdir(failureDirectory, { recursive: true });
       await writeFile(join(failureDirectory, `${id}-http-${response.status}-${shadeHash(bytes).slice(0,16)}.bin`), bytes);

@@ -13,6 +13,7 @@ import type {
   OpeningHoursType,
 } from '../src/types';
 import { TAIPEI_BOUNDS, normalizeTaipeiDistrict } from '../src/utils/facilityUtils';
+import { externalHttpUrl } from '../src/utils/externalHttpUrl';
 
 type Row = Record<string, string | undefined>;
 
@@ -155,8 +156,7 @@ export function convertDesignatedSmokingAreaRows(rows: Row[], fileName = '臺北
     const smokingAreaTypeRaw = clean(row.樣態);
     const openingHoursRaw = clean(row.開放時間);
     const openingHoursType = classifyOpeningHoursType(openingHoursRaw);
-    const photoUrl = clean(row.照片連結);
-    const validPhotoUrl = photoUrl && /^https?:\/\//.test(photoUrl) ? photoUrl : undefined;
+    const photoUrl = externalHttpUrl(clean(row.照片連結));
     const managingUnit = clean(row.管理單位);
     const managingUnitPhone = clean(row.管理單位電話);
 
@@ -185,8 +185,8 @@ export function convertDesignatedSmokingAreaRows(rows: Row[], fileName = '臺北
       hasCustomOpeningHours: openingHoursType !== 'listed_24_hours' && openingHoursType !== 'missing',
       relativeLocation: clean(row.相對位置),
       hasRelativeLocation: Boolean(clean(row.相對位置)),
-      photoUrl: validPhotoUrl,
-      hasPhotoUrl: Boolean(validPhotoUrl),
+      photoUrl,
+      hasPhotoUrl: Boolean(photoUrl),
       manager: managingUnit,
       managingUnit,
       managingUnitCategory: classifyManagingUnitCategory(managingUnit),

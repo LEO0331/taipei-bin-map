@@ -1,7 +1,9 @@
 import type { PriorityAllocation, PrioritySnapshot } from './policyPriorityTypes';
+import { serializeCsv } from './serializeCsv';
 import { priorityMethod, type analyzePolicySensitivity } from './policyBalancedCoverage';
 import { defaultPriorityWeights, priorityWeightConfiguration, WEIGHT_BOUNDS } from './policyPriorityWeights';
 import { ACTIVE_POLICY_CATEGORY_LABELS, ACTIVE_PRIORITY_LIMITATIONS, PRIORITY_CATEGORY_LABELS, PRIORITY_LIMITATIONS } from './policyPriorityPresentation';
+import { publicPriorityPoint, publicPriorityQuality } from './policyPriorityPublic';
 
 export type PrioritySensitivity = ReturnType<typeof analyzePolicySensitivity>;
 function exportContract(snapshot: PrioritySnapshot, result: PriorityAllocation, sensitivity: PrioritySensitivity) {
@@ -17,6 +19,9 @@ export function priorityCoverageScores(result: PriorityAllocation) {
 }
 export function priorityBriefing(snapshot: PrioritySnapshot, result: PriorityAllocation, sensitivity: PrioritySensitivity, generatedAt: string) {
   const limitations = exportContract(snapshot, result, sensitivity);
+  const publicAllocation = (allocation: PriorityAllocation) => ({
+    ...allocation, selected: allocation.selected.map(candidate => ({ ...candidate, point: publicPriorityPoint(candidate.point) })),
+  });
   return {
     schemaVersion: snapshot.schemaVersion, analysisMode: 'policy_priority', methodology: result.methodology,
     weightConfiguration: result.weightConfiguration, activeWeights: result.weights,
@@ -29,7 +34,9 @@ export function priorityBriefing(snapshot: PrioritySnapshot, result: PriorityAll
     ...(snapshot.schemaVersion === 2 ? { retiredSources: snapshot.retiredSources } : {}),
     categoryStatus: snapshot.categoryStatus, parameters: result.parameters, candidatePool: result.candidatePool,
     weightedCoverage: priorityCoverageScores(result),
-    activeScenario: result, sensitivity, quality: snapshot.quality, limitations,
+    activeScenario: publicAllocation(result),
+    sensitivity: { ...sensitivity, scenarios: sensitivity.scenarios.map(scenario => ({ ...scenario, result: publicAllocation(scenario.result) })) },
+    quality: publicPriorityQuality(snapshot.quality), limitations,
   };
 }
 
@@ -43,11 +50,6 @@ export function priorityCsv(snapshot: PrioritySnapshot, result: PriorityAllocati
   rows[0][30] = limitations.join(' | ');
   for (const category of result.categories) rows.push(['category_summary', ...common, category.category, '', '', '', '', '', '', '', '', '', '', '', category.denominator, category.baselineCovered, category.newlyCovered, category.contribution, '', category.available ? (category.sparse ? 'Sparse reference population' : '') : 'Unavailable category; not zero demand; weight not redistributed']);
   for (const candidate of result.selected) rows.push(['candidate', ...common, candidate.point.category, candidate.point.id, candidate.point.name, candidate.point.latitude, candidate.point.longitude, candidate.point.precision, candidate.point.sourceId, candidate.point.sourceRecord, candidate.point.sourceVersion, candidate.nearestBinMeters, candidate.incrementalCoverage, candidate.incrementalScore, '', '', '', JSON.stringify(candidate.contributions), JSON.stringify(sensitivity.rankings.find(row => row.id === candidate.point.id)?.ranks ?? []), [...limitations, ...candidate.point.limitations].join(' | ')]);
-  const quote = (value: unknown) => {
-    let text = String(value ?? '');
-    if (/^\s*[=+@-]|^[\t\r\n]/.test(text)) text = `'${text}`;
-    return `"${text.replace(/"/g, '""')}"`;
-  };
   const coverage = priorityCoverageScores(result);
-  return '\uFEFF' + [[...headers, 'baseline_weighted_coverage', 'post_weighted_coverage'], ...rows.map(row => [...row, coverage.baseline, coverage.post])].map(row => row.map(quote).join(',')).join('\r\n');
+  return serializeCsv([[...headers, 'baseline_weighted_coverage', 'post_weighted_coverage'], ...rows.map(row => [...row, coverage.baseline, coverage.post])]);
 }

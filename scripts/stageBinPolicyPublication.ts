@@ -6,7 +6,7 @@ import { validateApproval, type SourceApproval } from './binPolicyGovernance';
 import { assertArchiveMetadata } from './binPolicyManifest';
 export { assertArchiveMetadata } from './binPolicyManifest';
 
-/** Used only on the workflow's new review branch; never pushes or merges. */
+/** Materializes a reviewed candidate for testing; never commits, pushes or merges. */
 export function stagePublication(bundleDirectory: string) {
   const bundle = resolve(bundleDirectory);
   const ready = JSON.parse(readFileSync(join(bundle, 'ready.json'), 'utf8'));

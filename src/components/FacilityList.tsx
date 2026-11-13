@@ -1,5 +1,6 @@
 import type { Translation } from '../i18n';
 import type { FacilityWithDistance, Language } from '../types';
+import { externalHttpUrl } from '../utils/externalHttpUrl';
 import {
   formatDistance,
   getAcceptedItemsLabel,
@@ -72,8 +73,9 @@ export function FacilityList({
         <p className="empty-state">{t.noMatchingFacilities}</p>
       ) : (
         <ol>
-          {facilities.map((facility, index) => (
-            <li key={facility.id}>
+          {facilities.map((facility, index) => {
+            const photoUrl = facility.type === 'designated_smoking_area' ? externalHttpUrl(facility.photoUrl) : undefined;
+            return <li key={facility.id}>
               <div>
                 <strong>
                   <span>{String(index + 1).padStart(2, '0')}</span>
@@ -314,15 +316,15 @@ export function FacilityList({
                 </small>
               )}
               {facility.note && <small>{facility.note}</small>}
-              {facility.type === 'designated_smoking_area' && facility.photoUrl && (
-                <a href={facility.photoUrl} target="_blank" rel="noreferrer">{t.photo}</a>
+              {photoUrl && (
+                <a href={photoUrl} target="_blank" rel="noreferrer">{t.photo}</a>
               )}
               {facility.isCoordinateOutlier && <small className="outlier-warning">{t.coordinateOutlierWarning}</small>}
               <a href={getFacilityGoogleMapsUrl(facility)} target="_blank" rel="noreferrer">
                 {t.openGoogleMaps}
               </a>
-            </li>
-          ))}
+            </li>;
+          })}
         </ol>
       )}
     </section>

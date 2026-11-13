@@ -1,4 +1,5 @@
 import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
+import { readBoundedResponse } from './readBoundedResponse';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -28,7 +29,7 @@ export async function monitorSources(previous: Snapshot, options: { fetcher?: ty
         if (!retrieveMetadata) throw new Error('Metadata retrieval not supplied');
         const response = await retrieveMetadata(source.datasetUrl, { signal: AbortSignal.timeout(options.timeoutMs ?? 60000) });
         if (!response.ok) throw new Error('Metadata HTTP failure');
-        const metadata = parsePortalMetadata(await response.text(), source.datasetId, source.resourceId);
+        const metadata = parsePortalMetadata(new TextDecoder().decode(await readBoundedResponse(response, 5_000_000, 'Official catalogue exceeds acquisition limit')), source.datasetId, source.resourceId);
         entry.metadata_status = 'verified';
         entry.provider_metadata_updated_at = metadata.metadata_updated_at;
         entry.source_updated_at = metadata.source_updated_at;
@@ -48,8 +49,7 @@ export async function monitorSources(previous: Snapshot, options: { fetcher?: ty
         const response = await (options.fetcher ?? fetch)(source.downloadUrl, { signal: AbortSignal.timeout(options.timeoutMs ?? 60000) });
         entry.http_status = response.status;
         if (!response.ok) throw new Error('http_failure');
-        const bytes = Buffer.from(await response.arrayBuffer());
-        if (bytes.length < 100 || bytes.length > 20_000_000) throw new Error('unexpected_resource_size');
+        const bytes = await readBoundedResponse(response, 20_000_000, 'unexpected_resource_size', 100);
         entry.current_hash = hash(bytes);
         entry.retrieved_at = options.now ?? new Date().toISOString();
         entry.content_changed = entry.current_hash !== entry.previous_hash;

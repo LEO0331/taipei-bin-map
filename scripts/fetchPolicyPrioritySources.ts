@@ -1,4 +1,5 @@
 import { mkdir, readFile, writeFile, rename, rm } from 'node:fs/promises';
+import { readBoundedResponse } from './readBoundedResponse';
 import { join, resolve, relative } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { hash } from './binPolicyGovernance';
@@ -13,8 +14,9 @@ export async function acquirePolicyPrioritySources(root = 'data/raw/bin-policy-p
     const sources: PrioritySourceArchive[] = [];
     const [definition] = priorityTransportSources;
     const response = await fetcher(definition.downloadUrl, { signal: AbortSignal.timeout(60000), redirect: 'error' });
-    const bytes = Buffer.from(await response.arrayBuffer());
-    if (!response.ok || !bytes.length || bytes.length > 15_000_000) throw new Error('MRT acquisition failed or unexpected source size');
+    const sizeError = 'MRT acquisition failed or unexpected source size';
+    if (!response.ok) throw new Error(sizeError);
+    const bytes = await readBoundedResponse(response, 15_000_000, sizeError, 1);
     const fetchedAt = new Date().toISOString();
     const payload = JSON.parse(bytes.toString('utf8'));
     if (payload?.type !== 'FeatureCollection' || payload.crs?.properties?.name !== 'EPSG:3826' || !Array.isArray(payload.features) || !payload.features.length) throw new Error('MRT acquisition CRS or feature schema drift');

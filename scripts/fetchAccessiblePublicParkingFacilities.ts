@@ -1,4 +1,5 @@
 import { mkdirSync, statSync, writeFileSync } from 'node:fs';
+import { readBoundedResponse } from './readBoundedResponse';
 import { resolve } from 'node:path';
 
 const sourceUrl = 'https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=936e3be6-e029-4bdf-9199-a8b8fb482df6';
@@ -8,7 +9,7 @@ const output = resolve(outputDir, 'accessible-public-parking-facilities.csv');
 mkdirSync(outputDir, { recursive: true });
 const response = await fetch(sourceUrl, { headers: { 'user-agent': 'taipei-bin-map-data-fetcher/1.0' } });
 if (!response.ok) throw new Error(`Unable to fetch accessibility parking CSV: HTTP ${response.status}`);
-writeFileSync(output, Buffer.from(await response.arrayBuffer()));
+writeFileSync(output, await readBoundedResponse(response, 20_000_000, 'Parking CSV exceeds acquisition limit'));
 writeFileSync(resolve(outputDir, 'source-metadata.json'), `${JSON.stringify({
   sourceUrl: 'https://data.taipei/dataset/detail?id=08f9bc00-b1e9-4f6e-9199-0da74d8ad930',
   resourceId: '936e3be6-e029-4bdf-9199-a8b8fb482df6',
